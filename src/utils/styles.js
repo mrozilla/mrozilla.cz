@@ -18,7 +18,7 @@ export let colour = {
     warning: "#f0ad4e",
     danger:  "#d9534f",
 
-    complement: complement(this.brand.primary),
+    complement: complement(this.primary),
   },
 };
 
