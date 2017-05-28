@@ -3,7 +3,7 @@
 // =============================================================================
 
 import { css } from 'styled-components';
-import { complement, desaturate, lighten, darken }        from 'polished';
+import { complement, desaturate, lighten, darken } from 'polished';
 
 // =============================================================================
 // Colour
@@ -11,14 +11,14 @@ import { complement, desaturate, lighten, darken }        from 'polished';
 
 export const colour = {
   brand: {
-    primary:   "#ea2e42",
+    primary: "#ea2e42",
     get secondary() {
       return darken(0.1, this.primary);
     },
-    success:   "#5cb85c",
-    info:      "#5bc0de",
-    warning:   "#f0ad4e",
-    danger:    "#d9534f",
+    success: "#5cb85c",
+    info:    "#5bc0de",
+    warning: "#f0ad4e",
+    danger:  "#d9534f",
     get complement() {
       return complement(this.primary);
     },
@@ -51,13 +51,6 @@ export const colour = {
   },
 };
 
-// background: gray--lightest
-// background--inverse: brand--primary
-//
-// link: brand--primary
-// link--hover:	darken(link, 10%)
-// link--visited:	darken(link, 25%)
-
 // =============================================================================
 // Z-index
 // =============================================================================
@@ -83,7 +76,7 @@ export const zIndex = {
 // =============================================================================
 
 export const grid = {
-  gutter:  "1rem",
+  gutter:  1,
   columns: "12",
   width:   {
     xs: "100%",
@@ -110,6 +103,56 @@ export const media = Object.keys(mediaSizes).reduce((acc, val) => {
   acc[val] = (...args) => css`@media (min-width: ${mediaSizes[val]}px) {${css(...args)}}`;
   return acc;
 }, {});
+
+// =============================================================================
+// Typography
+// =============================================================================
+
+const typography = {
+  font: {
+    family: {
+      headings: 'Montserrat',
+      body: 'Roboto Mono',
+    },
+    size: {
+      root: "125%",
+      base: "0.85rem",
+    },
+    lineHeight: "1rem",
+    colour: {
+      body: colour.grey.dark,
+    }
+  },
+};
+
+// =============================================================================
+// Reboot
+// =============================================================================
+
+export const reboot = {
+  'html': {
+    'box-sizing': 'border-box',
+    'font-size': typography.font.size.root,
+  },
+  [`*, *:before, *:after`]: {
+    'box-sizing': 'inherit',
+  },
+  'body': {
+    'font-family': typography.font.family.body,
+    'font-size': typography.font.size.base,
+    'line-height': typography.font.lineHeight,
+    'color': typography.font.colour.body,
+    'background-color': colour.grey.lightest,
+    '-webkit-font-smoothing': 'antialiased',
+  },
+  [`h1, h2, h3, h4, h5, h6, p`]: {
+    'margin': '0',
+  },
+  'a': {
+    'color': 'inherit',
+    'text-decoration': 'none',
+  }
+};
 
 // =============================================================================
 // Export
