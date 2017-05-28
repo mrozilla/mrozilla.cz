@@ -5,16 +5,24 @@
 import styled from 'styled-components';
 import { colour, zIndex, media } from '../utils/styles';
 
+export const Header = styled.header`
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	position: ${props => props.fixed ? "fixed" : "static"};
+`;
+
 export const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   right: 0;
   left: 0;
   top: 0;
+  padding-bottom: 0.25rem;
   z-index: ${zIndex.navbar.fixed};
   background-color: ${colour.grey.lightest};
   ${props => props.fixed ? 'position: fixed' : 'position: relative'};
-  padding-bottom: 0.25rem;
   ${media.lg`padding-bottom: initial`}
   &:after {
     content: '';
@@ -50,8 +58,8 @@ export const NavbarToggle = styled.div`
 	width: 1rem;
 	height: 2px;
 	transition: 1s ease transform;
-	transform: ${props => props.collapsed ? 'initial' : 'rotate(-45deg)'};
 	background-color: ${props => props.collapsed ? colour.grey.basic : colour.brand.primary};
+	${props => !props.collapsed && 'transform: rotate(-45deg'};
   ${media.lg`display: none;`}
   &:after, &:before {
     content: '';
@@ -63,11 +71,11 @@ export const NavbarToggle = styled.div`
   }
   &:after {
     top: 5px;
-    transform: ${props => props.collapsed ? 'initial' : 'translate(0px, -5px) rotate(90deg)'};
+    ${props => !props.collapsed && 'transform: translate(0px, -5px) rotate(90deg)'};
   }
   &:before {
     top: -5px;
-    transform: ${props => props.collapsed ? 'initial' : 'translate(0px, 5px) rotate(90deg)'};
+    ${props => !props.collapsed && 'transform: translate(0px, 5px) rotate(90deg)'};
   }
 `; // FIXME add transition constants
 
