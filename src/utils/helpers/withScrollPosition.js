@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 // withScrollPosition
 // =============================================================================
 
-export default function withScrollPosition(WrappedComponent) {
+export function withScrollPosition(WrappedComponent) {
   return class extends Component {
     state = {
       isInViewport: false,

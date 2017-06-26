@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 // withMousePosition
 // =============================================================================
 
-export default function withMousePosition(WrappedComponent) {
+export function withMousePosition(WrappedComponent) {
   return class withMousePosition extends Component {
     state = {
       x:          0,
