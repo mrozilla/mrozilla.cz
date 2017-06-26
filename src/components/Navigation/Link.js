@@ -6,48 +6,50 @@
 // import React    from 'react';
 
 // Components
-import { SmartLink, SmartNavLink} from '../../utils/helpers';
+import { SmartLink, SmartNavLink } from '../../utils/helpers';
 
 // Styles
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colour, media, transition } from '../../utils/styles';
-
-// =============================================================================
-// BasicLink
-// =============================================================================
-
-const BasicLink = styled(SmartLink)`
-  display: inline-flex;
-  align-items: center;
-`; // TODO merge BasicLink and Link through a prop?
 
 // =============================================================================
 // Link
 // =============================================================================
 
 export const Link = styled(SmartLink)`
-  position: relative;
-  display: inline-flex;
-  font-weight: 900;
-  vertical-align: bottom;
-  color: ${colour.brand.primary};
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;bottom: 0;left: 0;right: 0;
-    width: 0; height: 100%;
-    border-radius: 0.125rem;
-    z-index: -1;
-    background-color: ${colour.brand.primary};
-    transition: ${transition.primary.medium} width;
-  }
-  &:hover {
-    color: ${colour.grey.lightest};
-  }
-  &:hover:after {
-    width: 100%;
-  }
+  ${props => !props.bare && css`
+    position: relative;
+    display: inline-flex;
+    font-weight: 900;
+    vertical-align: bottom;
+    color: ${colour.brand.primary};
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;bottom: 0;left: 0;right: 0;
+      width: 0; height: 100%;
+      border-radius: 0.125rem;
+      z-index: -1;
+      background-color: ${colour.brand.primary};
+      transition: ${transition.primary.medium} width;
+    }
+    &:hover {
+      color: ${colour.grey.lightest};
+    }
+    &:hover:after {
+      width: 100%;
+    }
+  `}
+  ${props => props.venter && css`
+    display: inline-flex;
+    align-items: center;
+  `}
 `;
+
+Link.defaultProps = {
+  bare:   false,
+  venter: false,
+};
 
 // =============================================================================
 // NavLink
@@ -74,10 +76,4 @@ export const NavLink = styled(SmartNavLink)`
   ${media.lg`& + & {
     margin-left: 1rem;
   }`}
-  `;
-
-// =============================================================================
-// Export
-// =============================================================================
-
-export default BasicLink;
+`;

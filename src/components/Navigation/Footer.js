@@ -3,7 +3,7 @@
 // =============================================================================
 
 import styled    from 'styled-components';
-import {colour}   from '../utils/styles';
+import {colour}   from '../../utils/styles';
 
 const Footer = styled.footer`
   display: flex;
@@ -19,7 +19,7 @@ const Footer = styled.footer`
 	  left: 0;
 	  right: 0;
 	  z-index: -1;
-    border-top: 1px solid ${colour.grey.light};
+    border-top: 1px solid ${colour.grey.lighter};
   }
 `;
 
