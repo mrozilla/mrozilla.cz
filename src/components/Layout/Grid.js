@@ -3,7 +3,7 @@
 // =============================================================================
 
 import styled from 'styled-components';
-import { media, grid } from '../utils/styles';
+import { media, grid } from '../../utils/styles';
 
 export const Container = styled.div`
 	position: relative;
@@ -33,14 +33,15 @@ Row.defaultProps = {
 export const Column = styled.div`
   position: relative;
 	min-height: 1px;
-	padding-left:  ${grid.gutter / 2}rem;
-	padding-right: ${grid.gutter / 2}rem;
+	${props => !props.noPadding && `padding-left:  ${grid.gutter / 2}rem`};
+	${props => !props.noPadding && `padding-right:  ${grid.gutter / 2}rem`};
+	
 	flex: 0 0 100%;
-	${props => props.xs && media.xs`flex: 0 0 ${((props.xs / grid.columns) * 100).toFixed()}%;`}
-	${props => props.sm && media.sm`flex: 0 0 ${((props.sm / grid.columns) * 100).toFixed()}%;`}
-	${props => props.md && media.md`flex: 0 0 ${((props.md / grid.columns) * 100).toFixed()}%;`}
-	${props => props.lg && media.lg`flex: 0 0 ${((props.lg / grid.columns) * 100).toFixed()}%;`}
-	${props => props.xl && media.xl`flex: 0 0 ${((props.xl / grid.columns) * 100).toFixed()}%;`}
+	${props => props.xs && media.xs`flex: 0 0 ${((props.xs / grid.columns) * 100)}%;`}
+	${props => props.sm && media.sm`flex: 0 0 ${((props.sm / grid.columns) * 100)}%;`}
+	${props => props.md && media.md`flex: 0 0 ${((props.md / grid.columns) * 100)}%;`}
+	${props => props.lg && media.lg`flex: 0 0 ${((props.lg / grid.columns) * 100)}%;`}
+	${props => props.xl && media.xl`flex: 0 0 ${((props.xl / grid.columns) * 100)}%;`}
 	
 	${props => props.stacked && media.lg`
     &:nth-of-type(2) {
@@ -57,6 +58,7 @@ export const Column = styled.div`
 Column.defaultProps = {
   marginTop: '0',
   stacked:   false,
+  noPadding: false,
 };
 
 // =============================================================================
