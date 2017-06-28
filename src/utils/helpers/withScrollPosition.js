@@ -1,5 +1,5 @@
 // =============================================================================
-// Imports
+// Import
 // =============================================================================
 
 // React
@@ -13,8 +13,8 @@ import ReactDOM from 'react-dom';
 export function withScrollPosition(WrappedComponent) {
   return class extends Component {
     state = {
-      isInViewport: false,
       el:           null,
+      isInViewport: false,
     };
 
     componentDidMount() {

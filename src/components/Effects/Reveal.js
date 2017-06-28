@@ -20,7 +20,7 @@ import { withScrollPosition } from '../../utils/helpers';
 // Container
 const RevealContainer = styled.span`
   position: relative;
-  display: ${props => props.block ? 'block' : 'inline-block'};
+  display: ${props => props.isBlock ? 'block' : 'inline-block'};
   animation-delay: ${props => props.delay};
 `; // TODO improve props.block logic
 
@@ -32,7 +32,7 @@ RevealContainer.defaultProps = {
 
 // Content
 const RevealContent = styled.span`
-  ${props => props.block && 'display: block'};
+  ${props => props.isBlock && 'display: block'};
   ${props => props.isInViewport
   ? `animation: ${animation.appear} ${transition.primary.long} both;`
   : 'opacity: 0;'
@@ -46,8 +46,9 @@ const RevealBox = styled.span`
   top: 0;bottom: 0;left: 0;right: 0;
   width: 120%; 
   pointer-events: none;
-  height: ${props => props.block ? '100%' : '120%'};
+  height: ${props => props.isBlock ? '100%' : '120%'};
   background-color: ${colour.brand.primary};
+  will-change: width;
   ${props => props.isInViewport
   ? `animation: ${animation.reveal.right} ${transition.primary.long} both;`
   : 'width: 0%;'

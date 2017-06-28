@@ -5,7 +5,7 @@
 import styled    from 'styled-components';
 import {colour}   from '../../utils/styles';
 
-const Footer = styled.footer`
+const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

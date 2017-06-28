@@ -1,9 +1,13 @@
 // =============================================================================
-// Styles
+// Import
 // =============================================================================
 
 import styled from 'styled-components';
 import { media, grid } from '../../utils/styles';
+
+// =============================================================================
+// Container
+// =============================================================================
 
 export const Container = styled.div`
 	position: relative;
@@ -15,8 +19,12 @@ export const Container = styled.div`
 	${media.sm`width: ${grid.width.sm};`}
 	${media.md`width: ${grid.width.md};`}
 	${media.lg`width: ${grid.width.lg};`}
-	// ${media.xl`width: ${grid.width.xl};`}
+	${media.xl`width: ${grid.width.xl};`}
 `;
+
+// =============================================================================
+// Row
+// =============================================================================
 
 export const Row = styled.div`
   display: flex;
@@ -29,6 +37,10 @@ export const Row = styled.div`
 Row.defaultProps = {
   centered: false,
 };
+
+// =============================================================================
+// Column
+// =============================================================================
 
 export const Column = styled.div`
   position: relative;
@@ -60,9 +72,3 @@ Column.defaultProps = {
   stacked:   false,
   noPadding: false,
 };
-
-// =============================================================================
-// Export
-// =============================================================================
-
-// export default Container;

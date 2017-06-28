@@ -1,5 +1,5 @@
 // =============================================================================
-// Imports
+// Import
 // =============================================================================
 
 // React
@@ -41,7 +41,7 @@ export default class HeaderContainer extends Component {
       <Header fixed>
         <Container>
           <Navbar>
-            <Link to="/" bare venter>
+            <Link to="/" isBare isVenter>
               <Wiggle>{this.props.location.pathname === '/'
                 ? <Logo />
                 : <Reveal><Subtitle color={colour.brand.primary}>⟵</Subtitle></Reveal>}

@@ -1,18 +1,31 @@
 // =============================================================================
-// src/index.js
+// Import
 // =============================================================================
 
 // React
-import React                    from 'react';
-import ReactDOM                 from 'react-dom';
-import { BrowserRouter }        from 'react-router-dom'
-// import ReactGA                  from 'react-ga'; // TODO add
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+// import ReactGA from 'react-ga'; // TODO add
 
-// Views
-import App from './screens/App';
+// Screens
+import HomeScreen from './screens/HomeScreen';
+import ColoursScreen from './screens/ColoursScreen';
+import FourOhFourScreen from './screens/FourOhFourScreen';
 
 // Service worker
 import registerServiceWorker from './registerServiceWorker';
+
+// =============================================================================
+// Styles
+// =============================================================================
+
+import { injectGlobal } from 'styled-components';
+import { normalize } from 'polished';
+import { reboot } from './utils/styles';
+
+// eslint-disable-next-line
+injectGlobal`${[normalize(), reboot]}`;
 
 // =============================================================================
 // Google Analytics
@@ -27,20 +40,23 @@ import registerServiceWorker from './registerServiceWorker';
 // Render settings
 // =============================================================================
 
-// const router = (
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>
-// );
-// const mountNode = document.getElementById('root');
+const router = (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={HomeScreen} />
+      <Route path="/lab/colours" component={ColoursScreen} />
+      <Route path="/:page/:filter?" component={HomeScreen} />
+
+      <Route component={FourOhFourScreen} />
+    </Switch>
+  </BrowserRouter>
+);
+
+const mountNode = document.getElementById('root');
 
 // =============================================================================
 // Go!!!
 // =============================================================================
 
-ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-), document.getElementById('root'));
+ReactDOM.render(router, mountNode);
 registerServiceWorker();
