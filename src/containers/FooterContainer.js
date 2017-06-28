@@ -1,5 +1,5 @@
 // =============================================================================
-// Imports
+// Import
 // =============================================================================
 
 // React
@@ -24,11 +24,17 @@ export default function FooterContainer() {
           <Link to="//twitter.com/mrozilla" bare>
             <Icon name="twitter" isPadded />
           </Link>
-          <Link to="mailto:jan@mrozilla.cz" bare>
-            <Icon name="mail" isPadded />
+          <Link to="//medium.com/mrozilla" bare>
+            <Icon name="medium" isPadded />
+          </Link>
+          <Link to="//github.com/mrozilla" bare>
+            <Icon name="github" isPadded />
           </Link>
           <Link to="//linkedin.com/in/mrozilla" bare>
             <Icon name="linkedin" isPadded />
+          </Link>
+          <Link to="mailto:jan@mrozilla.cz" bare>
+            <Icon name="mail" isPadded />
           </Link>
         </Wiggle>
         <Wiggle>
