@@ -13,8 +13,8 @@ export const Container = styled.div`
 	position: relative;
   margin-left: auto;
 	margin-right: auto;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	padding-left: ${grid.gutter}rem;
+	padding-right: ${grid.gutter}rem;
 	${media.xs`width: ${grid.width.xs};`}
 	${media.sm`width: ${grid.width.sm};`}
 	${media.md`width: ${grid.width.md};`}
@@ -29,8 +29,8 @@ export const Container = styled.div`
 export const Row = styled.div`
   display: flex;
 	flex-wrap: wrap;
-	margin-left:  ${grid.gutter / -2}rem;
-	margin-right: ${grid.gutter / -2}rem;
+	margin-left:  ${grid.gutter / -1}rem;
+	margin-right: ${grid.gutter / -1}rem;
 	justify-content: ${props => props.centered ? 'center' : 'initial'};
 `;
 
@@ -45,8 +45,8 @@ Row.defaultProps = {
 export const Column = styled.div`
   position: relative;
 	min-height: 1px;
-	${props => !props.noPadding && `padding-left:  ${grid.gutter / 2}rem`};
-	${props => !props.noPadding && `padding-right:  ${grid.gutter / 2}rem`};
+	${props => !props.noPadding && `padding-left:  ${grid.gutter}rem`};
+	${props => !props.noPadding && `padding-right:  ${grid.gutter}rem`};
 	
 	flex: 0 0 100%;
 	${props => props.xs && media.xs`flex: 0 0 ${((props.xs / grid.columns) * 100)}%;`}
