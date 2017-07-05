@@ -1,8 +1,8 @@
 // =============================================================================
-// Imports
+// Import
 // =============================================================================
 
-import { css } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 import { complement, desaturate, lighten, darken } from 'polished';
 
 // =============================================================================
@@ -11,14 +11,14 @@ import { complement, desaturate, lighten, darken } from 'polished';
 
 export const colour = {
   brand: {
-    primary: "#ea2e42",
+    primary: '#ea2e42',
     get secondary() {
       return darken(0.1, this.primary);
     },
-    success: "#5cb85c",
-    info:    "#5bc0de",
-    warning: "#f0ad4e",
-    danger:  "#d9534f",
+    success: '#5cb85c',
+    info:    '#5bc0de',
+    warning: '#f0ad4e',
+    danger:  '#d9534f',
     get complement() {
       return complement(this.primary);
     },
@@ -28,19 +28,19 @@ export const colour = {
   },
   grey:  {
     get basic() {
-      return desaturate(0.95, colour.brand.primary); // ~"#55595c"
+      return desaturate(0.75, colour.brand.primary); // ~'#55595c'
     },
     get lightest() {
-      return lighten(0.47, this.basic); // ~#f7f7f9
+      return lighten(0.43, this.basic); // ~#f7f7f9
     },
     get lighter() {
-      return lighten(0.42, this.basic); // ~#f7f7f9
+      return lighten(0.40, this.basic); // ~#f7f7f9
     },
     get light() {
-      return lighten(0.42, this.basic); // ~#818a91
+      return lighten(0.30, this.basic); // ~#818a91
     },
     get dark() {
-      return darken(0.25, this.basic); // ~#373a3c
+      return darken(0.15, desaturate(0.05, this.basic)); // ~#373a3c
     },
     get darker() {
       return darken(0.42, this.basic); // FIXME add target colour
@@ -49,6 +49,9 @@ export const colour = {
       return darken(0.47, this.basic); // FIXME add target colour
     },
   },
+  get background() {
+    return this.grey.lightest;
+  }
 };
 
 // =============================================================================
@@ -57,18 +60,18 @@ export const colour = {
 
 export const zIndex = {
   navbar:   {
-    basic:  "1000",
-    sticky: "1020",
-    fixed:  "1030",
+    basic:  '1000',
+    sticky: '1020',
+    fixed:  '1030',
   },
-  dropdown: "1010",
-  sidebar:  "1020",
+  dropdown: '1010',
+  sidebar:  '1020',
   modal:    {
-    bg:   "1040",
-    body: "1050",
+    bg:   '1040',
+    body: '1050',
   },
-  popover:  "1060",
-  tooltip:  "1070",
+  popover:  '1060',
+  tooltip:  '1070',
 };
 
 // =============================================================================
@@ -77,13 +80,13 @@ export const zIndex = {
 
 export const grid = {
   gutter:  1,
-  columns: "12",
+  columns: '12',
   width:   {
-    xs: "100%",
-    sm: "576px",
-    md: "720px",
-    lg: "940px",
-    xl: "1140px",
+    xs: '100%',
+    sm: '576px',
+    md: '720px',
+    lg: '940px',
+    xl: '940px', // replaced from 1140px
   }
 };
 
@@ -108,54 +111,155 @@ export const media = Object.keys(mediaSizes).reduce((acc, val) => {
 // Typography
 // =============================================================================
 
-const typography = {
+export const typography = {
   font: {
-    family: {
-      headings: 'Montserrat',
-      body: 'Roboto Mono',
+    family:     {
+      headings: 'Nunito',
+      body:     'Roboto Mono',
     },
-    size: {
-      root: "125%",
-      base: "0.85rem",
+    size:       {
+      root: '125%',
+      base: '0.85rem',
     },
-    lineHeight: "1rem",
-    colour: {
+    lineHeight: '1rem',
+    colour:     {
       body: colour.grey.dark,
     }
   },
 };
 
 // =============================================================================
-// Reboot
+// Border
 // =============================================================================
 
-export const reboot = {
-  'html': {
-    'box-sizing': 'border-box',
-    'font-size': typography.font.size.root,
+export const border = {
+  radius: {
+    small:  '0.25rem',
+    medium: '0.5rem',
+    big:    '1rem',
   },
-  [`*, *:before, *:after`]: {
-    'box-sizing': 'inherit',
+};
+
+// =============================================================================
+// Box shadow
+// =============================================================================
+
+export const shadow = {
+  small:  `0 0 1rem rgba(0,0,0,0.25)`,
+  medium: `0 0 2rem rgba(0,0,0,0.25)`,
+  big:    `0 0 5rem rgba(0,0,0,0.25)`,
+};
+
+// =============================================================================
+// Transitions
+// =============================================================================
+
+export const transition = {
+  primary:   {
+    short:  '250ms cubic-bezier(.6, .2, .1, 1)',
+    medium: '500ms cubic-bezier(.6, .2, .1, 1)',
+    long:   '1000ms cubic-bezier(.6, .2, .1, 1)',
   },
-  'body': {
-    'font-family': typography.font.family.body,
-    'font-size': typography.font.size.base,
-    'line-height': typography.font.lineHeight,
-    'color': typography.font.colour.body,
-    'background-color': colour.grey.lightest,
-    '-webkit-font-smoothing': 'antialiased',
-  },
-  [`h1, h2, h3, h4, h5, h6, p`]: {
-    'margin': '0',
-  },
-  'a': {
-    'color': 'inherit',
-    'text-decoration': 'none',
+  secondary: {
+    short:  '250ms cubic-bezier(.25, .1, .25, 1)',
+    medium: '500ms cubic-bezier(.25, .1, .25, 1)',
+    long:   '1000ms cubic-bezier(.25, .1, .25, 1)',
   }
 };
 
 // =============================================================================
-// Export
+// Animations
 // =============================================================================
 
-// export * as styles; // FIXME figure out syntax
+export const animation = {
+  slide:     {
+    up:    keyframes`
+      from { transform: scaleY(0); transform-origin: bottom; }
+      40% { transform: scaleY(1); transform-origin: bottom; }
+      60% { transform: scaleY(1); transform-origin: top; }
+      to { transform: scaleY(0); transform-origin: top; }
+    `,
+    right: keyframes`
+      from { transform: scaleX(0); transform-origin: left; }
+      40% { transform: scaleX(1); transform-origin: left; }
+      60% { transform: scaleX(1); transform-origin: right; }
+      to { transform: scaleX(0); transform-origin: right; }
+    `,
+    down:  keyframes`
+      from { transform: scaleY(0); transform-origin: top; }
+      40% { transform: scaleY(1); transform-origin: top; }
+      60% { transform: scaleY(1); transform-origin: bottom; }
+      to { transform: scaleY(0); transform-origin: bottom; }
+    `,
+    left:  keyframes`
+      from { transform: scaleX(0); transform-origin: right; }
+      40% { transform: scaleX(1); transform-origin: right; }
+      60% { transform: scaleX(1); transform-origin: left; }
+      to { transform: scaleX(0); transform-origin: left; }
+    `,
+  },
+  slideBack: {
+    up:    keyframes`
+      from, to { transform: scaleY(0); transform-origin: bottom; }
+      40%, 60% { transform: scaleY(1); }
+    `,
+    right: keyframes`
+      from, to { transform: scaleX(0); transform-origin: left; }
+      40%, 60% { transform: scaleX(1); }
+    `,
+    down:  keyframes`
+      from, to { transform: scaleY(0); transform-origin: top; }
+      40%, 60% { transform: scaleY(1); }
+    `,
+    left:  keyframes`
+      from, to { transform: scaleX(0); transform-origin: right; }
+      40%, 60% { transform: scaleX(1); }
+    `,
+  },
+  appear:    keyframes`
+    from, 40% { opacity: 0; }
+    60%, to { opacity: 1; }
+  `,
+};
+
+// =============================================================================
+// Dynamic classes
+// =============================================================================
+
+export const activeClassName = 'active';
+
+// =============================================================================
+// Normalise
+// =============================================================================
+
+export const reboot = css`
+  html {
+    box-sizing: border-box;
+    font-size: ${typography.font.size.root};
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+    font-family: ${typography.font.family.body};
+    font-size: ${typography.font.size.base};
+    line-height: ${typography.font.lineHeight};
+    color: ${typography.font.colour.body};
+    background-color: ${colour.background};
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    white-space: pre-line;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  figure {
+    margin: 0;
+  }
+  img[src=""], img:not([src]) {
+    opacity: 0;
+  }
+`;

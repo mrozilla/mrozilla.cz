@@ -1,5 +1,5 @@
 // =============================================================================
-// Imports
+// Import
 // =============================================================================
 
 // Styles
@@ -15,6 +15,7 @@ export const Heading = styled.h1`
   font-size: ${props => props.size};
   font-weight: ${props => props.weight};
   line-height: 1em;
+  letter-spacing: -0.025em;
   color: ${props => props.color};
   margin-bottom: ${props => props.marginBottom};
 `;
@@ -38,11 +39,11 @@ export const Subheading = styled.h2`
   line-height: 1em;
   color: ${props => props.color};
   margin-bottom: ${props => props.marginBottom};
-`;
+`; // TODO update color prop not to show when default
 
 Subheading.defaultProps = {
   size:   '2.5rem',
-  weight: '900',
+  weight: '300',
   marginBottom: '0',
   color:  'inherit',
 };
@@ -82,7 +83,7 @@ export const Subtitle = styled.h4`
 
 Subtitle.defaultProps = {
   size:   '1.5rem',
-  weight: '900',
+  weight: '300',
   marginBottom: '0',
   color:  'inherit',
 };
