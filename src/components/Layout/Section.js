@@ -4,16 +4,18 @@
 
 import styled, { css } from 'styled-components';
 
-export const Section = styled.section`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: ${props => props.paddingTop};
-  padding-bottom: ${props => props.paddingBottom};
-  margin-top: ${props => props.marginTop};
-  margin-bottom: ${props => props.marginBottom};
-  min-height: ${props => props.height};
-  ${props => props.bgImg && css`
+  padding-top: ${({ paddingTop }) => paddingTop};
+  padding-bottom: ${({ paddingBottom }) => paddingBottom};
+  margin-top: ${({ marginTop }) => marginTop};
+  margin-bottom: ${({ marginBottom }) => marginBottom};
+  min-height: ${({ height }) => height};
+  ${({ bgImg }) =>
+    bgImg &&
+    css`
     position: relative;
     overflow: hidden;
     &:before {
@@ -24,12 +26,12 @@ export const Section = styled.section`
       top: 0;
       left: 0;
       background-color: white;
-      background: url(${props => props.bgImg}) no-repeat center center;
+      background: url(${bgImg}) no-repeat center center;
       background-size: cover;
       will-change: transform;
       z-index: -1;
     }
-  `}
+  `};
 `;
 
 Section.defaultProps = {
@@ -40,3 +42,9 @@ Section.defaultProps = {
   marginBottom:  '0',
   bgImg:         null,
 };
+
+// =============================================================================
+// Export
+// =============================================================================
+
+export default Section;

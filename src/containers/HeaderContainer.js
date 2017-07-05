@@ -7,10 +7,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Header, Navbar, NavbarBlock, NavbarToggle } from '../components/Navigation';
+import { Header, Navbar, NavbarBlock, NavbarToggle, Link, NavLink } from '../components/Navigation';
 import { Subtitle } from '../components/Typography';
 import { Container } from '../components/Layout/Grid';
-import { Link, NavLink } from '../components/Navigation';
 import { Logo } from '../components/Iconography';
 import { Reveal, Wiggle } from '../components/Effects';
 
@@ -22,15 +21,17 @@ import { colour } from '../utils/styles';
 // =============================================================================
 
 export default class HeaderContainer extends Component {
-  state = {
-    isCollapsed: true
-  };
-
   static propTypes = {
-    location: PropTypes.object.isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
-  showMenu = () => {
+  state = {
+    isCollapsed: true,
+  };
+
+  toggleMenu = () => {
     this.setState({
       isCollapsed: !this.state.isCollapsed,
     });
@@ -42,9 +43,12 @@ export default class HeaderContainer extends Component {
         <Container>
           <Navbar>
             <Link to="/" isBare isVenter>
-              <Wiggle>{this.props.location.pathname === '/'
-                ? <Logo />
-                : <Reveal><Subtitle color={colour.brand.primary}>⟵</Subtitle></Reveal>}
+              <Wiggle>
+                {this.props.location.pathname === '/'
+                  ? <Logo />
+                  : <Reveal>
+                    <Subtitle color={colour.brand.primary}>⟵</Subtitle>
+                  </Reveal>}
               </Wiggle>
             </Link>
             <NavbarBlock isCollapsed={this.state.isCollapsed}>
@@ -69,7 +73,7 @@ export default class HeaderContainer extends Component {
                 </Wiggle>
               </NavLink>
             </NavbarBlock>
-            <NavbarToggle isCollapsed={this.state.isCollapsed} onClick={this.showMenu} />
+            <NavbarToggle isCollapsed={this.state.isCollapsed} onClick={this.toggleMenu} />
           </Navbar>
         </Container>
       </Header>

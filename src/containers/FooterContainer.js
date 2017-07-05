@@ -6,10 +6,9 @@
 import React from 'react';
 
 // Components
-import { Footer } from '../components/Navigation';
+import { Footer, Link } from '../components/Navigation';
 import { Logo, Icon } from '../components/Iconography';
 import { Container } from '../components/Layout';
-import { Link } from '../components/Navigation';
 import { Wiggle, Reveal } from '../components/Effects';
 
 // =============================================================================
@@ -39,7 +38,12 @@ export default function FooterContainer() {
             </Link>
           </Wiggle>
           <Wiggle>
-            <Reveal>Made with <span role="img" aria-label="beer">🍺</span>. Here's some <Link to="/legal">legal stuff</Link>.</Reveal>
+            <Reveal>
+              Made with{' '}
+              <span role="img" aria-label="beer">
+                🍺
+              </span>. Here's some <Link to="/legal">legal stuff</Link>.
+            </Reveal>
           </Wiggle>
           <Link to="/" isBare>
             <Wiggle>
@@ -47,7 +51,7 @@ export default function FooterContainer() {
             </Wiggle>
           </Link>
         </Footer>
-    </Container>
+      </Container>
     </footer>
   );
 }

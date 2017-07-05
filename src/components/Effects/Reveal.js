@@ -20,28 +20,26 @@ import { withScrollPosition } from '../../utils/helpers';
 // Container
 const RevealContainer = styled.span`
   position: relative;
-  display: ${props => props.isBlock ? 'block' : 'inline-block' };
-  animation-delay: ${props => props.delay};
+  display: ${({ isBlock }) => (isBlock ? 'block' : 'inline-block')};
+  animation-delay: ${({ delay }) => delay};
   &:after {
     content: '';
     pointer-events: none;
-    ${ positionAbsolute() }
-    background-color: ${colour.brand.primary};
-    ${props => props.isInViewport 
-      ? `animation: ${animation[props.animation][props.direction]} ${transition.primary.long} both;`
-      : 'opacity: 0;'
-    }
-    animation-delay: inherit;
+    ${positionAbsolute()} background-color: ${colour.brand.primary};
+    ${({ isInViewport, type, direction }) =>
+      isInViewport
+        ? `animation: ${animation[type][direction]} ${transition.primary.long} both;`
+        : 'opacity: 0;'} animation-delay: inherit;
   }
 `;
 
 // Content
 const RevealContent = styled.span`
-  display: ${props => props.isBlock ? 'block' : 'inline-block' };
-  ${props => props.isInViewport
-    ? `animation: ${animation.appear} ${transition.primary.long} both;`
-    : 'opacity: 0;'
-  }
+  display: ${({ isBlock }) => (isBlock ? 'block' : 'inline-block')};
+  ${({ isInViewport }) =>
+    isInViewport
+      ? `animation: ${animation.appear} ${transition.primary.long} both;`
+      : 'opacity: 0;'};
   animation-delay: inherit;
 `;
 
@@ -52,26 +50,30 @@ const RevealContent = styled.span`
 function RevealWrapper({ children, ...rest }) {
   return (
     <RevealContainer {...rest}>
-      <RevealContent {...rest}>{children}</RevealContent>
+      <RevealContent {...rest}>
+        {children}
+      </RevealContent>
     </RevealContainer>
   );
 }
 
 const Reveal = withScrollPosition(RevealWrapper);
 
-Reveal.propTypes = {
-  children: PropTypes.node.isRequired,
-  delay: PropTypes.string,
-  animation: PropTypes.string,
-  direction: PropTypes.string,
+RevealWrapper.propTypes = {
+  children:     PropTypes.node.isRequired,
+  delay:        PropTypes.string,
+  type:         PropTypes.string,
+  direction:    PropTypes.string,
   isInViewPort: PropTypes.bool,
-  isBlock: PropTypes.bool,
+  isBlock:      PropTypes.bool,
 };
 
-Reveal.defaultProps = {
-  delay:     '0ms',
-  animation: 'slide',
-  direction: 'right',
+RevealWrapper.defaultProps = {
+  delay:        '0ms',
+  type:         'slide',
+  direction:    'right',
+  isInViewPort: false,
+  isBlock:      false,
 };
 
 // =============================================================================

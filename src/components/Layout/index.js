@@ -1,2 +1,2 @@
 export { Container, Row, Column } from './Grid';
-export { Section } from './Section';
+export { default as Section } from './Section';
