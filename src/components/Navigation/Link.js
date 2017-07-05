@@ -10,14 +10,14 @@ import { SmartLink, SmartNavLink } from '../../utils/helpers';
 
 // Styles
 import styled, { css } from 'styled-components';
-import { colour, media, transition } from '../../utils/styles';
+import { colour, media, transition, activeClassName } from '../../utils/styles';
 
 // =============================================================================
 // Link
 // =============================================================================
 
 export const Link = styled(SmartLink)`
-  ${props => !props.bare && css`
+  ${props => !props.isBare && css`
     position: relative;
     display: inline-flex;
     font-weight: 900;
@@ -40,22 +40,22 @@ export const Link = styled(SmartLink)`
       width: 100%;
     }
   `}
-  ${props => props.venter && css`
+  ${props => props.isVenter && css`
     display: inline-flex;
     align-items: center;
   `}
 `;
 
 Link.defaultProps = {
-  bare:   false,
-  venter: false,
+  isBare:   false,
+  isVenter: false,
 };
 
 // =============================================================================
 // NavLink
 // =============================================================================
 
-export const NavLink = styled(SmartNavLink)`
+export const NavLink = styled(SmartNavLink).attrs({ activeClassName })`
   position: relative;
   display: flex;
   align-items: center;
@@ -70,8 +70,11 @@ export const NavLink = styled(SmartNavLink)`
 	  transition: ${transition.primary} all;
     border-bottom: 1px solid ${colour.grey.lighter};
   }
-  &:hover:after {
+  &.${activeClassName}:after {
     border-bottom: 2px solid ${colour.brand.primary};
+  }
+  &:hover:after {
+    border-bottom: 3px solid ${colour.brand.primary};
   }
   ${media.lg`& + & {
     margin-left: 1rem;
