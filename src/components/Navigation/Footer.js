@@ -3,7 +3,7 @@
 // =============================================================================
 
 import glamorous from 'glamorous';
-import { colour } from '../../utils/styles';
+import { color, positionAbsolute } from '../../utils/styles';
 
 const Footer = glamorous.div({
   display:        'flex',
@@ -13,15 +13,9 @@ const Footer = glamorous.div({
   paddingBottom:  '2rem',
   '&::after':     {
     content:   "''",
-    position:  'absolute', // TODO add absolute positioning helper functions
-    top:       0,
-    bottom:    0,
-    left:      0,
-    right:     0,
-    width:     '100%',
-    height:    '100%',
+    ...positionAbsolute(),
     zIndex:    -1,
-    borderTop: `1px solid ${colour.grey.lighter}`,
+    borderTop: `1px solid ${color.grey.lighter}`,
   },
 });
 

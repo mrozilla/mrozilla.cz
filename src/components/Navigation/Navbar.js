@@ -3,7 +3,7 @@
 // =============================================================================
 
 import glamorous from 'glamorous';
-import { colour, zIndex, media, transition } from '../../utils/styles';
+import { color, zIndex, media, transition, positionAbsolute } from '../../utils/styles';
 
 // =============================================================================
 // Header
@@ -14,7 +14,7 @@ export const Header = glamorous.header(
     top:             0,
     right:           0,
     left:            0,
-    backgroundColor: colour.background,
+    backgroundColor: color.background,
   },
   ({ isFixed }) => ({
     position: isFixed ? 'fixed' : 'initial',
@@ -44,14 +44,8 @@ export const Navbar = glamorous.nav({
   '&::after': {
     content:       "''",
     pointerEvents: 'none',
-    position:      'absolute', // TODO add absolute positioning helper functions
-    top:           0,
-    bottom:        0,
-    left:          0,
-    right:         0,
-    width:         '100%',
-    height:        '100%',
-    borderBottom:  `1px solid ${colour.grey.lighter}`,
+    ...positionAbsolute(),
+    borderBottom:  `1px solid ${color.grey.lighter}`,
   },
 });
 
@@ -72,7 +66,7 @@ export const NavbarBlock = glamorous.div(
     display:         isCollapsed ? 'none' : 'flex',
     opacity:         isCollapsed ? 'initial' : '0.95',
     position:        isCollapsed ? 'static' : 'fixed',
-    backgroundColor: isCollapsed ? 'initial' : colour.background,
+    backgroundColor: isCollapsed ? 'initial' : color.background,
     fontSize:        isCollapsed ? 'initial' : '4vh',
     fontWeight:      isCollapsed ? 'initial' : '900',
     [media.lg]:      {
@@ -102,13 +96,11 @@ export const NavbarToggle = glamorous.div(
     },
   },
   ({ isCollapsed }) => ({
-    backgroundColor:       isCollapsed ? colour.grey.basic : colour.brand.primary,
+    backgroundColor:       isCollapsed ? color.grey.basic : color.brand.primary,
     transform:             isCollapsed ? 'initial' : 'rotate(-45deg)',
     '&::after, &::before': {
       content:         "''",
-      position:        'absolute',
-      height:          'inherit',
-      width:           'inherit',
+      ...positionAbsolute(),
       backgroundColor: 'inherit',
       transition:      'inherit',
     },

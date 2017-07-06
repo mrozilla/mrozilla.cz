@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { colour, transition, animation } from '../../utils/styles';
+import { color, transition, animation, positionAbsolute } from '../../utils/styles';
 
 // Helpers
 import { withScrollPosition } from '../../utils/helpers';
@@ -23,21 +23,15 @@ const RevealContainer = glamorous.span(
     position: 'relative',
   },
   ({ isBlock, delay }) => ({
-    display:        isBlock ? 'block' : 'inline-block',
     animationDelay: delay,
+    display:        isBlock ? 'block' : 'inline-block',
   }),
   ({ isInViewport, type, direction }) => ({
     '&::after': {
+      ...positionAbsolute(),
       content:         "''",
       pointerEvents:   'none',
-      backgroundColor: colour.brand.primary,
-      position:        'absolute', // TODO add absolute positioning helper functions
-      top:             0,
-      bottom:          0,
-      left:            0,
-      right:           0,
-      width:           '100%',
-      height:          '100%',
+      backgroundColor: color.brand.primary,
       animation:       isInViewport
         ? `${animation[type][direction]} ${transition.primary.long} both`
         : 'none',
@@ -49,9 +43,9 @@ const RevealContainer = glamorous.span(
 
 // Content
 const RevealContent = glamorous.span(({ isBlock, isInViewport }) => ({
+  opacity:        'inherit',
   display:        isBlock ? 'block' : 'inline-block',
   animation:      isInViewport ? `${animation.appear} ${transition.primary.long} both` : 'none',
-  opacity:        'inherit',
   animationDelay: 'inherit',
 }));
 

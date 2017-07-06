@@ -4,7 +4,7 @@
 
 // Styles
 import glamorous from 'glamorous';
-import { colour, typography } from '../utils/styles';
+import { color, typography } from '../utils/styles';
 
 // =============================================================================
 // Heading
@@ -137,8 +137,8 @@ export const Pill = glamorous.span({
   display:      'inline-block',
   borderRadius: 999,
   padding:      '0 1em',
-  color:        colour.brand.primary,
-  border:       `1px solid ${colour.brand.primary}`,
+  color:        color.brand.primary,
+  border:       `1px solid ${color.brand.primary}`,
   '& + &':      {
     marginLeft: '0.5rem',
   },

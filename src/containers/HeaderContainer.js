@@ -14,7 +14,7 @@ import { Logo } from '../components/Iconography';
 import { Reveal, Wiggle } from '../components/Effects';
 
 // Styles
-import { colour } from '../utils/styles';
+import { color } from '../utils/styles';
 
 // =============================================================================
 // Component
@@ -47,7 +47,7 @@ export default class HeaderContainer extends Component {
                 {this.props.location.pathname === '/'
                   ? <Logo />
                   : <Reveal>
-                    <Subtitle color={colour.brand.primary}>⟵</Subtitle>
+                    <Subtitle color={color.brand.primary}>⟵</Subtitle>
                   </Reveal>}
               </Wiggle>
             </Link>

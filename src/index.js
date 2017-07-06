@@ -8,6 +8,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import ReactGA from 'react-ga'; // TODO add
 
+// Styles
+import { css } from 'glamor';
+import { normalize, reboot } from './utils/styles';
+
 // Screens
 import HomeScreen from './screens/HomeScreen';
 import ColoursScreen from './screens/ColoursScreen';
@@ -24,6 +28,13 @@ import registerServiceWorker from './registerServiceWorker';
 // browserHistory.listen(location => {
 //     process.env.NODE_ENV === 'production' && ReactGA.pageview(location.pathname);
 // });
+
+// =============================================================================
+// Global styles
+// =============================================================================
+
+css.insert(normalize);
+css.insert(reboot);
 
 // =============================================================================
 // Render settings

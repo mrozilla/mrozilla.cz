@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { colour } from '../../utils/styles';
+import { color } from '../../utils/styles';
 
 // =============================================================================
 // Style
@@ -66,6 +66,6 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   height:   '1rem',
-  color:    colour.brand.primary,
+  color:    color.brand.primary,
   isPadded: false,
 };
