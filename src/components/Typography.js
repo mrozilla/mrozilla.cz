@@ -3,131 +3,153 @@
 // =============================================================================
 
 // Styles
-import styled from 'styled-components';
+import glamorous from 'glamorous';
 import { colour, typography } from '../utils/styles';
 
 // =============================================================================
 // Heading
 // =============================================================================
 
-export const Heading = styled.h1`
-  font-family: ${typography.font.family.headings};
-  font-size: ${props => props.size};
-  font-weight: ${props => props.weight};
-  line-height: 1em;
-  letter-spacing: -0.025em;
-  color: ${props => props.color};
-  margin-bottom: ${props => props.marginBottom};
-`;
+export const Heading = glamorous.h1(
+  {
+    lineHeight:    '1em',
+    letterSpacing: '-0.025em',
+    fontFamily:    typography.font.family.headings,
+  },
+  ({ fontSize, fontWeight, color, marginBottom }) => ({
+    fontSize,
+    fontWeight,
+    color,
+    marginBottom,
+  }),
+);
 
 Heading.defaultProps = {
-  size:   '3rem',
-  weight: '900',
+  fontSize:     '3rem',
+  fontWeight:   '900',
+  color:        'inherit',
   marginBottom: '0',
-  color:  'inherit',
-  reveal: false,
 };
 
 // =============================================================================
 // Subheading
 // =============================================================================
 
-export const Subheading = styled.h2`
-  font-family: ${typography.font.family.headings};
-  font-size: ${props => props.size};
-  font-weight: ${props => props.weight};
-  line-height: 1em;
-  color: ${props => props.color};
-  margin-bottom: ${props => props.marginBottom};
-`; // TODO update color prop not to show when default
+export const Subheading = glamorous.h2(
+  {
+    lineHeight: '1em',
+    fontFamily: typography.font.family.headings,
+  },
+  ({ fontSize, fontWeight, color, marginBottom }) => ({
+    fontSize,
+    fontWeight,
+    color,
+    marginBottom,
+  }),
+);
 
 Subheading.defaultProps = {
-  size:   '2.5rem',
-  weight: '300',
+  fontSize:     '2.5rem',
+  fontWeight:   '300',
+  color:        'inherit',
   marginBottom: '0',
-  color:  'inherit',
 };
 
 // =============================================================================
 // Title
 // =============================================================================
 
-export const Title = styled.h3`
-  font-family: ${typography.font.family.headings};
-  font-size: ${props => props.size};
-  font-weight: ${props => props.weight};
-  line-height: 1em;
-  color: ${props => props.color};
-  margin-bottom: ${props => props.marginBottom};
-`;
+export const Title = glamorous.h3(
+  {
+    lineHeight: '1em',
+    fontFamily: typography.font.family.headings,
+  },
+  ({ fontSize, fontWeight, color, marginBottom }) => ({
+    fontSize,
+    fontWeight,
+    color,
+    marginBottom,
+  }),
+);
 
 Title.defaultProps = {
-  size:   '2rem',
-  weight: '900',
+  fontSize:     '2rem',
+  fontWeight:   '900',
+  color:        'inherit',
   marginBottom: '0',
-  color:  'inherit',
 };
 
 // =============================================================================
 // Subtitle
 // =============================================================================
 
-export const Subtitle = styled.h4`
-  font-family: ${typography.font.family.headings};
-  font-size: ${props => props.size};
-  font-weight: ${props => props.weight};
-  line-height: 1em;
-  color: ${props => props.color};
-  margin-bottom: ${props => props.marginBottom};
-`;
+export const Subtitle = glamorous.h4(
+  {
+    lineHeight: '1em',
+    fontFamily: typography.font.family.headings,
+  },
+  ({ fontSize, fontWeight, color, marginBottom }) => ({
+    fontSize,
+    fontWeight,
+    color,
+    marginBottom,
+  }),
+);
 
 Subtitle.defaultProps = {
-  size:   '1.5rem',
-  weight: '300',
+  fontSize:     '1.5rem',
+  fontWeight:   '300',
+  color:        'inherit',
   marginBottom: '0',
-  color:  'inherit',
 };
 
 // =============================================================================
 // Text
 // =============================================================================
 
-export const Text = styled.p`
-  line-height: 1.25rem;
-  font-size: ${props => props.fontSize};
-  color: ${props => props.color};
-  margin-bottom: ${props => props.marginBottom};
-  opacity: ${props => props.opacity};
-`;
+export const Text = glamorous.p(
+  {
+    lineHeight: '1.25rem',
+  },
+  ({ fontSize, fontWeight, color, marginBottom, opacity, textAlign }) => ({
+    fontSize,
+    fontWeight,
+    color,
+    marginBottom,
+    opacity,
+    textAlign,
+  }),
+);
 
 Text.defaultProps = {
-  fontSize: 'inherit',
+  fontSize:     'inherit',
+  fontWeight:   '400',
+  color:        'inherit',
   marginBottom: '0',
-  color:  'inherit',
-  opacity: '1',
+  opacity:      '1',
 };
 
 // =============================================================================
 // Pill
 // =============================================================================
 
-export const Pill = styled.span`
-  display: inline-block;
-  border: 1px solid ${colour.brand.primary};
-  color: ${colour.brand.primary};
-  border-radius: 999px;
-  padding: 0 1em;
-  & + & {
-    margin-left: 0.5rem;
-  }
-`;
+export const Pill = glamorous.span({
+  display:      'inline-block',
+  borderRadius: 999,
+  padding:      '0 1em',
+  color:        colour.brand.primary,
+  border:       `1px solid ${colour.brand.primary}`,
+  '& + &':      {
+    marginLeft: '0.5rem',
+  },
+});
 
 // =============================================================================
 // Helpers
 // =============================================================================
 
-export const Comma = styled.span`
-  & + &:before {
-    content: ', ';
-  }
-`;
+export const Comma = glamorous.span({
+  '& + &::before': {
+    content: "', '",
+  },
+});

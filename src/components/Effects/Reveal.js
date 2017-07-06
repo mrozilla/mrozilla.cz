@@ -7,8 +7,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import styled from 'styled-components';
-import { colour, transition, animation, positionAbsolute } from '../../utils/styles';
+import glamorous from 'glamorous';
+import { colour, transition, animation } from '../../utils/styles';
 
 // Helpers
 import { withScrollPosition } from '../../utils/helpers';
@@ -18,30 +18,42 @@ import { withScrollPosition } from '../../utils/helpers';
 // =============================================================================
 
 // Container
-const RevealContainer = styled.span`
-  position: relative;
-  display: ${({ isBlock }) => (isBlock ? 'block' : 'inline-block')};
-  animation-delay: ${({ delay }) => delay};
-  &:after {
-    content: '';
-    pointer-events: none;
-    ${positionAbsolute()} background-color: ${colour.brand.primary};
-    ${({ isInViewport, type, direction }) =>
-      isInViewport
-        ? `animation: ${animation[type][direction]} ${transition.primary.long} both;`
-        : 'opacity: 0;'} animation-delay: inherit;
-  }
-`;
+const RevealContainer = glamorous.span(
+  {
+    position: 'relative',
+  },
+  ({ isBlock, delay }) => ({
+    display:        isBlock ? 'block' : 'inline-block',
+    animationDelay: delay,
+  }),
+  ({ isInViewport, type, direction }) => ({
+    '&::after': {
+      content:         "''",
+      pointerEvents:   'none',
+      backgroundColor: colour.brand.primary,
+      position:        'absolute', // TODO add absolute positioning helper functions
+      top:             0,
+      bottom:          0,
+      left:            0,
+      right:           0,
+      width:           '100%',
+      height:          '100%',
+      animation:       isInViewport
+        ? `${animation[type][direction]} ${transition.primary.long} both`
+        : 'none',
+      opacity:        isInViewport ? 'inherit' : '0',
+      animationDelay: 'inherit',
+    },
+  }),
+);
 
 // Content
-const RevealContent = styled.span`
-  display: ${({ isBlock }) => (isBlock ? 'block' : 'inline-block')};
-  ${({ isInViewport }) =>
-    isInViewport
-      ? `animation: ${animation.appear} ${transition.primary.long} both;`
-      : 'opacity: 0;'};
-  animation-delay: inherit;
-`;
+const RevealContent = glamorous.span(({ isBlock, isInViewport }) => ({
+  display:        isBlock ? 'block' : 'inline-block',
+  animation:      isInViewport ? `${animation.appear} ${transition.primary.long} both` : 'none',
+  opacity:        'inherit',
+  animationDelay: 'inherit',
+}));
 
 // =============================================================================
 // Component

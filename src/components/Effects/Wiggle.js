@@ -17,9 +17,11 @@ function WiggleWrapper({ x, y, perspective, intensity, children, ...rest }) {
   return (
     <div
       style={{
-        transform:       `perspective(${perspective}) translateX(${x * -intensity}px) translateY(${y * intensity}px)`,
-        WebkitTransform: `perspective(${perspective}) translateX(${x * -intensity}px) translateY(${y * intensity}px)`,
-        transition:      `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`,
+        transform: `perspective(${perspective}) translateX(${x * -intensity}px) translateY(${y *
+          intensity}px)`,
+        WebkitTransform: `perspective(${perspective}) translateX(${x *
+          -intensity}px) translateY(${y * intensity}px)`,
+        transition: `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`,
       }}
       {...rest}
     >
@@ -29,8 +31,11 @@ function WiggleWrapper({ x, y, perspective, intensity, children, ...rest }) {
 }
 
 WiggleWrapper.propTypes = {
-  intensity:   PropTypes.number,
+  x:           PropTypes.number.isRequired,
+  y:           PropTypes.number.isRequired,
   perspective: PropTypes.number,
+  intensity:   PropTypes.number,
+  children:    PropTypes.node.isRequired,
 };
 
 WiggleWrapper.defaultProps = {

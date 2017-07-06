@@ -8,11 +8,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import ReactGA from 'react-ga'; // TODO add
 
-// Styles
-import { injectGlobal } from 'styled-components';
-import { normalize } from 'polished';
-import { reboot } from './utils/styles';
-
 // Screens
 import HomeScreen from './screens/HomeScreen';
 import ColoursScreen from './screens/ColoursScreen';
@@ -20,13 +15,6 @@ import FourOhFourScreen from './screens/FourOhFourScreen';
 
 // Service worker
 import registerServiceWorker from './registerServiceWorker';
-
-// =============================================================================
-// Styles
-// =============================================================================
-
-// eslint-disable-next-line
-injectGlobal`${[normalize(), reboot]}`;
 
 // =============================================================================
 // Google Analytics

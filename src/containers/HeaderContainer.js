@@ -39,7 +39,7 @@ export default class HeaderContainer extends Component {
 
   render() {
     return (
-      <Header fixed>
+      <Header isFixed>
         <Container>
           <Navbar>
             <Link to="/" isBare isVenter>

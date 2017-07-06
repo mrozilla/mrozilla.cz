@@ -2,26 +2,28 @@
 // Styles
 // =============================================================================
 
-import styled    from 'styled-components';
-import {colour}   from '../../utils/styles';
+import glamorous from 'glamorous';
+import { colour } from '../../utils/styles';
 
-const Footer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  &:after {
-    content: "";
-	  position: absolute;
-	  top: 0;
-	  bottom: 0;
-	  left: 0;
-	  right: 0;
-	  z-index: -1;
-    border-top: 1px solid ${colour.grey.lighter};
-  }
-`;
+const Footer = glamorous.div({
+  display:        'flex',
+  alignItems:     'center',
+  justifyContent: 'space-between',
+  paddingTop:     '2rem',
+  paddingBottom:  '2rem',
+  '&::after':     {
+    content:   "''",
+    position:  'absolute', // TODO add absolute positioning helper functions
+    top:       0,
+    bottom:    0,
+    left:      0,
+    right:     0,
+    width:     '100%',
+    height:    '100%',
+    zIndex:    -1,
+    borderTop: `1px solid ${colour.grey.lighter}`,
+  },
+});
 
 // =============================================================================
 // Export

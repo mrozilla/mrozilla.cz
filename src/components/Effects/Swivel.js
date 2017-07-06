@@ -17,9 +17,11 @@ function SwivelWrapper({ x, y, perspective, intensity, children, ...rest }) {
   return (
     <div
       style={{
-        transform:       `perspective(${perspective}) rotateX(${x * -intensity}px) rotateY(${y * intensity}px)`,
-        WebkitTransform: `perspective(${perspective}) rotateX(${x * -intensity}px) rotateY(${y * intensity}px)`,
-        transition:      `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`,
+        transform: `perspective(${perspective}) rotateX(${x * -intensity}px) rotateY(${y *
+          intensity}px)`,
+        WebkitTransform: `perspective(${perspective}) rotateX(${x * -intensity}px) rotateY(${y *
+          intensity}px)`,
+        transition: `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`,
       }}
       {...rest}
     >
@@ -29,8 +31,11 @@ function SwivelWrapper({ x, y, perspective, intensity, children, ...rest }) {
 }
 
 SwivelWrapper.propTypes = {
-  intensity:   PropTypes.number,
+  x:           PropTypes.number.isRequired,
+  y:           PropTypes.number.isRequired,
   perspective: PropTypes.number,
+  intensity:   PropTypes.number,
+  children:    PropTypes.node.isRequired,
 };
 
 SwivelWrapper.defaultProps = {

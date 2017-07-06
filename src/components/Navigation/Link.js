@@ -2,49 +2,48 @@
 // Import
 // =============================================================================
 
-// React
-// import React    from 'react';
+// Styles
+import glamorous from 'glamorous';
+import { colour, media, transition, activeClassName } from '../../utils/styles';
 
 // Components
 import { SmartLink, SmartNavLink } from '../../utils/helpers';
-
-// Styles
-import styled, { css } from 'styled-components';
-import { colour, media, transition, activeClassName } from '../../utils/styles';
 
 // =============================================================================
 // Link
 // =============================================================================
 
-export const Link = styled(SmartLink)`
-  ${props => !props.isBare && css`
-    position: relative;
-    display: inline-flex;
-    font-weight: 900;
-    vertical-align: bottom;
-    color: ${colour.brand.primary};
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;bottom: 0;left: 0;right: 0;
-      width: 0; height: 100%;
-      border-radius: 0.125rem;
-      z-index: -1;
-      background-color: ${colour.brand.primary};
-      transition: ${transition.primary.medium} width;
-    }
-    &:hover {
-      color: ${colour.grey.lightest};
-    }
-    &:hover:after {
-      width: 100%;
-    }
-  `}
-  ${props => props.isVenter && css`
-    display: inline-flex;
-    align-items: center;
-  `}
-`;
+export const Link = glamorous(SmartLink)(
+  ({ isBare }) =>
+    !isBare && {
+      position:      'relative',
+      display:       'inline-flex',
+      fontWeight:    '900',
+      verticalAlign: 'bottom',
+      color:         colour.brand.primary,
+      '&::after':     {
+        content:         '',
+        position:        'absolute', // TODO add absolute positioning helper functions
+        top:             0,
+        bottom:          0,
+        left:            0,
+        right:           0,
+        width:           '100%',
+        height:          '100%',
+        borderRadius:    '0.125rem',
+        zIndex:          -1,
+        backgroundColor: colour.brand.primary,
+        transform:       'scale(0)',
+        transformOrigin: 'left',
+        transition:      `${transition.primary.medium} transform`,
+      },
+    },
+  ({ isVenter }) =>
+    isVenter && {
+      display:    'inline-flex',
+      alignItems: 'center',
+    },
+);
 
 Link.defaultProps = {
   isBare:   false,
@@ -55,28 +54,35 @@ Link.defaultProps = {
 // NavLink
 // =============================================================================
 
-export const NavLink = styled(SmartNavLink).attrs({ activeClassName })`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  &:after {
-    content: "";
-	  position: absolute;
-	  top: 0;bottom: 0;left: 0;right: 0;
-	  z-index: -1;
-	  transition: ${transition.primary} all;
-    border-bottom: 1px solid ${colour.grey.lighter};
-  }
-  &.${activeClassName}:after {
-    border-bottom: 2px solid ${colour.brand.primary};
-  }
-  &:hover:after {
-    border-bottom: 3px solid ${colour.brand.primary};
-  }
-  ${media.lg`& + & {
-    margin-left: 1rem;
-  }`}
-`;
+export const NavLink = glamorous(SmartNavLink)({
+  position:       'relative',
+  display:        'flex',
+  alignItems:     'center',
+  justifyContent: 'center',
+  paddingTop:     '2rem',
+  paddingBottom:  '2rem',
+  '&::after':      {
+    content:      '',
+    position:     'absolute', // TODO add absolute positioning helper functions
+    top:          0,
+    bottom:       0,
+    left:         0,
+    right:        0,
+    width:        '100%',
+    height:       '100%',
+    zIndex:       -1,
+    transition:   `${transition.primary.short} border-bottom`,
+    borderBottom: `1px solid ${colour.grey.lighter}`,
+  },
+  [`&.${activeClassName}`]: {
+    borderBottom: `2px solid ${colour.brand.primary}`,
+  },
+  '&:hover:after': {
+    borderBottom: `3px solid ${colour.brand.primary}`,
+  },
+  [media.lg]: {
+    '& + &': {
+      marginLeft: '1rem',
+    },
+  },
+});
