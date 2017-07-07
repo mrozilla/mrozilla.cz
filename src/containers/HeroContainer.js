@@ -47,11 +47,12 @@ HeroContainer.propTypes = {
   content: PropTypes.shape({
     title:    PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
-    text:     PropTypes.string.isRequired,
+    text:     PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   }).isRequired,
   filter: PropTypes.string,
 };
 
 HeroContainer.defaultProps = {
   filter: undefined,
+  text:   '',
 };
