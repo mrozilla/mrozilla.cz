@@ -43,7 +43,7 @@ const RevealContainer = glamorous.span(
 
 // Content
 const RevealContent = glamorous.span(({ isBlock, isInViewport }) => ({
-  opacity:        'inherit',
+  opacity:        0,
   display:        isBlock ? 'block' : 'inline-block',
   animation:      isInViewport ? `${animation.appear} ${transition.primary.long} both` : 'none',
   animationDelay: 'inherit',

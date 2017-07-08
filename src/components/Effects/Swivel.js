@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Helpers
-import { withMousePosition } from '../../utils/helpers/withMousePosition';
+import { withMousePosition } from '../../utils/helpers';
 
 // =============================================================================
 // Swivel
