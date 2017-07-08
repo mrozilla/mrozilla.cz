@@ -3,7 +3,7 @@
 // =============================================================================
 
 import glamorous from 'glamorous';
-import { color, positionAbsolute } from '../../utils/styles';
+import { color, media, positionAbsolute } from '../../utils/styles';
 
 const Footer = glamorous.div({
   display:        'flex',
@@ -11,7 +11,12 @@ const Footer = glamorous.div({
   justifyContent: 'space-between',
   paddingTop:     '2rem',
   paddingBottom:  '2rem',
-  '&::after':     {
+  flexDirection:  'column',
+  textAlign:      'center',
+  [media.lg]:     {
+    flexDirection: 'row',
+  },
+  '&::after': {
     content:   "''",
     ...positionAbsolute(),
     zIndex:    -1,

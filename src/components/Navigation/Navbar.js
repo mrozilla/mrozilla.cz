@@ -11,10 +11,14 @@ import { color, zIndex, media, transition, positionAbsolute } from '../../utils/
 
 export const Header = glamorous.header(
   {
-    top:             0,
+    bottom:          0,
     right:           0,
     left:            0,
     backgroundColor: color.background,
+    [media.lg]:      {
+      top:    0,
+      bottom: 'auto',
+    },
   },
   ({ isFixed }) => ({
     position: isFixed ? 'fixed' : 'initial',
