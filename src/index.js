@@ -5,29 +5,20 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import ReactGA from 'react-ga'; // TODO add
+import { BrowserRouter, Route } from 'react-router-dom';
 
 // Styles
 import { css } from 'glamor';
 import { normalize, reboot } from './utils/styles';
 
 // Screens
-import HomeScreen from './screens/HomeScreen';
-import ColoursScreen from './screens/ColoursScreen';
-import FourOhFourScreen from './screens/FourOhFourScreen';
+import App from './screens/AppScreen';
+
+// Helpers
+import { withLocation } from './utils/helpers';
 
 // Service worker
 import registerServiceWorker from './registerServiceWorker';
-
-// =============================================================================
-// Google Analytics
-// =============================================================================
-
-// ReactGA.initialize('UA-74251174-1'); // TODO add UA id
-// browserHistory.listen(location => {
-//     process.env.NODE_ENV === 'production' && ReactGA.pageview(location.pathname);
-// });
 
 // =============================================================================
 // Global styles
@@ -42,13 +33,7 @@ css.insert(reboot);
 
 const router = (
   <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={HomeScreen} />
-      <Route path="/lab/colours" component={ColoursScreen} />
-      <Route path="/:page/:filter?" component={HomeScreen} />
-
-      <Route component={FourOhFourScreen} />
-    </Switch>
+    <Route component={withLocation(App)} />
   </BrowserRouter>
 );
 

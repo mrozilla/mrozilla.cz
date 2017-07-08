@@ -42,7 +42,7 @@ export default function HomeScreen({ match: { params: { page, filter } }, locati
           <HeroContainer key={copy.top.title} content={copy.top} filter={filter} />
         </Section>
         {works.length > 0 &&
-          <Section marginTop="-25vh">
+          <Section marginTop="-25vh" id="below">
             <Container>
               <Row isCentered>
                 {works.map((work, index) => <Work key={work.title} work={work} index={index} />)}
