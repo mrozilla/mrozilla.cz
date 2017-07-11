@@ -44,7 +44,7 @@ export default function withLocation(WrappedComponent) {
     };
 
     render() {
-      return <WrappedComponent />;
+      return <WrappedComponent location={this.props.location} />;
     }
   };
 }

@@ -7,9 +7,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import HeaderContainer from '../containers/HeaderContainer';
-import FooterContainer from '../containers/FooterContainer';
-
 import { Section, Container, Row } from '../components/Layout';
 import { Text } from '../components/Typography';
 import { TabButtons, TabButton } from '../components/Button';
@@ -222,50 +219,44 @@ export default class ColoursScreen extends Component {
 
   render() {
     return (
-      <div>
-        <HeaderContainer location={this.props.location} />
-        <main>
-          <Section marginTop="20vh">
-            <Container>
-              <Text marginBottom="1rem" textAlign="center">
-                Sort by:
-              </Text>
-              <TabButtons marginBottom="1rem">
-                <TabButton
-                  onClick={() => this.handleSort('name')}
-                  isActive={this.state.sort === 'name'}
-                >
-                  name {this.state.sort === 'name' ? (this.state.asc ? '⇡' : '⇣') : null}
-                </TabButton>
-                <TabButton
-                  onClick={() => this.handleSort('hue')}
-                  isActive={this.state.sort === 'hue'}
-                >
-                  hue {this.state.sort === 'hue' ? (this.state.asc ? '⇡' : '⇣') : null}
-                </TabButton>
-                <TabButton
-                  onClick={() => this.handleSort('saturation')}
-                  isActive={this.state.sort === 'saturation'}
-                >
-                  saturation{' '}
-                  {this.state.sort === 'saturation' ? (this.state.asc ? '⇡' : '⇣') : null}
-                </TabButton>
-                <TabButton
-                  onClick={() => this.handleSort('brightness')}
-                  isActive={this.state.sort === 'brightness'}
-                >
-                  brightness{' '}
-                  {this.state.sort === 'brightness' ? (this.state.asc ? '⇡' : '⇣') : null}
-                </TabButton>
-              </TabButtons>
-              <Row isCentered>
-                {this.state.colours.map(color => <ColourCard key={color.name} colour={color} />)}
-              </Row>
-            </Container>
-          </Section>
-        </main>
-        <FooterContainer />
-      </div>
+      <main>
+        <Section marginTop="20vh">
+          <Container>
+            <Text marginBottom="1rem" textAlign="center">
+              Sort by:
+            </Text>
+            <TabButtons marginBottom="1rem">
+              <TabButton
+                onClick={() => this.handleSort('name')}
+                isActive={this.state.sort === 'name'}
+              >
+                name {this.state.sort === 'name' ? (this.state.asc ? '⇡' : '⇣') : null}
+              </TabButton>
+              <TabButton
+                onClick={() => this.handleSort('hue')}
+                isActive={this.state.sort === 'hue'}
+              >
+                hue {this.state.sort === 'hue' ? (this.state.asc ? '⇡' : '⇣') : null}
+              </TabButton>
+              <TabButton
+                onClick={() => this.handleSort('saturation')}
+                isActive={this.state.sort === 'saturation'}
+              >
+                saturation {this.state.sort === 'saturation' ? (this.state.asc ? '⇡' : '⇣') : null}
+              </TabButton>
+              <TabButton
+                onClick={() => this.handleSort('brightness')}
+                isActive={this.state.sort === 'brightness'}
+              >
+                brightness {this.state.sort === 'brightness' ? (this.state.asc ? '⇡' : '⇣') : null}
+              </TabButton>
+            </TabButtons>
+            <Row isCentered>
+              {this.state.colours.map(color => <ColourCard key={color.name} colour={color} />)}
+            </Row>
+          </Container>
+        </Section>
+      </main>
     );
   }
 }

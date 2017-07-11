@@ -7,8 +7,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import HeaderContainer from '../containers/HeaderContainer';
-import FooterContainer from '../containers/FooterContainer';
 import HeroContainer from '../containers/HeroContainer';
 
 import { Section, Container, Row } from '../components/Layout';
@@ -21,7 +19,7 @@ import content from '../utils/content';
 // Component
 // =============================================================================
 
-export default function HomeScreen({ match: { params: { page, filter } }, location }) {
+export default function HomeScreen({ match: { params: { page, filter } } }) {
   const copy = content.pages[page || 'home'];
   const works = content.works.filter(
     work =>
@@ -35,26 +33,22 @@ export default function HomeScreen({ match: { params: { page, filter } }, locati
   );
 
   return (
-    <div>
-      <HeaderContainer location={location} />
-      <main>
-        <Section>
-          <HeroContainer key={copy.top.title} content={copy.top} filter={filter} />
-        </Section>
-        {works.length > 0 &&
-          <Section marginTop="-25vh" id="below">
-            <Container>
-              <Row isCentered>
-                {works.map((work, index) => <Work key={work.title} work={work} index={index} />)}
-              </Row>
-            </Container>
-          </Section>}
-        <Section marginTop="-25vh">
-          <HeroContainer key={copy.bottom.title} content={copy.bottom} />
-        </Section>
-      </main>
-      <FooterContainer />
-    </div>
+    <main>
+      <Section>
+        <HeroContainer key={copy.top.title} content={copy.top} filter={filter} />
+      </Section>
+      {works.length > 0 &&
+        <Section marginTop="-25vh" id="below">
+          <Container>
+            <Row isCentered>
+              {works.map((work, index) => <Work key={work.title} work={work} index={index} />)}
+            </Row>
+          </Container>
+        </Section>}
+      <Section marginTop="-25vh">
+        <HeroContainer key={copy.bottom.title} content={copy.bottom} />
+      </Section>
+    </main>
   );
 }
 
@@ -64,8 +58,5 @@ HomeScreen.propTypes = {
       page:   PropTypes.string,
       filter: PropTypes.string,
     }),
-  }).isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
   }).isRequired,
 };

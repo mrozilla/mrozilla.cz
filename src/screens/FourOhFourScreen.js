@@ -4,11 +4,8 @@
 
 // React
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Components
-import Header from '../containers/HeaderContainer';
-import Footer from '../containers/FooterContainer';
 import HeroContainer from '../containers/HeroContainer';
 
 import { Link } from '../components/Navigation';
@@ -19,10 +16,9 @@ import { Section } from '../components/Layout';
 // Component
 // =============================================================================
 
-export default function FourOhFourScreen({ location }) {
+export default function FourOhFourScreen() {
   return (
-    <div>
-      <Header location={location} />
+    <main>
       <Section>
         <HeroContainer
           key={Math.random()}
@@ -38,11 +34,6 @@ export default function FourOhFourScreen({ location }) {
           }}
         />
       </Section>
-      <Footer />
-    </div>
+    </main>
   );
 }
-
-FourOhFourScreen.propTypes = {
-  location: PropTypes.string.isRequired,
-};
