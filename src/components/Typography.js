@@ -108,25 +108,39 @@ Subtitle.defaultProps = {
 // =============================================================================
 
 export const Text = glamorous.p(
-  {
-    lineHeight: '1.25rem',
-  },
-  ({ fontSize, fontWeight, color, marginBottom, opacity, textAlign }) => ({
+  ({
+    lineHeight,
     fontSize,
     fontWeight,
     color,
     marginBottom,
     opacity,
     textAlign,
+    textTransform,
+    letterSpacing,
+  }) => ({
+    lineHeight,
+    fontSize,
+    fontWeight,
+    color,
+    marginBottom,
+    opacity,
+    textAlign,
+    textTransform,
+    letterSpacing,
   }),
 );
 
 Text.defaultProps = {
-  fontSize:     'inherit',
-  fontWeight:   '400',
-  color:        'inherit',
-  marginBottom: '0',
-  opacity:      '1',
+  lineHeight:    '1.25rem',
+  fontSize:      'inherit',
+  fontWeight:    '400',
+  color:         'inherit',
+  marginBottom:  '0',
+  opacity:       '1',
+  textAlign:     'inherit',
+  textTransform: 'inherit',
+  letterSpacing: '0',
 };
 
 // =============================================================================
