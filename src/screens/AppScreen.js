@@ -11,6 +11,9 @@ import { Switch, Route } from 'react-router-dom';
 import HomeScreen from './HomeScreen';
 import ColoursScreen from './ColoursScreen';
 import WritestScreen from './WritestScreen';
+import CountOnMeScreen from './CountOnMeScreen';
+import PassworldScreen from './PassworldScreen';
+
 import FourOhFourScreen from './FourOhFourScreen';
 
 // Containers
@@ -21,15 +24,16 @@ import FooterContainer from '../containers/FooterContainer';
 // Component
 // =============================================================================
 
-export default function App({ location }) {
+export default function App({ location, history }) {
   return (
     <div>
-      <HeaderContainer location={location} />
+      <HeaderContainer location={location} history={history} />
       <Switch>
-        <Route exact path="/" component={HomeScreen} />
         <Route path="/lab/colours" component={ColoursScreen} />
         <Route path="/lab/writest" component={WritestScreen} />
-        <Route path="/:page/:filter?" component={HomeScreen} />
+        <Route path="/lab/count-on-me" component={CountOnMeScreen} />
+        <Route path="/lab/passworld" component={PassworldScreen} />
+        <Route path="/:page?/:filter?" component={HomeScreen} />
 
         <Route component={FourOhFourScreen} />
       </Switch>
@@ -41,5 +45,8 @@ export default function App({ location }) {
 App.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
   }).isRequired,
 };
