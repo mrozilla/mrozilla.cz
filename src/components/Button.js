@@ -10,6 +10,28 @@ import glamorous from 'glamorous';
 import { color, border } from '../utils/styles';
 
 // =============================================================================
+// Button
+// =============================================================================
+
+export const Button = glamorous.button({
+  fontFamily:      'inherit',
+  color:           'inherit',
+  border:          'none',
+  outline:         '0',
+  display:         'inline-flex',
+  padding:         '0.5rem 1rem',
+  cursor:          'pointer',
+  backgroundColor: color.grey.lighter,
+  borderRadius:    border.radius.small,
+  '& + &':         {
+    marginLeft: '0.25rem',
+  },
+  '&:hover': {
+    backgroundColor: color.grey.light,
+  },
+});
+
+// =============================================================================
 // Tab buttons
 // =============================================================================
 
