@@ -21,7 +21,7 @@ export default function FourOhFourScreen() {
     <main>
       <Section>
         <HeroContainer
-          key={Math.random()}
+          key="404"
           content={{
             title:    '404.',
             subtitle: "the page you're looking for \n doesn't seem to exist.",

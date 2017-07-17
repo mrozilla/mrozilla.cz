@@ -26,17 +26,16 @@
   "eslintConfig": {
     "extends": ["react-app", "airbnb"],
     "rules": {
-      "key-spacing": ["error", { "align": "value" }],
-      "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
-      "no-underscore-dangle": [
-        "error",
-        { "allow": ["_reactInternalInstance", "_hostParent", "_hostNode"] }
-      ],
-      "no-confusing-arrow": "off",
       "no-mixed-operators": "off",
+      "no-confusing-arrow": "off",
       "no-nested-ternary": "off",
       "react/jsx-filename-extension": "off",
-      "react/no-did-mount-set-state": "off"
+      "react/no-did-mount-set-state": "off",
+      "no-underscore-dangle": "off",
+
+      "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+
+      "key-spacing": ["warn", { "align": "value" }]
     }
   }
 }

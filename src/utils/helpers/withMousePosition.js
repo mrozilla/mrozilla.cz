@@ -12,9 +12,8 @@ import React, { Component } from 'react';
 export default function withMousePosition(WrappedComponent) {
   return class extends Component {
     state = {
-      el: null,
-      x:  0,
-      y:  0,
+      x: 0,
+      y: 0,
     };
 
     handleMouseMove = (e) => {

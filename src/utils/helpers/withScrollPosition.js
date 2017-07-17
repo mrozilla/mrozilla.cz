@@ -12,7 +12,6 @@ import React, { Component } from 'react';
 export default function withScrollPosition(WrappedComponent) {
   return class extends Component {
     state = {
-      el:           null,
       isInViewport: false,
     };
 
@@ -40,7 +39,8 @@ export default function withScrollPosition(WrappedComponent) {
   };
 }
 
-// rect.top >= 0 // Potential different solution
+// // Potential different solution
+// rect.top >= 0
 // && rect.left >= 0
 // && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
 // && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
