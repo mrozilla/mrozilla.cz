@@ -38,6 +38,12 @@ const reboot = `
   img[src=""], img:not([src]) {
     opacity: 0;
   }
+  ::selection {
+    background-color: ${color.brand.primary};
+  }
+  ::-moz-selection {
+    background-color: ${color.brand.primary};
+  }
 `;
 
 // =============================================================================
