@@ -24,6 +24,10 @@ export default function withLocation(WrappedComponent) {
       }).isRequired,
     };
 
+    componentDidMount() {
+      this.trackPage(this.props.location.pathname);
+    }
+
     componentDidUpdate() {
       this.trackPage(this.props.location.pathname);
       this.props.location.hash === ''
@@ -44,7 +48,7 @@ export default function withLocation(WrappedComponent) {
     };
 
     render() {
-      return <WrappedComponent location={this.props.location} />;
+      return <WrappedComponent {...this.props} />;
     }
   };
 }
