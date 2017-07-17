@@ -14,6 +14,9 @@ import { SmartLink, SmartNavLink } from '../../utils/helpers';
 // =============================================================================
 
 export const Link = glamorous(SmartLink)(
+  {
+    outline: 'none',
+  },
   ({ isBare }) =>
     !isBare && {
       position:      'relative',
@@ -37,11 +40,6 @@ export const Link = glamorous(SmartLink)(
       '&:hover::after': {
         transform: 'scaleX(1)',
       },
-    },
-  ({ isVenter }) =>
-    isVenter && {
-      display:    'inline-flex',
-      alignItems: 'center',
     },
 );
 
