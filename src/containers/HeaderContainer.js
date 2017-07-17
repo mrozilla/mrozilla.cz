@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 // Components
 import { Header, Navbar, NavbarBlock, NavbarToggle, Link, NavLink } from '../components/Navigation';
 import { Subtitle } from '../components/Typography';
-import { Container } from '../components/Layout/Grid';
+import { Flex, Container } from '../components/Layout';
 import { Logo } from '../components/Iconography';
 import { Reveal, Wiggle } from '../components/Effects';
 
@@ -24,6 +24,9 @@ export default class HeaderContainer extends Component {
   static propTypes = {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
+    }).isRequired,
+    history: PropTypes.shape({
+      goBack: PropTypes.func.isRequired,
     }).isRequired,
   };
 
@@ -42,15 +45,23 @@ export default class HeaderContainer extends Component {
       <Header isFixed>
         <Container>
           <Navbar>
-            <Link to="/" isBare isVenter>
-              <Wiggle>
+            <Wiggle>
+              <Flex alignItems="center" height="100%">
                 {this.props.location.pathname === '/'
-                  ? <Logo />
+                  ? <Link to="/" isBare>
+                    <Logo />
+                  </Link>
                   : <Reveal>
-                    <Subtitle color={color.brand.primary}>⟵</Subtitle>
+                    <Subtitle
+                      color={color.brand.primary}
+                      onClick={() => this.props.history.goBack()}
+                      cursor="pointer"
+                    >
+                        ⟵
+                      </Subtitle>
                   </Reveal>}
-              </Wiggle>
-            </Link>
+              </Flex>
+            </Wiggle>
             <NavbarBlock isCollapsed={this.state.isCollapsed}>
               <NavLink to="/work">
                 <Wiggle>
