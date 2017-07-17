@@ -4,7 +4,7 @@
 
 // Styles
 import glamorous from 'glamorous';
-import { color, typography } from '../utils/styles';
+import { typography } from '../utils/styles';
 
 // =============================================================================
 // Heading
@@ -16,10 +16,11 @@ export const Heading = glamorous.h1(
     letterSpacing: '-0.025em',
     fontFamily:    typography.font.family.headings,
   },
-  ({ fontSize, fontWeight, color, marginBottom }) => ({
+  ({ fontSize, fontWeight, color, textAlign, marginBottom }) => ({
     fontSize,
     fontWeight,
     color,
+    textAlign,
     marginBottom,
   }),
 );
@@ -28,6 +29,7 @@ Heading.defaultProps = {
   fontSize:     '3rem',
   fontWeight:   '900',
   color:        'inherit',
+  textAlign:    'inherit',
   marginBottom: '0',
 };
 
@@ -40,10 +42,11 @@ export const Subheading = glamorous.h2(
     lineHeight: '1em',
     fontFamily: typography.font.family.headings,
   },
-  ({ fontSize, fontWeight, color, marginBottom }) => ({
+  ({ fontSize, fontWeight, color, textAlign, marginBottom }) => ({
     fontSize,
     fontWeight,
     color,
+    textAlign,
     marginBottom,
   }),
 );
@@ -52,6 +55,7 @@ Subheading.defaultProps = {
   fontSize:     '2.5rem',
   fontWeight:   '300',
   color:        'inherit',
+  textAlign:    'inherit',
   marginBottom: '0',
 };
 
@@ -64,10 +68,11 @@ export const Title = glamorous.h3(
     lineHeight: '1em',
     fontFamily: typography.font.family.headings,
   },
-  ({ fontSize, fontWeight, color, marginBottom }) => ({
+  ({ fontSize, fontWeight, color, textAlign, marginBottom }) => ({
     fontSize,
     fontWeight,
     color,
+    textAlign,
     marginBottom,
   }),
 );
@@ -76,6 +81,7 @@ Title.defaultProps = {
   fontSize:     '2rem',
   fontWeight:   '900',
   color:        'inherit',
+  textAlign:    'inherit',
   marginBottom: '0',
 };
 
@@ -88,11 +94,13 @@ export const Subtitle = glamorous.h4(
     lineHeight: '1em',
     fontFamily: typography.font.family.headings,
   },
-  ({ fontSize, fontWeight, color, marginBottom }) => ({
+  ({ fontSize, fontWeight, color, textAlign, marginBottom, cursor }) => ({
     fontSize,
     fontWeight,
     color,
+    textAlign,
     marginBottom,
+    cursor,
   }),
 );
 
@@ -100,7 +108,9 @@ Subtitle.defaultProps = {
   fontSize:     '1.5rem',
   fontWeight:   '300',
   color:        'inherit',
+  textAlign:    'inherit',
   marginBottom: '0',
+  cursor:       'initial',
 };
 
 // =============================================================================
@@ -142,21 +152,6 @@ Text.defaultProps = {
   textTransform: 'inherit',
   letterSpacing: '0',
 };
-
-// =============================================================================
-// Pill
-// =============================================================================
-
-export const Pill = glamorous.span({
-  display:      'inline-block',
-  borderRadius: 999,
-  padding:      '0 1em',
-  color:        color.brand.primary,
-  border:       `1px solid ${color.brand.primary}`,
-  '& + &':      {
-    marginLeft: '0.5rem',
-  },
-});
 
 // =============================================================================
 // Helpers
