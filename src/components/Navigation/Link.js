@@ -44,8 +44,7 @@ export const Link = glamorous(SmartLink)(
 );
 
 Link.defaultProps = {
-  isBare:   false,
-  isVenter: false,
+  isBare: false,
 };
 
 // =============================================================================

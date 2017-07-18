@@ -21,16 +21,16 @@ export default function FooterContainer() {
       <Container>
         <Footer>
           <Wiggle>
-            <Link to="//twitter.com/mrozilla" isBare>
+            <Link to="//twitter.com/mrozilla" target="_blank" isBare>
               <Icon name="twitter" isPadded />
             </Link>
-            <Link to="//medium.com/mrozilla" isBare>
+            <Link to="//medium.com/mrozilla" target="_blank" isBare>
               <Icon name="medium" isPadded />
             </Link>
-            <Link to="//github.com/mrozilla" isBare>
+            <Link to="//github.com/mrozilla" target="_blank" isBare>
               <Icon name="github" isPadded />
             </Link>
-            <Link to="//linkedin.com/in/mrozilla" isBare>
+            <Link to="//linkedin.com/in/mrozilla" target="_blank" isBare>
               <Icon name="linkedin" isPadded />
             </Link>
             <Link to="mailto:jan@mrozilla.cz" isBare>

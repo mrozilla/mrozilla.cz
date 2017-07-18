@@ -73,7 +73,7 @@ export default class HeaderContainer extends Component {
                   <Reveal delay="200ms">lab</Reveal>
                 </Wiggle>
               </NavLink>
-              <NavLink to="https://medium.com/mrozilla/">
+              <NavLink to="https://medium.com/mrozilla/" target="_blank">
                 <Wiggle>
                   <Reveal delay="300ms">blog</Reveal>
                 </Wiggle>
