@@ -36,69 +36,58 @@ export default class ColoursScreen extends Component {
     speakingTime:          0,
   };
 
-  analyseText = (event) => {
-    const value = event.target.value;
-    const wordsArray = (s) => {
-      if (s === '') {
-        return [];
-      }
-      let outcome = s.toLowerCase();
-      outcome = outcome.replace(
-        /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-./:;<=>?@[]^_`{|}~]/g,
-        '',
-      ); // exclude punctuation
-      outcome = outcome.replace(/(^\s*)|(\s*$)/gi, ''); // exclude  start and end white-space
-      outcome = outcome.replace(/[ ]{2,}/gi, ' '); // 2 or more space to 1
-      outcome = outcome.replace(/\n /, '\n'); // exclude newline with a start spacing
-      return outcome.split(' ');
+  analyseText = ({ target: { value } }) => {
+    const rgx = {
+      punctuation: /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g, // eslint-disable-line
+      sentence:    /[^\r\n.!?]+(:?(:?\r\n|[\r\n]|[.!?])+|$)/gi,
+      newLines:    /\r?\n|\r/g,
+      spaces:      /\s/g,
     };
-    const sentencesArray = (s) => {
-      const re = /[^\r\n.!?]+(:?(:?\r\n|[\r\n]|[.!?])+|$)/gi;
-      if (s === '') {
-        return [];
-      }
-      s = s.replace(/\r?\n|\r/g, ''); // exclude newlines
-      return s.match(re).map(item => item.trim());
-    };
-    const countUniqueFast = (arr) => {
-      const counts = {};
-      for (let i = 0; i < arr.length; i++) {
-        counts[arr[i]] = 1 + (counts[arr[i]] || 0);
-      }
-      return counts;
-    };
-    const countChars = s => (s === '' ? 0 : s.replace(/\r?\n|\r/g, '').length);
-    const countCharsWithout = (s) => {
-      if (s === '') {
-        return 0;
-      }
-      s = s.replace(/\r?\n|\r/g, ''); // exclude newlines
-      s = s.replace(/\s/g, ''); // exclude spaces
-      return s.length;
-    };
-    const countWordsUnique = s => Object.keys(countUniqueFast(wordsArray(s))).length;
-    const mostCommonWord = (s) => {
-      const obj = countUniqueFast(wordsArray(s));
-      return Object.keys(obj).length === 0
-        ? 'N/A'
-        : Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
-    };
-    const countAverageSentences = s =>
-      Math.round(wordsArray(s).length / sentencesArray(s).length * 100) / 100 || 0;
-    const countReadingMinutes = s => Math.round(wordsArray(s).length / 275 * 100) / 100;
-    const countSpeakingMinutes = s => Math.round(wordsArray(s).length / 150 * 100) / 100;
+    function wordsArray(s) {
+      if (s === '') return [];
+      return s.toLowerCase().trim().replace(rgx.punctuation, '').split(/\s+/);
+    }
+    function wordsSet(s) {
+      return new Set(wordsArray(s));
+    }
+    function sentencesArray(s) {
+      if (s === '') return [];
+      return s.replace(rgx.newLines, ' ').match(rgx.sentence).map(item => item.trim());
+    }
+    function chars(s) {
+      return s.replace(rgx.newLines, '').length;
+    }
+    function charsWithoutSpaces(s) {
+      return s.replace(rgx.newLines, '').replace(rgx.spaces).length;
+    }
+    function mostCommonWord(s) {
+      return wordsArray(s).reduce(
+        (a, b, i, arr) =>
+          arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b,
+        'N/A',
+      );
+    }
+    function averageSentences(s) {
+      return wordsArray(s).length / sentencesArray(s).length;
+    }
+    function readingMinutes(s) {
+      return wordsArray(s).length / 275;
+    }
+    function speakingMinutes(s) {
+      return wordsArray(s).length / 150;
+    }
 
     this.setState({
       textArea:              value,
-      charCount:             countChars(value),
-      charCountWithout:      countCharsWithout(value),
+      charCount:             chars(value),
+      charCountWithout:      charsWithoutSpaces(value),
       wordsCount:            wordsArray(value).length,
-      wordsCountUnique:      countWordsUnique(value),
+      wordsCountUnique:      wordsSet(value).size,
       mostCommonWord:        mostCommonWord(value),
       sentencesCount:        sentencesArray(value).length,
-      sentencesCountAverage: countAverageSentences(value),
-      readingTime:           countReadingMinutes(value),
-      speakingTime:          countSpeakingMinutes(value),
+      sentencesCountAverage: averageSentences(value),
+      readingTime:           readingMinutes(value).toFixed(2),
+      speakingTime:          speakingMinutes(value).toFixed(2),
     });
   };
 
@@ -125,8 +114,8 @@ export default class ColoursScreen extends Component {
                 <TextArea
                   placeholder="Start typing or paste text..."
                   value={textArea}
-                  padding="1rem"
                   onChange={this.analyseText}
+                  padding="1rem"
                 />
               </Column>
               <Column lg={2}>
@@ -139,7 +128,7 @@ export default class ColoursScreen extends Component {
                   Characters with spaces
                 </Text>
                 <Text marginBottom="1rem">
-                  {charCount}
+                  {charCount.toLocaleString('en', { useGrouping: true })}
                 </Text>
                 <Text
                   fontSize="0.5rem"
@@ -150,7 +139,7 @@ export default class ColoursScreen extends Component {
                   Characters without spaces
                 </Text>
                 <Text marginBottom="1rem">
-                  {charCountWithout}
+                  {charCountWithout.toLocaleString('en', { useGrouping: true })}
                 </Text>
                 <Text
                   fontSize="0.5rem"
@@ -161,7 +150,7 @@ export default class ColoursScreen extends Component {
                   Words
                 </Text>
                 <Text marginBottom="1rem">
-                  {wordsCount}
+                  {wordsCount.toLocaleString('en', { useGrouping: true })}
                 </Text>
                 <Text
                   fontSize="0.5rem"
@@ -172,7 +161,7 @@ export default class ColoursScreen extends Component {
                   Unique words
                 </Text>
                 <Text marginBottom="1rem">
-                  {wordsCountUnique}
+                  {wordsCountUnique.toLocaleString('en', { useGrouping: true })}
                 </Text>
                 <Text
                   fontSize="0.5rem"
@@ -182,7 +171,7 @@ export default class ColoursScreen extends Component {
                 >
                   Most common word
                 </Text>
-                <Text marginBottom="1rem">
+                <Text marginBottom="1rem" isTruncated>
                   {mostCommonWord}
                 </Text>
                 <Text
@@ -194,7 +183,7 @@ export default class ColoursScreen extends Component {
                   Sentences
                 </Text>
                 <Text marginBottom="1rem">
-                  {sentencesCount}
+                  {sentencesCount.toLocaleString('en', { useGrouping: true })}
                 </Text>
                 <Text
                   fontSize="0.5rem"
@@ -205,7 +194,7 @@ export default class ColoursScreen extends Component {
                   Average sentence length
                 </Text>
                 <Text marginBottom="1rem">
-                  {sentencesCountAverage}
+                  {sentencesCountAverage.toLocaleString('en', { useGrouping: true })}
                 </Text>
                 <Text
                   fontSize="0.5rem"
