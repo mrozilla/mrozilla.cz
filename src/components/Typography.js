@@ -139,6 +139,13 @@ export const Text = glamorous.p(
     textTransform,
     letterSpacing,
   }),
+  ({ isTruncated }) =>
+    isTruncated && {
+      maxWidth:     '100%',
+      overflowX:    'hidden',
+      whiteSpace:   'nowrap',
+      textOverflow: 'ellipsis',
+    },
 );
 
 Text.defaultProps = {
@@ -151,6 +158,7 @@ Text.defaultProps = {
   textAlign:     'inherit',
   textTransform: 'inherit',
   letterSpacing: '0',
+  isTruncated:   false,
 };
 
 // =============================================================================
