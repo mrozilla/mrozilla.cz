@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 import { Section, Container, Row, Column } from '../components/Layout';
 import { Text } from '../components/Typography';
-import { TextArea } from '../components/Input';
+import { TextArea } from '../components/Forms';
 
 // =============================================================================
 // Component
@@ -36,7 +36,7 @@ export default class ColoursScreen extends Component {
     speakingTime:          0,
   };
 
-  analyseText = ({ target: { value } }) => {
+  analyseText = (name, value) => {
     const rgx = {
       punctuation: /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g, // eslint-disable-line
       sentence:    /[^\r\n.!?]+(:?(:?\r\n|[\r\n]|[.!?])+|$)/gi,
@@ -52,7 +52,10 @@ export default class ColoursScreen extends Component {
     }
     function sentencesArray(s) {
       if (s === '') return [];
-      return s.replace(rgx.newLines, ' ').match(rgx.sentence).map(item => item.trim());
+      return s
+        .replace(rgx.newLines, ' ')
+        .match(rgx.sentence)
+        .map(item => item.trim());
     }
     function chars(s) {
       return s.replace(rgx.newLines, '').length;
@@ -63,7 +66,9 @@ export default class ColoursScreen extends Component {
     function mostCommonWord(s) {
       return wordsArray(s).reduce(
         (a, b, i, arr) =>
-          arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b,
+          arr.filter(v => v === a).length >= arr.filter(v => v === b).length
+            ? a
+            : b,
         'N/A',
       );
     }
@@ -113,6 +118,7 @@ export default class ColoursScreen extends Component {
               <Column lg={8}>
                 <TextArea
                   placeholder="Start typing or paste text..."
+                  name="input"
                   value={textArea}
                   onChange={this.analyseText}
                   padding="1rem"
@@ -194,7 +200,9 @@ export default class ColoursScreen extends Component {
                   Average sentence length
                 </Text>
                 <Text marginBottom="1rem">
-                  {sentencesCountAverage.toLocaleString('en', { useGrouping: true })}
+                  {sentencesCountAverage.toLocaleString('en', {
+                    useGrouping: true,
+                  })}
                 </Text>
                 <Text
                   fontSize="0.5rem"

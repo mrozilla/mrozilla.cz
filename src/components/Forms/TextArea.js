@@ -8,23 +8,24 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { border } from '../utils/styles';
+import { border } from '../../utils/styles';
+import InputWrapper from './InputWrapper';
 
 // =============================================================================
 // Styles
 // =============================================================================
 
-export const TextArea = glamorous.textarea(
+const StyledTextArea = glamorous.textarea(
   {
-    width:            '100%',
-    height:           '100%',
-    backgroundColor:  'white',
     border:           'none',
+    outline:          'none',
     fontFamily:       'inherit',
     color:            'inherit',
     lineHeight:       'inherit',
+    width:            '100%',
+    height:           '100%',
+    backgroundColor:  'white',
     borderRadius:     border.radius.small,
-    outline:          '0',
     '&::placeholder': {
       opacity: 0.5,
     },
@@ -34,43 +35,50 @@ export const TextArea = glamorous.textarea(
   }),
 );
 
-const TextInput = glamorous.input({
-  WebkitAppearance: 'none',
-  outline:          'none',
-  border:           'none',
-  fontFamily:       'inherit',
-  color:            'inherit',
-});
-
 // =============================================================================
 // Component
 // =============================================================================
 
-export function Input({ type, name, value, onChange }) {
-  const types = {
-    text: (
-      <TextInput
-        type="text"
+export default function TextArea({
+  name,
+  value,
+  label,
+  description,
+  onChange,
+  marginBottom,
+  padding,
+}) {
+  return (
+    <InputWrapper
+      name={name}
+      label={label}
+      description={description}
+      marginBottom={marginBottom}
+    >
+      <StyledTextArea
         name={name}
+        id={name}
         value={value}
+        padding={padding}
         onChange={e => onChange(name, e.target.value)}
       />
-    ),
-    number: (
-      <TextInput
-        type="number"
-        name={name}
-        value={value}
-        onChange={e => onChange(name, parseInt(e.target.value, 10))}
-      />
-    ),
-  };
-  return types[type];
+    </InputWrapper>
+  );
 }
 
-Input.propTypes = {
-  type:     PropTypes.string.isRequired,
-  value:    PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired,
-  name:     PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+TextArea.propTypes = {
+  name:         PropTypes.string.isRequired,
+  value:        PropTypes.string.isRequired,
+  onChange:     PropTypes.func.isRequired,
+  label:        PropTypes.string,
+  description:  PropTypes.string,
+  marginBottom: PropTypes.string,
+  padding:      PropTypes.string,
+};
+
+TextArea.defaultProps = {
+  label:        null,
+  description:  null,
+  marginBottom: null,
+  padding:      null,
 };
