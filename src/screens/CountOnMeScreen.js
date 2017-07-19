@@ -23,7 +23,9 @@ export default class CountOnMeScreen extends Component {
     e.stopPropagation();
     this.setState({
       count:
-        type !== undefined ? (type === 'add' ? this.state.count + 1 : this.state.count - 1) : 0,
+        type !== undefined
+          ? type === 'add' ? this.state.count + 1 : this.state.count - 1
+          : 0,
     });
   };
 
@@ -46,7 +48,10 @@ export default class CountOnMeScreen extends Component {
               Click anywhere to add
             </Text>
             <Flex justifyContent="center">
-              <Button type="primary" onClick={e => this.handleCount(e, 'subtract')}>
+              <Button
+                type="primary"
+                onClick={e => this.handleCount(e, 'subtract')}
+              >
                 Subtract
               </Button>
               <Button type="primary" onClick={e => this.handleCount(e)}>

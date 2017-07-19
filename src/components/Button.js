@@ -7,29 +7,63 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { color, border } from '../utils/styles';
+import { color, border, transition, positionAbsolute } from '../utils/styles';
 
 // =============================================================================
 // Button
 // =============================================================================
 
-export const Button = glamorous.button({
-  fontFamily:      'inherit',
-  color:           'inherit',
-  border:          'none',
-  outline:         '0',
-  display:         'inline-flex',
-  padding:         '0.5rem 1rem',
-  cursor:          'pointer',
-  backgroundColor: color.grey.lighter,
-  borderRadius:    border.radius.small,
-  '& + &':         {
-    marginLeft: '0.25rem',
+export const Button = glamorous.button(
+  {
+    fontFamily:      'inherit',
+    color:           'inherit',
+    border:          'none',
+    outline:         '0',
+    padding:         '0.5rem 1rem',
+    cursor:          'pointer',
+    backgroundColor: color.grey.lighter,
+    borderRadius:    border.radius.small,
+    '& + &':         {
+      marginLeft: '0.25rem', // TODO FIGURE OUT MULTIPLE CLASSES PROBLEM
+    },
+    '&:hover': {
+      backgroundColor: color.grey.light,
+    },
   },
-  '&:hover': {
-    backgroundColor: color.grey.light,
-  },
-});
+  ({ type }) =>
+    type && {
+      position:   'relative',
+      overflow:   'hidden',
+      transition: `${transition.primary.medium} all`,
+      '&:hover':  {
+        backgroundColor: 'transparent',
+        color:           'white',
+      },
+      '&::after': {
+        content:         "''",
+        ...positionAbsolute(),
+        transition:      'inherit',
+        zIndex:          -1,
+        transform:       'scaleX(0)',
+        transformOrigin: 'left',
+        backgroundColor: color.brand.primary,
+      },
+      '&:hover::after': {
+        transform: 'scaleX(1)',
+      },
+    },
+  ({ type }) => type === 'primary' && {},
+  ({ type }) =>
+    type === 'secondary' && {
+      border:          `1px solid ${color.grey.lighter}`,
+      backgroundColor: 'transparent',
+    },
+  ({ isFull }) =>
+    isFull && {
+      width:     '100%',
+      textAlign: 'center',
+    },
+);
 
 // =============================================================================
 // Tab buttons
