@@ -66,23 +66,23 @@ export const Column = glamorous.div(
   ({ xs, sm, md, lg, xl }) => ({
     [media.xs]: {
       flex:     xs && `0 0 ${xs / grid.columns * 100}%`,
-      maxWidth: `${xs / grid.columns * 100}%`,
+      maxWidth: xs && `${xs / grid.columns * 100}%`,
     },
     [media.sm]: {
       flex:     sm && `0 0 ${sm / grid.columns * 100}%`,
-      maxWidth: `${sm / grid.columns * 100}%`,
+      maxWidth: sm && `${sm / grid.columns * 100}%`,
     },
     [media.md]: {
       flex:     md && `0 0 ${md / grid.columns * 100}%`,
-      maxWidth: `${md / grid.columns * 100}%`,
+      maxWidth: md && `${md / grid.columns * 100}%`,
     },
     [media.lg]: {
       flex:     lg && `0 0 ${lg / grid.columns * 100}%`,
-      maxWidth: `${lg / grid.columns * 100}%`,
+      maxWidth: lg && `${lg / grid.columns * 100}%`,
     },
     [media.xl]: {
       flex:     xl && `0 0 ${xl / grid.columns * 100}%`,
-      maxWidth: `${xl / grid.columns * 100}%`,
+      maxWidth: xl && `${xl / grid.columns * 100}%`,
     },
   }),
   ({ marginTop }) => ({
