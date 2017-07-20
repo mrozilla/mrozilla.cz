@@ -38,8 +38,10 @@ const Input = glamorous.input(
 );
 
 Input.displayName = 'Input';
+Input.propTypes = {
+  padding: PropTypes.string.isRequired,
+};
 Input.defaultProps = {
-  padding:    '0.5rem',
   fontSize:   'inherit',
   fontFamily: 'inherit',
 };
@@ -106,7 +108,7 @@ TextInput.defaultProps = {
   label:        null,
   description:  null,
   marginBottom: null,
-  padding:      null,
+  padding:      '0.5rem',
   fontSize:     null,
   fontFamily:   'inherit',
 };

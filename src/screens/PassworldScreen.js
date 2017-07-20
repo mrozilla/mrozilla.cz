@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 
 // Components
 import { Section, Container, Row, Column } from '../components/Layout';
-import { Heading } from '../components/Typography';
 import { Button } from '../components/Buttons';
 import { Form, TextInput, CheckboxInput } from '../components/Forms';
 
@@ -17,7 +16,7 @@ import { Form, TextInput, CheckboxInput } from '../components/Forms';
 
 export default class PassworldScreen extends Component {
   state = {
-    password: ' ',
+    password: '',
     length:   10,
     include:  {
       lowerChars:   true,
@@ -51,8 +50,9 @@ export default class PassworldScreen extends Component {
 
   handleInput = (name, value) => {
     this.setState({
-      length:  name === 'length' ? value : this.state.length,
-      include: {
+      length:   name === 'length' ? value : this.state.length,
+      password: name === 'password' ? value : this.state.password,
+      include:  {
         ...this.state.include,
         [name]: name !== 'length' ? value : null, // TODO figure out how not to update nested state
       },
@@ -66,11 +66,17 @@ export default class PassworldScreen extends Component {
       <main>
         <Section>
           <Container>
-            <Heading textAlign="center" marginBottom="1rem">
-              {password}
-            </Heading>
             <Row isCentered>
               <Column lg={6}>
+                <TextInput
+                  type="text"
+                  name="password"
+                  value={password}
+                  placeholder="Your password will be here..."
+                  marginBottom="0.5rem"
+                  padding="1rem"
+                  onChange={handleInput}
+                />
                 <Form>
                   <TextInput
                     type="number"
