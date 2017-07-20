@@ -9,14 +9,14 @@ import PropTypes from 'prop-types';
 // Utils
 import smoothScroll from './smoothScroll';
 
-// GoogleAnalytics.initialize('UA-0000000-0');
+// GoogleAnalytics.initialize('UA-0000000-0'); // TODO ADD ANALYTICS
 
 // =============================================================================
 // Component
 // =============================================================================
 
-export default function withLocation(WrappedComponent) {
-  return class extends Component {
+export default function (WrappedComponent) {
+  return class withLocation extends Component {
     static propTypes = {
       location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ export default function withLocation(WrappedComponent) {
     }
 
     trackPage = (page) => {
-      console.log(page);
+      console.log(page); // eslint-disable-line
     };
     scrollToTop = () => {
       const element = document.querySelector('#root');

@@ -3,19 +3,23 @@
 // =============================================================================
 
 import glamorous from 'glamorous';
-// import { media, grid } from '../../utils/styles';
 
 // =============================================================================
-// Container
+// Styles
 // =============================================================================
 
-const Flex = glamorous.div(({ alignItems, alignSelf, justifyContent, height }) => ({
-  display: 'flex',
-  alignItems,
-  alignSelf,
-  justifyContent,
-  height,
-}));
+const Flex = glamorous.div(
+  ({ alignItems, alignSelf, justifyContent, height, marginBottom }) => ({
+    display: 'flex',
+    alignItems,
+    alignSelf,
+    justifyContent,
+    height,
+    marginBottom,
+  }),
+);
+
+Flex.displayName = 'Flex';
 
 // =============================================================================
 // Export

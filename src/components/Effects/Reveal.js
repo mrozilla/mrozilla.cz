@@ -8,7 +8,12 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { color, transition, animation, positionAbsolute } from '../../utils/styles';
+import {
+  color,
+  transition,
+  animation,
+  positionAbsolute,
+} from '../../utils/styles';
 
 // Helpers
 import { withScrollPosition } from '../../utils/helpers';
@@ -41,19 +46,25 @@ const RevealContainer = glamorous.span(
   }),
 );
 
+RevealContainer.displayName = 'RevealContainer';
+
 // Content
 const RevealContent = glamorous.span(({ isBlock, isInViewport }) => ({
-  opacity:        0,
-  display:        isBlock ? 'block' : 'inline-block',
-  animation:      isInViewport ? `${animation.appear} ${transition.primary.long} both` : 'none',
+  opacity:   0,
+  display:   isBlock ? 'block' : 'inline-block',
+  animation: isInViewport
+    ? `${animation.appear} ${transition.primary.long} both`
+    : 'none',
   animationDelay: 'inherit',
 }));
+
+RevealContent.displayName = 'RevealContent';
 
 // =============================================================================
 // Component
 // =============================================================================
 
-function RevealWrapper({ children, ...rest }) {
+function Reveal({ children, ...rest }) {
   return (
     <RevealContainer {...rest}>
       <RevealContent {...rest}>
@@ -63,9 +74,7 @@ function RevealWrapper({ children, ...rest }) {
   );
 }
 
-const Reveal = withScrollPosition(RevealWrapper);
-
-RevealWrapper.propTypes = {
+Reveal.propTypes = {
   children:     PropTypes.node.isRequired,
   delay:        PropTypes.string,
   type:         PropTypes.string,
@@ -74,7 +83,7 @@ RevealWrapper.propTypes = {
   isBlock:      PropTypes.bool,
 };
 
-RevealWrapper.defaultProps = {
+Reveal.defaultProps = {
   delay:        '0ms',
   type:         'slide',
   direction:    'right',
@@ -86,4 +95,4 @@ RevealWrapper.defaultProps = {
 // Export
 // =============================================================================
 
-export default Reveal;
+export default withScrollPosition(Reveal);

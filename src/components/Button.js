@@ -65,6 +65,8 @@ export const Button = glamorous.button(
     },
 );
 
+Button.displayName = 'Button';
+
 // =============================================================================
 // Tab buttons
 // =============================================================================
@@ -81,6 +83,8 @@ export const TabButtons = glamorous.div(
   }),
 );
 
+TabButtons.displayName = 'TabButtons';
+
 export const TabButton = glamorous.div(
   {
     flex:         '1',
@@ -96,10 +100,10 @@ export const TabButton = glamorous.div(
     },
 );
 
+TabButton.displayName = 'TabButton';
 TabButton.propTypes = {
   isActive: PropTypes.bool,
 };
-
 TabButton.defaultProps = {
   isActive: false,
 };

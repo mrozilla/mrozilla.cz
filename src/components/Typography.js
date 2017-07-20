@@ -25,6 +25,7 @@ export const Heading = glamorous.h1(
   }),
 );
 
+Heading.displayName = 'Heading';
 Heading.defaultProps = {
   fontSize:     '3rem',
   fontWeight:   '900',
@@ -51,6 +52,7 @@ export const Subheading = glamorous.h2(
   }),
 );
 
+Subheading.displayName = 'Subheading';
 Subheading.defaultProps = {
   fontSize:     '2.5rem',
   fontWeight:   '300',
@@ -77,6 +79,7 @@ export const Title = glamorous.h3(
   }),
 );
 
+Title.displayName = 'Title';
 Title.defaultProps = {
   fontSize:     '2rem',
   fontWeight:   '900',
@@ -104,6 +107,7 @@ export const Subtitle = glamorous.h4(
   }),
 );
 
+Subtitle.displayName = 'Subtitle';
 Subtitle.defaultProps = {
   fontSize:     '1.5rem',
   fontWeight:   '300',
@@ -148,6 +152,7 @@ export const Text = glamorous.p(
     },
 );
 
+Text.displayName = 'Text';
 Text.defaultProps = {
   lineHeight:    '1.25rem',
   fontSize:      'inherit',
@@ -170,3 +175,5 @@ export const Comma = glamorous.span({
     content: "', '",
   },
 });
+
+Comma.displayName = 'Comma';

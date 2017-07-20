@@ -3,7 +3,13 @@
 // =============================================================================
 
 import glamorous from 'glamorous';
-import { color, zIndex, media, transition, positionAbsolute } from '../../utils/styles';
+import {
+  color,
+  zIndex,
+  media,
+  transition,
+  positionAbsolute,
+} from '../../utils/styles';
 
 // =============================================================================
 // Header
@@ -26,6 +32,7 @@ export const Header = glamorous.header(
   }),
 );
 
+Header.displayName = 'Header';
 Header.defaultProps = {
   isFixed: false,
 };
@@ -52,6 +59,8 @@ export const Navbar = glamorous.nav({
     borderBottom:  `1px solid ${color.grey.lighter}`,
   },
 });
+
+Navbar.displayName = 'Navbar';
 
 // =============================================================================
 // NavbarBlock
@@ -80,6 +89,7 @@ export const NavbarBlock = glamorous.div(
   }),
 );
 
+NavbarBlock.displayName = 'NavbarBlock';
 NavbarBlock.defaultProps = {
   isCollapsed: false,
 };
@@ -119,6 +129,7 @@ export const NavbarToggle = glamorous.div(
   }),
 );
 
+NavbarToggle.displayName = 'NavbarToggle';
 NavbarToggle.defaultProps = {
   isCollapsed: true,
 };

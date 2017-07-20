@@ -26,6 +26,8 @@ const IconWrapper = glamorous.span(
     },
 );
 
+IconWrapper.displayName = 'IconWrapper';
+
 // =============================================================================
 // Component
 // =============================================================================
@@ -50,7 +52,11 @@ export default function Icon({ name, height, color, isPadded }) {
 
   return (
     <IconWrapper isPadded={isPadded}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height={height}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 40 40"
+        height={height}
+      >
         <path fill={color} d={icons[name]} />
       </svg>
     </IconWrapper>

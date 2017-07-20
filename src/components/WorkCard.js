@@ -20,7 +20,10 @@ import { color } from '../utils/styles';
 // Component
 // =============================================================================
 
-export default function WorkCard({ work: { link, title, tagline, tags, image }, width }) {
+export default function WorkCard({
+  work: { link, title, tagline, tags, image },
+  width,
+}) {
   return (
     <Column sm={width} style={{ textAlign: 'center' }} isStacked>
       <Wiggle>

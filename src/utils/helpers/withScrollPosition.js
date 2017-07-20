@@ -9,8 +9,8 @@ import React, { Component } from 'react';
 // Component
 // =============================================================================
 
-export default function withScrollPosition(WrappedComponent) {
-  return class extends Component {
+export default function (WrappedComponent) {
+  return class withScrollPosition extends Component {
     state = {
       isInViewport: false,
     };
@@ -28,13 +28,20 @@ export default function withScrollPosition(WrappedComponent) {
       const rect = this._reactInternalInstance._hostParent._hostNode.getBoundingClientRect();
       this.setState({
         isInViewport:
-          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) ||
-          rect.top <= (window.innerHeight || document.documentElement.clientHeight),
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) ||
+          rect.top <=
+            (window.innerHeight || document.documentElement.clientHeight),
       });
     };
 
     render() {
-      return <WrappedComponent isInViewport={this.state.isInViewport} {...this.props} />;
+      return (
+        <WrappedComponent
+          isInViewport={this.state.isInViewport}
+          {...this.props}
+        />
+      );
     }
   };
 }

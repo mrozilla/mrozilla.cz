@@ -15,7 +15,7 @@ import InputWrapper from './InputWrapper';
 // Styles
 // =============================================================================
 
-const StyledTextArea = glamorous.textarea(
+const TextArea = glamorous.textarea(
   {
     border:           'none',
     outline:          'none',
@@ -35,18 +35,22 @@ const StyledTextArea = glamorous.textarea(
   }),
 );
 
+TextArea.displayName = 'TextArea';
+
 // =============================================================================
 // Component
 // =============================================================================
 
-export default function TextArea({
+export default function TextAreaInput({
   name,
   value,
   label,
   description,
+  placeholder,
   onChange,
   marginBottom,
   padding,
+  height,
 }) {
   return (
     <InputWrapper
@@ -54,31 +58,37 @@ export default function TextArea({
       label={label}
       description={description}
       marginBottom={marginBottom}
+      height={height}
     >
-      <StyledTextArea
+      <TextArea
         name={name}
         id={name}
         value={value}
         padding={padding}
+        placeholder={placeholder}
         onChange={e => onChange(name, e.target.value)}
       />
     </InputWrapper>
   );
 }
 
-TextArea.propTypes = {
+TextAreaInput.propTypes = {
   name:         PropTypes.string.isRequired,
   value:        PropTypes.string.isRequired,
   onChange:     PropTypes.func.isRequired,
   label:        PropTypes.string,
   description:  PropTypes.string,
+  placeholder:  PropTypes.string,
   marginBottom: PropTypes.string,
   padding:      PropTypes.string,
+  height:       PropTypes.string,
 };
 
-TextArea.defaultProps = {
+TextAreaInput.defaultProps = {
   label:        null,
   description:  null,
+  placeholder:  null,
   marginBottom: null,
   padding:      null,
+  height:       null,
 };

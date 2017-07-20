@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 import { Section, Container, Row, Column } from '../components/Layout';
 import { Text } from '../components/Typography';
-import { TextArea } from '../components/Forms';
+import { TextAreaInput } from '../components/Forms';
 
 // =============================================================================
 // Component
@@ -116,12 +116,13 @@ export default class ColoursScreen extends Component {
             <Row>
               <Column lg={2} />
               <Column lg={8}>
-                <TextArea
+                <TextAreaInput
                   placeholder="Start typing or paste text..."
                   name="input"
                   value={textArea}
                   onChange={this.analyseText}
                   padding="1rem"
+                  height="100%"
                 />
               </Column>
               <Column lg={2}>

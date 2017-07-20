@@ -30,6 +30,8 @@ const Colour = glamorous.div({
   },
 });
 
+Colour.displayName = 'Colour';
+
 const ColourInfo = glamorous.div({
   ...positionAbsolute(),
   display:        'flex',
@@ -38,6 +40,8 @@ const ColourInfo = glamorous.div({
   justifyContent: 'center',
   color:          'white',
 });
+
+ColourInfo.displayName = 'ColourInfo';
 
 // =============================================================================
 // Component

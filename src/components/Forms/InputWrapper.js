@@ -12,10 +12,13 @@ import glamorous from 'glamorous';
 // Styles
 // =============================================================================
 
-export const Wrapper = glamorous.div(({ marginBottom, padding }) => ({
+export const Wrapper = glamorous.div(({ marginBottom, padding, height }) => ({
   marginBottom,
   padding,
+  height,
 }));
+
+Wrapper.displayName = 'Wrapper';
 
 export const Label = glamorous.label(
   {
@@ -28,10 +31,14 @@ export const Label = glamorous.label(
     },
 );
 
+Label.displayName = 'Label';
+
 export const Description = glamorous.span({
   display:  'inline-block',
   fontSize: '0.5rem',
 });
+
+Description.displayName = 'Description';
 
 // =============================================================================
 // Component
@@ -44,9 +51,10 @@ export default function InputWrapper({
   description,
   marginBottom,
   padding,
+  height,
 }) {
   return (
-    <Wrapper marginBottom={marginBottom} padding={padding}>
+    <Wrapper marginBottom={marginBottom} padding={padding} height={height}>
       {label &&
         <Label htmlFor={name} isUppercase>
           {label}
@@ -67,6 +75,7 @@ InputWrapper.propTypes = {
   description:  PropTypes.string,
   marginBottom: PropTypes.string,
   padding:      PropTypes.string,
+  height:       PropTypes.string,
 };
 
 InputWrapper.defaultProps = {
@@ -74,4 +83,5 @@ InputWrapper.defaultProps = {
   description:  null,
   marginBottom: null,
   padding:      null,
+  height:       null,
 };

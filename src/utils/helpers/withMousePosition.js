@@ -9,8 +9,8 @@ import React, { Component } from 'react';
 // Component
 // =============================================================================
 
-export default function withMousePosition(WrappedComponent) {
-  return class extends Component {
+export default function (WrappedComponent) {
+  return class withMousePosition extends Component {
     state = {
       x: 0,
       y: 0,

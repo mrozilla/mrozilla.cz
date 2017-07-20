@@ -23,6 +23,7 @@ const Section = glamorous.section(
   }),
 );
 
+Section.displayName = 'Section';
 Section.defaultProps = {
   minHeight:     '100vh',
   paddingTop:    '10vh',

@@ -28,6 +28,7 @@ const ImageWrapper = glamorous.figure(
   }),
 );
 
+ImageWrapper.displayName = 'ImageWrapper';
 ImageWrapper.defaultProps = {
   ratio:        1,
   marginBottom: '0',
@@ -41,6 +42,8 @@ const ImageSource = glamorous.img({
     transform: 'scale(1.05)',
   },
 });
+
+ImageSource.displayName = 'ImageSource';
 
 // =============================================================================
 // Component

@@ -4,7 +4,13 @@
 
 // Styles
 import glamorous from 'glamorous';
-import { color, media, transition, positionAbsolute, activeClassName } from '../../utils/styles';
+import {
+  color,
+  media,
+  transition,
+  positionAbsolute,
+  activeClassName,
+} from '../../utils/styles';
 
 // Components
 import { SmartLink, SmartNavLink } from '../../utils/helpers';
@@ -43,6 +49,7 @@ export const Link = glamorous(SmartLink)(
     },
 );
 
+Link.displayName = 'Link';
 Link.defaultProps = {
   isBare: false,
 };
@@ -77,3 +84,5 @@ export const NavLink = glamorous(SmartNavLink)({
     },
   },
 });
+
+NavLink.displayName = 'NavLink';

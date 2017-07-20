@@ -32,6 +32,8 @@ export const Container = glamorous.div({
   },
 });
 
+Container.displayName = 'Container';
+
 // =============================================================================
 // Row
 // =============================================================================
@@ -48,6 +50,7 @@ export const Row = glamorous.div(
   }),
 );
 
+Row.displayName = 'Container';
 Row.defaultProps = {
   isCentered: false,
 };
@@ -105,6 +108,7 @@ export const Column = glamorous.div(
     },
 );
 
+Column.displayName = 'Column';
 Column.defaultProps = {
   marginTop: '0',
   isStacked: false,
