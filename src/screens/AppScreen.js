@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // Screens
 import HomeScreen from './HomeScreen';
+import AboutScreen from './AboutScreen';
 import ColoursScreen from './ColoursScreen';
 import WritestScreen from './WritestScreen';
 import CountOnMeScreen from './CountOnMeScreen';
@@ -30,6 +31,7 @@ export default function App({ location, history }) {
     <div>
       <HeaderContainer location={location} history={history} />
       <Switch>
+        <Route path="/about" component={AboutScreen} />
         <Route path="/lab/colours" component={ColoursScreen} />
         <Route path="/lab/writest" component={WritestScreen} />
         <Route path="/lab/count-on-me" component={CountOnMeScreen} />
