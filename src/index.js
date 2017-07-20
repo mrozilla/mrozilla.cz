@@ -40,6 +40,22 @@ const router = (
 const mountNode = document.getElementById('root');
 
 // =============================================================================
+// Hot reloading
+// =============================================================================
+
+if (module.hot) {
+  module.hot.accept('./screens/AppScreen', () => {
+    const NextApp = require('./screens/AppScreen').default; // eslint-disable-line
+    ReactDOM.render(
+      <BrowserRouter>
+        <Route component={withLocation(NextApp)} />
+      </BrowserRouter>,
+      mountNode,
+    );
+  });
+}
+
+// =============================================================================
 // Go!!!
 // =============================================================================
 
