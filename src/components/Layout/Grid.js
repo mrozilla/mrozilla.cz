@@ -45,8 +45,9 @@ export const Row = glamorous.div(
     marginLeft:  `${grid.gutter / -1}rem`,
     marginRight: `${grid.gutter / -1}rem`,
   },
-  ({ isCentered }) => ({
+  ({ isCentered, marginBottom }) => ({
     justifyContent: isCentered ? 'center' : 'initial',
+    marginBottom,
   }),
 );
 

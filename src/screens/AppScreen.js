@@ -13,6 +13,7 @@ import ColoursScreen from './ColoursScreen';
 import WritestScreen from './WritestScreen';
 import CountOnMeScreen from './CountOnMeScreen';
 import PassworldScreen from './PassworldScreen';
+import InAnyCaseScreen from './InAnyCaseScreen';
 
 import FourOhFourScreen from './FourOhFourScreen';
 
@@ -33,6 +34,7 @@ export default function App({ location, history }) {
         <Route path="/lab/writest" component={WritestScreen} />
         <Route path="/lab/count-on-me" component={CountOnMeScreen} />
         <Route path="/lab/passworld" component={PassworldScreen} />
+        <Route path="/lab/in-any-case" component={InAnyCaseScreen} />
         <Route path="/:page?/:filter?" component={HomeScreen} />
 
         <Route component={FourOhFourScreen} />

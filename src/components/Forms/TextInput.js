@@ -19,22 +19,32 @@ const Input = glamorous.input(
   {
     WebkitAppearance: 'none',
     outline:          'none',
-    fontFamily:       'inherit',
     color:            'inherit',
     backgroundColor:  'transparent',
     display:          'block',
     width:            '100%',
-    padding:          '0.5rem',
     border:           `1px solid ${color.grey.lighter}`,
     borderRadius:     border.radius.small,
-  },
-  ({ isInline }) =>
-    isInline && {
-      display: 'inline-block',
+    '&::placeholder': {
+      opacity: 0.5,
     },
+  },
+  ({ isInline, padding, fontSize, fontFamily }) => ({
+    display: isInline ? 'inline-block' : 'block',
+    padding,
+    fontSize,
+    fontFamily,
+  }),
 );
 
 Input.displayName = 'Input';
+Input.propTypes = {
+  padding: PropTypes.string.isRequired,
+};
+Input.defaultProps = {
+  fontSize:   'inherit',
+  fontFamily: 'inherit',
+};
 
 // =============================================================================
 // Component
@@ -44,9 +54,13 @@ export default function TextInput({
   type,
   name,
   value,
+  placeholder,
   label,
   description,
   marginBottom,
+  padding,
+  fontSize,
+  fontFamily,
   onChange,
 }) {
   return (
@@ -61,6 +75,10 @@ export default function TextInput({
         name={name}
         id={name}
         value={value}
+        placeholder={placeholder}
+        padding={padding}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
         onChange={e =>
           onChange(
             name,
@@ -76,13 +94,21 @@ TextInput.propTypes = {
   name:         PropTypes.string.isRequired,
   onChange:     PropTypes.func.isRequired,
   value:        PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  placeholder:  PropTypes.string,
   label:        PropTypes.string,
   description:  PropTypes.string,
   marginBottom: PropTypes.string,
+  padding:      PropTypes.string,
+  fontSize:     PropTypes.string,
+  fontFamily:   PropTypes.string,
 };
 
 TextInput.defaultProps = {
+  placeholder:  null,
   label:        null,
   description:  null,
   marginBottom: null,
+  padding:      '0.5rem',
+  fontSize:     null,
+  fontFamily:   'inherit',
 };
