@@ -40,9 +40,11 @@ const reboot = `
   }
   ::selection {
     background-color: ${color.brand.primary};
+    color: white;
   }
   ::-moz-selection {
     background-color: ${color.brand.primary};
+    color: white;
   }
 `;
 

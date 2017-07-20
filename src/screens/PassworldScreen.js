@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 // Components
 import { Section, Container, Row, Column } from '../components/Layout';
 import { Heading } from '../components/Typography';
-import { Button } from '../components/Button';
+import { Button } from '../components/Buttons';
 import { Form, TextInput, CheckboxInput } from '../components/Forms';
 
 // =============================================================================

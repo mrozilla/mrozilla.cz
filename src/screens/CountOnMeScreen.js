@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 // Components
 import { Section, Container, Flex } from '../components/Layout';
 import { Heading, Text } from '../components/Typography';
-import { Button } from '../components/Button';
+import { Button } from '../components/Buttons';
 
 // =============================================================================
 // Component

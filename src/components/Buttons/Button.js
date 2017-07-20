@@ -2,34 +2,39 @@
 // Import
 // =============================================================================
 
-// React
-import PropTypes from 'prop-types';
-
 // Styles
 import glamorous from 'glamorous';
-import { color, border, transition, positionAbsolute } from '../utils/styles';
+import {
+  color,
+  border,
+  transition,
+  positionAbsolute,
+} from '../../utils/styles';
 
 // =============================================================================
 // Button
 // =============================================================================
 
-export const Button = glamorous.button(
-  {
+const Button = glamorous.button(
+  ({ isFull }) => ({
     fontFamily:      'inherit',
     color:           'inherit',
     border:          'none',
     outline:         '0',
     padding:         '0.5rem 1rem',
     cursor:          'pointer',
+    textAlign:       'center',
     backgroundColor: color.grey.lighter,
     borderRadius:    border.radius.small,
+    width:           isFull ? '100%' : 'initial',
     '& + &':         {
-      marginLeft: '0.25rem', // TODO FIGURE OUT MULTIPLE CLASSES PROBLEM
+      marginLeft: isFull ? '0' : '0.25rem', // TODO MULTIPLE CLASSES PROBLEM
+      marginTop:  isFull ? '0.5rem' : '0', // TODO MULTIPLE CLASSES PROBLEM
     },
     '&:hover': {
       backgroundColor: color.grey.light,
     },
-  },
+  }),
   ({ type }) =>
     type && {
       position:   'relative',
@@ -58,52 +63,12 @@ export const Button = glamorous.button(
       border:          `1px solid ${color.grey.lighter}`,
       backgroundColor: 'transparent',
     },
-  ({ isFull }) =>
-    isFull && {
-      width:     '100%',
-      textAlign: 'center',
-    },
 );
 
 Button.displayName = 'Button';
 
 // =============================================================================
-// Tab buttons
+// Export
 // =============================================================================
 
-export const TabButtons = glamorous.div(
-  {
-    display:      'flex',
-    padding:      '0.125rem',
-    border:       `1px solid ${color.grey.lighter}`,
-    borderRadius: border.radius.small,
-  },
-  ({ marginBottom }) => ({
-    marginBottom,
-  }),
-);
-
-TabButtons.displayName = 'TabButtons';
-
-export const TabButton = glamorous.div(
-  {
-    flex:         '1',
-    cursor:       'pointer',
-    padding:      '1rem',
-    textAlign:    'center',
-    borderRadius: 'inherit',
-  },
-  ({ isActive }) =>
-    isActive && {
-      fontWeight:      '900',
-      backgroundColor: color.grey.lighter,
-    },
-);
-
-TabButton.displayName = 'TabButton';
-TabButton.propTypes = {
-  isActive: PropTypes.bool,
-};
-TabButton.defaultProps = {
-  isActive: false,
-};
+export default Button;
