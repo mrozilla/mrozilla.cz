@@ -7,10 +7,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-
 import { Section, Container, Row, Column } from '../components/Layout';
 import { Text } from '../components/Typography';
-import { TextAreaInput } from '../components/Forms';
+import { TextAreaInput, Label } from '../components/Forms';
 
 // =============================================================================
 // Component
@@ -126,104 +125,39 @@ export default class ColoursScreen extends Component {
                 />
               </Column>
               <Column lg={2}>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Characters with spaces
-                </Text>
+                <Label>Characters with spaces</Label>
                 <Text marginBottom="1rem">
-                  {charCount.toLocaleString('en', { useGrouping: true })}
+                  {charCount.toLocaleString('en')}
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Characters without spaces
-                </Text>
+                <Label>Characters without spaces</Label>
                 <Text marginBottom="1rem">
-                  {charCountWithout.toLocaleString('en', { useGrouping: true })}
+                  {charCountWithout.toLocaleString('en')}
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Words
-                </Text>
+                <Label>Words</Label>
                 <Text marginBottom="1rem">
-                  {wordsCount.toLocaleString('en', { useGrouping: true })}
+                  {wordsCount.toLocaleString('en')}
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Unique words
-                </Text>
+                <Label>Unique words</Label>
                 <Text marginBottom="1rem">
-                  {wordsCountUnique.toLocaleString('en', { useGrouping: true })}
+                  {wordsCountUnique.toLocaleString('en')}
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Most common word
-                </Text>
+                <Label>Most common word</Label>
                 <Text marginBottom="1rem" isTruncated>
                   {mostCommonWord}
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Sentences
-                </Text>
+                <Label>Sentences</Label>
                 <Text marginBottom="1rem">
-                  {sentencesCount.toLocaleString('en', { useGrouping: true })}
+                  {sentencesCount.toLocaleString('en')}
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Average sentence length
-                </Text>
+                <Label>Average sentence length</Label>
                 <Text marginBottom="1rem">
-                  {sentencesCountAverage.toLocaleString('en', {
-                    useGrouping: true,
-                  })}
+                  {sentencesCountAverage.toLocaleString('en')} words
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Reading time
-                </Text>
+                <Label>Reading time</Label>
                 <Text marginBottom="1rem">
                   {readingTime} min
                 </Text>
-                <Text
-                  fontSize="0.5rem"
-                  textTransform="uppercase"
-                  letterSpacing="0.25em"
-                  lineHeight="1rem"
-                >
-                  Speaking time
-                </Text>
+                <Label>Speaking time</Label>
                 <Text marginBottom="1rem">
                   {speakingTime} min
                 </Text>

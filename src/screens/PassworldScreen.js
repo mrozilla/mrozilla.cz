@@ -77,7 +77,7 @@ export default class PassworldScreen extends Component {
                     name="length"
                     value={length}
                     label="Password length"
-                    description="Don't go for a password that is shorted than 10 characters. Sh*t's not safe that way." // eslint-disable-line
+                    description="Don't go for a password that is shorter than 10 characters. Sh*t's not safe that way." // eslint-disable-line
                     marginBottom="0.5rem"
                     onChange={handleInput}
                   />

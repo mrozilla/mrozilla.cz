@@ -8,6 +8,10 @@ import PropTypes from 'prop-types';
 // Styles
 import glamorous from 'glamorous';
 
+// Components
+import Label from './Label';
+import { Text } from '../Typography';
+
 // =============================================================================
 // Styles
 // =============================================================================
@@ -19,26 +23,6 @@ export const Wrapper = glamorous.div(({ marginBottom, padding, height }) => ({
 }));
 
 Wrapper.displayName = 'Wrapper';
-
-export const Label = glamorous.label(
-  {
-    fontSize: '0.5rem',
-  },
-  ({ isUppercase }) =>
-    isUppercase && {
-      textTransform: 'uppercase',
-      letterSpacing: '0.2em',
-    },
-);
-
-Label.displayName = 'Label';
-
-export const Description = glamorous.span({
-  display:  'inline-block',
-  fontSize: '0.5rem',
-});
-
-Description.displayName = 'Description';
 
 // =============================================================================
 // Component
@@ -61,9 +45,9 @@ export default function InputWrapper({
         </Label>}
       {children}
       {description &&
-        <Description>
+        <Text fontSize="0.5rem">
           {description}
-        </Description>}
+        </Text>}
     </Wrapper>
   );
 }

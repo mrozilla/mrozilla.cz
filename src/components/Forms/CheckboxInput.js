@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import InputWrapper, { Label } from './InputWrapper';
+import { InputWrapper, Label } from '../Forms';
 import { Flex } from '../Layout';
 
 // =============================================================================
