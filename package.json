@@ -4,6 +4,7 @@
   "description": "the online home of a one-man digital studio. built with react and 🍺.",
   "license": "MIT",
   "repository": "https://github.com/mrozilla/mrozilla.cz",
+  "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
   "author": {
     "name": "Jan",
     "email": "jan@mrozilla.cz",
