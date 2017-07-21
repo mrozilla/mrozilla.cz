@@ -7,10 +7,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Header, Navbar, NavbarBlock, NavbarToggle, Link, NavLink } from '../components/Navigation';
+import {
+  Header,
+  Navbar,
+  NavbarBlock,
+  NavbarToggle,
+  Link,
+  NavLink,
+} from '../components/Navigation';
 import { Subtitle } from '../components/Typography';
 import { Flex, Container } from '../components/Layout';
-import { Logo } from '../components/Iconography';
+import { Logo } from '../components/Icons';
 import { Reveal, Wiggle } from '../components/Effects';
 
 // Styles
@@ -84,7 +91,10 @@ export default class HeaderContainer extends Component {
                 </Wiggle>
               </NavLink>
             </NavbarBlock>
-            <NavbarToggle isCollapsed={this.state.isCollapsed} onClick={this.toggleMenu} />
+            <NavbarToggle
+              isCollapsed={this.state.isCollapsed}
+              onClick={this.toggleMenu}
+            />
           </Navbar>
         </Container>
       </Header>

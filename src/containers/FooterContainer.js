@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Footer, Link } from '../components/Navigation';
-import { Logo, Icon } from '../components/Iconography';
+import { Logo, Icon } from '../components/Icons';
 import { Container } from '../components/Layout';
 import { Wiggle, Reveal } from '../components/Effects';
 
@@ -30,6 +30,9 @@ export default function FooterContainer() {
             <Link to="//github.com/mrozilla" target="_blank" isBare>
               <Icon name="github" isPadded />
             </Link>
+            <Link to="//codepen.com/mrozilla" target="_blank" isBare>
+              <Icon name="codepen" isPadded />
+            </Link>
             <Link to="//linkedin.com/in/mrozilla" target="_blank" isBare>
               <Icon name="linkedin" isPadded />
             </Link>
@@ -45,11 +48,11 @@ export default function FooterContainer() {
               </span>. Here's some <Link to="/legal">legal stuff</Link>.
             </Reveal>
           </Wiggle>
-          <Link to="/" isBare>
-            <Wiggle>
+          <Wiggle>
+            <Link to="/" isBare>
               <Logo />
-            </Wiggle>
-          </Link>
+            </Link>
+          </Wiggle>
         </Footer>
       </Container>
     </footer>
