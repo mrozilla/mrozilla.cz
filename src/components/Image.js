@@ -18,8 +18,8 @@ const ImageWrapper = glamorous.figure(
   {
     position:        'relative',
     overflow:        'hidden',
+    backgroundColor: 'white',
     borderRadius:    border.radius.small,
-    backgroundColor: color.grey.lighter,
     transition:      transition.primary.medium,
   },
   ({ ratio, marginBottom }) => ({
