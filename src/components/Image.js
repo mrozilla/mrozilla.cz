@@ -8,7 +8,10 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { border, color, transition, positionAbsolute } from '../utils/styles';
+import { border, transition, positionAbsolute } from '../utils/styles';
+
+// Helpers
+import { withScrollPosition } from '../utils/helpers';
 
 // =============================================================================
 // Styles
@@ -49,14 +52,21 @@ ImageSource.displayName = 'ImageSource';
 // Component
 // =============================================================================
 
-export default function Image({ src, ...rest }) {
+function Image({ src, wasInViewport, ...rest }) {
   return (
     <ImageWrapper {...rest}>
-      <ImageSource src={src} />
+      <ImageSource src={wasInViewport ? src : null} />
     </ImageWrapper>
   );
 }
 
 Image.propTypes = {
-  src: PropTypes.string.isRequired,
+  src:           PropTypes.string.isRequired,
+  wasInViewport: PropTypes.bool.isRequired,
 };
+
+// =============================================================================
+// Export
+// =============================================================================
+
+export default withScrollPosition(Image);

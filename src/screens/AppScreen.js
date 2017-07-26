@@ -7,21 +7,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
-// Screens
-import HomeScreen from './HomeScreen';
-import AboutScreen from './AboutScreen';
-import LegalScreen from './LegalScreen';
-import ColoursScreen from './ColoursScreen';
-import WritestScreen from './WritestScreen';
-import CountOnMeScreen from './CountOnMeScreen';
-import PassworldScreen from './PassworldScreen';
-import InAnyCaseScreen from './InAnyCaseScreen';
-
-import FourOhFourScreen from './FourOhFourScreen';
+// Helpers
+import { importAsync } from '../utils/helpers';
 
 // Containers
 import HeaderContainer from '../containers/HeaderContainer';
 import FooterContainer from '../containers/FooterContainer';
+
+// Async Screens
+const HomeScreen = importAsync(() => import('./HomeScreen'));
+const AboutScreen = importAsync(() => import('./AboutScreen'));
+const LegalScreen = importAsync(() => import('./LegalScreen'));
+const ColoursScreen = importAsync(() => import('./ColoursScreen'));
+const WritestScreen = importAsync(() => import('./WritestScreen'));
+const CountOnMeScreen = importAsync(() => import('./CountOnMeScreen'));
+const PassworldScreen = importAsync(() => import('./PassworldScreen'));
+const InAnyCaseScreen = importAsync(() => import('./InAnyCaseScreen'));
+
+const FourOhFourScreen = importAsync(() => import('./FourOhFourScreen'));
 
 // =============================================================================
 // Component

@@ -12,26 +12,30 @@ import React, { Component } from 'react';
 export default function (WrappedComponent) {
   return class withScrollPosition extends Component {
     state = {
-      isInViewport: false,
+      isInViewport:  false,
+      wasInViewport: false,
     };
 
     componentDidMount() {
-      window.addEventListener('scroll', this.handleVisibility);
-      this.handleVisibility();
+      window.addEventListener('scroll', this.handleScrollPosition);
+      this.handleScrollPosition();
     }
 
     componentWillUnmount() {
-      window.removeEventListener('scroll', this.handleVisibility);
+      window.removeEventListener('scroll', this.handleScrollPosition);
     }
 
-    handleVisibility = () => {
-      const rect = this._reactInternalInstance._hostParent._hostNode.getBoundingClientRect();
+    handleScrollPosition = () => {
+      const rect = this._reactInternalInstance._hostParent._hostNode.getBoundingClientRect(); // eslint-disable-line
+      const viewportHeight =
+        window.innerHeight || document.documentElement.clientHeight;
       this.setState({
         isInViewport:
-          rect.bottom <=
-            (window.innerHeight || document.documentElement.clientHeight) ||
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight),
+          rect.bottom <= viewportHeight || rect.top <= viewportHeight,
+        wasInViewport:
+          this.state.wasInViewport ||
+          rect.bottom <= viewportHeight ||
+          rect.top <= viewportHeight,
       });
     };
 
@@ -39,6 +43,7 @@ export default function (WrappedComponent) {
       return (
         <WrappedComponent
           isInViewport={this.state.isInViewport}
+          wasInViewport={this.state.wasInViewport}
           {...this.props}
         />
       );
