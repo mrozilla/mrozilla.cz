@@ -45,6 +45,7 @@ export const Navbar = glamorous.nav({
   position:       'relative',
   display:        'flex',
   justifyContent: 'space-between',
+  alignItems:     'center',
   padding:        '0.25rem 0',
   right:          0,
   left:           0,

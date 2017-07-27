@@ -16,7 +16,7 @@ import {
   NavLink,
 } from '../components/Navigation';
 import { Subtitle } from '../components/Typography';
-import { Flex, Container } from '../components/Layout';
+import { Container } from '../components/Layout';
 import { Logo } from '../components/Icons';
 import { Reveal, Wiggle } from '../components/Effects';
 
@@ -53,21 +53,19 @@ export default class HeaderContainer extends Component {
         <Container>
           <Navbar>
             <Wiggle>
-              <Flex alignItems="center" height="100%">
-                {this.props.location.pathname === '/'
-                  ? <Link to="/" isBare>
-                    <Logo />
-                  </Link>
-                  : <Reveal>
-                    <Subtitle
-                      color={color.brand.primary}
-                      onClick={() => this.props.history.goBack()}
-                      cursor="pointer"
-                    >
-                        ⟵
-                      </Subtitle>
-                  </Reveal>}
-              </Flex>
+              {this.props.location.pathname === '/'
+                ? <Link to="/" isBare>
+                  <Logo />
+                </Link>
+                : <Reveal>
+                  <Subtitle
+                    color={color.brand.primary}
+                    onClick={() => this.props.history.goBack()}
+                    cursor="pointer"
+                  >
+                      ⟵
+                    </Subtitle>
+                </Reveal>}
             </Wiggle>
             <NavbarBlock isCollapsed={this.state.isCollapsed}>
               <NavLink to="/work">
