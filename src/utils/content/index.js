@@ -13,7 +13,16 @@ import himoment from './work-himoment.jpg';
 import movinEurope from './work-movin_europe.jpg';
 import esn from './work-esn.jpg';
 import napadRoku from './work-napad_roku.jpg';
-// import himoment from './work-himoment.svg';
+import pioneers from './work-pioneers.jpg';
+import leadspicker from './work-leadspicker.jpg';
+import meatarians from './work-meatarians.jpg';
+import image1 from './work-Artboard 1.jpg';
+import image2 from './work-Artboard 2.jpg';
+import image3 from './work-Artboard 3.jpg';
+import image4 from './work-Artboard 4.jpg';
+import image5 from './work-Artboard 5.jpg';
+import image6 from './work-Artboard 6.jpg';
+import image7 from './work-Artboard 7.jpg';
 
 // =============================================================================
 // Content
@@ -337,7 +346,7 @@ const content = {
       title:   'Pioneers.io',
       tagline: 'internal system for organising startups',
       tags:    ['design', 'website'],
-      image:   '',
+      image:   pioneers,
     },
     // {
     //   type:    ['dev'],
@@ -385,7 +394,7 @@ const content = {
       title:   'Leadspicker',
       tagline: 'digital scouting department',
       tags:    ['design'],
-      image:   '',
+      image:   leadspicker,
     },
     {
       type:    ['design', 'dev', 'copy'],
@@ -393,7 +402,7 @@ const content = {
       title:   'Meatarians',
       tagline: 'loving meat is not a crime',
       tags:    ['concept', 'branding', 'design', 'website', 'copywriting'],
-      image:   '',
+      image:   meatarians,
     },
 
     // =============================================================================
@@ -404,9 +413,9 @@ const content = {
       type:    ['lab'],
       link:    '/lab/colours',
       title:   'css colours',
-      tagline: 'why web colours are named the way they are',
+      tagline: 'a complete collection of css-named colours',
       tags:    ['concept', 'website'],
-      image:   '',
+      image:   image1,
     },
     {
       type:    ['lab'],
@@ -414,47 +423,47 @@ const content = {
       title:   'SUPERCONSULTANT',
       tagline: 'text-generating Twitter bot',
       tags:    ['concept', 'website'],
-      image:   '',
+      image:   image2,
     },
     {
       type:    ['lab'],
       link:    '/lab/passworld',
       title:   'passworld',
-      tagline: 'your password must contain at least one ritual sacrifice',
-      image:   '',
+      tagline: 'your password must contain at least...',
       tags:    ['concept', 'website'],
+      image:   image3,
     },
     {
       type:    ['lab'],
       link:    'https://m.me/meowslator',
       title:   'meowslator',
-      tagline: 'meowish-to-any-language Messenger bot',
-      image:   '',
+      tagline: 'any-language-to-meowish Messenger bot',
       tags:    ['concept', 'website'],
+      image:   image4,
     },
     {
       type:    ['lab'],
       link:    '/lab/count-on-me',
       title:   'count on me',
-      tagline: 'a tool you can count on when you need to count stuff',
-      image:   '',
+      tagline: 'a tool you can count on',
       tags:    ['concept', 'website'],
+      image:   image5,
     },
     {
       type:    ['lab'],
       link:    '/lab/in-any-case',
       title:   'in any case',
       tagline: 'Title Case, url-case, camelCase, all the cases',
-      image:   '',
       tags:    ['concept', 'website'],
+      image:   image6,
     },
     {
       type:    ['lab'],
       link:    'https://rawgit.com/mrozilla/esn-quiz/master/index.html',
       title:   'ESNquiz',
-      tagline: 'A simple quiz implementation',
-      image:   '',
+      tagline: 'a simple quiz implementation',
       tags:    ['concept', 'website'],
+      image:   image7,
     },
   ],
 };
