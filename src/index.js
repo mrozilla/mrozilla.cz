@@ -9,6 +9,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 // Styles
 import { css } from 'glamor';
+import glamorous from 'glamorous';
 import { normalize, reboot } from './utils/styles';
 
 // Screens
@@ -23,6 +24,10 @@ import registerServiceWorker from './registerServiceWorker';
 // =============================================================================
 // Global styles
 // =============================================================================
+
+if (process.env.NODE_ENV === 'development') {
+  glamorous.config.useDisplayNameInClassName = true;
+}
 
 css.insert(normalize);
 css.insert(reboot);
