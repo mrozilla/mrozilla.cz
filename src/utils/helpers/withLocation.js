@@ -4,12 +4,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import GoogleAnalytics from 'react-ga';
+import ReactGA from 'react-ga';
 
 // Utils
 import smoothScroll from './smoothScroll';
 
-// GoogleAnalytics.initialize('UA-0000000-0'); // TODO ADD ANALYTICS
+ReactGA.initialize('UA-77153555-1');
 
 // =============================================================================
 // Component
@@ -20,23 +20,30 @@ export default function (WrappedComponent) {
     static propTypes = {
       location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
+        search:   PropTypes.string.isRequired,
         hash:     PropTypes.string.isRequired,
       }).isRequired,
     };
 
     componentDidMount() {
-      this.trackPage(this.props.location.pathname);
+      this.componentDidUpdate();
     }
 
     componentDidUpdate() {
-      this.trackPage(this.props.location.pathname);
+      this.trackPage(this.props.location);
       this.props.location.hash === ''
         ? this.scrollToTop()
         : this.scrollToHash(this.props.location.hash);
     }
 
-    trackPage = (page) => {
-      console.log(page); // eslint-disable-line
+    trackPage = (location) => {
+      if (
+        process.env.NODE_ENV === 'production' &&
+        !document.cookie.includes('user_is_admin')
+      ) {
+        ReactGA.set({ page: location.pathname + location.search });
+        ReactGA.pageview(location.pathname + location.search);
+      }
     };
     scrollToTop = () => {
       const element = document.querySelector('#root');

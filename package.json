@@ -17,6 +17,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-ga": "^2.2.0",
     "react-router-dom": "^4.1.1",
     "source-map-explorer": "^1.4.0"
   },
@@ -32,7 +33,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": ["react-app", "airbnb"],
+    "extends": [
+      "react-app",
+      "airbnb"
+    ],
     "rules": {
       "no-mixed-operators": "off",
       "no-confusing-arrow": "off",
@@ -40,14 +44,23 @@
       "react/jsx-filename-extension": "off",
       "react/no-did-mount-set-state": "off",
       "no-underscore-dangle": "off",
-
       "no-unused-expressions": [
         "error",
-        { "allowShortCircuit": true, "allowTernary": true }
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
       ],
-      "max-len": ["error", 80],
-
-      "key-spacing": ["warn", { "align": "value" }]
+      "max-len": [
+        "error",
+        80
+      ],
+      "key-spacing": [
+        "warn",
+        {
+          "align": "value"
+        }
+      ]
     }
   }
 }
