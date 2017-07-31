@@ -35,13 +35,19 @@ export default function HomeScreen({ match: { params: { page, filter } } }) {
   return (
     <main>
       <Section>
-        <HeroContainer key={copy.top.title} content={copy.top} filter={filter} />
+        <HeroContainer
+          key={copy.top.title}
+          content={copy.top}
+          filter={filter}
+        />
       </Section>
       {works.length > 0 &&
         <Section marginTop="-25vh" id="below">
           <Container>
             <Row isCentered>
-              {works.map((work, index) => <Work key={work.title} work={work} index={index} />)}
+              {works.map((work, index) =>
+                <Work key={work.title} work={work} index={index} />,
+              )}
             </Row>
           </Container>
         </Section>}

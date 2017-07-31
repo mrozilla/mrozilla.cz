@@ -12,7 +12,6 @@ import {
   Navbar,
   NavbarBlock,
   NavbarToggle,
-  Link,
   NavLink,
 } from '../components/Navigation';
 import { Subtitle } from '../components/Typography';
@@ -54,26 +53,34 @@ export default class HeaderContainer extends Component {
           <Navbar>
             <Wiggle>
               {this.props.location.pathname === '/'
-                ? <Link to="/" isBare>
-                  <Logo />
-                </Link>
+                ? <Logo />
                 : <Reveal>
                   <Subtitle
                     color={color.brand.primary}
                     onClick={() => this.props.history.goBack()}
                     cursor="pointer"
                   >
-                      ⟵
+                      ←
                     </Subtitle>
                 </Reveal>}
             </Wiggle>
             <NavbarBlock isCollapsed={this.state.isCollapsed}>
-              <NavLink to="/work">
+              <NavLink
+                to="/work"
+                onClick={
+                  this.state.isCollapsed === false ? this.toggleMenu : null
+                }
+              >
                 <Wiggle>
                   <Reveal delay="100ms">work</Reveal>
                 </Wiggle>
               </NavLink>
-              <NavLink to="/lab">
+              <NavLink
+                to="/lab"
+                onClick={
+                  this.state.isCollapsed === false ? this.toggleMenu : null
+                }
+              >
                 <Wiggle>
                   <Reveal delay="200ms">lab</Reveal>
                 </Wiggle>
@@ -83,7 +90,12 @@ export default class HeaderContainer extends Component {
                   <Reveal delay="300ms">blog</Reveal>
                 </Wiggle>
               </NavLink>
-              <NavLink to="/about">
+              <NavLink
+                to="/about"
+                onClick={
+                  this.state.isCollapsed === false ? this.toggleMenu : null
+                }
+              >
                 <Wiggle>
                   <Reveal delay="400ms">about</Reveal>
                 </Wiggle>

@@ -37,7 +37,14 @@ SmartLink.defaultProps = {
 // SmartNavLink
 // =============================================================================
 
-export function SmartNavLink({ to, children, target, activeClassName, isBare, ...rest }) {
+export function SmartNavLink({
+  to,
+  children,
+  target,
+  activeClassName,
+  isBare,
+  ...rest
+}) {
   return !to.includes('//') && !to.includes('mailto')
     ? <NavLink to={to} {...rest}>
       {children}

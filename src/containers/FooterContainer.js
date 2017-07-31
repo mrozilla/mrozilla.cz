@@ -45,7 +45,7 @@ export default function FooterContainer() {
               Made with{' '}
               <span role="img" aria-label="beer">
                 🍺
-              </span>. Here's some <Link to="/legal">legal stuff</Link>.
+              </span>. Here&apos;s some <Link to="/legal">legal stuff</Link>.
             </Reveal>
           </Wiggle>
           <Wiggle>
