@@ -26,9 +26,11 @@
     "react-scripts": "1.0.10"
   },
   "scripts": {
-    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "predeploy": "npm run build",
+    "deploy": "duck -e compare --upload ftp://$WEDOS_MROZILLA/www/subdom/test/ build/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
