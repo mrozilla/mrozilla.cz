@@ -35,14 +35,16 @@ export default function App({ location, history }) {
     <div>
       <HeaderContainer location={location} history={history} />
       <Switch>
-        <Route path="/about" component={AboutScreen} />
-        <Route path="/legal" component={LegalScreen} />
+        <Route exact path="/" component={HomeScreen} />
+        <Route path="/work/:filter?" component={HomeScreen} />
+        <Route exact path="/lab" component={HomeScreen} />
         <Route path="/lab/colours" component={ColoursScreen} />
         <Route path="/lab/writest" component={WritestScreen} />
         <Route path="/lab/count-on-me" component={CountOnMeScreen} />
         <Route path="/lab/passworld" component={PassworldScreen} />
         <Route path="/lab/in-any-case" component={InAnyCaseScreen} />
-        <Route path="/:page?/:filter?" component={HomeScreen} />
+        <Route path="/about" component={AboutScreen} />
+        <Route path="/legal" component={LegalScreen} />
 
         <Route component={FourOhFourScreen} />
       </Switch>

@@ -19,7 +19,8 @@ import content from '../utils/content';
 // Component
 // =============================================================================
 
-export default function HomeScreen({ match: { params: { page, filter } } }) {
+export default function HomeScreen({ match: { params: { filter }, url } }) {
+  const page = url.split('/')[1];
   const copy = content.pages[page || 'home'];
   const works = content.works.filter(
     work =>
