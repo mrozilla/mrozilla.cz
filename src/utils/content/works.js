@@ -49,7 +49,7 @@ const works = [
     type:    ['case', 'design', 'dev', 'copy'],
     link:    'https://medium.com/mrozilla',
     title:   'Erasmus Student Network',
-    tagline: 'unity in diversity, diversity in unity',
+    tagline: 'unity in diversity',
     tags:    ['design', 'website', 'copywriting'],
     image:   esn,
   },
