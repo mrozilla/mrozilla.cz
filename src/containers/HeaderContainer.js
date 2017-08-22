@@ -13,6 +13,7 @@ import {
   NavbarBlock,
   NavbarToggle,
   NavLink,
+  Link,
 } from '../components/Navigation';
 import { Subtitle } from '../components/Typography';
 import { Container } from '../components/Layout';
@@ -47,64 +48,52 @@ export default class HeaderContainer extends Component {
   };
 
   render() {
+    const { location, history } = this.props;
+    const { isCollapsed } = this.state;
+
     return (
       <Header isFixed>
         <Container>
           <Navbar>
             <Wiggle>
-              {this.props.location.pathname === '/'
-                ? <Logo />
+              {location.pathname === '/'
+                ? <Link to="/" isBare>
+                  <Logo />
+                </Link>
                 : <Reveal>
                   <Subtitle
                     color={color.brand.primary}
-                    onClick={() => this.props.history.goBack()}
+                    onClick={() => history.goBack()}
                     cursor="pointer"
                   >
-                      ←
-                    </Subtitle>
+                    ←
+                  </Subtitle>
                 </Reveal>}
             </Wiggle>
-            <NavbarBlock isCollapsed={this.state.isCollapsed}>
+            <NavbarBlock isCollapsed={isCollapsed}>
               <NavLink
                 to="/work"
-                onClick={
-                  this.state.isCollapsed === false ? this.toggleMenu : null
-                }
+                onClick={isCollapsed === false ? this.toggleMenu : null}
               >
-                <Wiggle>
-                  <Reveal delay="100ms">work</Reveal>
-                </Wiggle>
+                <Wiggle>work</Wiggle>
               </NavLink>
               <NavLink
                 to="/lab"
-                onClick={
-                  this.state.isCollapsed === false ? this.toggleMenu : null
-                }
+                onClick={isCollapsed === false ? this.toggleMenu : null}
               >
-                <Wiggle>
-                  <Reveal delay="200ms">lab</Reveal>
-                </Wiggle>
+                <Wiggle>lab</Wiggle>
               </NavLink>
               <NavLink to="https://medium.com/mrozilla/" target="_blank">
-                <Wiggle>
-                  <Reveal delay="300ms">blog</Reveal>
-                </Wiggle>
+                <Wiggle>blog</Wiggle>
               </NavLink>
               <NavLink
                 to="/about"
-                onClick={
-                  this.state.isCollapsed === false ? this.toggleMenu : null
-                }
+                onClick={isCollapsed === false ? this.toggleMenu : null}
               >
-                <Wiggle>
-                  <Reveal delay="400ms">about</Reveal>
-                </Wiggle>
+                <Wiggle>about</Wiggle>
               </NavLink>
             </NavbarBlock>
-            <NavbarToggle
-              isCollapsed={this.state.isCollapsed}
-              onClick={this.toggleMenu}
-            />
+            <NavbarToggle isCollapsed={isCollapsed} onClick={this.toggleMenu} />
           </Navbar>
         </Container>
       </Header>

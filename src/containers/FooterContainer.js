@@ -9,7 +9,7 @@ import React from 'react';
 import { Footer, Link } from '../components/Navigation';
 import { Logo, Icon } from '../components/Icons';
 import { Container } from '../components/Layout';
-import { Wiggle, Reveal } from '../components/Effects';
+import { Wiggle } from '../components/Effects';
 
 // =============================================================================
 // Component
@@ -41,12 +41,10 @@ export default function FooterContainer() {
             </Link>
           </Wiggle>
           <Wiggle>
-            <Reveal>
-              Made with{' '}
-              <span role="img" aria-label="beer">
-                🍺
-              </span>. Here&apos;s some <Link to="/legal">legal stuff</Link>.
-            </Reveal>
+            Made with{' '}
+            <span role="img" aria-label="beer">
+              🍺
+            </span>. Here&apos;s some <Link to="/legal">legal stuff</Link>.
           </Wiggle>
           <Wiggle>
             <Link to="/" isBare>
