@@ -31,31 +31,34 @@ const works = [
 
   {
     type:    ['case', 'design', 'dev', 'copy'],
-    link:    'https://medium.com/mrozilla',
+    link:    'https://medium.com/mrozilla/designing-for-happiness-1db11a1f3952',
     title:   'hiMoment',
     tagline: 'your digital happiness guru',
     tags:    ['branding', 'design', 'website', 'app', 'copywriting'],
     image:   himoment,
   },
   {
-    type:    ['case', 'design', 'dev', 'copy'],
-    link:    'https://medium.com/mrozilla',
+    type: ['case', 'design', 'dev', 'copy'],
+    link:
+      'https://medium.com/mrozilla/branding-an-inter-national-mobility-campaign-38a2260e0ad7',
     title:   "Mov'in Europe",
     tagline: 'mobility is a lifestyle',
     tags:    ['branding', 'design', 'website', 'copywriting'],
     image:   movinEurope,
   },
   {
-    type:    ['case', 'design', 'dev', 'copy'],
-    link:    'https://medium.com/mrozilla',
+    type: ['case', 'design', 'dev', 'copy'],
+    link:
+      'https://medium.com/mrozilla/new-visual-style-for-30-000-people-ff5e61d76211',
     title:   'Erasmus Student Network',
     tagline: 'unity in diversity',
     tags:    ['design', 'website', 'copywriting'],
     image:   esn,
   },
   {
-    type:    ['case', 'design', 'dev'],
-    link:    'https://medium.com/mrozilla',
+    type: ['case', 'design', 'dev'],
+    link:
+      'https://medium.com/mrozilla/refreshing-a-startup-competition-21f09348a888',
     title:   'Vodafone Idea of the Year',
     tagline: 'helping ideas grow',
     tags:    ['design', 'website'],
