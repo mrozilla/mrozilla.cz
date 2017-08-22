@@ -8,8 +8,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 // Styles
-import { css } from 'glamor';
-import glamorous from 'glamorous';
 import { normalize, reboot } from './utils/styles';
 
 // Screens
@@ -19,18 +17,14 @@ import App from './screens/AppScreen';
 import { withLocation } from './utils/helpers';
 
 // Service worker
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker'; TODO enable
 
 // =============================================================================
 // Global styles
 // =============================================================================
 
-if (process.env.NODE_ENV === 'development') {
-  glamorous.config.useDisplayNameInClassName = true;
-}
-
-css.insert(normalize);
-css.insert(reboot);
+normalize();
+reboot();
 
 // =============================================================================
 // Render settings
@@ -51,12 +45,12 @@ const mountNode = document.getElementById('root');
 if (module.hot) {
   module.hot.accept('./screens/AppScreen', () => {
     const NextApp = require('./screens/AppScreen').default; // eslint-disable-line
-    ReactDOM.render(
+    const nextRouter = (
       <BrowserRouter>
         <Route component={withLocation(NextApp)} />
-      </BrowserRouter>,
-      mountNode,
+      </BrowserRouter>
     );
+    ReactDOM.render(nextRouter, mountNode);
   });
 }
 
@@ -65,4 +59,4 @@ if (module.hot) {
 // =============================================================================
 
 ReactDOM.render(router, mountNode);
-registerServiceWorker();
+// registerServiceWorker(); // TODO enable
