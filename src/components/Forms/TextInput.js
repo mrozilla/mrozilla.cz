@@ -24,6 +24,7 @@ const Input = glamorous.input(
     display:          'block',
     width:            '100%',
     border:           `1px solid ${color.grey.lighter}`,
+    caretColor:       color.brand.primary,
     borderRadius:     border.radius.small,
     '&::placeholder': {
       opacity: 0.5,

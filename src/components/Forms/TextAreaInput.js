@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // Styles
 import glamorous from 'glamorous';
-import { border } from '../../utils/styles';
+import { color, border } from '../../utils/styles';
 import InputWrapper from './InputWrapper';
 
 // =============================================================================
@@ -25,6 +25,7 @@ const TextArea = glamorous.textarea(
     width:            '100%',
     height:           '100%',
     backgroundColor:  'white',
+    caretColor:       color.brand.primary,
     borderRadius:     border.radius.small,
     '&::placeholder': {
       opacity: 0.5,
