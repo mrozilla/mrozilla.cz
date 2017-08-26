@@ -12,7 +12,7 @@ import { Link, NavLink } from 'react-router-dom';
 // =============================================================================
 
 export function SmartLink({ to, children, target, isBare, ...rest }) {
-  return !to.includes('//') && !to.includes('mailto')
+  return !to.includes('//') && !to.includes('mailto') && !target
     ? <Link to={to} {...rest}>
       {children}
     </Link>
@@ -45,7 +45,7 @@ export function SmartNavLink({
   isBare,
   ...rest
 }) {
-  return !to.includes('//') && !to.includes('mailto')
+  return !to.includes('//') && !to.includes('mailto') && !target
     ? <NavLink to={to} {...rest}>
       {children}
     </NavLink>
