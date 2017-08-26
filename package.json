@@ -1,21 +1,62 @@
 {
   "name": "mrozilla-react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "the online home of a one-man digital studio. built with react and 🍺.",
+  "license": "MIT",
+  "repository": "https://github.com/mrozilla/mrozilla.cz",
+  "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
+  "author": {
+    "name": "Jan",
+    "email": "jan@mrozilla.cz",
+    "url": "mrozilla.cz"
+  },
   "dependencies": {
-    "polished": "^1.1.2",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.4.0",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-router-dom": "^4.1.1",
-    "styled-components": "^2.0.0"
+    "react-ga": "^2.2.0",
+    "react-router-dom": "^4.2.0",
+    "source-map-explorer": "^1.4.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.6"
+    "eslint-config-airbnb": "^15.0.2",
+    "react-scripts": "1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "predeploy:prod": "npm run build",
+    "deploy:test": "duck -e overwrite --upload ftp://$WEDOS_MROZILLA/www/subdom/test/ build/",
+    "deploy:prod": "duck -e overwrite --upload ftp://$WEDOS_MROZILLA/www/ build/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": ["react-app", "airbnb"],
+    "rules": {
+      "no-mixed-operators": "off",
+      "no-confusing-arrow": "off",
+      "no-nested-ternary": "off",
+      "react/jsx-filename-extension": "off",
+      "react/no-did-mount-set-state": "off",
+      "no-underscore-dangle": "off",
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ],
+      "max-len": ["error", 80],
+      "key-spacing": [
+        "warn",
+        {
+          "align": "value"
+        }
+      ]
+    }
   }
 }

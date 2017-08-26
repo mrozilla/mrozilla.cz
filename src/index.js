@@ -1,46 +1,62 @@
 // =============================================================================
-// src/index.js
+// Import
 // =============================================================================
 
 // React
-import React                    from 'react';
-import ReactDOM                 from 'react-dom';
-import { BrowserRouter }        from 'react-router-dom'
-// import ReactGA                  from 'react-ga'; // TODO add
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-// Views
-import App from './screens/App';
+// Styles
+import { normalize, reboot } from './utils/styles';
+
+// Screens
+import App from './screens/AppScreen';
+
+// Helpers
+import { withLocation } from './utils/helpers';
 
 // Service worker
 import registerServiceWorker from './registerServiceWorker';
 
 // =============================================================================
-// Google Analytics
+// Global styles
 // =============================================================================
 
-// ReactGA.initialize('UA-74251174-1'); // TODO add UA id
-// browserHistory.listen(location => {
-//     process.env.NODE_ENV === 'production' && ReactGA.pageview(location.pathname);
-// });
+normalize();
+reboot();
 
 // =============================================================================
 // Render settings
 // =============================================================================
 
-// const router = (
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>
-// );
-// const mountNode = document.getElementById('root');
+const router = (
+  <BrowserRouter>
+    <Route component={withLocation(App)} />
+  </BrowserRouter>
+);
+
+const mountNode = document.getElementById('root');
+
+// =============================================================================
+// Hot reloading
+// =============================================================================
+
+if (module.hot) {
+  module.hot.accept('./screens/AppScreen', () => {
+    const NextApp = require('./screens/AppScreen').default; // eslint-disable-line
+    const nextRouter = (
+      <BrowserRouter>
+        <Route component={withLocation(NextApp)} />
+      </BrowserRouter>
+    );
+    ReactDOM.render(nextRouter, mountNode);
+  });
+}
 
 // =============================================================================
 // Go!!!
 // =============================================================================
 
-ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-), document.getElementById('root'));
+ReactDOM.render(router, mountNode);
 registerServiceWorker();
