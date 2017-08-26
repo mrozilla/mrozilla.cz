@@ -45,15 +45,18 @@ export const Row = glamorous.div(
     marginLeft:  `${grid.gutter / -1}rem`,
     marginRight: `${grid.gutter / -1}rem`,
   },
-  ({ isCentered, marginBottom }) => ({
-    justifyContent: isCentered ? 'center' : 'initial',
+  ({ alignItems, justifyContent, marginBottom }) => ({
+    alignItems,
+    justifyContent,
     marginBottom,
   }),
 );
 
-Row.displayName = 'Container';
+Row.displayName = 'Row';
 Row.defaultProps = {
-  isCentered: false,
+  alignItems:     'flex-start',
+  justifyContent: 'flex-start',
+  marginBottom:   0,
 };
 
 // =============================================================================
