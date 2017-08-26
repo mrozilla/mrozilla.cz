@@ -8,6 +8,9 @@ import React from 'react';
 // Components
 import { Link } from '../../components/Navigation/Link';
 
+// Media
+import cv from './documents/CV-Jan_Hruby.pdf';
+
 // =============================================================================
 // Content
 // =============================================================================
@@ -20,16 +23,21 @@ const about = {
       <span>
         My name is Jan. I&apos;m originally from <s>Czechia</s> the Czech
         Republic, lived in Finland and the United Kingdom, and currently
-        residing in Vienna, Austria. I&apos;ve got <Link to="">a CV</Link> or
-        you can read more <Link to="#below">below ⇣</Link>.
+        residing in Vienna, Austria. I&apos;ve got{' '}
+        <Link to={cv} target="_blank">
+          a CV
+        </Link>{' '}
+        or you can read more <Link to="#below">below ⇣</Link>.
       </span>
     ),
   },
   text: [
     <span>
-      I build digital products. Everything from concepts to UX, UI, design and
-      development. I&apos;ve done some <Link to="/work">work →</Link> in the
-      past, and will probably do some <Link to="/lab">more →</Link>.
+      I build digital products, mainly web & native applications. Everything
+      from concepts & product exploration, through UX, UI, visual & brand
+      design, all the way to software development. I&apos;ve done some{' '}
+      <Link to="/work">work →</Link> in the past, and will probably do some{' '}
+      <Link to="/lab">more →</Link>.
     </span>,
     <span>
       I&apos;ve managed <Link to="https://esn.org">big creative teams</Link> (up
@@ -38,8 +46,9 @@ const about = {
       also have been at the very bottom of an organisation as a junior
       developer. I&apos;m a{' '}
       <Link to="https://himoment.com">startup co-founder</Link>. I do a lot of
-      volunteering and some open-source work. I&apos;m a{' '}
-      <Link to="https://medium.com/TODO">
+      volunteering and some{' '}
+      <Link to="https://github.com/mrozilla">open-source work</Link>. I&apos;m a{' '}
+      <Link to="https://medium.com/mrozilla/speaking-keynotes-and-workshops-throughout-the-years-cc609424028">
         keynote speaker and a workshop faciliator
       </Link>.
     </span>,
@@ -78,8 +87,8 @@ const about = {
       <Link to="https://medium.com/mrozilla">Medium</Link>,{' '}
       <Link to="https://github.com/mrozilla">Github</Link>,{' '}
       <Link to="https://linkedin.com/in/mrozilla">Linkedin</Link>, or just{' '}
-      <Link to="mailto:jan@mrozilla.cz">send me an email</Link>. That's probably
-      the best chance to get a response.
+      <Link to="mailto:jan@mrozilla.cz">send me an email</Link>. That&apos;s
+      probably the best chance to get a response.
     </span>,
   ],
 };

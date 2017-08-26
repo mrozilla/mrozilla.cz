@@ -15,7 +15,7 @@ import { Link } from '../../components/Navigation/Link';
 const legal = {
   top: {
     title:    'legal',
-    subtitle: 'the legal stuff because we have to in this world.',
+    subtitle: 'the lawyer stuff because we have to in this world.',
     text:     (
       <span>
         Copyright (c) {new Date().getFullYear()} Jan Hrubý. The content of this
