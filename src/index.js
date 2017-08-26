@@ -17,7 +17,7 @@ import App from './screens/AppScreen';
 import { withLocation } from './utils/helpers';
 
 // Service worker
-// import registerServiceWorker from './registerServiceWorker'; TODO enable
+import registerServiceWorker from './registerServiceWorker';
 
 // =============================================================================
 // Global styles
@@ -59,4 +59,4 @@ if (module.hot) {
 // =============================================================================
 
 ReactDOM.render(router, mountNode);
-// registerServiceWorker(); // TODO enable
+registerServiceWorker();
