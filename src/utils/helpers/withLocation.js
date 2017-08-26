@@ -9,7 +9,7 @@ import ReactGA from 'react-ga';
 // Utils
 import smoothScroll from './smoothScroll';
 
-ReactGA.initialize('UA-77153555-1');
+process.env.NODE_ENV === 'production' && ReactGA.initialize('UA-77153555-1');
 
 // =============================================================================
 // Component
