@@ -46,9 +46,7 @@ export default function HomeScreen({ match: { params: { filter }, url } }) {
         <Section marginTop="-25vh" id="below">
           <Container>
             <Row isCentered>
-              {works.map((work, index) =>
-                <Work key={work.title} work={work} index={index} />,
-              )}
+              {works.map(work => <Work key={work.title} work={work} />)}
             </Row>
           </Container>
         </Section>}

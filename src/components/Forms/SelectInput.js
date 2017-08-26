@@ -21,7 +21,6 @@ const Select = glamorous.select(
     color:           'inherit',
     fontFamily:      'inherit',
     fontWeight:      '700',
-    // border:          'none', // TODO MAKE A DECISION
     border:          `1px solid ${color.grey.light}`,
     backgroundColor: color.grey.lighter,
   },

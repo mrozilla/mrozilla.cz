@@ -84,8 +84,8 @@ export const NavbarBlock = glamorous.div(
     fontSize:        isCollapsed ? 'initial' : '4vh',
     fontWeight:      isCollapsed ? 'initial' : '900',
     [media.lg]:      {
-      display:       isCollapsed ? 'flex' : '', // TODO double-check
-      flexDirection: isCollapsed ? 'row' : '', // TODO double-check
+      display:       isCollapsed ? 'flex' : '',
+      flexDirection: isCollapsed ? 'row' : '',
     },
   }),
 );
