@@ -112,8 +112,7 @@ export default class ColoursScreen extends Component {
       <main>
         <Section marginTop="5vh">
           <Container>
-            <Row>
-              <Column lg={2} />
+            <Row alignItems="stretch" justifyContent="center">
               <Column lg={8}>
                 <TextAreaInput
                   placeholder="Start typing or paste text..."

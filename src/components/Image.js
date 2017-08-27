@@ -7,8 +7,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
-import { border, transition, positionAbsolute } from '../utils/styles';
+import styled from 'styled-components';
+import { transition, positionAbsolute } from '../utils/styles';
 
 // Helpers
 import { withScrollPosition } from '../utils/helpers';
@@ -17,36 +17,35 @@ import { withScrollPosition } from '../utils/helpers';
 // Styles
 // =============================================================================
 
-const ImageWrapper = glamorous.figure(
-  {
-    position:        'relative',
-    overflow:        'hidden',
-    backgroundColor: 'white',
-    borderRadius:    border.radius.small,
-    transition:      transition.primary.medium,
-  },
-  ({ ratio, marginBottom }) => ({
-    paddingBottom: `${ratio * 100}%`,
-    marginBottom,
-  }),
-);
+const ImageWrapper = styled.figure`
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  border-radius: ${props => props.borderRadius};
+  padding-bottom: ${props => props.ratio * 100}%;
+  margin-bottom: ${props => props.marginBottom};
+`;
 
 ImageWrapper.displayName = 'ImageWrapper';
 ImageWrapper.defaultProps = {
   ratio:        1,
+  borderRadius: '0',
   marginBottom: '0',
 };
 
-const ImageSource = glamorous.img({
-  ...positionAbsolute(),
-  objectFit:  'cover',
-  transition: 'inherit',
-  '&:hover':  {
-    transform: 'scale(1.05)',
-  },
-});
+const ImageSource = styled.img`
+  ${positionAbsolute};
+  object-fit: cover;
+  transition: ${props => props.transition};
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
 
 ImageSource.displayName = 'ImageSource';
+ImageSource.defaultProps = {
+  transition: transition.primary.short,
+};
 
 // =============================================================================
 // Component

@@ -1,4 +1,10 @@
 // =============================================================================
+// Import
+// =============================================================================
+
+import { css } from 'styled-components';
+
+// =============================================================================
 // Media
 // =============================================================================
 
@@ -11,7 +17,8 @@ const mediaSizes = {
 };
 
 const media = Object.keys(mediaSizes).reduce((acc, val) => {
-  acc[val] = `@media (min-width: ${mediaSizes[val]}px)`;
+  acc[val] = (...args) =>
+    css`@media (min-width: ${mediaSizes[val]}px) {${css(...args)}}`;
   return acc;
 }, {});
 

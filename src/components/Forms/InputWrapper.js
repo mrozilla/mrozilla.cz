@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 
 // Components
 import Label from './Label';
@@ -16,11 +16,11 @@ import { Text } from '../Typography';
 // Styles
 // =============================================================================
 
-export const Wrapper = glamorous.div(({ marginBottom, padding, height }) => ({
-  marginBottom,
-  padding,
-  height,
-}));
+export const Wrapper = styled.div`
+  margin-bottom: ${props => props.marginBottom};
+  padding: ${props => props.padding};
+  height: ${props => props.height};
+`;
 
 Wrapper.displayName = 'Wrapper';
 

@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import {
   color,
   transition,
@@ -23,40 +23,36 @@ import { withScrollPosition } from '../../utils/helpers';
 // =============================================================================
 
 // Container
-const RevealContainer = glamorous.span(
-  {
-    position: 'relative',
-  },
-  ({ isBlock, delay }) => ({
-    animationDelay: delay,
-    display:        isBlock ? 'block' : 'inline-block',
-  }),
-  ({ isInViewport, type, direction }) => ({
-    '&::after': {
-      ...positionAbsolute(),
-      content:         "''",
-      pointerEvents:   'none',
-      backgroundColor: color.brand.primary,
-      animation:       isInViewport
-        ? `${animation[type][direction]} ${transition.primary.long} both`
-        : 'none',
-      opacity:        isInViewport ? 'inherit' : '0',
-      animationDelay: 'inherit',
-    },
-  }),
-);
+const RevealContainer = styled.span`
+  position: relative;
+  display: ${props => (props.isBlock ? 'block' : 'inline-block')};
+  animation-delay: ${props => props.delay};
+  &::after {
+    content: "";
+    ${positionAbsolute};
+    pointer-events: none;
+    background-color: ${color.brand.primary};
+    animation: ${props =>
+    props.isInViewport
+      ? `${animation[props.type][props.direction]} ${transition.primary.long} both`
+      : 'none'};
+    animation-delay: inherit;
+    opacity: ${props => (props.isInViewport ? 'inherit' : '0')};
+  }
+`; // prettier-ignore
 
 RevealContainer.displayName = 'RevealContainer';
 
 // Content
-const RevealContent = glamorous.span(({ isBlock, isInViewport }) => ({
-  opacity:   0,
-  display:   isBlock ? 'block' : 'inline-block',
-  animation: isInViewport
-    ? `${animation.appear} ${transition.primary.long} both`
-    : 'none',
-  animationDelay: 'inherit',
-}));
+const RevealContent = styled.span`
+  display: ${props => (props.isBlock ? 'block' : 'inline-block')};
+  opacity: 0;
+  animation: ${props =>
+    props.isInViewport
+      ? `${animation.appear} ${transition.primary.long} both`
+      : 'none'};
+  animation-delay: inherit;
+`;
 
 RevealContent.displayName = 'RevealContent';
 

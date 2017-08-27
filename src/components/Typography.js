@@ -3,177 +3,113 @@
 // =============================================================================
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { typography } from '../utils/styles';
+
+// =============================================================================
+// Text
+// =============================================================================
+
+export const Text = styled.p`
+  font-family: ${props => props.fontFamily};
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
+  line-height: ${props => props.lineHeight};
+  text-align: ${props => props.textAlign};
+  text-transform: ${props => props.textTransform};
+  letter-spacing: ${props => props.letterSpacing};
+  color: ${props => props.color};
+  opacity: ${props => props.opacity};
+  cursor: ${props => props.cursor};
+  margin-bottom: ${props => props.marginBottom};
+  margin-top: ${props => props.marginTop};
+`;
+
+Text.displayName = 'Text';
+Text.defaultProps = {
+  fontFamily:    'inherit',
+  fontSize:      'inherit',
+  fontWeight:    '400',
+  lineHeight:    '1.25rem',
+  textAlign:     'inherit',
+  textTransform: 'inherit',
+  letterSpacing: '0',
+  color:         'inherit',
+  opacity:       '1',
+  cursor:        'initial',
+  marginBottom:  '0',
+  marginTop:     '0',
+};
 
 // =============================================================================
 // Heading
 // =============================================================================
 
-export const Heading = glamorous.h1(
-  {
-    lineHeight:    '1em',
-    letterSpacing: '-0.025em',
-    fontFamily:    typography.font.family.headings,
-  },
-  ({ fontSize, fontWeight, color, textAlign, marginBottom }) => ({
-    fontSize,
-    fontWeight,
-    color,
-    textAlign,
-    marginBottom,
-  }),
-);
+export const Heading = Text.withComponent('h1');
 
 Heading.displayName = 'Heading';
 Heading.defaultProps = {
-  fontSize:     '3rem',
-  fontWeight:   '900',
-  color:        'inherit',
-  textAlign:    'inherit',
-  marginBottom: '0',
+  ...Text.defaultProps,
+  fontFamily:    typography.font.family.headings,
+  fontSize:      '3rem',
+  fontWeight:    '900',
+  lineHeight:    '1em',
+  letterSpacing: '-0.025em',
 };
 
 // =============================================================================
 // Subheading
 // =============================================================================
 
-export const Subheading = glamorous.h2(
-  {
-    lineHeight: '1em',
-    fontFamily: typography.font.family.headings,
-  },
-  ({ fontSize, fontWeight, color, textAlign, marginBottom }) => ({
-    fontSize,
-    fontWeight,
-    color,
-    textAlign,
-    marginBottom,
-  }),
-);
+export const Subheading = Text.withComponent('h2');
 
 Subheading.displayName = 'Subheading';
 Subheading.defaultProps = {
-  fontSize:     '2.5rem',
-  fontWeight:   '300',
-  color:        'inherit',
-  textAlign:    'inherit',
-  marginBottom: '0',
+  ...Text.defaultProps,
+  fontFamily: typography.font.family.headings,
+  fontSize:   '2.5rem',
+  fontWeight: '300',
+  lineHeight: '1em',
 };
 
 // =============================================================================
 // Title
 // =============================================================================
 
-export const Title = glamorous.h3(
-  {
-    lineHeight: '1em',
-    fontFamily: typography.font.family.headings,
-  },
-  ({ fontSize, fontWeight, color, textAlign, marginBottom }) => ({
-    fontSize,
-    fontWeight,
-    color,
-    textAlign,
-    marginBottom,
-  }),
-);
+export const Title = Text.withComponent('h3');
 
 Title.displayName = 'Title';
 Title.defaultProps = {
-  fontSize:     '2rem',
-  fontWeight:   '900',
-  color:        'inherit',
-  textAlign:    'inherit',
-  marginBottom: '0',
+  ...Text.defaultProps,
+  fontFamily: typography.font.family.headings,
+  fontSize:   '2rem',
+  fontWeight: '900',
+  lineHeight: '1em',
 };
 
 // =============================================================================
 // Subtitle
 // =============================================================================
 
-export const Subtitle = glamorous.h4(
-  {
-    lineHeight: '1em',
-    fontFamily: typography.font.family.headings,
-  },
-  ({ fontSize, fontWeight, color, textAlign, marginBottom, cursor }) => ({
-    fontSize,
-    fontWeight,
-    color,
-    textAlign,
-    marginBottom,
-    cursor,
-  }),
-);
+export const Subtitle = Text.withComponent('h4');
 
 Subtitle.displayName = 'Subtitle';
 Subtitle.defaultProps = {
-  fontSize:     '1.5rem',
-  fontWeight:   '300',
-  color:        'inherit',
-  textAlign:    'inherit',
-  marginBottom: '0',
-  cursor:       'initial',
-};
-
-// =============================================================================
-// Text
-// =============================================================================
-
-export const Text = glamorous.p(
-  ({
-    lineHeight,
-    fontSize,
-    fontWeight,
-    color,
-    marginBottom,
-    opacity,
-    textAlign,
-    textTransform,
-    letterSpacing,
-  }) => ({
-    lineHeight,
-    fontSize,
-    fontWeight,
-    color,
-    marginBottom,
-    opacity,
-    textAlign,
-    textTransform,
-    letterSpacing,
-  }),
-  ({ isTruncated }) =>
-    isTruncated && {
-      maxWidth:     '100%',
-      overflowX:    'hidden',
-      whiteSpace:   'nowrap',
-      textOverflow: 'ellipsis',
-    },
-);
-
-Text.displayName = 'Text';
-Text.defaultProps = {
-  lineHeight:    '1.25rem',
-  fontSize:      'inherit',
-  fontWeight:    '400',
-  color:         'inherit',
-  marginBottom:  '0',
-  opacity:       '1',
-  textAlign:     'inherit',
-  textTransform: 'inherit',
-  letterSpacing: '0',
-  isTruncated:   false,
+  ...Text.defaultProps,
+  fontFamily: typography.font.family.headings,
+  fontSize:   '1.5rem',
+  fontWeight: '300',
+  lineHeight: '1em',
 };
 
 // =============================================================================
 // Helpers
 // =============================================================================
 
-export const Comma = glamorous.span({
-  '& + &::before': {
-    content: "', '",
-  },
-});
+export const Comma = styled.span`
+  & + &::before {
+    content: ", ";
+  }
+`;
 
 Comma.displayName = 'Comma';

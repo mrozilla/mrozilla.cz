@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { color, border } from '../../utils/styles';
 import InputWrapper from './InputWrapper';
 
@@ -15,28 +15,24 @@ import InputWrapper from './InputWrapper';
 // Styles
 // =============================================================================
 
-const Input = glamorous.input(
-  {
-    WebkitAppearance: 'none',
-    outline:          'none',
-    color:            'inherit',
-    backgroundColor:  'transparent',
-    display:          'block',
-    width:            '100%',
-    border:           `1px solid ${color.grey.lighter}`,
-    caretColor:       color.brand.primary,
-    borderRadius:     border.radius.small,
-    '&::placeholder': {
-      opacity: 0.5,
-    },
-  },
-  ({ isInline, padding, fontSize, fontFamily }) => ({
-    display: isInline ? 'inline-block' : 'block',
-    padding,
-    fontSize,
-    fontFamily,
-  }),
-);
+const Input = styled.input`
+  -webkit-appearance: none;
+  outline: none;
+  color: inherit;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+  border: 1px solid ${color.grey.lighter};
+  caret-color: ${color.brand.primary};
+  border-radius: ${border.radius.small};
+  &::placeholder {
+    opacity: 0.5;
+  }
+  display: ${props => (props.isInline ? 'inline-block' : 'block')};
+  padding: ${props => props.padding};
+  font-size: ${props => props.fontSize};
+  font-family: ${props => props.fontFamily};
+`;
 
 Input.displayName = 'Input';
 Input.propTypes = {
