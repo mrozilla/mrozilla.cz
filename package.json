@@ -11,18 +11,15 @@
     "url": "mrozilla.cz"
   },
   "dependencies": {
-    "glamor": "^2.20.40",
-    "glamorous": "^4.4.0",
+    "eslint-config-airbnb": "^15.0.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-ga": "^2.2.0",
     "react-router-dom": "^4.2.0",
-    "source-map-explorer": "^1.4.0"
-  },
-  "devDependencies": {
-    "eslint-config-airbnb": "^15.0.2",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "source-map-explorer": "^1.4.0",
+    "styled-components": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
