@@ -3,18 +3,18 @@
 // =============================================================================
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { color, border } from '../../utils/styles';
 
 // =============================================================================
 // Styles
 // =============================================================================
 
-const Form = glamorous.div({
-  border:       `1px solid ${color.grey.lighter}`,
-  padding:      '1rem',
-  borderRadius: border.radius.small,
-});
+const Form = styled.div`
+  border: 1px solid ${color.grey.lighter};
+  padding: 1rem;
+  border-radius: ${border.radius.small};
+`;
 
 Form.displayName = 'Form';
 

@@ -2,7 +2,7 @@
 // Import
 // =============================================================================
 
-import { css } from 'glamor';
+import { keyframes } from 'styled-components';
 
 // =============================================================================
 // Styles
@@ -16,12 +16,12 @@ const animation = {
     //   '60%':  { transform: 'scaleY(1)', transformOrigin: 'top' },
     //   '100%': { transform: 'scaleY(0)', transformOrigin: 'top' },
     // }),
-    right: css.keyframes({
-      '0%':   { transform: 'scaleX(0)', transformOrigin: 'left' },
-      '40%':  { transform: 'scaleX(1)', transformOrigin: 'left' },
-      '60%':  { transform: 'scaleX(1)', transformOrigin: 'right' },
-      '100%': { transform: 'scaleX(0)', transformOrigin: 'right' },
-    }),
+    right: keyframes`
+      0%   { transform: scaleX(0); transform-origin: left; }
+      40%  { transform: scaleX(1); transform-origin: left; }
+      60%  { transform: scaleX(1); transform-origin: right; }
+      100% { transform: scaleX(0); transform-origin: right; }
+    `,
     // down: css.keyframes({
     //   '0%':   { transform: 'scaleY(0)', transformOrigin: 'top' },
     //   '40%':  { transform: 'scaleY(1)', transformOrigin: 'top' },
@@ -53,10 +53,10 @@ const animation = {
   //     '40%, 60%': { transform: 'scaleX(1)' },
   //   }),
   // },
-  appear: css.keyframes({
-    'from, 40%': { opacity: '0' },
-    '60%, to':   { opacity: '1' },
-  }),
+  appear: keyframes`
+    from, 40% { opacity: 0; }
+    60%, to   { opacity: 1; }
+  `,
 };
 
 // =============================================================================

@@ -7,24 +7,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { color } from '../../utils/styles';
 
 // =============================================================================
 // Style
 // =============================================================================
 
-const IconWrapper = glamorous.span(
-  {
-    '& + &': {
-      marginLeft: '0.25rem',
-    },
-  },
-  ({ isPadded }) =>
-    isPadded && {
-      marginRight: '0.25rem',
-    },
-);
+const IconWrapper = styled.span`
+  & + & {
+    margin-left: 0.25rem;
+  }
+  margin-left: ${props => (props.isPadded ? '0.25rem' : '0')};
+`; // TODO double check necessity for isPadded with styled-components
 
 IconWrapper.displayName = 'IconWrapper';
 

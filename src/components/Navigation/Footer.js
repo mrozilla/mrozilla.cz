@@ -2,27 +2,25 @@
 // Styles
 // =============================================================================
 
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { color, media, positionAbsolute } from '../../utils/styles';
 
-const Footer = glamorous.div({
-  display:        'flex',
-  alignItems:     'center',
-  justifyContent: 'space-between',
-  paddingTop:     '2rem',
-  paddingBottom:  '2rem',
-  flexDirection:  'column',
-  textAlign:      'center',
-  [media.lg]:     {
-    flexDirection: 'row',
-  },
-  '&::after': {
-    content:   "''",
-    ...positionAbsolute(),
-    zIndex:    -1,
-    borderTop: `1px solid ${color.grey.lighter}`,
-  },
-});
+const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  ${media.lg`flex-direction: row;`};
+  &::after {
+    content: "";
+    ${positionAbsolute};
+    z-index: -1;
+    border-top: 1px solid ${color.grey.lighter};
+  }
+`;
 
 Footer.displayName = 'Footer';
 

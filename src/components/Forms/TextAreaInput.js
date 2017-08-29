@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { color, border } from '../../utils/styles';
 import InputWrapper from './InputWrapper';
 
@@ -15,28 +15,25 @@ import InputWrapper from './InputWrapper';
 // Styles
 // =============================================================================
 
-const TextArea = glamorous.textarea(
-  {
-    border:           'none',
-    outline:          'none',
-    fontFamily:       'inherit',
-    color:            'inherit',
-    lineHeight:       'inherit',
-    width:            '100%',
-    height:           '100%',
-    backgroundColor:  'white',
-    caretColor:       color.brand.primary,
-    borderRadius:     border.radius.small,
-    '&::placeholder': {
-      opacity: 0.5,
-    },
-  },
-  ({ padding }) => ({
-    padding,
-  }),
-);
+const TextArea = styled.textarea`
+  border: none;
+  outline: none;
+  font-family: inherit;
+  color: inherit;
+  line-height: inherit;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  caret-color: ${color.brand.primary};
+  border-radius: ${border.radius.small};
+  &::placeholder {
+    opacity: 0.5;
+  }
+  padding: ${props => props.padding};
+`;
 
 TextArea.displayName = 'TextArea';
+TextArea.defaultProps = {}; // TODO add defaultProps
 
 // =============================================================================
 // Component

@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { border, shadow, transition, positionAbsolute } from '../utils/styles';
 
 // Components
@@ -18,28 +18,28 @@ import { Title, Text } from './Typography';
 // Styles
 // =============================================================================
 
-const Colour = glamorous.div({
-  position:      'relative',
-  paddingBottom: '100%',
-  transition:    `${transition.primary.short} transform`,
-  '&:hover':     {
-    transform:    'scale(1.1)',
-    zIndex:       1,
-    borderRadius: border.radius.small,
-    boxShadow:    shadow.small,
-  },
-});
+const Colour = styled.div`
+  position: relative;
+  padding-bottom: 100%;
+  transition: ${transition.primary.short} transform,
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    border-radius: ${border.radius.small};
+    box-shadow: ${shadow.small};
+  }
+`;
 
 Colour.displayName = 'Colour';
 
-const ColourInfo = glamorous.div({
-  ...positionAbsolute(),
-  display:        'flex',
-  flexDirection:  'column',
-  alignItems:     'center',
-  justifyContent: 'center',
-  color:          'white',
-});
+const ColourInfo = styled.div`
+  ${positionAbsolute};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
 
 ColourInfo.displayName = 'ColourInfo';
 
@@ -49,7 +49,7 @@ ColourInfo.displayName = 'ColourInfo';
 
 export default function ColourCard({ colour: { name, hex }, width }) {
   return (
-    <Column sm={width} isPadded={false}>
+    <Column sm={width} paddingLeft="0" paddingRight="0">
       <Colour style={{ backgroundColor: hex }}>
         <ColourInfo>
           <Title fontSize="0.5rem">

@@ -14,7 +14,7 @@ import Image from './Image';
 import { Reveal, Wiggle } from './Effects';
 
 // Styles
-import { color } from '../utils/styles';
+import { color, border } from '../utils/styles';
 
 // =============================================================================
 // Component
@@ -28,8 +28,17 @@ export default function WorkCard({
     <Column sm={width} style={{ textAlign: 'center' }} isStacked>
       <Wiggle>
         <Reveal isBlock>
-          <Link to={link} isBare>
-            <Image ratio={3 / 4} marginBottom="1rem" src={image} />
+          <Link
+            to={link}
+            target={link.includes('http') ? '_blank' : null}
+            isBare
+          >
+            <Image
+              src={image}
+              ratio={3 / 4}
+              marginBottom="1rem"
+              borderRadius={border.radius.small}
+            />
             <Title fontSize="1rem" color={color.brand.primary}>
               {title}
             </Title>
@@ -37,7 +46,7 @@ export default function WorkCard({
               <Subtitle fontSize="1rem" marginBottom="0.5rem">
                 {tagline}
               </Subtitle>}
-            <Text fontSize="0.6rem" marginBottom="3rem">
+            <Text fontSize="0.6rem">
               {tags.map(tag =>
                 (<Comma key={tag}>
                   {tag}

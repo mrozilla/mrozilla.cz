@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { InputWrapper, Label } from '../Forms';
 import { Flex } from '../Layout';
 
@@ -15,10 +15,10 @@ import { Flex } from '../Layout';
 // Styles
 // =============================================================================
 
-const Checkbox = glamorous.input({
-  display:     'inline-block',
-  marginRight: '0.25rem',
-});
+const Checkbox = styled.input`
+  display: inline-block;
+  margin-right: 0.25rem;
+`;
 
 Checkbox.displayName = 'Checkbox';
 
