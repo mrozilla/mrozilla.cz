@@ -2,24 +2,23 @@
 // Import
 // =============================================================================
 
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 
 // =============================================================================
 // Styles
 // =============================================================================
 
-const Flex = glamorous.div(
-  ({ alignItems, alignSelf, justifyContent, height, marginBottom }) => ({
-    display: 'flex',
-    alignItems,
-    alignSelf,
-    justifyContent,
-    height,
-    marginBottom,
-  }),
-);
+const Flex = styled.div`
+  display: flex;
+  align-items: ${props => props.alignItems};
+  justify-content: ${props => props.justifyContent};
+  align-self: ${props => props.alignSelf};
+  height: ${props => props.height};
+  margin-bottom: ${props => props.marginBottom};
+`;
 
 Flex.displayName = 'Flex';
+Flex.defaultProps = {}; // TODO add defaultProps
 
 // =============================================================================
 // Export

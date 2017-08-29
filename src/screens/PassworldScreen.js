@@ -66,7 +66,7 @@ export default class PassworldScreen extends Component {
       <main>
         <Section>
           <Container>
-            <Row isCentered>
+            <Row justifyContent="center">
               <Column lg={6}>
                 <TextInput
                   type="text"

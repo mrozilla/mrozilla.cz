@@ -2,26 +2,22 @@
 // Import
 // =============================================================================
 
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 
 // =============================================================================
 // Styles
 // =============================================================================
 
-const Section = glamorous.section(
-  {
-    display:        'flex',
-    flexDirection:  'column',
-    justifyContent: 'center',
-  },
-  ({ paddingTop, paddingBottom, marginTop, marginBottom, minHeight }) => ({
-    paddingTop,
-    paddingBottom,
-    marginTop,
-    marginBottom,
-    minHeight,
-  }),
-);
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: ${props => props.minHeight};
+  padding-top: ${props => props.paddingTop};
+  padding-bottom: ${props => props.paddingBottom};
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+`;
 
 Section.displayName = 'Section';
 Section.defaultProps = {

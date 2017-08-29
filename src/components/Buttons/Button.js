@@ -3,7 +3,7 @@
 // =============================================================================
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import {
   color,
   border,
@@ -15,55 +15,44 @@ import {
 // Button
 // =============================================================================
 
-const Button = glamorous.button(
-  ({ isFull }) => ({
-    fontFamily:      'inherit',
-    color:           'inherit',
-    border:          'none',
-    outline:         '0',
-    padding:         '0.5rem 1rem',
-    cursor:          'pointer',
-    textAlign:       'center',
-    backgroundColor: color.grey.lighter,
-    borderRadius:    border.radius.small,
-    width:           isFull ? '100%' : 'initial',
-    '& + &':         {
-      marginLeft: isFull ? '0' : '0.25rem', // TODO MULTIPLE CLASSES PROBLEM
-      marginTop:  isFull ? '0.5rem' : '0', // TODO MULTIPLE CLASSES PROBLEM
-    },
-    '&:hover': {
-      backgroundColor: color.grey.light,
-    },
-  }),
-  ({ type }) =>
-    type && {
-      position:   'relative',
-      overflow:   'hidden',
-      transition: `${transition.primary.medium} all`,
-      '&:hover':  {
-        backgroundColor: 'transparent',
-        color:           'white',
-      },
-      '&::after': {
-        content:         "''",
-        ...positionAbsolute(),
-        transition:      'inherit',
-        zIndex:          -1,
-        transform:       'scaleX(0)',
-        transformOrigin: 'left',
-        backgroundColor: color.brand.primary,
-      },
-      '&:hover::after': {
-        transform: 'scaleX(1)',
-      },
-    },
-  ({ type }) => type === 'primary' && {},
-  ({ type }) =>
-    type === 'secondary' && {
-      border:          `1px solid ${color.grey.lighter}`,
-      backgroundColor: 'transparent',
-    },
-);
+const Button = styled.button`
+  position: ${props => (props.type ? 'relative' : 'initial')};
+  overflow: ${props => (props.type ? 'hidden' : 'initial')};
+  transition: ${transition.primary.medium} all;
+  font-family: inherit;
+  color: inherit;
+  border: ${props =>
+    props.type === 'secondary' ? `1px solid ${color.grey.lighter}` : 'none'};
+  outline: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  background-color: ${props =>
+    props.type === 'secondary' ? 'transparent' : color.grey.lighter};
+  border-radius: ${border.radius.small};
+  width: ${props => (props.isFull ? '100%' : 'initial')};
+  & + & {
+    margin-left: ${props => (props.isFull ? '0' : '0.25rem')};
+    margin-top: ${props => (props.isFull ? '0.25rem' : '0')};
+  }
+  &:hover {
+    background-color: ${props =>
+    props.type ? color.grey.light : 'transparent'};
+    color: ${props => (props.type ? 'white' : 'inherit')};
+  }
+  &::after {
+    content: "";
+    ${positionAbsolute};
+    transition: 'inherit';
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    background-color: color.brand.primary;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+`; // TODO figure out primary etc. better
 
 Button.displayName = 'Button';
 

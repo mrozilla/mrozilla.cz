@@ -2,7 +2,7 @@
 // Import
 // =============================================================================
 
-import { css } from 'glamor';
+import { injectGlobal } from 'styled-components';
 import { color } from '../styles';
 
 import nunitoLight from '../../utils/fonts/nnt-300.woff2';
@@ -14,33 +14,34 @@ import robotoMonoBold from '../../utils/fonts/rbtmn-700.woff2';
 // Fonts
 // =============================================================================
 
-css.fontFace({
-  fontFamily: 'Nunito',
-  fontStyle:  'normal',
-  fontWeight: 300,
-  src:        `local('Nunito Light'), url('${nunitoLight}') format('woff2')`,
-});
-
-css.fontFace({
-  fontFamily: 'Nunito',
-  fontStyle:  'normal',
-  fontWeight: 900,
-  src:        `local('Nunito Black'), url('${nunitoBlack}') format('woff2')`,
-});
-
-css.fontFace({
-  fontFamily: 'Roboto Mono',
-  fontStyle:  'normal',
-  fontWeight: 400,
-  src:        `local('Roboto Mono'), url('${robotoMono}')`,
-});
-
-css.fontFace({
-  fontFamily: 'Roboto Mono',
-  fontStyle:  'normal',
-  fontWeight: 700,
-  src:        `local('Roboto Mono Bold'), url('${robotoMonoBold}')`,
-});
+/* eslint-disable */
+injectGlobal`
+  @font-face {
+    font-family: Nunito;
+    font-style:  normal;
+    font-weight: 300;
+    src: local('Nunito Light'), url('${nunitoLight}') format('woff2');
+  }
+  @font-face {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 900;
+    src: local('Nunito Black'), url('${nunitoBlack}') format('woff2');
+  }
+  @font-face {
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Mono'), url('${robotoMono}');
+  }
+  @font-face {
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Mono Bold'), url('${robotoMonoBold}');
+  }
+`;
+/* eslint-enable */
 
 // =============================================================================
 // Typography

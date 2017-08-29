@@ -3,7 +3,7 @@
 // =============================================================================
 
 // Styles
-import glamorous from 'glamorous';
+import styled, { css } from 'styled-components';
 import {
   color,
   media,
@@ -19,35 +19,32 @@ import { SmartLink, SmartNavLink } from '../../utils/helpers';
 // Link
 // =============================================================================
 
-export const Link = glamorous(SmartLink)(
-  {
-    outline: 'none',
-  },
-  ({ isBare }) =>
-    !isBare && {
-      position:      'relative',
-      display:       'inline-flex',
-      fontWeight:    '900',
-      verticalAlign: 'bottom',
-      color:         color.brand.primary,
-      '&:hover':     {
-        color: 'white',
-      },
-      '&::after': {
-        content:         "''",
-        ...positionAbsolute(),
-        borderRadius:    '0.125rem',
-        zIndex:          -1,
-        backgroundColor: color.brand.primary,
-        transform:       'scaleX(0)',
-        transformOrigin: 'left',
-        transition:      `${transition.primary.medium} transform`,
-      },
-      '&:hover::after': {
-        transform: 'scaleX(1)',
-      },
-    },
-);
+export const Link = styled(SmartLink)`
+  outline: none;
+  ${props => !props.isBare && css`
+    position: relative;
+    display: inline-flex;
+    font-weight: 900;
+    vertical-align: bottom;
+    color: ${color.brand.primary};
+    &:hover {
+      color: white;
+    }
+    &::after {
+      content: "";
+      ${positionAbsolute};
+      border-radius: '0.125rem';
+      z-index: -1;
+      background-color: ${color.brand.primary};
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: ${transition.primary.medium} transform;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  `}
+`; // prettier-ignore
 
 Link.displayName = 'Link';
 Link.defaultProps = {
@@ -58,31 +55,31 @@ Link.defaultProps = {
 // NavLink
 // =============================================================================
 
-export const NavLink = glamorous(SmartNavLink)({
-  position:       'relative',
-  display:        'flex',
-  alignItems:     'center',
-  justifyContent: 'center',
-  paddingTop:     '2rem',
-  paddingBottom:  '2rem',
-  '&::after':     {
-    content:      '',
-    ...positionAbsolute(),
-    zIndex:       -1,
-    transition:   `${transition.primary.short} border-bottom`,
-    borderBottom: `1px solid ${color.grey.lighter}`,
-  },
-  [`&.${activeClassName}`]: {
-    borderBottom: `2px solid ${color.brand.primary}`,
-  },
-  '&:hover:after': {
-    borderBottom: `3px solid ${color.brand.primary}`,
-  },
-  [media.lg]: {
-    '& + &': {
-      marginLeft: '1rem',
-    },
-  },
-});
+export const NavLink = styled(SmartNavLink)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  &::after {
+    content: '';
+    ${positionAbsolute};
+    z-index: -1;
+    transition: ${transition.primary.short} border-bottom;
+    border-bottom: 1px solid ${color.grey.lighter};
+  }
+  &.${activeClassName}::after {
+    border-bottom: 2px solid ${color.brand.primary};
+  }
+  &:hover::after {
+    border-bottom: 3px solid ${color.brand.primary};
+  }
+  ${media.lg`
+    & + & {
+      margin-left: 1rem;
+    }
+  `}
+`;
 
 NavLink.displayName = 'NavLink';

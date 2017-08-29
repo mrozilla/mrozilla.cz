@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { color } from '../../utils/styles';
 import InputWrapper from './InputWrapper';
 
@@ -15,20 +15,15 @@ import InputWrapper from './InputWrapper';
 // Styles
 // =============================================================================
 
-const Select = glamorous.select(
-  {
-    outline:         'none',
-    color:           'inherit',
-    fontFamily:      'inherit',
-    fontWeight:      '700',
-    border:          `1px solid ${color.grey.light}`,
-    backgroundColor: color.grey.lighter,
-  },
-  ({ isInline }) =>
-    isInline && {
-      display: 'inline',
-    },
-);
+const Select = styled.select`
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  border: 1px solid ${color.grey.light};
+  background-color: ${color.grey.lighter};
+  display: ${props => (props.isInline ? 'inline' : 'initial')};
+`;
 
 Select.displayName = 'Select';
 

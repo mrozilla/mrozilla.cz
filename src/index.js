@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 // Styles
+import { injectGlobal } from 'styled-components';
 import { normalize, reboot } from './utils/styles';
 
 // Screens
@@ -23,8 +24,8 @@ import registerServiceWorker from './registerServiceWorker';
 // Global styles
 // =============================================================================
 
-normalize();
-reboot();
+injectGlobal`${normalize}`; // eslint-disable-line
+injectGlobal`${reboot}`; // eslint-disable-line
 
 // =============================================================================
 // Render settings

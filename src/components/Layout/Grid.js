@@ -2,35 +2,25 @@
 // Import
 // =============================================================================
 
-import glamorous from 'glamorous';
+import styled from 'styled-components';
 import { media, grid } from '../../utils/styles';
 
 // =============================================================================
 // Container
 // =============================================================================
 
-export const Container = glamorous.div({
-  position:     'relative',
-  marginLeft:   'auto',
-  marginRight:  'auto',
-  paddingLeft:  `${grid.gutter}rem`,
-  paddingRight: `${grid.gutter}rem`,
-  [media.xs]:   {
-    width: grid.width.xs,
-  },
-  [media.sm]: {
-    width: grid.width.sm,
-  },
-  [media.md]: {
-    width: grid.width.md,
-  },
-  [media.lg]: {
-    width: grid.width.lg,
-  },
-  [media.xl]: {
-    width: grid.width.xl,
-  },
-});
+export const Container = styled.div`
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: ${grid.gutter}rem;
+  padding-right: ${grid.gutter}rem;
+  ${media.xs`width: ${grid.width.xs};`};
+  ${media.sm`width: ${grid.width.sm};`};
+  ${media.md`width: ${grid.width.md};`};
+  ${media.lg`width: ${grid.width.lg};`};
+  ${media.xl`width: ${grid.width.xl};`};
+`;
 
 Container.displayName = 'Container';
 
@@ -38,19 +28,15 @@ Container.displayName = 'Container';
 // Row
 // =============================================================================
 
-export const Row = glamorous.div(
-  {
-    display:     'flex',
-    flexWrap:    'wrap',
-    marginLeft:  `${grid.gutter / -1}rem`,
-    marginRight: `${grid.gutter / -1}rem`,
-  },
-  ({ alignItems, justifyContent, marginBottom }) => ({
-    alignItems,
-    justifyContent,
-    marginBottom,
-  }),
-);
+export const Row = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: ${grid.gutter / -1}rem;
+  margin-right: ${grid.gutter / -1}rem;
+  align-items: ${props => props.alignItems};
+  justify-content: ${props => props.justifyContent};
+  margin-Bottom: ${props => props.marginBottom};
+`;
 
 Row.displayName = 'Row';
 Row.defaultProps = {
@@ -63,58 +49,56 @@ Row.defaultProps = {
 // Column
 // =============================================================================
 
-export const Column = glamorous.div(
-  {
-    position:  'relative',
-    minHeight: '1px',
-    flex:      '0 0 100%',
-    maxWidth:  '100%',
-  },
-  ({ xs, sm, md, lg, xl }) => ({
-    [media.xs]: {
-      flex:     xs && `0 0 ${xs / grid.columns * 100}%`,
-      maxWidth: xs && `${xs / grid.columns * 100}%`,
-    },
-    [media.sm]: {
-      flex:     sm && `0 0 ${sm / grid.columns * 100}%`,
-      maxWidth: sm && `${sm / grid.columns * 100}%`,
-    },
-    [media.md]: {
-      flex:     md && `0 0 ${md / grid.columns * 100}%`,
-      maxWidth: md && `${md / grid.columns * 100}%`,
-    },
-    [media.lg]: {
-      flex:     lg && `0 0 ${lg / grid.columns * 100}%`,
-      maxWidth: lg && `${lg / grid.columns * 100}%`,
-    },
-    [media.xl]: {
-      flex:     xl && `0 0 ${xl / grid.columns * 100}%`,
-      maxWidth: xl && `${xl / grid.columns * 100}%`,
-    },
-  }),
-  ({ marginTop }) => ({
-    marginTop,
-  }),
-  ({ isPadded }) => ({
-    paddingLeft:  isPadded ? `${grid.gutter}rem` : '0',
-    paddingRight: isPadded ? `${grid.gutter}rem` : '0',
-  }),
-  ({ isStacked }) =>
-    isStacked && {
-      [media.lg]: {
-        '&:nth-of-type(2)': {
-          marginTop: '10vh',
-        },
-        '&:nth-of-type(2n - 1):not(:first-of-type):not(:last-of-type)': {
-          marginTop: '-10vh',
-        },
-      },
-    },
-);
+export const Column = styled.div`
+  position: relative;
+  min-height: 1px;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left:  ${props => props.paddingLeft};
+  padding-right:  ${props => props.paddingRight};
+  padding-top:  ${props => props.paddingTop};
+  padding-bottom:  ${props => props.paddingBottom};
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+  ${({ xs }) => xs && media.xs`
+    flex: 0 0 ${xs / grid.columns * 100}%;
+    max-width: ${xs / grid.columns * 100}%;
+  `};
+  ${({ sm }) => sm && media.sm`
+    flex: 0 0 ${sm / grid.columns * 100}%;
+    max-width: ${sm / grid.columns * 100}%;
+  `};
+  ${({ md }) => md && media.md`
+    flex: 0 0 ${md / grid.columns * 100}%;
+    max-width: ${md / grid.columns * 100}%;
+  `};
+  ${({ lg }) => lg && media.lg`
+    flex: 0 0 ${lg / grid.columns * 100}%;
+    max-width: ${lg / grid.columns * 100}%;
+  `};
+  ${({ xl }) => xl && media.xl`
+    flex: 0 0 ${xl / grid.columns * 100}%;
+    max-width: ${xl / grid.columns * 100}%;
+  `};
+  ${({ isStacked }) => isStacked && media.lg`
+    &:nth-of-type(even) {
+      margin-top: 10vh;
+    }
+    &:nth-of-type(odd):last-of-type:not(:first-of-type) {
+      margin-top: 10vh;
+    }
+  `};
+`; // prettier-ignore
+
+// TODO update with padding prop from ghv
 
 Column.displayName = 'Column';
 Column.defaultProps = {
-  marginTop: '0',
-  isStacked: false,
-  isPadded:  true,
+  paddingLeft:   `${grid.gutter}rem`,
+  paddingRight:  `${grid.gutter}rem`,
+  paddingTop:    '0',
+  paddingBottom: '0',
+  marginTop:     '0',
+  marginBottom:  '0',
+  isStacked:     false,
 };
