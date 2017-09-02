@@ -25,7 +25,7 @@ export default function WorkCard({
   width,
 }) {
   return (
-    <Column sm={width} style={{ textAlign: 'center' }} isStacked>
+    <Column sm={width} marginBottom="1rem" isStacked>
       <Wiggle>
         <Reveal isBlock>
           <Link
@@ -39,14 +39,22 @@ export default function WorkCard({
               marginBottom="1rem"
               borderRadius={border.radius.small}
             />
-            <Title fontSize="1rem" color={color.brand.primary}>
+            <Title
+              fontSize="1rem"
+              color={color.brand.primary}
+              textAlign="center"
+            >
               {title}
             </Title>
             {tagline &&
-              <Subtitle fontSize="1rem" marginBottom="0.5rem">
+              <Subtitle
+                fontSize="1rem"
+                marginBottom="0.5rem"
+                textAlign="center"
+              >
                 {tagline}
               </Subtitle>}
-            <Text fontSize="0.6rem">
+            <Text fontSize="0.6rem" textAlign="center">
               {tags.map(tag =>
                 (<Comma key={tag}>
                   {tag}
