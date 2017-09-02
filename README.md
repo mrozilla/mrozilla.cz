@@ -5,9 +5,7 @@ Source code for [mrozilla.cz](https://mrozilla.cz). The website targets the late
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
 * [react](https://github.com/facebook/react)
 * [react-router](https://github.com/ReactTraining/react-router)
-* [glamorous](https://github.com/paypal/glamorous)
-* [glamor](https://github.com/threepointone/glamor)
-* [polished](https://github.com/styled-components/polished/)
+* [styled-components](https://github.com/styled-components/styled-components)
 
 The code is linted and formatted using:
 * [eslint](https://github.com/eslint/eslint)
