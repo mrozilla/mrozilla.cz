@@ -27,7 +27,7 @@ IconWrapper.displayName = 'IconWrapper';
 // Component
 // =============================================================================
 
-export default function Icon({ name, height, color, isPadded }) {
+export default function Icon({ name, height, fill, isPadded }) {
   const icons = {
     facebook:
       'M37.8,2.2C36.3,0.7,34.6,0,32.5,0h-25C5.4,0,3.7,0.7,2.2,2.2C0.7,3.7,0,5.4,0,7.5v25c0,2.1,0.7,3.8,2.2,5.3 C3.7,39.3,5.4,40,7.5,40h25c2.1,0,3.8-0.7,5.3-2.2c1.5-1.5,2.2-3.2,2.2-5.3v-25C40,5.4,39.3,3.7,37.8,2.2z M34,20.6h-4.6v16.5h-6.8 V20.6h-3.4v-5.7h3.4v-3.4c0-2.4,0.6-4.3,1.7-5.5c1.1-1.3,3-1.9,5.7-1.9h4.6v5.7h-2.9c-1,0-1.6,0.2-1.9,0.5 c-0.3,0.3-0.4,0.9-0.4,1.8v2.8h5.2L34,20.6z',
@@ -52,9 +52,9 @@ export default function Icon({ name, height, color, isPadded }) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 40 40"
-        height={height}
+        style={{ height }}
       >
-        <path fill={color} d={icons[name]} />
+        <path fill={fill} d={icons[name]} />
       </svg>
     </IconWrapper>
   );
@@ -63,12 +63,12 @@ export default function Icon({ name, height, color, isPadded }) {
 Icon.propTypes = {
   name:     PropTypes.string.isRequired,
   height:   PropTypes.string,
-  color:    PropTypes.string,
+  fill:     PropTypes.string,
   isPadded: PropTypes.bool,
 };
 
 Icon.defaultProps = {
   height:   '1rem',
-  color:    color.brand.primary,
+  fill:     color.brand.primary,
   isPadded: false,
 };

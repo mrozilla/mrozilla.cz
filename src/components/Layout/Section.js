@@ -3,6 +3,7 @@
 // =============================================================================
 
 import styled from 'styled-components';
+import { media } from '../../utils/styles';
 
 // =============================================================================
 // Styles
@@ -15,8 +16,10 @@ const Section = styled.section`
   min-height: ${props => props.minHeight};
   padding-top: ${props => props.paddingTop};
   padding-bottom: ${props => props.paddingBottom};
-  margin-top: ${props => props.marginTop};
-  margin-bottom: ${props => props.marginBottom};
+  ${media.lg`
+    margin-top: ${props => props.marginTop};
+    margin-bottom: ${props => props.marginBottom};
+  `};
 `;
 
 Section.displayName = 'Section';

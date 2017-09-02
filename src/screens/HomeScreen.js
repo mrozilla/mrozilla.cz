@@ -50,7 +50,7 @@ export default function HomeScreen({ match: { params: { filter }, url } }) {
             </Row>
           </Container>
         </Section>}
-      <Section marginTop="-25vh">
+      <Section marginTop="-25vh" marginBottom="-10vh">
         <HeroContainer key={copy.bottom.title} content={copy.bottom} />
       </Section>
     </main>
