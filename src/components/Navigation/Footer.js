@@ -13,7 +13,15 @@ const Footer = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
   text-align: center;
-  ${media.lg`flex-direction: row;`};
+  & > div {
+    margin-bottom: 1rem;
+  }
+  ${media.lg`
+    flex-direction: row;
+    & > div {
+      margin-bottom: 0;
+    }
+  `};
   &::after {
     content: "";
     ${positionAbsolute};
