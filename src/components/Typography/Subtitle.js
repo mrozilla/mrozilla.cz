@@ -2,38 +2,32 @@
 // Import
 // =============================================================================
 
-// react
-import PropTypes from 'prop-types';
-
 // styles
-import styled from 'styled-components';
-import { media } from '../utils/styles';
+import { typography } from '../../utils/styles';
+
+// components
+import { Text } from '../Typography';
 
 // =============================================================================
 // Component
 // =============================================================================
 
-const Hidden = styled.div`
-  ${props => media[props.from]`
-    display: none;
-  `};
-  ${props => media[props.to]`
-    display: ${props.display};
-  `};
-`;
+const Subtitle = Text.withComponent('h4');
 
-Hidden.displayName = 'Hidden';
-Hidden.propTypes = {
-  from: PropTypes.string,
-  to:   PropTypes.string.isRequired,
+Subtitle.displayName = 'Subtitle';
+Subtitle.propTypes = {
+  ...Text.propTypes,
 };
-Hidden.defaultProps = {
-  from:    'xs',
-  display: 'block',
+Subtitle.defaultProps = {
+  ...Text.defaultProps,
+  fontFamily: typography.font.family.headings,
+  fontSize:   '1.5rem',
+  fontWeight: '300',
+  lineHeight: '1em',
 };
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export default Hidden;
+export default Subtitle;

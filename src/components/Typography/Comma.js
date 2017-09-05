@@ -2,38 +2,23 @@
 // Import
 // =============================================================================
 
-// react
-import PropTypes from 'prop-types';
-
 // styles
 import styled from 'styled-components';
-import { media } from '../utils/styles';
 
 // =============================================================================
 // Component
 // =============================================================================
 
-const Hidden = styled.div`
-  ${props => media[props.from]`
-    display: none;
-  `};
-  ${props => media[props.to]`
-    display: ${props.display};
-  `};
+const Comma = styled.span`
+  & + &::before {
+    content: ", ";
+  }
 `;
 
-Hidden.displayName = 'Hidden';
-Hidden.propTypes = {
-  from: PropTypes.string,
-  to:   PropTypes.string.isRequired,
-};
-Hidden.defaultProps = {
-  from:    'xs',
-  display: 'block',
-};
+Comma.displayName = 'Comma';
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export default Hidden;
+export default Comma;
