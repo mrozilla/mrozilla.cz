@@ -21,7 +21,7 @@ Subtitle.propTypes = {
 Subtitle.defaultProps = {
   ...Text.defaultProps,
   fontFamily: typography.font.family.headings,
-  fontSize:   '1.5rem',
+  fontSize:   '3rem',
   fontWeight: '300',
   lineHeight: '1em',
 };

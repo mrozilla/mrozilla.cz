@@ -25,7 +25,7 @@ export default function WorkCard({
   width,
 }) {
   return (
-    <Column sm={width} marginBottom="1rem" isStacked>
+    <Column sm={width} marginBottom="2rem" isStacked>
       <Wiggle>
         <Reveal isBlock>
           <Link
@@ -36,11 +36,11 @@ export default function WorkCard({
             <Image
               src={image}
               ratio={3 / 4}
-              marginBottom="1rem"
+              marginBottom="2rem"
               borderRadius={border.radius.small}
             />
             <Title
-              fontSize="1rem"
+              fontSize="2.5rem"
               color={color.brand.primary}
               textAlign="center"
             >
@@ -48,13 +48,13 @@ export default function WorkCard({
             </Title>
             {tagline &&
               <Subtitle
-                fontSize="1rem"
-                marginBottom="0.5rem"
+                fontSize="2.5rem"
+                marginBottom="1rem"
                 textAlign="center"
               >
                 {tagline}
               </Subtitle>}
-            <Text fontSize="0.6rem" textAlign="center">
+            <Text fontSize="1.5rem" textAlign="center">
               {tags.map(tag =>
                 (<Comma key={tag}>
                   {tag}

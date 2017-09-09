@@ -15,7 +15,7 @@ import {
   NavLink,
   Link,
 } from '../components/Navigation';
-import { Subtitle } from '../components/Typography';
+import { Text } from '../components/Typography';
 import { Container } from '../components/Layout';
 import { Logo } from '../components/Icons';
 import { Reveal, Wiggle } from '../components/Effects';
@@ -61,13 +61,14 @@ export default class HeaderContainer extends Component {
                   <Logo />
                 </Link>
                 : <Reveal>
-                  <Subtitle
+                  <Text
+                    fontSize="4rem"
                     color={color.brand.primary}
                     onClick={() => history.goBack()}
                     cursor="pointer"
                   >
-                    ←
-                  </Subtitle>
+                      ←
+                    </Text>
                 </Reveal>}
             </Wiggle>
             <NavbarBlock isCollapsed={isCollapsed}>

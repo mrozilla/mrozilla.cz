@@ -21,7 +21,7 @@ Heading.propTypes = {
 Heading.defaultProps = {
   ...Text.defaultProps,
   fontFamily:    typography.font.family.headings,
-  fontSize:      '3rem',
+  fontSize:      '7rem',
   fontWeight:    '900',
   lineHeight:    '1em',
   letterSpacing: '-0.025em',

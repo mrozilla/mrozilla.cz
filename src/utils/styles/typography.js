@@ -54,10 +54,10 @@ const typography = {
       body:     'Roboto Mono',
     },
     size: {
-      root: '125%',
-      base: '0.85rem',
+      root: '50%',
+      base: '2rem',
     },
-    lineHeight: '1rem',
+    lineHeight: '3rem',
     color:      {
       body: color.grey.dark,
     },

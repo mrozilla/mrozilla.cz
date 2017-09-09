@@ -60,8 +60,7 @@ export const NavLink = styled(SmartNavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  line-height: 12rem;
   &::after {
     content: '';
     ${positionAbsolute};
@@ -77,7 +76,7 @@ export const NavLink = styled(SmartNavLink)`
   }
   ${media.lg`
     & + & {
-      margin-left: 1rem;
+      margin-left: 2rem;
     }
   `}
 `;
