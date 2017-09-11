@@ -1,28 +1,33 @@
 // =============================================================================
-// Ease-in quint
+// Easings
 // =============================================================================
 
-function easeOutQuint(t, b, c, d) {
-  // time, begin, change, duration
-  // eslint-disable-next-line
-  const ts = (t /= d) * t;
-  const tc = ts * t;
-  return b + c * (tc * ts + -5 * ts * ts + 10 * tc + -10 * ts + 5 * t);
-}
+const easeIn = power => progress => progress ** power;
+const easeOut = power => progress => 1 - Math.abs(easeIn(power)(1 - progress));
 
 // =============================================================================
 // Smooth scroll
 // =============================================================================
 
-export default function smoothScroll(element, duration = 750) {
-  const to = element.offsetTop;
-  const startTime = window.performance.now();
-  const endTime = startTime + duration;
-  const start = document.body.scrollTop;
-  const animateScroll = () => {
-    const now = window.performance.now();
-    document.body.scrollTop = easeOutQuint(now - startTime, start, to - start, duration);
-    now < endTime && requestAnimationFrame(animateScroll);
+export default function smoothScroll(targetElement, duration = 750) {
+  const time = {
+    start: window.performance.now(),
+    duration,
   };
-  animateScroll();
+  const position = {
+    start: window.pageYOffset,
+    end:   targetElement.offsetTop,
+  };
+
+  const tick = (now) => {
+    const progress = (now - time.start) / time.duration;
+    const easing = easeOut(5)(progress);
+    const distance = position.end - position.start;
+
+    window.scrollTo(0, position.start + easing * distance);
+
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+
+  requestAnimationFrame(tick);
 }
