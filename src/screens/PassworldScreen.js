@@ -54,7 +54,7 @@ export default class PassworldScreen extends Component {
       password: name === 'password' ? value : this.state.password,
       include:  {
         ...this.state.include,
-        [name]: name !== 'length' ? value : null, // TODO figure out how not to update nested state
+        [name]: name !== 'length' ? value : null,
       },
     });
   };
@@ -73,8 +73,8 @@ export default class PassworldScreen extends Component {
                   name="password"
                   value={password}
                   placeholder="Your password will be here..."
-                  marginBottom="0.5rem"
-                  padding="1rem"
+                  marginBottom="2rem"
+                  padding="2rem"
                   onChange={handleInput}
                 />
                 <Form>
@@ -83,8 +83,8 @@ export default class PassworldScreen extends Component {
                     name="length"
                     value={length}
                     label="Password length"
-                    description="Don't go for a password that is shorter than 10 characters. Sh*t's not safe that way." // eslint-disable-line
-                    marginBottom="0.5rem"
+                    description="Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way." // eslint-disable-line
+                    marginBottom="2rem"
                     onChange={handleInput}
                   />
                   <CheckboxInput
@@ -110,6 +110,7 @@ export default class PassworldScreen extends Component {
                     value={include.numbers}
                     label="Include numbers"
                     onChange={handleInput}
+                    marginBottom="2rem"
                   />
                   <Button type="primary" onClick={generatePassword} isFull>
                     Generate password

@@ -44,7 +44,11 @@ export default class ColoursScreen extends Component {
     };
     function wordsArray(s) {
       if (s === '') return [];
-      return s.toLowerCase().trim().replace(rgx.punctuation, '').split(/\s+/);
+      return s
+        .toLowerCase()
+        .trim()
+        .replace(rgx.punctuation, '')
+        .split(/\s+/);
     }
     function wordsSet(s) {
       return new Set(wordsArray(s));
@@ -119,47 +123,43 @@ export default class ColoursScreen extends Component {
                   name="input"
                   value={textArea}
                   onChange={this.analyseText}
-                  padding="1rem"
+                  padding="2rem"
                   height="100%"
                 />
               </Column>
               <Column lg={2}>
                 <Label>Characters with spaces</Label>
-                <Text marginBottom="1rem">
+                <Text marginBottom="2rem">
                   {charCount.toLocaleString('en')}
                 </Text>
                 <Label>Characters without spaces</Label>
-                <Text marginBottom="1rem">
+                <Text marginBottom="2rem">
                   {charCountWithout.toLocaleString('en')}
                 </Text>
                 <Label>Words</Label>
-                <Text marginBottom="1rem">
+                <Text marginBottom="2rem">
                   {wordsCount.toLocaleString('en')}
                 </Text>
                 <Label>Unique words</Label>
-                <Text marginBottom="1rem">
+                <Text marginBottom="2rem">
                   {wordsCountUnique.toLocaleString('en')}
                 </Text>
                 <Label>Most common word</Label>
-                <Text marginBottom="1rem" isTruncated>
+                <Text marginBottom="2rem" isTruncated>
                   {mostCommonWord}
                 </Text>
                 <Label>Sentences</Label>
-                <Text marginBottom="1rem">
+                <Text marginBottom="2rem">
                   {sentencesCount.toLocaleString('en')}
                 </Text>
                 <Label>Average sentence length</Label>
-                <Text marginBottom="1rem">
+                <Text marginBottom="2rem">
                   {sentencesCountAverage.toLocaleString('en')} words
                 </Text>
                 <Label>Reading time</Label>
-                <Text marginBottom="1rem">
-                  {readingTime} min
-                </Text>
+                <Text marginBottom="2rem">{readingTime} min</Text>
                 <Label>Speaking time</Label>
-                <Text marginBottom="1rem">
-                  {speakingTime} min
-                </Text>
+                <Text marginBottom="2rem">{speakingTime} min</Text>
               </Column>
             </Row>
           </Container>

@@ -39,15 +39,17 @@ export default function InputWrapper({
 }) {
   return (
     <Wrapper marginBottom={marginBottom} padding={padding} height={height}>
-      {label &&
+      {label && (
         <Label htmlFor={name} isUppercase>
           {label}
-        </Label>}
+        </Label>
+      )}
       {children}
-      {description &&
-        <Text fontSize="0.5rem">
+      {description && (
+        <Text fontSize="1.25rem" lineHeight="2rem">
           {description}
-        </Text>}
+        </Text>
+      )}
     </Wrapper>
   );
 }
