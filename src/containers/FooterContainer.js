@@ -26,19 +26,19 @@ export default function FooterContainer() {
               <Icon name="twitter" />
             </Link>
             <Link to="//medium.com/mrozilla" target="_blank" isBare>
-              <Icon name="medium" marginLeft="0.25rem" />
+              <Icon name="medium" marginLeft="0.5rem" />
             </Link>
             <Link to="//github.com/mrozilla" target="_blank" isBare>
-              <Icon name="github" marginLeft="0.25rem" />
+              <Icon name="github" marginLeft="0.5rem" />
             </Link>
             <Link to="//codepen.com/mrozilla" target="_blank" isBare>
-              <Icon name="codepen" marginLeft="0.25rem" />
+              <Icon name="codepen" marginLeft="0.5rem" />
             </Link>
             <Link to="//linkedin.com/in/mrozilla" target="_blank" isBare>
-              <Icon name="linkedin" marginLeft="0.25rem" />
+              <Icon name="linkedin" marginLeft="0.5rem" />
             </Link>
             <Link to="mailto:jan@mrozilla.cz" isBare>
-              <Icon name="mail" marginLeft="0.25rem" />
+              <Icon name="mail" marginLeft="0.5rem" />
             </Link>
           </Wiggle>
           <Wiggle>

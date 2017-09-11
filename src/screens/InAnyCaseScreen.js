@@ -42,22 +42,45 @@ export default class InAnyCaseScreen extends Component {
           .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
           .join('. '),
       toDotCase: s =>
-        s.split(' ').map(w => changeCase.toLowerCase(w)).join('.'),
+        s
+          .split(' ')
+          .map(w => changeCase.toLowerCase(w))
+          .join('.'),
       toURLCase: s =>
-        s.split(' ').map(w => changeCase.toLowerCase(w)).join('-'),
+        s
+          .split(' ')
+          .map(w => changeCase.toLowerCase(w))
+          .join('-'),
       toPathCase: s =>
-        s.split(' ').map(w => changeCase.toLowerCase(w)).join('/'),
+        s
+          .split(' ')
+          .map(w => changeCase.toLowerCase(w))
+          .join('/'),
       toSnakeCase: s =>
-        s.split(' ').map(t => changeCase.toLowerCase(t)).join('_'),
+        s
+          .split(' ')
+          .map(t => changeCase.toLowerCase(t))
+          .join('_'),
       toConstantCase: s =>
-        s.split(' ').map(w => changeCase.toUpperCase(w)).join('_'),
+        s
+          .split(' ')
+          .map(w => changeCase.toUpperCase(w))
+          .join('_'),
       toHeaderCase: s =>
-        s.split(' ').map(t => changeCase.toSentenceCase(t)).join('-'),
+        s
+          .split(' ')
+          .map(t => changeCase.toSentenceCase(t))
+          .join('-'),
       toPascalCase: s =>
-        s.split(' ').map(w => changeCase.toSentenceCase(w)).join(''),
+        s
+          .split(' ')
+          .map(w => changeCase.toSentenceCase(w))
+          .join(''),
       toCamelCase: s =>
-        changeCase.toPascalCase(s).charAt(0).toLowerCase() +
-        changeCase.toPascalCase(s).slice(1),
+        changeCase
+          .toPascalCase(s)
+          .charAt(0)
+          .toLowerCase() + changeCase.toPascalCase(s).slice(1),
       reset: () => this.state.original,
     };
     this.setState({
@@ -79,11 +102,10 @@ export default class InAnyCaseScreen extends Component {
               description="Insert text and change case using the buttons below"
               placeholder="Start typing or paste text..."
               onChange={handleInput}
-              marginBottom="0.5rem"
-              padding="1rem"
+              marginBottom="2rem"
             />
             <Form>
-              <Row marginBottom="0.5rem">
+              <Row marginBottom="1rem">
                 <Column lg="6">
                   <Button
                     type="primary"

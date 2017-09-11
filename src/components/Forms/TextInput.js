@@ -105,7 +105,7 @@ TextInput.defaultProps = {
   label:        null,
   description:  null,
   marginBottom: null,
-  padding:      '0.5rem',
+  padding:      '2rem',
   fontSize:     null,
   fontFamily:   'inherit',
 };

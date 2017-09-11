@@ -30,7 +30,7 @@ export default function AboutScreen() {
             <Column lg="9">
               {content.pages.about.text.map(item =>
                 (<Wiggle key={item.props.children}>
-                  <Text marginBottom="3rem">
+                  <Text marginBottom="6rem">
                     <Reveal delay="1000ms">
                       {item}
                     </Reveal>

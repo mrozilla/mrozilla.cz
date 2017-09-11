@@ -60,9 +60,9 @@ RevealContent.displayName = 'RevealContent';
 // Component
 // =============================================================================
 
-function Reveal({ children, ...rest }) {
+function Reveal({ children, childRef, ...rest }) {
   return (
-    <RevealContainer {...rest}>
+    <RevealContainer innerRef={childRef} {...rest}>
       <RevealContent {...rest}>
         {children}
       </RevealContent>
@@ -72,6 +72,7 @@ function Reveal({ children, ...rest }) {
 
 Reveal.propTypes = {
   children:     PropTypes.node.isRequired,
+  childRef:     PropTypes.func.isRequired,
   delay:        PropTypes.string,
   type:         PropTypes.string,
   direction:    PropTypes.string,

@@ -20,18 +20,18 @@ export default function asyncComponent(importComponent) {
 
     async componentDidMount() {
       const { default: component } = await importComponent();
-      this.setState({
-        component,
-      });
+      this.setState({ component }); // eslint-disable-line
     }
 
     render() {
       const C = this.state.component;
-      return C
-        ? <C {...this.props} />
-        : <Text textAlign="center" fontSize="16px" lineHeight="100vh">
-            This is a loader...
-          </Text>;
+      return C ? (
+        <C {...this.props} />
+      ) : (
+        <Text textAlign="center" fontSize="16px" lineHeight="100vh">
+          This is a loader...
+        </Text>
+      );
     }
   };
 }

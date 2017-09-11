@@ -17,7 +17,7 @@ import { Flex } from '../Layout';
 
 const Checkbox = styled.input`
   display: inline-block;
-  margin-right: 0.25rem;
+  margin-right: 1rem;
 `;
 
 Checkbox.displayName = 'Checkbox';
@@ -39,7 +39,7 @@ export default function CheckboxInput({
       name={name}
       description={description}
       marginBottom={marginBottom}
-      padding="0.25rem 0"
+      padding="0.5rem 0"
     >
       <Flex>
         <Checkbox
@@ -48,9 +48,7 @@ export default function CheckboxInput({
           checked={value}
           onChange={e => onChange(name, e.target.checked)}
         />
-        <Label>
-          {label}
-        </Label>
+        <Label>{label}</Label>
       </Flex>
     </InputWrapper>
   );

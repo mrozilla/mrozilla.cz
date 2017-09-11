@@ -51,9 +51,9 @@ ImageSource.defaultProps = {
 // Component
 // =============================================================================
 
-function Image({ src, wasInViewport, ...rest }) {
+function Image({ src, childRef, wasInViewport, ...rest }) {
   return (
-    <ImageWrapper {...rest}>
+    <ImageWrapper innerRef={childRef} {...rest}>
       <ImageSource src={wasInViewport ? src : null} />
     </ImageWrapper>
   );
@@ -61,6 +61,7 @@ function Image({ src, wasInViewport, ...rest }) {
 
 Image.propTypes = {
   src:           PropTypes.string.isRequired,
+  childRef:      PropTypes.func.isRequired,
   wasInViewport: PropTypes.bool.isRequired,
 };
 

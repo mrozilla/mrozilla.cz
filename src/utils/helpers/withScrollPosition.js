@@ -26,7 +26,7 @@ export default function (WrappedComponent) {
     }
 
     handleScrollPosition = () => {
-      const rect = this._reactInternalInstance._hostParent._hostNode.getBoundingClientRect(); // eslint-disable-line
+      const rect = this.childElement.getBoundingClientRect();
       const viewportHeight =
         window.innerHeight || document.documentElement.clientHeight;
       this.setState({
@@ -44,6 +44,9 @@ export default function (WrappedComponent) {
         <WrappedComponent
           isInViewport={this.state.isInViewport}
           wasInViewport={this.state.wasInViewport}
+          childRef={(el) => {
+            this.childElement = el;
+          }}
           {...this.props}
         />
       );

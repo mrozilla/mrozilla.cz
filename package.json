@@ -1,7 +1,8 @@
 {
   "name": "mrozilla-react",
   "version": "1.1.2",
-  "description": "the online home of a one-man digital studio. built with react and 🍺.",
+  "description":
+    "the online home of a one-man digital studio. built with react and 🍺.",
   "license": "MIT",
   "repository": "https://github.com/mrozilla/mrozilla.cz",
   "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
@@ -17,7 +18,7 @@
     "react-dom": "^15.5.4",
     "react-ga": "^2.2.0",
     "react-router-dom": "^4.2.0",
-    "react-scripts": "1.0.12",
+    "react-scripts": "1.0.13",
     "source-map-explorer": "^1.4.0",
     "styled-components": "^2.1.2"
   },
@@ -25,21 +26,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "analyze": "source-map-explorer build/static/js/main.*",
-    "predeploy:prod": "npm run build",
-    "deploy:test": "duck -e overwrite --upload ftp://$WEDOS_MROZILLA/www/subdom/test/ build/",
-    "deploy:prod": "duck -e overwrite --upload ftp://$WEDOS_MROZILLA/www/domains/mrozilla.cz build/",
+    "predeploy:prod": "yarn build",
+    "deploy:test":
+      "duck -e overwrite --upload ftp://$WEDOS_MROZILLA/www/subdom/test/ build/",
+    "deploy:prod":
+      "duck -e overwrite --upload ftp://$WEDOS_MROZILLA/www/domains/mrozilla.cz build/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": ["react-app", "airbnb"],
     "rules": {
-      "no-mixed-operators": "off",
       "no-confusing-arrow": "off",
       "no-nested-ternary": "off",
       "react/jsx-filename-extension": "off",
-      "react/no-did-mount-set-state": "off",
-      "no-underscore-dangle": "off",
       "no-unused-expressions": [
         "error",
         {

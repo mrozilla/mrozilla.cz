@@ -2,26 +2,23 @@
 // Import
 // =============================================================================
 
-// Styles
+// styles
 import styled from 'styled-components';
-import { color, border } from '../../utils/styles';
 
 // =============================================================================
-// Tab buttons
+// Component
 // =============================================================================
 
-const TabButtons = styled.div`
-  display: flex;
-  padding: 0.25rem;
-  border: 1px solid ${color.grey.lighter};
-  border-radius: ${border.radius.small};
-  margin-bottom: ${props => props.marginBottom};
+const Comma = styled.span`
+  & + &::before {
+    content: ", ";
+  }
 `;
 
-TabButtons.displayName = 'TabButtons';
+Comma.displayName = 'Comma';
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export default TabButtons;
+export default Comma;

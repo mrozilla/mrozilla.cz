@@ -17,11 +17,11 @@ export default function (WrappedComponent) {
     };
 
     handleMouseMove = (e) => {
-      const rect = this._reactInternalInstance._hostParent._hostNode.getBoundingClientRect();
+      const rect = this.childElement.getBoundingClientRect();
       this.setState({
-        x: 0.5 - (e.nativeEvent.clientX - rect.left) / rect.width,
-        y: 0.5 - (e.nativeEvent.clientY - rect.top) / rect.height,
-      });
+        x: 0.5 - ((e.nativeEvent.clientX - rect.left) / rect.width),
+        y: 0.5 - ((e.nativeEvent.clientY - rect.top) / rect.height),
+      }); // prettier-ignore
     };
     handleMouseLeave = () => {
       this.setState({
@@ -37,6 +37,9 @@ export default function (WrappedComponent) {
           y={this.state.y}
           onMouseMove={this.handleMouseMove}
           onMouseLeave={this.handleMouseLeave}
+          childRef={(el) => {
+            this.childElement = el;
+          }}
           {...this.props}
         />
       );

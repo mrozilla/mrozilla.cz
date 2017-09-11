@@ -10,8 +10,8 @@ const Footer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   text-align: center;
   & > div {
     margin-bottom: 1rem;

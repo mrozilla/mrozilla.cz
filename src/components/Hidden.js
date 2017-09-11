@@ -21,6 +21,7 @@ const Hidden = styled.div`
     display: ${props.display};
   `};
 `;
+
 Hidden.displayName = 'Hidden';
 Hidden.propTypes = {
   from: PropTypes.string,

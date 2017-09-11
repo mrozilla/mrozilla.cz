@@ -31,14 +31,14 @@ export default function HeroContainer({
             </Heading>
           </Wiggle>
           <Wiggle>
-            <Subheading marginBottom="3rem">
+            <Subheading marginBottom="6rem">
               <Reveal delay="500ms">
                 {subtitle}
               </Reveal>
             </Subheading>
           </Wiggle>
           <Wiggle>
-            <Text marginBottom="3rem">
+            <Text marginBottom="6rem">
               <Reveal delay="750ms">
                 {text}
               </Reveal>

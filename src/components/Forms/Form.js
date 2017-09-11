@@ -12,7 +12,7 @@ import { color, border } from '../../utils/styles';
 
 const Form = styled.div`
   border: 1px solid ${color.grey.lighter};
-  padding: 1rem;
+  padding: 2rem;
   border-radius: ${border.radius.small};
 `;
 

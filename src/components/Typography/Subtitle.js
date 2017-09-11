@@ -2,26 +2,32 @@
 // Import
 // =============================================================================
 
-// Styles
-import styled from 'styled-components';
-import { color, border } from '../../utils/styles';
+// styles
+import { typography } from '../../utils/styles';
+
+// components
+import { Text } from '../Typography';
 
 // =============================================================================
-// Tab buttons
+// Component
 // =============================================================================
 
-const TabButtons = styled.div`
-  display: flex;
-  padding: 0.25rem;
-  border: 1px solid ${color.grey.lighter};
-  border-radius: ${border.radius.small};
-  margin-bottom: ${props => props.marginBottom};
-`;
+const Subtitle = Text.withComponent('h4');
 
-TabButtons.displayName = 'TabButtons';
+Subtitle.displayName = 'Subtitle';
+Subtitle.propTypes = {
+  ...Text.propTypes,
+};
+Subtitle.defaultProps = {
+  ...Text.defaultProps,
+  fontFamily: typography.font.family.headings,
+  fontSize:   '3rem',
+  fontWeight: '300',
+  lineHeight: '1em',
+};
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export default TabButtons;
+export default Subtitle;

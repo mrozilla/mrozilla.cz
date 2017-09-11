@@ -2,26 +2,33 @@
 // Import
 // =============================================================================
 
-// Styles
-import styled from 'styled-components';
-import { color, border } from '../../utils/styles';
+// styles
+import { typography } from '../../utils/styles';
+
+// components
+import { Text } from '../Typography';
 
 // =============================================================================
-// Tab buttons
+// Component
 // =============================================================================
 
-const TabButtons = styled.div`
-  display: flex;
-  padding: 0.25rem;
-  border: 1px solid ${color.grey.lighter};
-  border-radius: ${border.radius.small};
-  margin-bottom: ${props => props.marginBottom};
-`;
+const Heading = Text.withComponent('h1');
 
-TabButtons.displayName = 'TabButtons';
+Heading.displayName = 'Heading';
+Heading.propTypes = {
+  ...Text.propTypes,
+};
+Heading.defaultProps = {
+  ...Text.defaultProps,
+  fontFamily:    typography.font.family.headings,
+  fontSize:      '7rem',
+  fontWeight:    '900',
+  lineHeight:    '1em',
+  letterSpacing: '-0.025em',
+};
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export default TabButtons;
+export default Heading;
