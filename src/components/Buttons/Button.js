@@ -21,33 +21,33 @@ const Button = styled.button`
   transition: ${transition.primary.medium} all;
   font-family: inherit;
   color: inherit;
-  border: ${props =>
-    props.type === 'secondary' ? `1px solid ${color.grey.lighter}` : 'none'};
   outline: none;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   cursor: pointer;
   text-align: center;
+  border: ${props =>
+    props.type === 'secondary' ? `1px solid ${color.grey.lighter}` : 'none'};
   background-color: ${props =>
     props.type === 'secondary' ? 'transparent' : color.grey.lighter};
   border-radius: ${border.radius.small};
   width: ${props => (props.isFull ? '100%' : 'initial')};
   & + & {
-    margin-left: ${props => (props.isFull ? '0' : '0.25rem')};
-    margin-top: ${props => (props.isFull ? '0.25rem' : '0')};
+    margin-left: ${props => (props.isFull ? '0' : '1rem')};
+    margin-top: ${props => (props.isFull ? '1rem' : '0')};
   }
   &:hover {
     background-color: ${props =>
-    props.type ? color.grey.light : 'transparent'};
+    props.type ? 'transparent' : color.grey.light};
     color: ${props => (props.type ? 'white' : 'inherit')};
   }
   &::after {
-    content: "";
+    content: '';
     ${positionAbsolute};
-    transition: 'inherit';
+    transition: inherit;
     z-index: -1;
     transform: scaleX(0);
     transform-origin: left;
-    background-color: color.brand.primary;
+    background-color: ${color.brand.primary};
   }
   &:hover::after {
     transform: scaleX(1);

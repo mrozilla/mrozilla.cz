@@ -27,6 +27,14 @@ export default class CountOnMeScreen extends Component {
           ? type === 'add' ? this.state.count + 1 : this.state.count - 1
           : 0,
     });
+
+    if ('vibrate' in navigator) {
+      type !== undefined
+        ? type === 'add'
+          ? navigator.vibrate(100)
+          : navigator.vibrate([100, 100, 100])
+        : navigator.vibrate(500);
+    }
   };
 
   render() {

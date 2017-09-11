@@ -35,5 +35,5 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  height: '2rem',
+  height: '5rem',
 };

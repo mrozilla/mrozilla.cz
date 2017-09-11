@@ -10,14 +10,19 @@ import styled from 'styled-components';
 // =============================================================================
 
 const Label = styled.label`
-  font-size: 0.5rem;
-  text-transform: ${props => (props.isUppercase ? 'uppercase' : 'initial')};
-  letter-spacing: ${props => (props.isUppercase ? '0.2em' : 'initial')};
+  display: block;
+  font-size: ${props => props.fontSize};
+  line-height: ${props => props.lineHeight};
+  text-transform: ${props => props.textTransform};
+  letter-spacing: ${props => props.letterSpacing};
 `;
 
 Label.displayName = 'Label';
 Label.defaultProps = {
-  isUppercase: true,
+  fontSize:      '1rem',
+  lineHeight:    '2rem',
+  textTransform: 'uppercase',
+  letterSpacing: '0.2em',
 };
 
 // =============================================================================

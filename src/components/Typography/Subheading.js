@@ -21,7 +21,7 @@ Subheading.propTypes = {
 Subheading.defaultProps = {
   ...Text.defaultProps,
   fontFamily: typography.font.family.headings,
-  fontSize:   '2.5rem',
+  fontSize:   '6rem',
   fontWeight: '300',
   lineHeight: '1em',
 };

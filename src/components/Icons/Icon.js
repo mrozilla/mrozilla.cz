@@ -68,7 +68,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  height:     '1rem',
+  height:     '2.5rem',
   fill:       color.brand.primary,
   marginLeft: '0',
 };

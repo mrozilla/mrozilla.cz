@@ -46,7 +46,7 @@ Text.defaultProps = {
   fontFamily:    'inherit',
   fontSize:      'inherit',
   fontWeight:    '400',
-  lineHeight:    '1.25rem',
+  lineHeight:    '3rem',
   textAlign:     'inherit',
   textTransform: 'inherit',
   letterSpacing: '0',

@@ -21,7 +21,7 @@ Title.propTypes = {
 Title.defaultProps = {
   ...Text.defaultProps,
   fontFamily: typography.font.family.headings,
-  fontSize:   '2rem',
+  fontSize:   '4rem',
   fontWeight: '900',
   lineHeight: '1em',
 };
