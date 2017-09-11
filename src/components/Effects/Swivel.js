@@ -13,16 +13,14 @@ import { withMousePosition } from '../../utils/helpers';
 // Swivel
 // =============================================================================
 
-function Swivel({ x, y, perspective, intensity, children, ...rest }) {
+function Swivel({ x, y, perspective, intensity, children, childRef, ...rest }) {
+  const transform = `perspective(${perspective}) rotateX(${x *
+    -intensity}px) rotateY(${y * intensity}px)`;
+  const transition = `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`;
   return (
     <div
-      style={{
-        transform: `perspective(${perspective}) rotateX(${x *
-          -intensity}px) rotateY(${y * intensity}px)`,
-        WebkitTransform: `perspective(${perspective}) rotateX(${x *
-          -intensity}px) rotateY(${y * intensity}px)`,
-        transition: `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`,
-      }}
+      style={{ transform, transition, WebkitTransform: transform }}
+      ref={childRef}
       {...rest}
     >
       {children}
@@ -36,11 +34,12 @@ Swivel.propTypes = {
   perspective: PropTypes.number,
   intensity:   PropTypes.number,
   children:    PropTypes.node.isRequired,
+  childRef:    PropTypes.func.isRequired,
 };
 
 Swivel.defaultProps = {
-  intensity:   10,
   perspective: 1000,
+  intensity:   10,
 };
 
 // =============================================================================

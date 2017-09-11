@@ -13,16 +13,14 @@ import { withMousePosition } from '../../utils/helpers';
 // Wiggle
 // =============================================================================
 
-function Wiggle({ x, y, perspective, intensity, children, ...rest }) {
+function Wiggle({ x, y, perspective, intensity, children, childRef, ...rest }) {
+  const transform = `perspective(${perspective}) translateX(${x *
+    -intensity}px) translateY(${y * intensity}px)`;
+  const transition = `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`;
   return (
     <div
-      style={{
-        transform: `perspective(${perspective}) translateX(${x *
-          -intensity}px) translateY(${y * intensity}px)`,
-        WebkitTransform: `perspective(${perspective}) translateX(${x *
-          -intensity}px) translateY(${y * intensity}px)`,
-        transition: `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`,
-      }}
+      style={{ transform, transition, WebkitTransform: transform }}
+      ref={childRef}
       {...rest}
     >
       {children}
@@ -36,11 +34,12 @@ Wiggle.propTypes = {
   perspective: PropTypes.number,
   intensity:   PropTypes.number,
   children:    PropTypes.node.isRequired,
+  childRef:    PropTypes.func.isRequired,
 };
 
 Wiggle.defaultProps = {
-  intensity:   10,
   perspective: 1000,
+  intensity:   10,
 };
 
 // =============================================================================
