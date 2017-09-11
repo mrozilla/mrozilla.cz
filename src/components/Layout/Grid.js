@@ -61,24 +61,24 @@ export const Column = styled.div`
   margin-top: ${props => props.marginTop};
   margin-bottom: ${props => props.marginBottom};
   ${({ xs }) => xs && media.xs`
-    flex: 0 0 ${xs / grid.columns * 100}%;
-    max-width: ${xs / grid.columns * 100}%;
+    flex: 0 0 ${(xs / grid.columns) * 100}%;
+    max-width: ${(xs / grid.columns) * 100}%;
   `};
   ${({ sm }) => sm && media.sm`
-    flex: 0 0 ${sm / grid.columns * 100}%;
-    max-width: ${sm / grid.columns * 100}%;
+    flex: 0 0 ${(sm / grid.columns) * 100}%;
+    max-width: ${(sm / grid.columns) * 100}%;
   `};
   ${({ md }) => md && media.md`
-    flex: 0 0 ${md / grid.columns * 100}%;
-    max-width: ${md / grid.columns * 100}%;
+    flex: 0 0 ${(md / grid.columns) * 100}%;
+    max-width: ${(md / grid.columns) * 100}%;
   `};
   ${({ lg }) => lg && media.lg`
-    flex: 0 0 ${lg / grid.columns * 100}%;
-    max-width: ${lg / grid.columns * 100}%;
+    flex: 0 0 ${(lg / grid.columns) * 100}%;
+    max-width: ${(lg / grid.columns) * 100}%;
   `};
   ${({ xl }) => xl && media.xl`
-    flex: 0 0 ${xl / grid.columns * 100}%;
-    max-width: ${xl / grid.columns * 100}%;
+    flex: 0 0 ${(xl / grid.columns) * 100}%;
+    max-width: ${(xl / grid.columns) * 100}%;
   `};
   ${({ isStacked }) => isStacked && media.lg`
     &:nth-of-type(even) {
@@ -89,8 +89,6 @@ export const Column = styled.div`
     }
   `};
 `; // prettier-ignore
-
-// TODO update with padding prop from ghv
 
 Column.displayName = 'Column';
 Column.defaultProps = {
