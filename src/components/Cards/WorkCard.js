@@ -12,7 +12,7 @@ import { Link } from '../Navigation';
 import { Title, Subtitle, Text, Comma } from '../Typography';
 import Image from '../Image';
 import { Card } from '../Cards';
-import { Reveal, Wiggle } from '../Effects';
+import { Reveal, Wiggle, MomentumScroll } from '../Effects';
 
 // Styles
 import { color, border } from '../../utils/styles';
@@ -24,45 +24,48 @@ import { color, border } from '../../utils/styles';
 export default function WorkCard({
   work: { link, title, tagline, tags, image },
   width,
+  index,
 }) {
   return (
     <Column sm={width} marginBottom="2rem" isStacked>
       <Wiggle>
-        <Reveal isBlock>
-          <Card>
-            <Link
-              to={link}
-              target={link.includes('http') ? '_blank' : null}
-              isBare
-            >
-              <Image
-                src={image}
-                ratio={3 / 4}
-                marginBottom="2rem"
-                borderRadius={border.radius.small}
-              />
-              <Title
-                fontSize="2.5rem"
-                color={color.brand.primary}
-                textAlign="center"
+        <MomentumScroll index={index}>
+          <Reveal isBlock>
+            <Card>
+              <Link
+                to={link}
+                target={link.includes('http') ? '_blank' : null}
+                isBare
               >
-                {title}
-              </Title>
-              {tagline && (
-                <Subtitle
+                <Image
+                  src={image}
+                  ratio={3 / 4}
+                  marginBottom="2rem"
+                  borderRadius={border.radius.small}
+                />
+                <Title
                   fontSize="2.5rem"
-                  marginBottom="1rem"
+                  color={color.brand.primary}
                   textAlign="center"
                 >
-                  {tagline}
-                </Subtitle>
-              )}
-              <Text fontSize="1.5rem" textAlign="center">
-                {tags.map(tag => <Comma key={tag}>{tag}</Comma>)}
-              </Text>
-            </Link>
-          </Card>
-        </Reveal>
+                  {title}
+                </Title>
+                {tagline && (
+                  <Subtitle
+                    fontSize="2.5rem"
+                    marginBottom="1rem"
+                    textAlign="center"
+                  >
+                    {tagline}
+                  </Subtitle>
+                )}
+                <Text fontSize="1.5rem" textAlign="center">
+                  {tags.map(tag => <Comma key={tag}>{tag}</Comma>)}
+                </Text>
+              </Link>
+            </Card>
+          </Reveal>
+        </MomentumScroll>
       </Wiggle>
     </Column>
   );
@@ -77,9 +80,11 @@ WorkCard.propTypes = {
     image:   PropTypes.string,
   }).isRequired,
   width: PropTypes.string,
+  index: PropTypes.number,
 };
 
 WorkCard.defaultProps = {
   work:  { image: null },
   width: '6',
+  index: 0,
 };
