@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import HeroContainer from '../containers/HeroContainer';
 
 import { Section, Container, Row } from '../components/Layout';
-import Work from '../components/WorkCard';
+import { WorkCard } from '../components/Cards';
 
 // Content
 import content from '../utils/content';
@@ -42,17 +42,20 @@ export default function HomeScreen({ match: { params: { filter }, url } }) {
           filter={filter}
         />
       </Section>
-      {works.length > 0 &&
+      {works.length > 0 && (
         <Section marginTop="-25vh" id="below">
           <Container>
             <Row justifyContent="center">
-              {works.map(work => <Work key={work.title} work={work} />)}
+              {works.map(work => <WorkCard key={work.title} work={work} />)}
             </Row>
           </Container>
-        </Section>}
-      <Section marginTop="-25vh" marginBottom="-10vh">
-        <HeroContainer key={copy.bottom.title} content={copy.bottom} />
-      </Section>
+        </Section>
+      )}
+      {copy.bottom && (
+        <Section marginTop="-25vh" marginBottom="-10vh">
+          <HeroContainer key={copy.bottom.title} content={copy.bottom} />
+        </Section>
+      )}
     </main>
   );
 }
