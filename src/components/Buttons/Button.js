@@ -18,7 +18,7 @@ import {
 const Button = styled.button`
   position: ${props => (props.type ? 'relative' : 'initial')};
   overflow: ${props => (props.type ? 'hidden' : 'initial')};
-  transition: ${transition.primary.medium} all;
+  transition: ${transition.medium};
   font-family: inherit;
   color: inherit;
   outline: none;

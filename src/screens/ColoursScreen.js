@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { Section, Container, Row, Column } from '../components/Layout';
 import { Text } from '../components/Typography';
 import { TabButtons, TabButton } from '../components/Buttons';
-import ColourCard from '../components/ColourCard';
+import { ColourCard } from '../components/Cards';
 
 // =============================================================================
 // Component

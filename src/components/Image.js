@@ -38,23 +38,23 @@ const ImageSource = styled.img`
   object-fit: cover;
   transition: ${props => props.transition};
   &:hover {
-    transform: scale(1.05);
+    transform: scale(${props => props.zoom});
   }
 `;
 
 ImageSource.displayName = 'ImageSource';
 ImageSource.defaultProps = {
-  transition: transition.primary.short,
+  transition: transition.short,
 };
 
 // =============================================================================
 // Component
 // =============================================================================
 
-function Image({ src, childRef, wasInViewport, ...rest }) {
+function Image({ src, childRef, wasInViewport, zoom, ...rest }) {
   return (
     <ImageWrapper innerRef={childRef} {...rest}>
-      <ImageSource src={wasInViewport ? src : null} />
+      <ImageSource src={wasInViewport ? src : null} zoom={zoom} />
     </ImageWrapper>
   );
 }
@@ -63,6 +63,10 @@ Image.propTypes = {
   src:           PropTypes.string.isRequired,
   childRef:      PropTypes.func.isRequired,
   wasInViewport: PropTypes.bool.isRequired,
+  zoom:          PropTypes.string,
+};
+Image.defaultProps = {
+  zoom: '1.00',
 };
 
 // =============================================================================

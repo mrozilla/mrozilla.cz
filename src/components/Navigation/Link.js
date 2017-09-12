@@ -38,7 +38,7 @@ export const Link = styled(SmartLink)`
       background-color: ${color.brand.primary};
       transform: scaleX(0);
       transform-origin: left;
-      transition: ${transition.primary.medium} transform;
+      transition: ${transition.medium} transform;
     }
     &:hover::after {
       transform: scaleX(1);
@@ -65,7 +65,7 @@ export const NavLink = styled(SmartNavLink)`
     content: '';
     ${positionAbsolute};
     z-index: -1;
-    transition: ${transition.primary.short} border-bottom;
+    transition: ${transition.short} border-bottom;
     border-bottom: 1px solid ${color.grey.lighter};
   }
   &.${activeClassName}::after {
@@ -78,7 +78,7 @@ export const NavLink = styled(SmartNavLink)`
     & + & {
       margin-left: 2rem;
     }
-  `}
+  `};
 `;
 
 NavLink.displayName = 'NavLink';

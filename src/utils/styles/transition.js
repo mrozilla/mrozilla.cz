@@ -3,16 +3,9 @@
 // =============================================================================
 
 const transition = {
-  primary: {
-    short:  '250ms cubic-bezier(.6, .2, .1, 1)',
-    medium: '500ms cubic-bezier(.6, .2, .1, 1)',
-    long:   '1000ms cubic-bezier(.6, .2, .1, 1)',
-  },
-  secondary: {
-    short:  '250ms cubic-bezier(.25, .1, .25, 1)',
-    medium: '500ms cubic-bezier(.25, .1, .25, 1)',
-    long:   '1000ms cubic-bezier(.25, .1, .25, 1)',
-  },
+  short:  '250ms',
+  medium: '500ms',
+  long:   '1000ms',
 };
 
 // =============================================================================

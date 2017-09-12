@@ -34,7 +34,7 @@ const RevealContainer = styled.span`
     background-color: ${color.brand.primary};
     animation: ${props =>
     props.isInViewport
-      ? `${animation[props.type][props.direction]} ${transition.primary.long} both`
+      ? `${animation[props.type][props.direction]} ${transition.long} both`
       : 'none'};
     animation-delay: inherit;
     opacity: ${props => (props.isInViewport ? 'inherit' : '0')};
@@ -49,7 +49,7 @@ const RevealContent = styled.span`
   opacity: 0;
   animation: ${props =>
     props.isInViewport
-      ? `${animation.appear} ${transition.primary.long} both`
+      ? `${animation.appear} ${transition.long} both`
       : 'none'};
   animation-delay: inherit;
 `;
@@ -63,9 +63,7 @@ RevealContent.displayName = 'RevealContent';
 function Reveal({ children, childRef, ...rest }) {
   return (
     <RevealContainer innerRef={childRef} {...rest}>
-      <RevealContent {...rest}>
-        {children}
-      </RevealContent>
+      <RevealContent {...rest}>{children}</RevealContent>
     </RevealContainer>
   );
 }

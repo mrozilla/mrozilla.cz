@@ -50,7 +50,7 @@ export const Navbar = styled.nav`
     padding: initial;
   `};
   &::after {
-    content: "";
+    content: '';
     ${positionAbsolute};
     pointer-events: none;
     border-bottom: 1px solid ${color.grey.lighter};
@@ -97,7 +97,7 @@ export const NavbarToggle = styled.div`
   align-self: center;
   width: 1rem;
   height: 2px;
-  transition: ${transition.primary.short} transform;
+  transition: ${transition.short} transform;
   ${media.lg`
     display: none;
   `};
@@ -106,7 +106,7 @@ export const NavbarToggle = styled.div`
   transform: ${props => (props.isCollapsed ? 'initial' : 'rotate(-45deg)')};
   &::after,
   &::before {
-    content: "";
+    content: '';
     ${positionAbsolute};
     background-color: inherit;
     transition: inherit;
