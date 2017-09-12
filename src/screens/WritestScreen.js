@@ -94,8 +94,8 @@ export default class ColoursScreen extends Component {
       mostCommonWord:        mostCommonWord(value),
       sentencesCount:        sentencesArray(value).length,
       sentencesCountAverage: averageSentences(value),
-      readingTime:           readingMinutes(value).toFixed(2),
-      speakingTime:          speakingMinutes(value).toFixed(2),
+      readingTime:           readingMinutes(value),
+      speakingTime:          speakingMinutes(value),
     });
   };
 
@@ -157,9 +157,15 @@ export default class ColoursScreen extends Component {
                   {sentencesCountAverage.toLocaleString('en')} words
                 </Text>
                 <Label>Reading time</Label>
-                <Text marginBottom="2rem">{readingTime} min</Text>
+                <Text marginBottom="2rem">
+                  {Math.floor(readingTime)} min{' '}
+                  {((readingTime % 1) * 60).toFixed(0)} sec
+                </Text>
                 <Label>Speaking time</Label>
-                <Text marginBottom="2rem">{speakingTime} min</Text>
+                <Text marginBottom="2rem">
+                  {Math.floor(speakingTime)} min{' '}
+                  {((speakingTime % 1) * 60).toFixed(0)} sec
+                </Text>
               </Column>
             </Row>
           </Container>
