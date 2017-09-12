@@ -6,11 +6,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Components
+// Containers
 import HeroContainer from '../containers/HeroContainer';
+import WorksContainer from '../containers/WorksContainer';
 
-import { Section, Container, Row } from '../components/Layout';
-import { WorkCard } from '../components/Cards';
+// Components
+import { Section } from '../components/Layout';
 
 // Content
 import content from '../utils/content';
@@ -44,11 +45,7 @@ export default function HomeScreen({ match: { params: { filter }, url } }) {
       </Section>
       {works.length > 0 && (
         <Section marginTop="-25vh" id="below">
-          <Container>
-            <Row justifyContent="center">
-              {works.map(work => <WorkCard key={work.title} work={work} />)}
-            </Row>
-          </Container>
+          <WorksContainer works={works} />
         </Section>
       )}
       {copy.bottom && (
