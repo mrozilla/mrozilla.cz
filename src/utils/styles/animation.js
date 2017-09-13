@@ -57,6 +57,10 @@ const animation = {
     from, 40% { opacity: 0; }
     60%, to   { opacity: 1; }
   `,
+  fade: keyframes`
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  `,
 };
 
 // =============================================================================
