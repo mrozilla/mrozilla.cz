@@ -10,10 +10,10 @@ const colour = {
   brand: {
     primary:    `hsl(${hue}, ${sat}%, ${lig}%)`,
     secondary:  `hsl(${hue}, ${sat}%, ${lig - 10}%)`,
-    success:    '#5cb85c',
-    info:       '#5bc0de',
-    warning:    '#f0ad4e',
-    danger:     '#d9534f',
+    success:    'hsl(100, 70%, 60%)',
+    info:       'hsl(190, 100%, 50%)',
+    warning:    'hsl(50, 100%, 50%)',
+    danger:     'hsl(20, 100%, 50%)',
     complement: `hsl(${Math.abs(hue - 180)}, ${sat}%, ${lig}%)`,
     get gradient() {
       return `linear-gradient(45deg, ${this.primary}, ${this.secondary})`;

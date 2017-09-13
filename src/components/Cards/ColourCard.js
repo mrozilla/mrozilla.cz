@@ -8,11 +8,16 @@ import PropTypes from 'prop-types';
 
 // Styles
 import styled from 'styled-components';
-import { border, shadow, transition, positionAbsolute } from '../utils/styles';
+import {
+  border,
+  shadow,
+  transition,
+  positionAbsolute,
+} from '../../utils/styles';
 
 // Components
-import { Column } from './Layout';
-import { Title, Text } from './Typography';
+import { Column } from '../Layout';
+import { Title, Text } from '../Typography';
 
 // =============================================================================
 // Styles
@@ -21,7 +26,7 @@ import { Title, Text } from './Typography';
 const Colour = styled.div`
   position: relative;
   padding-bottom: 100%;
-  transition: ${transition.primary.short} transform,
+  transition: ${transition.short} transform,
   &:hover {
     transform: scale(1.1);
     z-index: 1;
@@ -52,12 +57,8 @@ export default function ColourCard({ colour: { name, hex }, width }) {
     <Column sm={width} paddingLeft="0" paddingRight="0">
       <Colour style={{ backgroundColor: hex }}>
         <ColourInfo>
-          <Title fontSize="0.5rem">
-            {name}
-          </Title>
-          <Text>
-            {hex}
-          </Text>
+          <Title fontSize="0.5rem">{name}</Title>
+          <Text>{hex}</Text>
         </ColourInfo>
       </Colour>
     </Column>

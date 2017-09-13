@@ -7,10 +7,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Section, Container, Row } from '../components/Layout';
+import { Section, Container, Row, Column } from '../components/Layout';
 import { Text } from '../components/Typography';
 import { TabButtons, TabButton } from '../components/Buttons';
-import ColourCard from '../components/ColourCard';
+import { ColourCard } from '../components/Cards';
 
 // =============================================================================
 // Component
@@ -844,99 +844,89 @@ export default class ColoursScreen extends Component {
         hsb:  [80, 76, 80],
       },
     ],
-    sort: 'name',
-    asc:  true,
+    sortBy: 'name',
+    isAsc:  true,
+  };
+
+  sortByHSB = (sortBy) => {
+    const indexHSB = sortBy === 'hue' ? 0 : sortBy === 'saturation' ? 1 : 2;
+    this.setState({
+      colours: this.state.colours
+        .slice()
+        .sort(
+          (a, b) =>
+            this.state.isAsc
+              ? a.hsb[indexHSB] - b.hsb[indexHSB]
+              : b.hsb[indexHSB] - a.hsb[indexHSB],
+        ),
+    });
+  };
+  sortByName = () => {
+    this.setState({
+      colours: this.state.colours.slice().sort((a, b) => {
+        if (a.name < b.name) return this.state.isAsc ? -1 : 1;
+        if (a.name > b.name) return this.state.isAsc ? 1 : -1;
+        return 0;
+      }),
+    });
   };
 
   handleSort = (sortBy) => {
-    if (sortBy === 'name') {
-      this.setState({
-        colours: this.state.colours.slice().sort((a, b) => {
-          if (a.name < b.name) {
-            return -1;
-          }
-          if (a.name > b.name) {
-            return 1;
-          }
-          return 0;
-        }),
-        sort: 'name',
-        asc:  this.state.sort === 'name' ? !this.state.asc : true,
-      });
-    }
-    if (sortBy === 'hue') {
-      this.setState({
-        colours: this.state.colours.slice().sort((a, b) => a.hsb[0] - b.hsb[0]),
-        sort:    'hue',
-        asc:     this.state.sort === 'hue' ? !this.state.asc : true,
-      });
-    }
-    if (sortBy === 'saturation') {
-      this.setState({
-        colours: this.state.colours.slice().sort((a, b) => a.hsb[1] - b.hsb[1]),
-        sort:    'saturation',
-        asc:     this.state.sort === 'saturation' ? !this.state.asc : true,
-      });
-    }
-    if (sortBy === 'brightness') {
-      this.setState({
-        colours: this.state.colours.slice().sort((a, b) => a.hsb[2] - b.hsb[2]),
-        sort:    'brightness',
-        asc:     this.state.sort === 'brightness' ? !this.state.asc : true,
-      });
-    }
+    this.setState(
+      {
+        sortBy,
+        isAsc: this.state.sortBy === sortBy ? !this.state.isAsc : true,
+      },
+      () => (sortBy === 'name' ? this.sortByName() : this.sortByHSB(sortBy)),
+    );
   };
 
+  renderArrow = type =>
+    this.state.sortBy === type ? (this.state.isAsc ? '⇡' : '⇣') : null;
+
   render() {
+    const { sortBy, colours } = this.state;
     return (
       <main>
         <Section marginTop="20vh">
           <Container>
-            <Text marginBottom="1rem" textAlign="center">
-              Sort by:
-            </Text>
-            <TabButtons marginBottom="1rem">
-              <TabButton
-                onClick={() => this.handleSort('name')}
-                isActive={this.state.sort === 'name'}
-              >
-                name{' '}
-                {this.state.sort === 'name'
-                  ? this.state.asc ? '⇡' : '⇣'
-                  : null}
-              </TabButton>
-              <TabButton
-                onClick={() => this.handleSort('hue')}
-                isActive={this.state.sort === 'hue'}
-              >
-                hue{' '}
-                {this.state.sort === 'hue'
-                  ? this.state.asc ? '⇡' : '⇣'
-                  : null}
-              </TabButton>
-              <TabButton
-                onClick={() => this.handleSort('saturation')}
-                isActive={this.state.sort === 'saturation'}
-              >
-                saturation{' '}
-                {this.state.sort === 'saturation'
-                  ? this.state.asc ? '⇡' : '⇣'
-                  : null}
-              </TabButton>
-              <TabButton
-                onClick={() => this.handleSort('brightness')}
-                isActive={this.state.sort === 'brightness'}
-              >
-                brightness{' '}
-                {this.state.sort === 'brightness'
-                  ? this.state.asc ? '⇡' : '⇣'
-                  : null}
-              </TabButton>
-            </TabButtons>
+            <Row>
+              <Column xs="12">
+                <Text marginBottom="1rem" textAlign="center">
+                  Sort by:
+                </Text>
+                <TabButtons marginBottom="1rem">
+                  <TabButton
+                    onClick={() => this.handleSort('name')}
+                    isActive={sortBy === 'name'}
+                  >
+                    name {this.renderArrow('name')}
+                  </TabButton>
+                  <TabButton
+                    onClick={() => this.handleSort('hue')}
+                    isActive={sortBy === 'hue'}
+                  >
+                    hue {this.renderArrow('hue')}
+                  </TabButton>
+                  <TabButton
+                    onClick={() => this.handleSort('saturation')}
+                    isActive={sortBy === 'saturation'}
+                  >
+                    saturation {this.renderArrow('saturation')}
+                  </TabButton>
+                  <TabButton
+                    onClick={() => this.handleSort('brightness')}
+                    isActive={sortBy === 'brightness'}
+                  >
+                    brightness {this.renderArrow('brightness')}
+                  </TabButton>
+                </TabButtons>
+              </Column>
+            </Row>
             <Row isCentered>
-              {this.state.colours.map(color =>
-                <ColourCard key={color.name} colour={color} />,
-              )}
+              {colours.map(color => (
+                <ColourCard key={color.name} colour={color} />
+              ))}
             </Row>
           </Container>
         </Section>

@@ -2,13 +2,17 @@
 // Import
 // =============================================================================
 
-// React
+// react
 import React, { Component } from 'react';
 
-// Components
+// components
 import { Section, Container, Row, Column } from '../components/Layout';
+import Popup from '../components/Popup';
 import { Button } from '../components/Buttons';
 import { Form, TextInput, CheckboxInput } from '../components/Forms';
+
+// utils
+import { copyToClipboard } from '../utils/helpers';
 
 // =============================================================================
 // Component
@@ -24,6 +28,7 @@ export default class PassworldScreen extends Component {
       numbers:      false,
       specialChars: false,
     },
+    isCopied: false,
   };
 
   getRandomChar = () => {
@@ -59,8 +64,14 @@ export default class PassworldScreen extends Component {
     });
   };
 
+  copyToClipboard = () => {
+    this.setState({
+      isCopied: copyToClipboard(this.state.password),
+    });
+  };
+
   render() {
-    const { include, length, password } = this.state;
+    const { include, length, password, isCopied } = this.state;
     const { handleInput, generatePassword } = this;
     return (
       <main>
@@ -68,15 +79,22 @@ export default class PassworldScreen extends Component {
           <Container>
             <Row justifyContent="center">
               <Column lg={6}>
-                <TextInput
-                  type="text"
-                  name="password"
-                  value={password}
-                  placeholder="Your password will be here..."
-                  marginBottom="2rem"
-                  padding="2rem"
-                  onChange={handleInput}
-                />
+                {password.length > 0 && (
+                  <TextInput
+                    type="text"
+                    name="password"
+                    value={password}
+                    marginBottom="2rem"
+                    padding="2rem"
+                    onChange={handleInput}
+                    onCopy={this.copyToClipboard}
+                  />
+                )}
+                {isCopied && (
+                  <Popup key={window.performance.now()} top="auto" bottom="0">
+                    Copied to clipboard!
+                  </Popup>
+                )}
                 <Form>
                   <TextInput
                     type="number"

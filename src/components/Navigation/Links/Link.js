@@ -4,22 +4,16 @@
 
 // Styles
 import styled, { css } from 'styled-components';
-import {
-  color,
-  media,
-  transition,
-  positionAbsolute,
-  activeClassName,
-} from '../../utils/styles';
+import { color, transition, positionAbsolute } from '../../../utils/styles';
 
 // Components
-import { SmartLink, SmartNavLink } from '../../utils/helpers';
+import { SmartLink } from '../../../utils/helpers';
 
 // =============================================================================
-// Link
+// Component
 // =============================================================================
 
-export const Link = styled(SmartLink)`
+const Link = styled(SmartLink)`
   outline: none;
   ${props => !props.isBare && css`
     position: relative;
@@ -38,7 +32,7 @@ export const Link = styled(SmartLink)`
       background-color: ${color.brand.primary};
       transform: scaleX(0);
       transform-origin: left;
-      transition: ${transition.primary.medium} transform;
+      transition: ${transition.medium} transform;
     }
     &:hover::after {
       transform: scaleX(1);
@@ -52,33 +46,7 @@ Link.defaultProps = {
 };
 
 // =============================================================================
-// NavLink
+// Export
 // =============================================================================
 
-export const NavLink = styled(SmartNavLink)`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 12rem;
-  &::after {
-    content: '';
-    ${positionAbsolute};
-    z-index: -1;
-    transition: ${transition.primary.short} border-bottom;
-    border-bottom: 1px solid ${color.grey.lighter};
-  }
-  &.${activeClassName}::after {
-    border-bottom: 2px solid ${color.brand.primary};
-  }
-  &:hover::after {
-    border-bottom: 3px solid ${color.brand.primary};
-  }
-  ${media.lg`
-    & + & {
-      margin-left: 2rem;
-    }
-  `}
-`;
-
-NavLink.displayName = 'NavLink';
+export default Link;

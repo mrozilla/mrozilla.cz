@@ -15,16 +15,15 @@ import InputWrapper from './InputWrapper';
 // Styles
 // =============================================================================
 
+// Input
 const Input = styled.input`
   -webkit-appearance: none;
   outline: none;
+  border: initial;
   color: inherit;
   background-color: transparent;
-  display: block;
-  width: 100%;
-  border: 1px solid ${color.grey.lighter};
+  flex: 1;
   caret-color: ${color.brand.primary};
-  border-radius: ${border.radius.small};
   &::placeholder {
     opacity: 0.5;
   }
@@ -43,6 +42,25 @@ Input.defaultProps = {
   fontFamily: 'inherit',
 };
 
+// InputFlex
+const InputFlex = styled.div`
+  display: flex;
+  border: 1px solid ${color.grey.lighter};
+  border-radius: ${border.radius.small};
+`; // TODO find a better name
+
+// InputButton
+const InputButton = styled.button`
+  border: none;
+  outline: none;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  cursor: pointer;
+  background-color: ${color.grey.lighter};
+`;
+
 // =============================================================================
 // Component
 // =============================================================================
@@ -59,6 +77,7 @@ export default function TextInput({
   fontSize,
   fontFamily,
   onChange,
+  onCopy,
 }) {
   return (
     <InputWrapper
@@ -67,21 +86,30 @@ export default function TextInput({
       description={description}
       marginBottom={marginBottom}
     >
-      <Input
-        type={type}
-        name={name}
-        id={name}
-        value={value}
-        placeholder={placeholder}
-        padding={padding}
-        fontSize={fontSize}
-        fontFamily={fontFamily}
-        onChange={e =>
-          onChange(
-            name,
-            type === 'number' ? parseInt(e.target.value, 10) : e.target.value,
-          )}
-      />
+      <InputFlex>
+        <Input
+          type={type}
+          name={name}
+          id={name}
+          value={value}
+          placeholder={placeholder}
+          padding={padding}
+          fontSize={fontSize}
+          fontFamily={fontFamily}
+          onChange={e =>
+            onChange(
+              name,
+              type === 'number' ? parseInt(e.target.value, 10) : e.target.value,
+            )}
+        />
+        {onCopy && (
+          <InputButton onClick={() => onCopy()}>
+            <span role="img" aria-label="clipboard">
+              📋
+            </span>
+          </InputButton>
+        )}
+      </InputFlex>
     </InputWrapper>
   );
 }
@@ -98,6 +126,7 @@ TextInput.propTypes = {
   padding:      PropTypes.string,
   fontSize:     PropTypes.string,
   fontFamily:   PropTypes.string,
+  onCopy:       PropTypes.func,
 };
 
 TextInput.defaultProps = {
@@ -108,4 +137,5 @@ TextInput.defaultProps = {
   padding:      '2rem',
   fontSize:     null,
   fontFamily:   'inherit',
+  onCopy:       null,
 };

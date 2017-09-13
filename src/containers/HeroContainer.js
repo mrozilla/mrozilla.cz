@@ -32,16 +32,12 @@ export default function HeroContainer({
           </Wiggle>
           <Wiggle>
             <Subheading marginBottom="6rem">
-              <Reveal delay="500ms">
-                {subtitle}
-              </Reveal>
+              <Reveal delay="500ms">{subtitle}</Reveal>
             </Subheading>
           </Wiggle>
           <Wiggle>
             <Text marginBottom="6rem">
-              <Reveal delay="750ms">
-                {text}
-              </Reveal>
+              <Reveal delay="750ms">{text}</Reveal>
             </Text>
           </Wiggle>
         </Column>
