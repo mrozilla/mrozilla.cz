@@ -2,11 +2,11 @@
 // Import
 // =============================================================================
 
-// React
+// react
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// Components
+// components
 import { Section, Container, Row, Column } from '../components/Layout';
 import { Text } from '../components/Typography';
 import { TextAreaInput, Label } from '../components/Forms';
@@ -64,7 +64,7 @@ export default class ColoursScreen extends Component {
       return s.replace(rgx.newLines, '').length;
     }
     function charsWithoutSpaces(s) {
-      return s.replace(rgx.newLines, '').replace(rgx.spaces).length;
+      return s.replace(rgx.newLines, '').replace(rgx.spaces, '').length;
     }
     function mostCommonWord(s) {
       return wordsArray(s).reduce(
@@ -78,12 +78,10 @@ export default class ColoursScreen extends Component {
     function averageSentences(s) {
       return wordsArray(s).length / sentencesArray(s).length;
     }
-    function readingMinutes(s) {
-      return wordsArray(s).length / 275;
-    }
-    function speakingMinutes(s) {
-      return wordsArray(s).length / 150;
-    }
+    function spentTime(s, len) {
+      return new Date((wordsArray(s).length / len) * 60 * 1000)
+        .toLocaleTimeString('en-GB', { timeZone: 'UTC' });
+    } // prettier-ignore
 
     this.setState({
       textArea:              value,
@@ -94,8 +92,8 @@ export default class ColoursScreen extends Component {
       mostCommonWord:        mostCommonWord(value),
       sentencesCount:        sentencesArray(value).length,
       sentencesCountAverage: averageSentences(value),
-      readingTime:           readingMinutes(value),
-      speakingTime:          speakingMinutes(value),
+      readingTime:           spentTime(value, 275),
+      speakingTime:          spentTime(value, 150),
     });
   };
 
@@ -157,15 +155,9 @@ export default class ColoursScreen extends Component {
                   {sentencesCountAverage.toLocaleString('en')} words
                 </Text>
                 <Label>Reading time</Label>
-                <Text marginBottom="2rem">
-                  {Math.floor(readingTime)} min{' '}
-                  {((readingTime % 1) * 60).toFixed(0)} sec
-                </Text>
+                <Text marginBottom="2rem">{readingTime}</Text>
                 <Label>Speaking time</Label>
-                <Text marginBottom="2rem">
-                  {Math.floor(speakingTime)} min{' '}
-                  {((speakingTime % 1) * 60).toFixed(0)} sec
-                </Text>
+                <Text marginBottom="2rem">{speakingTime}</Text>
               </Column>
             </Row>
           </Container>
