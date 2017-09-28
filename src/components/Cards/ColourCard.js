@@ -26,7 +26,7 @@ import { Title, Text } from '../Typography';
 const Colour = styled.div`
   position: relative;
   padding-bottom: 100%;
-  transition: ${transition.short} transform,
+  transition: ${transition.short} transform;
   &:hover {
     transform: scale(1.1);
     z-index: 1;
