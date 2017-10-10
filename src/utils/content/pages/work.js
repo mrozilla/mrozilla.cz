@@ -6,30 +6,32 @@
 import React from 'react';
 
 // Components
-import { Link } from '../../components/Navigation/Links';
+import { Link } from '../../../components/Navigation/Links';
 
 // =============================================================================
 // Content
 // =============================================================================
 
-const home = {
+const work = {
   top: {
-    title:    'mrozilla.',
-    subtitle: `the online home of
-    a one-man digital studio.`,
+    title:    'work.',
+    subtitle: `the collection of
+    case studies and past work.`,
     text: (
       <span>
-        Always busy building new digital experiences, <br />
-        mixing together design, development, and copywriting. <br />
-        Have a look at some <Link to="#below">case studies ⇣</Link> or all the{' '}
-        <Link to="/work">work →</Link>
+        If you’re looking for something specific, you can <br />
+        filter for <Link to="/work/design#below">design</Link>,{' '}
+        <Link to="/work/dev#below">development</Link>,{' '}
+        <Link to="/work/copy#below">copywriting</Link>, or{' '}
+        <Link to="/work#below">all work</Link>. <br />
+        Some projects have a full case study, some don’t.
       </span>
     ),
   },
   bottom: {
-    title:    'cool.',
-    subtitle: `these were the highlights.
-    care for some more?`,
+    title:    'nice.',
+    subtitle: `this was all the work.
+    wanna see some more?`,
     text: (
       <span>
         There’s a{' '}
@@ -46,4 +48,4 @@ const home = {
   },
 };
 
-export default home;
+export default work;

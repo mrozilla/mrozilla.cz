@@ -3,11 +3,11 @@
 // =============================================================================
 
 // Copy
-import home from './home';
-import work from './work';
-import lab from './lab';
-import about from './about';
-import legal from './legal';
+import home from './pages/home';
+import work from './pages/work';
+import lab from './pages/lab';
+import about from './pages/about';
+import legal from './pages/legal';
 
 // Works
 import works from './works';

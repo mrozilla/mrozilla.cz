@@ -6,32 +6,30 @@
 import React from 'react';
 
 // Components
-import { Link } from '../../components/Navigation/Links';
+import { Link } from '../../../components/Navigation/Links';
 
 // =============================================================================
 // Content
 // =============================================================================
 
-const work = {
+const lab = {
   top: {
-    title:    'work.',
-    subtitle: `the collection of
-    case studies and past work.`,
+    title:    'lab.',
+    subtitle: `the random selection of
+    silly, silly experiments`,
     text: (
       <span>
-        If you’re looking for something specific, you can <br />
-        filter for <Link to="/work/design#below">design</Link>,{' '}
-        <Link to="/work/dev#below">development</Link>,{' '}
-        <Link to="/work/copy#below">copywriting</Link>, or{' '}
-        <Link to="/work#below">all work</Link>. <br />
-        Some projects have a full case study, some don’t.
+        Proof-of-concepts, little tools, silly fooling around. <br />
+        Pushing the limits of the canvas (figuratively & literally). <br />
+        Full-fledged projects <Link to="#below">below ⇣</Link>, snippets on{' '}
+        <Link to="https://codepen.io/mrozilla">codepen</Link>.
       </span>
     ),
   },
   bottom: {
-    title:    'nice.',
-    subtitle: `this was all the work.
-    wanna see some more?`,
+    title:    'wicked.',
+    subtitle: `that was a lot of fun.
+    curious to see more?`,
     text: (
       <span>
         There’s a{' '}
@@ -39,8 +37,8 @@ const work = {
           blog to read
         </Link>{' '}
         if you like reading. <br />
-        I also do a lot of <Link to="/lab">experiments →</Link> if you’re into
-        that stuff. <br />
+        Have a look at the <Link to="/work">commercial work →</Link> if you’re
+        into that stuff. <br />
         Or send me a message if you’d like to build something together. <br />
         It’s <Link to="mailto:jan@mrozilla.cz">jan@mrozilla.cz</Link>
       </span>
@@ -48,4 +46,4 @@ const work = {
   },
 };
 
-export default work;
+export default lab;

@@ -6,10 +6,10 @@
 import React from 'react';
 
 // Components
-import { Link } from '../../components/Navigation/Links';
+import { Link } from '../../../components/Navigation/Links';
 
 // Media
-import cv from './documents/CV-Jan_Hruby.pdf';
+import cv from '../documents/CV-Jan_Hruby.pdf';
 
 // =============================================================================
 // Content
@@ -134,7 +134,7 @@ const about = {
         Linkedin
       </Link>, or just <Link to="mailto:jan@mrozilla.cz">
         send me an email
-      </Link>. That&apos;s probably the best chance to get a response.
+                       </Link>. That&apos;s probably the best chance to get a response.
     </span>,
   ],
 };

@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import { Link } from '../../components/Navigation/Links';
+import { Link } from '../../../components/Navigation/Links';
 
 // =============================================================================
 // Content

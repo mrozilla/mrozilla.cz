@@ -6,30 +6,30 @@
 import React from 'react';
 
 // Components
-import { Link } from '../../components/Navigation/Links';
+import { Link } from '../../../components/Navigation/Links';
 
 // =============================================================================
 // Content
 // =============================================================================
 
-const lab = {
+const home = {
   top: {
-    title:    'lab.',
-    subtitle: `the random selection of
-    silly, silly experiments`,
+    title:    'mrozilla.',
+    subtitle: `the online home of
+    a one-man digital studio.`,
     text: (
       <span>
-        Proof-of-concepts, little tools, silly fooling around. <br />
-        Pushing the limits of the canvas (figuratively & literally). <br />
-        Full-fledged projects <Link to="#below">below ⇣</Link>, snippets on{' '}
-        <Link to="https://codepen.io/mrozilla">codepen</Link>.
+        Always busy building new digital experiences, <br />
+        mixing together design, development, and copywriting. <br />
+        Have a look at some <Link to="#below">case studies ⇣</Link> or all the{' '}
+        <Link to="/work">work →</Link>
       </span>
     ),
   },
   bottom: {
-    title:    'wicked.',
-    subtitle: `that was a lot of fun.
-    curious to see more?`,
+    title:    'cool.',
+    subtitle: `these were the highlights.
+    care for some more?`,
     text: (
       <span>
         There’s a{' '}
@@ -37,8 +37,8 @@ const lab = {
           blog to read
         </Link>{' '}
         if you like reading. <br />
-        Have a look at the <Link to="/work">commercial work →</Link> if you’re
-        into that stuff. <br />
+        I also do a lot of <Link to="/lab">experiments →</Link> if you’re into
+        that stuff. <br />
         Or send me a message if you’d like to build something together. <br />
         It’s <Link to="mailto:jan@mrozilla.cz">jan@mrozilla.cz</Link>
       </span>
@@ -46,4 +46,4 @@ const lab = {
   },
 };
 
-export default lab;
+export default home;
