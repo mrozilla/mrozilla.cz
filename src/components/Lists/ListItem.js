@@ -1,34 +1,34 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// Copy
-import home from './pages/home';
-import work from './pages/work';
-import lab from './pages/lab';
-import about from './pages/about';
-import legal from './pages/legal';
+// react
+import PropTypes from 'prop-types';
 
-// Works
-import works from './works';
+// styles
+import styled from 'styled-components';
 
 // =============================================================================
-// Content
+// component
 // =============================================================================
 
-const content = {
-  pages: {
-    home:  { ...home },
-    work:  { ...work },
-    lab:   { ...lab },
-    about: { ...about },
-    legal: { ...legal },
-  },
-  works: [...works],
+const ListItem = styled.li`
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+`;
+
+ListItem.displayName = 'ListItem';
+ListItem.propTypes = {
+  marginTop:    PropTypes.string,
+  marginBottom: PropTypes.string,
+};
+ListItem.defaultProps = {
+  marginTop:    '0',
+  marginBottom: '1rem',
 };
 
 // =============================================================================
-// Export
+// export
 // =============================================================================
 
-export default content;
+export default ListItem;

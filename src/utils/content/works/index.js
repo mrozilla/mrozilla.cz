@@ -3,27 +3,29 @@
 // =============================================================================
 
 // Media
-import himoment from './images/work-himoment.jpg';
-import movinEurope from './images/work-movin_europe.jpg';
-import esn from './images/work-esn.jpg';
-import napadRoku from './images/work-napad_roku.jpg';
-import pioneers from './images/work-pioneers.jpg';
-import leadspicker from './images/work-leadspicker.jpg';
-import meatarians from './images/work-meatarians.jpg';
+import himoment from '../images/work-himoment.jpg';
+import movinEurope from '../images/work-movin_europe.jpg';
+import esn from '../images/work-esn.jpg';
+import napadRoku from '../images/work-napad_roku.jpg';
+import pioneers from '../images/work-pioneers.jpg';
+import leadspicker from '../images/work-leadspicker.jpg';
+import meatarians from '../images/work-meatarians.jpg';
 
-import colours from './images/work-colours.jpg';
-import writest from './images/work-writest.jpg';
-import superconsultant from './images/work-superconsultant.jpg';
-import passworld from './images/work-passworld.jpg';
-import meowslator from './images/work-meowslator.jpg';
-import countOnMe from './images/work-count_on_me.jpg';
-import inAnyCase from './images/work-in_any_case.jpg';
-import esnQuiz from './images/work-esn_quiz.jpg';
+import mrozillaBot from '../images/work-mrozilla_messenger_bot.png';
+import colours from '../images/work-colours.jpg';
+import writest from '../images/work-writest.jpg';
+import superconsultant from '../images/work-superconsultant.jpg';
+import passworld from '../images/work-passworld.jpg';
+import meowslator from '../images/work-meowslator.jpg';
+import countOnMe from '../images/work-count_on_me.jpg';
+import inAnyCase from '../images/work-in_any_case.jpg';
+import esnQuiz from '../images/work-esn_quiz.jpg';
 
 // =============================================================================
 // Content
 // =============================================================================
 
+/* eslint-disable max-len */
 const works = [
   // ===========================================================================
   // Case studies
@@ -140,6 +142,14 @@ const works = [
 
   {
     type:    ['lab'],
+    link:    'https://m.me/881855475329484',
+    title:   'mrozilla messenger bot',
+    tagline: 'this website in a chatbot',
+    tags:    ['concept', 'chatbot', 'messenger'],
+    image:   mrozillaBot,
+  },
+  {
+    type:    ['lab'],
     link:    '/lab/colours',
     title:   'css colours',
     tagline: 'a complete collection of css-named colours',
@@ -203,5 +213,6 @@ const works = [
     image:   esnQuiz,
   },
 ];
+/* eslint-enable max-len */
 
 export default works;

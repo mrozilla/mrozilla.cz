@@ -1,34 +1,31 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// Copy
-import home from './pages/home';
-import work from './pages/work';
-import lab from './pages/lab';
-import about from './pages/about';
-import legal from './pages/legal';
+// react
+import PropTypes from 'prop-types';
 
-// Works
-import works from './works';
+// styles
+import styled from 'styled-components';
 
 // =============================================================================
-// Content
+// component
 // =============================================================================
 
-const content = {
-  pages: {
-    home:  { ...home },
-    work:  { ...work },
-    lab:   { ...lab },
-    about: { ...about },
-    legal: { ...legal },
-  },
-  works: [...works],
+const OrganisedList = styled.ol`margin-top: ${props => props.marginTop};`;
+
+OrganisedList.displayName = 'OrganisedList';
+OrganisedList.propTypes = {
+  type:      PropTypes.string,
+  marginTop: PropTypes.string,
+};
+OrganisedList.defaultProps = {
+  type:      '1',
+  marginTop: '0',
 };
 
 // =============================================================================
-// Export
+// export
 // =============================================================================
 
-export default content;
+export default OrganisedList;

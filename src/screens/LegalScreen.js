@@ -2,23 +2,25 @@
 // Import
 // =============================================================================
 
-// React
+// react
 import React from 'react';
 
-// Styles
+// components
 import { Section, Container, Row, Column } from '../components/Layout';
-import { Text } from '../components/Typography';
-import { Wiggle, Reveal } from '../components/Effects';
+import { Reveal } from '../components/Effects';
 import HeroContainer from '../containers/HeroContainer';
 
-// Content
+// helpers
+import { traverseList } from '../utils/helpers';
+
+// content
 import content from '../utils/content';
 
 // =============================================================================
 // Component
 // =============================================================================
 
-export default function AboutScreen() {
+export default function LegalScreen() {
   return (
     <main>
       <Section>
@@ -28,15 +30,9 @@ export default function AboutScreen() {
         <Container>
           <Row>
             <Column lg="9">
-              {content.pages.legal.text.map(item =>
-                (<Wiggle key={item.props.children}>
-                  <Text marginBottom="6rem">
-                    <Reveal delay="1000ms">
-                      {item}
-                    </Reveal>
-                  </Text>
-                </Wiggle>),
-              )}
+              <Reveal delay="1000ms">
+                {traverseList(content.pages.legal.text, 'ol')}
+              </Reveal>
             </Column>
           </Row>
         </Container>
@@ -44,5 +40,3 @@ export default function AboutScreen() {
     </main>
   );
 }
-
-AboutScreen.propTypes = {};
