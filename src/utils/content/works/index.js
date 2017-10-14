@@ -25,6 +25,7 @@ import esnQuiz from '../images/work-esn_quiz.jpg';
 // Content
 // =============================================================================
 
+/* eslint-disable max-len */
 const works = [
   // ===========================================================================
   // Case studies
@@ -212,5 +213,6 @@ const works = [
     image:   esnQuiz,
   },
 ];
+/* eslint-enable max-len */
 
 export default works;

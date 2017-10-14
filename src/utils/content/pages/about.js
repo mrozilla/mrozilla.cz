@@ -15,6 +15,7 @@ import cv from '../documents/CV-Jan_Hruby.pdf';
 // Content
 // =============================================================================
 
+/* eslint-disable max-len */
 const about = {
   top: {
     title:    'about',
@@ -138,5 +139,6 @@ const about = {
     </span>,
   ],
 };
+/* eslint-enable max-len */
 
 export default about;
