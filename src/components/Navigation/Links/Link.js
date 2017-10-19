@@ -21,7 +21,7 @@ const Link = styled(SmartLink)`
     font-weight: 900;
     vertical-align: bottom;
     color: ${color.brand.primary};
-    &:hover {
+    &:hover, &:focus {
       color: white;
     }
     &::after {
@@ -34,7 +34,7 @@ const Link = styled(SmartLink)`
       transform-origin: left;
       transition: ${transition.medium} transform;
     }
-    &:hover::after {
+    &:hover::after, &:focus::after {
       transform: scaleX(1);
     }
   `}
