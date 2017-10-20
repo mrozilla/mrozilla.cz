@@ -1,19 +1,22 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// React
+// react
 import React from 'react';
 
-// Components
+// components
 import { Footer, Link, BareLink } from '../components/Navigation';
 import { Logo, Icon } from '../components/Icons';
-import { Container } from '../components/Layout';
+import { Container, Flex } from '../components/Layout';
 import { Wiggle } from '../components/Effects';
 import Hidden from '../components/Hidden';
 
+// content
+import content from '../utils/content';
+
 // =============================================================================
-// Component
+// component
 // =============================================================================
 
 export default function FooterContainer() {
@@ -22,24 +25,13 @@ export default function FooterContainer() {
       <Container>
         <Footer>
           <Wiggle>
-            <BareLink to="//twitter.com/mrozilla" target="_blank">
-              <Icon name="twitter" />
-            </BareLink>
-            <BareLink to="//medium.com/mrozilla" target="_blank">
-              <Icon name="medium" marginLeft="0.5rem" />
-            </BareLink>
-            <BareLink to="//github.com/mrozilla" target="_blank">
-              <Icon name="github" marginLeft="0.5rem" />
-            </BareLink>
-            <BareLink to="//codepen.com/mrozilla" target="_blank">
-              <Icon name="codepen" marginLeft="0.5rem" />
-            </BareLink>
-            <BareLink to="//linkedin.com/in/mrozilla" target="_blank">
-              <Icon name="linkedin" marginLeft="0.5rem" />
-            </BareLink>
-            <BareLink to="mailto:jan@mrozilla.cz">
-              <Icon name="mail" marginLeft="0.5rem" />
-            </BareLink>
+            <Flex>
+              {content.social.map(({ name, link }) => (
+                <BareLink key={name} to={link} target="_blank">
+                  <Icon name={name} marginLeft="0.5rem" />
+                </BareLink>
+              ))}
+            </Flex>
           </Wiggle>
           <Wiggle>
             Made with{' '}
