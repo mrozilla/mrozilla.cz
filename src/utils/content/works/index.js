@@ -1,8 +1,8 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// Media
+// media
 import himoment from '../images/work-himoment.jpg';
 import movinEurope from '../images/work-movin_europe.jpg';
 import esn from '../images/work-esn.jpg';
@@ -22,7 +22,7 @@ import inAnyCase from '../images/work-in_any_case.jpg';
 import esnQuiz from '../images/work-esn_quiz.jpg';
 
 // =============================================================================
-// Content
+// content
 // =============================================================================
 
 /* eslint-disable max-len */
