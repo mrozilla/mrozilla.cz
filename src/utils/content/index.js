@@ -35,5 +35,5 @@ const content = {
 // Export
 // =============================================================================
 
-export { pages, home, work, lab, about, legal, works, social };
+export { home, work, lab, about, legal, works, social };
 export default content;

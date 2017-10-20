@@ -12,7 +12,7 @@ import { Wiggle, Reveal } from '../components/Effects';
 import HeroContainer from '../containers/HeroContainer';
 
 // Content
-import content from '../utils/content';
+import { about } from '../utils/content';
 
 // =============================================================================
 // Component
@@ -22,21 +22,19 @@ export default function AboutScreen() {
   return (
     <main>
       <Section>
-        <HeroContainer content={content.pages.about.top} />
+        <HeroContainer content={about.top} />
       </Section>
       <Section marginTop="-25vh" id="below">
         <Container>
           <Row>
             <Column lg="9">
-              {content.pages.about.text.map(item =>
-                (<Wiggle key={item.props.children}>
+              {about.text.map(item => (
+                <Wiggle key={item.props.children}>
                   <Text marginBottom="6rem">
-                    <Reveal delay="1000ms">
-                      {item}
-                    </Reveal>
+                    <Reveal delay="1000ms">{item}</Reveal>
                   </Text>
-                </Wiggle>),
-              )}
+                </Wiggle>
+              ))}
             </Column>
           </Row>
         </Container>
@@ -44,5 +42,3 @@ export default function AboutScreen() {
     </main>
   );
 }
-
-AboutScreen.propTypes = {};

@@ -13,7 +13,7 @@ import { Wiggle } from '../components/Effects';
 import Hidden from '../components/Hidden';
 
 // content
-import content from '../utils/content';
+import { social } from '../utils/content';
 
 // =============================================================================
 // component
@@ -26,7 +26,7 @@ export default function FooterContainer() {
         <Footer>
           <Wiggle>
             <Flex>
-              {content.social.map(({ name, link }) => (
+              {social.map(({ name, link }) => (
                 <BareLink key={name} to={link} target="_blank">
                   <Icon name={name} marginLeft="0.5rem" />
                 </BareLink>
