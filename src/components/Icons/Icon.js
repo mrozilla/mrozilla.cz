@@ -1,30 +1,19 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// React
+// react
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Styles
-import styled from 'styled-components';
+// styles
 import { color } from '../../utils/styles';
 
-// =============================================================================
-// Style
-// =============================================================================
-
-const IconWrapper = styled.span`
-  margin-left: ${props => props.marginLeft};
-  & + & {
-    margin-left: ${props => props.marginLeft};
-  }
-`;
-
-IconWrapper.displayName = 'IconWrapper';
+// components
+import IconWrapper from './IconWrapper';
 
 // =============================================================================
-// Component
+// component
 // =============================================================================
 
 export default function Icon({
