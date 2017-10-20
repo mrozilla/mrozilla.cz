@@ -8,10 +8,9 @@ import PropTypes from 'prop-types';
 
 // Components
 import { Column } from '../Layout';
-import { Link } from '../Navigation';
+import { BareLink } from '../Navigation';
 import { Title, Subtitle, Text, Comma } from '../Typography';
 import Image from '../Image';
-import { Card } from '../Cards';
 import { Reveal, Wiggle, MomentumScroll } from '../Effects';
 
 // Styles
@@ -22,7 +21,9 @@ import { color, border } from '../../utils/styles';
 // =============================================================================
 
 export default function WorkCard({
-  work: { link, title, tagline, tags, image },
+  work: {
+    link, title, tagline, tags, image,
+  },
   width,
   index,
 }) {
@@ -31,39 +32,36 @@ export default function WorkCard({
       <Wiggle>
         <MomentumScroll index={index}>
           <Reveal isBlock>
-            <Card>
-              <Link
-                to={link}
-                target={link.includes('http') ? '_blank' : null}
-                isBare
+            <BareLink
+              to={link}
+              target={link.includes('http') ? '_blank' : null}
+            >
+              <Image
+                src={image}
+                ratio={3 / 4}
+                marginBottom="2rem"
+                borderRadius={border.radius.small}
+              />
+              <Title
+                fontSize="2.5rem"
+                color={color.brand.primary}
+                textAlign="center"
               >
-                <Image
-                  src={image}
-                  ratio={3 / 4}
-                  marginBottom="2rem"
-                  borderRadius={border.radius.small}
-                />
-                <Title
+                {title}
+              </Title>
+              {tagline && (
+                <Subtitle
                   fontSize="2.5rem"
-                  color={color.brand.primary}
+                  marginBottom="1rem"
                   textAlign="center"
                 >
-                  {title}
-                </Title>
-                {tagline && (
-                  <Subtitle
-                    fontSize="2.5rem"
-                    marginBottom="1rem"
-                    textAlign="center"
-                  >
-                    {tagline}
-                  </Subtitle>
-                )}
-                <Text fontSize="1.5rem" textAlign="center">
-                  {tags.map(tag => <Comma key={tag}>{tag}</Comma>)}
-                </Text>
-              </Link>
-            </Card>
+                  {tagline}
+                </Subtitle>
+              )}
+              <Text fontSize="1.5rem" textAlign="center">
+                {tags.map(tag => <Comma key={tag}>{tag}</Comma>)}
+              </Text>
+            </BareLink>
           </Reveal>
         </MomentumScroll>
       </Wiggle>

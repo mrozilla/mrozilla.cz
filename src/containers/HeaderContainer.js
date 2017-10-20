@@ -13,7 +13,7 @@ import {
   NavbarBlock,
   NavbarToggle,
   NavLink,
-  Link,
+  BareLink,
 } from '../components/Navigation';
 import { Text } from '../components/Typography';
 import { Container } from '../components/Layout';
@@ -56,20 +56,22 @@ export default class HeaderContainer extends Component {
         <Container>
           <Navbar>
             <Wiggle>
-              {location.pathname === '/'
-                ? <Link to="/" isBare>
+              {location.pathname === '/' ? (
+                <BareLink to="/">
                   <Logo />
-                </Link>
-                : <Reveal>
+                </BareLink>
+              ) : (
+                <Reveal>
                   <Text
                     fontSize="4rem"
                     color={color.brand.primary}
                     onClick={() => history.goBack()}
                     cursor="pointer"
                   >
-                      ←
-                    </Text>
-                </Reveal>}
+                    ←
+                  </Text>
+                </Reveal>
+              )}
             </Wiggle>
             <NavbarBlock isCollapsed={isCollapsed}>
               <NavLink

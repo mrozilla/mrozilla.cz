@@ -7,7 +7,12 @@ import PropTypes from 'prop-types';
 
 // styles
 import styled from 'styled-components';
-import { color, transition, positionAbsolute } from '../../../utils/styles';
+import {
+  border,
+  color,
+  transition,
+  positionAbsolute,
+} from '../../../utils/styles';
 
 // components
 import { SmartLink } from '../../../utils/helpers';
@@ -16,49 +21,41 @@ import { SmartLink } from '../../../utils/helpers';
 // component
 // =============================================================================
 
-const Link = styled(SmartLink)`
+const BareLink = styled(SmartLink)`
   outline: none;
   position: relative;
-  display: inline-flex;
-  font-weight: 900;
-  vertical-align: bottom;
-  color: ${props => props.color};
-  &:hover,
-  &:focus {
-    color: white;
-  }
+  display: block;
   &::after {
     content: '';
     ${positionAbsolute};
-    border-radius: '0.125rem';
+    opacity: 0;
     z-index: -1;
-    transform: scaleX(0);
+    transform: scale(1);
     background-color: ${props => props.backgroundColor};
-    transform-origin: ${props => props.transformOrigin};
-    transition: ${props => props.transition} transform;
+    border-radius: ${props => props.borderRadius};
+    transition: ${props => props.transition};
   }
   &:hover::after,
   &:focus::after {
-    transform: scaleX(1);
+    opacity: 1;
+    transform: scale(1.05);
   }
 `;
 
-Link.displayName = 'Link';
-Link.propTypes = {
+BareLink.displayName = 'BareLink';
+BareLink.propTypes = {
   backgroundColor: PropTypes.string,
-  color:           PropTypes.string,
-  transformOrigin: PropTypes.string,
+  borderRadius:    PropTypes.string,
   transition:      PropTypes.string,
 };
-Link.defaultProps = {
-  backgroundColor: color.brand.primary,
-  color:           color.brand.primary,
-  transformOrigin: 'left',
-  transition:      transition.medium,
+BareLink.defaultProps = {
+  backgroundColor: color.grey.lighter,
+  borderRadius:    border.radius.medium,
+  transition:      transition.short,
 };
 
 // =============================================================================
 // export
 // =============================================================================
 
-export default Link;
+export default BareLink;
