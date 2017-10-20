@@ -22,7 +22,6 @@ import { SmartLink } from '../../../utils/helpers';
 // =============================================================================
 
 const BareLink = styled(SmartLink)`
-  outline: none;
   position: relative;
   display: block;
   &::after {

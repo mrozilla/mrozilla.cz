@@ -17,7 +17,6 @@ import { SmartLink } from '../../../utils/helpers';
 // =============================================================================
 
 const Link = styled(SmartLink)`
-  outline: none;
   position: relative;
   display: inline-flex;
   font-weight: 900;

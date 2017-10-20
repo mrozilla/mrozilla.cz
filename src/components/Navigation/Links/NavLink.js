@@ -20,7 +20,6 @@ import { SmartNavLink } from '../../../utils/helpers';
 // =============================================================================
 
 const NavLink = styled(SmartNavLink)`
-  outline: none;
   position: relative;
   display: flex;
   align-items: center;
