@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { Column } from '../Layout';
 import { BareLink } from '../Navigation';
 import { Title, Subtitle, Text, Comma } from '../Typography';
-import Image from '../Image';
+import { Image } from '../Multimedia';
 import { Reveal, Wiggle, MomentumScroll } from '../Effects';
 
 // Styles

@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 
 // Styles
 import styled from 'styled-components';
-import { transition, positionAbsolute } from '../utils/styles';
+import { transition, positionAbsolute } from '../../utils/styles';
 
 // Helpers
-import { withScrollPosition } from '../utils/helpers';
+import { withScrollPosition } from '../../utils/helpers';
 
 // =============================================================================
 // Styles
@@ -27,6 +27,11 @@ const ImageWrapper = styled.figure`
 `;
 
 ImageWrapper.displayName = 'ImageWrapper';
+ImageWrapper.propTypes = {
+  ratio:        PropTypes.number,
+  borderRadius: PropTypes.string,
+  marginBottom: PropTypes.string,
+};
 ImageWrapper.defaultProps = {
   ratio:        1,
   borderRadius: '0',
@@ -43,6 +48,10 @@ const ImageSource = styled.img`
 `;
 
 ImageSource.displayName = 'ImageSource';
+ImageSource.propTypes = {
+  transition: PropTypes.string,
+  zoom:       PropTypes.string,
+};
 ImageSource.defaultProps = {
   transition: transition.short,
 };
@@ -51,7 +60,9 @@ ImageSource.defaultProps = {
 // Component
 // =============================================================================
 
-function Image({ src, childRef, wasInViewport, zoom, ...rest }) {
+function Image({
+  src, childRef, wasInViewport, zoom, ...rest
+}) {
   return (
     <ImageWrapper innerRef={childRef} {...rest}>
       <ImageSource src={wasInViewport ? src : null} zoom={zoom} />
