@@ -11,7 +11,7 @@ import styled, { css } from 'styled-components';
 import { transition } from '../../utils/styles';
 
 // Helpers
-import { withScrollDirection } from '../../utils/helpers';
+import { ScrollDirection } from '../../utils/helpers';
 
 // =============================================================================
 // Parts
@@ -41,20 +41,25 @@ MomentumScrollWrapper.displayName = 'MomentumScrollWrapper';
 // Component
 // =============================================================================
 
-function MomentumScroll({ children, ...rest }) {
-  return <MomentumScrollWrapper {...rest}>{children}</MomentumScrollWrapper>;
+function MomentumScroll({ index, children }) {
+  return (
+    <ScrollDirection>
+      {({ isScrolling }) => (
+        <MomentumScrollWrapper isScrolling={isScrolling} index={index}>
+          {children}
+        </MomentumScrollWrapper>
+      )}
+    </ScrollDirection>
+  );
 }
 
 MomentumScroll.propTypes = {
-  children:    PropTypes.node.isRequired,
-  isScrolling: PropTypes.shape({
-    up:   PropTypes.bool.isRequired,
-    down: PropTypes.bool.isRequired,
-  }).isRequired,
+  children: PropTypes.node.isRequired,
+  index:    PropTypes.number.isRequired,
 };
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export default withScrollDirection(MomentumScroll);
+export default MomentumScroll;

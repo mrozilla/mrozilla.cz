@@ -1,40 +1,49 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// React
+// react
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Helpers
-import { withMousePosition } from '../../utils/helpers';
+// helpers
+import { MousePosition } from '../../utils/helpers';
 
 // =============================================================================
-// Wiggle
+// component
 // =============================================================================
 
-function Wiggle({ x, y, perspective, intensity, children, childRef, ...rest }) {
-  const transform = `perspective(${perspective}) translateX(${x *
-    -intensity}px) translateY(${y * intensity}px)`;
-  const transition = `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`;
+function Wiggle({
+  perspective, intensity, children, ...rest
+}) {
   return (
-    <div
-      style={{ transform, transition, WebkitTransform: transform }}
-      ref={childRef}
-      {...rest}
-    >
-      {children}
-    </div>
+    <MousePosition>
+      {({ x, y }, handleMouseMove, handleMouseLeave, handleChildRef) => {
+        const transform = `perspective(${perspective}) translateX(${x *
+          -intensity}px) translateY(${y * intensity}px)`;
+        const transition = `${x === 0 && y === 0
+          ? '1s '
+          : '100ms'} ease transform`;
+        return (
+          <div
+            style={{ transform, WebkitTransform: transform, transition }}
+            ref={handleChildRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            {...rest}
+          >
+            {children}
+          </div>
+        );
+      }}
+    </MousePosition>
   );
 }
 
 Wiggle.propTypes = {
-  x:           PropTypes.number.isRequired,
-  y:           PropTypes.number.isRequired,
   perspective: PropTypes.number,
   intensity:   PropTypes.number,
   children:    PropTypes.node.isRequired,
-  childRef:    PropTypes.func.isRequired,
 };
 
 Wiggle.defaultProps = {
@@ -43,7 +52,7 @@ Wiggle.defaultProps = {
 };
 
 // =============================================================================
-// Export
+// export
 // =============================================================================
 
-export default withMousePosition(Wiggle);
+export default Wiggle;

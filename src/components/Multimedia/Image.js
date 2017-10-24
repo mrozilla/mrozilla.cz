@@ -1,17 +1,17 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// React
+// react
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Styles
+// styles
 import styled from 'styled-components';
 import { transition, positionAbsolute } from '../../utils/styles';
 
-// Helpers
-import { withScrollPosition } from '../../utils/helpers';
+// helpers
+import { ScrollPosition } from '../../utils/helpers';
 
 // =============================================================================
 // Styles
@@ -60,21 +60,21 @@ ImageSource.defaultProps = {
 // Component
 // =============================================================================
 
-function Image({
-  src, childRef, wasInViewport, zoom, ...rest
-}) {
+function Image({ src, zoom, ...rest }) {
   return (
-    <ImageWrapper innerRef={childRef} {...rest}>
-      <ImageSource src={wasInViewport ? src : null} zoom={zoom} />
-    </ImageWrapper>
+    <ScrollPosition>
+      {({ wasInViewport }, childRef) => (
+        <ImageWrapper innerRef={childRef} {...rest}>
+          <ImageSource src={wasInViewport ? src : null} zoom={zoom} />
+        </ImageWrapper>
+      )}
+    </ScrollPosition>
   );
 }
 
 Image.propTypes = {
-  src:           PropTypes.string.isRequired,
-  childRef:      PropTypes.func.isRequired,
-  wasInViewport: PropTypes.bool.isRequired,
-  zoom:          PropTypes.string,
+  src:  PropTypes.string.isRequired,
+  zoom: PropTypes.string,
 };
 Image.defaultProps = {
   zoom: '1.00',
@@ -84,4 +84,4 @@ Image.defaultProps = {
 // Export
 // =============================================================================
 
-export default withScrollPosition(Image);
+export default Image;

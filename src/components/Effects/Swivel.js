@@ -7,34 +7,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Helpers
-import { withMousePosition } from '../../utils/helpers';
+import { MousePosition } from '../../utils/helpers';
 
 // =============================================================================
 // Swivel
 // =============================================================================
 
-function Swivel({ x, y, perspective, intensity, children, childRef, ...rest }) {
-  const transform = `perspective(${perspective}) rotateX(${x *
-    -intensity}px) rotateY(${y * intensity}px)`;
-  const transition = `${x === 0 && y === 0 ? '1s ' : '100ms'} ease transform`;
+function Swivel({ perspective, intensity, children }) {
   return (
-    <div
-      style={{ transform, transition, WebkitTransform: transform }}
-      ref={childRef}
-      {...rest}
-    >
-      {children}
-    </div>
+    <MousePosition>
+      {({ x, y }, handleMouseMove, handleMouseLeave, handleChildRef) => {
+        const transform = `perspective(${perspective}) rotateX(${x *
+          -intensity}px) rotateY(${y * intensity}px)`;
+        const transition = `${x === 0 && y === 0
+          ? '1s '
+          : '100ms'} ease transform`;
+        return (
+          <div
+            style={{ transform, WebkitTransform: transform, transition }}
+            ref={handleChildRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            {children}
+          </div>
+        );
+      }}
+    </MousePosition>
   );
 }
 
 Swivel.propTypes = {
-  x:           PropTypes.number.isRequired,
-  y:           PropTypes.number.isRequired,
   perspective: PropTypes.number,
   intensity:   PropTypes.number,
   children:    PropTypes.node.isRequired,
-  childRef:    PropTypes.func.isRequired,
 };
 
 Swivel.defaultProps = {
@@ -46,4 +52,4 @@ Swivel.defaultProps = {
 // Export
 // =============================================================================
 
-export default withMousePosition(Swivel);
+export default Swivel;
