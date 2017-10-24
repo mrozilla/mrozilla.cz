@@ -14,9 +14,6 @@ import { normalize, reboot } from './utils/styles';
 // Screens
 import App from './screens/AppScreen';
 
-// Helpers
-import { withLocation } from './utils/helpers';
-
 // Service worker
 import registerServiceWorker from './registerServiceWorker';
 
@@ -33,7 +30,7 @@ injectGlobal`${reboot}`; // eslint-disable-line
 
 const router = (
   <BrowserRouter>
-    <Route component={withLocation(App)} />
+    <Route component={App} />
   </BrowserRouter>
 );
 
@@ -48,7 +45,7 @@ if (module.hot) {
     const NextApp = require('./screens/AppScreen').default; // eslint-disable-line
     const nextRouter = (
       <BrowserRouter>
-        <Route component={withLocation(NextApp)} />
+        <Route component={NextApp} />
       </BrowserRouter>
     );
     ReactDOM.render(nextRouter, mountNode);

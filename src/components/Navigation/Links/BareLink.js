@@ -2,47 +2,59 @@
 // import
 // =============================================================================
 
+// react
+import PropTypes from 'prop-types';
+
 // styles
 import styled from 'styled-components';
 import {
-  color,
   border,
+  color,
   transition,
   positionAbsolute,
-} from '../../utils/styles';
+} from '../../../utils/styles';
+
+// components
+import { SmartLink } from '../../../utils/helpers';
 
 // =============================================================================
 // component
 // =============================================================================
 
-const Card = styled.div`
+const BareLink = styled(SmartLink)`
   position: relative;
-  border-radius: ${props => props.borderRadius};
+  display: block;
   &::after {
     content: '';
-    border-radius: inherit;
-    z-index: -1;
     ${positionAbsolute};
-    transform: scale(1);
     opacity: 0;
-    transition: ${transition.short};
+    z-index: -1;
+    transform: scale(1);
     background-color: ${props => props.backgroundColor};
+    border-radius: ${props => props.borderRadius};
+    transition: ${props => props.transition};
   }
   &:hover::after,
-  &:focus-within::after {
-    transform: scale(1.05);
+  &:focus::after {
     opacity: 1;
+    transform: scale(1.05);
   }
 `;
 
-Card.displayName = 'Card';
-Card.defaultProps = {
+BareLink.displayName = 'BareLink';
+BareLink.propTypes = {
+  backgroundColor: PropTypes.string,
+  borderRadius:    PropTypes.string,
+  transition:      PropTypes.string,
+};
+BareLink.defaultProps = {
   backgroundColor: color.grey.lighter,
   borderRadius:    border.radius.medium,
+  transition:      transition.short,
 };
 
 // =============================================================================
 // export
 // =============================================================================
 
-export default Card;
+export default BareLink;

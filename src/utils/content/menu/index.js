@@ -1,14 +1,29 @@
 // =============================================================================
-// Import
+// content
 // =============================================================================
 
-// React
-import { Children } from 'react';
+const menu = [
+  {
+    to:   '/work',
+    name: 'work',
+  },
+  {
+    to:   '/lab',
+    name: 'lab',
+  },
+  {
+    to:     'https://medium.com/mrozilla/',
+    target: '_blank',
+    name:   'blog',
+  },
+  {
+    to:   '/about',
+    name: 'about',
+  },
+];
 
 // =============================================================================
-// getFirstChild
+// export
 // =============================================================================
 
-export function getFirstChild({ children }) {
-  return Children.toArray(children)[0] || null;
-}
+export default menu;

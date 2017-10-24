@@ -35,7 +35,8 @@ const NavLink = styled(SmartNavLink)`
   &.${activeClassName}::after {
     border-bottom: 2px solid ${color.brand.primary};
   }
-  &:hover::after {
+  &:hover::after,
+  &:focus::after {
     border-bottom: 3px solid ${color.brand.primary};
   }
   ${media.lg`

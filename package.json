@@ -1,6 +1,6 @@
 {
   "name": "mrozilla-react",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description":
     "the online home of a one-man digital studio. built with react and 🍺.",
   "license": "MIT",
@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.0",
-    "eslint": "^4.8.0",
-    "eslint-config-airbnb": "^16.0.0",
-    "eslint-plugin-import": "^2.7.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
     "source-map-explorer": "^1.5.0"
@@ -27,7 +27,7 @@
     "react-ga": "^2.3.5",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
-    "styled-components": "^2.2.1"
+    "styled-components": "^2.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

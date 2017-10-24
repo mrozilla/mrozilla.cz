@@ -1,30 +1,33 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// React
+// react
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// Components
+// components
 import {
   Header,
   Navbar,
   NavbarBlock,
   NavbarToggle,
   NavLink,
-  Link,
+  BareLink,
 } from '../components/Navigation';
 import { Text } from '../components/Typography';
 import { Container } from '../components/Layout';
 import { Logo } from '../components/Icons';
 import { Reveal, Wiggle } from '../components/Effects';
 
-// Styles
+// styles
 import { color } from '../utils/styles';
 
+// content
+import { menu } from '../utils/content';
+
 // =============================================================================
-// Component
+// component
 // =============================================================================
 
 export default class HeaderContainer extends Component {
@@ -36,7 +39,6 @@ export default class HeaderContainer extends Component {
       goBack: PropTypes.func.isRequired,
     }).isRequired,
   };
-
   state = {
     isCollapsed: true,
   };
@@ -56,43 +58,34 @@ export default class HeaderContainer extends Component {
         <Container>
           <Navbar>
             <Wiggle>
-              {location.pathname === '/'
-                ? <Link to="/" isBare>
+              {location.pathname === '/' ? (
+                <BareLink to="/">
                   <Logo />
-                </Link>
-                : <Reveal>
+                </BareLink>
+              ) : (
+                <Reveal>
                   <Text
                     fontSize="4rem"
                     color={color.brand.primary}
                     onClick={() => history.goBack()}
                     cursor="pointer"
                   >
-                      ←
-                    </Text>
-                </Reveal>}
+                    ←
+                  </Text>
+                </Reveal>
+              )}
             </Wiggle>
             <NavbarBlock isCollapsed={isCollapsed}>
-              <NavLink
-                to="/work"
-                onClick={isCollapsed === false ? this.toggleMenu : null}
-              >
-                <Wiggle>work</Wiggle>
-              </NavLink>
-              <NavLink
-                to="/lab"
-                onClick={isCollapsed === false ? this.toggleMenu : null}
-              >
-                <Wiggle>lab</Wiggle>
-              </NavLink>
-              <NavLink to="https://medium.com/mrozilla/" target="_blank">
-                <Wiggle>blog</Wiggle>
-              </NavLink>
-              <NavLink
-                to="/about"
-                onClick={isCollapsed === false ? this.toggleMenu : null}
-              >
-                <Wiggle>about</Wiggle>
-              </NavLink>
+              {menu.map(({ to, name, target }) => (
+                <NavLink
+                  key={name}
+                  to={to}
+                  target={target}
+                  onClick={isCollapsed === false ? this.toggleMenu : null}
+                >
+                  <Wiggle>{name}</Wiggle>
+                </NavLink>
+              ))}
             </NavbarBlock>
             <NavbarToggle isCollapsed={isCollapsed} onClick={this.toggleMenu} />
           </Navbar>

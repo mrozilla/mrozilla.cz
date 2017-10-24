@@ -14,7 +14,7 @@ import HeroContainer from '../containers/HeroContainer';
 import { traverseList } from '../utils/helpers';
 
 // content
-import content from '../utils/content';
+import { legal } from '../utils/content';
 
 // =============================================================================
 // Component
@@ -24,15 +24,13 @@ export default function LegalScreen() {
   return (
     <main>
       <Section>
-        <HeroContainer content={content.pages.legal.top} />
+        <HeroContainer content={legal.top} />
       </Section>
       <Section marginTop="-25vh" id="below">
         <Container>
           <Row>
             <Column lg="9">
-              <Reveal delay="1000ms">
-                {traverseList(content.pages.legal.text, 'ol')}
-              </Reveal>
+              <Reveal delay="1000ms">{traverseList(legal.text, 'ol')}</Reveal>
             </Column>
           </Row>
         </Container>

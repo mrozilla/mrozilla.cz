@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
 // Helpers
-import { importAsync } from '../utils/helpers';
+import { importAsync, Location } from '../utils/helpers';
 
 // Containers
 import HeaderContainer from '../containers/HeaderContainer';
@@ -32,7 +32,7 @@ const FourOhFourScreen = importAsync(() => import('./FourOhFourScreen'));
 
 export default function App({ location, history }) {
   return (
-    <div>
+    <Location location={location}>
       <HeaderContainer location={location} history={history} />
       <Switch>
         <Route exact path="/" component={HomeScreen} />
@@ -49,7 +49,7 @@ export default function App({ location, history }) {
         <Route component={FourOhFourScreen} />
       </Switch>
       <FooterContainer />
-    </div>
+    </Location>
   );
 }
 

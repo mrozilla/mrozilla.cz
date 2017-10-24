@@ -1,52 +1,63 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// Styles
-import styled, { css } from 'styled-components';
+// react
+import PropTypes from 'prop-types';
+
+// styles
+import styled from 'styled-components';
 import { color, transition, positionAbsolute } from '../../../utils/styles';
 
-// Components
+// components
 import { SmartLink } from '../../../utils/helpers';
 
 // =============================================================================
-// Component
+// component
 // =============================================================================
 
 const Link = styled(SmartLink)`
-  outline: none;
-  ${props => !props.isBare && css`
-    position: relative;
-    display: inline-flex;
-    font-weight: 900;
-    vertical-align: bottom;
-    color: ${color.brand.primary};
-    &:hover {
-      color: white;
-    }
-    &::after {
-      content: "";
-      ${positionAbsolute};
-      border-radius: '0.125rem';
-      z-index: -1;
-      background-color: ${color.brand.primary};
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: ${transition.medium} transform;
-    }
-    &:hover::after {
-      transform: scaleX(1);
-    }
-  `}
-`; // prettier-ignore
+  position: relative;
+  display: inline-flex;
+  font-weight: 900;
+  vertical-align: bottom;
+  color: ${props => props.color};
+  &:hover,
+  &:focus {
+    color: white;
+  }
+  &::after {
+    content: '';
+    ${positionAbsolute};
+    border-radius: '0.125rem';
+    z-index: -1;
+    transform: scaleX(0);
+    background-color: ${props => props.backgroundColor};
+    transform-origin: ${props => props.transformOrigin};
+    transition: ${props => props.transition} transform;
+  }
+  &:hover::after,
+  &:focus::after {
+    transform: scaleX(1);
+  }
+`;
 
 Link.displayName = 'Link';
+Link.propTypes = {
+  backgroundColor: PropTypes.string,
+  color:           PropTypes.string,
+  transformOrigin: PropTypes.string,
+  transition:      PropTypes.string,
+};
 Link.defaultProps = {
-  isBare: false,
+  backgroundColor: color.brand.primary,
+  color:           color.brand.primary,
+  transformOrigin: 'left',
+  transition:      transition.medium,
 };
 
 // =============================================================================
-// Export
+// export
 // =============================================================================
 
 export default Link;

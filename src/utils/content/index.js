@@ -1,34 +1,43 @@
 // =============================================================================
-// Import
+// import
 // =============================================================================
 
-// Copy
+// copy
 import home from './pages/home';
 import work from './pages/work';
 import lab from './pages/lab';
 import about from './pages/about';
 import legal from './pages/legal';
 
-// Works
+// works
 import works from './works';
 
+// social
+import social from './social';
+
+// misc
+import menu from './menu';
+
 // =============================================================================
-// Content
+// content
 // =============================================================================
 
 const content = {
   pages: {
-    home:  { ...home },
-    work:  { ...work },
-    lab:   { ...lab },
-    about: { ...about },
-    legal: { ...legal },
+    home,
+    work,
+    lab,
+    about,
+    legal,
   },
-  works: [...works],
+  works,
+  social,
+  menu,
 };
 
 // =============================================================================
 // Export
 // =============================================================================
 
+export { home, work, lab, about, legal, works, social, menu };
 export default content;
