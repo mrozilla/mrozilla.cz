@@ -15,6 +15,9 @@ import works from './works';
 // social
 import social from './social';
 
+// misc
+import menu from './menu';
+
 // =============================================================================
 // content
 // =============================================================================
@@ -29,11 +32,12 @@ const content = {
   },
   works,
   social,
+  menu,
 };
 
 // =============================================================================
 // Export
 // =============================================================================
 
-export { home, work, lab, about, legal, works, social };
+export { home, work, lab, about, legal, works, social, menu };
 export default content;
