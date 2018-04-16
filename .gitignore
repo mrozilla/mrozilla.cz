@@ -1,0 +1,29 @@
+# Project dependencies
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+/public
+
+# editors
+/.idea
+/.vscode
+
+# misc
+.cache
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.DS_Store
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
