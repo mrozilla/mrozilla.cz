@@ -15,9 +15,9 @@ Heading.propTypes = {
 };
 Heading.defaultProps = {
   ...Text.defaultProps,
-  fontSize:     '3rem',
-  lineHeight:   '3rem',
-  marginBottom: '4rem',
+  fontSize:   '4rem',
+  lineHeight: '4rem',
+  margin:     '0 0 4rem 0',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
