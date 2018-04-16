@@ -2,20 +2,15 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, Header } from '../components';
+import styled from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ children }) {
-  return (
-    <Wrapper>
-      <Header />
-      {children()}
-    </Wrapper>
-  );
-}
+export default styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr var(--width-main) 0.5fr;
+  grid-template-areas: 'header main aside';
+`;
