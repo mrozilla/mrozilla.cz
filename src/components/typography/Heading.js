@@ -2,22 +2,26 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, Header, Heading } from '../components';
+import Text from './Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ children }) {
-  return (
-    <Wrapper>
-      <Header>
-        <Heading>mrozilla</Heading>
-      </Header>
-      {children()}
-    </Wrapper>
-  );
-}
+const Heading = Text.withComponent('h1');
+
+Heading.propTypes = {
+  ...Text.propTypes,
+};
+Heading.defaultProps = {
+  ...Text.defaultProps,
+  fontSize:     '3rem',
+  lineHeight:   '3rem',
+  marginBottom: '4rem',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default Heading;

@@ -2,22 +2,23 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, Header, Heading } from '../components';
+import styled from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ children }) {
-  return (
-    <Wrapper>
-      <Header>
-        <Heading>mrozilla</Heading>
-      </Header>
-      {children()}
-    </Wrapper>
-  );
-}
+export default styled.p`
+  font-family: ${({ fontFamily }) => fontFamily};
+  font-size: ${({ fontSize }) => fontSize};
+  font-weight: ${({ fontWeight }) => fontWeight};
+  line-height: ${({ lineHeight }) => lineHeight};
+  text-align: ${({ textAlign }) => textAlign};
+  text-transform: ${({ textTransform }) => textTransform};
+  letter-spacing: ${({ letterSpacing }) => letterSpacing};
+  color: ${({ color }) => color};
+  opacity: ${({ opacity }) => opacity};
+  margin: ${({ margin }) => margin};
+  padding: ${({ padding }) => padding};
+  grid-column: ${({ gridColumn }) => gridColumn};
+`;
