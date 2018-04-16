@@ -1,6 +1,18 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'mrozilla',
   },
-  plugins: ['gatsby-plugin-react-helmet'],
-}
+  plugins: [
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'src',
+        path: `${__dirname}/src/content`,
+      },
+    },
+    'gatsby-transformer-json',
+    'gatsby-plugin-preact',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
+  ],
+};
