@@ -3,30 +3,48 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import './index.css';
-
-import { Wrapper, HeaderBlock } from '../components';
+import styled, { css } from 'styled-components';
+import GatsbyLink from 'gatsby-link';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ data: { menusJson: { header } }, children }) {
-  return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-    </Wrapper>
-  );
-}
-
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
-      }
+const RouterLink = styled(GatsbyLink)`
+  transition: 250ms;
+  ${({ type }) => {
+    if (type === 'primary') {
+      return css`
+        box-shadow: 0 2px var(--color-grey);
+        &:hover {
+          box-shadow: 0 2px var(--color-grey-dark);
+        }
+      `;
     }
-  }
+    return null;
+  }};
 `;
+const ExternalLink = RouterLink.withComponent('a');
+
+export default ({
+  href, to, children, ...rest
+}) => {
+  const link = href || to;
+  if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
+    return (
+      <ExternalLink
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...rest}
+      >
+        {children}
+      </ExternalLink>
+    );
+  }
+  return (
+    <RouterLink to={link} {...rest}>
+      {children}
+    </RouterLink>
+  );
+};

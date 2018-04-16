@@ -2,31 +2,26 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, HeaderBlock } from '../components';
+import Text from './Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ data: { menusJson: { header } }, children }) {
-  return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-    </Wrapper>
-  );
-}
+const Heading = Text.withComponent('h1');
 
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
-      }
-    }
-  }
-`;
+Heading.propTypes = {
+  ...Text.propTypes,
+};
+Heading.defaultProps = {
+  ...Text.defaultProps,
+  fontSize:   '4rem',
+  lineHeight: '4rem',
+  margin:     '0 0 4rem 0',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default Heading;

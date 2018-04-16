@@ -4,7 +4,7 @@
   --color-grey-dark: hsl(240, 5%, 40%);
   --color-bg: white;
 
-  --width-main: 16fr;
+  --width-main: calc(100vw - 2rem);
 }
 
 @media screen and (min-width: 600px) {
@@ -52,7 +52,7 @@ h4,
 h5,
 h6 {
   font-size: inherit;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 ul {

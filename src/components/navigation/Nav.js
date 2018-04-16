@@ -2,31 +2,30 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, HeaderBlock } from '../components';
+import styled from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ data: { menusJson: { header } }, children }) {
-  return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-    </Wrapper>
-  );
-}
+const Nav = styled.nav``;
 
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
+Nav.Subheading = styled.h2``;
+
+Nav.List = styled.ul`
+  &:hover {
+    & > li {
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
       }
     }
   }
 `;
+
+Nav.List.Item = styled.li`
+  font-weight: 600;
+  transition: 250ms;
+`;
+
+export default Nav;

@@ -2,31 +2,23 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, HeaderBlock } from '../components';
+import styled from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ data: { menusJson: { header } }, children }) {
-  return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-    </Wrapper>
-  );
-}
-
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
-      }
-    }
-  }
+export default styled.p`
+  font-family: ${({ fontFamily }) => fontFamily};
+  font-size: ${({ fontSize }) => fontSize};
+  font-weight: ${({ fontWeight }) => fontWeight};
+  line-height: ${({ lineHeight }) => lineHeight};
+  text-align: ${({ textAlign }) => textAlign};
+  text-transform: ${({ textTransform }) => textTransform};
+  letter-spacing: ${({ letterSpacing }) => letterSpacing};
+  color: ${({ color }) => color};
+  opacity: ${({ opacity }) => opacity};
+  margin: ${({ margin }) => margin};
+  padding: ${({ padding }) => padding};
+  grid-column: ${({ gridColumn }) => gridColumn};
 `;

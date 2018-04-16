@@ -3,30 +3,28 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import './index.css';
 
-import { Wrapper, HeaderBlock } from '../components';
+import { Header, Heading, Link, Nav } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ data: { menusJson: { header } }, children }) {
+export default function HeaderBlock({ header }) {
   return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-    </Wrapper>
+    <Header>
+      <Heading>
+        <Link to="/">mrozilla</Link>
+      </Heading>
+      <Nav>
+        <Nav.List>
+          {header.map(item => (
+            <Nav.List.Item>
+              <Link to={item.url}>{item.text}</Link>
+            </Nav.List.Item>
+          ))}
+        </Nav.List>
+      </Nav>
+    </Header>
   );
 }
-
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
-      }
-    }
-  }
-`;

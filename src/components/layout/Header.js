@@ -2,31 +2,16 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
-import { Wrapper, HeaderBlock } from '../components';
+import styled from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({ data: { menusJson: { header } }, children }) {
-  return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-    </Wrapper>
-  );
-}
-
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
-      }
-    }
-  }
+export default styled.header`
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 20vh 4rem 0 12rem;
 `;
