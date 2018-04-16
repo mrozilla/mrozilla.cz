@@ -1,0 +1,20 @@
+{
+  "header": [
+    {
+      "url": "/work",
+      "text": "work"
+    },
+    {
+      "url": "/lab",
+      "text": "lab"
+    },
+    {
+      "url": "/about",
+      "text": "about"
+    },
+    {
+      "url": "/blog",
+      "text": "blog"
+    }
+  ]
+}
