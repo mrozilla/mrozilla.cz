@@ -1,7 +1,7 @@
 :root {
-  --color-grey-light: hsl(240, 10%, 95%);
-  --color-grey: hsl(240, 10%, 85%);
-  --color-grey-dark: hsl(240, 5%, 40%);
+  --color-grey-light: hsl(200, 10%, 96%);
+  --color-grey: hsl(200, 10%, 85%);
+  --color-grey-dark: hsl(200, 5%, 40%);
   --color-bg: white;
 
   --width-main: calc(100vw - 2rem);
