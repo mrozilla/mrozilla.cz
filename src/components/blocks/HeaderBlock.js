@@ -13,7 +13,7 @@ import { Header, Heading, Link, Nav } from '../../components';
 export default function HeaderBlock({ header }) {
   return (
     <Header>
-      <Heading>
+      <Heading fontSize="3rem">
         <Link to="/">mrozilla</Link>
       </Heading>
       <Nav>

@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { Grid, Subheading, Text, Link } from '../../components';
+import { Text, Link } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -27,22 +27,11 @@ export default class AvailabilityBlock extends PureComponent {
 
   render() {
     return (
-      <Grid.Item gridArea="availability">
-        <Subheading
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.1em"
-        >
-          {this.props.availability.title}
-        </Subheading>
-        <Text fontSize="4rem" fontWeight="700">
-          <Link to="mailto:jan@mrozilla.cz" type="primary">
-            {this.state.availability}
-          </Link>
-        </Text>
-      </Grid.Item>
+      <Text fontSize="3rem" fontWeight="700">
+        <Link to="mailto:jan@mrozilla.cz" type="primary">
+          {this.state.availability}
+        </Link>
+      </Text>
     );
   }
 }
