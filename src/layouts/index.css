@@ -4,17 +4,17 @@
   --color-grey-dark: hsl(200, 5%, 40%);
   --color-bg: white;
 
-  --width-main: calc(100vw - 2rem);
+  --width-main: 2fr;
 }
 
 @media screen and (min-width: 600px) {
   :root {
-    --width-main: 600px;
+    --width-main: 2fr;
   }
 }
 @media screen and (min-width: 900px) {
   :root {
-    --width-main: 900px;
+    --width-main: 2fr;
   }
 }
 
