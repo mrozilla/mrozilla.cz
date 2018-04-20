@@ -4,17 +4,30 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Main, Section, Heading } from '../components';
+import {
+  Main,
+  Section,
+  Grid,
+  Heading,
+  Subheading,
+  Title,
+  Text,
+  List,
+  Link,
+  WorksBlock,
+  AvailabilityBlock,
+} from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function HomePage({
-  data: { pagesJson: { meta, body: { hero } } },
+  data: {
+    pagesJson: { meta, body: { hero, location, availability } },
+    allWorksJson: { edges: cases },
+  },
 }) {
-  const availability = new Date();
-  availability.setMonth(availability.getMonth() + 1);
   return (
     <Main>
       <Helmet
@@ -33,6 +46,28 @@ export default function HomePage({
         >
           {hero.title}
         </Heading>
+        <Grid
+          gridTemplateColumns="1fr 1fr"
+          gridTemplateAreas="'based availability' 'cases lab'"
+          gridGap="10vh 4rem"
+          alignItems="start"
+        >
+          <Grid.Item gridArea="based">
+            <Subheading
+              fontSize="1.25rem"
+              fontWeight="300"
+              margin="0"
+              textTransform="uppercase"
+              letterSpacing="0.1em"
+            >
+              {location.title}
+            </Subheading>
+            <Text fontSize="4rem" fontWeight="700">
+              {location.text}
+            </Text>
+          </Grid.Item>
+          <AvailabilityBlock availability={availability} />
+        </Grid>
       </Section>
     </Main>
   );
@@ -49,6 +84,25 @@ export const query = graphql`
       body {
         hero {
           title
+        }
+        location {
+          title
+          text
+        }
+        availability {
+          title
+          text
+        }
+      }
+    }
+    allWorksJson(filter: { type: { in: ["case"] } }) {
+      edges {
+        node {
+          url
+          title
+          tagline
+          description
+          tags
         }
       }
     }
