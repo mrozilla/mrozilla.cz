@@ -11,6 +11,14 @@
     "hero": {
       "title":
         "mrozilla is a one-man digital studio focusing on web design, front-end development, and UI working with React, GraphQL, and Javascript"
+    },
+    "location": {
+      "title": "Currently based in",
+      "text": "Vienna, Austria"
+    },
+    "availability": {
+      "title": "New projects availability",
+      "text": "Loading..."
     }
   }
 }
