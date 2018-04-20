@@ -25,7 +25,7 @@ import {
 export default function HomePage({
   data: {
     pagesJson: { meta, body: { hero, location, availability } },
-    allWorksJson: { edges: cases },
+    allWorksJson: { edges: works },
   },
 }) {
   return (
@@ -48,7 +48,7 @@ export default function HomePage({
         </Heading>
         <Grid
           gridTemplateColumns="1fr 1fr"
-          gridTemplateAreas="'based availability' 'cases lab'"
+          gridTemplateAreas="'based availability' 'work blog' 'work links'"
           gridGap="10vh 4rem"
           alignItems="start"
         >
@@ -58,15 +58,38 @@ export default function HomePage({
               fontWeight="300"
               margin="0"
               textTransform="uppercase"
-              letterSpacing="0.1em"
+              letterSpacing="0.2em"
             >
               {location.title}
             </Subheading>
-            <Text fontSize="4rem" fontWeight="700">
+            <Text fontSize="3rem" fontWeight="700">
               {location.text}
             </Text>
           </Grid.Item>
-          <AvailabilityBlock availability={availability} />
+          <Grid.Item gridArea="availability">
+            <Subheading
+              fontSize="1.25rem"
+              fontWeight="300"
+              margin="0"
+              textTransform="uppercase"
+              letterSpacing="0.2em"
+            >
+              {availability.title}
+            </Subheading>
+            <AvailabilityBlock availability={availability} />
+          </Grid.Item>
+          <Grid.Item gridArea="work" id="work">
+            <Subheading
+              fontSize="1.25rem"
+              fontWeight="300"
+              margin="0"
+              textTransform="uppercase"
+              letterSpacing="0.2em"
+            >
+              latest client work
+            </Subheading>
+            <WorksBlock works={works} />
+          </Grid.Item>
         </Grid>
       </Section>
     </Main>
@@ -95,13 +118,14 @@ export const query = graphql`
         }
       }
     }
-    allWorksJson(filter: { type: { in: ["case"] } }) {
+    allWorksJson(
+      filter: { type: { in: ["work"] } }
+      sort: { fields: [date], order: DESC }
+    ) {
       edges {
         node {
           url
           title
-          tagline
-          description
           tags
         }
       }
