@@ -48,9 +48,8 @@ export default function HomePage({
         </Heading>
         <Grid
           gridTemplateColumns="1fr 1fr"
-          gridTemplateAreas="'based availability' 'work blog' 'work links'"
+          gridTemplateAreas="'based availability' 'work blog'"
           gridGap="10vh 4rem"
-          alignItems="start"
         >
           <Grid.Item gridArea="based">
             <Subheading

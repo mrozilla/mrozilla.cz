@@ -5,8 +5,8 @@
       "text": "work"
     },
     {
-      "url": "/#lab",
-      "text": "lab"
+      "url": "/#experiments",
+      "text": "experiments"
     },
     {
       "url": "/about",
@@ -15,6 +15,51 @@
     {
       "url": "/blog",
       "text": "blog"
+    },
+    {
+      "url": "mailto:jan@mrozilla.cz",
+      "text": "contact"
     }
-  ]
+  ],
+  "footer": {
+    "contact": {
+      "title": "contact",
+      "body": [
+        {
+          "url": "https://twitter.com/mrozilla",
+          "text": "twitter"
+        },
+        {
+          "url": "https://github.com/mrozilla",
+          "text": "github"
+        },
+        {
+          "url": "https://codepen.com/mrozilla",
+          "text": "codepen"
+        },
+        {
+          "url": "mailto:jan@mrozilla.cz",
+          "text": "email"
+        }
+      ]
+    },
+    "legal": {
+      "title": "legal",
+      "body": [
+        {
+          "url": "/legal",
+          "text": "terms & conditions"
+        },
+        {
+          "url": "/legal#privacy",
+          "text": "privacy policy"
+        }
+      ]
+    },
+    "colophon": {
+      "title": "colophon",
+      "text":
+        "This site is built using Gatsby, styled-components, and hosted on netlify. All copy is set in your device's default typeface"
+    }
+  }
 }
