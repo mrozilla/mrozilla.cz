@@ -15,9 +15,13 @@ const RouterLink = styled(GatsbyLink)`
   ${({ type }) => {
     if (type === 'primary') {
       return css`
-        box-shadow: 0 2px var(--color-grey);
+        text-decoration: underline;
+        text-decoration-color: var(--color-grey-light);
+        &.active {
+          text-decoration-color: var(--color-grey);
+        }
         &:hover {
-          box-shadow: 0 2px var(--color-grey-dark);
+          text-decoration-color: var(--color-grey-dark);
         }
       `;
     }

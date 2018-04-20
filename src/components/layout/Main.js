@@ -8,10 +8,4 @@ import styled from 'styled-components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.header`
-  grid-area: header;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  padding: 20vh 12rem 0 12rem;
-`;
+export default styled.main``;

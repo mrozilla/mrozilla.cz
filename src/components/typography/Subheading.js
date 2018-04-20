@@ -2,16 +2,26 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import Text from './Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.header`
-  grid-area: header;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  padding: 20vh 12rem 0 12rem;
-`;
+const Subheading = Text.withComponent('h2');
+
+Subheading.propTypes = {
+  ...Text.propTypes,
+};
+Subheading.defaultProps = {
+  ...Text.defaultProps,
+  fontSize:   '3rem',
+  lineHeight: '3rem',
+  margin:     '0 0 2rem 0',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default Subheading;

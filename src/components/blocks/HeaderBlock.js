@@ -13,14 +13,16 @@ import { Header, Heading, Link, Nav } from '../../components';
 export default function HeaderBlock({ header }) {
   return (
     <Header>
-      <Heading>
+      <Heading fontSize="3rem">
         <Link to="/">mrozilla</Link>
       </Heading>
       <Nav>
         <Nav.List>
           {header.map(item => (
             <Nav.List.Item>
-              <Link to={item.url}>{item.text}</Link>
+              <Link to={item.url} type="primary">
+                {item.text}
+              </Link>
             </Nav.List.Item>
           ))}
         </Nav.List>
