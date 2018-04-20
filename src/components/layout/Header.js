@@ -13,5 +13,5 @@ export default styled.header`
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: 20vh 4rem 0 12rem;
+  padding: 20vh 12rem 0 12rem;
 `;
