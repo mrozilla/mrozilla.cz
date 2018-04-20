@@ -18,7 +18,7 @@ const Grid = styled.div`
     gridTemplateColumns};
   grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
 
-  align-items: ${({ alignItems = 'center' }) => alignItems};
+  align-items: ${({ alignItems }) => alignItems};
 `;
 
 Grid.Item = styled.div`
