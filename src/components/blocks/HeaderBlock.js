@@ -20,7 +20,7 @@ export default function HeaderBlock({ header }) {
         <Nav.List>
           {header.map(item => (
             <Nav.List.Item>
-              <Link to={item.url} type="primary" activeClassName="active" exact>
+              <Link to={item.url} type="primary">
                 {item.text}
               </Link>
             </Nav.List.Item>

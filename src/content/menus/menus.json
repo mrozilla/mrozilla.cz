@@ -1,11 +1,11 @@
 {
   "header": [
     {
-      "url": "/work",
+      "url": "/#work",
       "text": "work"
     },
     {
-      "url": "/lab",
+      "url": "/#lab",
       "text": "lab"
     },
     {
