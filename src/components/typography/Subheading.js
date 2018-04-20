@@ -8,16 +8,20 @@ import Text from './Text';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Heading = Text.withComponent('h1');
+const Subheading = Text.withComponent('h2');
 
-Heading.propTypes = {
+Subheading.propTypes = {
   ...Text.propTypes,
 };
-Heading.defaultProps = {
+Subheading.defaultProps = {
   ...Text.defaultProps,
-  fontSize:   '4rem',
-  lineHeight: '4rem',
-  margin:     '0 0 4rem 0',
+  fontSize:   '3rem',
+  lineHeight: '3rem',
+  margin:     '0 0 2rem 0',
 };
 
-export default Heading;
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default Subheading;
