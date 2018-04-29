@@ -10,12 +10,10 @@ import {
   Grid,
   Heading,
   Subheading,
-  Title,
   Text,
-  List,
-  Link,
   WorksBlock,
   AvailabilityBlock,
+  BlogBlock,
 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -24,8 +22,13 @@ import {
 
 export default function HomePage({
   data: {
-    pagesJson: { meta, body: { hero, location, availability } },
+    pagesJson: {
+      meta,
+      body: { hero, location, availability },
+    },
     allWorksJson: { edges: works },
+    allLabsJson: { edges: labs },
+    allMediumPost: { edges: posts },
   },
 }) {
   return (
@@ -48,7 +51,7 @@ export default function HomePage({
         </Heading>
         <Grid
           gridTemplateColumns="1fr 1fr"
-          gridTemplateAreas="'based availability' 'work blog'"
+          gridTemplateAreas="'based availability' 'work blog' 'lab blog'"
           gridGap="10vh 4rem"
         >
           <Grid.Item gridArea="based">
@@ -89,6 +92,30 @@ export default function HomePage({
             </Subheading>
             <WorksBlock works={works} />
           </Grid.Item>
+          <Grid.Item gridArea="lab" id="lab">
+            <Subheading
+              fontSize="1.25rem"
+              fontWeight="300"
+              margin="0"
+              textTransform="uppercase"
+              letterSpacing="0.2em"
+            >
+              latest lab experiments
+            </Subheading>
+            <WorksBlock works={labs} />
+          </Grid.Item>
+          <Grid.Item gridArea="blog" id="blog">
+            <Subheading
+              fontSize="1.25rem"
+              fontWeight="300"
+              margin="0"
+              textTransform="uppercase"
+              letterSpacing="0.2em"
+            >
+              latest blog articles
+            </Subheading>
+            <BlogBlock title="latest blog articles" posts={posts} />
+          </Grid.Item>
         </Grid>
       </Section>
     </Main>
@@ -117,15 +144,33 @@ export const query = graphql`
         }
       }
     }
-    allWorksJson(
-      filter: { type: { in: ["work"] } }
-      sort: { fields: [date], order: DESC }
-    ) {
+    allWorksJson(sort: { fields: [date], order: DESC }) {
       edges {
         node {
           url
           title
           tags
+        }
+      }
+    }
+    allLabsJson(sort: { fields: [date], order: DESC }) {
+      edges {
+        node {
+          url
+          title
+          tags
+        }
+      }
+    }
+    allMediumPost(sort: { fields: [createdAt], order: DESC }) {
+      edges {
+        node {
+          id
+          title
+          # latestPublishedAt
+          virtuals {
+            subtitle
+          }
         }
       }
     }
