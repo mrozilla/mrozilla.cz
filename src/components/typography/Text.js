@@ -22,5 +22,7 @@ export default styled.p.attrs({
   opacity: ${({ opacity }) => opacity};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
+
   grid-column: ${({ gridColumn }) => gridColumn};
+  grid-area: ${({ gridArea }) => gridArea};
 `;
