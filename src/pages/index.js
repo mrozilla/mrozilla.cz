@@ -7,10 +7,9 @@ import Helmet from 'react-helmet';
 import {
   Main,
   Section,
-  Grid,
-  Heading,
   Subheading,
   Text,
+  HeroBlock,
   WorksBlock,
   AvailabilityBlock,
   BlogBlock,
@@ -32,7 +31,11 @@ export default function HomePage({
   },
 }) {
   return (
-    <Main>
+    <Main
+      gridTemplateColumns="1fr 1fr"
+      gridTemplateAreas="'hero hero' 'based availability' 'work blog' 'lab blog'"
+      gridGap="10vh 4rem"
+    >
       <Helmet
         title={`mrozilla: ${meta.title}`}
         meta={[
@@ -40,83 +43,68 @@ export default function HomePage({
           { name: 'keywords', content: meta.keywords },
         ]}
       />
-      <Section>
-        <Heading
-          fontSize="5rem"
-          fontWeight="400"
-          lineHeight="6rem"
-          margin="-1rem 0 10vh 0"
+      <HeroBlock hero={hero} />
+      <Section gridArea="based">
+        <Subheading
+          fontSize="1.25rem"
+          fontWeight="300"
+          margin="0"
+          textTransform="uppercase"
+          letterSpacing="0.2em"
         >
-          {hero.title}
-        </Heading>
-        <Grid
-          gridTemplateColumns="1fr 1fr"
-          gridTemplateAreas="'based availability' 'work blog' 'lab blog'"
-          gridGap="10vh 4rem"
+          {location.title}
+        </Subheading>
+        <Text fontSize="3rem" fontWeight="700">
+          {location.text}
+        </Text>
+      </Section>
+      <Section gridArea="availability">
+        <Subheading
+          fontSize="1.25rem"
+          fontWeight="300"
+          margin="0"
+          textTransform="uppercase"
+          letterSpacing="0.2em"
         >
-          <Grid.Item gridArea="based">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              {location.title}
-            </Subheading>
-            <Text fontSize="3rem" fontWeight="700">
-              {location.text}
-            </Text>
-          </Grid.Item>
-          <Grid.Item gridArea="availability">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              {availability.title}
-            </Subheading>
-            <AvailabilityBlock availability={availability} />
-          </Grid.Item>
-          <Grid.Item gridArea="work" id="work">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              latest client work
-            </Subheading>
-            <WorksBlock works={works} />
-          </Grid.Item>
-          <Grid.Item gridArea="lab" id="lab">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              latest lab experiments
-            </Subheading>
-            <WorksBlock works={labs} />
-          </Grid.Item>
-          <Grid.Item gridArea="blog" id="blog">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              latest blog articles
-            </Subheading>
-            <BlogBlock title="latest blog articles" posts={posts} />
-          </Grid.Item>
-        </Grid>
+          {availability.title}
+        </Subheading>
+        <AvailabilityBlock availability={availability} />
+      </Section>
+      <Section gridArea="work" id="work">
+        <Subheading
+          fontSize="1.25rem"
+          fontWeight="300"
+          margin="0"
+          textTransform="uppercase"
+          letterSpacing="0.2em"
+        >
+          latest client work
+        </Subheading>
+        <WorksBlock works={works} />
+      </Section>
+      <Section gridArea="lab" id="lab">
+        <Subheading
+          fontSize="1.25rem"
+          fontWeight="300"
+          margin="0"
+          textTransform="uppercase"
+          letterSpacing="0.2em"
+        >
+          latest lab experiments
+        </Subheading>
+        <WorksBlock works={labs} />
+      </Section>
+      <Section gridArea="blog" id="blog">
+        <Subheading
+          fontSize="1.25rem"
+          fontWeight="300"
+          margin="0"
+          textTransform="uppercase"
+          letterSpacing="0.2em"
+        >
+          latest blog articles
+        </Subheading>
+        <BlogBlock title="latest blog articles" posts={posts} />
       </Section>
     </Main>
   );
