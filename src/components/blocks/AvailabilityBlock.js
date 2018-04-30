@@ -16,7 +16,7 @@ export default class AvailabilityBlock extends PureComponent {
 
   componentDidMount() {
     const availabilityDate = new Date();
-    availabilityDate.setMonth(availabilityDate.getMonth() + 1);
+    availabilityDate.setMonth(availabilityDate.getMonth() + (availabilityDate.getDate() > 15 ? 2 : 1));
     this.setState({
       availability: availabilityDate.toLocaleDateString('en-GB', {
         month: 'long',
