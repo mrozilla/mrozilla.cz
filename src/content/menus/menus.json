@@ -59,7 +59,7 @@
     "colophon": {
       "title": "colophon",
       "text":
-        "this site is built using Gatsby, styled-components, and hosted on netlify"
+        "this site is built using Gatsby, React, styled-components, and hosted on netlify"
     }
   }
 }
