@@ -8,9 +8,7 @@ import styled from 'styled-components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.p.attrs({
-  contentEditable: process.env.NODE_ENV === 'development',
-})`
+export default styled.p`
   font-family: ${({ fontFamily }) => fontFamily};
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
