@@ -12,6 +12,7 @@ import {
   Link,
   Text,
 } from '../../components';
+import { parseLinks } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -73,7 +74,7 @@ export default function FooterBlock({ footer }) {
         >
           {footer.colophon.title}
         </Subheading>
-        <Text>{footer.colophon.text}</Text>
+        <Text>{parseLinks(footer.colophon.text)}</Text>
       </Section>
     </Footer>
   );
