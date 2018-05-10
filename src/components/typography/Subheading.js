@@ -15,9 +15,12 @@ Subheading.propTypes = {
 };
 Subheading.defaultProps = {
   ...Text.defaultProps,
-  fontSize:   '3rem',
-  lineHeight: '3rem',
-  margin:     '0 0 2rem 0',
+  fontSize:      '1.25rem',
+  fontWeight:    '300',
+  lineHeight:    '3rem',
+  margin:        '0',
+  textTransform: 'uppercase',
+  letterSpacing: '0.2em',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

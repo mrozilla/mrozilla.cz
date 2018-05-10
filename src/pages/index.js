@@ -26,14 +26,13 @@ export default function HomePage({
       body: { hero, location, availability },
     },
     allWorksJson: { edges: works },
-    allLabsJson: { edges: labs },
     allMediumPost: { edges: posts },
   },
 }) {
   return (
     <Main
       gridTemplateColumns="1fr 1fr"
-      gridTemplateAreas="'hero hero' 'based availability' 'work blog' 'lab blog'"
+      gridTemplateAreas="'hero hero' 'based availability' 'work blog'"
       gridGap="10vh 4rem"
     >
       <Helmet
@@ -45,66 +44,22 @@ export default function HomePage({
       />
       <HeroBlock hero={hero} />
       <Section gridArea="based">
-        <Subheading
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          {location.title}
-        </Subheading>
+        <Subheading>{location.title}</Subheading>
         <Text fontSize="3rem" fontWeight="700">
           {location.text}
         </Text>
       </Section>
       <Section gridArea="availability">
-        <Subheading
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          {availability.title}
-        </Subheading>
+        <Subheading>{availability.title}</Subheading>
         <AvailabilityBlock availability={availability} />
       </Section>
       <Section gridArea="work" id="work">
-        <Subheading
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          latest client work
-        </Subheading>
+        <Subheading>latest client work</Subheading>
         <WorksBlock works={works} />
       </Section>
-      <Section gridArea="lab" id="lab">
-        <Subheading
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          latest lab experiments
-        </Subheading>
-        <WorksBlock works={labs} />
-      </Section>
       <Section gridArea="blog" id="blog">
-        <Subheading
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          latest blog articles
-        </Subheading>
-        <BlogBlock title="latest blog articles" posts={posts} />
+        <Subheading>latest blog articles</Subheading>
+        <BlogBlock posts={posts} />
       </Section>
     </Main>
   );
@@ -138,15 +93,7 @@ export const query = graphql`
           url
           title
           tags
-        }
-      }
-    }
-    allLabsJson(sort: { fields: [date], order: DESC }) {
-      edges {
-        node {
-          url
-          title
-          tags
+          # description
         }
       }
     }
