@@ -2,45 +2,27 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { Link } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class DesignModeBlock extends PureComponent {
-  state = {
-    designMode: 'off',
-  };
-
-  handleChangeDesignMode = () => {
-    this.setState(
-      {
-        designMode: this.state.designMode === 'off' ? 'on' : 'off',
-      },
-      () => {
-        document.designMode = this.state.designMode;
-      },
-    );
-  };
-
-  render() {
-    if (process.env.NODE_ENV === 'development') {
-      return (
-        <button
-          onClick={this.handleChangeDesignMode}
-          style={{
-            position: 'fixed',
-            bottom:   '1rem',
-            left:     '1rem',
-            fontSize: '1rem',
-            zindex:   999,
-          }}
-        >
-          document.designMode: &quot;{this.state.designMode}&quot;
-        </button>
-      );
-    }
-    return null;
+export default (str) => {
+  if (typeof str === 'string') {
+    const re = /\[(.*?\]\(.*?)\)/;
+    return str.split(re).map((item) => {
+      const [text, href] = item.split('](');
+      if (href) {
+        return (
+          <Link to={href} type="primary">
+            {text}
+          </Link>
+        );
+      }
+      return item;
+    });
   }
-}
+  return str;
+};
