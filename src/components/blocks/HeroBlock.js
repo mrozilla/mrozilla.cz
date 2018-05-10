@@ -4,30 +4,22 @@
 
 import React from 'react';
 
-import { Header, Heading, Link, Nav, DesignModeToggleBlock } from '../../components';
+import { Heading } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HeaderBlock({ header }) {
+export default function HeroBlock({ hero }) {
   return (
-    <Header>
-      <Heading fontSize="3rem">
-        <Link to="/">mrozilla</Link>
-      </Heading>
-      <Nav>
-        <Nav.List>
-          {header.map(item => (
-            <Nav.List.Item>
-              <Link to={item.url} type="primary">
-                {item.text}
-              </Link>
-            </Nav.List.Item>
-          ))}
-        </Nav.List>
-      </Nav>
-      <DesignModeToggleBlock />
-    </Header>
+    <Heading
+      fontSize="5rem"
+      fontWeight="400"
+      lineHeight="6rem"
+      margin="-1rem 0 0 0"
+      gridArea="hero"
+    >
+      {hero.title}
+    </Heading>
   );
 }

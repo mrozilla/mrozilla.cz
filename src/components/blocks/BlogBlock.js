@@ -4,30 +4,22 @@
 
 import React from 'react';
 
-import { Header, Heading, Link, Nav, DesignModeToggleBlock } from '../../components';
+import { List, Link } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HeaderBlock({ header }) {
+export default function BlogBlock({ posts }) {
   return (
-    <Header>
-      <Heading fontSize="3rem">
-        <Link to="/">mrozilla</Link>
-      </Heading>
-      <Nav>
-        <Nav.List>
-          {header.map(item => (
-            <Nav.List.Item>
-              <Link to={item.url} type="primary">
-                {item.text}
-              </Link>
-            </Nav.List.Item>
-          ))}
-        </Nav.List>
-      </Nav>
-      <DesignModeToggleBlock />
-    </Header>
+    <List gridGap="0rem">
+      {posts.map(({ node: post }) => (
+        <List.Item>
+          <Link to={`https://medium.com/mrozilla/${post.id}`} type="primary">
+            {post.title}
+          </Link>
+        </List.Item>
+      ))}
+    </List>
   );
 }

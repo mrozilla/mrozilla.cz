@@ -10,6 +10,12 @@ module.exports = {
         path: `${__dirname}/src/content`,
       },
     },
+    {
+      resolve: 'gatsby-source-medium',
+      options: {
+        username: 'mrozilla',
+      },
+    },
     'gatsby-transformer-json',
     'gatsby-plugin-preact',
     'gatsby-plugin-react-helmet',

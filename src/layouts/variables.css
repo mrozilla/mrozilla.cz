@@ -1,0 +1,19 @@
+:root {
+  --color-grey-light: hsl(200, 10%, 96%);
+  --color-grey: hsl(200, 10%, 85%);
+  --color-grey-dark: hsl(200, 5%, 40%);
+  --color-bg: white;
+
+  --width-main: 2fr;
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --width-main: 2fr;
+  }
+}
+@media screen and (min-width: 900px) {
+  :root {
+    --width-main: 2fr;
+  }
+}

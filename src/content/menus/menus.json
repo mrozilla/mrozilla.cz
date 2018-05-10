@@ -5,8 +5,8 @@
       "text": "work"
     },
     {
-      "url": "/#experiments",
-      "text": "experiments"
+      "url": "/#lab",
+      "text": "lab"
     },
     {
       "url": "/about",
@@ -59,7 +59,7 @@
     "colophon": {
       "title": "colophon",
       "text":
-        "This site is built using Gatsby, styled-components, and hosted on netlify. All copy is set in your device's default typeface"
+        "this site is built using Gatsby, React, styled-components, and hosted on netlify"
     }
   }
 }

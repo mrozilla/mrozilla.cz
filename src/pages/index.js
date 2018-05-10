@@ -7,15 +7,12 @@ import Helmet from 'react-helmet';
 import {
   Main,
   Section,
-  Grid,
-  Heading,
   Subheading,
-  Title,
   Text,
-  List,
-  Link,
+  HeroBlock,
   WorksBlock,
   AvailabilityBlock,
+  BlogBlock,
 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -24,12 +21,20 @@ import {
 
 export default function HomePage({
   data: {
-    pagesJson: { meta, body: { hero, location, availability } },
+    pagesJson: {
+      meta,
+      body: { hero, location, availability },
+    },
     allWorksJson: { edges: works },
+    allMediumPost: { edges: posts },
   },
 }) {
   return (
-    <Main>
+    <Main
+      gridTemplateColumns="1fr 1fr"
+      gridTemplateAreas="'hero hero' 'based availability' 'work blog'"
+      gridGap="10vh 4rem"
+    >
       <Helmet
         title={`mrozilla: ${meta.title}`}
         meta={[
@@ -37,59 +42,24 @@ export default function HomePage({
           { name: 'keywords', content: meta.keywords },
         ]}
       />
-      <Section>
-        <Heading
-          fontSize="5rem"
-          fontWeight="400"
-          lineHeight="6rem"
-          margin="-1rem 0 10vh 0"
-        >
-          {hero.title}
-        </Heading>
-        <Grid
-          gridTemplateColumns="1fr 1fr"
-          gridTemplateAreas="'based availability' 'work blog'"
-          gridGap="10vh 4rem"
-        >
-          <Grid.Item gridArea="based">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              {location.title}
-            </Subheading>
-            <Text fontSize="3rem" fontWeight="700">
-              {location.text}
-            </Text>
-          </Grid.Item>
-          <Grid.Item gridArea="availability">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              {availability.title}
-            </Subheading>
-            <AvailabilityBlock availability={availability} />
-          </Grid.Item>
-          <Grid.Item gridArea="work" id="work">
-            <Subheading
-              fontSize="1.25rem"
-              fontWeight="300"
-              margin="0"
-              textTransform="uppercase"
-              letterSpacing="0.2em"
-            >
-              latest client work
-            </Subheading>
-            <WorksBlock works={works} />
-          </Grid.Item>
-        </Grid>
+      <HeroBlock hero={hero} />
+      <Section gridArea="based">
+        <Subheading>{location.title}</Subheading>
+        <Text fontSize="3rem" fontWeight="700">
+          {location.text}
+        </Text>
+      </Section>
+      <Section gridArea="availability">
+        <Subheading>{availability.title}</Subheading>
+        <AvailabilityBlock availability={availability} />
+      </Section>
+      <Section gridArea="work" id="work">
+        <Subheading>latest client work</Subheading>
+        <WorksBlock works={works} />
+      </Section>
+      <Section gridArea="blog" id="blog">
+        <Subheading>latest blog articles</Subheading>
+        <BlogBlock posts={posts} />
       </Section>
     </Main>
   );
@@ -117,15 +87,25 @@ export const query = graphql`
         }
       }
     }
-    allWorksJson(
-      filter: { type: { in: ["work"] } }
-      sort: { fields: [date], order: DESC }
-    ) {
+    allWorksJson(sort: { fields: [date], order: DESC }) {
       edges {
         node {
           url
           title
           tags
+          # description
+        }
+      }
+    }
+    allMediumPost(sort: { fields: [createdAt], order: DESC }) {
+      edges {
+        node {
+          id
+          title
+          # latestPublishedAt
+          virtuals {
+            subtitle
+          }
         }
       }
     }
