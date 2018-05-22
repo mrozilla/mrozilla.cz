@@ -12,7 +12,9 @@ import { Wrapper, HeaderBlock, FooterBlock } from '../components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Layout({
-  data: { menusJson: { header, footer } },
+  data: {
+    menusJson: { header, footer },
+  },
   children,
 }) {
   return (
