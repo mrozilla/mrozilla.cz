@@ -94,7 +94,7 @@ body {
     "Helvetica Neue", sans-serif;
   font-size: 2rem;
   line-height: 4rem;
-  color: var(--color-grey-dark, black);
+  color: var(--color-text, black);
   background-color: var(--color-bg, white);
   -webkit-font-smoothing: antialiased;
 }
