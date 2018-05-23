@@ -108,7 +108,8 @@ ol {
   padding-left: 5rem;
 }
 
-button {
+button,
+textarea {
   color: inherit;
   font-size: inherit;
 }
