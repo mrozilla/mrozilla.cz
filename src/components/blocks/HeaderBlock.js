@@ -19,7 +19,7 @@ export default function HeaderBlock({ header }) {
       <Nav>
         <Nav.List>
           {header.map(item => (
-            <Nav.List.Item>
+            <Nav.List.Item key={item.url}>
               <Link to={item.url} type="primary">
                 {item.text}
               </Link>

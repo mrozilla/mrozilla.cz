@@ -16,7 +16,7 @@ export default (str) => {
       const [text, href] = item.split('](');
       if (href) {
         return (
-          <Link to={href} type="primary">
+          <Link key={`${href}${text}`} to={href} type="primary">
             {text}
           </Link>
         );

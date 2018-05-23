@@ -29,8 +29,9 @@ export default function TextBackgroundBlock({
       }}
       aria-hidden="true"
     >
-      {new Array(amount).fill().map(() => (
+      {new Array(amount).fill().map((_, i) => (
         <span
+          key={i}
           style={{
             position:  'absolute',
             top:       `${Math.random() * 100}%`,

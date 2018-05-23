@@ -36,7 +36,7 @@ export default function FooterBlock({ footer }) {
         </Subheading>
         <List>
           {footer.contact.body.map(contact => (
-            <List.Item>
+            <List.Item key={contact.url}>
               <Link to={contact.url} type="primary">
                 {contact.text}
               </Link>
@@ -56,7 +56,7 @@ export default function FooterBlock({ footer }) {
         </Subheading>
         <List>
           {footer.legal.body.map(legal => (
-            <List.Item>
+            <List.Item key={legal.url}>
               <Link to={legal.url} type="primary">
                 {legal.text}
               </Link>

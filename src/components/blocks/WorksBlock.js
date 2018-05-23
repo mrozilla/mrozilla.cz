@@ -14,7 +14,7 @@ export default function WorksBlock({ works }) {
   return (
     <List gridGap="3rem">
       {works.map(({ node: { url, title, tags } }) => (
-        <List.Item>
+        <List.Item key={url}>
           <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
             <Link to={url} type="primary">
               {title}

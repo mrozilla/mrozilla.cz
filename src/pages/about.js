@@ -43,7 +43,7 @@ export default function AboutPage({
       <Section gridArea="about">
         <List gridGap="2rem">
           {about.map(item => (
-            <List.Item>
+            <List.Item key={item.title}>
               <Subheading>{item.title}</Subheading>
               <Text>{parseLinks(item.text)}</Text>
             </List.Item>
