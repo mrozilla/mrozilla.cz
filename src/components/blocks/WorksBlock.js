@@ -13,10 +13,10 @@ import { List, Title, Text, Link } from '../../components';
 export default function WorksBlock({ works }) {
   return (
     <List gridGap="3rem">
-      {works.map(({ node: { url, title, tags } }) => (
-        <List.Item key={url}>
+      {works.map(({ permalink, title, tags }) => (
+        <List.Item key={permalink}>
           <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
-            <Link to={url} type="primary">
+            <Link to={permalink} type="primary">
               {title}
             </Link>
           </Title>
