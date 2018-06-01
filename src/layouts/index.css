@@ -109,7 +109,8 @@ ol {
 }
 
 button,
-textarea {
+textarea,
+input {
   color: inherit;
   font-size: inherit;
 }
