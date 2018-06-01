@@ -18,14 +18,18 @@ export default function TextBackgroundBlock({
   return (
     <div
       style={{
-        pointerEvents: 'none',
-        position:      'fixed',
-        width:         '100%',
-        height:        '100%',
-        left:          0,
-        top:           0,
-        overflow:      'hidden',
-        zIndex:        -1,
+        pointerEvents:    'none',
+        position:         'fixed',
+        width:            '100%',
+        height:           '100%',
+        left:             0,
+        top:              0,
+        overflow:         'hidden',
+        zIndex:           -1,
+        userSelect:       'none',
+        msUserSelect:     'none',
+        MozUserSelect:    'none',
+        WebkitUserSelect: 'none',
       }}
       aria-hidden="true"
     >
