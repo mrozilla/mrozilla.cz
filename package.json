@@ -12,15 +12,14 @@
     "url": "https://mrozilla.cz"
   },
   "dependencies": {
-    "gatsby": "^1.9.261",
+    "gatsby": "^1.9.267",
     "gatsby-link": "^1.6.44",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
-    "gatsby-source-filesystem": "^1.5.36",
-    "gatsby-source-medium": "^1.0.14",
-    "gatsby-transformer-json": "^1.0.18",
+    "gatsby-source-filesystem": "^1.5.38",
+    "gatsby-transformer-json": "^1.0.19",
     "react-helmet": "^5.2.0",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
