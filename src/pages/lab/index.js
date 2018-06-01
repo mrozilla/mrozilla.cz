@@ -11,26 +11,27 @@ import {
   HeroBlock,
   ColourThemeBlock,
   WorksBlock,
-  TextBackgroundBlock,
-} from '../components';
+} from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HomePage({
+export default function LabPage({
   data: {
     pagesJson: {
       meta,
       body: { hero },
     },
-    allLabsJson: { edges: labs },
+    allLabJson: { edges: labs },
   },
 }) {
+  console.log(labs);
+
   return (
     <Main
       gridTemplateColumns="1fr 1fr"
-      gridTemplateAreas="'hero hero' 'theme theme' 'lab blog'"
+      gridTemplateAreas="'hero hero' 'theme theme' 'tools products'"
       gridGap="10vh 4rem"
     >
       <Helmet
@@ -45,11 +46,22 @@ export default function HomePage({
         <Subheading>current colour theme</Subheading>
         <ColourThemeBlock />
       </Section>
-      <Section gridArea="lab" id="lab">
-        <Subheading>latest lab experiments</Subheading>
-        <WorksBlock works={labs} />
+      <Section gridArea="tools">
+        <Subheading>little tools</Subheading>
+        <WorksBlock
+          works={labs
+            .filter(({ node: { meta: { type } } }) => type.includes('tool'))
+            .map(({ node: { meta: lab } }) => lab)}
+        />
       </Section>
-      <TextBackgroundBlock symbol="⌇" />
+      <Section gridArea="products">
+        <Subheading>standalone products</Subheading>
+        <WorksBlock
+          works={labs
+            .filter(({ node: { meta: { type } } }) => type.includes('product'))
+            .map(({ node: { meta: lab } }) => lab)}
+        />
+      </Section>
     </Main>
   );
 }
@@ -68,12 +80,15 @@ export const query = graphql`
         }
       }
     }
-    allLabsJson(sort: { fields: [date], order: DESC }) {
+    allLabJson(sort: { fields: [meta___date], order: DESC }) {
       edges {
         node {
-          url
-          title
-          tags
+          meta {
+            type
+            permalink
+            title
+            tags
+          }
         }
       }
     }
