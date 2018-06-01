@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2016-05-01T00:00:00.000Z",
+    "permalink": "/lab/writest",
+    "title": "writest",
+    "description": "all the numbers about your letters",
+    "keywords": "keyword, keyword",
+    "tags": ["concept", "website"],
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  }
+}
