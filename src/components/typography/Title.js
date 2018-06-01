@@ -9,19 +9,11 @@ import Text from './Text';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const Title = Text.withComponent('h3');
-
-Title.propTypes = {
-  ...Text.propTypes,
-};
 Title.defaultProps = {
   ...Text.defaultProps,
   fontSize:   '2.5rem',
   lineHeight: '2.5rem',
   margin:     '0 0 1rem 0',
 };
-
-// ─────────────────────────────────────────────────────────────────────────────
-// component
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default Title;

@@ -9,10 +9,6 @@ import Text from './Text';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const Heading = Text.withComponent('h1');
-
-Heading.propTypes = {
-  ...Text.propTypes,
-};
 Heading.defaultProps = {
   ...Text.defaultProps,
   fontSize:   '3rem',

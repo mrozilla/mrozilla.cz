@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 const List = styled.ul`
   display: grid;
+
   grid-gap: ${({ gridGap }) => gridGap};
 `;
 
