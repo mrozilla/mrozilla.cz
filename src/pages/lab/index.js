@@ -26,8 +26,6 @@ export default function LabPage({
     allLabJson: { edges: labs },
   },
 }) {
-  console.log(labs);
-
   return (
     <Main
       gridTemplateColumns="1fr 1fr"
