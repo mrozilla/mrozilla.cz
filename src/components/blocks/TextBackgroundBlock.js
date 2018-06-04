@@ -9,7 +9,7 @@ import React from 'react';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function TextBackgroundBlock({
-  amount = 100,
+  amount = Math.floor(document.documentElement.scrollHeight / 10) || 100,
   symbol = '',
   rotateModifier = 360,
   opacityModifier = 1,
@@ -18,14 +18,14 @@ export default function TextBackgroundBlock({
   return (
     <div
       style={{
-        pointerEvents:    'none',
-        position:         'fixed',
+        position:         'absolute',
         width:            '100%',
         height:           '100%',
         left:             0,
         top:              0,
         overflow:         'hidden',
         zIndex:           -1,
+        pointerEvents:    'none',
         userSelect:       'none',
         msUserSelect:     'none',
         MozUserSelect:    'none',
