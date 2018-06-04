@@ -5,8 +5,10 @@
   --color-grey: hsl(200, 10%, 85%);
   --color-grey-dark: hsl(200, 5%, 40%);
 
-  --color-text: hsl(200, 5%, 40%);
   --color-bg: white;
+
+  --hsl-text: 200, 5%, 45%;
+  --color-text: hsl(var(--hsl-text));
 
   --width-main: 2fr;
 

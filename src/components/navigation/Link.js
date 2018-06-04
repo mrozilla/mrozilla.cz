@@ -17,14 +17,14 @@ const RouterLink = styled(GatsbyLink)`
       return css`
         display: inline-block;
         text-decoration: underline;
-        text-decoration-color: var(--color-grey-light);
+        text-decoration-color: hsla(var(--hsl-text), 0.1);
         &.active {
-          text-decoration-color: var(--color-grey);
+          text-decoration-color: hsla(var(--hsl-text), 0.5);
         }
         &:hover {
           transform: scale(1.05);
           background-color: var(--color-bg);
-          text-decoration-color: var(--color-grey-dark);
+          text-decoration-color: hsla(var(--hsl-text), 1);
         }
       `;
     }

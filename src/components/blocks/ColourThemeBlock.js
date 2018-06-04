@@ -13,7 +13,7 @@ export default class ColourThemeBlock extends PureComponent {
   state = {
     isCrazyTheme: false,
     original:     {
-      color:           getComputedStyle(document.documentElement).getPropertyValue('--color-text'),
+      color:           getComputedStyle(document.documentElement).getPropertyValue('--hsl-text'),
       backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--color-bg'),
     },
   };
@@ -29,9 +29,9 @@ export default class ColourThemeBlock extends PureComponent {
       },
       () => {
         document.documentElement.style.setProperty(
-          '--color-text',
+          '--hsl-text',
           this.state.isCrazyTheme
-            ? `hsl(${seed}, 100%, 50%)`
+            ? `${seed}, 100%, 50%`
             : this.state.original.color,
         );
         document.documentElement.style.setProperty(
