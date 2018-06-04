@@ -20,9 +20,12 @@ export default class ColourThemeBlock extends PureComponent {
 
   handleColorTheme = () => {
     const seed = Math.floor(Math.random() * 360);
+    const emojiSeed = Math.floor(Math.random() * (128591 - 128513)) + 128513;
+
     this.setState(
       {
         isCrazyTheme: !this.state.isCrazyTheme,
+        emoji:        String.fromCodePoint(emojiSeed),
       },
       () => {
         document.documentElement.style.setProperty(
@@ -49,7 +52,9 @@ export default class ColourThemeBlock extends PureComponent {
         onClick={this.handleColorTheme}
         style={{ cursor: 'pointer' }}
       >
-        {this.state.isCrazyTheme ? '🥑 CRAZY!!1! 😵' : 'b o r i n g'}
+        {this.state.isCrazyTheme
+          ? `🥑 CRAZY!!1! ${this.state.emoji}`
+          : 'b o r i n g'}
       </Text>
     );
   }
