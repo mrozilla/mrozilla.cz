@@ -2,11 +2,16 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
+
+const fadeUp = keyframes`
+  from { opacity: 0; transform: translateY(1vh); }
+  to   { opacity: 1; transform: translateY(0); }
+`;
 
 export default styled.main`
   grid-area: main;
@@ -17,4 +22,7 @@ export default styled.main`
   grid-template-columns: ${({ gridTemplateColumns = 'auto' }) =>
     gridTemplateColumns};
   grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
+
+  animation: ${fadeUp} ${({ animationDuration = '500ms' }) => animationDuration}
+    forwards;
 `;
