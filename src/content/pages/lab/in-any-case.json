@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2016-09-01T00:00:00.000Z",
+    "permalink": "/lab/in-any-case",
+    "title": "in any case",
+    "description": "Title case, url-case, camelCase, all the cases",
+    "keywords": "keyword, keyword",
+    "tags": ["concept", "website"],
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  }
+}

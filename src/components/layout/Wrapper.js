@@ -9,6 +9,7 @@ import styled from 'styled-components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default styled.div`
+  position: relative;
   display: grid;
   grid-gap: 10vh 1rem;
   grid-template-columns: 1fr 2fr 0.5fr;

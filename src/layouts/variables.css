@@ -1,10 +1,18 @@
 :root {
+  --color-success: hsl(100, 70%, 60%);
+
   --color-grey-light: hsl(200, 10%, 96%);
   --color-grey: hsl(200, 10%, 85%);
   --color-grey-dark: hsl(200, 5%, 40%);
+
   --color-bg: white;
 
+  --hsl-text: 200, 5%, 45%;
+  --color-text: hsl(var(--hsl-text));
+
   --width-main: 2fr;
+
+  --z-index-popover: 1060;
 }
 
 @media screen and (min-width: 600px) {

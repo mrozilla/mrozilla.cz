@@ -25,8 +25,8 @@ export default function HomePage({
       meta,
       body: { hero, location, availability },
     },
-    allWorksJson: { edges: works },
-    allMediumPost: { edges: posts },
+    allWorkJson: { edges: works },
+    // allMediumPost: { edges: posts },
   },
 }) {
   return (
@@ -55,11 +55,11 @@ export default function HomePage({
       </Section>
       <Section gridArea="work" id="work">
         <Subheading>latest client work</Subheading>
-        <WorksBlock works={works} />
+        <WorksBlock works={works.map(({ node: { meta: work } }) => work)} />
       </Section>
       <Section gridArea="blog" id="blog">
         <Subheading>latest blog articles</Subheading>
-        <BlogBlock posts={posts} />
+        {/* <BlogBlock posts={posts} /> */}
       </Section>
     </Main>
   );
@@ -87,24 +87,13 @@ export const query = graphql`
         }
       }
     }
-    allWorksJson(sort: { fields: [date], order: DESC }) {
+    allWorkJson(sort: { fields: [meta___date], order: DESC }) {
       edges {
         node {
-          url
-          title
-          tags
-          # description
-        }
-      }
-    }
-    allMediumPost(sort: { fields: [createdAt], order: DESC }) {
-      edges {
-        node {
-          id
-          title
-          # latestPublishedAt
-          virtuals {
-            subtitle
+          meta {
+            permalink
+            title
+            tags
           }
         }
       }

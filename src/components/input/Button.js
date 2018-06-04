@@ -2,29 +2,44 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-
-import { List, Title, Text, Link } from '../../components';
+import styled from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function WorksBlock({ works }) {
-  return (
-    <List gridGap="3rem">
-      {works.map(({ permalink, title, tags }) => (
-        <List.Item key={permalink}>
-          <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
-            <Link to={permalink} type="primary">
-              {title}
-            </Link>
-          </Title>
-          <Text opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {tags.join(', ')}
-          </Text>
-        </List.Item>
-      ))}
-    </List>
-  );
-}
+export default styled.button`
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+
+  background-color: var(--color-grey-light);
+  box-shadow: 0 0 1px var(--color-grey);
+
+  padding: ${({ padding = '1rem 2rem' }) => padding};
+  margin: ${({ margin }) => margin};
+
+  &:first-of-type {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+  &:last-of-type {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  border-radius: ${({ borderRadius }) => borderRadius};
+  transition: 100ms;
+  &:hover {
+    background-color: var(--color-grey);
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;

@@ -5,14 +5,21 @@
 import React from 'react';
 import './index.css';
 
-import { Wrapper, HeaderBlock, FooterBlock } from '../components';
+import {
+  Wrapper,
+  HeaderBlock,
+  FooterBlock,
+  TextBackgroundBlock,
+} from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Layout({
-  data: { menusJson: { header, footer } },
+  data: {
+    menusJson: { header, footer },
+  },
   children,
 }) {
   return (
@@ -20,6 +27,7 @@ export default function Layout({
       <HeaderBlock header={header} />
       {children()}
       <FooterBlock footer={footer} />
+      <TextBackgroundBlock symbol="⌇" />
     </Wrapper>
   );
 }

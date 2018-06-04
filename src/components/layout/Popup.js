@@ -2,29 +2,33 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-
-import { List, Title, Text, Link } from '../../components';
+import styled, { keyframes } from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function WorksBlock({ works }) {
-  return (
-    <List gridGap="3rem">
-      {works.map(({ permalink, title, tags }) => (
-        <List.Item key={permalink}>
-          <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
-            <Link to={permalink} type="primary">
-              {title}
-            </Link>
-          </Title>
-          <Text opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {tags.join(', ')}
-          </Text>
-        </List.Item>
-      ))}
-    </List>
-  );
-}
+const fadeOutAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+export default styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  text-align: center;
+  z-index: var(--z-index-popover);
+  animation: 250ms ${fadeOutAnimation} forwards;
+  animation-delay: ${({ duration = 1000 }) => duration - 250}ms;
+  color: ${({ color = 'white' }) => color};
+  background-color: ${({ backgroundColor = 'var(--color-success)' }) =>
+    backgroundColor};
+  bottom: ${({ bottom = 'auto' }) => bottom};
+  top: ${({ top = '0' }) => top};
+`;

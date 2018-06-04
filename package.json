@@ -12,24 +12,22 @@
     "url": "https://mrozilla.cz"
   },
   "dependencies": {
-    "gatsby": "^1.9.250",
-    "gatsby-link": "^1.6.40",
-    "gatsby-plugin-preact": "^1.0.17",
-    "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby": "^1.9.267",
+    "gatsby-link": "^1.6.44",
+    "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
-    "gatsby-source-filesystem": "^1.5.31",
-    "gatsby-source-medium": "^1.0.14",
-    "gatsby-transformer-json": "^1.0.16",
+    "gatsby-source-filesystem": "^1.5.38",
+    "gatsby-transformer-json": "^1.0.19",
     "react-helmet": "^5.2.0",
-    "styled-components": "^3.2.5"
+    "styled-components": "^3.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.8.2"
   },
   "scripts": {
     "start": "gatsby develop",

@@ -10,18 +10,20 @@ import { PureComponent } from 'react';
 
 export default class InactiveTabBlock extends PureComponent {
   componentDidMount = () => {
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') {
-        document.title = `😴 ${document.title}`;
-      }
-
-      if (document.visibilityState === 'visible') {
-        document.title = document.title.substr(2);
-      }
-    });
+    document.addEventListener('visibilitychange', this.handleInactiveTab);
   };
   componentWillUnmount = () => {
-    document.removeEventListener('visibilitychange');
+    document.removeEventListener('visibilitychange', this.handleInactiveTab);
+  };
+
+  handleInactiveTab = () => {
+    if (document.visibilityState === 'hidden') {
+      document.title = `😴 ${document.title}`;
+    }
+
+    if (document.visibilityState === 'visible') {
+      document.title = document.title.substr(2);
+    }
   };
 
   render() {

@@ -14,7 +14,7 @@ export default function BlogBlock({ posts }) {
   return (
     <List gridGap="0rem">
       {posts.map(({ node: post }) => (
-        <List.Item>
+        <List.Item key={post.id}>
           <Link to={`https://medium.com/mrozilla/${post.id}`} type="primary">
             {post.title}
           </Link>

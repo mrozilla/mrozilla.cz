@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "type": ["lab", "product"],
+    "date": "2017-07-01T00:00:00.000Z",
+    "permalink": "https://twitter.com/SUPERKONSULTANT",
+    "title": "SUPERCONSULTANT",
+    "description": "text-generating Twitter bot",
+    "keywords": "keyword, keyword",
+    "tags": ["concept", "bot", "twitter"],
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  }
+}

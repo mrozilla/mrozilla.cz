@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": ["page"],
+    "date": "2018-06-01T00:00:00.000Z",
+    "permalink": "/lab",
+    "title": "Your digital sourcing department",
+    "description": "Description",
+    "keywords": "keyword, keyword",
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "hero": {
+      "title":
+        "random selection of silly, silly experiments, proof-of-concepts, and little tools, pushing the limits of the canvas (both figuratively & literally)"
+    }
+  }
+}
