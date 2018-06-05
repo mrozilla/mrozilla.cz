@@ -13,7 +13,7 @@ export default styled.div`
   display: grid;
   grid-gap: 10vh 1rem;
   grid-template:
-    'header main aside' auto
-    'header footer aside' auto
+    'header main aside'
+    'header footer aside'
     / var(--width-header) var(--width-main) var(--width-aside);
 `;
