@@ -6,20 +6,17 @@
   "homepage": "https://mrozilla.cz",
   "repository": "https://github.com/mrozilla/mrozilla.cz",
   "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
-  "author": {
-    "name": "Jan",
-    "email": "jan@mrozilla.cz",
-    "url": "https://mrozilla.cz"
-  },
+  "author": "Jan Hruby <jan@mrozilla.cz>",
   "dependencies": {
-    "gatsby": "^1.9.267",
+    "gatsby": "^1.9.270",
     "gatsby-link": "^1.6.44",
+    "gatsby-plugin-google-analytics": "^1.0.31",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-source-filesystem": "^1.5.38",
     "gatsby-transformer-json": "^1.0.19",
     "react-helmet": "^5.2.0",
-    "styled-components": "^3.3.0"
+    "styled-components": "^3.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
@@ -27,7 +24,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.8.2"
+    "eslint-plugin-react": "^7.9.1"
   },
   "scripts": {
     "start": "gatsby develop",
