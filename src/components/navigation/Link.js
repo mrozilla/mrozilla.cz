@@ -5,6 +5,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import GatsbyLink from 'gatsby-link';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -31,7 +32,7 @@ const RouterLink = styled(GatsbyLink)`
     return null;
   }};
 `;
-const ExternalLink = RouterLink.withComponent('a');
+const ExternalLink = RouterLink.withComponent(OutboundLink);
 
 export default ({
   href, to, children, ...rest
