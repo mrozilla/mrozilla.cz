@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { Text } from '../../components';
+import { Radio } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -11,51 +11,77 @@ import { Text } from '../../components';
 
 export default class ColourThemeBlock extends PureComponent {
   state = {
-    isCrazyTheme: false,
-    original:     {
-      color:           getComputedStyle(document.documentElement).getPropertyValue('--hsl-text'),
-      backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--color-bg'),
-    },
+    currentTheme: window.localStorage.getItem('currentTheme') || 'basic',
+    emoji:        String.fromCodePoint(Math.floor(Math.random() * (128591 - 128513)) + 128513),
   };
 
-  handleColorTheme = () => {
+  componentDidMount = () => {
+    this.handleChangeColorTheme(this.state.currentTheme);
+  };
+
+  handleChangeColorTheme = (type) => {
     const seed = Math.floor(Math.random() * 360);
     const emojiSeed = Math.floor(Math.random() * (128591 - 128513)) + 128513;
 
+    const themes = {
+      basic: {
+        color:           '200, 5%, 45%',
+        backgroundColor: 'white',
+      },
+      crazy: {
+        color:           `${seed}, 100%, 50%`,
+        backgroundColor: `hsl(${seed - 180}, 100%, 50%)`,
+      },
+      dark: {
+        color:           '0, 0%, 60%',
+        backgroundColor: 'hsl(0, 0%, 5%)',
+      },
+    };
+
     this.setState(
       {
-        isCrazyTheme: !this.state.isCrazyTheme,
+        currentTheme: type,
         emoji:        String.fromCodePoint(emojiSeed),
       },
       () => {
         document.documentElement.style.setProperty(
           '--hsl-text',
-          this.state.isCrazyTheme
-            ? `${seed}, 100%, 50%`
-            : this.state.original.color,
+          themes[type].color,
         );
         document.documentElement.style.setProperty(
           '--color-bg',
-          this.state.isCrazyTheme
-            ? `hsl(${seed - 180}, 100%, 50%)`
-            : this.state.original.backgroundColor,
+          themes[type].backgroundColor,
         );
+        window.localStorage.setItem('currentTheme', type);
       },
     );
   };
 
   render() {
     return (
-      <Text
-        fontSize="3rem"
-        fontWeight="700"
-        onClick={this.handleColorTheme}
-        style={{ cursor: 'pointer' }}
-      >
-        {this.state.isCrazyTheme
-          ? `🥑 CRAZY!!1! ${this.state.emoji}`
-          : 'b o r i n g'}
-      </Text>
+      <div>
+        {[
+          {
+            name:  'basic',
+            label: 'basic',
+          },
+          {
+            name:  'crazy',
+            label: `🥑 CRAZY!!1! ${this.state.emoji}`,
+          },
+          {
+            name:  'dark',
+            label: '🌙',
+          },
+        ].map(radio => (
+          <Radio
+            key={radio.name}
+            {...radio}
+            checked={this.state.currentTheme === radio.name}
+            onChange={() => this.handleChangeColorTheme(radio.name)}
+          />
+        ))}
+      </div>
     );
   }
 }
