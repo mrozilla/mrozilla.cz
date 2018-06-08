@@ -9,8 +9,9 @@ import {
   Section,
   Subheading,
   HeroBlock,
-  ColourThemeBlock,
   WorksBlock,
+  ColourThemeBlock,
+  BarrelRollBlock,
 } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -60,6 +61,7 @@ export default function LabPage({
             .map(({ node: { meta: lab } }) => lab)}
         />
       </Section>
+      <BarrelRollBlock />
     </Main>
   );
 }
