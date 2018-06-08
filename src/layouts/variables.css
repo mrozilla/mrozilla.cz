@@ -1,5 +1,7 @@
 :root {
   --color-success: hsl(100, 70%, 60%);
+  --hsl-info: 211, 100%, 60%;
+  --color-info: hsl(211, 100%, 60%);
 
   --color-grey-light: hsl(200, 10%, 96%);
   --color-grey: hsl(200, 10%, 85%);
