@@ -22,7 +22,11 @@ export default styled.header`
   @media screen and (min-width: 600px) {
     position: sticky;
     top: 0;
-    padding: 20vh 12rem 0 12rem;
+    height: 100vh;
+    padding: 20vh 6rem 0 6rem;
     text-align: unset;
+  }
+  @media screen and (min-width: 900px) {
+    padding: 20vh 12rem 0 12rem;
   }
 `;

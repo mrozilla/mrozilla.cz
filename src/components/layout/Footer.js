@@ -20,7 +20,7 @@ export default styled.footer`
     'colophon'
     / 1fr;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 900px) {
     grid-template:
       'contact legal colophon'
       / 1fr 1fr 1fr;

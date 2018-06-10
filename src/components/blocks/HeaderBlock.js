@@ -13,7 +13,7 @@ import { Header, Heading, Link, Nav, InactiveTabBlock } from '../../components';
 export default function HeaderBlock({ header }) {
   return (
     <Header>
-      <Heading fontSize="3rem">
+      <Heading fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
         <Link to="/">mrozilla</Link>
       </Heading>
       <Nav>
