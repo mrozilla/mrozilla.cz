@@ -29,8 +29,10 @@ export default function LabPage({
 }) {
   return (
     <Main
-      gridTemplateColumns="1fr 1fr"
-      gridTemplateAreas="'hero hero' 'theme theme' 'tools products'"
+      gridTemplate={{
+        xs: "'hero' 'theme' 'tools' 'products'",
+        md: "'hero hero' 'theme theme' 'tools products' / 1fr 1fr",
+      }}
       gridGap="10vh 4rem"
     >
       <Helmet

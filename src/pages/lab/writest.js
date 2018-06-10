@@ -97,8 +97,10 @@ export default class WritestPage extends PureComponent {
   render() {
     return (
       <Main
-        gridTemplateColumns="2fr 1fr"
-        gridTemplateAreas="'input stats'"
+        gridTemplate={{
+          xs: "'input' 'stats'",
+          md: "'input stats' / 2fr 1fr",
+        }}
         gridGap="10vh 4rem"
       >
         <Section gridArea="input">
@@ -125,9 +127,7 @@ export default class WritestPage extends PureComponent {
           <Subheading>Sentences</Subheading>
           <Text>{this.state.sentencesCount.toLocaleString()}</Text>
           <Subheading>Average sentence length</Subheading>
-          <Text>
-            {this.state.sentencesCountAverage.toLocaleString()} words
-          </Text>
+          <Text>{this.state.sentencesCountAverage.toLocaleString()} words</Text>
           <Subheading>Reading time</Subheading>
           <Text>{this.state.readingTime}</Text>
           <Subheading>Speaking time</Subheading>
