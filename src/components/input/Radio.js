@@ -2,31 +2,52 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
+import React from 'react';
 import styled from 'styled-components';
+import { Label } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.header`
-  grid-area: header;
-  z-index: var(--z-index-header);
-  background-color: var(--color-bg);
-  bottom: 0;
-  width: 100%;
-
-  position: fixed;
-  padding: 1rem;
-  text-align: center;
-
-  @media screen and (min-width: 600px) {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 20vh 6rem 0 6rem;
-    text-align: unset;
-  }
-  @media screen and (min-width: 900px) {
-    padding: 20vh 12rem 0 12rem;
-  }
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  margin: ${({ margin = '0 0 1rem 0' }) => margin};
 `;
+
+const StyledInput = styled.input`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  outline: none;
+
+  box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.5);
+  transition: 250ms;
+
+  &:checked {
+    box-shadow: inset 0 0 0 6px hsl(var(--hsl-info));
+  }
+}
+
+input:checked {
+  border: 6px solid black;
+}
+`;
+
+export default function Radio({
+  name, label = 'input', margin, ...rest
+}) {
+  return (
+    <Wrapper margin={margin}>
+      <Label htmlFor={name}>{label}</Label>
+      <StyledInput id={name} type="radio" name={name} {...rest} />
+    </Wrapper>
+  );
+}

@@ -2,31 +2,50 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import { PureComponent } from 'react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.header`
-  grid-area: header;
-  z-index: var(--z-index-header);
-  background-color: var(--color-bg);
-  bottom: 0;
-  width: 100%;
+export default class BarrelRollBlock extends PureComponent {
+  state = {
+    count: 0,
+  };
 
-  position: fixed;
-  padding: 1rem;
-  text-align: center;
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.handleBarrelRoll);
+  };
+  componentWillUnmount = () => {
+    document.removeEventListener('keydown', this.handleBarrelRoll);
+  };
 
-  @media screen and (min-width: 600px) {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 20vh 6rem 0 6rem;
-    text-align: unset;
+  handleBarrelRoll = (evt) => {
+    if (evt.key === 'r') {
+      if (this.state.count < 4) {
+        return this.setState(
+          {
+            count: this.state.count + 1,
+          },
+          () => {
+            document.body.style.transform = null;
+            document.body.style.transition = null;
+          },
+        );
+      }
+      return this.setState(
+        {
+          count: 0,
+        },
+        () => {
+          document.body.style.transition = '1000ms';
+          document.body.style.transform = 'rotate(360deg)';
+        },
+      );
+    }
+  };
+
+  render() {
+    return null;
   }
-  @media screen and (min-width: 900px) {
-    padding: 20vh 12rem 0 12rem;
-  }
-`;
+}

@@ -160,7 +160,12 @@ export default class PassworldScreen extends Component {
 
   render() {
     return (
-      <Main gridTemplateColumns="1fr 2fr 1fr" gridTemplateAreas="'. output .'">
+      <Main
+        gridTemplate={{
+          xs: "'. output .' / 0fr 1fr 0fr",
+          md: "'. output .' / 1fr 2fr 1fr",
+        }}
+      >
         <Section gridArea="output">
           {this.renderOutputs()}
           {this.renderInputs()}

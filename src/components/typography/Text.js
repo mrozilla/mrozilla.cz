@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
+import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -34,8 +35,8 @@ export default styled.p(
     letterSpacing,
     color,
     opacity,
-    margin,
-    padding,
+    ...mediaQuerise({ margin }),
+    ...mediaQuerise({ padding }),
     gridColumn,
     gridArea,
   }),

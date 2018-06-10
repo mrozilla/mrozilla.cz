@@ -12,7 +12,7 @@ export default styled.label`
   text-transform: uppercase;
   font-size: 1.25rem;
   line-height: 2rem;
-  opacity: 0.5;
+  color: hsla(var(--hsl-text), 0.5);
 
   padding: ${({ padding }) => padding};
 `;

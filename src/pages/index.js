@@ -31,8 +31,10 @@ export default function HomePage({
 }) {
   return (
     <Main
-      gridTemplateColumns="1fr 1fr"
-      gridTemplateAreas="'hero hero' 'based availability' 'work blog'"
+      gridTemplate={{
+        xs: "'hero' 'based' 'availability' 'work' 'blog'",
+        md: "'hero hero' 'based availability' 'work blog' / 1fr 1fr",
+      }}
       gridGap="10vh 4rem"
     >
       <Helmet

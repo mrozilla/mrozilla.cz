@@ -10,11 +10,19 @@ import styled from 'styled-components';
 
 export default styled.footer`
   grid-area: footer;
+  display: grid;
+  grid-gap: ${({ gridGap = '2rem 1rem' }) => gridGap};
   margin-bottom: 20vh;
 
-  display: grid;
-  grid-gap: ${({ gridGap = '1rem' }) => gridGap};
-  grid-template-columns: ${({ gridTemplateColumns = 'auto' }) =>
-    gridTemplateColumns};
-  grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
+  grid-template:
+    'contact'
+    'legal'
+    'colophon'
+    / 1fr;
+
+  @media screen and (min-width: 900px) {
+    grid-template:
+      'contact legal colophon'
+      / 1fr 1fr 1fr;
+  }
 `;

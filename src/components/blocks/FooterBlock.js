@@ -20,10 +20,7 @@ import { parseLinks } from '../../utils';
 
 export default function FooterBlock({ footer }) {
   return (
-    <Footer
-      gridTemplateColumns="repeat(3, 1fr)"
-      gridTemplateAreas="'contact legal colophon'"
-    >
+    <Footer>
       <Section gridArea="contact">
         <Subheading
           fontSize="1.25rem"

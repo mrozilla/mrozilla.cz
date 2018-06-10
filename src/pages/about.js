@@ -28,8 +28,10 @@ export default function AboutPage({
 }) {
   return (
     <Main
-      gridTemplateAreas="'hero hero' 'about .'"
-      gridTemplateColumns="2fr 1fr"
+      gridTemplate={{
+        xs: "'hero' 'about'",
+        md: "'hero hero' 'about .' / 2fr 1fr",
+      }}
       gridGap="10vh 4rem"
     >
       <Helmet

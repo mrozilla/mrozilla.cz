@@ -9,8 +9,9 @@ import {
   Section,
   Subheading,
   HeroBlock,
-  ColourThemeBlock,
   WorksBlock,
+  ColourThemeBlock,
+  BarrelRollBlock,
 } from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -28,8 +29,10 @@ export default function LabPage({
 }) {
   return (
     <Main
-      gridTemplateColumns="1fr 1fr"
-      gridTemplateAreas="'hero hero' 'theme theme' 'tools products'"
+      gridTemplate={{
+        xs: "'hero' 'theme' 'tools' 'products'",
+        md: "'hero hero' 'theme theme' 'tools products' / 1fr 1fr",
+      }}
       gridGap="10vh 4rem"
     >
       <Helmet
@@ -60,6 +63,7 @@ export default function LabPage({
             .map(({ node: { meta: lab } }) => lab)}
         />
       </Section>
+      <BarrelRollBlock />
     </Main>
   );
 }

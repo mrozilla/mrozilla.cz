@@ -12,6 +12,8 @@ export default styled.div`
   position: relative;
   display: grid;
   grid-gap: 10vh 1rem;
-  grid-template-columns: 1fr 2fr 0.5fr;
-  grid-template-areas: 'header main aside' 'header footer aside';
+  grid-template:
+    'header main aside'
+    'header footer aside'
+    / var(--width-header) var(--width-main) var(--width-aside);
 `;

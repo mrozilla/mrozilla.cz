@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled, { keyframes } from 'styled-components';
+import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -13,16 +14,19 @@ const fadeUp = keyframes`
   to   { opacity: 1; transform: translateY(0); }
 `;
 
-export default styled.main`
-  grid-area: main;
-  padding-top: 20vh;
-
-  display: grid;
-  grid-gap: ${({ gridGap = '1rem' }) => gridGap};
-  grid-template-columns: ${({ gridTemplateColumns = 'auto' }) =>
-    gridTemplateColumns};
-  grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
-
-  animation: ${fadeUp} ${({ animationDuration = '500ms' }) => animationDuration}
-    forwards;
-`;
+export default styled.main(
+  {
+    gridArea:   'main',
+    display:    'grid',
+    paddingTop: '20vh',
+  },
+  ({
+    gridGap = '1rem',
+    gridTemplate,
+    animation = `${fadeUp} 500ms forwards`,
+  }) => ({
+    ...mediaQuerise({ gridGap }),
+    ...mediaQuerise({ gridTemplate }),
+    ...mediaQuerise({ animation }),
+  }),
+);
