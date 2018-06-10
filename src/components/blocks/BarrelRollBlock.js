@@ -22,7 +22,7 @@ export default class BarrelRollBlock extends PureComponent {
 
   handleBarrelRoll = (evt) => {
     if (evt.key === 'r') {
-      if (this.state.count < 5) {
+      if (this.state.count < 4) {
         return this.setState(
           {
             count: this.state.count + 1,
