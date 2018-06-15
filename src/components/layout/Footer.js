@@ -12,7 +12,6 @@ export default styled.footer`
   grid-area: footer;
   display: grid;
   grid-gap: ${({ gridGap = '2rem 1rem' }) => gridGap};
-  margin-bottom: 20vh;
 
   grid-template:
     'contact'

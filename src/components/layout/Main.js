@@ -16,14 +16,13 @@ const fadeUp = keyframes`
 
 export default styled.main(
   {
-    gridArea:   'main',
-    display:    'grid',
-    paddingTop: '20vh',
+    gridArea: 'main',
+    display:  'grid',
   },
   ({
     gridGap = '1rem',
     gridTemplate,
-    animation = `${fadeUp} 500ms forwards`,
+    animation = `${fadeUp} 750ms forwards`,
   }) => ({
     ...mediaQuerise({ gridGap }),
     ...mediaQuerise({ gridTemplate }),
