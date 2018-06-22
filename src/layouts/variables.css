@@ -19,13 +19,14 @@
 
   --z-index-header: 1000;
   --z-index-popover: 1010;
+  --z-index-toast: 1020;
 }
 
 @media screen and (min-width: 600px) {
   :root {
-    --width-header: 0.5fr;
+    --width-header: 0.75fr;
     --width-main: 2fr;
-    --width-aside: 0.5fr;
+    --width-aside: 0.25fr;
   }
 }
 
@@ -33,6 +34,6 @@
   :root {
     --width-header: 1fr;
     --width-main: 2fr;
-    --width-aside: 0.5fr;
+    --width-aside: 0.25fr;
   }
 }

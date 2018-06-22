@@ -29,6 +29,11 @@ const RouterLink = styled(GatsbyLink)`
         }
       `;
     }
+    if (type === 'secondary') {
+      return css`
+        text-decoration: underline;
+      `;
+    }
     return null;
   }};
 `;

@@ -8,3 +8,4 @@ export { default as InactiveTabBlock } from './InactiveTabBlock';
 export { default as ColourThemeBlock } from './ColourThemeBlock';
 export { default as TextBackgroundBlock } from './TextBackgroundBlock';
 export { default as BarrelRollBlock } from './BarrelRollBlock';
+export { default as CookieBlock } from './CookieBlock';

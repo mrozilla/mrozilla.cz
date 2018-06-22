@@ -2,65 +2,48 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import './index.css';
-
+import React, { PureComponent } from 'react';
 import {
-  Wrapper,
-  HeaderBlock,
-  FooterBlock,
-  CookieBlock,
-  TextBackgroundBlock,
-} from '../components';
+  Toast, Link, Text, Button,
+} from '..';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Layout({
-  data: {
-    menusJson: { header, footer },
-  },
-  children,
-}) {
-  return (
-    <Wrapper>
-      <HeaderBlock header={header} />
-      {children()}
-      <FooterBlock footer={footer} />
-      <CookieBlock />
-      <TextBackgroundBlock symbol="⌇" />
-    </Wrapper>
-  );
-}
+export default class CookieBlock extends PureComponent {
+  state = {
+    isHidden: window.localStorage.getItem('isCookiesHidden'),
+  };
 
-export const query = graphql`
-  query Menus {
-    menusJson {
-      header {
-        url
-        text
-      }
-      footer {
-        contact {
-          title
-          body {
-            url
-            text
-          }
-        }
-        legal {
-          title
-          body {
-            url
-            text
-          }
-        }
-        colophon {
-          title
-          text
-        }
-      }
+  handleVisibility = () => {
+    window.localStorage.setItem('isCookiesHidden', !this.state.isHidden);
+    this.setState({
+      isHidden: !this.state.isHidden,
+    });
+  };
+
+  render() {
+    if (!this.state.isHidden) {
+      return (
+        <Toast>
+          <Text display="inline-block" lineHeight="2rem" fontSize="1.5rem">
+            Yeah, we use cookies, we even have a
+            {' '}
+            <Link type="secondary" to="/legal">
+              cookie policy
+            </Link>
+          </Text>
+          <Button
+            type="basic"
+            margin="0 0 0 1rem"
+            onClick={this.handleVisibility}
+          >
+            🍪👍
+          </Button>
+        </Toast>
+      );
     }
+    return null;
   }
-`;
+}
