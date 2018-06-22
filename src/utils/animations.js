@@ -2,25 +2,23 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
-import { mediaQuerise, fadeUpAnimation } from '../../utils';
+import { keyframes } from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.main(
-  {
-    gridArea: 'main',
-    display:  'grid',
-  },
-  ({
-    gridGap = '1rem',
-    gridTemplate,
-    animation = `${fadeUpAnimation} 750ms forwards`,
-  }) => ({
-    ...mediaQuerise({ gridGap }),
-    ...mediaQuerise({ gridTemplate }),
-    ...mediaQuerise({ animation }),
-  }),
-);
+export const fadeUpAnimation = keyframes`
+  from { opacity: 0; transform: translateY(1vh); }
+  to   { opacity: 1; transform: translateY(0); }
+`;
+
+export const fadeDownAnimation = keyframes`
+  from { opacity: 0; transform: translateY(-1vh); }
+  to   { opacity: 1; transform: translateY(0); }
+`;
+
+export const fadeInAnimation = keyframes`
+  from { opacity: 0; }
+  to   { opacity: 1; }
+`;

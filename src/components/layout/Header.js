@@ -2,16 +2,12 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { fadeDownAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
-
-const fadeDown = keyframes`
-  from { opacity: 0; transform: translateY(0); }
-  to   { opacity: 1; transform: translateY(1vh); }
-`;
 
 export default styled.header`
   grid-area: header;
@@ -25,7 +21,7 @@ export default styled.header`
   padding: 1rem;
   text-align: center;
 
-  animation: ${fadeDown} 750ms forwards;
+  animation: ${fadeDownAnimation} 750ms forwards;
 
   @media screen and (min-width: 600px) {
     position: sticky;
