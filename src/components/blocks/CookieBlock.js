@@ -18,9 +18,9 @@ export default class CookieBlock extends PureComponent {
 
   handleVisibility = () => {
     window.localStorage.setItem('isCookiesHidden', !this.state.isHidden);
-    this.setState({
-      isHidden: !this.state.isHidden,
-    });
+    this.setState(prevState => ({
+      isHidden: !prevState.isHidden,
+    }));
   };
 
   render() {
@@ -39,7 +39,9 @@ export default class CookieBlock extends PureComponent {
             margin="0 0 0 1rem"
             onClick={this.handleVisibility}
           >
-            🍪👍
+            <span role="img" aria-label="cookie and thumbs up">
+              🍪👍
+            </span>
           </Button>
         </Toast>
       );
