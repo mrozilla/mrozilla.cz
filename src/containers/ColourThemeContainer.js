@@ -11,8 +11,11 @@ import { Radio } from '../components';
 
 export default class ColourThemeContainer extends PureComponent {
   state = {
-    currentTheme: window.localStorage.getItem('currentTheme') || 'basic',
-    emoji:        String.fromCodePoint(
+    currentTheme:
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('currentTheme')
+        : 'basic',
+    emoji: String.fromCodePoint(
       Math.floor(Math.random() * (128591 - 128513)) + 128513,
     ),
   };

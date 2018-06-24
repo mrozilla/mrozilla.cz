@@ -63,7 +63,10 @@ TextBackgroundContainer.propTypes = {
   scaleModifier:   number,
 };
 TextBackgroundContainer.defaultProps = {
-  amount: Math.floor(document.documentElement.scrollHeight / 10) || 100,
+  amount:
+    typeof document !== 'undefined'
+      ? Math.floor(document.documentElement.scrollHeight / 10)
+      : 100,
   symbol: '!',
 
   rotateModifier:  360,

@@ -13,7 +13,10 @@ import {
 
 export default class CookieContainer extends PureComponent {
   state = {
-    isHidden: window.localStorage.getItem('isCookiesHidden'),
+    isHidden:
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('isCookiesHidden')
+        : true,
   };
 
   handleVisibility = () => {
@@ -28,8 +31,7 @@ export default class CookieContainer extends PureComponent {
       return (
         <Toast>
           <Text display="inline-block" lineHeight="2rem" fontSize="1.5rem">
-            Yeah, we use cookies, we even have a
-            {' '}
+            Yeah, we use cookies, we even have a{' '}
             <Link type="secondary" to="/legal">
               cookie policy
             </Link>
