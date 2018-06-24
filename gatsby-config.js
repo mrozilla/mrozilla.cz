@@ -6,7 +6,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'src',
+        name: 'content',
         path: `${__dirname}/src/content`,
       },
     },
@@ -17,6 +17,27 @@ module.exports = {
         head:       true,
         anonymize:  true,
         respectDNT: true,
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 590,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              classPrefix:      'language-',
+              inlineCodeMarker: null,
+              aliases:          {},
+            },
+          },
+        ],
       },
     },
     'gatsby-transformer-json',
