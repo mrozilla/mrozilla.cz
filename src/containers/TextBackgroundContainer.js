@@ -3,17 +3,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { number, string } from 'prop-types';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function TextBackgroundBlock({
-  amount = Math.floor(document.documentElement.scrollHeight / 10) || 100,
-  symbol = '',
-  rotateModifier = 360,
-  opacityModifier = 1,
-  scaleModifier = 1,
+export default function TextBackgroundContainer({
+  amount,
+  symbol,
+  rotateModifier,
+  opacityModifier,
+  scaleModifier,
 }) {
   return (
     <div
@@ -35,14 +36,16 @@ export default function TextBackgroundBlock({
     >
       {new Array(amount).fill().map((_, i) => (
         <span
-          key={i}
+          key={i} // eslint-disable-line
           style={{
             position:  'absolute',
             top:       `${Math.random() * 100}%`,
             left:      `${Math.random() * 100}%`,
             color:     `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`,
-            transform: `rotate(${Math.floor(Math.random() * rotateModifier)}deg) scale(${Math.random() * scaleModifier})`,
-            opacity:   `${Math.random() * opacityModifier}`,
+            transform: `rotate(${Math.floor(
+              Math.random() * rotateModifier,
+            )}deg) scale(${Math.random() * scaleModifier})`,
+            opacity: `${Math.random() * opacityModifier}`,
           }}
         >
           {symbol}
@@ -51,3 +54,19 @@ export default function TextBackgroundBlock({
     </div>
   );
 }
+
+TextBackgroundContainer.propTypes = {
+  amount:          number,
+  symbol:          string,
+  rotateModifier:  number,
+  opacityModifier: number,
+  scaleModifier:   number,
+};
+TextBackgroundContainer.defaultProps = {
+  amount: Math.floor(document.documentElement.scrollHeight / 10) || 100,
+  symbol: '!',
+
+  rotateModifier:  360,
+  opacityModifier: 1,
+  scaleModifier:   1,
+};

@@ -2,25 +2,42 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
-import { mediaQuerise, fadeUpAnimation } from '../../utils';
+import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
+
+import {
+  List, Title, Text, Link,
+} from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.main(
-  {
-    gridArea: 'main',
-    display:  'grid',
-  },
-  ({
-    gridGap = '1rem',
-    gridTemplate,
-    animation = `${fadeUpAnimation} 750ms forwards`,
-  }) => ({
-    ...mediaQuerise({ gridGap }),
-    ...mediaQuerise({ gridTemplate }),
-    ...mediaQuerise({ animation }),
-  }),
-);
+export default function WorksContainer({ works }) {
+  return (
+    <List gridGap="3rem">
+      {works.map(({ permalink, title, tags }) => (
+        <List.Item key={permalink}>
+          <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
+            <Link to={permalink} type="primary">
+              {title}
+            </Link>
+          </Title>
+          <Text opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
+            {tags.join(', ')}
+          </Text>
+        </List.Item>
+      ))}
+    </List>
+  );
+}
+
+WorksContainer.propTypes = {
+  works: arrayOf(
+    shape({
+      permalink: string.isRequired,
+      title:     string.isRequired,
+      tags:      arrayOf(string).isRequired,
+    }),
+  ).isRequired,
+};

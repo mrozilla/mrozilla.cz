@@ -12,6 +12,7 @@ import { mediaQuerise } from '../../utils';
 export default styled.p(
   {},
   ({
+    display,
     fontFamily,
     fontSize,
     fontWeight,
@@ -19,6 +20,7 @@ export default styled.p(
     textAlign,
     textTransform,
     letterSpacing,
+    whiteSpace,
     color,
     opacity,
     margin,
@@ -26,6 +28,7 @@ export default styled.p(
     gridColumn,
     gridArea,
   }) => ({
+    display,
     fontFamily,
     fontSize,
     fontWeight,
@@ -33,6 +36,7 @@ export default styled.p(
     textAlign,
     textTransform,
     letterSpacing,
+    whiteSpace,
     color,
     opacity,
     ...mediaQuerise({ margin }),

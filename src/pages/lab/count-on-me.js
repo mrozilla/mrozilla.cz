@@ -6,7 +6,9 @@
 import React, { PureComponent } from 'react';
 
 // components
-import { Main, Section, Heading, Button } from '../../components';
+import {
+  Main, Section, Heading, Button,
+} from '../../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -17,11 +19,11 @@ export default class CountOnMePage extends PureComponent {
     count: 0,
   };
 
-  handleCount = (evt, value) => {
-    evt.stopPropagation();
-    this.setState({
-      count: this.state.count + value,
-    });
+  handleCount = (event, value) => {
+    event.stopPropagation();
+    this.setState(prevState => ({
+      count: prevState.count + value,
+    }));
 
     if ('vibrate' in navigator) {
       if (value > 0) {
@@ -30,8 +32,9 @@ export default class CountOnMePage extends PureComponent {
       navigator.vibrate([100, 100, 100]);
     }
   };
-  handleReset = (evt) => {
-    evt.stopPropagation();
+
+  handleReset = (event) => {
+    event.stopPropagation();
     this.setState(
       {
         count: 0,

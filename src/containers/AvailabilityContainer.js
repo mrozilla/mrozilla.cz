@@ -2,50 +2,46 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import { shape, string } from 'prop-types';
+import { Text, Link } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class BarrelRollBlock extends PureComponent {
+export default class AvailabilityContainer extends PureComponent {
+  static propTypes = {
+    availability: shape({
+      title: string.isRequired,
+      text:  string.isRequired,
+    }).isRequired,
+  };
+
   state = {
-    count: 0,
+    availability: this.props.availability.text,
   };
 
-  componentDidMount = () => {
-    document.addEventListener('keydown', this.handleBarrelRoll);
-  };
-  componentWillUnmount = () => {
-    document.removeEventListener('keydown', this.handleBarrelRoll);
-  };
-
-  handleBarrelRoll = (evt) => {
-    if (evt.key === 'r') {
-      if (this.state.count < 4) {
-        return this.setState(
-          {
-            count: this.state.count + 1,
-          },
-          () => {
-            document.body.style.transform = null;
-            document.body.style.transition = null;
-          },
-        );
-      }
-      return this.setState(
-        {
-          count: 0,
-        },
-        () => {
-          document.body.style.transition = '1000ms';
-          document.body.style.transform = 'rotate(360deg)';
-        },
-      );
-    }
-  };
+  componentDidMount() {
+    const availabilityDate = new Date();
+    availabilityDate.setMonth(
+      availabilityDate.getMonth() + (availabilityDate.getDate() > 15 ? 2 : 1),
+    );
+    this.setState({
+      availability: availabilityDate.toLocaleDateString('en-GB', {
+        month: 'long',
+        year:  'numeric',
+      }),
+    });
+  }
 
   render() {
-    return null;
+    return (
+      <Text fontSize="3rem" fontWeight="700">
+        <Link to="mailto:jan@mrozilla.cz" type="primary">
+          {this.state.availability}
+        </Link>
+      </Text>
+    );
   }
 }

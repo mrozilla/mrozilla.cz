@@ -3,8 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { string } from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '../../components';
+import { Label } from '../typography';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -23,7 +24,7 @@ const StyledInput = styled.input`
 `;
 
 export default function Checkbox({
-  name, label = 'input', margin, ...rest
+  name, label, margin, ...rest
 }) {
   return (
     <Wrapper margin={margin}>
@@ -32,3 +33,12 @@ export default function Checkbox({
     </Wrapper>
   );
 }
+
+Checkbox.propTypes = {
+  name:   string.isRequired,
+  label:  string.isRequired,
+  margin: string,
+};
+Checkbox.defaultProps = {
+  margin: null,
+};

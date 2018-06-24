@@ -3,14 +3,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
 
-import { Header, Heading, Link, Nav, InactiveTabBlock } from '../../components';
+import {
+  Header, Heading, Link, Nav,
+} from '../components';
+import InactiveTabContainer from './InactiveTabContainer';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HeaderBlock({ header }) {
+export default function HeaderContainer({ header }) {
   return (
     <Header>
       <Heading fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
@@ -27,7 +31,16 @@ export default function HeaderBlock({ header }) {
           ))}
         </Nav.List>
       </Nav>
-      <InactiveTabBlock />
+      <InactiveTabContainer />
     </Header>
   );
 }
+
+HeaderContainer.propTypes = {
+  header: arrayOf(
+    shape({
+      url:  string.isRequired,
+      text: string.isRequired,
+    }),
+  ).isRequired,
+};

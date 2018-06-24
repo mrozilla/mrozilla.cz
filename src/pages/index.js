@@ -5,15 +5,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import {
-  Main,
-  Section,
-  Subheading,
-  Text,
-  HeroBlock,
-  WorksBlock,
-  AvailabilityBlock,
-  BlogBlock,
+  Main, Section, Subheading, Text,
 } from '../components';
+import {
+  HeroContainer,
+  WorksContainer,
+  AvailabilityContainer,
+  // BlogContainer, // TODO add blog pages
+} from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -26,7 +25,6 @@ export default function HomePage({
       body: { hero, location, availability },
     },
     allWorkJson: { edges: works },
-    // allMediumPost: { edges: posts },
   },
 }) {
   return (
@@ -44,7 +42,7 @@ export default function HomePage({
           { name: 'keywords', content: meta.keywords },
         ]}
       />
-      <HeroBlock hero={hero} />
+      <HeroContainer hero={hero} />
       <Section gridArea="based">
         <Subheading>{location.title}</Subheading>
         <Text fontSize="3rem" fontWeight="700">
@@ -53,16 +51,16 @@ export default function HomePage({
       </Section>
       <Section gridArea="availability">
         <Subheading>{availability.title}</Subheading>
-        <AvailabilityBlock availability={availability} />
+        <AvailabilityContainer availability={availability} />
       </Section>
       <Section gridArea="work" id="work">
         <Subheading>latest client work</Subheading>
-        <WorksBlock works={works.map(({ node: { meta: work } }) => work)} />
+        <WorksContainer works={works.map(({ node: { meta: work } }) => work)} />
       </Section>
-      <Section gridArea="blog" id="blog">
+      {/* <Section gridArea="blog" id="blog">
         <Subheading>latest blog articles</Subheading>
-        {/* <BlogBlock posts={posts} /> */}
-      </Section>
+        <BlogContainer posts={posts} />
+      </Section> */}
     </Main>
   );
 }

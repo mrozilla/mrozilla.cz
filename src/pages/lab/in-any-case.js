@@ -6,7 +6,9 @@
 import React, { PureComponent } from 'react';
 
 // style
-import { Main, Section, Button, Input } from '../../components';
+import {
+  Main, Section, Button, Input,
+} from '../../components';
 import { parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,61 +25,51 @@ export default class InAnyCaseScreen extends PureComponent {
     const changeCase = {
       toLowerCase: s => s.toLowerCase(),
       toUpperCase: s => s.toUpperCase(),
-      toTitleCase: s =>
-        s
-          .split(' ')
-          .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
-          .join(' '),
-      toSentenceCase: s =>
-        s
-          .split('. ')
-          .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
-          .join('. '),
-      toDotCase: s =>
-        s
-          .split(' ')
-          .map(w => changeCase.toLowerCase(w))
-          .join('.'),
-      toURLCase: s =>
-        s
-          .split(' ')
-          .map(w => changeCase.toLowerCase(w))
-          .join('-'),
-      toPathCase: s =>
-        s
-          .split(' ')
-          .map(w => changeCase.toLowerCase(w))
-          .join('/'),
-      toSnakeCase: s =>
-        s
-          .split(' ')
-          .map(t => changeCase.toLowerCase(t))
-          .join('_'),
-      toConstantCase: s =>
-        s
-          .split(' ')
-          .map(w => changeCase.toUpperCase(w))
-          .join('_'),
-      toHeaderCase: s =>
-        s
-          .split(' ')
-          .map(t => changeCase.toSentenceCase(t))
-          .join('-'),
-      toPascalCase: s =>
-        s
-          .split(' ')
-          .map(w => changeCase.toSentenceCase(w))
-          .join(''),
-      toCamelCase: s =>
-        changeCase
-          .toPascalCase(s)
-          .charAt(0)
-          .toLowerCase() + changeCase.toPascalCase(s).slice(1),
+      toTitleCase: s => s
+        .split(' ')
+        .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
+        .join(' '),
+      toSentenceCase: s => s
+        .split('. ')
+        .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
+        .join('. '),
+      toDotCase: s => s
+        .split(' ')
+        .map(w => changeCase.toLowerCase(w))
+        .join('.'),
+      toURLCase: s => s
+        .split(' ')
+        .map(w => changeCase.toLowerCase(w))
+        .join('-'),
+      toPathCase: s => s
+        .split(' ')
+        .map(w => changeCase.toLowerCase(w))
+        .join('/'),
+      toSnakeCase: s => s
+        .split(' ')
+        .map(t => changeCase.toLowerCase(t))
+        .join('_'),
+      toConstantCase: s => s
+        .split(' ')
+        .map(w => changeCase.toUpperCase(w))
+        .join('_'),
+      toHeaderCase: s => s
+        .split(' ')
+        .map(t => changeCase.toSentenceCase(t))
+        .join('-'),
+      toPascalCase: s => s
+        .split(' ')
+        .map(w => changeCase.toSentenceCase(w))
+        .join(''),
+      toCamelCase: s => changeCase
+        .toPascalCase(s)
+        .charAt(0)
+        .toLowerCase() + changeCase.toPascalCase(s).slice(1),
       reset: () => this.state.original,
     };
-    this.setState({
-      output: changeCase[type](this.state.output.trim()),
-    });
+    this.setState(prevState => ({
+      output: changeCase[type](prevState.output.trim()),
+    }));
   };
 
   render() {
@@ -89,8 +81,10 @@ export default class InAnyCaseScreen extends PureComponent {
             type="text"
             value={this.state.output}
             placeholder="Insert text and change case using the buttons below..."
-            onChange={({ target }) =>
-              this.setState({ ...parseInput(target), original: target.value })
+            onChange={({ target }) => this.setState({
+              ...parseInput(target),
+              original: target.value,
+            })
             }
             padding="4rem"
           />

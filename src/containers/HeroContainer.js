@@ -3,23 +3,30 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { shape, string } from 'prop-types';
 
-import { List, Link } from '../../components';
+import { Heading } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function BlogBlock({ posts }) {
+export default function HeroContainer({ hero }) {
   return (
-    <List gridGap="0rem">
-      {posts.map(({ node: post }) => (
-        <List.Item key={post.id}>
-          <Link to={`https://medium.com/mrozilla/${post.id}`} type="primary">
-            {post.title}
-          </Link>
-        </List.Item>
-      ))}
-    </List>
+    <Heading
+      fontSize="5rem"
+      fontWeight="400"
+      lineHeight="6rem"
+      margin="-1rem 0 0 0"
+      gridArea="hero"
+    >
+      {hero.title}
+    </Heading>
   );
 }
+
+HeroContainer.propTypes = {
+  hero: shape({
+    title: string.isRequired,
+  }).isRequired,
+};

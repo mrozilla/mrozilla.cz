@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
+import { fadeDownAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -10,6 +11,7 @@ import styled from 'styled-components';
 
 export default styled.header`
   grid-area: header;
+  align-self: start;
   z-index: var(--z-index-header);
   background-color: var(--color-bg);
   bottom: 0;
@@ -19,14 +21,15 @@ export default styled.header`
   padding: 1rem;
   text-align: center;
 
+  animation: ${fadeDownAnimation} 750ms forwards;
+
   @media screen and (min-width: 600px) {
     position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 20vh 6rem 0 6rem;
-    text-align: unset;
+    top: 20vh;
+    padding: 0;
+    text-align: right;
+    background-color: unset;
   }
   @media screen and (min-width: 900px) {
-    padding: 20vh 12rem 0 12rem;
   }
 `;

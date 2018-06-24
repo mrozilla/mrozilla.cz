@@ -5,13 +5,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import {
-  Main,
-  Section,
-  Text,
-  HeroBlock,
-  List,
-  Subheading,
+  Main, Section, Text, List, Subheading,
 } from '../components';
+import { HeroContainer } from '../containers';
 import { parseLinks } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,7 +37,7 @@ export default function AboutPage({
           { name: 'keywords', content: meta.keywords },
         ]}
       />
-      <HeroBlock {...{ hero }} />
+      <HeroContainer {...{ hero }} />
       <Section gridArea="about">
         <List gridGap="2rem">
           {about.map(item => (

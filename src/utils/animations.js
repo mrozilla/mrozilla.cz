@@ -2,29 +2,28 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Grid = styled.div`
-  grid-column: ${({ gridColumn }) => gridColumn};
-  grid-row: ${({ gridRow }) => gridRow};
-
-  display: grid;
-  grid-gap: ${({ gridGap = '1rem' }) => gridGap};
-  grid-template-columns: ${({ gridTemplateColumns = 'auto' }) =>
-    gridTemplateColumns};
-  grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
-
-  align-items: ${({ alignItems }) => alignItems};
+export const fadeUpAnimation = keyframes`
+  from { opacity: 0; transform: translateY(1vh); }
+  to   { opacity: 1; transform: translateY(0); }
 `;
 
-Grid.Item = styled.div`
-  grid-row: ${({ gridRow }) => gridRow};
-  grid-column: ${({ gridColumn }) => gridColumn};
-  grid-area: ${({ gridArea }) => gridArea};
+export const fadeDownAnimation = keyframes`
+  from { opacity: 0; transform: translateY(-1vh); }
+  to   { opacity: 1; transform: translateY(0); }
 `;
 
-export default Grid;
+export const fadeInAnimation = keyframes`
+  from { opacity: 0; }
+  to   { opacity: 1; }
+`;
+
+export const fadeOutAnimation = keyframes`
+  from { opacity: 1; }
+  to   { opacity: 0; }
+`;

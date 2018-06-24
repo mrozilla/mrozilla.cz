@@ -2,31 +2,34 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { PureComponent } from 'react';
+import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
+
+import { List, Link } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class InactiveTabBlock extends PureComponent {
-  componentDidMount = () => {
-    document.addEventListener('visibilitychange', this.handleInactiveTab);
-  };
-  componentWillUnmount = () => {
-    document.removeEventListener('visibilitychange', this.handleInactiveTab);
-  };
-
-  handleInactiveTab = () => {
-    if (document.visibilityState === 'hidden') {
-      document.title = `😴 ${document.title}`;
-    }
-
-    if (document.visibilityState === 'visible') {
-      document.title = document.title.substr(2);
-    }
-  };
-
-  render() {
-    return null;
-  }
+export default function BlogContainer({ posts }) {
+  return (
+    <List gridGap="0rem">
+      {posts.map(post => (
+        <List.Item key={post.id}>
+          <Link to={`https://medium.com/mrozilla/${post.id}`} type="primary">
+            {post.title}
+          </Link>
+        </List.Item>
+      ))}
+    </List>
+  );
 }
+
+BlogContainer.propTypes = {
+  posts: arrayOf(
+    shape({
+      id:    string.isRequired,
+      title: string.isRequired,
+    }),
+  ).isRequired,
+};

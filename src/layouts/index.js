@@ -3,14 +3,16 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { func } from 'prop-types';
 import './index.css';
 
+import { Wrapper } from '../components';
 import {
-  Wrapper,
-  HeaderBlock,
-  FooterBlock,
-  TextBackgroundBlock,
-} from '../components';
+  HeaderContainer,
+  FooterContainer,
+  CookieContainer,
+  TextBackgroundContainer,
+} from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -24,13 +26,18 @@ export default function Layout({
 }) {
   return (
     <Wrapper>
-      <HeaderBlock header={header} />
+      <HeaderContainer header={header} />
       {children()}
-      <FooterBlock footer={footer} />
-      <TextBackgroundBlock symbol="⌇" />
+      <FooterContainer footer={footer} />
+      <CookieContainer />
+      <TextBackgroundContainer symbol="⌇" />
     </Wrapper>
   );
 }
+
+Layout.propTypes = {
+  children: func.isRequired,
+};
 
 export const query = graphql`
   query Menus {

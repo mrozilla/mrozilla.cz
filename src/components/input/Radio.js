@@ -3,8 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { string } from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '../../components';
+import { Label } from '../typography';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -42,7 +43,7 @@ input:checked {
 `;
 
 export default function Radio({
-  name, label = 'input', margin, ...rest
+  name, label, margin, ...rest
 }) {
   return (
     <Wrapper margin={margin}>
@@ -51,3 +52,12 @@ export default function Radio({
     </Wrapper>
   );
 }
+
+Radio.propTypes = {
+  name:   string.isRequired,
+  label:  string.isRequired,
+  margin: string,
+};
+Radio.defaultProps = {
+  margin: null,
+};
