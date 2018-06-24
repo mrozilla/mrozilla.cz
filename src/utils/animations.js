@@ -22,3 +22,8 @@ export const fadeInAnimation = keyframes`
   from { opacity: 0; }
   to   { opacity: 1; }
 `;
+
+export const fadeOutAnimation = keyframes`
+  from { opacity: 1; }
+  to   { opacity: 0; }
+`;

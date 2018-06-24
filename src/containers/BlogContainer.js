@@ -3,28 +3,33 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
 
-import { List, Title, Text, Link } from '../../components';
+import { List, Link } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function WorksBlock({ works }) {
+export default function BlogContainer({ posts }) {
   return (
-    <List gridGap="3rem">
-      {works.map(({ permalink, title, tags }) => (
-        <List.Item key={permalink}>
-          <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
-            <Link to={permalink} type="primary">
-              {title}
-            </Link>
-          </Title>
-          <Text opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {tags.join(', ')}
-          </Text>
+    <List gridGap="0rem">
+      {posts.map(post => (
+        <List.Item key={post.id}>
+          <Link to={`https://medium.com/mrozilla/${post.id}`} type="primary">
+            {post.title}
+          </Link>
         </List.Item>
       ))}
     </List>
   );
 }
+
+BlogContainer.propTypes = {
+  posts: arrayOf(
+    shape({
+      id:    string.isRequired,
+      title: string.isRequired,
+    }),
+  ).isRequired,
+};

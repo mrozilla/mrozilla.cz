@@ -5,13 +5,13 @@
 import React, { PureComponent } from 'react';
 import {
   Toast, Link, Text, Button,
-} from '..';
+} from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class CookieBlock extends PureComponent {
+export default class CookieContainer extends PureComponent {
   state = {
     isHidden: window.localStorage.getItem('isCookiesHidden'),
   };

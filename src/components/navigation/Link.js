@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { string, node } from 'prop-types';
 import styled, { css } from 'styled-components';
 import GatsbyLink from 'gatsby-link';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
@@ -39,9 +40,9 @@ const RouterLink = styled(GatsbyLink)`
 `;
 const ExternalLink = RouterLink.withComponent(OutboundLink);
 
-export default ({
+export default function Link({
   href, to, children, ...rest
-}) => {
+}) {
   const link = href || to;
   if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
     return (
@@ -60,4 +61,14 @@ export default ({
       {children}
     </RouterLink>
   );
+}
+
+Link.propTypes = {
+  children: node.isRequired,
+  href:     string,
+  to:       string,
+};
+Link.defaultProps = {
+  href: null,
+  to:   null,
 };

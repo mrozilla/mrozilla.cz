@@ -14,6 +14,6 @@ export default new RehypeReact({
   createElement: React.createElement,
   components:    {
     a: Link,
-    // blockquote: BlockQuoteBlock, // TODO add tweetable quotes
+    // blockquote: BlockQuoteContainer, // TODO add tweetable quotes
   },
 }).Compiler;

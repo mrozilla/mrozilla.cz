@@ -8,7 +8,7 @@ import { PureComponent } from 'react';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class BarrelRollBlock extends PureComponent {
+export default class BarrelRollContainer extends PureComponent {
   state = {
     count: 0,
   };
@@ -16,6 +16,7 @@ export default class BarrelRollBlock extends PureComponent {
   componentDidMount = () => {
     document.addEventListener('keydown', this.handleBarrelRoll);
   };
+
   componentWillUnmount = () => {
     document.removeEventListener('keydown', this.handleBarrelRoll);
   };
@@ -24,9 +25,9 @@ export default class BarrelRollBlock extends PureComponent {
     if (evt.key === 'r') {
       if (this.state.count < 4) {
         return this.setState(
-          {
-            count: this.state.count + 1,
-          },
+          prevState => ({
+            count: prevState.count + 1,
+          }),
           () => {
             document.body.style.transform = null;
             document.body.style.transition = null;
@@ -43,6 +44,7 @@ export default class BarrelRollBlock extends PureComponent {
         },
       );
     }
+    return null;
   };
 
   render() {

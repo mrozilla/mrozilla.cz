@@ -2,29 +2,31 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import React from 'react';
+import { shape, string } from 'prop-types';
+
+import { Heading } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Grid = styled.div`
-  grid-column: ${({ gridColumn }) => gridColumn};
-  grid-row: ${({ gridRow }) => gridRow};
+export default function HeroContainer({ hero }) {
+  return (
+    <Heading
+      fontSize="5rem"
+      fontWeight="400"
+      lineHeight="6rem"
+      margin="-1rem 0 0 0"
+      gridArea="hero"
+    >
+      {hero.title}
+    </Heading>
+  );
+}
 
-  display: grid;
-  grid-gap: ${({ gridGap = '1rem' }) => gridGap};
-  grid-template-columns: ${({ gridTemplateColumns = 'auto' }) =>
-    gridTemplateColumns};
-  grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
-
-  align-items: ${({ alignItems }) => alignItems};
-`;
-
-Grid.Item = styled.div`
-  grid-row: ${({ gridRow }) => gridRow};
-  grid-column: ${({ gridColumn }) => gridColumn};
-  grid-area: ${({ gridArea }) => gridArea};
-`;
-
-export default Grid;
+HeroContainer.propTypes = {
+  hero: shape({
+    title: string.isRequired,
+  }).isRequired,
+};

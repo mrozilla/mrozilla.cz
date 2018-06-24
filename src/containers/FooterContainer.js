@@ -3,22 +3,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { shape, string, arrayOf } from 'prop-types';
 
 import {
-  Footer,
-  Section,
-  Subheading,
-  List,
-  Link,
-  Text,
-} from '../../components';
-import { parseLinks } from '../../utils';
+  Footer, Section, Subheading, List, Link, Text,
+} from '../components';
+import { parseLinks } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function FooterBlock({ footer }) {
+export default function FooterContainer({ footer }) {
   return (
     <Footer>
       <Section gridArea="contact">
@@ -76,3 +72,30 @@ export default function FooterBlock({ footer }) {
     </Footer>
   );
 }
+
+FooterContainer.propTypes = {
+  footer: shape({
+    contact: shape({
+      title: string,
+      body:  arrayOf(
+        shape({
+          url:  string.isRequired,
+          text: string.isRequired,
+        }),
+      ),
+    }),
+    legal: shape({
+      title: string,
+      body:  arrayOf(
+        shape({
+          url:  string.isRequired,
+          text: string.isRequired,
+        }),
+      ),
+    }),
+    colophon: shape({
+      title: string.isRequired,
+      text:  string.isRequired,
+    }),
+  }).isRequired,
+};

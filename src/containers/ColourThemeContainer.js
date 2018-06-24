@@ -3,16 +3,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { Radio } from '../../components';
+import { Radio } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class ColourThemeBlock extends PureComponent {
+export default class ColourThemeContainer extends PureComponent {
   state = {
     currentTheme: window.localStorage.getItem('currentTheme') || 'basic',
-    emoji:        String.fromCodePoint(Math.floor(Math.random() * (128591 - 128513)) + 128513),
+    emoji:        String.fromCodePoint(
+      Math.floor(Math.random() * (128591 - 128513)) + 128513,
+    ),
   };
 
   componentDidMount = () => {

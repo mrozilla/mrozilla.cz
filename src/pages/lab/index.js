@@ -4,15 +4,13 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Main, Section, Subheading } from '../../components';
 import {
-  Main,
-  Section,
-  Subheading,
-  HeroBlock,
-  WorksBlock,
-  ColourThemeBlock,
-  BarrelRollBlock,
-} from '../../components';
+  HeroContainer,
+  WorksContainer,
+  ColourThemeContainer,
+  BarrelRollContainer,
+} from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -42,14 +40,14 @@ export default function LabPage({
           { name: 'keywords', content: meta.keywords },
         ]}
       />
-      <HeroBlock hero={hero} />
+      <HeroContainer hero={hero} />
       <Section gridArea="theme">
         <Subheading>current colour theme</Subheading>
-        <ColourThemeBlock />
+        <ColourThemeContainer />
       </Section>
       <Section gridArea="tools">
         <Subheading>little tools</Subheading>
-        <WorksBlock
+        <WorksContainer
           works={labs
             .filter(({ node: { meta: { type } } }) => type.includes('tool'))
             .map(({ node: { meta: lab } }) => lab)}
@@ -57,13 +55,13 @@ export default function LabPage({
       </Section>
       <Section gridArea="products">
         <Subheading>standalone products</Subheading>
-        <WorksBlock
+        <WorksContainer
           works={labs
             .filter(({ node: { meta: { type } } }) => type.includes('product'))
             .map(({ node: { meta: lab } }) => lab)}
         />
       </Section>
-      <BarrelRollBlock />
+      <BarrelRollContainer />
     </Main>
   );
 }

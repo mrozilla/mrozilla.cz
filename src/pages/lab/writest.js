@@ -65,19 +65,22 @@ export default class WritestPage extends PureComponent {
       return s.replace(rgx.newLines, '').replace(rgx.spaces, '').length;
     }
     function mostCommonWord(s) {
-      return wordsArray(s).reduce(
-        (a, b, i, arr) =>
-          (arr.filter(v => v === a).length >= arr.filter(v => v === b).length
-            ? a
-            : b),
-        'N/A',
-      );
+      return wordsArray(s).reduce((a, b, i, arr) => {
+        if (
+          arr.filter(v => v === a).length >= arr.filter(v => v === b).length
+        ) {
+          return a;
+        }
+        return b;
+      }, 'N/A');
     }
     function averageSentences(s) {
       return wordsArray(s).length / sentencesArray(s).length;
     }
     function spentTime(s, len) {
-      return new Date(wordsArray(s).length / len * 60 * 1000).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
+      return new Date(
+        (wordsArray(s).length / len) * 60 * 1000,
+      ).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
     }
 
     this.setState({

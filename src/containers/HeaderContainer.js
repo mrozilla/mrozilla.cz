@@ -3,23 +3,44 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
 
-import { List, Link } from '../../components';
+import {
+  Header, Heading, Link, Nav,
+} from '../components';
+import InactiveTabContainer from './InactiveTabContainer';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function BlogBlock({ posts }) {
+export default function HeaderContainer({ header }) {
   return (
-    <List gridGap="0rem">
-      {posts.map(({ node: post }) => (
-        <List.Item key={post.id}>
-          <Link to={`https://medium.com/mrozilla/${post.id}`} type="primary">
-            {post.title}
-          </Link>
-        </List.Item>
-      ))}
-    </List>
+    <Header>
+      <Heading fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
+        <Link to="/">mrozilla</Link>
+      </Heading>
+      <Nav>
+        <Nav.List>
+          {header.map(item => (
+            <Nav.List.Item key={item.url}>
+              <Link to={item.url} type="primary">
+                {item.text}
+              </Link>
+            </Nav.List.Item>
+          ))}
+        </Nav.List>
+      </Nav>
+      <InactiveTabContainer />
+    </Header>
   );
 }
+
+HeaderContainer.propTypes = {
+  header: arrayOf(
+    shape({
+      url:  string.isRequired,
+      text: string.isRequired,
+    }),
+  ).isRequired,
+};

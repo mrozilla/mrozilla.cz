@@ -2,32 +2,33 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-
-import { Header, Heading, Link, Nav, InactiveTabBlock } from '../../components';
+import { PureComponent } from 'react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HeaderBlock({ header }) {
-  return (
-    <Header>
-      <Heading fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
-        <Link to="/">mrozilla</Link>
-      </Heading>
-      <Nav>
-        <Nav.List>
-          {header.map(item => (
-            <Nav.List.Item key={item.url}>
-              <Link to={item.url} type="primary">
-                {item.text}
-              </Link>
-            </Nav.List.Item>
-          ))}
-        </Nav.List>
-      </Nav>
-      <InactiveTabBlock />
-    </Header>
-  );
+export default class InactiveTabContainer extends PureComponent {
+  componentDidMount = () => {
+    document.addEventListener('visibilitychange', this.handleInactiveTab);
+  };
+
+  componentWillUnmount = () => {
+    document.removeEventListener('visibilitychange', this.handleInactiveTab);
+  };
+
+  handleInactiveTab = () => {
+    if (document.visibilityState === 'hidden') {
+      document.title = `😴 ${document.title}`;
+      return;
+    }
+
+    if (document.visibilityState === 'visible') {
+      document.title = document.title.substr(2);
+    }
+  };
+
+  render() {
+    return null;
+  }
 }

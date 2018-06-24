@@ -3,8 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { string, node } from 'prop-types';
 import styled from 'styled-components';
-import { Label, Text } from '../../components';
+import { Label, Text } from '../typography';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -65,3 +66,23 @@ export default function Input({
     </Wrapper>
   );
 }
+
+Input.propTypes = {
+  type:        string,
+  label:       string.isRequired,
+  margin:      string,
+  width:       string,
+  border:      string,
+  description: string,
+  renderLeft:  node,
+  renderRight: node,
+};
+Input.defaultProps = {
+  type:        'text',
+  margin:      null,
+  width:       null,
+  border:      null,
+  description: null,
+  renderLeft:  null,
+  renderRight: null,
+};
