@@ -65,7 +65,7 @@ TextBackgroundContainer.propTypes = {
 TextBackgroundContainer.defaultProps = {
   amount:
     typeof document !== 'undefined'
-      ? Math.floor(document.documentElement.scrollHeight / 10)
+      ? Math.floor(document.documentElement.scrollHeight / 2)
       : 100,
   symbol: '!',
 
