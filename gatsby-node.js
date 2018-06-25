@@ -8,16 +8,7 @@ const path = require('path');
 
 exports.modifyWebpackConfig = ({ config }) => {
   config.merge({
-    postcss: [
-      require('postcss-cssnext')({
-        features: {
-          customProperties: {
-            preserve: true,
-            warnings: false,
-          },
-        },
-      }),
-    ],
+    postcss() {},
   });
 
   return config;

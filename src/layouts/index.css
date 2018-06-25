@@ -1,46 +1,4 @@
-/* VARIABLES */
-
-@media screen and (min-width: 0px) {
-  :root {
-    --hsl-success: 100, 70%, 60%;
-    --color-success: hsl(var(--hsl-success, black));
-    --hsl-info: 211, 100%, 60%;
-    --color-info: hsl(var(--hsl-info, black));
-
-    --color-grey-light: hsl(200, 10%, 96%);
-    --color-grey: hsl(200, 10%, 85%);
-    --color-grey-dark: hsl(200, 5%, 40%);
-
-    --color-bg: white;
-
-    --hsl-text: 200, 5%, 45%;
-    --color-text: hsl(var(--hsl-text, black));
-
-    --width-header: 0fr;
-    --width-main: 1fr;
-    --width-aside: 0fr;
-
-    --z-index-header: 1000;
-    --z-index-popover: 1010;
-    --z-index-toast: 1020;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  :root {
-    --width-header: 0.75fr;
-    --width-main: 2fr;
-    --width-aside: 0.25fr;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  :root {
-    --width-header: 1fr;
-    --width-main: 2fr;
-    --width-aside: 0.25fr;
-  }
-}
+@import "./variables.css";
 
 /* RESET */
 
@@ -140,8 +98,8 @@ body {
     "Helvetica Neue", sans-serif;
   font-size: 2rem;
   line-height: 4rem;
-  color: var(--color-text, black);
-  background-color: var(--color-bg, white);
+  color: var(--color-text);
+  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -151,7 +109,7 @@ a {
 }
 
 ol {
-  padding-left: 5rem;
+  padding-left: 1em;
 }
 
 button,
