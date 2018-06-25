@@ -3,9 +3,9 @@
 @media screen and (min-width: 0px) {
   :root {
     --hsl-success: 100, 70%, 60%;
-    --color-success: hsl(var(--hsl-success));
+    --color-success: hsl(var(--hsl-success, black));
     --hsl-info: 211, 100%, 60%;
-    --color-info: hsl(var(--hsl-info));
+    --color-info: hsl(var(--hsl-info, black));
 
     --color-grey-light: hsl(200, 10%, 96%);
     --color-grey: hsl(200, 10%, 85%);
@@ -14,7 +14,7 @@
     --color-bg: white;
 
     --hsl-text: 200, 5%, 45%;
-    --color-text: hsl(var(--hsl-text));
+    --color-text: hsl(var(--hsl-text, black));
 
     --width-header: 0fr;
     --width-main: 1fr;
@@ -140,8 +140,8 @@ body {
     "Helvetica Neue", sans-serif;
   font-size: 2rem;
   line-height: 4rem;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--color-text, black);
+  background-color: var(--color-bg, white);
   -webkit-font-smoothing: antialiased;
 }
 
