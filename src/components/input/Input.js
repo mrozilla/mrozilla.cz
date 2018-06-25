@@ -79,7 +79,7 @@ Input.propTypes = {
 };
 Input.defaultProps = {
   type:        'text',
-  margin:      null,
+  margin:      '0 0 1rem 0',
   width:       null,
   border:      null,
   description: null,
