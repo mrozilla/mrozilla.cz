@@ -21,7 +21,7 @@ export default styled.article(
       fontSize:   '3.5rem',
       lineHeight: '6rem',
       fontWeight: '600',
-      marginTop:  '6rem',
+      margin:     '6rem 0 0 0',
     },
     '& p': {
       marginBottom: '3rem',
@@ -30,6 +30,21 @@ export default styled.article(
       margin:      '-3rem 0 3rem 0',
       listStyle:   'disc',
       paddingLeft: '1em',
+    },
+    '& ol': {
+      marginBottom: '3rem',
+      '& p':        {
+        margin: 0,
+      },
+      '& ol': {
+        listStyleType: 'lower-alpha',
+        '& ol':        {
+          listStyleType: 'lower-roman',
+        },
+      },
+    },
+    '& li': {
+      marginBottom: '1rem',
     },
     '& blockquote': {
       fontFamily: 'Georgia',
