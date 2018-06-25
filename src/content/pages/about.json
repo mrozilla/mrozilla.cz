@@ -3,9 +3,9 @@
     "type": ["page"],
     "date": "2018-06-01T00:00:00.000Z",
     "permalink": "/about",
-    "title": "Your digital sourcing department",
-    "description": "Description",
-    "keywords": "keyword, keyword",
+    "title": "about us",
+    "description":
+      "mrozilla is run by Jan Hrubý—originally from the Czech Republic, lived in Finland and the United Kingdom, currently residing in Vienna, Austria",
     "image": "../multimedia/undraw_fast_loading_0lbh.png"
   },
   "body": {

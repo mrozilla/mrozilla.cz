@@ -3,9 +3,9 @@
     "type": ["page"],
     "date": "2018-06-01T00:00:00.000Z",
     "permalink": "/",
-    "title": "Your digital sourcing department",
-    "description": "Description",
-    "keywords": "keyword, keyword",
+    "title": "one-man digital studio",
+    "description":
+      "mrozilla is a one-man digital studio focusing on web design, front-end development, and UI working with React, GraphQL, and Javascript",
     "image": "../multimedia/undraw_fast_loading_0lbh.png"
   },
   "body": {

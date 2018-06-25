@@ -3,13 +3,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import Helmet from 'react-helmet';
 import { Main, Section, Subheading } from '../../components';
 import {
   HeroContainer,
   WorksContainer,
   ColourThemeContainer,
   BarrelRollContainer,
+  SEOContainer,
 } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -33,13 +33,7 @@ export default function LabPage({
       }}
       gridGap="10vh 4rem"
     >
-      <Helmet
-        title={`mrozilla: ${meta.title}`}
-        meta={[
-          { name: 'description', content: meta.description },
-          { name: 'keywords', content: meta.keywords },
-        ]}
-      />
+      <SEOContainer seo={meta} />
       <HeroContainer hero={hero} />
       <Section gridArea="theme">
         <Subheading>current colour theme</Subheading>

@@ -3,10 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import Helmet from 'react-helmet';
 import {
   Main, Heading, Text, Article, Link,
 } from '../components';
+import { SEOContainer } from '../containers';
 import { renderMarkdown } from '../utils';
 
 require('prismjs/themes/prism.css');
@@ -29,13 +29,7 @@ export default function BlogPost({
       }}
       gridGap="5vw"
     >
-      {/* <Helmet
-        title={`mrozilla: ${frontmatter.title}`}
-        meta={[
-          { name: 'description', content: frontmatter.description },
-          { name: 'keywords', content: frontmatter.keywords },
-        ]}
-      /> */}
+      <SEOContainer seo={frontmatter} />
       <Article itemScope itemType="http://schema.org/BlogPosting">
         <header style={{ margin: '0 0 4rem 0' }}>
           <Heading itemprop="name" margin="0 0 3rem 0">

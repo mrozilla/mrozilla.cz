@@ -1,6 +1,6 @@
 ---
 permalink: '/legal'
-title: Legal stuff because we have to in this world
+title: legal stuff because we have to in this world
 kicker: Copyright (c) 2018 Jan Hrubý, Obere Amtshausgasse 20-24/38, 1050 Wien, AUSTRIA ("we", "us", "our"). The code of this website is licensed under the MIT License. The website uses open-source software.
 date: 2018-06-24T22:59:22.358Z
 ---
