@@ -9,3 +9,4 @@ export { default as ColourThemeContainer } from './ColourThemeContainer';
 export { default as TextBackgroundContainer } from './TextBackgroundContainer';
 export { default as BarrelRollContainer } from './BarrelRollContainer';
 export { default as CookieContainer } from './CookieContainer';
+export { default as SEOContainer } from './SEOContainer';
