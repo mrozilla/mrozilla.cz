@@ -51,7 +51,6 @@ export const query = graphql`
       meta {
         title
         description
-        keywords
       }
       body {
         hero {

@@ -21,7 +21,6 @@ export default class SEOContainer extends PureComponent {
   componentDidMount = () => {};
 
   render() {
-    console.log(this.props.seo);
     const title = `mrozilla: ${this.props.seo.title}`;
     return (
       <Helmet

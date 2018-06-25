@@ -37,7 +37,7 @@ export default function BlogPost({
               {frontmatter.title}
             </Link>
           </Heading>
-          <Text fontSize="3rem">{frontmatter.kicker}</Text>
+          <Text fontSize="3rem">{frontmatter.description}</Text>
           <time
             style={{
               fontSize:      '1.25rem',
@@ -76,9 +76,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         permalink
         title
-        kicker
-        # description
-        # keywords
+        description
       }
       htmlAst
     }
