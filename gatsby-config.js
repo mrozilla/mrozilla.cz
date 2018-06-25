@@ -41,6 +41,18 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name:             'mrozilla: one-man digital studio',
+        short_name:       'mrozilla',
+        start_url:        '/',
+        background_color: '#ffffff',
+        theme_color:      '#000000',
+        display:          'minimal-ui',
+        icon:             'src/content/multimedia/favicon.png',
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
   ],
