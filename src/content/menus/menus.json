@@ -13,10 +13,6 @@
       "text": "about"
     },
     {
-      "url": "/blog",
-      "text": "blog"
-    },
-    {
       "url": "mailto:jan@mrozilla.cz",
       "text": "contact"
     }

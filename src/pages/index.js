@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import Helmet from 'react-helmet';
 import {
   Main, Section, Subheading, Text,
 } from '../components';
