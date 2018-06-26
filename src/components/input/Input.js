@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { string, node } from 'prop-types';
+import { string, func } from 'prop-types';
 import styled from 'styled-components';
 import { Label, Text } from '../typography';
 
@@ -30,6 +30,7 @@ const StyledInput = styled.input`
   border: 0;
   flex: 1;
   padding: ${({ padding = '1rem' }) => padding};
+  background-color: var(--color-grey-light);
   &::placeholder {
     opacity: 0.5;
   }
@@ -53,16 +54,22 @@ export default function Input({
           {label}
         </Label>
       )}
+      {description && (
+        <Text
+          fontSize="1.25rem"
+          lineHeight="1.25rem"
+          opacity="0.75"
+          padding="0 1rem"
+          margin="0.5rem 0"
+        >
+          {description}
+        </Text>
+      )}
       <InputWrapper width={width} border={border}>
         {renderLeft && renderLeft()}
         <StyledInput type={type} name={label} {...rest} />
         {renderRight && renderRight()}
       </InputWrapper>
-      {description && (
-        <Text fontSize="1.25rem" opacity="0.75" padding="0 1rem">
-          {description}
-        </Text>
-      )}
     </Wrapper>
   );
 }
@@ -74,8 +81,8 @@ Input.propTypes = {
   width:       string,
   border:      string,
   description: string,
-  renderLeft:  node,
-  renderRight: node,
+  renderLeft:  func,
+  renderRight: func,
 };
 Input.defaultProps = {
   type:        'text',
