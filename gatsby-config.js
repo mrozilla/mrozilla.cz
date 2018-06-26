@@ -11,15 +11,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_ID,
-        head:       true,
-        anonymize:  true,
-        respectDNT: true,
-      },
-    },
-    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
@@ -42,6 +33,15 @@ module.exports = {
     },
     'gatsby-transformer-json',
     {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: process.env.GATSBY_GA_TRACKING_ID,
+        head:       true,
+        anonymize:  true,
+        respectDNT: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name:             'mrozilla: one-man digital studio',
@@ -53,6 +53,7 @@ module.exports = {
         icon:             'src/content/multimedia/favicon.png',
       },
     },
+    'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
   ],
