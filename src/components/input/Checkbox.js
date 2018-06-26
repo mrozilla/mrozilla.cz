@@ -40,5 +40,5 @@ Checkbox.propTypes = {
   margin: string,
 };
 Checkbox.defaultProps = {
-  margin: null,
+  margin: '0 0 1rem 0',
 };

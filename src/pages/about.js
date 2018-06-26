@@ -3,11 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import Helmet from 'react-helmet';
 import {
   Main, Section, Text, List, Subheading,
 } from '../components';
-import { HeroContainer } from '../containers';
+import { HeroContainer, SEOContainer } from '../containers';
 import { parseLinks } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -30,13 +29,7 @@ export default function AboutPage({
       }}
       gridGap="10vh 4rem"
     >
-      <Helmet
-        title={`mrozilla: ${meta.title}`}
-        meta={[
-          { name: 'description', content: meta.description },
-          { name: 'keywords', content: meta.keywords },
-        ]}
-      />
+      <SEOContainer seo={meta} />
       <HeroContainer {...{ hero }} />
       <Section gridArea="about">
         <List gridGap="2rem">
@@ -58,7 +51,6 @@ export const query = graphql`
       meta {
         title
         description
-        keywords
       }
       body {
         hero {

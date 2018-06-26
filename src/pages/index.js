@@ -12,6 +12,7 @@ import {
   WorksContainer,
   AvailabilityContainer,
   // BlogContainer, // TODO add blog pages
+  SEOContainer,
 } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -35,13 +36,7 @@ export default function HomePage({
       }}
       gridGap="10vh 4rem"
     >
-      <Helmet
-        title={`mrozilla: ${meta.title}`}
-        meta={[
-          { name: 'description', content: meta.description },
-          { name: 'keywords', content: meta.keywords },
-        ]}
-      />
+      <SEOContainer seo={meta} />
       <HeroContainer hero={hero} />
       <Section gridArea="based">
         <Subheading>{location.title}</Subheading>
@@ -71,7 +66,6 @@ export const query = graphql`
       meta {
         title
         description
-        keywords
       }
       body {
         hero {

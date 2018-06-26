@@ -12,7 +12,6 @@
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
     "max-len": [2, 80],
-    "operator-linebreak": [2, "after"],
     "jsx-a11y/anchor-is-valid": [
       2,
       {
