@@ -21,7 +21,9 @@ export default styled.header`
   padding: 1rem;
   text-align: center;
 
-  animation: ${fadeDownAnimation} 750ms forwards;
+  animation-name: ${fadeDownAnimation};
+  animation-duration: 750ms;
+  animationn-fill-mode: both;
 
   @media screen and (min-width: 600px) {
     position: sticky;

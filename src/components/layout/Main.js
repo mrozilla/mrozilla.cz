@@ -11,16 +11,14 @@ import { mediaQuerise, fadeUpAnimation } from '../../utils';
 
 export default styled.main(
   {
-    gridArea: 'main',
-    display:  'grid',
+    gridArea:           'main',
+    display:            'grid',
+    animationName:      fadeUpAnimation,
+    animationDuration:  '750ms',
+    animationnFillMode: 'both',
   },
-  ({
-    gridGap = '1rem',
-    gridTemplate,
-    animation = `${fadeUpAnimation} 750ms forwards`,
-  }) => ({
+  ({ gridGap = '1rem', gridTemplate }) => ({
     ...mediaQuerise({ gridGap }),
     ...mediaQuerise({ gridTemplate }),
-    ...mediaQuerise({ animation }),
   }),
 );
