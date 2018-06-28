@@ -20,9 +20,10 @@ const InputWrapper = styled.div`
   flex-wrap: wrap;
   align-items: baseline;
   overflow: hidden;
-  width: ${({ width = '100%' }) => width};
-  border: ${({ border = '1px solid var(--color-grey-light)' }) => border};
+  width: ${({ width }) => width};
+  box-shadow: inset 0 0 0 1px var(--color-grey-light);
   border-radius: 1rem;
+  background-color: hsla(var(--hsl-grey), 0.1);
 `;
 
 const StyledInput = styled.input`
@@ -30,7 +31,7 @@ const StyledInput = styled.input`
   border: 0;
   flex: 1;
   padding: ${({ padding = '1rem' }) => padding};
-  background-color: var(--color-grey-light);
+  background-color: transparent;
   &::placeholder {
     opacity: 0.5;
   }
@@ -41,7 +42,6 @@ export default function Input({
   label = 'input',
   margin,
   width,
-  border,
   description,
   renderLeft,
   renderRight,
@@ -60,12 +60,12 @@ export default function Input({
           lineHeight="1.25rem"
           opacity="0.75"
           padding="0 1rem"
-          margin="0.5rem 0"
+          margin="0 0 1rem 0"
         >
           {description}
         </Text>
       )}
-      <InputWrapper width={width} border={border}>
+      <InputWrapper width={width}>
         {renderLeft && renderLeft()}
         <StyledInput type={type} name={label} {...rest} />
         {renderRight && renderRight()}
@@ -79,7 +79,6 @@ Input.propTypes = {
   label:       string.isRequired,
   margin:      string,
   width:       string,
-  border:      string,
   description: string,
   renderLeft:  func,
   renderRight: func,
@@ -87,8 +86,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type:        'text',
   margin:      '0 0 1rem 0',
-  width:       null,
-  border:      null,
+  width:       null, // '100%'
   description: null,
   renderLeft:  null,
   renderRight: null,

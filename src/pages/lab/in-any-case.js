@@ -6,22 +6,52 @@
 import React, { PureComponent } from 'react';
 
 // style
-import {
-  Main, Section, Button, Input,
-} from '../../components';
+import { Main, Section, Input } from '../../components';
+import { SEOContainer, HeroContainer } from '../../containers';
 import { parseInput } from '../../utils';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// query
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const query = graphql`
+  query InAnyCasePage {
+    labJson(meta: { permalink: { eq: "/lab/in-any-case" } }) {
+      meta {
+        title
+        description
+      }
+      body {
+        title
+      }
+    }
+  }
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class InAnyCaseScreen extends PureComponent {
+export default class InAnyCasePage extends PureComponent {
   state = {
-    output:   '',
-    original: '',
+    input:  '',
+    output: {
+      lowerCase:    '',
+      upperCase:    '',
+      titleCase:    '',
+      sentenceCase: '',
+      dotCase:      '',
+      URLCase:      '',
+      pathCase:     '',
+      snakeCase:    '',
+      constantCase: '',
+      headerCase:   '',
+      pascalCase:   '',
+      camelCase:    '',
+    },
   };
 
-  handleChangeCase = (type) => {
+  handleInput = ({ target }) => {
     const changeCase = {
       toLowerCase: s => s.toLowerCase(),
       toUpperCase: s => s.toUpperCase(),
@@ -67,70 +97,56 @@ export default class InAnyCaseScreen extends PureComponent {
         .toLowerCase() + changeCase.toPascalCase(s).slice(1),
       reset: () => this.state.original,
     };
+
     this.setState(prevState => ({
-      output: changeCase[type](prevState.output.trim()),
+      ...parseInput(target),
+      output: {
+        ...prevState.output,
+        lowerCase:    changeCase.toLowerCase(target.value),
+        upperCase:    changeCase.toUpperCase(target.value),
+        titleCase:    changeCase.toTitleCase(target.value),
+        sentenceCase: changeCase.toSentenceCase(target.value),
+        dotCase:      changeCase.toDotCase(target.value),
+        URLCase:      changeCase.toURLCase(target.value),
+        pathCase:     changeCase.toPathCase(target.value),
+        snakeCase:    changeCase.toSnakeCase(target.value),
+        constantCase: changeCase.toConstantCase(target.value),
+        headerCase:   changeCase.toHeaderCase(target.value),
+        pascalCase:   changeCase.toPascalCase(target.value),
+        camelCase:    changeCase.toCamelCase(target.value),
+      },
     }));
   };
 
   render() {
     return (
-      <Main>
-        <Section>
+      <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
+        <SEOContainer seo={this.props.data.labJson.meta} />
+        <HeroContainer
+          hero={{
+            title: this.props.data.labJson.body.title,
+          }}
+        />
+        <Section gridArea="input">
           <Input
-            name="output"
+            name="input"
             type="text"
-            value={this.state.output}
-            placeholder="Insert text and change case using the buttons below..."
-            onChange={({ target }) => this.setState({
-              ...parseInput(target),
-              original: target.value,
-            })
-            }
-            padding="4rem"
+            value={this.state.input}
+            placeholder="Start typing or paste text..."
+            padding="2rem 1rem"
+            margin="0 0 2rem 0"
+            onChange={this.handleInput}
           />
-          <div style={{ margin: '0 0 1rem 0' }}>
-            <Button onClick={() => this.handleChangeCase('toLowerCase')}>
-              lower case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toSentenceCase')}>
-              Sentence case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toTitleCase')}>
-              Title Case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toUpperCase')}>
-              UPPER CASE
-            </Button>
-          </div>
-          <div style={{ margin: '0 0 1rem 0' }}>
-            <Button onClick={() => this.handleChangeCase('toCamelCase')}>
-              camelCase
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toPascalCase')}>
-              PascalCase
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toConstantCase')}>
-              CONSTANT_CASE
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toHeaderCase')}>
-              Header-Case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toURLCase')}>
-              URL-case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toPathCase')}>
-              path/case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toSnakeCase')}>
-              snake_case
-            </Button>
-            <Button onClick={() => this.handleChangeCase('toDotCase')}>
-              dot.case
-            </Button>
-          </div>
-          <Button onClick={() => this.handleChangeCase('reset')}>
-            Reset original
-          </Button>
+          {Object.entries(this.state.output).map(([key, value]) => (
+            <Input
+              {...{ key }}
+              placeholder={key}
+              name={key}
+              type="text"
+              value={value}
+              readOnly
+            />
+          ))}
         </Section>
       </Main>
     );

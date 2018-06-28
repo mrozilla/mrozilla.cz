@@ -19,7 +19,7 @@ import {
 export default function LabPage({
   data: {
     pagesJson: {
-      meta,
+      meta: seo,
       body: { hero },
     },
     allLabJson: { edges: labs },
@@ -33,7 +33,7 @@ export default function LabPage({
       }}
       gridGap="10vh 4rem"
     >
-      <SEOContainer seo={meta} />
+      <SEOContainer {...{ seo }} />
       <HeroContainer hero={hero} />
       <Section gridArea="theme">
         <Subheading>current colour theme</Subheading>
@@ -44,7 +44,7 @@ export default function LabPage({
         <WorksContainer
           works={labs
             .filter(({ node: { meta: { type } } }) => type.includes('tool'))
-            .map(({ node: { meta: lab } }) => lab)}
+            .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
         />
       </Section>
       <Section gridArea="products">
@@ -52,7 +52,7 @@ export default function LabPage({
         <WorksContainer
           works={labs
             .filter(({ node: { meta: { type } } }) => type.includes('product'))
-            .map(({ node: { meta: lab } }) => lab)}
+            .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
         />
       </Section>
       <BarrelRollContainer />
@@ -79,8 +79,11 @@ export const query = graphql`
           meta {
             type
             permalink
-            title
             tags
+          }
+          body {
+            title
+            tagline
           }
         }
       }

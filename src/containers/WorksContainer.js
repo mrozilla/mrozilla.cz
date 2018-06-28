@@ -16,7 +16,7 @@ import {
 export default function WorksContainer({ works }) {
   return (
     <List gridGap="3rem">
-      {works.map(({ permalink, title, tags }) => (
+      {works.map(({ permalink, title, tagline }) => (
         <List.Item key={permalink}>
           <Title fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
             <Link to={permalink} type="primary">
@@ -24,7 +24,7 @@ export default function WorksContainer({ works }) {
             </Link>
           </Title>
           <Text opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {tags.join(', ')}
+            {tagline}
           </Text>
         </List.Item>
       ))}
@@ -37,7 +37,7 @@ WorksContainer.propTypes = {
     shape({
       permalink: string.isRequired,
       title:     string.isRequired,
-      tags:      arrayOf(string).isRequired,
+      tagline:   string.isRequired,
     }),
   ).isRequired,
 };

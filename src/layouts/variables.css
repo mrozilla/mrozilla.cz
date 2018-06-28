@@ -5,6 +5,7 @@
     --hsl-info: 211, 100%, 60%;
     --color-info: hsl(var(--hsl-info));
 
+    --hsl-grey: 200, 10%, 85%;
     --color-grey-light: hsl(200, 10%, 96%);
     --color-grey: hsl(200, 10%, 85%);
     --color-grey-dark: hsl(200, 5%, 40%);
