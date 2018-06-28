@@ -14,6 +14,22 @@ import {
   Subheading,
   Text,
 } from '../../components';
+import { SEOContainer } from '../../containers';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// query
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const query = graphql`
+  query WritestPage {
+    labJson(meta: { permalink: { eq: "/lab/writest" } }) {
+      meta {
+        title
+        description
+      }
+    }
+  }
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -106,6 +122,7 @@ export default class WritestPage extends PureComponent {
         }}
         gridGap="10vh 4rem"
       >
+        <SEOContainer seo={this.props.data.labJson.meta} />
         <Section gridArea="input">
           <Heading>words</Heading>
           <TextArea

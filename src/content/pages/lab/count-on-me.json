@@ -3,9 +3,14 @@
     "type": ["page", "lab", "tool"],
     "date": "2016-06-01T00:00:00.000Z",
     "permalink": "/lab/count-on-me",
-    "title": "count on me",
-    "description": "a counting tool you can count on",
+    "title": "count on me — a counting tool you can count on",
+    "description":
+      "Count the things that need to be counted, completely revolutionary...",
     "tags": ["concept", "website"],
     "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "title": "count on me",
+    "tagline": "a counting tool you can count on"
   }
 }

@@ -15,13 +15,29 @@ import {
   Button,
   Popup,
 } from '../../components';
+import { SEOContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// query
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const query = graphql`
+  query PassworldPage {
+    labJson(meta: { permalink: { eq: "/lab/passworld" } }) {
+      meta {
+        title
+        description
+      }
+    }
+  }
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class PassworldScreen extends Component {
+export default class PassworldPage extends Component {
   state = {
     password: '',
     length:   10,
@@ -164,6 +180,7 @@ export default class PassworldScreen extends Component {
           md: "'. output .' / 1fr 2fr 1fr",
         }}
       >
+        <SEOContainer seo={this.props.data.labJson.meta} />
         <Section gridArea="output">
           {this.renderOutputs()}
           {this.renderInputs()}

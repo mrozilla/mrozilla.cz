@@ -9,6 +9,22 @@ import React, { PureComponent } from 'react';
 import {
   Main, Section, Heading, Button,
 } from '../../components';
+import { SEOContainer } from '../../containers';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// query
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const query = graphql`
+  query CountOnMePage {
+    labJson(meta: { permalink: { eq: "/lab/count-on-me" } }) {
+      meta {
+        title
+        description
+      }
+    }
+  }
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -50,6 +66,7 @@ export default class CountOnMePage extends PureComponent {
   render() {
     return (
       <Main>
+        <SEOContainer seo={this.props.data.labJson.meta} />
         <Section
           onClick={e => this.handleCount(e, 1)}
           style={{

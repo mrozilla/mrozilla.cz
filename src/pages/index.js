@@ -21,7 +21,7 @@ import {
 export default function HomePage({
   data: {
     pagesJson: {
-      meta,
+      meta: seo,
       body: { hero, location, availability },
     },
     allWorkJson: { edges: works },
@@ -35,7 +35,7 @@ export default function HomePage({
       }}
       gridGap="10vh 4rem"
     >
-      <SEOContainer seo={meta} />
+      <SEOContainer {...{ seo }} />
       <HeroContainer hero={hero} />
       <Section gridArea="based">
         <Subheading>{location.title}</Subheading>
@@ -49,7 +49,12 @@ export default function HomePage({
       </Section>
       <Section gridArea="work" id="work">
         <Subheading>latest client work</Subheading>
-        <WorksContainer works={works.map(({ node: { meta: work } }) => work)} />
+        <WorksContainer
+          works={works.map(({ node: { meta, body } }) => ({
+            ...meta,
+            ...body,
+          }))}
+        />
       </Section>
       {/* <Section gridArea="blog" id="blog">
         <Subheading>latest blog articles</Subheading>
@@ -85,8 +90,10 @@ export const query = graphql`
         node {
           meta {
             permalink
+          }
+          body {
             title
-            tags
+            tagline
           }
         }
       }

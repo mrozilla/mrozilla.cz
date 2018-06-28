@@ -7,5 +7,9 @@
     "description": "any-language-to-meowish Messenger bot",
     "tags": ["concept", "website"],
     "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "title": "meowslator",
+    "tagline": "any-language-to-meowish Messenger bot"
   }
 }

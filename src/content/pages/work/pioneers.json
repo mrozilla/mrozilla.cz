@@ -8,5 +8,9 @@
     "description":
       "Pioneers is the ultimate One-Stop Hub for global tech innovators to access high-value, curated and qualified data of early-stage (seed and Series A) European startups",
     "tags": ["design", "website"]
+  },
+  "body": {
+    "title": "Pioneers",
+    "tagline": "building an internal startup CRM"
   }
 }

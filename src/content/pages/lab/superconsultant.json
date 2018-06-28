@@ -7,5 +7,9 @@
     "description": "text-generating Twitter bot",
     "tags": ["concept", "bot", "twitter"],
     "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "title": "SUPERCONSULTANT",
+    "tagline": "text-generating Twitter bot"
   }
 }
