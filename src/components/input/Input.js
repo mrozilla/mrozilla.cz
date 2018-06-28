@@ -60,7 +60,7 @@ export default function Input({
           lineHeight="1.25rem"
           opacity="0.75"
           padding="0 1rem"
-          margin="0.5rem 0"
+          margin="0 0 1rem 0"
         >
           {description}
         </Text>

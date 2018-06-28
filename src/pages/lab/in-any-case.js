@@ -6,10 +6,8 @@
 import React, { PureComponent } from 'react';
 
 // style
-import {
-  Main, Section, Button, Input,
-} from '../../components';
-import { SEOContainer } from '../../containers';
+import { Main, Section, Input } from '../../components';
+import { SEOContainer, HeroContainer } from '../../containers';
 import { parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -22,6 +20,9 @@ export const query = graphql`
       meta {
         title
         description
+      }
+      body {
+        title
       }
     }
   }
@@ -119,14 +120,19 @@ export default class InAnyCasePage extends PureComponent {
 
   render() {
     return (
-      <Main>
+      <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
         <SEOContainer seo={this.props.data.labJson.meta} />
-        <Section>
+        <HeroContainer
+          hero={{
+            title: this.props.data.labJson.body.title,
+          }}
+        />
+        <Section gridArea="input">
           <Input
             name="input"
             type="text"
             value={this.state.input}
-            placeholder="Insert text and change case using the buttons below..."
+            placeholder="Start typing or paste text..."
             padding="2rem 1rem"
             margin="0 0 2rem 0"
             onChange={this.handleInput}
