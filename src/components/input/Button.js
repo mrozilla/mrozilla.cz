@@ -23,8 +23,8 @@ export default styled.button`
       return css``;
     }
     return css`
-      background-color: var(--color-bg);
-      box-shadow: 0 0 0 1px var(--color-grey);
+      background-color: hsla(var(--hsl-grey), 0.1);
+      box-shadow: inset 0 0 0 1px var(--color-grey-light);
 
       padding: ${({ padding = '1rem 2rem' }) => padding};
 
