@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "type": ["page"],
+    "date": "2018-06-01T00:00:00.000Z",
+    "permalink": "/about",
+    "title": "about us",
+    "description":
+      "mrozilla is run by Jan Hrubý—originally from the Czech Republic, lived in Finland and the United Kingdom, currently residing in Vienna, Austria",
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "hero": {
+      "title":
+        "mrozilla is run by Jan Hrubý—originally from the Czech Republic, lived in Finland and the United Kingdom, currently residing in Vienna, Austria"
+    },
+    "about": [
+      {
+        "title": "focus",
+        "text":
+          "Jan builds digital products, mainly web & native applications. Everything from concepts & product exploration, through UX, UI, visual & brand design, all the way to software development. He's done some [work in the past](/#work), and will probably do some more in the future."
+      },
+      {
+        "title": "design",
+        "text":
+          "Jan designs in Adobe Photoshop, Adobe Illustrator, Adobe XD, Adobe InDesign, Adobe Lightroom, and Adobe After Effects."
+      },
+      {
+        "title": "code",
+        "text":
+          "Jan codes in Javascript: [React](https://github.com/facebook/react), (and [Hyperapp](https://github.com/hyperapp/hyperapp)), [Redux](https://github.com/reactjs/redux), (and [Apollo](https://github.com/apollographql/apollo-client)), [styled-components](https://github.com/styled-components/styled-components), (and [picostyle](https://github.com/picostyle/picostyle)), [Node](https://github.com/nodejs/node) & [Express](https://github.com/expressjs/express). He usually edits that code in [VS Code](https://github.com/Microsoft/vscode), lints it with [ESLint](https://github.com/eslint/eslint) & [Prettier](https://github.com/prettier/prettier), and posts it on [Github](https://github.com)."
+      },
+      {
+        "title": "education",
+        "text":
+          "Jan happens to have [M.Sc.](http://www4.ntu.ac.uk/nbs/international/transnational_education/joint_degrees/index.html) and [Ing.](https://www.fbm.vutbr.cz/en/applicants/european-business-and-finance) degrees in European Business and Finance for some reason."
+      },
+      {
+        "title": "contact",
+        "text":
+          "You can reach out to Jan on [Twitter](https://twitter.com/mrozilla), [Medium](https://medium.com/mrozilla), [Github](https://github.com/mrozilla), [Linkedin](https://linkedin.com/in/mrozilla), or just send [an email](mailto:jan@mrozilla.cz)."
+      }
+    ]
+  }
+}

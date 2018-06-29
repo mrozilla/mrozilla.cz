@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2016-05-01T00:00:00.000Z",
+    "permalink": "/lab/writest",
+    "title": "writest — all the numbers about your letters",
+    "description":
+      "get all the stats about your copy—character count, unique & most common words, sentence length, speaking & reading time, etc.",
+    "tags": ["concept", "website"],
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "title": "writest",
+    "tagline": "all the numbers about your letters"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "date": "2017-01-01T00:00:00.000Z",
+    "type": ["work"],
+    "permalink": "https://himoment.com",
+    "title": "hiMoment",
+    "tagline": "your digital happiness guru",
+    "description":
+      "hiMoment is an app combining research in positive psychology with artificial intelligence to help you become happier by focusing on what’s good in your life.",
+    "tags": ["design", "website", "app"]
+  },
+  "body": {
+    "title": "hiMoment",
+    "tagline": "designing for happiness"
+  }
+}

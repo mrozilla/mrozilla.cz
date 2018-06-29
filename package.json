@@ -6,33 +6,38 @@
   "homepage": "https://mrozilla.cz",
   "repository": "https://github.com/mrozilla/mrozilla.cz",
   "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
-  "author": {
-    "name": "Jan",
-    "email": "jan@mrozilla.cz",
-    "url": "https://mrozilla.cz"
-  },
+  "author": "Jan Hruby <jan@mrozilla.cz>",
   "dependencies": {
-    "gatsby": "^1.9.250",
-    "gatsby-link": "^1.6.40",
-    "gatsby-plugin-preact": "^1.0.17",
-    "gatsby-plugin-react-helmet": "^2.0.10",
+    "babel-plugin-styled-components": "^1.5.1",
+    "gatsby": "^1.9.273",
+    "gatsby-link": "^1.6.45",
+    "gatsby-plugin-google-analytics": "^1.0.31",
+    "gatsby-plugin-manifest": "^1.0.27",
+    "gatsby-plugin-offline": "^1.0.18",
+    "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
-    "gatsby-source-filesystem": "^1.5.31",
-    "gatsby-transformer-json": "^1.0.16",
+    "gatsby-remark-images": "^1.5.67",
+    "gatsby-remark-prismjs": "^2.0.4",
+    "gatsby-source-filesystem": "^1.5.39",
+    "gatsby-transformer-json": "^1.0.20",
+    "gatsby-transformer-remark": "^1.7.44",
+    "prismjs": "^1.15.0",
     "react-helmet": "^5.2.0",
-    "styled-components": "^3.2.5"
+    "rehype-react": "^3.0.2",
+    "styled-components": "^3.3.3"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.11.0",
+    "babel-eslint": "^8.2.5",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.10.0"
   },
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "lint": "eslint src/**"
   }
 }

@@ -6,6 +6,8 @@
   "extends": ["airbnb"],
   "rules": {
     "react/jsx-filename-extension": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-one-expression-per-line": 0,
     "no-unused-vars": 1,
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
