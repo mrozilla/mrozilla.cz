@@ -13,14 +13,10 @@ export default styled.main(
   {
     gridArea: 'main',
     display:  'grid',
+    // animation: `${fadeUpAnimation} 750ms forwards`,
   },
-  ({
-    gridGap = '1rem',
-    gridTemplate,
-    animation = `${fadeUpAnimation} 750ms forwards`,
-  }) => ({
+  ({ gridGap = '1rem', gridTemplate }) => ({
     ...mediaQuerise({ gridGap }),
     ...mediaQuerise({ gridTemplate }),
-    ...mediaQuerise({ animation }),
   }),
 );

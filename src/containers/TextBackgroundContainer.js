@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { number, string } from 'prop-types';
+import { fadeInAnimation } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -16,43 +17,47 @@ export default function TextBackgroundContainer({
   opacityModifier,
   scaleModifier,
 }) {
-  return (
-    <div
-      style={{
-        position:         'absolute',
-        width:            '100%',
-        height:           '100%',
-        left:             0,
-        top:              0,
-        overflow:         'hidden',
-        zIndex:           -1,
-        pointerEvents:    'none',
-        userSelect:       'none',
-        msUserSelect:     'none',
-        MozUserSelect:    'none',
-        WebkitUserSelect: 'none',
-      }}
-      aria-hidden="true"
-    >
-      {new Array(amount).fill().map((_, i) => (
-        <span
-          key={i} // eslint-disable-line
-          style={{
-            position:  'absolute',
-            top:       `${Math.random() * 100}%`,
-            left:      `${Math.random() * 100}%`,
-            color:     `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`,
-            transform: `rotate(${Math.floor(
-              Math.random() * rotateModifier,
-            )}deg) scale(${Math.random() * scaleModifier})`,
-            opacity: `${Math.random() * opacityModifier}`,
-          }}
-        >
-          {symbol}
-        </span>
-      ))}
-    </div>
-  );
+  if (typeof document !== 'undefined') {
+    return (
+      <div
+        style={{
+          position:         'absolute',
+          width:            '100%',
+          height:           '100%',
+          left:             0,
+          top:              0,
+          overflow:         'hidden',
+          zIndex:           -1,
+          pointerEvents:    'none',
+          userSelect:       'none',
+          msUserSelect:     'none',
+          MozUserSelect:    'none',
+          WebkitUserSelect: 'none',
+          animation:        `${fadeInAnimation} 5000ms both`,
+        }}
+        aria-hidden="true"
+      >
+        {new Array(amount).fill().map((_, i) => (
+          <span
+            key={i} // eslint-disable-line
+            style={{
+              position:  'absolute',
+              top:       `${Math.random() * 100}%`,
+              left:      `${Math.random() * 100}%`,
+              color:     `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`,
+              transform: `rotate(${Math.floor(
+                Math.random() * rotateModifier,
+              )}deg) scale(${Math.random() * scaleModifier})`,
+              opacity: `${Math.random() * opacityModifier}`,
+            }}
+          >
+            {symbol}
+          </span>
+        ))}
+      </div>
+    );
+  }
+  return null;
 }
 
 TextBackgroundContainer.propTypes = {
