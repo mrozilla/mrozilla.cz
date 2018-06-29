@@ -8,6 +8,7 @@
   "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
   "author": "Jan Hruby <jan@mrozilla.cz>",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.5.1",
     "gatsby": "^1.9.273",
     "gatsby-link": "^1.6.45",
     "gatsby-plugin-google-analytics": "^1.0.31",

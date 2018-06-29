@@ -3,7 +3,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { fadeDownAnimation } from '../../utils';
+// import { fadeDownAnimation } from '../../utils';
+// animation: ${fadeDownAnimation} 750ms forwards;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -21,17 +22,11 @@ export default styled.header`
   padding: 1rem;
   text-align: center;
 
-  animation-name: ${fadeDownAnimation};
-  animation-duration: 750ms;
-  animationn-fill-mode: both;
-
   @media screen and (min-width: 600px) {
     position: sticky;
     top: 20vh;
     padding: 0;
     text-align: right;
     background-color: unset;
-  }
-  @media screen and (min-width: 900px) {
   }
 `;
