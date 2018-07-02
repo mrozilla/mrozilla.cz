@@ -88,7 +88,9 @@ export default class SEOContainer extends PureComponent {
             href:  'icons/icon-512x512.png',
           },
         ]}
-      />
+      >
+        <html lang="en" />
+      </Helmet>
     );
   }
 }
