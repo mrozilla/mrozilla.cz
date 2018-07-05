@@ -5,20 +5,12 @@
   "parser": "babel-eslint",
   "extends": ["airbnb"],
   "rules": {
-    "react/jsx-filename-extension": 0,
     "react/destructuring-assignment": 0,
+    "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
-    "no-unused-vars": 1,
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
-    "max-len": [2, 80],
-    "jsx-a11y/anchor-is-valid": [
-      2,
-      {
-        "components": ["Link"],
-        "specialLink": ["to"]
-      }
-    ]
+    "max-len": [1, 80]
   },
   "settings": {
     "import/core-modules": ["react", "prop-types", "graphql"]
