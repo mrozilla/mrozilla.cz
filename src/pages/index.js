@@ -10,7 +10,7 @@ import {
   HeroContainer,
   WorksContainer,
   AvailabilityContainer,
-  // BlogContainer, // TODO add blog pages
+  BlogPreviewsContainer,
   SEOContainer,
 } from '../containers';
 
@@ -25,6 +25,7 @@ export default function HomePage({
       body: { hero, location, availability },
     },
     allWorkJson: { edges: works },
+    allMarkdownRemark: { edges: posts },
   },
 }) {
   return (
@@ -56,10 +57,14 @@ export default function HomePage({
           }))}
         />
       </Section>
-      {/* <Section gridArea="blog" id="blog">
+      <Section gridArea="blog" id="blog">
         <Subheading>latest blog articles</Subheading>
-        <BlogContainer posts={posts} />
-      </Section> */}
+        <BlogPreviewsContainer
+          posts={posts.map(({ node: { frontmatter: post } }) => ({
+            ...post,
+          }))}
+        />
+      </Section>
     </Main>
   );
 }
@@ -94,6 +99,20 @@ export const query = graphql`
           body {
             title
             tagline
+          }
+        }
+      }
+    }
+    allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/blog/" } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 5
+    ) {
+      edges {
+        node {
+          frontmatter {
+            permalink
+            title
           }
         }
       }
