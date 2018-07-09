@@ -1,0 +1,50 @@
+---
+permalink: /blog/cool-websites
+title: Various cool/interesting websites
+description: Here's a collection of websites I find to be cool. Sorted alphabetically. Happy to evaluate your suggestion.
+date: 2018-07-06T00:00:00.000Z
+---
+
+## personal
+
+- http://andychung.me/ <small style="opacity: 0.5">(2018)</small>
+- http://davidprati.fr/ <small style="opacity: 0.5">(2018)</small>
+- http://greaterthanorequalto.net/ <small style="opacity: 0.5">(2018)</small>
+- http://kylemeyer.com/ <small style="opacity: 0.5">(2018)</small>
+- http://www.bbriel.me/ <small style="opacity: 0.5">(2018)</small>
+- http://www.fullstopnewparagraph.co.uk/ <small style="opacity: 0.5">(2018)</small>
+- https://chasem.co/ <small style="opacity: 0.5">(2018)</small>
+- https://twnsnd.co/ <small style="opacity: 0.5">(2018)</small>
+
+## companies/services
+
+- [https://www.airbnb.com](https://web.archive.org/web/20170701010531/https://www.airbnb.com/) <small style="opacity: 0.5">(2017)</small>
+- http://heystack.is/ <small style="opacity: 0.5">(2018)</small>
+- https://airtable.com <small style="opacity: 0.5">(2018)</small>
+- https://avocode.com/ <small style="opacity: 0.5">(2018)</small>
+- https://buffer.com/ <small style="opacity: 0.5">(2018)</small>
+- https://carta.com/ <small style="opacity: 0.5">(2018)</small>
+- https://clickup.com/ <small style="opacity: 0.5">(2018)</small>
+- https://intellyo.com/ <small style="opacity: 0.5">(2018)</small>
+- https://intercom.com <small style="opacity: 0.5">(2018)</small>
+- https://ionicframework.com/ <small style="opacity: 0.5">(2018)</small>
+- https://later.com/ <small style="opacity: 0.5">(2018)</small>
+- https://mapbox.com <small style="opacity: 0.5">(2018)</small>
+- https://marvelapp.com/ <small style="opacity: 0.5">(2018)</small>
+- https://marvelapp.com/developers <small style="opacity: 0.5">(2018)</small>
+- https://rentberry.com/ <small style="opacity: 0.5">(2018)</small>
+- https://slack.com <small style="opacity: 0.5">(2018)</small>
+- https://stripe.com <small style="opacity: 0.5">(2018)</small>
+- https://www.atlassian.com/ <small style="opacity: 0.5">(2018)</small>
+- https://www.checkout.com/ <small style="opacity: 0.5">(2018)</small>
+- https://www.digitalocean.com/ <small style="opacity: 0.5">(2018)</small>
+- https://yogalayout.com/ <small style="opacity: 0.5">(2018)</small>
+- https://zeplin.io/ <small style="opacity: 0.5">(2018)</small>
+
+## agencies
+
+- http://growthrock.co/ <small style="opacity: 0.5">(2018)</small>
+
+## startups
+
+- https://hellogustav.com/ <small style="opacity: 0.5">(2018)</small>
