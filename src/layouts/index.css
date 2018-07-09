@@ -39,10 +39,6 @@ h6 {
   font-weight: 900;
 }
 
-ul {
-  list-style: none;
-}
-
 button,
 input,
 select,
@@ -100,6 +96,7 @@ body {
   line-height: 4rem;
   color: var(--color-text);
   background-color: var(--color-bg);
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
 
