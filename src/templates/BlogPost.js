@@ -4,10 +4,16 @@
 
 import React from 'react';
 import {
-  Main, Heading, Text, Article, Link,
+  Article,
+  Aside,
+  Heading,
+  Link,
+  Main,
+  Subheading,
+  Text,
 } from '../components';
-import { SEOContainer } from '../containers';
-import { renderMarkdown } from '../utils';
+import { SEOContainer, BlogPreviewsContainer } from '../containers';
+import { renderMarkdown, parseLinks } from '../utils';
 
 require('prismjs/themes/prism.css');
 
@@ -18,7 +24,7 @@ require('prismjs/themes/prism.css');
 export default function BlogPost({
   data: {
     markdownRemark: { frontmatter, htmlAst },
-    // allMarkdownRemark: { edges: suggestions },
+    allMarkdownRemark: related,
   },
 }) {
   return (
@@ -37,7 +43,7 @@ export default function BlogPost({
               {frontmatter.title}
             </Link>
           </Heading>
-          <Text fontSize="3rem">{frontmatter.description}</Text>
+          <Text fontSize="3rem">{parseLinks(frontmatter.description)}</Text>
           <time
             style={{
               fontSize:      '1.25rem',
@@ -55,16 +61,19 @@ export default function BlogPost({
         </header>
         {renderMarkdown(htmlAst)}
       </Article>
-      {/* <aside>
-        <Subheading>
-          {'Popular articles'}
-        </Subheading>
-        {suggestions.map(({ node: { frontmatter: { permalink, title } } }) => (
-          <Link key={permalink} to={permalink}>
-            {title}
-          </Link>
-        ))}
-      </aside> */}
+      {related && (
+        <Aside>
+          <Subheading>Related articles</Subheading>
+          <BlogPreviewsContainer
+            posts={related.edges.map(
+              ({ node: { frontmatter: post, timeToRead } }) => ({
+                ...post,
+                timeToRead,
+              }),
+            )}
+          />
+        </Aside>
+      )}
     </Main>
   );
 }
@@ -73,22 +82,29 @@ export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
     markdownRemark(frontmatter: { permalink: { eq: $path } }) {
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMMM D, YYYY")
         permalink
         title
         description
       }
       htmlAst
     }
-    # allMarkdownRemark {
-    #   edges {
-    #     node {
-    #       frontmatter {
-    #         permalink
-    #         title
-    #       }
-    #     }
-    #   }
-    # }
+    allMarkdownRemark(
+      filter: {
+        fileAbsolutePath: { regex: "/blog/" }
+        frontmatter: { related: { in: [$path] } }
+      }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            permalink
+            title
+          }
+        }
+      }
+    }
   }
 `;
