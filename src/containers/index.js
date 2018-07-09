@@ -1,6 +1,6 @@
 export { default as AvailabilityContainer } from './AvailabilityContainer';
 export { default as BarrelRollContainer } from './BarrelRollContainer';
-export { default as BlogContainer } from './BlogContainer';
+export { default as BlogPreviewsContainer } from './BlogPreviewsContainer';
 export { default as ColourThemeContainer } from './ColourThemeContainer';
 export { default as CookieContainer } from './CookieContainer';
 export { default as FooterContainer } from './FooterContainer';
