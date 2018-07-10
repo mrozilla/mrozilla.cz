@@ -3,13 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import {
-  Main, Section, Subheading, Text,
-} from '../components';
+import { Main, Section, Subheading } from '../components';
 import {
   HeroContainer,
-  WorksContainer,
-  AvailabilityContainer,
   BlogPreviewsContainer,
   SEOContainer,
 } from '../containers';
@@ -18,50 +14,25 @@ import {
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HomePage({
+export default function BlogPage({
   data: {
     pagesJson: {
       meta: seo,
-      body: { hero, location, availability },
+      body: { hero },
     },
-    allWorkJson: { edges: works },
     allMarkdownRemark: { edges: posts },
   },
 }) {
   return (
-    <Main
-      gridTemplate={{
-        xs: "'hero' 'based' 'availability' 'work' 'blog'",
-        md: "'hero hero' 'based availability' 'work blog' / 1fr 1fr",
-      }}
-      gridGap="10vh 4rem"
-    >
+    <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
       <SEOContainer {...{ seo }} />
       <HeroContainer hero={hero} />
-      <Section gridArea="based">
-        <Subheading>{location.title}</Subheading>
-        <Text fontSize="3rem" fontWeight="700">
-          {location.text}
-        </Text>
-      </Section>
-      <Section gridArea="availability">
-        <Subheading>{availability.title}</Subheading>
-        <AvailabilityContainer availability={availability} />
-      </Section>
-      <Section gridArea="work" id="work">
-        <Subheading>latest client work</Subheading>
-        <WorksContainer
-          works={works.map(({ node: { meta, body } }) => ({
-            ...meta,
-            ...body,
-          }))}
-        />
-      </Section>
       <Section gridArea="blog" id="blog">
-        <Subheading>latest blog articles</Subheading>
+        <Subheading>all blog articles</Subheading>
         <BlogPreviewsContainer
-          posts={posts.map(({ node: { frontmatter: post } }) => ({
+          posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
             ...post,
+            timeToRead,
           }))}
         />
       </Section>
@@ -70,8 +41,8 @@ export default function HomePage({
 }
 
 export const query = graphql`
-  query HomePage {
-    pagesJson(meta: { permalink: { eq: "/" } }) {
+  query BlogPage {
+    pagesJson(meta: { permalink: { eq: "/blog" } }) {
       meta {
         title
         description
@@ -80,39 +51,19 @@ export const query = graphql`
         hero {
           title
         }
-        location {
-          title
-          text
-        }
-        availability {
-          title
-          text
-        }
-      }
-    }
-    allWorkJson(sort: { fields: [meta___date], order: DESC }) {
-      edges {
-        node {
-          meta {
-            permalink
-          }
-          body {
-            title
-            tagline
-          }
-        }
       }
     }
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/blog/" } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 5
     ) {
       edges {
         node {
+          timeToRead
           frontmatter {
             permalink
             title
+            date(formatString: "MMMM D, YYYY")
           }
         }
       }

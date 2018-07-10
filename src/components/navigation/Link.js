@@ -13,6 +13,7 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const RouterLink = styled(GatsbyLink)`
+  line-height: 1.25;
   transition: 250ms;
   ${({ type }) => {
     if (type === 'primary') {
