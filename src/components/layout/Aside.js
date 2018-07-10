@@ -10,10 +10,4 @@ import styled from 'styled-components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.aside`
-  @media screen and (min-width: 600px) {
-    position: sticky;
-    top: 20vh;
-    align-self: start;
-  }
-`;
+export default styled.aside``;
