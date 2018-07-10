@@ -4,12 +4,53 @@
 
 import React from 'react';
 import {
-  Main, Heading, Text, Article, Link,
+  Article,
+  Aside,
+  Heading,
+  Link,
+  Main,
+  Subheading,
+  Text,
 } from '../components';
-import { SEOContainer } from '../containers';
-import { renderMarkdown } from '../utils';
+import { SEOContainer, BlogPreviewsContainer } from '../containers';
+import { renderMarkdown, parseLinks } from '../utils';
 
 require('prismjs/themes/prism.css');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// data
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const pageQuery = graphql`
+  query BlogPostByPath($path: String!) {
+    article: markdownRemark(frontmatter: { permalink: { eq: $path } }) {
+      frontmatter {
+        date(formatString: "MMMM D, YYYY")
+        permalink
+        title
+        description
+      }
+      htmlAst
+    }
+    relatedArticles: allMarkdownRemark(
+      filter: {
+        fileAbsolutePath: { regex: "/blog/" }
+        frontmatter: { related: { in: [$path] } }
+      }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            permalink
+            title
+          }
+        }
+      }
+    }
+  }
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -17,8 +58,8 @@ require('prismjs/themes/prism.css');
 
 export default function BlogPost({
   data: {
-    markdownRemark: { frontmatter, htmlAst },
-    // allMarkdownRemark: { edges: suggestions },
+    article: { frontmatter, htmlAst },
+    relatedArticles,
   },
 }) {
   return (
@@ -37,7 +78,7 @@ export default function BlogPost({
               {frontmatter.title}
             </Link>
           </Heading>
-          <Text fontSize="3rem">{frontmatter.description}</Text>
+          <Text fontSize="3rem">{parseLinks(frontmatter.description)}</Text>
           <time
             style={{
               fontSize:      '1.25rem',
@@ -55,40 +96,19 @@ export default function BlogPost({
         </header>
         {renderMarkdown(htmlAst)}
       </Article>
-      {/* <aside>
-        <Subheading>
-          {'Popular articles'}
-        </Subheading>
-        {suggestions.map(({ node: { frontmatter: { permalink, title } } }) => (
-          <Link key={permalink} to={permalink}>
-            {title}
-          </Link>
-        ))}
-      </aside> */}
+      {relatedArticles && (
+        <Aside>
+          <Subheading>Related articles</Subheading>
+          <BlogPreviewsContainer
+            posts={relatedArticles.edges.map(
+              ({ node: { frontmatter: post, timeToRead } }) => ({
+                ...post,
+                timeToRead,
+              }),
+            )}
+          />
+        </Aside>
+      )}
     </Main>
   );
 }
-
-export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { permalink: { eq: $path } }) {
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        permalink
-        title
-        description
-      }
-      htmlAst
-    }
-    # allMarkdownRemark {
-    #   edges {
-    #     node {
-    #       frontmatter {
-    #         permalink
-    #         title
-    #       }
-    #     }
-    #   }
-    # }
-  }
-`;

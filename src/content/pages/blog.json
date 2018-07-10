@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "type": ["page"],
+    "date": "2018-07-06T00:00:00.000Z",
+    "permalink": "/blog",
+    "title": "blog",
+    "description": "random selection of letters, words, and sentences",
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "hero": {
+      "title":
+        "random selection of letters, words, sentences, paragraphs, and blog posts"
+    }
+  }
+}
