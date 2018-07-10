@@ -18,13 +18,48 @@ import { renderMarkdown, parseLinks } from '../utils';
 require('prismjs/themes/prism.css');
 
 // ─────────────────────────────────────────────────────────────────────────────
+// data
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const pageQuery = graphql`
+  query BlogPostByPath($path: String!) {
+    article: markdownRemark(frontmatter: { permalink: { eq: $path } }) {
+      frontmatter {
+        date(formatString: "MMMM D, YYYY")
+        permalink
+        title
+        description
+      }
+      htmlAst
+    }
+    relatedArticles: allMarkdownRemark(
+      filter: {
+        fileAbsolutePath: { regex: "/blog/" }
+        frontmatter: { related: { in: [$path] } }
+      }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            permalink
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function BlogPost({
   data: {
-    markdownRemark: { frontmatter, htmlAst },
-    allMarkdownRemark: related,
+    article: { frontmatter, htmlAst },
+    relatedArticles,
   },
 }) {
   return (
@@ -61,11 +96,11 @@ export default function BlogPost({
         </header>
         {renderMarkdown(htmlAst)}
       </Article>
-      {related && (
+      {relatedArticles && (
         <Aside>
           <Subheading>Related articles</Subheading>
           <BlogPreviewsContainer
-            posts={related.edges.map(
+            posts={relatedArticles.edges.map(
               ({ node: { frontmatter: post, timeToRead } }) => ({
                 ...post,
                 timeToRead,
@@ -77,34 +112,3 @@ export default function BlogPost({
     </Main>
   );
 }
-
-export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { permalink: { eq: $path } }) {
-      frontmatter {
-        date(formatString: "MMMM D, YYYY")
-        permalink
-        title
-        description
-      }
-      htmlAst
-    }
-    allMarkdownRemark(
-      filter: {
-        fileAbsolutePath: { regex: "/blog/" }
-        frontmatter: { related: { in: [$path] } }
-      }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          timeToRead
-          frontmatter {
-            permalink
-            title
-          }
-        }
-      }
-    }
-  }
-`;

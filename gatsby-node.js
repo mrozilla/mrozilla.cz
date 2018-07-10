@@ -17,7 +17,7 @@ exports.modifyWebpackConfig = ({ config }) => {
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
-  const BlogPost = path.resolve('src/templates/BlogPost.js');
+  const BlogPostContainer = path.resolve('src/containers/BlogPostContainer.js');
 
   return graphql(`
     {
@@ -42,7 +42,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     return result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path:      node.frontmatter.permalink,
-        component: BlogPost,
+        component: BlogPostContainer,
       });
     });
   });
