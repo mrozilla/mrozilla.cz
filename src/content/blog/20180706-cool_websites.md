@@ -16,7 +16,7 @@ date: 2018-07-06T00:00:00.000Z
 - https://chasem.co/ <small style="opacity: 0.5">(2018)</small>
 - https://twnsnd.co/ <small style="opacity: 0.5">(2018)</small>
 
-## companies/services
+## companies/startups/services
 
 - [https://www.airbnb.com](https://web.archive.org/web/20170701010531/https://www.airbnb.com/) <small style="opacity: 0.5">(2017)</small>
 - http://heystack.is/ <small style="opacity: 0.5">(2018)</small>
@@ -25,6 +25,7 @@ date: 2018-07-06T00:00:00.000Z
 - https://buffer.com/ <small style="opacity: 0.5">(2018)</small>
 - https://carta.com/ <small style="opacity: 0.5">(2018)</small>
 - https://clickup.com/ <small style="opacity: 0.5">(2018)</small>
+- https://hellogustav.com/ <small style="opacity: 0.5">(2018)</small>
 - https://intellyo.com/ <small style="opacity: 0.5">(2018)</small>
 - https://intercom.com <small style="opacity: 0.5">(2018)</small>
 - https://ionicframework.com/ <small style="opacity: 0.5">(2018)</small>
@@ -44,7 +45,4 @@ date: 2018-07-06T00:00:00.000Z
 ## agencies
 
 - http://growthrock.co/ <small style="opacity: 0.5">(2018)</small>
-
-## startups
-
-- https://hellogustav.com/ <small style="opacity: 0.5">(2018)</small>
+- https://ueno.co/ <small style="opacity: 0.5">(2018)</small>
