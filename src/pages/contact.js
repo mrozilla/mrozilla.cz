@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {
-  Main, Section, Text, Link,
+  Main, Section, Text, Link, Button
 } from '../components';
 import { HeroContainer, SEOContainer, ContactContainer } from '../containers';
 
@@ -55,8 +55,8 @@ export default function ContactPage({
         <ContactContainer />
       ) : (
         <Section gridArea="form">
-          <Text>Success</Text>
-          <Link to="/contact">Back</Link>
+          <Text margin="0 0 2rem 0">What a pleasure to hear from you. We'll get back to you soon, keep an eye out on your inbox!</Text>
+          <Link to="/"><Button>Back home</Button></Link>
         </Section>
       )}
     </Main>

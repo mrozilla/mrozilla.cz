@@ -16,6 +16,7 @@ Nav.List = styled.ul`
   display: grid;
   grid-auto-flow: column;
   grid-gap: 1rem;
+  list-style: none;
 
   @media screen and (min-width: 600px) {
     display: block;

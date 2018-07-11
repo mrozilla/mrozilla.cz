@@ -58,6 +58,7 @@ export default class ContactContainer extends PureComponent {
         }}
         gridGap="0 1rem"
       >
+        <input type="hidden" name="form-name" value="contact" />
         <input type="hidden" name="bot-field" />
         {this.renderInputs()}
         <Button type="submit" margin="2rem 0 0 0" style={{ gridArea: 'submit' }}>
