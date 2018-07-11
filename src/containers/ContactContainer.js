@@ -47,10 +47,9 @@ export default class ContactContainer extends PureComponent {
     return (
       <Form
         name="contact"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
         method="POST"
-        action="/contact#success"
+        netlify-honeypot="bot-field" 
+        netlify
 
         gridTemplate={{
           xs: "'email' 'name' 'project' 'submit'",
