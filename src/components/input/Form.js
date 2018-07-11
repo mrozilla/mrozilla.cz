@@ -3,16 +3,19 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
+import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.label`
-  text-transform: uppercase;
-  font-size: 1.25rem;
-  line-height: 2rem;
-  color: hsla(var(--hsl-text), 0.75);
-
-  padding: ${({ padding }) => padding};
-`;
+export default styled.form(
+  {
+    gridArea: 'form',
+    display:  'grid',
+  },
+  ({ gridGap, gridTemplate }) => ({
+    ...mediaQuerise({ gridTemplate }),
+    ...mediaQuerise({ gridGap }),
+  }),
+);
