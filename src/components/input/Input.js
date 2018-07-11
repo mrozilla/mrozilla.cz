@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { string, func } from 'prop-types';
 import styled from 'styled-components';
 import { Label, Text } from '../typography';
@@ -21,9 +21,13 @@ const InputWrapper = styled.div`
   align-items: baseline;
   overflow: hidden;
   width: ${({ width }) => width};
-  box-shadow: inset 0 0 0 1px var(--color-grey-light);
-  border-radius: 1rem;
+  box-shadow: 0 2px 0 -1px var(--color-grey-light);
   background-color: hsla(var(--hsl-grey), 0.1);
+
+  &:hover,
+  &:focus-within {
+    box-shadow: 0 2px 0 -1px var(--color-grey);
+  }
 `;
 
 const StyledInput = styled.input`
@@ -32,62 +36,64 @@ const StyledInput = styled.input`
   flex: 1;
   padding: ${({ padding = '1rem' }) => padding};
   background-color: transparent;
+
   &::placeholder {
     opacity: 0.5;
   }
 `;
 
-export default function Input({
-  type = 'text',
-  label = 'input',
-  margin,
-  width,
-  description,
-  renderLeft,
-  renderRight,
-  ...rest
-}) {
-  return (
-    <Wrapper margin={margin}>
-      {label !== 'input' && (
-        <Label htmlFor={label} padding="0 1rem">
-          {label}
-        </Label>
-      )}
-      {description && (
-        <Text
-          fontSize="1.25rem"
-          lineHeight="1.25rem"
-          opacity="0.75"
-          padding="0 1rem"
-          margin="0 0 1rem 0"
-        >
-          {description}
-        </Text>
-      )}
-      <InputWrapper width={width}>
-        {renderLeft && renderLeft()}
-        <StyledInput type={type} name={label} {...rest} />
-        {renderRight && renderRight()}
-      </InputWrapper>
-    </Wrapper>
-  );
-}
+const StyledTextArea = StyledInput.withComponent('textarea');
 
-Input.propTypes = {
-  type:        string,
-  label:       string.isRequired,
-  margin:      string,
-  width:       string,
-  description: string,
-  renderLeft:  func,
-  renderRight: func,
-};
-Input.defaultProps = {
-  type:        'text',
-  margin:      '0 0 1rem 0',
-  width:       null, // '100%'
-  description: null,
-  renderLeft:  null,
-  renderRight: null,
-};
+export default class Input extends PureComponent {
+  static propTypes = {
+    type:        string,
+    name:        string.isRequired,
+    label:       string,
+    margin:      string,
+    description: string,
+    renderLeft:  func,
+    renderRight: func,
+  };
+
+  static defaultProps = {
+    type:        'text',
+    label:       null,
+    margin:      '0 0 1rem 0',
+    description: null,
+    renderLeft:  () => null,
+    renderRight: () => null,
+  };
+
+  renderLabel = () => (
+    <Label htmlFor={this.props.name} padding="0 1rem">
+      {this.props.label}
+    </Label>
+  );
+
+  renderDescription = () => (
+    <Text fontSize="1.25rem" lineHeight="1.25rem" opacity="0.75" padding="0 1rem" margin="0 0 1rem 0">
+      {this.props.description}
+    </Text>
+  );
+
+  renderInput = () => {
+    if (this.props.type === 'textarea') {
+      return <StyledTextArea {...this.props} />;
+    }
+    return <StyledInput {...this.props} />;
+  };
+
+  render() {
+    return (
+      <Wrapper margin={this.props.margin} style={{ gridArea: this.props.name }}>
+        {this.props.label && this.renderLabel()}
+        {this.props.description && this.renderDescription()}
+        <InputWrapper>
+          {this.props.renderLeft()}
+          {this.renderInput()}
+          {this.props.renderRight()}
+        </InputWrapper>
+      </Wrapper>
+    );
+  }
+}

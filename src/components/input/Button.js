@@ -24,23 +24,12 @@ export default styled.button`
     }
     return css`
       background-color: hsla(var(--hsl-grey), 0.1);
-      box-shadow: inset 0 0 0 1px var(--color-grey-light);
-
+      box-shadow: 0 0 0 1px var(--color-grey-light);
       padding: ${({ padding = '1rem 2rem' }) => padding};
-
-      &:first-of-type {
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-      }
-      &:last-of-type {
-        border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
-      }
-
       border-radius: ${({ borderRadius }) => borderRadius};
       transition: 100ms;
       &:hover {
-        background-color: var(--color-grey-light);
+        box-shadow: 0 0 0 1px var(--color-grey);
         transform: translateY(-1px);
       }
       &:active {
