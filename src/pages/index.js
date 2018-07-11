@@ -15,17 +15,72 @@ import {
 } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
+// data
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const query = graphql`
+  query HomePage {
+    page: pagesJson(meta: { permalink: { eq: "/" } }) {
+      meta {
+        title
+        description
+      }
+      body {
+        hero {
+          title
+        }
+        location {
+          title
+          text
+        }
+        availability {
+          title
+          text
+        }
+      }
+    }
+    works: allWorkJson(sort: { fields: [meta___date], order: DESC }) {
+      edges {
+        node {
+          meta {
+            permalink
+          }
+          body {
+            title
+            tagline
+          }
+        }
+      }
+    }
+    posts: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/blog/" } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 5
+    ) {
+      edges {
+        node {
+          frontmatter {
+            permalink
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function HomePage({
   data: {
-    pagesJson: {
+    page: {
       meta: seo,
       body: { hero, location, availability },
     },
-    allWorkJson: { edges: works },
-    allMarkdownRemark: { edges: posts },
+    works,
+    posts,
   },
 }) {
   return (
@@ -51,7 +106,7 @@ export default function HomePage({
       <Section gridArea="work" id="work">
         <Subheading>latest client work</Subheading>
         <WorksContainer
-          works={works.map(({ node: { meta, body } }) => ({
+          works={works.edges.map(({ node: { meta, body } }) => ({
             ...meta,
             ...body,
           }))}
@@ -60,7 +115,7 @@ export default function HomePage({
       <Section gridArea="blog" id="blog">
         <Subheading>latest blog articles</Subheading>
         <BlogPreviewsContainer
-          posts={posts.map(({ node: { frontmatter: post } }) => ({
+          posts={posts.edges.map(({ node: { frontmatter: post } }) => ({
             ...post,
           }))}
         />
@@ -68,54 +123,3 @@ export default function HomePage({
     </Main>
   );
 }
-
-export const query = graphql`
-  query HomePage {
-    pagesJson(meta: { permalink: { eq: "/" } }) {
-      meta {
-        title
-        description
-      }
-      body {
-        hero {
-          title
-        }
-        location {
-          title
-          text
-        }
-        availability {
-          title
-          text
-        }
-      }
-    }
-    allWorkJson(sort: { fields: [meta___date], order: DESC }) {
-      edges {
-        node {
-          meta {
-            permalink
-          }
-          body {
-            title
-            tagline
-          }
-        }
-      }
-    }
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/blog/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 5
-    ) {
-      edges {
-        node {
-          frontmatter {
-            permalink
-            title
-          }
-        }
-      }
-    }
-  }
-`;

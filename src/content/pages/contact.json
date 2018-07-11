@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": ["page"],
+    "date": "2018-07-10T00:00:00.000Z",
+    "permalink": "/contact",
+    "title": "contact",
+    "description":
+      "you've got a project in mind and we'd love to hear more about it",
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "hero": {
+      "title":
+        "you've got a project in mind and we'd love to hear more about it"
+    }
+  }
+}
