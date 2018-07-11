@@ -23,6 +23,8 @@ const InputWrapper = styled.div`
   width: ${({ width }) => width};
   box-shadow: 0 2px 0 -1px var(--color-grey-light);
   background-color: hsla(var(--hsl-grey), 0.1);
+
+  &:hover,
   &:focus-within {
     box-shadow: 0 2px 0 -1px var(--color-grey);
   }
@@ -34,6 +36,7 @@ const StyledInput = styled.input`
   flex: 1;
   padding: ${({ padding = '1rem' }) => padding};
   background-color: transparent;
+
   &::placeholder {
     opacity: 0.5;
   }
@@ -68,13 +71,7 @@ export default class Input extends PureComponent {
   );
 
   renderDescription = () => (
-    <Text
-      fontSize="1.25rem"
-      lineHeight="1.25rem"
-      opacity="0.75"
-      padding="0 1rem"
-      margin="0 0 1rem 0"
-    >
+    <Text fontSize="1.25rem" lineHeight="1.25rem" opacity="0.75" padding="0 1rem" margin="0 0 1rem 0">
       {this.props.description}
     </Text>
   );
