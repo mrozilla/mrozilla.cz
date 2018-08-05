@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2018-08-05T00:00:00.000Z",
+    "permalink": "/lab/czerman",
+    "title": "Czerman—the similarities between Czech and German",
+    "description":
+      "Even though the Czech and German come from two distinct language families, there are many, many similiarities. We started collecting them.",
+    "tags": ["concept", "website"],
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "title": "Czerman",
+    "tagline": "the similarities between Czech and German"
+  },
+  "dictionary": [
+    {
+      "id": "biliar",
+      "czech": {
+        "grammar": "biliár",
+        "ipa": "[bɪlɪjaːr]"
+      },
+      "german": {
+        "grammar": "das Billard",
+        "ipa": ""
+      }
+    },
+    {
+      "id": "burza",
+      "czech": {
+        "grammar": "burza",
+        "ipa": "[bʊrza]"
+      },
+      "german": {
+        "grammar": "die Börse",
+        "ipa": ""
+      }
+    },
+    {
+      "id": "cil",
+      "czech": {
+        "grammar": "cíl",
+        "ipa": "[t͡siːl]"
+      },
+      "german": {
+        "grammar": "das Ziel",
+        "ipa": ""
+      }
+    },
+    {
+      "id": "dekan",
+      "czech": {
+        "grammar": "děkan",
+        "ipa": "[ɟɛkan]"
+      },
+      "german": {
+        "grammar": "der Dekan",
+        "ipa": ""
+      }
+    },
+    {
+      "id": "drat",
+      "czech": {
+        "grammar": "drát",
+        "ipa": "[draːt]"
+      },
+      "german": {
+        "grammar": "der Draht",
+        "ipa": ""
+      }
+    },
+    {
+      "id": "ekl",
+      "czech": {
+        "grammar": "ekl",
+        "ipa": "[ekl]"
+      },
+      "german": {
+        "grammar": "ekelhaft",
+        "ipa": ""
+      }
+    },
+    {
+      "id": "facka",
+      "czech": {
+        "grammar": "facka",
+        "ipa": "[fat͡ska]"
+      },
+      "german": {
+        "grammar": "die Fotzen",
+        "ipa": "[ˈfɔʦn̩]"
+      }
+    }
+  ]
+}
