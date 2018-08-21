@@ -4,12 +4,12 @@
 
 import React from 'react';
 import {
-  Main, Section, Text, Link, Button
+  Main, Section, Text, Link, Button,
 } from '../components';
 import { HeroContainer, SEOContainer, ContactContainer } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// data
+// query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
@@ -22,6 +22,10 @@ export const query = graphql`
       body {
         hero {
           title
+        }
+        form {
+          success
+          back
         }
       }
     }
@@ -36,7 +40,7 @@ export default function ContactPage({
   data: {
     page: {
       seo,
-      body: { hero },
+      body: { hero, form },
     },
   },
   location,
@@ -50,13 +54,15 @@ export default function ContactPage({
       gridGap="10vh 4rem"
     >
       <SEOContainer seo={seo} />
-      <HeroContainer hero={hero} />
-      {!location.hash.includes('#success') ? (
+      <HeroContainer title={hero.title} />
+      {location.hash.includes('#success') ? (
         <ContactContainer />
       ) : (
         <Section gridArea="form">
-          <Text margin="0 0 2rem 0">What a pleasure to hear from you. We'll get back to you soon, keep an eye out on your inbox!</Text>
-          <Link to="/"><Button>Back home</Button></Link>
+          <Text margin="0 0 2rem 0">{form.success}</Text>
+          <Link to="/">
+            <Button>{form.back}</Button>
+          </Link>
         </Section>
       )}
     </Main>

@@ -3,42 +3,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+
 import { Main, Section, Subheading } from '../components';
-import {
-  HeroContainer,
-  BlogPreviewsContainer,
-  SEOContainer,
-} from '../containers';
+import { HeroContainer, BlogPreviewsContainer, SEOContainer } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// query
 // ─────────────────────────────────────────────────────────────────────────────
-
-export default function BlogPage({
-  data: {
-    pagesJson: {
-      meta: seo,
-      body: { hero },
-    },
-    allMarkdownRemark: { edges: posts },
-  },
-}) {
-  return (
-    <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
-      <SEOContainer {...{ seo }} />
-      <HeroContainer hero={hero} />
-      <Section gridArea="blog" id="blog">
-        <Subheading>all blog articles</Subheading>
-        <BlogPreviewsContainer
-          posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
-            ...post,
-            timeToRead,
-          }))}
-        />
-      </Section>
-    </Main>
-  );
-}
 
 export const query = graphql`
   query BlogPage {
@@ -70,3 +41,33 @@ export const query = graphql`
     }
   }
 `;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default function BlogPage({
+  data: {
+    pagesJson: {
+      meta: seo,
+      body: { hero },
+    },
+    allMarkdownRemark: { edges: posts },
+  },
+}) {
+  return (
+    <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
+      <SEOContainer {...{ seo }} />
+      <HeroContainer title={hero.title} />
+      <Section gridArea="blog" id="blog">
+        <Subheading>all blog articles</Subheading>
+        <BlogPreviewsContainer
+          posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
+            ...post,
+            timeToRead,
+          }))}
+        />
+      </Section>
+    </Main>
+  );
+}

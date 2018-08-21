@@ -3,22 +3,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+
 import {
-  Article,
-  Aside,
-  Heading,
-  Link,
-  Main,
-  Subheading,
-  Text,
+  Article, Aside, Heading, Link, Main, Subheading, Text,
 } from '../components';
-import { SEOContainer, BlogPreviewsContainer } from '../containers';
+import { SEOContainer, BlogPreviewsContainer } from '.';
+
 import { renderMarkdown, parseLinks } from '../utils';
 
 require('prismjs/themes/prism.css');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// data
+// query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const pageQuery = graphql`
@@ -33,10 +29,7 @@ export const pageQuery = graphql`
       htmlAst
     }
     relatedArticles: allMarkdownRemark(
-      filter: {
-        fileAbsolutePath: { regex: "/blog/" }
-        frontmatter: { related: { in: [$path] } }
-      }
+      filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { related: { in: [$path] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
@@ -100,12 +93,10 @@ export default function BlogPost({
         <Aside>
           <Subheading>Related articles</Subheading>
           <BlogPreviewsContainer
-            posts={relatedArticles.edges.map(
-              ({ node: { frontmatter: post, timeToRead } }) => ({
-                ...post,
-                timeToRead,
-              }),
-            )}
+            posts={relatedArticles.edges.map(({ node: { frontmatter: post, timeToRead } }) => ({
+              ...post,
+              timeToRead,
+            }))}
           />
         </Aside>
       )}
