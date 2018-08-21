@@ -20,7 +20,7 @@ const RouterLink = styled(GatsbyLink)`
       return css`
         display: inline-block;
         text-decoration: underline;
-        text-decoration-color: hsla(var(--hsl-text), 0.1);
+        text-decoration-color: hsla(var(--hsl-text), 0.25);
         &.active {
           text-decoration-color: hsla(var(--hsl-text), 0.5);
         }
@@ -47,12 +47,7 @@ export default function Link({
   const link = href || to;
   if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
     return (
-      <ExternalLink
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...rest}
-      >
+      <ExternalLink href={link} target="_blank" rel="noopener noreferrer" {...rest}>
         {children}
       </ExternalLink>
     );
