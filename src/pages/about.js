@@ -3,11 +3,37 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+
 import {
   Main, Section, Text, List, Subheading,
 } from '../components';
 import { HeroContainer, SEOContainer } from '../containers';
+
 import { parseLinks } from '../utils';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// query
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const query = graphql`
+  query AboutPage {
+    pagesJson(meta: { permalink: { eq: "/about" } }) {
+      meta {
+        title
+        description
+      }
+      body {
+        hero {
+          title
+        }
+        about {
+          title
+          text
+        }
+      }
+    }
+  }
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -30,7 +56,7 @@ export default function AboutPage({
       gridGap="10vh 4rem"
     >
       <SEOContainer seo={meta} />
-      <HeroContainer {...{ hero }} />
+      <HeroContainer title={hero.title} />
       <Section gridArea="about">
         <List gridGap="2rem">
           {about.map(item => (
@@ -44,23 +70,3 @@ export default function AboutPage({
     </Main>
   );
 }
-
-export const query = graphql`
-  query AboutPage {
-    pagesJson(meta: { permalink: { eq: "/about" } }) {
-      meta {
-        title
-        description
-      }
-      body {
-        hero {
-          title
-        }
-        about {
-          title
-          text
-        }
-      }
-    }
-  }
-`;

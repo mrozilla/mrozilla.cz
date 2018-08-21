@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+
 import {
   Main, Section, Subheading, Text,
 } from '../components';
@@ -15,7 +16,7 @@ import {
 } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// data
+// query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
@@ -92,7 +93,7 @@ export default function HomePage({
       gridGap="10vh 4rem"
     >
       <SEOContainer {...{ seo }} />
-      <HeroContainer hero={hero} />
+      <HeroContainer title={hero.title} />
       <Section gridArea="based">
         <Subheading>{location.title}</Subheading>
         <Text fontSize="3rem" fontWeight="700">

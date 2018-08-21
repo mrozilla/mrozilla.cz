@@ -1,0 +1,1095 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2018-08-05T00:00:00.000Z",
+    "permalink": "/lab/czerman",
+    "title": "Czerman—the similarities between Czech and German",
+    "description": "Even though the Czech and German come from two distinct language families, there are many, many similiarities. This is an ever-growing collection of them",
+    "tags": ["concept", "website"],
+    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+  },
+  "body": {
+    "title": "Czerman",
+    "tagline": "the similarities between Czech and German"
+  },
+  "dictionary": [
+    {
+      "id": "abatyse",
+      "czech": {
+        "grammar": "abatyše",
+        "ipa": "[abatɪʃɛ]"
+      },
+      "german": {
+        "grammar": "die Äbtissin",
+        "ipa": "[ɛpˈtɪsɪn]"
+      }
+    },
+    {
+      "id": "almuzna",
+      "czech": {
+        "grammar": "almužna",
+        "ipa": "[almʊʒna]"
+      },
+      "german": {
+        "grammar": "das Almosen",
+        "ipa": "[ˈalmoːzn̩]"
+      }
+    },
+    {
+      "id": "biliar",
+      "czech": {
+        "grammar": "biliár",
+        "ipa": "[bɪlɪjaːr]"
+      },
+      "german": {
+        "grammar": "das Billard",
+        "ipa": "[biˈjaːɐ̯]"
+      }
+    },
+    {
+      "id": "buchty",
+      "czech": {
+        "grammar": "buchty",
+        "ipa": "[bʊxtɪ]"
+      },
+      "german": {
+        "grammar": "die Buchteln",
+        "ipa": "[ˈbʊχtl̩n]"
+      }
+    },
+    {
+      "id": "burza",
+      "czech": {
+        "grammar": "burza",
+        "ipa": "[bʊrza]"
+      },
+      "german": {
+        "grammar": "die Börse",
+        "ipa": "[ˈbœʁzə]"
+      }
+    },
+    {
+      "id": "celta",
+      "czech": {
+        "grammar": "celta",
+        "ipa": "[t͡sɛlta]"
+      },
+      "german": {
+        "grammar": "das Zelt",
+        "ipa": "[ˈzɔnə]"
+      }
+    },
+    {
+      "id": "cil",
+      "czech": {
+        "grammar": "cíl",
+        "ipa": "[t͡siːl]"
+      },
+      "german": {
+        "grammar": "das Ziel",
+        "ipa": "[ʦiːl]"
+      }
+    },
+    {
+      "id": "dekan",
+      "czech": {
+        "grammar": "děkan",
+        "ipa": "[ɟɛkan]"
+      },
+      "german": {
+        "grammar": "der Dekan",
+        "ipa": "[deˈkaːn]"
+      }
+    },
+    {
+      "id": "drat",
+      "czech": {
+        "grammar": "drát",
+        "ipa": "[draːt]"
+      },
+      "german": {
+        "grammar": "der Draht",
+        "ipa": "[dʀaːt]"
+      }
+    },
+    {
+      "id": "ekl",
+      "czech": {
+        "grammar": "ekl",
+        "ipa": "[ɛkl]"
+      },
+      "german": {
+        "grammar": "ekelhaft",
+        "ipa": "[ˈeːkl̩haft]"
+      }
+    },
+    {
+      "id": "facka",
+      "czech": {
+        "grammar": "facka",
+        "ipa": "[fat͡ska]"
+      },
+      "german": {
+        "grammar": "die Fotzen",
+        "ipa": "[ˈfɔʦn̩]"
+      }
+    },
+    {
+      "id": "fara",
+      "czech": {
+        "grammar": "fara",
+        "ipa": "[ˈfara]"
+      },
+      "german": {
+        "grammar": "die Pfarrei",
+        "ipa": "[pfaˈʀaɪ̯]"
+      }
+    },
+    {
+      "id": "flek",
+      "czech": {
+        "grammar": "flek",
+        "ipa": "[flɛk]"
+      },
+      "german": {
+        "grammar": "der Fleck",
+        "ipa": "[flɛk]"
+      }
+    },
+    {
+      "id": "flundra",
+      "czech": {
+        "grammar": "flundra",
+        "ipa": "[flundra]"
+      },
+      "german": {
+        "grammar": "der Flunder",
+        "ipa": "[ˈflʊndɐ]"
+      }
+    },
+    {
+      "id": "flus",
+      "czech": {
+        "grammar": "flus",
+        "ipa": "[ˈflus]"
+      },
+      "german": {
+        "grammar": "der Fluss",
+        "ipa": "[flʊs]"
+      }
+    },
+    {
+      "id": "fotr",
+      "czech": {
+        "grammar": "fotr",
+        "ipa": "[fɔtr̩]"
+      },
+      "german": {
+        "grammar": "der Vater",
+        "ipa": "[ˈfaːtɐ]"
+      }
+    },
+    {
+      "id": "fuchtle",
+      "czech": {
+        "grammar": "fuchtle",
+        "ipa": "[ˈfʊχtl̩ɛ]"
+      },
+      "german": {
+        "grammar": "die Fuchtel",
+        "ipa": "[ˈfʊχtl̩]"
+      }
+    },
+    {
+      "id": "fusekle",
+      "czech": {
+        "grammar": "fusekle",
+        "ipa": "[fʊsɛklɛ]"
+      },
+      "german": {
+        "grammar": "der Fußsöckel",
+        "ipa": "[ˈfuːsˌzɔkl̩]"
+      }
+    },
+    {
+      "id": "gabl",
+      "czech": {
+        "grammar": "gábl",
+        "ipa": "[gaːbl]"
+      },
+      "german": {
+        "grammar": "die Gabel",
+        "ipa": "[gaːbl]"
+      }
+    },
+    {
+      "id": "hic",
+      "czech": {
+        "grammar": "hic",
+        "ipa": "[ɦɪt͡s]"
+      },
+      "german": {
+        "grammar": "die Hitze",
+        "ipa": "[ˈhɪtsə]"
+      }
+    },
+    {
+      "id": "humbuk",
+      "czech": {
+        "grammar": "humbuk",
+        "ipa": "[ˈhʊmbʊk]"
+      },
+      "german": {
+        "grammar": "der Humbug",
+        "ipa": "[ˈhʊmbʊk]"
+      }
+    },
+    {
+      "id": "kajuta",
+      "czech": {
+        "grammar": "kajuta",
+        "ipa": "[kajʊta]"
+      },
+      "german": {
+        "grammar": "die Kajüte",
+        "ipa": "[kaˈjyːtə]"
+      }
+    },
+    {
+      "id": "kamarad",
+      "czech": {
+        "grammar": "kamarád",
+        "ipa": "[kamaraːt]"
+      },
+      "german": {
+        "grammar": "der Kamerad",
+        "ipa": "[kaməˈʀaːt]"
+      }
+    },
+    {
+      "id": "kanta",
+      "czech": {
+        "grammar": "kanta",
+        "ipa": "[ˈkanta]"
+      },
+      "german": {
+        "grammar": "die Kante",
+        "ipa": "[ˈkantə]"
+      }
+    },
+    {
+      "id": "kapuce",
+      "czech": {
+        "grammar": "kapuce",
+        "ipa": "[kapʊt͡sɛ]"
+      },
+      "german": {
+        "grammar": "die Kapuze",
+        "ipa": "[kaˈpuːʦə]"
+      }
+    },
+    {
+      "id": "karfiol",
+      "czech": {
+        "grammar": "karfiól",
+        "ipa": "[karfɪɔːl]"
+      },
+      "german": {
+        "grammar": "der Karfiol",
+        "ipa": "[kaʁˈfi̯oːl]"
+      }
+    },
+    {
+      "id": "kasarna",
+      "czech": {
+        "grammar": "kasárna",
+        "ipa": "[ˈkasaːrna]"
+      },
+      "german": {
+        "grammar": "die Kaserne",
+        "ipa": "[kaˈzɛʁnə]"
+      }
+    },
+    {
+      "id": "kastle",
+      "czech": {
+        "grammar": "kastle",
+        "ipa": "[ˈkastlɛ]"
+      },
+      "german": {
+        "grammar": "die Kaserne",
+        "ipa": "[ˈkastn̩]"
+      }
+    },
+    {
+      "id": "komín",
+      "czech": {
+        "grammar": "komín",
+        "ipa": "[ˈkɔmiːn]"
+      },
+      "german": {
+        "grammar": "der Kamin",
+        "ipa": "[kaˈmiːn]"
+      }
+    },
+    {
+      "id": "kramflek",
+      "czech": {
+        "grammar": "kramflek",
+        "ipa": "[ˈkramflɛk]"
+      },
+      "german": {
+        "grammar": "???",
+        "ipa": "[???]"
+      }
+    },
+    {
+      "id": "kraval",
+      "czech": {
+        "grammar": "kravál",
+        "ipa": "[kravaːl]"
+      },
+      "german": {
+        "grammar": "der Krawall",
+        "ipa": "[kʀaˈval]"
+      }
+    },
+    {
+      "id": "krygl",
+      "czech": {
+        "grammar": "krýgl",
+        "ipa": "[kriːgl̩]"
+      },
+      "german": {
+        "grammar": "der Krügel",
+        "ipa": "[ˈkʀyːɡl̩]"
+      }
+    },
+    {
+      "id": "ksicht",
+      "czech": {
+        "grammar": "ksicht",
+        "ipa": "[ksɪxt]"
+      },
+      "german": {
+        "grammar": "das Gesicht",
+        "ipa": "[ɡəˈzɪçt]"
+      }
+    },
+    {
+      "id": "kvartyr",
+      "czech": {
+        "grammar": "kvartýr",
+        "ipa": "[kvartɪːr]"
+      },
+      "german": {
+        "grammar": "das Quartier",
+        "ipa": "[kvaʁˈtiːɐ̯]"
+      }
+    },
+    {
+      "id": "kybl",
+      "czech": {
+        "grammar": "kýbl",
+        "ipa": "[kiːbl]"
+      },
+      "german": {
+        "grammar": "der Kübel",
+        "ipa": "[ˈkyːbl̩]"
+      }
+    },
+    {
+      "id": "lustr",
+      "czech": {
+        "grammar": "lustr",
+        "ipa": "[lʊstr̩]"
+      },
+      "german": {
+        "grammar": "der Luster",
+        "ipa": "[ˈlʊstɐ]"
+      }
+    },
+    {
+      "id": "lagr",
+      "czech": {
+        "grammar": "lágr",
+        "ipa": "[ˈlaːgr̩]"
+      },
+      "german": {
+        "grammar": "der Konzentrationslager",
+        "ipa": "[kɔnʦɛntʀaˈʦi̯oːnsˌlaːɡɐ]"
+      }
+    },
+    {
+      "id": "majstrstyk",
+      "czech": {
+        "grammar": "majstrštyk",
+        "ipa": "[majstr̩ʃtɪk]"
+      },
+      "german": {
+        "grammar": "das Meisterstück",
+        "ipa": "[ˈmaɪ̯stɐˌʃtʏk]"
+      }
+    },
+    {
+      "id": "makler",
+      "czech": {
+        "grammar": "makléř",
+        "ipa": "[maklɛːr̝̊]"
+      },
+      "german": {
+        "grammar": "der Makler",
+        "ipa": "[ˈmaːklɐ]"
+      }
+    },
+    {
+      "id": "manyr",
+      "czech": {
+        "grammar": "manýr",
+        "ipa": "[maniːr]"
+      },
+      "german": {
+        "grammar": "die Manier",
+        "ipa": "[maˈniːɐ̯]"
+      }
+    },
+    {
+      "id": "mitfara",
+      "czech": {
+        "grammar": "mitfára",
+        "ipa": "[mitfaːra]"
+      },
+      "german": {
+        "grammar": "der Mitfahrer",
+        "ipa": "[ˈmɪtˌfaːʀɐ]"
+      }
+    },
+    {
+      "id": "mundur",
+      "czech": {
+        "grammar": "mundůr",
+        "ipa": "[mʊnduːr]"
+      },
+      "german": {
+        "grammar": "die Montur",
+        "ipa": "[mɔnˈtuːɐ̯]"
+      }
+    },
+    {
+      "id": "nymand",
+      "czech": {
+        "grammar": "nýmand",
+        "ipa": "[niːmant]"
+      },
+      "german": {
+        "grammar": "der Niemand",
+        "ipa": "[ˈniːmant]"
+      }
+    },
+    {
+      "id": "pajzl",
+      "czech": {
+        "grammar": "pajzl",
+        "ipa": "[pajzl̩]"
+      },
+      "german": {
+        "grammar": "das Beisel",
+        "ipa": "[ˈbaɪ̯zl̩]"
+      }
+    },
+    {
+      "id": "palacinky",
+      "czech": {
+        "grammar": "palačinky",
+        "ipa": "[palat͡ʃɪŋkɪ]"
+      },
+      "german": {
+        "grammar": "die Palatschinken",
+        "ipa": "[palaˈʧɪŋkn̩]"
+      }
+    },
+    {
+      "id": "pantofel",
+      "czech": {
+        "grammar": "pantofel",
+        "ipa": "[pantɔfɛl̩]"
+      },
+      "german": {
+        "grammar": "der Pantofel",
+        "ipa": "[panˈtɔfl̩]"
+      }
+    },
+    {
+      "id": "plech",
+      "czech": {
+        "grammar": "plech",
+        "ipa": "[plɛx]"
+      },
+      "german": {
+        "grammar": "das Blech",
+        "ipa": "[blɛç]"
+      }
+    },
+    {
+      "id": "plomba",
+      "czech": {
+        "grammar": "plomba",
+        "ipa": "[plɔmba]"
+      },
+      "german": {
+        "grammar": "die Plombe",
+        "ipa": "[ˈplɔmbə]"
+      }
+    },
+    {
+      "id": "povidla",
+      "czech": {
+        "grammar": "povidla",
+        "ipa": "[pɔvɪdla]"
+      },
+      "german": {
+        "grammar": "der Powidl",
+        "ipa": "[ˈpɔvidl̩]"
+      }
+    },
+    {
+      "id": "preclik",
+      "czech": {
+        "grammar": "preclík",
+        "ipa": "[prɛtsliːk]"
+      },
+      "german": {
+        "grammar": "das Bretzel",
+        "ipa": "[ˈbʀɛʦl̩]"
+      }
+    },
+    {
+      "id": "rantl",
+      "czech": {
+        "grammar": "rantl",
+        "ipa": "[rantl]"
+      },
+      "german": {
+        "grammar": "der Rand",
+        "ipa": "[ʀant]"
+      }
+    },
+    {
+      "id": "raus",
+      "czech": {
+        "grammar": "rauš",
+        "ipa": "[raʊʃ]"
+      },
+      "german": {
+        "grammar": "das Rausch",
+        "ipa": "[ʀaʊ̯ʃ]"
+      }
+    },
+    {
+      "id": "rafek",
+      "czech": {
+        "grammar": "ráfek",
+        "ipa": "[raːfɛk]"
+      },
+      "german": {
+        "grammar": "der Reifen",
+        "ipa": "[ˈʀaɪ̯fn̩]"
+      }
+    },
+    {
+      "id": "rasple",
+      "czech": {
+        "grammar": "rašple",
+        "ipa": "[raʃplɛ]"
+      },
+      "german": {
+        "grammar": "die Raspel",
+        "ipa": "[ˈʀaspl̩]"
+      }
+    },
+    {
+      "id": "regal",
+      "czech": {
+        "grammar": "regál",
+        "ipa": "[rɛgaːl]"
+      },
+      "german": {
+        "grammar": "das Regal",
+        "ipa": "[ʀeˈɡaːl]"
+      }
+    },
+    {
+      "id": "rudl",
+      "czech": {
+        "grammar": "rudl",
+        "ipa": "[rʊdl̩]"
+      },
+      "german": {
+        "grammar": "der Rodel",
+        "ipa": "[ˈʀoːdl̩]"
+      }
+    },
+    {
+      "id": "rybiz",
+      "czech": {
+        "grammar": "rybíz",
+        "ipa": "[rɪbiːs]"
+      },
+      "german": {
+        "grammar": "der Ribisel",
+        "ipa": "[ˈʀiːbiːzl̩]"
+      }
+    },
+    {
+      "id": "sichrhajcka",
+      "czech": {
+        "grammar": "sichrhajcka",
+        "ipa": "[sɪxr̩ɦajt͡ska]"
+      },
+      "german": {
+        "grammar": "die Sicherheitsnadel",
+        "ipa": "[ˈzɪçɐhaɪ̯tsˌnaːdl̩]"
+      }
+    },
+    {
+      "id": "skrupule",
+      "czech": {
+        "grammar": "skrupule",
+        "ipa": "[skrʊpʊlɛ]"
+      },
+      "german": {
+        "grammar": "der Skrupel",
+        "ipa": "[ˈskʀuːpl̩]"
+      }
+    },
+    {
+      "id": "sachta",
+      "czech": {
+        "grammar": "šachta",
+        "ipa": "[ʃaxta]"
+      },
+      "german": {
+        "grammar": "der Schacht",
+        "ipa": "[ʃaχt]"
+      }
+    },
+    {
+      "id": "sala",
+      "czech": {
+        "grammar": "šála",
+        "ipa": "[ˈʃaːla]"
+      },
+      "german": {
+        "grammar": "der Schal",
+        "ipa": "[ʃaːl]"
+      }
+    },
+    {
+      "id": "salina",
+      "czech": {
+        "grammar": "šalina",
+        "ipa": "[ʃalɪna]"
+      },
+      "german": {
+        "grammar": "die Straßenbahnlinie",
+        "ipa": "[ˈʃtʀaːsn̩baːnˌliːni̯ə]"
+      }
+    },
+    {
+      "id": "sichta",
+      "czech": {
+        "grammar": "šichta",
+        "ipa": "[ʃɪxta]"
+      },
+      "german": {
+        "grammar": "die Schicht",
+        "ipa": "[ʃɪçt]"
+      }
+    },
+    {
+      "id": "slus",
+      "czech": {
+        "grammar": "šlus",
+        "ipa": "[ʃlʊs]"
+      },
+      "german": {
+        "grammar": "der Schluss",
+        "ipa": "[ʃlʊs]"
+      }
+    },
+    {
+      "id": "smak",
+      "czech": {
+        "grammar": "šmak",
+        "ipa": "[ʃmak]"
+      },
+      "german": {
+        "grammar": "der Geschmack",
+        "ipa": "[ɡəˈʃmak]"
+      }
+    },
+    {
+      "id": "sminky",
+      "czech": {
+        "grammar": "šminky",
+        "ipa": "[ʃmiŋkɪ]"
+      },
+      "german": {
+        "grammar": "die Schminken",
+        "ipa": "[ˈʃmɪŋkən]"
+      }
+    },
+    {
+      "id": "smirglpapir",
+      "czech": {
+        "grammar": "šmirglpapír",
+        "ipa": "[ʃmɪrgl̩papiːr]"
+      },
+      "german": {
+        "grammar": "das Schmirgelpapier",
+        "ipa": "[ˈʃmɪʁɡl̩paˌpiːɐ̯]"
+      }
+    },
+    {
+      "id": "smitec",
+      "czech": {
+        "grammar": "šmitec",
+        "ipa": "[ʃmɪtɛt͡s]"
+      },
+      "german": {
+        "grammar": "der Schmiß",
+        "ipa": "[ʃmɪs]"
+      }
+    },
+    {
+      "id": "smucka",
+      "czech": {
+        "grammar": "šmucka",
+        "ipa": "[ʃmʊt͡ska]"
+      },
+      "german": {
+        "grammar": "der Schmutz",
+        "ipa": "[ʃmʊʦ]"
+      }
+    },
+    {
+      "id": "snek",
+      "czech": {
+        "grammar": "šnek",
+        "ipa": "[ʃnɛk]"
+      },
+      "german": {
+        "grammar": "die Schnecke",
+        "ipa": "[ˈʃnɛkə]"
+      }
+    },
+    {
+      "id": "snit",
+      "czech": {
+        "grammar": "šnit",
+        "ipa": "[ʃnɪt]"
+      },
+      "german": {
+        "grammar": "der Schnitt",
+        "ipa": "[ʃnɪt]"
+      }
+    },
+    {
+      "id": "snuptychl",
+      "czech": {
+        "grammar": "šnuptychl",
+        "ipa": "[ʃnʊptɪxl̩]"
+      },
+      "german": {
+        "grammar": "das Schnupf-Tüchelchen",
+        "ipa": "[ˈʃnʊpfˌtyːχlˌçən]"
+      }
+    },
+    {
+      "id": "spagat",
+      "czech": {
+        "grammar": "špagát",
+        "ipa": "[ʃpagaːt]"
+      },
+      "german": {
+        "grammar": "der Spagat",
+        "ipa": "[ʃpaˈɡaːt]"
+      }
+    },
+    {
+      "id": "spajz",
+      "czech": {
+        "grammar": "špajz",
+        "ipa": "[ʃpajs]"
+      },
+      "german": {
+        "grammar": "die Speisekammer",
+        "ipa": "[ˈʃpaɪ̯zəˌkamɐ]"
+      }
+    },
+    {
+      "id": "spachtle",
+      "czech": {
+        "grammar": "špachtle",
+        "ipa": "[ʃpaxtlɛ]"
+      },
+      "german": {
+        "grammar": "der Spachtel",
+        "ipa": "[ˈʃpaχtl̩]"
+      }
+    },
+    {
+      "id": "spunt",
+      "czech": {
+        "grammar": "špunt",
+        "ipa": "[ʃpʊnt]"
+      },
+      "german": {
+        "grammar": "der Spund",
+        "ipa": "[ʃpʊnt]"
+      }
+    },
+    {
+      "id": "srot",
+      "czech": {
+        "grammar": "šrot",
+        "ipa": "[ʃrɔt]"
+      },
+      "german": {
+        "grammar": "der Schrott",
+        "ipa": "[ʃʀɔt]"
+      }
+    },
+    {
+      "id": "stafle",
+      "czech": {
+        "grammar": "štafle",
+        "ipa": "[ʃtaflɛ]"
+      },
+      "german": {
+        "grammar": "der Stufenleiter",
+        "ipa": "[ˈʃtuːfənˈlaɪ̯tɐ]"
+      }
+    },
+    {
+      "id": "stangle",
+      "czech": {
+        "grammar": "štangle",
+        "ipa": "[ˈʃtaŋglɛ]"
+      },
+      "german": {
+        "grammar": "die Stange",
+        "ipa": "[ˈʃtaŋə]"
+      }
+    },
+    {
+      "id": "statl",
+      "czech": {
+        "grammar": "štatl",
+        "ipa": "[ʃtatl̩]"
+      },
+      "german": {
+        "grammar": "die Stadt",
+        "ipa": "[ʃtat]"
+      }
+    },
+    {
+      "id": "stekle",
+      "czech": {
+        "grammar": "štekle",
+        "ipa": "[ʃtɛklɛ]"
+      },
+      "german": {
+        "grammar": "der Stockelschuh",
+        "ipa": "[ˈʃtœkl̩ˌʃuː]"
+      }
+    },
+    {
+      "id": "straf",
+      "czech": {
+        "grammar": "štráf",
+        "ipa": "[ʃtatl̩]"
+      },
+      "german": {
+        "grammar": "der Streifen",
+        "ipa": "[ˈʃtʀaɪ̯fn̩]"
+      }
+    },
+    {
+      "id": "stych",
+      "czech": {
+        "grammar": "štych",
+        "ipa": "[ʃtɪx]"
+      },
+      "german": {
+        "grammar": "der Stich",
+        "ipa": "[ʃtɪç]"
+      }
+    },
+    {
+      "id": "svagr",
+      "czech": {
+        "grammar": "švagr",
+        "ipa": "[ʃvagr̩]"
+      },
+      "german": {
+        "grammar": "der Schwager",
+        "ipa": "[ˈʃvaːɡɐ]"
+      }
+    },
+    {
+      "id": "svanda",
+      "czech": {
+        "grammar": "švanda",
+        "ipa": "[ʃvanda]"
+      },
+      "german": {
+        "grammar": "???",
+        "ipa": "[???]"
+      }
+    },
+    {
+      "id": "svestka",
+      "czech": {
+        "grammar": "švestka",
+        "ipa": "[ˈʃvɛstka]"
+      },
+      "german": {
+        "grammar": "die Zwetschge",
+        "ipa": "[ˈʦvɛʧɡə]"
+      }
+    },
+    {
+      "id": "snura",
+      "czech": {
+        "grammar": "šňůra",
+        "ipa": "[ʃɲuːrka]"
+      },
+      "german": {
+        "grammar": "die Schnur",
+        "ipa": "[ʃnuːɐ̯]"
+      }
+    },
+    {
+      "id": "snitlik",
+      "czech": {
+        "grammar": "šnytlik",
+        "ipa": "[ˈʃnɪtlik]"
+      },
+      "german": {
+        "grammar": "der Schnittlauch",
+        "ipa": "[ˈʃnɪtˌlaʊ̯χ]"
+      }
+    },
+    {
+      "id": "tapecirung",
+      "czech": {
+        "grammar": "tapecírung",
+        "ipa": "[tapɛt͡siːrʊŋ]"
+      },
+      "german": {
+        "grammar": "die Tapezierung",
+        "ipa": "[tapeˈʦiːʀʊŋ]"
+      }
+    },
+    {
+      "id": "tepich",
+      "czech": {
+        "grammar": "tepich",
+        "ipa": "[tɛpɪx]"
+      },
+      "german": {
+        "grammar": "der Teppich",
+        "ipa": "[ˈtɛpɪç]"
+      }
+    },
+    {
+      "id": "trotl",
+      "czech": {
+        "grammar": "trotl",
+        "ipa": "[trɔtl̩]"
+      },
+      "german": {
+        "grammar": "der Trottel",
+        "ipa": "[ˈtʀɔtl̩]"
+      }
+    },
+    {
+      "id": "trychtyr",
+      "czech": {
+        "grammar": "trychtýř",
+        "ipa": "[ˈtrɪxtiːr̝̊]"
+      },
+      "german": {
+        "grammar": "der Trichter",
+        "ipa": "[ˈtʀɪçtɐ]"
+      }
+    },
+    {
+      "id": "tvargle",
+      "czech": {
+        "grammar": "tvargle",
+        "ipa": "[tvartglɛ]"
+      },
+      "german": {
+        "grammar": "der Quargel",
+        "ipa": "[kvaʁɡl̩]"
+      }
+    },
+    {
+      "id": "vagon",
+      "czech": {
+        "grammar": "vagón",
+        "ipa": "[vagɔːn]"
+      },
+      "german": {
+        "grammar": "der Wagen",
+        "ipa": "[ˈvaːɡŋ̍]"
+      }
+    },
+    {
+      "id": "vercajk",
+      "czech": {
+        "grammar": "vercajk",
+        "ipa": "[vɛrt͡sajk]"
+      },
+      "german": {
+        "grammar": "das Werkzeug",
+        "ipa": "[ˈvɛʁkˌʦɔɪ̯k]"
+      }
+    },
+    {
+      "id": "vagni",
+      "czech": {
+        "grammar": "vágní",
+        "ipa": "[vaːgɲiː]"
+      },
+      "german": {
+        "grammar": "???",
+        "ipa": "[???]"
+      }
+    },
+    {
+      "id": "zicna",
+      "czech": {
+        "grammar": "zicna",
+        "ipa": "[zɪt͡sna]"
+      },
+      "german": {
+        "grammar": "der Sitz",
+        "ipa": "[zɪʦ]"
+      }
+    },
+    {
+      "id": "zoncna",
+      "czech": {
+        "grammar": "zoncna",
+        "ipa": "[zɔnt͡sna]"
+      },
+      "german": {
+        "grammar": "die Sonne",
+        "ipa": "[ˈzɔnə]"
+      }
+    }
+  ]
+}

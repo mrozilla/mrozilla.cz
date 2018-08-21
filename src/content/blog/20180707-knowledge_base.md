@@ -52,6 +52,7 @@ The knowledge base is split into several sections:
 - [Why we have 22-hour interviews](https://medium.com/swlh/why-we-have-22-hour-interviews-5661d2a9f458)
 - [Work at Crew](http://workat.crew.co/)
 - [Your Company’s Culture is Who You Hire, Fire, & Promote](https://medium.com/goactualize/your-companys-culture-is-who-you-hire-fire-and-promote-c69f84902983)
+- [The orange juice test](https://www.intercom.com/blog/the-orange-juice-test/)
 
 ### Job applications
 
@@ -78,6 +79,7 @@ The knowledge base is split into several sections:
 - [A better img tag (ES6)](http://blog.matthewcheok.com/a-better-img-tag/)
 - [Building bumpers.fm in React](https://medium.com/bumpers/isnt-our-code-just-the-best-f028a78f33a9#.ls8uccrjy)
 - [Creating static isomorphic webpages with React and Webpack](http://www.qimingweng.com/writing/webpack-static-render)
+- [Forms in React](https://medium.com/@everdimension/how-to-handle-forms-with-just-react-ac066c48bd4f)
 - [Presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.da20q9s39)
 
 #### Redux
@@ -113,6 +115,7 @@ The knowledge base is split into several sections:
 - [Medium's CSS is actually pretty fucking good](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
 - [Modern CSS snippets](https://equinsuocha.io/blog/hot-tips-css)
 - [Responsive typography calculation](https://www.smashingmagazine.com/2016/05/fluid-typography/)
+- [Reuleaux polygons + SVG generation](https://varun.ca/reuleaux-polygons/)
 - [SVG in web design](http://www.designyourway.net/blog/resources/want-to-learn-about-svg-start-with-this-article/)
 - [Unicode patterns](https://yuanchuan.name/2018/05/06/unicode-patterns.html)
 - [Vertical Media queries](https://ishadeed.com/article/vertical-media-queries/)
@@ -126,6 +129,7 @@ The knowledge base is split into several sections:
 - [Optimising Google pagespeed to 100](http://code.tutsplus.com/tutorials/optimizing-google-pagespeed-to-100-in-wordpress--cms-25804)
 - [React optimisations](https://medium.com/airbnb-engineering/recent-web-performance-fixes-on-airbnb-listing-pages-6cd8d93df6f4)
 - [The Google Analytics Setup I Use on Every Site I Build](https://philipwalton.com/articles/the-google-analytics-setup-i-use-on-every-site-i-build/)
+- [The web is made of edge cases](https://codepen.io/tigt/post/the-web-is-made-of-edge-cases)
 
 ### Dev ops
 
@@ -183,6 +187,7 @@ The knowledge base is split into several sections:
 - [Great brand guidelines](http://www.contentharmony.com/blog/great-brand-guidelines/)
 - [List of design principles in different companies](https://principles.design/)
 - [Style guide on Dropbox](https://medium.com/gocardless-design/design-style-guide-post-b48b546f928?ref=heydesigner-weekly#.xa6untq40)
+- [Brand simplicity index](http://simplicityindex.com/)
 
 ### Typography
 
@@ -192,6 +197,10 @@ The knowledge base is split into several sections:
 ### Design management
 
 - [STRV's team management](https://medium.com/design-insights/how-we-manage-our-design-team-c8d77bbe5697)
+
+### Resources
+
+- [Doodle library](https://www.thedoodlelibrary.com/)
 
 <h2 id="product">🚀 product</h2>
 
@@ -261,6 +270,7 @@ The knowledge base is split into several sections:
 - [Collection of UX patterns](https://www.reallygoodux.io/)
 - [Credit card form UX analysis](http://mikeknoop.com/ux-analysis-credit-card-form-ui-ideas/)
 - [Design better forms](https://uxdesign.cc/design-better-forms-96fadca0f49c#.mj6yttlq7)
+- [Digital psychology](https://digitalpsychology.io/)
 - [Duolingo UX analysis](https://uxplanet.org/duolingo-ux-analysis-9631ff3f4eb1)
 - [Gamification in UX](http://tubikstudio.com/gamification-in-ux-increasing-user-engagement/)
 - [Hot to get users do what you want them to do](https://medium.com/even-more-dynamo/persuasive-ux-design-how-to-get-users-to-do-stuff-part-1-9b45b1614a7a)
@@ -283,6 +293,7 @@ The knowledge base is split into several sections:
 - [Atomic Docs](http://atomicdocs.io/)
 - [Buttons design](https://medium.com/eightshapes-llc/buttons-in-design-systems-eac3acf7e23)
 - [Cards design](http://babich.biz/using-card-based-design-to-enhance-ux/)
+- [Checkbox vs. toggle switch](https://heydesigner.com/blog/checkbox-vs-toggle-switch/)
 - [CSS evaluation](http://cssstats.com/)
 - [Data tables UI](https://uxdesign.cc/design-better-data-tables-4ecc99d23356)
 - [Design better cards](https://uxdesign.cc/design-better-cards-c0d12ab581c4#.gvpeuerot)
@@ -315,6 +326,7 @@ The knowledge base is split into several sections:
 - [US Government UI standards](https://standards.usa.gov/)
 - [Visual Perception. Icons vs Copy in UI](http://tubikstudio.com/visual-perception-icons-vs-copy-in-ui)
 - [Web design in 4 minutes](http://jgthms.com/web-design-in-4-minutes/)
+- [Website design mistakes](http://blog-en.tilda.cc/articles-website-design-mistakes)
 
 ### Design process
 
