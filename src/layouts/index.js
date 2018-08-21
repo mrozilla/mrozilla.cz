@@ -8,10 +8,7 @@ import './index.css';
 
 import { Wrapper } from '../components';
 import {
-  HeaderContainer,
-  FooterContainer,
-  CookieContainer,
-  TextBackgroundContainer,
+  HeaderContainer, FooterContainer, CookieContainer, TextBackgroundContainer,
 } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
