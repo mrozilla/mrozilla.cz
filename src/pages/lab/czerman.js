@@ -3,26 +3,11 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
 
 import {
-  Main, Section, Heading, Label, Text,
+  Main, Section, Heading, Label, Text, Table, Link, Button,
 } from '../../components';
 import { SEOContainer, HeroContainer } from '../../containers';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// helpers
-// ─────────────────────────────────────────────────────────────────────────────
-
-const Row = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 0 0 0 -1rem;
-  padding: 0 0 0 1rem;
-  &:nth-of-type(even) {
-    background-color: var(--color-grey-light);
-  }
-`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -35,9 +20,10 @@ export const query = graphql`
         title
         description
       }
-      body {
-        title
-      }
+      # body {
+      #   title
+      #   description
+      # }
       dictionary {
         id
         czech {
@@ -46,6 +32,7 @@ export const query = graphql`
         }
         german {
           grammar
+          ipa
         }
       }
     }
@@ -59,37 +46,62 @@ export const query = graphql`
 export default class CzermanPage extends PureComponent {
   state = {
     openTermId: '',
+    isOpenAll:  false,
   };
 
-  handleOpenDetails = (openTermId) => {
-    console.log(openTermId);
+  handleOpenTerm = openTermId => this.setState({ isOpenAll: false, openTermId });
 
-    this.setState({
-      openTermId,
-    });
-  };
+  handleOpenAll = () => this.setState(prevState => ({ isOpenAll: !prevState.isOpenAll }));
 
   render() {
     return (
       <Main gridTemplate="'hero' 'dictionary'" gridGap="10vh 4rem">
         <SEOContainer seo={this.props.data.labJson.meta} />
-        <HeroContainer
-          hero={{
-            title: this.props.data.labJson.body.title,
-          }}
-        />
+        <HeroContainer title={this.props.data.labJson.meta.description} />
         <Section>
-          {this.props.data.labJson.dictionary.map(term => (
-            <Row key={term.id} onClick={() => this.handleOpenDetails(this.state.openTermId !== term.id ? term.id : '')}>
-              <span style={{ fontWeight: 700 }}>{term.czech.grammar}</span>
-              <span>{term.czech.ipa}</span>
-              {this.state.openTermId === term.id ? (
-                <span style={{ fontWeight: 700, cursor: 'pointer' }}>{term.german.grammar}</span>
-              ) : (
-                <span style={{ opacity: 0.25, cursor: 'pointer' }}>Reveal</span>
-              )}
-            </Row>
-          ))}
+          <Table margin="0 0 2rem 0" tableLayout="fixed">
+            <Table.Head>
+              <Table.R>
+                <Table.H>Czech</Table.H>
+                <Table.H>
+                  Czech{' '}
+                  <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
+                    IPA
+                  </Link>
+                </Table.H>
+                <Table.H>German equivalent</Table.H>
+                <Table.H>
+                  German{' '}
+                  <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/German">
+                    IPA
+                  </Link>
+                </Table.H>
+              </Table.R>
+            </Table.Head>
+            <Table.Body>
+              {this.props.data.labJson.dictionary.map(term => (
+                <Table.R
+                  key={term.id}
+                  cursor="pointer"
+                  onClick={() => this.handleOpenTerm(this.state.openTermId !== term.id ? term.id : '')}
+                >
+                  <Table.D>{term.czech.grammar}</Table.D>
+                  <Table.D>{term.czech.ipa}</Table.D>
+                  {this.state.openTermId === term.id || this.state.isOpenAll ? (
+                    <Table.D>{term.german.grammar}</Table.D>
+                  ) : (
+                    <Table.D colSpan="2" textAlign="center" opacity={0.5}>
+                      Reveal
+                    </Table.D>
+                  )}
+                  {this.state.openTermId === term.id || this.state.isOpenAll ? (
+                    <Table.D>{term.german.ipa}</Table.D>
+                  ) : null}
+                </Table.R>
+              ))}
+            </Table.Body>
+          </Table>
+          <Button onClick={this.handleOpenAll}>{this.state.isOpenAll ? 'Hide' : 'Reveal'} all</Button>
         </Section>
       </Main>
     );
