@@ -3,9 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
+import { graphql } from 'gatsby';
 
 import { Main, Section, Input } from '../../components';
-import { SEOContainer, HeroContainer } from '../../containers';
+import { LayoutContainer, SEOContainer, HeroContainer } from '../../containers';
 import { parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -13,8 +14,8 @@ import { parseInput } from '../../utils';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query InAnyCasePage {
-    labJson(meta: { permalink: { eq: "/lab/in-any-case" } }) {
+  {
+    page: labJson(meta: { permalink: { eq: "/lab/in-any-case" } }) {
       meta {
         title
         description
@@ -118,24 +119,26 @@ export default class InAnyCasePage extends PureComponent {
 
   render() {
     return (
-      <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-        <SEOContainer seo={this.props.data.labJson.meta} />
-        <HeroContainer title={this.props.data.labJson.body.title} />
-        <Section gridArea="input">
-          <Input
-            name="input"
-            type="text"
-            value={this.state.input}
-            placeholder="Start typing or paste text..."
-            padding="2rem 1rem"
-            margin="0 0 2rem 0"
-            onChange={this.handleInput}
-          />
-          {Object.entries(this.state.output).map(([key, value]) => (
-            <Input {...{ key }} placeholder={key} name={key} type="text" value={value} readOnly />
-          ))}
-        </Section>
-      </Main>
+      <LayoutContainer>
+        <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
+          <SEOContainer seo={this.props.data.page.meta} />
+          <HeroContainer title={this.props.data.page.body.title} />
+          <Section gridArea="input">
+            <Input
+              name="input"
+              type="text"
+              value={this.state.input}
+              placeholder="Start typing or paste text..."
+              padding="2rem 1rem"
+              margin="0 0 2rem 0"
+              onChange={this.handleInput}
+            />
+            {Object.entries(this.state.output).map(([key, value]) => (
+              <Input {...{ key }} placeholder={key} name={key} type="text" value={value} readOnly />
+            ))}
+          </Section>
+        </Main>
+      </LayoutContainer>
     );
   }
 }

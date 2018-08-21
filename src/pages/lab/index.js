@@ -3,9 +3,11 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { graphql } from 'gatsby';
 
 import { Main, Section, Subheading } from '../../components';
 import {
+  LayoutContainer,
   HeroContainer,
   WorksContainer,
   ColourThemeContainer,
@@ -18,8 +20,8 @@ import {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query LabPage {
-    pagesJson(meta: { permalink: { eq: "/lab" } }) {
+  {
+    page: pagesJson(meta: { permalink: { eq: "/lab" } }) {
       meta {
         title
         description
@@ -30,7 +32,7 @@ export const query = graphql`
         }
       }
     }
-    allLabJson(sort: { fields: [meta___date], order: DESC }) {
+    labs: allLabJson(sort: { fields: [meta___date], order: DESC }) {
       edges {
         node {
           meta {
@@ -54,44 +56,46 @@ export const query = graphql`
 
 export default function LabPage({
   data: {
-    pagesJson: {
+    page: {
       meta: seo,
       body: { hero },
     },
-    allLabJson: { edges: labs },
+    labs: { edges: labs },
   },
 }) {
   return (
-    <Main
-      gridTemplate={{
-        xs: "'hero' 'theme' 'tools' 'products'",
-        md: "'hero hero' 'theme theme' 'tools products' / 1fr 1fr",
-      }}
-      gridGap="10vh 4rem"
-    >
-      <SEOContainer {...{ seo }} />
-      <HeroContainer title={hero.title} />
-      <Section gridArea="theme">
-        <Subheading>current colour theme</Subheading>
-        <ColourThemeContainer />
-      </Section>
-      <Section gridArea="tools">
-        <Subheading>little tools</Subheading>
-        <WorksContainer
-          works={labs
-            .filter(({ node: { meta: { type } } }) => type.includes('tool'))
-            .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
-        />
-      </Section>
-      <Section gridArea="products">
-        <Subheading>standalone products</Subheading>
-        <WorksContainer
-          works={labs
-            .filter(({ node: { meta: { type } } }) => type.includes('product'))
-            .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
-        />
-      </Section>
-      <BarrelRollContainer />
-    </Main>
+    <LayoutContainer>
+      <Main
+        gridTemplate={{
+          xs: "'hero' 'theme' 'tools' 'products'",
+          md: "'hero hero' 'theme theme' 'tools products' / 1fr 1fr",
+        }}
+        gridGap="10vh 4rem"
+      >
+        <SEOContainer {...{ seo }} />
+        <HeroContainer title={hero.title} />
+        <Section gridArea="theme">
+          <Subheading>current colour theme</Subheading>
+          <ColourThemeContainer />
+        </Section>
+        <Section gridArea="tools">
+          <Subheading>little tools</Subheading>
+          <WorksContainer
+            works={labs
+              .filter(({ node: { meta: { type } } }) => type.includes('tool'))
+              .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
+          />
+        </Section>
+        <Section gridArea="products">
+          <Subheading>standalone products</Subheading>
+          <WorksContainer
+            works={labs
+              .filter(({ node: { meta: { type } } }) => type.includes('product'))
+              .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
+          />
+        </Section>
+        <BarrelRollContainer />
+      </Main>
+    </LayoutContainer>
   );
 }

@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { graphql } from 'gatsby';
 
 import {
   Article, Aside, Heading, Link, Main, Subheading, Text,
@@ -11,7 +12,7 @@ import { SEOContainer, BlogPreviewsContainer } from '.';
 
 import { renderMarkdown, parseLinks } from '../utils';
 
-require('prismjs/themes/prism.css');
+import 'prismjs/themes/prism.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query

@@ -3,11 +3,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { graphql } from 'gatsby';
 
 import {
   Main, Section, Subheading, Text,
 } from '../components';
 import {
+  LayoutContainer,
   HeroContainer,
   WorksContainer,
   AvailabilityContainer,
@@ -20,7 +22,7 @@ import {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query HomePage {
+  {
     page: pagesJson(meta: { permalink: { eq: "/" } }) {
       meta {
         title
@@ -85,42 +87,44 @@ export default function HomePage({
   },
 }) {
   return (
-    <Main
-      gridTemplate={{
-        xs: "'hero' 'based' 'availability' 'work' 'blog'",
-        md: "'hero hero' 'based availability' 'work blog' / 1fr 1fr",
-      }}
-      gridGap="10vh 4rem"
-    >
-      <SEOContainer {...{ seo }} />
-      <HeroContainer title={hero.title} />
-      <Section gridArea="based">
-        <Subheading>{location.title}</Subheading>
-        <Text fontSize="3rem" fontWeight="700">
-          {location.text}
-        </Text>
-      </Section>
-      <Section gridArea="availability">
-        <Subheading>{availability.title}</Subheading>
-        <AvailabilityContainer availability={availability} />
-      </Section>
-      <Section gridArea="work" id="work">
-        <Subheading>latest client work</Subheading>
-        <WorksContainer
-          works={works.edges.map(({ node: { meta, body } }) => ({
-            ...meta,
-            ...body,
-          }))}
-        />
-      </Section>
-      <Section gridArea="blog" id="blog">
-        <Subheading>latest blog articles</Subheading>
-        <BlogPreviewsContainer
-          posts={posts.edges.map(({ node: { frontmatter: post } }) => ({
-            ...post,
-          }))}
-        />
-      </Section>
-    </Main>
+    <LayoutContainer>
+      <Main
+        gridTemplate={{
+          xs: "'hero' 'based' 'availability' 'work' 'blog'",
+          md: "'hero hero' 'based availability' 'work blog' / 1fr 1fr",
+        }}
+        gridGap="10vh 4rem"
+      >
+        <SEOContainer {...{ seo }} />
+        <HeroContainer title={hero.title} />
+        <Section gridArea="based">
+          <Subheading>{location.title}</Subheading>
+          <Text fontSize="3rem" fontWeight="700">
+            {location.text}
+          </Text>
+        </Section>
+        <Section gridArea="availability">
+          <Subheading>{availability.title}</Subheading>
+          <AvailabilityContainer availability={availability} />
+        </Section>
+        <Section gridArea="work" id="work">
+          <Subheading>latest client work</Subheading>
+          <WorksContainer
+            works={works.edges.map(({ node: { meta, body } }) => ({
+              ...meta,
+              ...body,
+            }))}
+          />
+        </Section>
+        <Section gridArea="blog" id="blog">
+          <Subheading>latest blog articles</Subheading>
+          <BlogPreviewsContainer
+            posts={posts.edges.map(({ node: { frontmatter: post } }) => ({
+              ...post,
+            }))}
+          />
+        </Section>
+      </Main>
+    </LayoutContainer>
   );
 }

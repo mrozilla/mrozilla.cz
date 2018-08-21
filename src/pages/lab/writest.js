@@ -2,27 +2,21 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-// react
 import React, { PureComponent } from 'react';
+import { graphql } from 'gatsby';
 
-// components
 import {
-  Main,
-  Section,
-  TextArea,
-  Heading,
-  Subheading,
-  Text,
+  Main, Section, TextArea, Heading, Subheading, Text,
 } from '../../components';
-import { SEOContainer } from '../../containers';
+import { LayoutContainer, SEOContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query WritestPage {
-    labJson(meta: { permalink: { eq: "/lab/writest" } }) {
+  {
+    page: labJson(meta: { permalink: { eq: "/lab/writest" } }) {
       meta {
         title
         description
@@ -82,9 +76,7 @@ export default class WritestPage extends PureComponent {
     }
     function mostCommonWord(s) {
       return wordsArray(s).reduce((a, b, i, arr) => {
-        if (
-          arr.filter(v => v === a).length >= arr.filter(v => v === b).length
-        ) {
+        if (arr.filter(v => v === a).length >= arr.filter(v => v === b).length) {
           return a;
         }
         return b;
@@ -94,9 +86,7 @@ export default class WritestPage extends PureComponent {
       return wordsArray(s).length / sentencesArray(s).length;
     }
     function spentTime(s, len) {
-      return new Date(
-        (wordsArray(s).length / len) * 60 * 1000,
-      ).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
+      return new Date((wordsArray(s).length / len) * 60 * 1000).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
     }
 
     this.setState({
@@ -115,45 +105,47 @@ export default class WritestPage extends PureComponent {
 
   render() {
     return (
-      <Main
-        gridTemplate={{
-          xs: "'input' 'stats'",
-          md: "'input stats' / 2fr 1fr",
-        }}
-        gridGap="10vh 4rem"
-      >
-        <SEOContainer seo={this.props.data.labJson.meta} />
-        <Section gridArea="input">
-          <Heading>words</Heading>
-          <TextArea
-            value={this.state.textArea}
-            placeholder="Start typing or paste text..."
-            onInput={this.handleAnalyseText}
-            autoFocus
-          />
-        </Section>
-        <Section gridArea="stats">
-          <Heading>stats</Heading>
-          <Subheading>Characters with spaces</Subheading>
-          <Text>{this.state.charCount.toLocaleString()}</Text>
-          <Subheading>Characters without spaces</Subheading>
-          <Text>{this.state.charCountWithout.toLocaleString()}</Text>
-          <Subheading>Words</Subheading>
-          <Text>{this.state.wordsCount.toLocaleString()}</Text>
-          <Subheading>Unique words</Subheading>
-          <Text>{this.state.wordsCountUnique.toLocaleString()}</Text>
-          <Subheading>Most common word</Subheading>
-          <Text isTruncated>{this.state.mostCommonWord}</Text>
-          <Subheading>Sentences</Subheading>
-          <Text>{this.state.sentencesCount.toLocaleString()}</Text>
-          <Subheading>Average sentence length</Subheading>
-          <Text>{this.state.sentencesCountAverage.toLocaleString()} words</Text>
-          <Subheading>Reading time</Subheading>
-          <Text>{this.state.readingTime}</Text>
-          <Subheading>Speaking time</Subheading>
-          <Text>{this.state.speakingTime}</Text>
-        </Section>
-      </Main>
+      <LayoutContainer>
+        <Main
+          gridTemplate={{
+            xs: "'input' 'stats'",
+            md: "'input stats' / 2fr 1fr",
+          }}
+          gridGap="10vh 4rem"
+        >
+          <SEOContainer seo={this.props.data.page.meta} />
+          <Section gridArea="input">
+            <Heading>words</Heading>
+            <TextArea
+              value={this.state.textArea}
+              placeholder="Start typing or paste text..."
+              onInput={this.handleAnalyseText}
+              autoFocus
+            />
+          </Section>
+          <Section gridArea="stats">
+            <Heading>stats</Heading>
+            <Subheading>Characters with spaces</Subheading>
+            <Text>{this.state.charCount.toLocaleString()}</Text>
+            <Subheading>Characters without spaces</Subheading>
+            <Text>{this.state.charCountWithout.toLocaleString()}</Text>
+            <Subheading>Words</Subheading>
+            <Text>{this.state.wordsCount.toLocaleString()}</Text>
+            <Subheading>Unique words</Subheading>
+            <Text>{this.state.wordsCountUnique.toLocaleString()}</Text>
+            <Subheading>Most common word</Subheading>
+            <Text isTruncated>{this.state.mostCommonWord}</Text>
+            <Subheading>Sentences</Subheading>
+            <Text>{this.state.sentencesCount.toLocaleString()}</Text>
+            <Subheading>Average sentence length</Subheading>
+            <Text>{this.state.sentencesCountAverage.toLocaleString()} words</Text>
+            <Subheading>Reading time</Subheading>
+            <Text>{this.state.readingTime}</Text>
+            <Subheading>Speaking time</Subheading>
+            <Text>{this.state.speakingTime}</Text>
+          </Section>
+        </Main>
+      </LayoutContainer>
     );
   }
 }

@@ -4,8 +4,8 @@
 
 import React from 'react';
 import { string, node } from 'prop-types';
+import { Link as GatsbyLink } from 'gatsby';
 import styled, { css } from 'styled-components';
-import GatsbyLink from 'gatsby-link';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 // ─────────────────────────────────────────────────────────────────────────────

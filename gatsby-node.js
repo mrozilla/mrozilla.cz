@@ -6,25 +6,12 @@
 
 const path = require('path');
 
-exports.modifyWebpackConfig = ({ config }) => {
-  config.merge({
-    postcss() {},
-  });
-
-  return config;
-};
-
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators;
-
+exports.createPages = ({ actions: { createPage }, graphql }) => {
   const BlogPostContainer = path.resolve('src/containers/BlogPostContainer.js');
 
   return graphql(`
     {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      posts: allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
           node {
             frontmatter {
@@ -39,7 +26,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    return result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    return result.data.posts.edges.forEach(({ node }) => {
       createPage({
         path:      node.frontmatter.permalink,
         component: BlogPostContainer,

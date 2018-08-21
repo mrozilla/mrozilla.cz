@@ -2,22 +2,21 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-// react
 import React, { PureComponent } from 'react';
+import { graphql } from 'gatsby';
 
-// components
 import {
   Main, Section, Heading, Button,
 } from '../../components';
-import { SEOContainer } from '../../containers';
+import { LayoutContainer, SEOContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query CountOnMePage {
-    labJson(meta: { permalink: { eq: "/lab/count-on-me" } }) {
+  {
+    page: labJson(meta: { permalink: { eq: "/lab/count-on-me" } }) {
       meta {
         title
         description
@@ -65,26 +64,28 @@ export default class CountOnMePage extends PureComponent {
 
   render() {
     return (
-      <Main>
-        <SEOContainer seo={this.props.data.labJson.meta} />
-        <Section
-          onClick={e => this.handleCount(e, 1)}
-          style={{
-            textAlign:        'center',
-            userSelect:       'none',
-            msUserSelect:     'none',
-            MozUserSelect:    'none',
-            WebkitUserSelect: 'none',
-          }}
-        >
-          <Heading fontSize="8rem" textAlign="center">
-            {this.state.count.toLocaleString()}
-          </Heading>
-          <Button onClick={e => this.handleCount(e, 1)}>Add</Button>
-          <Button onClick={e => this.handleCount(e, -1)}>Subtract</Button>
-          <Button onClick={e => this.handleReset(e)}>Reset</Button>
-        </Section>
-      </Main>
+      <LayoutContainer>
+        <Main>
+          <SEOContainer seo={this.props.data.page.meta} />
+          <Section
+            onClick={e => this.handleCount(e, 1)}
+            style={{
+              textAlign:        'center',
+              userSelect:       'none',
+              msUserSelect:     'none',
+              MozUserSelect:    'none',
+              WebkitUserSelect: 'none',
+            }}
+          >
+            <Heading fontSize="8rem" textAlign="center">
+              {this.state.count.toLocaleString()}
+            </Heading>
+            <Button onClick={e => this.handleCount(e, 1)}>Add</Button>
+            <Button onClick={e => this.handleCount(e, -1)}>Subtract</Button>
+            <Button onClick={e => this.handleReset(e)}>Reset</Button>
+          </Section>
+        </Main>
+      </LayoutContainer>
     );
   }
 }
