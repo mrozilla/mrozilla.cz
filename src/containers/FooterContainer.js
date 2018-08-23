@@ -18,15 +18,7 @@ export default function FooterContainer({ footer }) {
   return (
     <Footer>
       <Section gridArea="contact">
-        <H2
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          {footer.contact.title}
-        </H2>
+        <H2>{footer.contact.title}</H2>
         <List>
           {footer.contact.body.map(contact => (
             <List.Item key={contact.url}>
@@ -38,15 +30,7 @@ export default function FooterContainer({ footer }) {
         </List>
       </Section>
       <Section gridArea="legal">
-        <H2
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          {footer.legal.title}
-        </H2>
+        <H2>{footer.legal.title}</H2>
         <List>
           {footer.legal.body.map(legal => (
             <List.Item key={legal.url}>
@@ -58,15 +42,7 @@ export default function FooterContainer({ footer }) {
         </List>
       </Section>
       <Section gridArea="colophon">
-        <H2
-          fontSize="1.25rem"
-          fontWeight="300"
-          margin="0"
-          textTransform="uppercase"
-          letterSpacing="0.2em"
-        >
-          {footer.colophon.title}
-        </H2>
+        <H2>{footer.colophon.title}</H2>
         <P>{parseLinks(footer.colophon.text)}</P>
       </Section>
     </Footer>

@@ -12,7 +12,6 @@ const H1 = P.withComponent('h1');
 H1.defaultProps = {
   ...P.defaultProps,
   fontSize:   '3rem',
-  fontWeight: '700',
   lineHeight: '4rem',
   margin:     '0 0 4rem 0',
 };

@@ -18,7 +18,7 @@ export default function WorksContainer({ works }) {
     <List gridGap="3rem">
       {works.map(({ permalink, title, tagline }) => (
         <List.Item key={permalink}>
-          <H3 fontSize="3rem" lineHeight="4rem" fontWeight="700" margin="0">
+          <H3 fontSize="3rem" lineHeight="4rem" margin="0">
             <Link to={permalink} type="primary">
               {title}
             </Link>

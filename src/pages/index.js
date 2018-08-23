@@ -99,9 +99,7 @@ export default function HomePage({
         <HeroContainer title={hero.title} />
         <Section gridArea="based">
           <H2>{location.title}</H2>
-          <P fontSize="3rem" fontWeight="700">
-            {location.text}
-          </P>
+          <P fontSize="3rem">{location.text}</P>
         </Section>
         <Section gridArea="availability">
           <H2>{availability.title}</H2>

@@ -37,7 +37,7 @@ export default class AvailabilityContainer extends PureComponent {
 
   render() {
     return (
-      <P fontSize="3rem" fontWeight="700">
+      <P fontSize="3rem">
         <Link to="mailto:jan@mrozilla.cz" type="primary">
           {this.state.availability}
         </Link>
