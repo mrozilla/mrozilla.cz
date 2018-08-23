@@ -170,7 +170,7 @@ export default class PassworldPage extends Component {
             xs: "'. output .' / 0fr 1fr 0fr",
             md: "'. output .' / 1fr 2fr 1fr",
           }}
-          >
+        >
           <SEOContainer seo={this.props.data.page.meta} />
           <Section gridArea="output">
             {this.renderOutputs()}
@@ -179,7 +179,7 @@ export default class PassworldPage extends Component {
             {this.renderButtons()}
           </Section>
           {this.state.clipboard === this.state.password && (
-            <Popup key={window.performance.now()} top="auto" bottom="0">
+            <Popup key={window.performance.now()}>
               {this.state.clipboard} was copied to clipboard!
             </Popup>
           )}
