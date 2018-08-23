@@ -60,15 +60,15 @@ export default function ContactPage({
       >
         <SEOContainer seo={seo} />
         <HeroContainer title={hero.title} />
-        {location.hash.includes('#success') ? (
-          <ContactContainer />
-        ) : (
+        {location.hash === '#success' ? (
           <Section gridArea="form">
             <Text margin="0 0 2rem 0">{form.success}</Text>
             <Link to="/">
               <Button>{form.back}</Button>
             </Link>
           </Section>
+        ) : (
+          <ContactContainer />
         )}
       </Main>
     </LayoutContainer>
