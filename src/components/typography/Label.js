@@ -9,10 +9,14 @@ import styled from 'styled-components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default styled.label`
-  text-transform: uppercase;
+  color: hsla(var(--hsl-text), 0.75);
+  display: block;
   font-size: 1.25rem;
   line-height: 2rem;
-  color: hsla(var(--hsl-text), 0.75);
 
-  padding: ${({ padding }) => padding};
+  animation: ${({ animation }) => animation};
+  margin: ${({ margin }) => margin};
+  padding: ${({ padding = '0 1rem' }) => padding};
+  position: ${({ position }) => position};
+  text-transform: ${({ textTransform = 'uppercase' }) => textTransform};
 `;

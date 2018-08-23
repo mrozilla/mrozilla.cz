@@ -3,19 +3,19 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { string, func } from 'prop-types';
 import styled from 'styled-components';
+import {
+  string, func, bool, shape,
+} from 'prop-types';
 
 import Label from '../typography/Label';
 import Text from '../typography/Text';
 
+import { fadeUpAnimation } from '../../utils';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
-
-const Wrapper = styled.div`
-  margin: ${({ margin = '0 0 1rem 0' }) => margin};
-`;
 
 const InputWrapper = styled.div`
   display: flex;
@@ -46,13 +46,21 @@ const StyledInput = styled.input`
 
 const StyledTextArea = StyledInput.withComponent('textarea');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default class Input extends PureComponent {
   static propTypes = {
+    value:       string.isRequired,
     type:        string,
     name:        string.isRequired,
     label:       string,
     margin:      string,
     description: string,
+    labelStyle:  shape({
+      isFloating: bool,
+    }),
     renderLeft:  func,
     renderRight: func,
   };
@@ -62,15 +70,35 @@ export default class Input extends PureComponent {
     label:       null,
     margin:      '0 0 1rem 0',
     description: null,
+    labelStyle:  {
+      isFloating: false,
+    },
     renderLeft:  () => null,
     renderRight: () => null,
   };
 
-  renderLabel = () => (
-    <Label htmlFor={this.props.name} padding="0 1rem">
-      {this.props.label}
-    </Label>
-  );
+  renderLabel = () => {
+    if (this.props.labelStyle.isFloating && this.props.value !== '') {
+      return (
+        <Label
+          htmlFor={this.props.name}
+          position="absolute"
+          animation={`${fadeUpAnimation} 250ms both`}
+          {...this.props.labelStyle}
+        >
+          {this.props.label}
+        </Label>
+      );
+    }
+    if (!this.props.labelStyle.isFloating) {
+      return (
+        <Label htmlFor={this.props.name} {...this.props.labelStyle}>
+          {this.props.label}
+        </Label>
+      );
+    }
+    return null;
+  };
 
   renderDescription = () => (
     <Text
@@ -78,30 +106,42 @@ export default class Input extends PureComponent {
       lineHeight="1.25rem"
       opacity="0.75"
       padding="0 1rem"
-      margin="0 0 1rem 0"
+      margin="1rem 0 0 0"
     >
       {this.props.description}
     </Text>
   );
 
+  renderError = () => <Text>Error</Text>; // TODO: finalise
+
   renderInput = () => {
     if (this.props.type === 'textarea') {
       return <StyledTextArea {...this.props} />;
     }
-    return <StyledInput {...this.props} />;
+    return (
+      <StyledInput
+        padding={
+          this.props.labelStyle.isFloating && this.props.value !== ''
+            ? '2.5rem 1rem 0.5rem 1rem'
+            : '1.5rem 1rem'
+        }
+        {...this.props}
+      />
+    );
   };
 
   render() {
     return (
-      <Wrapper margin={this.props.margin} style={{ gridArea: this.props.name }}>
+      <div style={{ gridArea: this.props.name, margin: this.props.margin }}>
         {this.props.label && this.renderLabel()}
-        {this.props.description && this.renderDescription()}
         <InputWrapper>
           {this.props.renderLeft()}
           {this.renderInput()}
           {this.props.renderRight()}
         </InputWrapper>
-      </Wrapper>
+        {this.props.description && this.renderDescription()}
+        {this.props.error && this.renderError()}
+      </div>
     );
   }
 }
