@@ -14,7 +14,7 @@ export default styled.div(
     position:  'fixed',
     left:      0,
     right:     0,
-    padding:   '2rem',
+    padding:   '1rem',
     textAlign: 'center',
     zIndex:    'var(--z-index-popover)',
     animation: `250ms ${fadeOutAnimation} forwards`,
@@ -22,7 +22,7 @@ export default styled.div(
   ({
     duration = 1000,
     color = 'white',
-    backgroundColor = 'var(--color-success',
+    backgroundColor = 'var(--color-success)',
     bottom = 'auto',
     top = '0',
   }) => ({

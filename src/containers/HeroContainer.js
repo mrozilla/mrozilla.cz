@@ -5,7 +5,7 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-import { Heading } from '../components';
+import { H1 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -13,9 +13,9 @@ import { Heading } from '../components';
 
 export default function HeroContainer({ title }) {
   return (
-    <Heading fontSize="5rem" fontWeight="400" lineHeight="6rem" margin="-1rem 0 0 0" gridArea="hero">
+    <H1 fontSize="5rem" lineHeight="6rem" margin="-1rem 0 0 0" gridArea="hero">
       {title}
-    </Heading>
+    </H1>
   );
 }
 
