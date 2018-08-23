@@ -10,7 +10,6 @@ import styled, { css } from 'styled-components';
 
 export default styled.button`
   -webkit-appearance: none;
-  outline: 0;
   border: 0;
   cursor: pointer;
   background-color: transparent;
@@ -28,7 +27,8 @@ export default styled.button`
       padding: ${({ padding = '1rem 2rem' }) => padding};
       border-radius: ${({ borderRadius }) => borderRadius};
       transition: 100ms;
-      &:hover {
+      &:hover,
+      &:focus {
         box-shadow: 0 0 0 1px var(--color-grey);
         transform: translateY(-1px);
       }
