@@ -10,6 +10,6 @@
     "react/jsx-one-expression-per-line": 0,
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
-    "max-len": [2, { "code": 120, "ignoreComments": true }]
+    "max-len": [2, { "code": 100, "ignoreComments": true }]
   }
 }
