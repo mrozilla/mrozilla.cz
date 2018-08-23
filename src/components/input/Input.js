@@ -5,7 +5,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import {
-  string, func, bool, shape,
+  string, func, bool, shape, oneOfType, number,
 } from 'prop-types';
 
 import Label from '../typography/Label';
@@ -14,14 +14,41 @@ import Text from '../typography/Text';
 import { fadeUpAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
+const InputTooltip = styled.div`
+  position: absolute;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background-color: var(--color-info);
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  top: calc(100% + 1rem);
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(1rem);
+
+  transition: 100ms;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 1rem;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: transparent transparent var(--color-info) transparent;
+  }
+`;
+
 const InputWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  overflow: hidden;
   width: ${({ width }) => width};
   box-shadow: 0 2px 0 -1px var(--color-grey-light);
   background-color: hsla(var(--hsl-grey), 0.1);
@@ -29,6 +56,11 @@ const InputWrapper = styled.div`
   &:hover,
   &:focus-within {
     box-shadow: 0 2px 0 -1px var(--color-grey);
+    & ${InputTooltip} {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -52,9 +84,9 @@ const StyledTextArea = StyledInput.withComponent('textarea');
 
 export default class Input extends PureComponent {
   static propTypes = {
-    value:       string.isRequired,
-    type:        string,
+    value:       oneOfType([string, number]).isRequired,
     name:        string.isRequired,
+    type:        string,
     label:       string,
     margin:      string,
     description: string,
@@ -100,17 +132,7 @@ export default class Input extends PureComponent {
     return null;
   };
 
-  renderDescription = () => (
-    <Text
-      fontSize="1.25rem"
-      lineHeight="1.25rem"
-      opacity="0.75"
-      padding="0 1rem"
-      margin="1rem 0 0 0"
-    >
-      {this.props.description}
-    </Text>
-  );
+  renderDescription = () => <InputTooltip>{this.props.description}</InputTooltip>;
 
   renderError = () => <Text>Error</Text>; // TODO: finalise
 
@@ -138,8 +160,8 @@ export default class Input extends PureComponent {
           {this.props.renderLeft()}
           {this.renderInput()}
           {this.props.renderRight()}
+          {this.props.description && this.renderDescription()}
         </InputWrapper>
-        {this.props.description && this.renderDescription()}
         {this.props.error && this.renderError()}
       </div>
     );
