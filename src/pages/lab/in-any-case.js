@@ -7,6 +7,7 @@ import { graphql } from 'gatsby';
 
 import { Main, Section, Input } from '../../components';
 import { LayoutContainer, SEOContainer, HeroContainer } from '../../containers';
+
 import { parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -134,7 +135,19 @@ export default class InAnyCasePage extends PureComponent {
               onChange={this.handleInput}
             />
             {Object.entries(this.state.output).map(([key, value]) => (
-              <Input {...{ key }} placeholder={key} name={key} type="text" value={value} readOnly />
+              <Input
+                {...{ key }}
+                placeholder={key}
+                name={key}
+                label={key}
+                type="text"
+                value={value}
+                labelStyle={{
+                  isFloating:    true,
+                  textTransform: 'unset',
+                }}
+                readOnly
+              />
             ))}
           </Section>
         </Main>
