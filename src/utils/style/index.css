@@ -7,6 +7,8 @@
   --color-success: hsl(var(--hsl-success));
   --hsl-info: 211, 100%, 60%;
   --color-info: hsl(var(--hsl-info));
+  --hsl-danger: 20, 100%, 50%;
+  --color-danger: hsl(var(--hsl-danger));
 
   --hsl-grey: 200, 10%, 85%;
   --color-grey-light: hsl(200, 10%, 96%);

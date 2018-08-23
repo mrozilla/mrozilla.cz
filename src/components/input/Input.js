@@ -78,6 +78,15 @@ const StyledInput = styled.input`
 
 const StyledTextArea = StyledInput.withComponent('textarea');
 
+const Required = styled.span`
+  color: var(--color-danger);
+  font-weight: 900;
+
+  &::after {
+    content: ' *';
+  }
+`;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
@@ -119,6 +128,7 @@ export default class Input extends PureComponent {
           {...this.props.labelStyle}
         >
           {this.props.label}
+          {this.props.required && <Required />}
         </Label>
       );
     }
@@ -126,6 +136,7 @@ export default class Input extends PureComponent {
       return (
         <Label htmlFor={this.props.name} {...this.props.labelStyle}>
           {this.props.label}
+          {this.props.required && <Required />}
         </Label>
       );
     }
