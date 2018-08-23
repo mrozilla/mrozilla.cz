@@ -5,7 +5,12 @@
 import React from 'react';
 import RehypeReact from 'rehype-react';
 import { node } from 'prop-types';
-import { Link } from '../components/navigation';
+
+import { Link } from '../components';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// helpers
+// ─────────────────────────────────────────────────────────────────────────────
 
 const BlogLink = ({ children, ...rest }) => (
   <Link {...rest} type="primary">

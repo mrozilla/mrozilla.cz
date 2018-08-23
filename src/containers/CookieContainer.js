@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
+
 import {
   Toast, Link, Text, Button,
 } from '../components';
@@ -13,17 +14,12 @@ import {
 
 export default class CookieContainer extends PureComponent {
   state = {
-    isHidden:
-      typeof window !== 'undefined'
-        ? window.localStorage.getItem('isCookiesHidden')
-        : true,
+    isHidden: typeof window !== 'undefined' ? window.localStorage.getItem('isCookiesHidden') : true,
   };
 
   handleVisibility = () => {
     window.localStorage.setItem('isCookiesHidden', !this.state.isHidden);
-    this.setState(prevState => ({
-      isHidden: !prevState.isHidden,
-    }));
+    this.setState(prevState => ({ isHidden: !prevState.isHidden }));
   };
 
   render() {
@@ -36,11 +32,7 @@ export default class CookieContainer extends PureComponent {
               cookie policy
             </Link>
           </Text>
-          <Button
-            type="basic"
-            margin="0 0 0 1rem"
-            onClick={this.handleVisibility}
-          >
+          <Button type="basic" margin="0 0 0 1rem" onClick={this.handleVisibility}>
             <span role="img" aria-label="cookie and thumbs up">
               🍪👍
             </span>

@@ -5,7 +5,9 @@
 import React, { PureComponent } from 'react';
 import { string, func } from 'prop-types';
 import styled from 'styled-components';
-import { Label, Text } from '../typography';
+
+import Label from '../typography/Label';
+import Text from '../typography/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -71,7 +73,13 @@ export default class Input extends PureComponent {
   );
 
   renderDescription = () => (
-    <Text fontSize="1.25rem" lineHeight="1.25rem" opacity="0.75" padding="0 1rem" margin="0 0 1rem 0">
+    <Text
+      fontSize="1.25rem"
+      lineHeight="1.25rem"
+      opacity="0.75"
+      padding="0 1rem"
+      margin="0 0 1rem 0"
+    >
       {this.props.description}
     </Text>
   );
