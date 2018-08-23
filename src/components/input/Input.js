@@ -9,7 +9,7 @@ import {
 } from 'prop-types';
 
 import Label from '../typography/Label';
-import Text from '../typography/Text';
+import P from '../typography/P';
 
 import { fadeUpAnimation } from '../../utils';
 
@@ -145,7 +145,7 @@ export default class Input extends PureComponent {
 
   renderDescription = () => <InputTooltip>{this.props.description}</InputTooltip>;
 
-  renderError = () => <Text>Error</Text>; // TODO: finalise
+  renderError = () => <P>Error</P>; // TODO: finalise
 
   renderInput = () => {
     if (this.props.type === 'textarea') {

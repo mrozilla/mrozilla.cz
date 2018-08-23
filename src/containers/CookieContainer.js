@@ -5,7 +5,7 @@
 import React, { PureComponent } from 'react';
 
 import {
-  Toast, Link, Text, Button,
+  Toast, Link, P, Button,
 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -26,12 +26,12 @@ export default class CookieContainer extends PureComponent {
     if (!this.state.isHidden) {
       return (
         <Toast>
-          <Text display="inline-block" lineHeight="2rem" fontSize="1.5rem">
+          <P display="inline-block" lineHeight="2rem" fontSize="1.5rem">
             Yeah, we use cookies, we even have a{' '}
             <Link type="secondary" to="/legal">
               cookie policy
             </Link>
-          </Text>
+          </P>
           <Button type="basic" margin="0 0 0 1rem" onClick={this.handleVisibility}>
             <span role="img" aria-label="cookie and thumbs up">
               🍪👍

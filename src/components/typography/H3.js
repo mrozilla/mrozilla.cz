@@ -2,21 +2,18 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import Text from './Text';
+import P from './P';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Subheading = Text.withComponent('h2');
-Subheading.defaultProps = {
-  ...Text.defaultProps,
-  fontSize:      '1.25rem',
-  fontWeight:    '300',
-  lineHeight:    '3rem',
-  margin:        '0',
-  textTransform: 'uppercase',
-  letterSpacing: '0.2em',
+const H3 = P.withComponent('h3');
+H3.defaultProps = {
+  ...P.defaultProps,
+  fontSize:   '2.5rem',
+  lineHeight: '2.5rem',
+  margin:     '0 0 1rem 0',
 };
 
-export default Subheading;
+export default H3;

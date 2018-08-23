@@ -6,7 +6,7 @@ import React from 'react';
 import { shape, string, arrayOf } from 'prop-types';
 
 import {
-  Footer, Section, Subheading, List, Link, Text,
+  Footer, Section, H2, List, Link, P,
 } from '../components';
 import { parseLinks } from '../utils';
 
@@ -18,7 +18,7 @@ export default function FooterContainer({ footer }) {
   return (
     <Footer>
       <Section gridArea="contact">
-        <Subheading
+        <H2
           fontSize="1.25rem"
           fontWeight="300"
           margin="0"
@@ -26,7 +26,7 @@ export default function FooterContainer({ footer }) {
           letterSpacing="0.2em"
         >
           {footer.contact.title}
-        </Subheading>
+        </H2>
         <List>
           {footer.contact.body.map(contact => (
             <List.Item key={contact.url}>
@@ -38,7 +38,7 @@ export default function FooterContainer({ footer }) {
         </List>
       </Section>
       <Section gridArea="legal">
-        <Subheading
+        <H2
           fontSize="1.25rem"
           fontWeight="300"
           margin="0"
@@ -46,7 +46,7 @@ export default function FooterContainer({ footer }) {
           letterSpacing="0.2em"
         >
           {footer.legal.title}
-        </Subheading>
+        </H2>
         <List>
           {footer.legal.body.map(legal => (
             <List.Item key={legal.url}>
@@ -58,7 +58,7 @@ export default function FooterContainer({ footer }) {
         </List>
       </Section>
       <Section gridArea="colophon">
-        <Subheading
+        <H2
           fontSize="1.25rem"
           fontWeight="300"
           margin="0"
@@ -66,8 +66,8 @@ export default function FooterContainer({ footer }) {
           letterSpacing="0.2em"
         >
           {footer.colophon.title}
-        </Subheading>
-        <Text>{parseLinks(footer.colophon.text)}</Text>
+        </H2>
+        <P>{parseLinks(footer.colophon.text)}</P>
       </Section>
     </Footer>
   );

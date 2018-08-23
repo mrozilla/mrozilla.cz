@@ -5,7 +5,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { Main, Section, Subheading } from '../../components';
+import { Main, Section, H2 } from '../../components';
 import {
   RootContainer,
   HeroContainer,
@@ -74,11 +74,11 @@ export default function LabPage({
         <SEOContainer {...{ seo }} />
         <HeroContainer title={hero.title} />
         <Section gridArea="theme">
-          <Subheading>current colour theme</Subheading>
+          <H2>current colour theme</H2>
           <ColourThemeContainer />
         </Section>
         <Section gridArea="tools">
-          <Subheading>little tools</Subheading>
+          <H2>little tools</H2>
           <WorksContainer
             works={labs
               .filter(({ node: { meta: { type } } }) => type.includes('tool'))
@@ -86,7 +86,7 @@ export default function LabPage({
           />
         </Section>
         <Section gridArea="products">
-          <Subheading>standalone products</Subheading>
+          <H2>standalone products</H2>
           <WorksContainer
             works={labs
               .filter(({ node: { meta: { type } } }) => type.includes('product'))

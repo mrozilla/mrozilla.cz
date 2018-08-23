@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, Heading, Button,
+  Main, Section, H1, Button,
 } from '../../components';
 import { RootContainer, SEOContainer } from '../../containers';
 
@@ -77,9 +77,9 @@ export default class CountOnMePage extends PureComponent {
               WebkitUserSelect: 'none',
             }}
           >
-            <Heading fontSize="8rem" textAlign="center">
+            <H1 fontSize="8rem" textAlign="center">
               {this.state.count.toLocaleString()}
-            </Heading>
+            </H1>
             <Button onClick={e => this.handleCount(e, 1)}>Add</Button>
             <Button onClick={e => this.handleCount(e, -1)}>Subtract</Button>
             <Button onClick={e => this.handleReset(e)}>Reset</Button>

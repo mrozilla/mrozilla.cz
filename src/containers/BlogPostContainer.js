@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Article, Aside, Heading, Link, Main, Subheading, Text,
+  Article, Aside, Link, Main, H1, H2, P,
 } from '../components';
 import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
 
@@ -68,12 +68,12 @@ export default function BlogPost({
         <SEOContainer seo={frontmatter} />
         <Article itemScope itemType="http://schema.org/BlogPosting">
           <header style={{ margin: '0 0 4rem 0' }}>
-            <Heading itemprop="name" margin="0 0 3rem 0">
+            <H1 itemprop="name" margin="0 0 3rem 0">
               <Link to={frontmatter.permalink} itemProp="url">
                 {frontmatter.title}
               </Link>
-            </Heading>
-            <Text fontSize="3rem">{parseLinks(frontmatter.description)}</Text>
+            </H1>
+            <P fontSize="3rem">{parseLinks(frontmatter.description)}</P>
             <time
               style={{
                 fontSize:      '1.25rem',
@@ -93,7 +93,7 @@ export default function BlogPost({
         </Article>
         {relatedArticles && (
           <Aside>
-            <Subheading>Related articles</Subheading>
+            <H2>Related articles</H2>
             <BlogPreviewsContainer
               posts={relatedArticles.edges.map(({ node: { frontmatter: post, timeToRead } }) => ({
                 ...post,

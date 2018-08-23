@@ -6,7 +6,7 @@ import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 
 import {
-  Header, Heading, Link, Nav,
+  Header, H1, Link, Nav,
 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -16,9 +16,9 @@ import {
 export default function HeaderContainer({ header }) {
   return (
     <Header>
-      <Heading fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
+      <H1 fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
         <Link to="/">mrozilla</Link>
-      </Heading>
+      </H1>
       <Nav>
         <Nav.List>
           {header.map(item => (

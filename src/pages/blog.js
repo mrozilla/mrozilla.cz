@@ -5,7 +5,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { Main, Section, Subheading } from '../components';
+import { Main, Section, H2 } from '../components';
 import {
   RootContainer, HeroContainer, BlogPreviewsContainer, SEOContainer,
 } from '../containers';
@@ -64,7 +64,7 @@ export default function BlogPage({
         <SEOContainer {...{ seo }} />
         <HeroContainer title={hero.title} />
         <Section gridArea="blog" id="blog">
-          <Subheading>all blog articles</Subheading>
+          <H2>all blog articles</H2>
           <BlogPreviewsContainer
             posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
               ...post,

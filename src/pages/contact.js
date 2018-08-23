@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, Text, Link, Button,
+  Main, Section, P, Link, Button,
 } from '../components';
 import {
   RootContainer, HeroContainer, SEOContainer, ContactContainer,
@@ -62,7 +62,7 @@ export default function ContactPage({
         <HeroContainer title={hero.title} />
         {location.hash === '#success' ? (
           <Section gridArea="form">
-            <Text margin="0 0 2rem 0">{form.success}</Text>
+            <P margin="0 0 2rem 0">{form.success}</P>
             <Link to="/">
               <Button>{form.back}</Button>
             </Link>

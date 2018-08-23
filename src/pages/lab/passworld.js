@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, Text, Input, Checkbox, Button, Popup,
+  Main, Section, P, Input, Checkbox, Button, Popup,
 } from '../../components';
 import { RootContainer,SEOContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
@@ -96,11 +96,11 @@ export default class PassworldPage extends Component {
       label:       'Generated password',
       readOnly:    true,
       renderRight: () => (
-        <Text onClick={this.handleCopyToClipboard} style={{ cursor: 'pointer' }}>
+        <P onClick={this.handleCopyToClipboard} style={{ cursor: 'pointer' }}>
           <span role="img" aria-label="clipboard">
               📋
           </span>
-        </Text>
+        </P>
       ),
     },
   ].map(output => <Input key={output.name} {...output} />);

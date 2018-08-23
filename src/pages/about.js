@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, Text, List, Subheading,
+  Main, Section, P, List, H2,
 } from '../components';
 import { RootContainer, HeroContainer, SEOContainer } from '../containers';
 
@@ -63,8 +63,8 @@ export default function AboutPage({
           <List gridGap="2rem">
             {about.map(item => (
               <List.Item key={item.title}>
-                <Subheading>{item.title}</Subheading>
-                <Text>{parseLinks(item.text)}</Text>
+                <H2>{item.title}</H2>
+                <P>{parseLinks(item.text)}</P>
               </List.Item>
             ))}
           </List>

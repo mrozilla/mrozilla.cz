@@ -19,9 +19,9 @@ export { default as Link } from './navigation/Link';
 export { default as Nav } from './navigation/Nav';
 
 export { default as Article } from './typography/Article';
-export { default as Heading } from './typography/Heading';
+export { default as H1 } from './typography/H1';
+export { default as H2 } from './typography/H2';
+export { default as H3 } from './typography/H3';
 export { default as Label } from './typography/Label';
 export { default as List } from './typography/List';
-export { default as Subheading } from './typography/Subheading';
-export { default as Text } from './typography/Text';
-export { default as Title } from './typography/Title';
+export { default as P } from './typography/P';
