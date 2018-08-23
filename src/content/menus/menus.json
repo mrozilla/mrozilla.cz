@@ -58,8 +58,7 @@
     },
     "colophon": {
       "title": "colophon",
-      "text":
-        "this site is built using [Gatsby](https://github.com/gatsbyjs/gatsby), [React](https://github.com/facebook/react), [styled-components](https://github.com/styled-components/styled-components), and hosted on [netlify](https://www.netlify.com)"
+      "text": "This site is built using [Gatsby](https://github.com/gatsbyjs/gatsby), [React](https://github.com/facebook/react), [styled-components](https://github.com/styled-components/styled-components), and is hosted on [netlify](https://www.netlify.com)"
     }
   }
 }
