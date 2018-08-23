@@ -13,7 +13,7 @@ import { Link } from '../components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const BlogLink = ({ children, ...rest }) => (
-  <Link {...rest} type="primary">
+  <Link {...rest} type="secondary">
     {children}
   </Link>
 );

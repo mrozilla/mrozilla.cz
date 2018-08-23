@@ -28,7 +28,7 @@ export default class CookieContainer extends PureComponent {
         <Toast>
           <P display="inline-block" lineHeight="2rem" fontSize="1.5rem">
             Yeah, we use cookies, we even have a{' '}
-            <Link type="secondary" to="/legal">
+            <Link type="primary" to="/legal">
               cookie policy
             </Link>
           </P>

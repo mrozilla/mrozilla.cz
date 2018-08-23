@@ -9,14 +9,14 @@ import { Link } from '../components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default (str) => {
+export default (str, { type = 'primary' } = {}) => {
   if (typeof str === 'string') {
     const re = /\[(.*?\]\(.*?)\)/;
     return str.split(re).map((item) => {
       const [text, href] = item.split('](');
       if (href) {
         return (
-          <Link key={`${href}${text}`} to={href} type="primary">
+          <Link key={`${href}${text}`} to={href} type={type}>
             {text}
           </Link>
         );

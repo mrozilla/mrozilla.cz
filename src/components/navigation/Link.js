@@ -14,26 +14,27 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 const RouterLink = styled(GatsbyLink)`
   line-height: 1.25;
-  transition: 250ms;
   ${({ type }) => {
     if (type === 'primary') {
       return css`
-        display: inline-block;
         text-decoration: underline;
-        text-decoration-color: hsla(var(--hsl-text), 0.25);
-        &.active {
-          text-decoration-color: hsla(var(--hsl-text), 0.5);
-        }
-        &:hover {
-          transform: scale(1.05);
-          background-color: var(--color-bg);
-          text-decoration-color: hsla(var(--hsl-text), 1);
+        text-decoration-color: hsla(var(--hsl-text), 0.1);
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
         }
       `;
     }
     if (type === 'secondary') {
       return css`
         text-decoration: underline;
+        text-decoration-color: hsla(var(--hsl-text), 0.5);
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
       `;
     }
     return null;

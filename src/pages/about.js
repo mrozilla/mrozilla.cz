@@ -64,7 +64,7 @@ export default function AboutPage({
             {about.map(item => (
               <List.Item key={item.title}>
                 <H2>{item.title}</H2>
-                <P>{parseLinks(item.text)}</P>
+                <P>{parseLinks(item.text, { type: 'secondary' })}</P>
               </List.Item>
             ))}
           </List>
