@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'mrozilla',
+    title:   'mrozilla',
+    siteUrl: 'https://www.mrozilla.cz',
   },
   plugins: [
     {
@@ -74,6 +75,7 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
