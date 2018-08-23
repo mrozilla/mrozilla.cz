@@ -6,16 +6,14 @@ import React from 'react';
 import { node } from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
-import { Wrapper } from '../../components';
-import {
-  HeaderContainer,
-  FooterContainer,
-  CookieContainer,
-  InactiveTabContainer,
-  BarrelRollContainer,
-} from '..';
+import { Wrapper } from '../components';
+import HeaderContainer from './HeaderContainer';
+import FooterContainer from './FooterContainer';
+import CookieContainer from './CookieContainer';
+import InactiveTabContainer from './InactiveTabContainer';
+import BarrelRollContainer from './BarrelRollContainer';
 
-import './index.css';
+import '../utils/style/index.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
