@@ -9,7 +9,7 @@ import {
   Main, Section, Subheading, Text,
 } from '../components';
 import {
-  LayoutContainer,
+  RootContainer,
   HeroContainer,
   WorksContainer,
   AvailabilityContainer,
@@ -87,7 +87,7 @@ export default function HomePage({
   },
 }) {
   return (
-    <LayoutContainer>
+    <RootContainer>
       <Main
         gridTemplate={{
           xs: "'hero' 'based' 'availability' 'work' 'blog'",
@@ -125,6 +125,6 @@ export default function HomePage({
           />
         </Section>
       </Main>
-    </LayoutContainer>
+    </RootContainer>
   );
 }

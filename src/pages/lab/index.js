@@ -7,11 +7,10 @@ import { graphql } from 'gatsby';
 
 import { Main, Section, Subheading } from '../../components';
 import {
-  LayoutContainer,
+  RootContainer,
   HeroContainer,
   WorksContainer,
   ColourThemeContainer,
-  BarrelRollContainer,
   SEOContainer,
 } from '../../containers';
 
@@ -64,7 +63,7 @@ export default function LabPage({
   },
 }) {
   return (
-    <LayoutContainer>
+    <RootContainer>
       <Main
         gridTemplate={{
           xs: "'hero' 'theme' 'tools' 'products'",
@@ -94,8 +93,7 @@ export default function LabPage({
               .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
           />
         </Section>
-        <BarrelRollContainer />
       </Main>
-    </LayoutContainer>
+    </RootContainer>
   );
 }

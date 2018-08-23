@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import { Main, Section, Input } from '../../components';
-import { LayoutContainer, SEOContainer, HeroContainer } from '../../containers';
+import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
 import { parseInput } from '../../utils';
 
@@ -120,7 +120,7 @@ export default class InAnyCasePage extends PureComponent {
 
   render() {
     return (
-      <LayoutContainer>
+      <RootContainer>
         <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
           <SEOContainer seo={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.body.title} />
@@ -151,7 +151,7 @@ export default class InAnyCasePage extends PureComponent {
             ))}
           </Section>
         </Main>
-      </LayoutContainer>
+      </RootContainer>
     );
   }
 }

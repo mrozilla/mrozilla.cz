@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Main, Section, Heading, Button,
 } from '../../components';
-import { LayoutContainer, SEOContainer } from '../../containers';
+import { RootContainer, SEOContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -64,7 +64,7 @@ export default class CountOnMePage extends PureComponent {
 
   render() {
     return (
-      <LayoutContainer>
+      <RootContainer>
         <Main>
           <SEOContainer seo={this.props.data.page.meta} />
           <Section
@@ -85,7 +85,7 @@ export default class CountOnMePage extends PureComponent {
             <Button onClick={e => this.handleReset(e)}>Reset</Button>
           </Section>
         </Main>
-      </LayoutContainer>
+      </RootContainer>
     );
   }
 }

@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Article, Aside, Heading, Link, Main, Subheading, Text,
 } from '../components';
-import { LayoutContainer, SEOContainer, BlogPreviewsContainer } from '.';
+import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
 
 import { renderMarkdown, parseLinks } from '../utils';
 
@@ -57,7 +57,7 @@ export default function BlogPost({
   },
 }) {
   return (
-    <LayoutContainer>
+    <RootContainer>
       <Main
         gridTemplate={{
           xs: "'article' 'suggestions'",
@@ -103,6 +103,6 @@ export default function BlogPost({
           </Aside>
         )}
       </Main>
-    </LayoutContainer>
+    </RootContainer>
   );
 }

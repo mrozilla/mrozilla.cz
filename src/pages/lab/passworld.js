@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Main, Section, Text, Input, Checkbox, Button, Popup,
 } from '../../components';
-import { LayoutContainer,SEOContainer } from '../../containers';
+import { RootContainer,SEOContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -164,7 +164,7 @@ export default class PassworldPage extends Component {
 
   render() {
     return (
-      <LayoutContainer>
+      <RootContainer>
         <Main
           gridTemplate={{
             xs: "'. output .' / 0fr 1fr 0fr",
@@ -184,7 +184,7 @@ export default class PassworldPage extends Component {
             </Popup>
           )}
         </Main>
-      </LayoutContainer>
+      </RootContainer>
     );
   }
 }

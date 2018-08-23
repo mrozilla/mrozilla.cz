@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { Main, Section, Subheading } from '../components';
 import {
-  LayoutContainer, HeroContainer, BlogPreviewsContainer, SEOContainer,
+  RootContainer, HeroContainer, BlogPreviewsContainer, SEOContainer,
 } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -59,7 +59,7 @@ export default function BlogPage({
   },
 }) {
   return (
-    <LayoutContainer>
+    <RootContainer>
       <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
         <SEOContainer {...{ seo }} />
         <HeroContainer title={hero.title} />
@@ -73,6 +73,6 @@ export default function BlogPage({
           />
         </Section>
       </Main>
-    </LayoutContainer>
+    </RootContainer>
   );
 }

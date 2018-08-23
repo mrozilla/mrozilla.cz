@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Main, Section, TextArea, Heading, Subheading, Text,
 } from '../../components';
-import { LayoutContainer, SEOContainer } from '../../containers';
+import { RootContainer, SEOContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -105,7 +105,7 @@ export default class WritestPage extends PureComponent {
 
   render() {
     return (
-      <LayoutContainer>
+      <RootContainer>
         <Main
           gridTemplate={{
             xs: "'input' 'stats'",
@@ -145,7 +145,7 @@ export default class WritestPage extends PureComponent {
             <Text>{this.state.speakingTime}</Text>
           </Section>
         </Main>
-      </LayoutContainer>
+      </RootContainer>
     );
   }
 }

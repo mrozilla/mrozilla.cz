@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Main, Section, Text, List, Subheading,
 } from '../components';
-import { LayoutContainer, HeroContainer, SEOContainer } from '../containers';
+import { RootContainer, HeroContainer, SEOContainer } from '../containers';
 
 import { parseLinks } from '../utils';
 
@@ -49,7 +49,7 @@ export default function AboutPage({
   },
 }) {
   return (
-    <LayoutContainer>
+    <RootContainer>
       <Main
         gridTemplate={{
           xs: "'hero' 'about'",
@@ -70,6 +70,6 @@ export default function AboutPage({
           </List>
         </Section>
       </Main>
-    </LayoutContainer>
+    </RootContainer>
   );
 }

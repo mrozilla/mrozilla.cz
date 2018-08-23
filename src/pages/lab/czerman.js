@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Main, Section, Table, Link, Button,
 } from '../../components';
-import { LayoutContainer, SEOContainer, HeroContainer } from '../../containers';
+import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -56,7 +56,7 @@ export default class CzermanPage extends PureComponent {
 
   render() {
     return (
-      <LayoutContainer>
+      <RootContainer>
         <Main gridTemplate="'hero' 'dictionary'" gridGap="10vh 4rem">
           <SEOContainer seo={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.meta.description} />
@@ -106,7 +106,7 @@ export default class CzermanPage extends PureComponent {
             <Button onClick={this.handleOpenAll}>{this.state.isOpenAll ? 'Hide' : 'Reveal'} all</Button>
           </Section>
         </Main>
-      </LayoutContainer>
+      </RootContainer>
     );
   }
 }

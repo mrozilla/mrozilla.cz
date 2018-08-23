@@ -8,7 +8,11 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import { Wrapper } from '../../components';
 import {
-  HeaderContainer, FooterContainer, CookieContainer, InactiveTabContainer,
+  HeaderContainer,
+  FooterContainer,
+  CookieContainer,
+  InactiveTabContainer,
+  BarrelRollContainer,
 } from '..';
 
 import './index.css';
@@ -17,7 +21,7 @@ import './index.css';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function LayoutContainer({ children }) {
+export default function RootContainer({ children }) {
   return (
     <StaticQuery
       query={graphql`
@@ -57,12 +61,13 @@ export default function LayoutContainer({ children }) {
           <FooterContainer footer={footer} />
           <CookieContainer />
           <InactiveTabContainer />
+          <BarrelRollContainer />
         </Wrapper>
       )}
     />
   );
 }
 
-LayoutContainer.propTypes = {
+RootContainer.propTypes = {
   children: node.isRequired,
 };

@@ -9,7 +9,7 @@ import {
   Main, Section, Text, Link, Button,
 } from '../components';
 import {
-  LayoutContainer, HeroContainer, SEOContainer, ContactContainer,
+  RootContainer, HeroContainer, SEOContainer, ContactContainer,
 } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ export default function ContactPage({
   location,
 }) {
   return (
-    <LayoutContainer>
+    <RootContainer>
       <Main
         gridTemplate={{
           xs: "'hero' 'form'",
@@ -71,6 +71,6 @@ export default function ContactPage({
           <ContactContainer />
         )}
       </Main>
-    </LayoutContainer>
+    </RootContainer>
   );
 }
