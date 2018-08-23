@@ -8,7 +8,6 @@ import { arrayOf, shape, string } from 'prop-types';
 import {
   Header, Heading, Link, Nav,
 } from '../components';
-import InactiveTabContainer from './InactiveTabContainer';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -31,7 +30,6 @@ export default function HeaderContainer({ header }) {
           ))}
         </Nav.List>
       </Nav>
-      <InactiveTabContainer />
     </Header>
   );
 }

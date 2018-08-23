@@ -7,7 +7,9 @@ import { node } from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
 import { Wrapper } from '../../components';
-import { HeaderContainer, FooterContainer, CookieContainer } from '..';
+import {
+  HeaderContainer, FooterContainer, CookieContainer, InactiveTabContainer,
+} from '..';
 
 import './index.css';
 
@@ -54,6 +56,7 @@ export default function LayoutContainer({ children }) {
           {children}
           <FooterContainer footer={footer} />
           <CookieContainer />
+          <InactiveTabContainer />
         </Wrapper>
       )}
     />
