@@ -27,15 +27,15 @@
       "body": [
         {
           "url": "https://twitter.com/mrozilla",
-          "text": "twitter"
+          "text": "Twitter"
         },
         {
           "url": "https://github.com/mrozilla",
-          "text": "github"
+          "text": "Github"
         },
         {
           "url": "https://codepen.com/mrozilla",
-          "text": "codepen"
+          "text": "Codepen"
         },
         {
           "url": "mailto:jan@mrozilla.cz",
@@ -48,11 +48,11 @@
       "body": [
         {
           "url": "/legal",
-          "text": "terms & conditions"
+          "text": "Terms & conditions"
         },
         {
           "url": "/legal#privacy",
-          "text": "privacy policy"
+          "text": "Privacy policy"
         }
       ]
     },
