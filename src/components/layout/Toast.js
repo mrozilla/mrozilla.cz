@@ -20,8 +20,7 @@ export default styled.div`
   background-color: var(--color-bg);
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 1rem hsla(var(--hsl-text), 0.25),
-    0 0 0 1px var(--color-grey-light);
+  box-shadow: 0 4px 1rem hsla(var(--hsl-text), 0.25), 0 0 0 1px hsla(var(--hsl-text), 0.1);
   animation: ${fadeInAnimation} 750ms forwards;
   @media screen and (min-width: 600px) {
     bottom: 1rem;
