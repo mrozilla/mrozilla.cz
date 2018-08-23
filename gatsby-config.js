@@ -53,6 +53,27 @@ module.exports = {
         icon:             'src/content/multimedia/favicon.png',
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => process.env.NODE_ENV,
+        env:        {
+          production: {
+            policy: [{ userAgent: '*' }],
+          },
+          'branch-deploy': {
+            policy:  [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host:    null,
+          },
+          'deploy-preview': {
+            policy:  [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host:    null,
+          },
+        },
+      },
+    },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
