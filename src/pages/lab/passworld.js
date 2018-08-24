@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import {
   Main, Section, P, Input, Checkbox, Button, Popup,
 } from '../../components';
-import { RootContainer,SEOContainer } from '../../containers';
+import { RootContainer, SEOContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
