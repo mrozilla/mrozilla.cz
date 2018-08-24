@@ -57,7 +57,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        resolveEnv: () => process.env.NODE_ENV,
+        resolveEnv: () => process.env.CONTEXT,
         env:        {
           production: {
             policy: [{ userAgent: '*' }],
