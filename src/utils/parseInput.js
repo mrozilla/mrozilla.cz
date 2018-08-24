@@ -6,7 +6,7 @@ export default function parseInput(target) {
   }
   if (target.type === 'number') {
     return {
-      [target.name]: parseInt(target.value, 10),
+      [target.name]: target.step ? parseFloat(target.value) : parseInt(target.value, 10),
     };
   }
   return {
