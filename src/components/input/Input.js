@@ -149,10 +149,11 @@ export default class Input extends PureComponent {
 
   renderInput = () => {
     if (this.props.type === 'textarea') {
-      return <StyledTextArea {...this.props} />;
+      return <StyledTextArea id={this.props.name} {...this.props} />;
     }
     return (
       <StyledInput
+        id={this.props.name}
         padding={
           this.props.labelStyle.isFloating && this.props.value !== ''
             ? '2.5rem 1rem 0.5rem 1rem'
