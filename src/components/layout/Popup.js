@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { fadeOutAnimation } from '../../utils';
+import { fadeOutAnimation, mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -17,19 +17,21 @@ export default styled.div(
     padding:   '1rem',
     textAlign: 'center',
     zIndex:    'var(--z-index-popover)',
-    animation: `250ms ${fadeOutAnimation} forwards`,
   },
   ({
     duration = 1000,
     color = 'white',
     backgroundColor = 'var(--color-success)',
+    fontSize,
     bottom = 'auto',
     top = '0',
+    animation = `250ms ${fadeOutAnimation} forwards`,
   }) => ({
-    animationDelay: `${duration - 250}ms`,
     color,
     backgroundColor,
-    bottom,
-    top,
+    fontSize,
+    ...mediaQuerise({ bottom, top }),
+    animation,
+    animationDelay: `${duration - 250}ms`,
   }),
 );
