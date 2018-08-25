@@ -5,7 +5,8 @@
 import React from 'react';
 import { string } from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '../typography';
+
+import Label from '../typography/Label';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

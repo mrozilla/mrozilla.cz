@@ -4,7 +4,7 @@
 
 import React, { PureComponent } from 'react';
 import { shape, string } from 'prop-types';
-import { Text, Link } from '../components';
+import { P, Link } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -37,11 +37,11 @@ export default class AvailabilityContainer extends PureComponent {
 
   render() {
     return (
-      <Text fontSize="3rem" fontWeight="700">
+      <P fontSize="3rem">
         <Link to="mailto:jan@mrozilla.cz" type="primary">
           {this.state.availability}
         </Link>
-      </Text>
+      </P>
     );
   }
 }

@@ -21,7 +21,7 @@ export default class SEOContainer extends PureComponent {
   componentDidMount = () => {};
 
   render() {
-    const title = `mrozilla: ${this.props.seo.title}`;
+    const title = `${this.props.seo.title} | mrozilla`;
     return (
       <Helmet
         title={title}
@@ -33,10 +33,7 @@ export default class SEOContainer extends PureComponent {
           { name: 'twitter:title', content: this.props.seo.title },
           { name: 'twitter:description', content: this.props.seo.description },
           { name: 'twitter:creator', content: '@mrozilla' },
-          {
-            name: 'twitter:image:src',
-            // content: this.props.seo.image.childImageSharp.resize.src,
-          },
+          // { name: 'twitter:image:src', content: this.props.seo.image.childImageSharp.resize.src },
 
           { name: 'og:title', content: title },
           { name: 'og:type', content: 'website' },
@@ -45,6 +42,8 @@ export default class SEOContainer extends PureComponent {
           { name: 'og:description', content: this.props.seo.description },
           { name: 'og:site_name', content: 'Leadspicker' },
           // { name: 'fb:app_id', content: '<FB App ID>' },
+
+          process.env.CONTEXT === 'production' ? {} : { name: 'robots', content: 'noindex' },
         ]}
         link={[
           {

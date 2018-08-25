@@ -3,30 +3,65 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { string, func } from 'prop-types';
 import styled from 'styled-components';
-import { Label, Text } from '../typography';
+import {
+  string, func, bool, shape, oneOfType, number,
+} from 'prop-types';
+
+import Label from '../typography/Label';
+import Alert from '../typography/Alert';
+
+import { fadeUpAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Wrapper = styled.div`
-  margin: ${({ margin = '0 0 1rem 0' }) => margin};
+const InputTooltip = styled.div`
+  position: absolute;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background-color: var(--color-info);
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  top: calc(100% + 1rem);
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(1rem);
+
+  transition: 100ms;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 1rem;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: transparent transparent var(--color-info) transparent;
+  }
 `;
 
 const InputWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  overflow: hidden;
   width: ${({ width }) => width};
   box-shadow: 0 2px 0 -1px var(--color-grey-light);
+  border-radius: 0.25rem;
   background-color: hsla(var(--hsl-grey), 0.1);
 
   &:hover,
   &:focus-within {
     box-shadow: 0 2px 0 -1px var(--color-grey);
+    & ${InputTooltip} {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -44,13 +79,30 @@ const StyledInput = styled.input`
 
 const StyledTextArea = StyledInput.withComponent('textarea');
 
+const Required = styled.span`
+  color: var(--color-danger);
+  font-weight: 900;
+
+  &::after {
+    content: ' *';
+  }
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default class Input extends PureComponent {
   static propTypes = {
-    type:        string,
+    value:       oneOfType([string, number]).isRequired,
     name:        string.isRequired,
+    type:        string,
     label:       string,
     margin:      string,
     description: string,
+    labelStyle:  shape({
+      isFloating: bool,
+    }),
     renderLeft:  func,
     renderRight: func,
   };
@@ -60,40 +112,71 @@ export default class Input extends PureComponent {
     label:       null,
     margin:      '0 0 1rem 0',
     description: null,
+    labelStyle:  {
+      isFloating: false,
+    },
     renderLeft:  () => null,
     renderRight: () => null,
   };
 
-  renderLabel = () => (
-    <Label htmlFor={this.props.name} padding="0 1rem">
-      {this.props.label}
-    </Label>
-  );
+  renderLabel = () => {
+    if (this.props.labelStyle.isFloating && this.props.value !== '') {
+      return (
+        <Label
+          htmlFor={this.props.name}
+          position="absolute"
+          animation={`${fadeUpAnimation} 250ms both`}
+          {...this.props.labelStyle}
+        >
+          {this.props.label}
+          {this.props.required && <Required />}
+        </Label>
+      );
+    }
+    if (!this.props.labelStyle.isFloating) {
+      return (
+        <Label htmlFor={this.props.name} {...this.props.labelStyle}>
+          {this.props.label}
+          {this.props.required && <Required />}
+        </Label>
+      );
+    }
+    return null;
+  };
 
-  renderDescription = () => (
-    <Text fontSize="1.25rem" lineHeight="1.25rem" opacity="0.75" padding="0 1rem" margin="0 0 1rem 0">
-      {this.props.description}
-    </Text>
-  );
+  renderDescription = () => <InputTooltip>{this.props.description}</InputTooltip>;
+
+  renderError = () => <Alert type="danger">{this.props.error}</Alert>;
 
   renderInput = () => {
     if (this.props.type === 'textarea') {
-      return <StyledTextArea {...this.props} />;
+      return <StyledTextArea id={this.props.name} {...this.props} />;
     }
-    return <StyledInput {...this.props} />;
+    return (
+      <StyledInput
+        id={this.props.name}
+        padding={
+          this.props.labelStyle.isFloating && this.props.value !== ''
+            ? '2.5rem 1rem 0.5rem 1rem'
+            : '1.5rem 1rem'
+        }
+        {...this.props}
+      />
+    );
   };
 
   render() {
     return (
-      <Wrapper margin={this.props.margin} style={{ gridArea: this.props.name }}>
+      <div style={{ gridArea: this.props.name, margin: this.props.margin }}>
         {this.props.label && this.renderLabel()}
-        {this.props.description && this.renderDescription()}
         <InputWrapper>
           {this.props.renderLeft()}
           {this.renderInput()}
           {this.props.renderRight()}
+          {this.props.description && this.renderDescription()}
         </InputWrapper>
-      </Wrapper>
+        {this.props.error && this.renderError()}
+      </div>
     );
   }
 }

@@ -2,18 +2,24 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import Text from './Text';
+import styled, { css } from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Title = Text.withComponent('h3');
-Title.defaultProps = {
-  ...Text.defaultProps,
-  fontSize:   '2.5rem',
-  lineHeight: '2.5rem',
-  margin:     '0 0 1rem 0',
-};
+// prettier-ignore
+export default styled.div`
+  display: inline-block;
+  line-height: 3rem;
+  padding: 1rem 2rem;
+  margin: 0 0 1rem 0;
+  box-shadow: 0 0 0 1px;
+  border-radius: 0.25rem;
 
-export default Title;
+  ${({ type }) => type
+    && css`
+      background-color: hsla(var(--hsl-${type}), 0.05);
+      color: var(--color-${type});
+    `};
+`;

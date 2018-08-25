@@ -2,27 +2,18 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import { Link } from '../components';
+import P from './P';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default (str, { type = 'primary' } = {}) => {
-  if (typeof str === 'string') {
-    const re = /\[(.*?\]\(.*?)\)/;
-    return str.split(re).map((item) => {
-      const [text, href] = item.split('](');
-      if (href) {
-        return (
-          <Link key={`${href}${text}`} to={href} type={type}>
-            {text}
-          </Link>
-        );
-      }
-      return item;
-    });
-  }
-  return str;
+const H3 = P.withComponent('h3');
+H3.defaultProps = {
+  ...P.defaultProps,
+  fontSize:   '2.5rem',
+  lineHeight: '2.5rem',
+  margin:     '0 0 1rem 0',
 };
+
+export default H3;
