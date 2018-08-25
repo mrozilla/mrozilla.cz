@@ -12,7 +12,6 @@ export { default as Main } from './layout/Main';
 export { default as Popup } from './layout/Popup';
 export { default as Section } from './layout/Section';
 export { default as Table } from './layout/Table';
-export { default as Toast } from './layout/Toast';
 export { default as Wrapper } from './layout/Wrapper';
 
 export { default as Link } from './navigation/Link';
