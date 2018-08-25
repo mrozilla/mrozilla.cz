@@ -3,8 +3,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-// import { fadeDownAnimation } from '../../utils';
-// animation: ${fadeDownAnimation} 750ms forwards;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -19,7 +17,7 @@ export default styled.header`
   width: 100%;
 
   position: fixed;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   text-align: center;
 
   @media screen and (min-width: 600px) {
