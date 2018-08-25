@@ -25,7 +25,7 @@ export default styled.button`
       background-color: hsla(var(--hsl-grey), 0.1);
       box-shadow: 0 0 0 1px var(--color-grey-light);
       padding: ${({ padding = '1rem 2rem' }) => padding};
-      border-radius: ${({ borderRadius }) => borderRadius};
+      border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
       transition: 100ms;
       &:hover,
       &:focus {

@@ -9,7 +9,7 @@ import {
 } from 'prop-types';
 
 import Label from '../typography/Label';
-import P from '../typography/P';
+import Alert from '../typography/Alert';
 
 import { fadeUpAnimation } from '../../utils';
 
@@ -51,6 +51,7 @@ const InputWrapper = styled.div`
   align-items: baseline;
   width: ${({ width }) => width};
   box-shadow: 0 2px 0 -1px var(--color-grey-light);
+  border-radius: 0.25rem;
   background-color: hsla(var(--hsl-grey), 0.1);
 
   &:hover,
@@ -145,7 +146,7 @@ export default class Input extends PureComponent {
 
   renderDescription = () => <InputTooltip>{this.props.description}</InputTooltip>;
 
-  renderError = () => <P>Error</P>; // TODO: finalise
+  renderError = () => <Alert type="danger">{this.props.error}</Alert>;
 
   renderInput = () => {
     if (this.props.type === 'textarea') {
