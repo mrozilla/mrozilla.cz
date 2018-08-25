@@ -85,6 +85,7 @@ export const query = graphql`
             descriptionTooShort
             descriptionTooLong
           }
+          success
         }
       }
     }
@@ -131,7 +132,7 @@ export default class SearchSnippetPage extends PureComponent {
         meta,
         body: { searchSnippet },
       },
-    } = this.props.data;    
+    } = this.props.data;
 
     return (
       <RootContainer>
@@ -157,6 +158,9 @@ export default class SearchSnippetPage extends PureComponent {
                 {parseLinks(searchSnippet.error[errorType])}
               </Alert>
               ),
+            )}
+            {Object.values(this.state.isError).every(isError => !isError) && (
+              <Alert type="success">{searchSnippet.success}</Alert>
             )}
           </Section>
         </Main>
