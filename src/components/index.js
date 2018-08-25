@@ -18,6 +18,7 @@ export { default as Wrapper } from './layout/Wrapper';
 export { default as Link } from './navigation/Link';
 export { default as Nav } from './navigation/Nav';
 
+export { default as Alert } from './typography/Alert';
 export { default as Article } from './typography/Article';
 export { default as H1 } from './typography/H1';
 export { default as H2 } from './typography/H2';

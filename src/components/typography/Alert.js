@@ -8,37 +8,18 @@ import styled, { css } from 'styled-components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.button`
-  -webkit-appearance: none;
-  border: 0;
-  cursor: pointer;
-  background-color: transparent;
+// prettier-ignore
+export default styled.div`
+  display: inline-block;
+  line-height: 3rem;
+  padding: 1rem 2rem;
+  margin: 0 0 1rem 0;
+  box-shadow: 0 0 0 1px;
+  border-radius: 0.25rem;
 
-  margin: ${({ margin }) => margin};
-  padding: 0;
-
-  ${({ type }) => {
-    if (type === 'basic') {
-      return css``;
-    }
-    return css`
-      background-color: hsla(var(--hsl-grey), 0.1);
-      box-shadow: 0 0 0 1px var(--color-grey-light);
-      padding: ${({ padding = '1rem 2rem' }) => padding};
-      border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
-      transition: 100ms;
-      &:hover,
-      &:focus {
-        box-shadow: 0 0 0 1px var(--color-grey);
-        transform: translateY(-1px);
-      }
-      &:active {
-        transform: translateY(1px);
-      }
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    `;
-  }};
+  ${({ type }) => type
+    && css`
+      background-color: hsla(var(--hsl-${type}), 0.05);
+      color: var(--color-${type});
+    `};
 `;
