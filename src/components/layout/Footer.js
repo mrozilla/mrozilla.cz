@@ -21,7 +21,7 @@ export default styled.footer`
 
   @media screen and (min-width: 900px) {
     grid-template:
-      'contact legal colophon'
-      / 1fr 1fr 1fr;
+      'contact legal colophon colophon'
+      / 1fr 1fr 1fr 1fr;
   }
 `;

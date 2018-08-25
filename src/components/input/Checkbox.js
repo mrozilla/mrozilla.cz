@@ -5,7 +5,8 @@
 import React from 'react';
 import { string } from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '../typography';
+
+import Label from '../typography/Label';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -14,14 +15,12 @@ import { Label } from '../typography';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  align-items: baseline;
+  align-items: center;
   justify-content: flex-end;
   margin: ${({ margin = '0 0 1rem 0' }) => margin};
 `;
 
-const StyledInput = styled.input`
-  margin-right: 1rem;
-`;
+const StyledInput = styled.input``;
 
 export default function Checkbox({
   name, label, margin, ...rest

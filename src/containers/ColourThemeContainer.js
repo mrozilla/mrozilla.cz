@@ -12,19 +12,15 @@ import { Radio } from '../components';
 export default class ColourThemeContainer extends PureComponent {
   state = {
     currentTheme:
-      typeof window !== 'undefined'
-        ? window.localStorage.getItem('currentTheme')
-        : 'basic',
-    emoji: String.fromCodePoint(
-      Math.floor(Math.random() * (128591 - 128513)) + 128513,
-    ),
+      (typeof window !== 'undefined' && window.localStorage.getItem('currentTheme')) || 'basic',
+    emoji: String.fromCodePoint(Math.floor(Math.random() * (128591 - 128513)) + 128513),
   };
 
   componentDidMount = () => {
     this.handleChangeColorTheme(this.state.currentTheme);
   };
 
-  handleChangeColorTheme = (type) => {
+  handleChangeColorTheme = (type = 'basic') => {
     const seed = Math.floor(Math.random() * 360);
     const emojiSeed = Math.floor(Math.random() * (128591 - 128513)) + 128513;
 
@@ -49,14 +45,8 @@ export default class ColourThemeContainer extends PureComponent {
         emoji:        String.fromCodePoint(emojiSeed),
       },
       () => {
-        document.documentElement.style.setProperty(
-          '--hsl-text',
-          themes[type].color,
-        );
-        document.documentElement.style.setProperty(
-          '--color-bg',
-          themes[type].backgroundColor,
-        );
+        document.documentElement.style.setProperty('--hsl-text', themes[type].color);
+        document.documentElement.style.setProperty('--color-bg', themes[type].backgroundColor);
         window.localStorage.setItem('currentTheme', type);
       },
     );

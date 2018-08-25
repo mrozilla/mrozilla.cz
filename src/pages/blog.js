@@ -3,17 +3,20 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { graphql } from 'gatsby';
 
-import { Main, Section, Subheading } from '../components';
-import { HeroContainer, BlogPreviewsContainer, SEOContainer } from '../containers';
+import { Main, Section, H2 } from '../components';
+import {
+  RootContainer, HeroContainer, BlogPreviewsContainer, SEOContainer,
+} from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query BlogPage {
-    pagesJson(meta: { permalink: { eq: "/blog" } }) {
+  {
+    page: pagesJson(meta: { permalink: { eq: "/blog" } }) {
       meta {
         title
         description
@@ -24,7 +27,7 @@ export const query = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    posts: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/blog/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -48,26 +51,28 @@ export const query = graphql`
 
 export default function BlogPage({
   data: {
-    pagesJson: {
+    page: {
       meta: seo,
       body: { hero },
     },
-    allMarkdownRemark: { edges: posts },
+    posts: { edges: posts },
   },
 }) {
   return (
-    <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
-      <SEOContainer {...{ seo }} />
-      <HeroContainer title={hero.title} />
-      <Section gridArea="blog" id="blog">
-        <Subheading>all blog articles</Subheading>
-        <BlogPreviewsContainer
-          posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
-            ...post,
-            timeToRead,
-          }))}
-        />
-      </Section>
-    </Main>
+    <RootContainer>
+      <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
+        <SEOContainer {...{ seo }} />
+        <HeroContainer title={hero.title} />
+        <Section gridArea="blog" id="blog">
+          <H2>all blog articles</H2>
+          <BlogPreviewsContainer
+            posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
+              ...post,
+              timeToRead,
+            }))}
+          />
+        </Section>
+      </Main>
+    </RootContainer>
   );
 }

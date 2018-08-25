@@ -2,20 +2,13 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-// react
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
 
-// components
 import {
-  Main,
-  Section,
-  Text,
-  Input,
-  Checkbox,
-  Button,
-  Popup,
+  Main, Section, P, Input, Checkbox, Button, Popup,
 } from '../../components';
-import { SEOContainer } from '../../containers';
+import { RootContainer, SEOContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,8 +16,8 @@ import { copyToClipboard, parseInput } from '../../utils';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
-  query PassworldPage {
-    labJson(meta: { permalink: { eq: "/lab/passworld" } }) {
+  {
+    page: labJson(meta: { permalink: { eq: "/lab/passworld" } }) {
       meta {
         title
         description
@@ -56,11 +49,11 @@ export default class PassworldPage extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (
-      this.state.length !== prevState.length ||
-      this.state.chars.lowerChars !== prevState.chars.lowerChars ||
-      this.state.chars.upperChars !== prevState.chars.upperChars ||
-      this.state.chars.numbers !== prevState.chars.numbers ||
-      this.state.chars.specialChars !== prevState.chars.specialChars
+      this.state.length !== prevState.length
+      || this.state.chars.lowerChars !== prevState.chars.lowerChars
+      || this.state.chars.upperChars !== prevState.chars.upperChars
+      || this.state.chars.numbers !== prevState.chars.numbers
+      || this.state.chars.specialChars !== prevState.chars.specialChars
     ) {
       this.handleGeneratePassword();
     }
@@ -103,26 +96,22 @@ export default class PassworldPage extends Component {
       label:       'Generated password',
       readOnly:    true,
       renderRight: () => (
-        <Text
-          onClick={this.handleCopyToClipboard}
-          style={{ cursor: 'pointer' }}
-        >
+        <P onClick={this.handleCopyToClipboard} style={{ cursor: 'pointer' }}>
           <span role="img" aria-label="clipboard">
               📋
           </span>
-        </Text>
+        </P>
       ),
     },
   ].map(output => <Input key={output.name} {...output} />);
 
   renderInputs = () => [
     {
-      type:        'number',
-      name:        'length',
-      value:       this.state.length,
-      label:       'Password length',
-      description:
-          "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
+      type:         'number',
+      name:         'length',
+      value:        this.state.length,
+      label:        'Password length',
+      description:  "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
       marginBottom: '2rem',
       onChange:     ({ target }) => this.setState({ ...parseInput(target) }),
     },
@@ -152,7 +141,8 @@ export default class PassworldPage extends Component {
       checked={this.state.chars[input.name]}
       onChange={({ target }) => this.setState(prevState => ({
         chars: { ...prevState.chars, ...parseInput(target) },
-      }))}
+      }))
+        }
     />
   ));
 
@@ -174,25 +164,27 @@ export default class PassworldPage extends Component {
 
   render() {
     return (
-      <Main
-        gridTemplate={{
-          xs: "'. output .' / 0fr 1fr 0fr",
-          md: "'. output .' / 1fr 2fr 1fr",
-        }}
-      >
-        <SEOContainer seo={this.props.data.labJson.meta} />
-        <Section gridArea="output">
-          {this.renderOutputs()}
-          {this.renderInputs()}
-          {this.renderCheckboxes()}
-          {this.renderButtons()}
-        </Section>
-        {this.state.clipboard === this.state.password && (
-          <Popup key={window.performance.now()} top="auto" bottom="0">
-            {this.state.clipboard} was copied to clipboard!
-          </Popup>
-        )}
-      </Main>
+      <RootContainer>
+        <Main
+          gridTemplate={{
+            xs: "'. output .' / 0fr 1fr 0fr",
+            md: "'. output .' / 1fr 2fr 1fr",
+          }}
+        >
+          <SEOContainer seo={this.props.data.page.meta} />
+          <Section gridArea="output">
+            {this.renderOutputs()}
+            {this.renderInputs()}
+            {this.renderCheckboxes()}
+            {this.renderButtons()}
+          </Section>
+          {this.state.clipboard === this.state.password && (
+            <Popup key={window.performance.now()}>
+              {this.state.clipboard} was copied to clipboard!
+            </Popup>
+          )}
+        </Main>
+      </RootContainer>
     );
   }
 }

@@ -2,19 +2,21 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import Text from './Text';
+import P from './P';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Heading = Text.withComponent('h1');
-Heading.defaultProps = {
-  ...Text.defaultProps,
-  fontSize:   '3rem',
-  fontWeight: '700',
-  lineHeight: '4rem',
-  margin:     '0 0 4rem 0',
+const H2 = P.withComponent('h2');
+H2.defaultProps = {
+  ...P.defaultProps,
+  fontSize:      '1.25rem',
+  fontWeight:    '300',
+  lineHeight:    '3rem',
+  margin:        '0',
+  textTransform: 'uppercase',
+  letterSpacing: '0.2em',
 };
 
-export default Heading;
+export default H2;
