@@ -1,5 +1,5 @@
 ---
-permalink: '/legal'
+permalink: "/legal"
 title: legal stuff because we have to in this world
 description: Copyright (c) 2018 Jan Hrubý, Obere Amtshausgasse 20-24/38, 1050 Wien, AUSTRIA ("we", "us", "our"). The code of this website is licensed under the MIT License. The website uses [open-source software](https://github.com/mrozilla/mrozilla.cz/blob/master/package.json).
 date: 2018-06-24T22:59:22.358Z
@@ -37,7 +37,7 @@ date: 2018-06-24T22:59:22.358Z
     1.  This Website uses Facebook Messenger, a platform provided by Facebook, Inc. ("Facebook"). The Website may ask for some Facebook permissions allowing it to perform actions with your Facebook account and to retrieve information, including personal data, from it. For more information about the following permissions, refer to the [Facebook permissions documentation](https://developers.facebook.com/docs/authentication/permissions/) and to the [Facebook privacy policy](https://www.facebook.com/about/privacy/). The permissions asked are the following:
         1.  Basic information
             1.  By default, this includes certain User’s Data such as id, name, picture, gender, and their locale. Certain connections of the User, such as the Friends, are also available. If the User has made more of their Data public, more information will be available.
-    1.  Website usage information is collected using cookies.
+    1.  Website usage information is collected using <span id="cookies">cookies</span>.
         1.  Cookies are text files placed on your computer to collect standard internet log information and visitor behaviour information. This information is used to track visitor use of the website and to compile statistical reports on website activity.
         1.  For further information visit [www.aboutcookies.org](https://www.aboutcookies.org/) or [www.allaboutcookies.org](https://www.allaboutcookies.org).
         1.  You can set your browser not to accept cookies and the above websites tell you how to remove cookies from your browser. However in a few cases some of the Website features may not function as a result.

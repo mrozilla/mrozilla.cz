@@ -4,9 +4,7 @@
 
 import React, { PureComponent } from 'react';
 
-import {
-  Toast, Link, P, Button,
-} from '../components';
+import { Popup, Link, Button } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -14,7 +12,8 @@ import {
 
 export default class CookieContainer extends PureComponent {
   state = {
-    isHidden: typeof window !== 'undefined' ? window.localStorage.getItem('isCookiesHidden') : true,
+    isHidden:
+      (typeof window !== 'undefined' && window.localStorage.getItem('isCookiesHidden')) || false,
   };
 
   handleVisibility = () => {
@@ -25,19 +24,27 @@ export default class CookieContainer extends PureComponent {
   render() {
     if (!this.state.isHidden) {
       return (
-        <Toast>
-          <P display="inline-block" lineHeight="2rem" fontSize="1.5rem">
-            Yeah, we use cookies, we even have a{' '}
-            <Link type="primary" to="/legal">
-              cookie policy
-            </Link>
-          </P>
-          <Button type="basic" margin="0 0 0 1rem" onClick={this.handleVisibility}>
-            <span role="img" aria-label="cookie and thumbs up">
-              🍪👍
+        <Popup
+          backgroundColor="var(--color-bg)"
+          animation="none"
+          color="var(--color-text)"
+          fontSize="1.25rem"
+          bottom={{
+            xs: 'auto',
+            sm: '0',
+          }}
+        >
+          Yeah, we use cookies, we even have a{' '}
+          <Link type="primary" to="/legal#cookies">
+            cookie policy
+          </Link>
+          <Button margin="0 0 0 1rem" onClick={this.handleVisibility}>
+            OK{' '}
+            <span role="img" aria-label="cookie">
+              🍪
             </span>
           </Button>
-        </Toast>
+        </Popup>
       );
     }
     return null;
