@@ -7,6 +7,8 @@ import { string } from 'prop-types';
 
 import { H1 } from '../components';
 
+import { parseLinks } from '../utils';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
@@ -14,7 +16,7 @@ import { H1 } from '../components';
 export default function HeroContainer({ title }) {
   return (
     <H1 fontSize="5rem" lineHeight="6rem" margin="-1rem 0 0 0" gridArea="hero">
-      {title}
+      {parseLinks(title)}
     </H1>
   );
 }
