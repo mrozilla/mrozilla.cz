@@ -15,6 +15,7 @@
   --color-grey: hsl(200, 10%, 85%);
   --color-grey-dark: hsl(200, 5%, 40%);
 
+  --hsl-bg: 0, 100%, 100%;
   --color-bg: white;
 
   --hsl-text: 200, 5%, 45%;
@@ -25,8 +26,8 @@
   --width-aside: 0fr;
 
   --z-index-header: 1000;
-  --z-index-popover: 1010;
-  --z-index-toast: 1020;
+  --z-index-popup: 1010;
+  --z-index-modal: 1020;
 }
 
 @media screen and (min-width: 600px) {

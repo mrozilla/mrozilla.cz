@@ -2,44 +2,15 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled, { css } from 'styled-components';
+import { shape, string } from 'prop-types';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.button`
-  -webkit-appearance: none;
-  border: 0;
-  cursor: pointer;
-  background-color: transparent;
-
-  padding: 0;
-  margin: ${({ margin }) => margin};
-  width: ${({ width }) => width};
-
-  ${({ type }) => {
-    if (type === 'basic') {
-      return css``;
-    }
-    return css`
-      background-color: hsla(var(--hsl-grey), 0.1);
-      box-shadow: 0 0 0 1px var(--color-grey-light);
-      padding: ${({ padding = '1rem 2rem' }) => padding};
-      border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
-      transition: 100ms;
-      &:hover,
-      &:focus {
-        box-shadow: 0 0 0 1px var(--color-grey);
-        transform: translateY(-1px);
-      }
-      &:active {
-        transform: translateY(1px);
-      }
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    `;
-  }};
-`;
+export default {
+  meta: shape({
+    title:       string.isRequired,
+    description: string.isRequired,
+  }).isRequired,
+};

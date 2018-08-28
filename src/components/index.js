@@ -9,6 +9,7 @@ export { default as Aside } from './layout/Aside';
 export { default as Footer } from './layout/Footer';
 export { default as Header } from './layout/Header';
 export { default as Main } from './layout/Main';
+export { default as Modal } from './layout/Modal';
 export { default as Popup } from './layout/Popup';
 export { default as Section } from './layout/Section';
 export { default as Table } from './layout/Table';
