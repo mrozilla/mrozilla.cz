@@ -209,6 +209,7 @@ The knowledge base is split into several sections:
 - [How to price your product](https://blog.drift.com/how-to-price-your-product/)
 - [How we built a product vision and roadmap](http://wildbit.com/blog/2016/05/11/how-we-built-a-product-vision-and-roadmap)
 - [Paul Graham's advice for the lazy](https://medium.com/swlh/graham-for-the-lazy-51a170dacc86#.k639ipzeb)
+- [Products are functions](http://www.feltpresence.com/functions.html)
 - [Seth Godin’s 5 steps for a new business](https://medium.com/the-mission/seth-godin-new-business-5-step-fdb354988c23)
 - [Side projects to generate buzz and revenue](https://medium.com/@laurenholliday_/build-an-empire-11-side-projects-to-generate-revenue-for-your-business-ea0bdaabd826#.4pyfu3ki6)
 - [Startup ideas matrix](https://docs.google.com/spreadsheets/d/1k5sTdMpWKvPIqUi1UNIKQ8xBpw5DEyRfwnAQxZoHmDw/edit#gid=874147518)
