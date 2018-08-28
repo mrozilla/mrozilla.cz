@@ -14,8 +14,9 @@ export default styled.button`
   cursor: pointer;
   background-color: transparent;
 
-  margin: ${({ margin }) => margin};
   padding: 0;
+  margin: ${({ margin }) => margin};
+  width: ${({ width }) => width};
 
   ${({ type }) => {
     if (type === 'basic') {
