@@ -8,6 +8,8 @@ import {
   string, bool, node, func,
 } from 'prop-types';
 
+import { fadeUpAnimation } from '../../utils';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
@@ -27,10 +29,14 @@ const ModalBackground = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  padding: ${({ padding }) => padding};
   border-radius: 0.25rem;
   background-color: var(--color-bg);
   box-shadow: 0 0 0 1px var(--color-grey);
+
+  animation: ${fadeUpAnimation} 500ms both;
+
+  padding: ${({ padding }) => padding};
+  min-width: ${({ minWidth }) => minWidth};
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -38,7 +44,13 @@ const ModalWrapper = styled.div`
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Modal({
-  outerPadding, innerPadding, isOpen, onClickBackground, children,
+  key,
+  outerPadding,
+  innerPadding,
+  innerMinWidth,
+  isOpen,
+  onClickBackground,
+  children,
 }) {
   const handleClickBackground = (event) => {
     if (event.target === event.currentTarget) {
@@ -49,7 +61,9 @@ export default function Modal({
   if (isOpen) {
     return (
       <ModalBackground onClick={handleClickBackground} padding={outerPadding}>
-        <ModalWrapper padding={innerPadding}>{children}</ModalWrapper>
+        <ModalWrapper key={key} padding={innerPadding} minWidth={innerMinWidth}>
+          {children}
+        </ModalWrapper>
       </ModalBackground>
     );
   }
@@ -57,15 +71,19 @@ export default function Modal({
 }
 
 Modal.propTypes = {
+  key:               string,
   isOpen:            bool.isRequired,
   children:          node.isRequired,
   outerPadding:      string,
   innerPadding:      string,
+  innerMinWidth:     string,
   onClickBackground: func,
 };
 
 Modal.defaultProps = {
+  key:               null,
   outerPadding:      '2rem',
   innerPadding:      '2rem',
+  innerMinWidth:     null,
   onClickBackground: x => x,
 };
