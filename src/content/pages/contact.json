@@ -5,7 +5,7 @@
     "permalink": "/contact",
     "title": "contact",
     "description": "you've got a project in mind and we'd love to hear more about it",
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../multimedia/og.png"
   },
   "body": {
     "hero": {

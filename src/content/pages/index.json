@@ -6,7 +6,7 @@
     "title": "one-man digital studio",
     "description":
       "mrozilla is a one-man digital studio focusing on web design, front-end development, and UI—working with React, GraphQL, and Javascript",
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../multimedia/og.png"
   },
   "body": {
     "hero": {

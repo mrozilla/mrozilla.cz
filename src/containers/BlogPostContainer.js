@@ -65,7 +65,7 @@ export default function BlogPost({
         }}
         gridGap="5vw"
       >
-        <SEOContainer seo={frontmatter} />
+        <SEOContainer meta={frontmatter} />
         <Article itemScope itemType="http://schema.org/BlogPosting">
           <header style={{ margin: '0 0 4rem 0' }}>
             <H1 itemprop="name" margin="0 0 3rem 0">

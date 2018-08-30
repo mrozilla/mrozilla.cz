@@ -6,7 +6,7 @@
     "title": "about us",
     "description":
       "mrozilla is run by Jan Hrubý—originally from the Czech Republic, lived in Finland and the United Kingdom, currently residing in Vienna, Austria",
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../multimedia/og.png"
   },
   "body": {
     "hero": {
