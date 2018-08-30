@@ -27,15 +27,15 @@ export default class ColourThemeContainer extends PureComponent {
     const themes = {
       basic: {
         color:           '200, 5%, 45%',
-        backgroundColor: 'white',
+        backgroundColor: '0, 100%, 100%',
       },
       crazy: {
         color:           `${seed}, 100%, 50%`,
-        backgroundColor: `hsl(${seed - 180}, 100%, 50%)`,
+        backgroundColor: `${seed - 180}, 100%, 50%`,
       },
       dark: {
         color:           '0, 0%, 60%',
-        backgroundColor: 'hsl(0, 0%, 5%)',
+        backgroundColor: '0, 0%, 5%',
       },
     };
 
@@ -46,7 +46,8 @@ export default class ColourThemeContainer extends PureComponent {
       },
       () => {
         document.documentElement.style.setProperty('--hsl-text', themes[type].color);
-        document.documentElement.style.setProperty('--color-bg', themes[type].backgroundColor);
+        document.documentElement.style.setProperty('--hsl-bg', themes[type].backgroundColor);
+        // document.documentElement.style.setProperty('--color-bg', themes[type].backgroundColor);
         window.localStorage.setItem('currentTheme', type);
       },
     );

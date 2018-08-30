@@ -38,7 +38,7 @@ export default function Table({ children, ...rest }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.R = styled.tr`
-  box-shadow: 0 1px 0 0 var(--color-grey-light);
+  box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
   cursor: ${({ cursor }) => cursor};
 `;
 
@@ -66,7 +66,7 @@ Table.D.defaultProps = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.Head = styled.thead`
-  box-shadow: 0 2px 0 0 var(--color-grey);
+  box-shadow: 0 2px 0 0 hsla(var(--hsl-text), 0.1);
   & ${Table.H} {
     padding: 1rem 0.5rem;
   }
@@ -78,7 +78,7 @@ Table.Head = styled.thead`
 
 Table.Body = styled.tbody`
   & ${Table.R}:hover {
-    background-color: var(--color-grey-light);
+    background-color: hsla(var(--hsl-text), 0.05);
   }
 `;
 
