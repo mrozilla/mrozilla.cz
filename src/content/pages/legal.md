@@ -3,6 +3,7 @@ permalink: "/legal"
 title: legal stuff because we have to in this world
 description: Copyright (c) 2018 Jan Hrubý, Obere Amtshausgasse 20-24/38, 1050 Wien, AUSTRIA ("we", "us", "our"). The code of this website is licensed under the MIT License. The website uses [open-source software](https://github.com/mrozilla/mrozilla.cz/blob/master/package.json).
 date: 2018-06-24T22:59:22.358Z
+ogImage: "../multimedia/og.png"
 ---
 
 ## Terms & conditions
