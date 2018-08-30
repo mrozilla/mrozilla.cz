@@ -18,14 +18,17 @@ import 'prismjs/themes/prism.css';
 // query
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const pageQuery = graphql`
+export const query = graphql`
   query($path: String!) {
     article: markdownRemark(frontmatter: { permalink: { eq: $path } }) {
-      frontmatter {
+      meta: frontmatter {
         date(formatString: "MMMM D, YYYY")
         permalink
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       htmlAst
     }
@@ -52,7 +55,7 @@ export const pageQuery = graphql`
 
 export default function BlogPost({
   data: {
-    article: { frontmatter, htmlAst },
+    article: { meta, htmlAst },
     relatedArticles,
   },
 }) {
@@ -65,15 +68,15 @@ export default function BlogPost({
         }}
         gridGap="5vw"
       >
-        <SEOContainer meta={frontmatter} />
+        <SEOContainer meta={meta} />
         <Article itemScope itemType="http://schema.org/BlogPosting">
           <header style={{ margin: '0 0 4rem 0' }}>
             <H1 itemprop="name" margin="0 0 3rem 0">
-              <Link to={frontmatter.permalink} itemProp="url">
-                {frontmatter.title}
+              <Link to={meta.permalink} itemProp="url">
+                {meta.title}
               </Link>
             </H1>
-            <P fontSize="3rem">{parseLinks(frontmatter.description)}</P>
+            <P fontSize="3rem">{parseLinks(meta.description)}</P>
             <time
               style={{
                 fontSize:      '1.25rem',
@@ -83,10 +86,10 @@ export default function BlogPost({
                 letterSpacing: '0.2em',
                 marginTop:     '-2rem',
               }}
-              dateTime={new Date(frontmatter.date).toISOString()}
+              dateTime={new Date(meta.date).toISOString()}
               itemProp="datePublished"
             >
-              {frontmatter.date}
+              {meta.date}
             </time>
           </header>
           {renderMarkdown(htmlAst)}

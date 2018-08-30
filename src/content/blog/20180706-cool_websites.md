@@ -3,6 +3,7 @@ permalink: /blog/cool-websites
 title: Various cool/interesting websites
 description: Here's a collection of websites I find to be cool. Sorted alphabetically. Happy to evaluate your suggestion.
 date: 2018-07-06T00:00:00.000Z
+ogImage: "../multimedia/og.png"
 ---
 
 ## personal
