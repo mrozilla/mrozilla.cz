@@ -1,5 +1,5 @@
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Variables
+/* variables
 /* ────────────────────────────────────────────────────────────────────────── */
 
 :root {
@@ -10,12 +10,8 @@
   --hsl-danger: 20, 100%, 50%;
   --color-danger: hsl(var(--hsl-danger));
 
-  --hsl-grey: 200, 10%, 85%;
-  --color-grey-light: hsl(200, 10%, 96%);
-  --color-grey: hsl(200, 10%, 85%);
-  --color-grey-dark: hsl(200, 5%, 40%);
-
-  --color-bg: white;
+  --hsl-bg: 0, 100%, 100%;
+  --color-bg: hsl(var(--hsl-bg));
 
   --hsl-text: 200, 5%, 45%;
   --color-text: hsl(var(--hsl-text));
@@ -25,8 +21,8 @@
   --width-aside: 0fr;
 
   --z-index-header: 1000;
-  --z-index-popover: 1010;
-  --z-index-toast: 1020;
+  --z-index-popup: 1010;
+  --z-index-modal: 1020;
 }
 
 @media screen and (min-width: 600px) {
@@ -46,7 +42,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Reset
+/* reset
 /* ────────────────────────────────────────────────────────────────────────── */
 
 html,
@@ -163,4 +159,9 @@ textarea,
 input {
   color: inherit;
   font-size: inherit;
+}
+
+::selection {
+  color: var(--color-bg);
+  background-color: var(--color-text);
 }

@@ -16,7 +16,7 @@ export default styled.div(
     right:     0,
     padding:   '1rem',
     textAlign: 'center',
-    zIndex:    'var(--z-index-popover)',
+    zIndex:    'var(--z-index-popup)',
   },
   ({
     duration = 1000,
