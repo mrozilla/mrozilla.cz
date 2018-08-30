@@ -20,6 +20,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
     }
   }
@@ -66,7 +69,7 @@ export default class CountOnMePage extends PureComponent {
     return (
       <RootContainer>
         <Main>
-          <SEOContainer seo={this.props.data.page.meta} />
+          <SEOContainer meta={this.props.data.page.meta} />
           <Section
             onClick={e => this.handleCount(e, 1)}
             style={{

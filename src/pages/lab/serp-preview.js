@@ -71,6 +71,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       body {
         searchSnippet {
@@ -136,7 +139,7 @@ export default class SearchSnippetPage extends PureComponent {
 
     return (
       <RootContainer>
-        <SEOContainer seo={meta} />
+        <SEOContainer meta={meta} />
         <Main gridTemplate="'snippet .' 'errors errors' / 600px 1fr" gridGap="10vh 4rem">
           <Section gridArea="snippet">
             <GoogleTitle onInput={this.handleTitleChange} contentEditable>

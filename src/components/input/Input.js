@@ -52,7 +52,7 @@ const InputWrapper = styled.div`
   width: ${({ width }) => width};
   box-shadow: 0 2px 0 -1px hsla(var(--hsl-text), 0.25);
   border-radius: 0.25rem;
-  background-color: hsla(var(--hsl-text), 0.05);
+  background-color: hsla(var(--hsl-text), 0.025);
 
   &:hover,
   &:focus-within {

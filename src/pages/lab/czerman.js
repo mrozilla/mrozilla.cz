@@ -23,6 +23,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       dictionary {
         id
@@ -175,7 +178,7 @@ export default class CzermanPage extends PureComponent {
     return (
       <RootContainer>
         <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
-          <SEOContainer seo={this.props.data.page.meta} />
+          <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.meta.description} />
           <Section gridArea="practice">
             <Button onClick={this.handleNextTerm}>Start practice</Button>

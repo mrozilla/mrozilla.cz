@@ -12,34 +12,42 @@ import { shape, string } from 'prop-types';
 
 export default class SEOContainer extends PureComponent {
   static propTypes = {
-    seo: shape({
+    meta: shape({
       title:       string.isRequired,
       description: string.isRequired,
+      ogImage:     shape({
+        childImageSharp: shape({
+          resize: shape({
+            src: string.isRequired,
+          }),
+        }),
+      }),
     }).isRequired,
   };
 
-  componentDidMount = () => {};
-
   render() {
-    const title = `${this.props.seo.title} | mrozilla`;
+    const title = `${this.props.meta.title} | mrozilla`;
     return (
       <Helmet
         title={title}
         meta={[
-          { name: 'description', content: this.props.seo.description },
+          { name: 'description', content: this.props.meta.description },
 
           { name: 'twitter:card', content: 'summary_large_image' },
           { name: 'twitter:site', content: '@mrozilla' },
-          { name: 'twitter:title', content: this.props.seo.title },
-          { name: 'twitter:description', content: this.props.seo.description },
+          { name: 'twitter:title', content: this.props.meta.title },
+          { name: 'twitter:description', content: this.props.meta.description },
           { name: 'twitter:creator', content: '@mrozilla' },
-          // { name: 'twitter:image:src', content: this.props.seo.image.childImageSharp.resize.src },
+          {
+            name:    'twitter:image:src',
+            content: this.props.meta.ogImage.childImageSharp.resize.src,
+          },
 
           { name: 'og:title', content: title },
           { name: 'og:type', content: 'website' },
           // { name: 'og:url', content: url },
-          // { name: 'og:image', content: this.props.seo.image.childImageSharp.resize.src },
-          { name: 'og:description', content: this.props.seo.description },
+          { name: 'og:image', content: this.props.meta.ogImage.childImageSharp.resize.src },
+          { name: 'og:description', content: this.props.meta.description },
           { name: 'og:site_name', content: 'Leadspicker' },
           // { name: 'fb:app_id', content: '<FB App ID>' },
 
