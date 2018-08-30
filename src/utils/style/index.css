@@ -1,5 +1,5 @@
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Variables
+/* variables
 /* ────────────────────────────────────────────────────────────────────────── */
 
 :root {
@@ -10,13 +10,8 @@
   --hsl-danger: 20, 100%, 50%;
   --color-danger: hsl(var(--hsl-danger));
 
-  --hsl-grey: 200, 10%, 85%;
-  --color-grey-light: hsl(200, 10%, 96%);
-  --color-grey: hsl(200, 10%, 85%);
-  --color-grey-dark: hsl(200, 5%, 40%);
-
   --hsl-bg: 0, 100%, 100%;
-  --color-bg: white;
+  --color-bg: hsl(var(--hsl-bg));
 
   --hsl-text: 200, 5%, 45%;
   --color-text: hsl(var(--hsl-text));
@@ -47,7 +42,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Reset
+/* reset
 /* ────────────────────────────────────────────────────────────────────────── */
 
 html,
@@ -164,4 +159,9 @@ textarea,
 input {
   color: inherit;
   font-size: inherit;
+}
+
+::selection {
+  color: var(--color-bg);
+  background-color: var(--color-text);
 }

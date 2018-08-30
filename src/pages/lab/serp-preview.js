@@ -155,7 +155,7 @@ export default class SearchSnippetPage extends PureComponent {
             {Object.entries(this.state.isError).map(
               ([errorType, isError]) => isError && (
               <Alert type="danger" key={errorType}>
-                {parseLinks(searchSnippet.error[errorType])}
+                {parseLinks(searchSnippet.error[errorType], { type: 'secondary' })}
               </Alert>
               ),
             )}

@@ -23,14 +23,14 @@ export default styled.button`
       return css``;
     }
     return css`
-      background-color: hsla(var(--hsl-grey), 0.1);
-      box-shadow: 0 0 0 1px var(--color-grey-light);
+      background-color: hsla(var(--hsl-text), 0.05);
+      box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
       padding: ${({ padding = '1rem 2rem' }) => padding};
       border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
       transition: 100ms;
       &:hover,
       &:focus {
-        box-shadow: 0 0 0 1px var(--color-grey);
+        box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.5);
         transform: translateY(-1px);
       }
       &:active {

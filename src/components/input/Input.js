@@ -50,13 +50,13 @@ const InputWrapper = styled.div`
   flex-wrap: wrap;
   align-items: baseline;
   width: ${({ width }) => width};
-  box-shadow: 0 2px 0 -1px var(--color-grey-light);
+  box-shadow: 0 2px 0 -1px hsla(var(--hsl-text), 0.25);
   border-radius: 0.25rem;
-  background-color: hsla(var(--hsl-grey), 0.1);
+  background-color: hsla(var(--hsl-text), 0.05);
 
   &:hover,
   &:focus-within {
-    box-shadow: 0 2px 0 -1px var(--color-grey);
+    box-shadow: 0 2px 0 -1px hsla(var(--hsl-text), 0.5);
     & ${InputTooltip} {
       visibility: visible;
       opacity: 1;
