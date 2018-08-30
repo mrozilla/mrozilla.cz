@@ -6,7 +6,7 @@
     "title": "meowslator",
     "description": "any-language-to-meowish Messenger bot",
     "tags": ["concept", "website"],
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../../multimedia/og.png"
   },
   "body": {
     "title": "meowslator",

@@ -20,6 +20,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       body {
         hero {
@@ -52,7 +55,7 @@ export const query = graphql`
 export default function BlogPage({
   data: {
     page: {
-      meta: seo,
+      meta,
       body: { hero },
     },
     posts: { edges: posts },
@@ -61,7 +64,7 @@ export default function BlogPage({
   return (
     <RootContainer>
       <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
-        <SEOContainer {...{ seo }} />
+        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="blog" id="blog">
           <H2>all blog articles</H2>

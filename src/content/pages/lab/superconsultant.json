@@ -6,7 +6,7 @@
     "title": "SUPERCONSULTANT",
     "description": "text-generating Twitter bot",
     "tags": ["concept", "bot", "twitter"],
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../../multimedia/og.png"
   },
   "body": {
     "title": "SUPERCONSULTANT",

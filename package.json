@@ -1,7 +1,7 @@
 {
   "name": "mrozilla.cz",
   "description": "the online home of a one-man digital studio",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "license": "MIT",
   "homepage": "https://mrozilla.cz",
   "repository": "https://github.com/mrozilla/mrozilla.cz",
@@ -24,6 +24,7 @@
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-json": "next",
     "gatsby-transformer-remark": "next",
+    "gatsby-transformer-sharp": "^2.1.1-rc.2",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "react": "16.4.2",

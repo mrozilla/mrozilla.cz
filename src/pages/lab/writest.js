@@ -20,6 +20,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
     }
   }
@@ -113,7 +116,7 @@ export default class WritestPage extends PureComponent {
           }}
           gridGap="10vh 4rem"
         >
-          <SEOContainer seo={this.props.data.page.meta} />
+          <SEOContainer meta={this.props.data.page.meta} />
           <Section gridArea="input">
             <H1>words</H1>
             <TextArea

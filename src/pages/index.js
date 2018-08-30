@@ -27,6 +27,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       body {
         hero {
@@ -79,7 +82,7 @@ export const query = graphql`
 export default function HomePage({
   data: {
     page: {
-      meta: seo,
+      meta,
       body: { hero, location, availability },
     },
     works,
@@ -95,7 +98,7 @@ export default function HomePage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer {...{ seo }} />
+        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="based">
           <H2>{location.title}</H2>

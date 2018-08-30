@@ -20,6 +20,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       body {
         title
@@ -122,7 +125,7 @@ export default class InAnyCasePage extends PureComponent {
     return (
       <RootContainer>
         <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-          <SEOContainer seo={this.props.data.page.meta} />
+          <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.body.title} />
           <Section gridArea="input">
             <Input

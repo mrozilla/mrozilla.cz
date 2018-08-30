@@ -4,10 +4,9 @@
     "date": "2016-10-01T00:00:00.000Z",
     "permalink": "/lab/passworld",
     "title": "passworld — your password must contain at least...",
-    "description":
-      "Generate cryptographically strong passwords with customisable length & special characters",
+    "description": "Generate cryptographically strong passwords with customisable length & special characters",
     "tags": ["concept", "website"],
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../../multimedia/og.png"
   },
   "body": {
     "title": "passworld",

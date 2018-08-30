@@ -11,6 +11,7 @@ module.exports = {
         path: `${__dirname}/src/content`,
       },
     },
+
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -33,6 +34,8 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
+    'gatsby-transformer-sharp',
+
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -75,6 +78,7 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',

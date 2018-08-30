@@ -6,7 +6,7 @@
     "title": "mrozilla Messenger bot",
     "description": "this website in a chatbot",
     "tags": ["concept", "chatbot", "messenger"],
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../../multimedia/og.png"
   },
   "body": {
     "title": "mrozilla Messenger bot",

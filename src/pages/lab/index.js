@@ -24,6 +24,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
       body {
         hero {
@@ -56,7 +59,7 @@ export const query = graphql`
 export default function LabPage({
   data: {
     page: {
-      meta: seo,
+      meta,
       body: { hero },
     },
     labs: { edges: labs },
@@ -71,7 +74,7 @@ export default function LabPage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer {...{ seo }} />
+        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="theme">
           <H2>current colour theme</H2>

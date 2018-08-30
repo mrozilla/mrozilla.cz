@@ -6,7 +6,7 @@
     "title": "lab & experiments",
     "description":
       "random selection of silly, silly experiments, proof-of-concepts, and little tools, pushing the limits of the canvas (both figuratively & literally)",
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../multimedia/og.png"
   },
   "body": {
     "hero": {

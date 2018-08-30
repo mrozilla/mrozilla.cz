@@ -6,7 +6,7 @@
     "title": "Google SERP preview visual optimiser",
     "description": "Optimise the length of your website's titles and descriptions for Google search snippets, easily, visually, with hints and explanations",
     "tags": ["concept", "website"],
-    "image": "../multimedia/undraw_fast_loading_0lbh.png"
+    "ogImage": "../../multimedia/og.png"
   },
   "body": {
     "title": "Google search snippet preview",

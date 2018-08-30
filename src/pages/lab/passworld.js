@@ -21,6 +21,9 @@ export const query = graphql`
       meta {
         title
         description
+        ogImage {
+          ...OgImageFragment
+        }
       }
     }
   }
@@ -167,11 +170,11 @@ export default class PassworldPage extends Component {
       <RootContainer>
         <Main
           gridTemplate={{
-            xs: "'. output .' / 0fr 1fr 0fr",
-            md: "'. output .' / 1fr 2fr 1fr",
+            xs: "'output .' / 1fr 0fr",
+            md: "'output .' / 1fr 1fr",
           }}
         >
-          <SEOContainer seo={this.props.data.page.meta} />
+          <SEOContainer meta={this.props.data.page.meta} />
           <Section gridArea="output">
             {this.renderOutputs()}
             {this.renderInputs()}
