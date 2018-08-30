@@ -165,3 +165,8 @@ input {
   color: inherit;
   font-size: inherit;
 }
+
+::selection {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+}
