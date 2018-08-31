@@ -47,7 +47,6 @@ export default class ColourThemeContainer extends PureComponent {
       () => {
         document.documentElement.style.setProperty('--hsl-text', themes[type].color);
         document.documentElement.style.setProperty('--hsl-bg', themes[type].backgroundColor);
-        // document.documentElement.style.setProperty('--color-bg', themes[type].backgroundColor);
         window.localStorage.setItem('currentTheme', type);
       },
     );
