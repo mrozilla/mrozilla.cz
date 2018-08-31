@@ -94,7 +94,7 @@ const Required = styled.span`
 
 export default class Input extends PureComponent {
   static propTypes = {
-    value:       oneOfType([string, number]).isRequired,
+    value:       oneOfType([string, number]),
     name:        string.isRequired,
     type:        string,
     label:       string,
@@ -108,6 +108,7 @@ export default class Input extends PureComponent {
   };
 
   static defaultProps = {
+    value:       undefined,
     type:        'text',
     label:       null,
     margin:      '0 0 1rem 0',
