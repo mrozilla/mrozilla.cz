@@ -5,7 +5,6 @@
     "permalink": "/lab/writest",
     "title": "writest — all the numbers about your letters",
     "description": "get all the stats about your copy—character count, unique & most common words, sentence length, speaking & reading time, etc.",
-    "tags": ["concept", "website"],
     "ogImage": "../../multimedia/og.png"
   },
   "body": {
