@@ -19,13 +19,7 @@ import {
 export const query = graphql`
   {
     page: pagesJson(meta: { permalink: { eq: "/contact" } }) {
-      meta {
-        title
-        description
-        ogImage {
-          ...OgImageFragment
-        }
-      }
+      ...MetaFragment
       body {
         hero {
           title
@@ -54,13 +48,7 @@ export default function ContactPage({
 }) {
   return (
     <RootContainer>
-      <Main
-        gridTemplate={{
-          xs: "'hero' 'form'",
-          lg: "'hero hero' 'form .' / 2fr 1fr",
-        }}
-        gridGap="10vh 4rem"
-      >
+      <Main gridTemplate="'hero' 'form'" gridGap="10vh 4rem">
         <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         {location.hash === '#success' ? (

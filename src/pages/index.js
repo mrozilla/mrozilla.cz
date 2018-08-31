@@ -24,13 +24,7 @@ import {
 export const query = graphql`
   {
     page: pagesJson(meta: { permalink: { eq: "/" } }) {
-      meta {
-        title
-        description
-        ogImage {
-          ...OgImageFragment
-        }
-      }
+      ...MetaFragment
       body {
         hero {
           title
@@ -48,13 +42,7 @@ export const query = graphql`
     works: allWorkJson(sort: { fields: [meta___date], order: DESC }) {
       edges {
         node {
-          meta {
-            permalink
-          }
-          body {
-            title
-            tagline
-          }
+          ...WorkFragment
         }
       }
     }
@@ -65,10 +53,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          frontmatter {
-            permalink
-            title
-          }
+          ...BlogPreviewFragment
         }
       }
     }
@@ -111,8 +96,8 @@ export default function HomePage({
         <Section gridArea="work" id="work">
           <H2>latest client work</H2>
           <WorksContainer
-            works={works.edges.map(({ node: { meta, body } }) => ({
-              ...meta,
+            works={works.edges.map(({ node: { meta: { permalink }, body } }) => ({
+              permalink,
               ...body,
             }))}
           />
