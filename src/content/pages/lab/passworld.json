@@ -5,7 +5,6 @@
     "permalink": "/lab/passworld",
     "title": "passworld — your password must contain at least...",
     "description": "Generate cryptographically strong passwords with customisable length & special characters",
-    "tags": ["concept", "website"],
     "ogImage": "../../multimedia/og.png"
   },
   "body": {

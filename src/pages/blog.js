@@ -17,13 +17,7 @@ import {
 export const query = graphql`
   {
     page: pagesJson(meta: { permalink: { eq: "/blog" } }) {
-      meta {
-        title
-        description
-        ogImage {
-          ...OgImageFragment
-        }
-      }
+      ...MetaFragment
       body {
         hero {
           title
@@ -36,12 +30,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          timeToRead
-          frontmatter {
-            permalink
-            title
-            date(formatString: "MMMM D, YYYY")
-          }
+          ...BlogPreviewFragment
         }
       }
     }

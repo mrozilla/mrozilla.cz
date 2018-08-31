@@ -19,13 +19,7 @@ import { parseLinks } from '../utils';
 export const query = graphql`
   {
     page: pagesJson(meta: { permalink: { eq: "/about" } }) {
-      meta {
-        title
-        description
-        ogImage {
-          ...OgImageFragment
-        }
-      }
+      ...MetaFragment
       body {
         hero {
           title

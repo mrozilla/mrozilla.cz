@@ -5,7 +5,6 @@
     "permalink": "/lab/in-any-case",
     "title": "in any case — Title case, url-case, camelCase, all the cases",
     "description": "Automatically generate your text in all the cases: lower case, Sentence case, Title Case, UPPER CASE, camelCase, PascalCase, CONSTANT_CASE, Header-Case, URL-case, path/case, snake_case, and dot.case",
-    "tags": ["concept", "website"],
     "ogImage": "../../multimedia/og.png"
   },
   "body": {

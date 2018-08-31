@@ -12,6 +12,27 @@
       "title": "you've got a project in mind and we'd love to hear more about it"
     },
     "form": {
+      "inputs": [
+        {
+          "label": "Your email",
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "label": "Your name",
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "label": "Your project",
+          "name": "project",
+          "type": "textarea",
+          "rows": "12",
+          "required": true
+        }
+      ],
       "success": "What a pleasure to hear from you. We'll get back to you soon, keep an eye out on your inbox!",
       "back": "Back to main page"
     }
