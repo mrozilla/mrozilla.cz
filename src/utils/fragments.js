@@ -8,6 +8,7 @@ import { graphql } from 'gatsby';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
+// separate due to being used in other fragments
 export const OgImageFragment = graphql`
   fragment OgImageFragment on File {
     childImageSharp {
@@ -18,7 +19,7 @@ export const OgImageFragment = graphql`
   }
 `;
 
-export const MetaFragment = graphql`
+export const fragments = graphql`
   fragment MetaFragment on PagesJson {
     meta {
       title
@@ -28,9 +29,7 @@ export const MetaFragment = graphql`
       }
     }
   }
-`;
 
-export const WorkFragment = graphql`
   fragment WorkFragment on WorkJson {
     meta {
       permalink
@@ -40,9 +39,7 @@ export const WorkFragment = graphql`
       tagline
     }
   }
-`;
 
-export const LabFragment = graphql`
   fragment LabFragment on LabJson {
     meta {
       type
@@ -53,9 +50,7 @@ export const LabFragment = graphql`
       tagline
     }
   }
-`;
 
-export const BlogPreviewFragment = graphql`
   fragment BlogPreviewFragment on MarkdownRemark {
     timeToRead
     frontmatter {
