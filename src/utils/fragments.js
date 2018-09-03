@@ -22,6 +22,7 @@ export const OgImageFragment = graphql`
 export const fragments = graphql`
   fragment MetaFragment on PagesJson {
     meta {
+      permalink
       title
       description
       ogImage {
