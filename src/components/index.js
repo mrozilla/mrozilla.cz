@@ -3,7 +3,6 @@ export { default as Checkbox } from './input/Checkbox';
 export { default as Form } from './input/Form';
 export { default as Input } from './input/Input';
 export { default as Radio } from './input/Radio';
-export { default as TextArea } from './input/TextArea';
 
 export { default as Aside } from './layout/Aside';
 export { default as Footer } from './layout/Footer';
