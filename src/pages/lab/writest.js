@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, TextArea, H1, H2, P,
+  Main, Section, Input, TextArea, H1, H2, P,
 } from '../../components';
 import { RootContainer, SEOContainer } from '../../containers';
 
@@ -89,7 +89,9 @@ export default class WritestPage extends PureComponent {
       return wordsArray(s).length / sentencesArray(s).length;
     }
     function spentTime(s, len) {
-      return new Date((wordsArray(s).length / len) * 60 * 1000).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
+      return new Date((wordsArray(s).length / len) * 60 * 1000).toLocaleTimeString('en-GB', {
+        timeZone: 'UTC',
+      });
     }
 
     this.setState({
@@ -119,14 +121,19 @@ export default class WritestPage extends PureComponent {
           <SEOContainer meta={this.props.data.page.meta} />
           <Section gridArea="input">
             <H1>words</H1>
-            <TextArea
+            <Input
+              name="writest"
+              type="textarea"
               value={this.state.textArea}
               placeholder="Start typing or paste text..."
+              backgroundColor="transparent"
+              boxShadow="none"
+              hoverBoxShadow="none"
               onInput={this.handleAnalyseText}
               autoFocus
             />
           </Section>
-          <Section gridArea="stats">
+          <Section gridArea="stats" position="sticky" top="2rem" alignSelf="start">
             <H1>stats</H1>
             <H2>Characters with spaces</H2>
             <P>{this.state.charCount.toLocaleString()}</P>

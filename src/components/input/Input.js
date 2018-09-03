@@ -49,14 +49,16 @@ const InputWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  width: ${({ width }) => width};
-  box-shadow: 0 2px 0 -1px hsla(var(--hsl-text), 0.25);
   border-radius: 0.25rem;
-  background-color: hsla(var(--hsl-text), 0.025);
+
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  background-color: ${({ backgroundColor = 'hsla(var(--hsl-text), 0.025)' }) => backgroundColor};
+  box-shadow: ${({ boxShadow = '0 2px 0 -1px hsla(var(--hsl-text), 0.25)' }) => boxShadow};
 
   &:hover,
   &:focus-within {
-    box-shadow: 0 2px 0 -1px hsla(var(--hsl-text), 0.5);
+    box-shadow: ${({ hoverBoxShadow = '0 2px 0 -1px hsla(var(--hsl-text), 0.5)' }) => hoverBoxShadow};
     & ${InputTooltip} {
       visibility: visible;
       opacity: 1;
@@ -68,9 +70,15 @@ const InputWrapper = styled.div`
 const StyledInput = styled.input`
   outline: 0;
   border: 0;
+  resize: none;
+  font-family: inherit;
+
   flex: 1;
-  padding: ${({ padding = '1rem' }) => padding};
   background-color: transparent;
+  overflow-x: hidden; /* TODO: regression tests */
+
+  height: ${({ height }) => height};
+  padding: ${({ padding = '1rem' }) => padding};
 
   &::placeholder {
     opacity: 0.5;
@@ -105,6 +113,7 @@ export default class Input extends PureComponent {
     }),
     renderLeft:  func,
     renderRight: func,
+    onInput:     func,
   };
 
   static defaultProps = {
@@ -118,6 +127,12 @@ export default class Input extends PureComponent {
     },
     renderLeft:  () => null,
     renderRight: () => null,
+    onInput:     () => null,
+  };
+
+  handleTextAreaResize = (event) => {
+    event.target.style.height = `${event.target.scrollHeight}px`; // eslint-disable-line no-param-reassign
+    this.props.onInput(event);
   };
 
   renderLabel = () => {
@@ -151,7 +166,9 @@ export default class Input extends PureComponent {
 
   renderInput = () => {
     if (this.props.type === 'textarea') {
-      return <StyledTextArea id={this.props.name} {...this.props} />;
+      return (
+        <StyledTextArea id={this.props.name} {...this.props} onInput={this.handleTextAreaResize} />
+      );
     }
     return (
       <StyledInput
@@ -168,9 +185,16 @@ export default class Input extends PureComponent {
 
   render() {
     return (
-      <div style={{ gridArea: this.props.name, margin: this.props.margin }}>
+      <div
+        style={{ gridArea: this.props.name, margin: this.props.margin, height: this.props.height }}
+      >
         {this.props.label && this.renderLabel()}
-        <InputWrapper>
+        <InputWrapper
+          height={this.props.height}
+          backgroundColor={this.props.backgroundColor}
+          boxShadow={this.props.boxShadow}
+          hoverBoxShadow={this.props.hoverBoxShadow}
+        >
           {this.props.renderLeft()}
           {this.renderInput()}
           {this.props.renderRight()}

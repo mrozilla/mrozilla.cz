@@ -106,6 +106,7 @@ The knowledge base is split into several sections:
 
 ### CSS & Sass
 
+- [Advanced effects with CSS background-blend-mode](https://blog.logrocket.com/advanced-effects-with-css-background-blend-modes-4b750198522a)
 - [Awesome Sass collection](https://github.com/HugoGiraudel/awesome-sass)
 - [CSS colour filters](http://webdesignerwall.com/tutorials/create-spotify-colorizer-effects-css-blend-modes)
 - [CSS in JS](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)

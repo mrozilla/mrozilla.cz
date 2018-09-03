@@ -10,10 +10,24 @@ import { Radio } from '../components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default class ColourThemeContainer extends PureComponent {
+  inputs = [
+    {
+      name:  'basic',
+      label: 'Basic',
+    },
+    {
+      name:  'dark',
+      label: 'Dark',
+    },
+    {
+      name:  'crazy',
+      label: 'Crazy',
+    },
+  ];
+
   state = {
     currentTheme:
       (typeof window !== 'undefined' && window.localStorage.getItem('currentTheme')) || 'basic',
-    emoji: String.fromCodePoint(Math.floor(Math.random() * (128591 - 128513)) + 128513),
   };
 
   componentDidMount = () => {
@@ -22,7 +36,6 @@ export default class ColourThemeContainer extends PureComponent {
 
   handleChangeColorTheme = (type = 'basic') => {
     const seed = Math.floor(Math.random() * 360);
-    const emojiSeed = Math.floor(Math.random() * (128591 - 128513)) + 128513;
 
     const themes = {
       basic: {
@@ -39,36 +52,17 @@ export default class ColourThemeContainer extends PureComponent {
       },
     };
 
-    this.setState(
-      {
-        currentTheme: type,
-        emoji:        String.fromCodePoint(emojiSeed),
-      },
-      () => {
-        document.documentElement.style.setProperty('--hsl-text', themes[type].color);
-        document.documentElement.style.setProperty('--hsl-bg', themes[type].backgroundColor);
-        window.localStorage.setItem('currentTheme', type);
-      },
-    );
+    this.setState({ currentTheme: type }, () => {
+      document.documentElement.style.setProperty('--hsl-text', themes[type].color);
+      document.documentElement.style.setProperty('--hsl-bg', themes[type].backgroundColor);
+      window.localStorage.setItem('currentTheme', type);
+    });
   };
 
   render() {
     return (
       <div>
-        {[
-          {
-            name:  'basic',
-            label: 'basic',
-          },
-          {
-            name:  'crazy',
-            label: `🥑 CRAZY!!1! ${this.state.emoji}`,
-          },
-          {
-            name:  'dark',
-            label: '🌙',
-          },
-        ].map(radio => (
+        {this.inputs.map(radio => (
           <Radio
             key={radio.name}
             {...radio}
