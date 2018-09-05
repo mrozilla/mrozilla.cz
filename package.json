@@ -39,11 +39,16 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "netlify-lambda": "^0.4.0"
   },
   "scripts": {
-    "start": "gatsby develop",
-    "build": "gatsby build",
+    "start:gatsby": "gatsby develop",
+    "start:lambda": "netlify-lambda serve src/lambda",
+    "start": "yarn start:gatsby & yarn start:lambda",
+    "build:gatsby": "gatsby build",
+    "build:lambda": "netlify-lambda build src/lambda",
+    "build": "yarn build:gatsby & yarn build:lambda",
     "serve": "gatsby serve",
     "lint": "eslint src/**"
   }
