@@ -1,7 +1,28 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// import
+// ─────────────────────────────────────────────────────────────────────────────
+
+var proxy = require("http-proxy-middleware");
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
 module.exports = {
   siteMetadata: {
     title:   'mrozilla',
     siteUrl: 'https://www.mrozilla.cz',
+  },
+  developMiddleware: (app) => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target:      'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      }),
+    );
   },
   plugins: [
     {
