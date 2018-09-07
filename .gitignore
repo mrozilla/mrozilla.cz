@@ -19,6 +19,9 @@
 # env files
 .env*
 
+# gatsby
+lambda
+
 # misc
 .cache
 .DS_Store
