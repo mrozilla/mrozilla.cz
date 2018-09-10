@@ -19,9 +19,7 @@ export { default as Nav } from './navigation/Nav';
 
 export { default as Alert } from './typography/Alert';
 export { default as Article } from './typography/Article';
-export { default as H1 } from './typography/H1';
-export { default as H2 } from './typography/H2';
-export { default as H3 } from './typography/H3';
+export { H1, H2, H3 } from './typography/HX';
 export { default as Label } from './typography/Label';
-export { default as List } from './typography/List';
+export { Ul, Li } from './typography/List';
 export { default as P } from './typography/P';
