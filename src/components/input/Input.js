@@ -71,7 +71,9 @@ const StyledInput = styled.input`
   outline: 0;
   border: 0;
   resize: none;
+  appearance: none; /* TODO: regression tests */
   font-family: inherit;
+  font-size: inherit;
 
   flex: 1;
   background-color: transparent;
@@ -87,14 +89,7 @@ const StyledInput = styled.input`
 
 const StyledTextArea = StyledInput.withComponent('textarea');
 
-const Required = styled.span`
-  color: var(--color-danger);
-  font-weight: 900;
-
-  &::after {
-    content: ' *';
-  }
-`;
+const StyledSelect = StyledInput.withComponent('select');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -145,7 +140,6 @@ export default class Input extends PureComponent {
           {...this.props.labelStyle}
         >
           {this.props.label}
-          {this.props.required && <Required />}
         </Label>
       );
     }
@@ -153,7 +147,6 @@ export default class Input extends PureComponent {
       return (
         <Label htmlFor={this.props.name} {...this.props.labelStyle}>
           {this.props.label}
-          {this.props.required && <Required />}
         </Label>
       );
     }
@@ -165,6 +158,16 @@ export default class Input extends PureComponent {
   renderError = () => <Alert type="danger">{this.props.error}</Alert>;
 
   renderInput = () => {
+    if (this.props.type === 'select') {
+      return (
+        <StyledSelect id={this.props.name}>
+          <option value="" disabled selected hidden />
+          {this.props.options.map(option => (
+            <option key={option}>{option}</option>
+          ))}
+        </StyledSelect>
+      );
+    }
     if (this.props.type === 'textarea') {
       return (
         <StyledTextArea id={this.props.name} {...this.props} onInput={this.handleTextAreaResize} />
