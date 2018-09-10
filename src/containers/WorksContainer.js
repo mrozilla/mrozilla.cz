@@ -6,7 +6,7 @@ import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 
 import {
-  List, H3, P, Link,
+  Ul, Li, H3, P, Link,
 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,9 +15,9 @@ import {
 
 export default function WorksContainer({ works }) {
   return (
-    <List gridGap="3rem">
+    <Ul gridGap="3rem">
       {works.map(({ permalink, title, tagline }) => (
-        <List.Item key={permalink}>
+        <Li key={permalink}>
           <H3 fontSize="3rem" lineHeight="4rem" margin="0">
             <Link to={permalink} type="primary">
               {title}
@@ -26,9 +26,9 @@ export default function WorksContainer({ works }) {
           <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
             {tagline}
           </P>
-        </List.Item>
+        </Li>
       ))}
-    </List>
+    </Ul>
   );
 }
 

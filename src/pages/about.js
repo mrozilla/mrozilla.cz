@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, P, List, H2,
+  Main, Section, P, Ul, Li, H2,
 } from '../components';
 import { RootContainer, HeroContainer, SEOContainer } from '../containers';
 
@@ -57,14 +57,14 @@ export default function AboutPage({
         <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="about">
-          <List gridGap="2rem">
+          <Ul gridGap="2rem">
             {about.map(item => (
-              <List.Item key={item.title}>
+              <Li key={item.title}>
                 <H2>{item.title}</H2>
                 <P>{parseLinks(item.text, { type: 'secondary' })}</P>
-              </List.Item>
+              </Li>
             ))}
-          </List>
+          </Ul>
         </Section>
       </Main>
     </RootContainer>
