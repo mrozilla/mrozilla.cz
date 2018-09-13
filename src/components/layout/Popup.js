@@ -9,7 +9,7 @@ import { fadeOutAnimation, mediaQuerise } from '../../utils';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.div(
+export default styled.aside(
   {
     position:  'fixed',
     left:      0,

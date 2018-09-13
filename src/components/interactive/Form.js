@@ -2,18 +2,20 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import P from './P';
+import styled from 'styled-components';
+import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const H1 = P.withComponent('h1');
-H1.defaultProps = {
-  ...P.defaultProps,
-  fontSize:   '3rem',
-  lineHeight: '4rem',
-  margin:     '0 0 4rem 0',
-};
-
-export default H1;
+export default styled.form(
+  {
+    gridArea: 'form',
+    display:  'grid',
+  },
+  ({ gridGap = '2rem 1rem', gridTemplate }) => ({
+    ...mediaQuerise({ gridTemplate }),
+    ...mediaQuerise({ gridGap }),
+  }),
+);
