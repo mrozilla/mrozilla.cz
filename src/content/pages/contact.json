@@ -4,14 +4,47 @@
     "date": "2018-07-10T00:00:00.000Z",
     "permalink": "/contact",
     "title": "contact",
-    "description": "you've got a project in mind and we'd love to hear more about it",
+    "description": "you've got a project in mind and we'd love to hear everything about it",
     "ogImage": "../multimedia/og.png"
   },
   "body": {
     "hero": {
-      "title": "you've got a project in mind and we'd love to hear more about it"
+      "title": "you've got a project in mind and we'd love to hear everything about it"
     },
     "form": {
+      "inputs": [
+        {
+          "name": "name",
+          "label": "Your full name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "Your email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "projectSpecs",
+          "label": "Project requirements & features",
+          "type": "textarea",
+          "rows": "6",
+          "required": true
+        },
+        {
+          "name": "projectBudget",
+          "label": "Project budget",
+          "type": "radio",
+          "options": ["€1,000 – €5,000", "€5,000 – €10,000", "€10,000+"],
+          "required": true
+        },
+        {
+          "name": "submit",
+          "value": "Send",
+          "type": "submit"
+        }
+      ],
       "success": "What a pleasure to hear from you. We'll get back to you soon, keep an eye out on your inbox!",
       "back": "Back to main page"
     }

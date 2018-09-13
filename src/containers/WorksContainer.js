@@ -6,7 +6,7 @@ import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 
 import {
-  List, H3, P, Link,
+  Ul, Li, H3, P, Link,
 } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,20 +15,21 @@ import {
 
 export default function WorksContainer({ works }) {
   return (
-    <List gridGap="3rem">
-      {works.map(({ permalink, title, tagline }) => (
-        <List.Item key={permalink}>
+    <Ul gridGap="3rem">
+      {works.map(work => (
+        <Li key={work.permalink}>
           <H3 fontSize="3rem" lineHeight="4rem" margin="0">
-            <Link to={permalink} type="primary">
-              {title}
+            <Link to={work.permalink} type="primary">
+              {work.title}
             </Link>
           </H3>
           <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {tagline}
+            {work.tags && work.tags.join(', ')}
+            {work.tagline && work.tagline}
           </P>
-        </List.Item>
+        </Li>
       ))}
-    </List>
+    </Ul>
   );
 }
 
@@ -37,7 +38,7 @@ WorksContainer.propTypes = {
     shape({
       permalink: string.isRequired,
       title:     string.isRequired,
-      tagline:   string.isRequired,
+      tags:      arrayOf(string).isRequired,
     }),
   ).isRequired,
 };

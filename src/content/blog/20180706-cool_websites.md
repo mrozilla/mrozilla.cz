@@ -12,10 +12,12 @@ ogImage: "../multimedia/og.png"
 - http://davidprati.fr/ <small style="opacity: 0.5">(2018)</small>
 - http://greaterthanorequalto.net/ <small style="opacity: 0.5">(2018)</small>
 - http://kylemeyer.com/ <small style="opacity: 0.5">(2018)</small>
+- http://mackeysaturday.com/ <small style="opacity: 0.5">(2018)</small>
 - http://www.bbriel.me/ <small style="opacity: 0.5">(2018)</small>
 - http://www.fullstopnewparagraph.co.uk/ <small style="opacity: 0.5">(2018)</small>
 - https://chasem.co/ <small style="opacity: 0.5">(2018)</small>
 - https://twnsnd.co/ <small style="opacity: 0.5">(2018)</small>
+- https://websmyth.co/ <small style="opacity: 0.5">(2018)</small>
 
 ## companies/startups/services
 
