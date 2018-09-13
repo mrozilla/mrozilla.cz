@@ -24,7 +24,8 @@ export default function WorksContainer({ works }) {
             </Link>
           </H3>
           <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {work.tags.join(', ')}
+            {work.tags && work.tags.join(', ')}
+            {work.tagline && work.tagline}
           </P>
         </Li>
       ))}
