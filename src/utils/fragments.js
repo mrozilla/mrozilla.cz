@@ -37,7 +37,7 @@ export const fragments = graphql`
     }
     body {
       title
-      tagline
+      tags
     }
   }
 

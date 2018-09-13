@@ -9,6 +9,7 @@
   },
   "body": {
     "title": "Pioneers",
-    "tagline": "Building an internal startup CRM"
+    "tagline": "Building an internal startup CRM",
+    "tags": ["design", "product"]
   }
 }
