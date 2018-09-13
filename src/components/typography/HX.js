@@ -2,71 +2,46 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import { graphql } from 'gatsby';
-
-import {
-  Main, Section, P, Ul, Li, H2,
-} from '../components';
-import { RootContainer, HeroContainer, SEOContainer } from '../containers';
-
-import { parseLinks } from '../utils';
+import P from './P';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// query
+// h1
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const query = graphql`
-  {
-    page: pagesJson(meta: { permalink: { eq: "/about" } }) {
-      ...MetaFragment
-      body {
-        hero {
-          title
-        }
-        about {
-          title
-          text
-        }
-      }
-    }
-  }
-`;
+export const H1 = P.withComponent('h1');
+
+H1.defaultProps = {
+  ...P.defaultProps,
+  fontSize:   '3rem',
+  lineHeight: '4rem',
+  margin:     '0 0 4rem 0',
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// h2
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function AboutPage({
-  data: {
-    page: {
-      meta,
-      body: { hero, about },
-    },
-  },
-}) {
-  return (
-    <RootContainer>
-      <Main
-        gridTemplate={{
-          xs: "'hero' 'about'",
-          md: "'hero hero' 'about .' / 2fr 1fr",
-        }}
-        gridGap="10vh 4rem"
-      >
-        <SEOContainer meta={meta} />
-        <HeroContainer title={hero.title} />
-        <Section gridArea="about">
-          <Ul gridGap="2rem">
-            {about.map(item => (
-              <Li key={item.title}>
-                <H2>{item.title}</H2>
-                <P>{parseLinks(item.text, { type: 'secondary' })}</P>
-              </Li>
-            ))}
-          </Ul>
-        </Section>
-      </Main>
-    </RootContainer>
-  );
-}
+export const H2 = P.withComponent('h2');
+
+H2.defaultProps = {
+  ...P.defaultProps,
+  fontSize:      '1.25rem',
+  fontWeight:    '300',
+  lineHeight:    '3rem',
+  margin:        '0',
+  textTransform: 'uppercase',
+  letterSpacing: '0.2em',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// h3
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const H3 = P.withComponent('h3');
+
+H3.defaultProps = {
+  ...P.defaultProps,
+  fontSize:   '2.5rem',
+  lineHeight: '2.5rem',
+  margin:     '0 0 1rem 0',
+};

@@ -6,7 +6,7 @@ import React from 'react';
 import { shape, string, arrayOf } from 'prop-types';
 
 import {
-  Footer, Section, H2, List, Link, P,
+  Footer, Section, H2, Ul, Li, Link, P,
 } from '../components';
 import { parseLinks } from '../utils';
 
@@ -19,27 +19,27 @@ export default function FooterContainer({ footer }) {
     <Footer>
       <Section gridArea="contact">
         <H2>{footer.contact.title}</H2>
-        <List>
+        <Ul>
           {footer.contact.body.map(contact => (
-            <List.Item key={contact.url}>
+            <Li key={contact.url}>
               <Link to={contact.url} type="primary">
                 {contact.text}
               </Link>
-            </List.Item>
+            </Li>
           ))}
-        </List>
+        </Ul>
       </Section>
       <Section gridArea="legal">
         <H2>{footer.legal.title}</H2>
-        <List>
+        <Ul>
           {footer.legal.body.map(legal => (
-            <List.Item key={legal.url}>
+            <Li key={legal.url}>
               <Link to={legal.url} type="primary">
                 {legal.text}
               </Link>
-            </List.Item>
+            </Li>
           ))}
-        </List>
+        </Ul>
       </Section>
       <Section gridArea="colophon">
         <H2>{footer.colophon.title}</H2>

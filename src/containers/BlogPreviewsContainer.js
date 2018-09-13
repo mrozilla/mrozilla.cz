@@ -7,7 +7,9 @@ import {
   arrayOf, shape, string, number,
 } from 'prop-types';
 
-import { List, Link, P } from '../components';
+import {
+  Ul, Li, Link, P,
+} from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -15,9 +17,9 @@ import { List, Link, P } from '../components';
 
 export default function BlogPreviewsContainer({ posts }) {
   return (
-    <List gridGap="0rem">
+    <Ul gridGap="0rem">
       {posts.map(post => (
-        <List.Item key={post.permalink}>
+        <Li key={post.permalink}>
           <Link to={post.permalink} type="primary">
             {post.title}
           </Link>
@@ -28,9 +30,9 @@ export default function BlogPreviewsContainer({ posts }) {
               {post.timeToRead && `${post.timeToRead} min read`}
             </P>
           )}
-        </List.Item>
+        </Li>
       ))}
-    </List>
+    </Ul>
   );
 }
 

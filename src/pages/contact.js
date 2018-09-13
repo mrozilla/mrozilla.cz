@@ -6,11 +6,9 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, P, Link, Button,
+  Main, Section, P, Link, Button, Form, Input,
 } from '../components';
-import {
-  RootContainer, HeroContainer, SEOContainer, ContactContainer,
-} from '../containers';
+import { RootContainer, HeroContainer, SEOContainer } from '../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -19,18 +17,21 @@ import {
 export const query = graphql`
   {
     page: pagesJson(meta: { permalink: { eq: "/contact" } }) {
-      meta {
-        title
-        description
-        ogImage {
-          ...OgImageFragment
-        }
-      }
+      ...MetaFragment
       body {
         hero {
           title
         }
         form {
+          inputs {
+            name
+            label
+            value
+            options
+            type
+            rows
+            required
+          }
           success
           back
         }
@@ -52,27 +53,51 @@ export default function ContactPage({
   },
   location,
 }) {
+  const renderSuccess = () => (
+    <Section gridArea="form">
+      <P margin="0 0 2rem 0">{form.success}</P>
+      <Link to="/">
+        <Button>{form.back}</Button>
+      </Link>
+    </Section>
+  );
+
+  const renderForm = () => (
+    <Form
+      name="contact"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      method="POST"
+      action="/contact#success"
+      gridTemplate={{
+        xs: "'name' 'email' 'projectSpecs' 'projectBudget' 'submit'",
+        lg:
+          "'name email' 'projectSpecs projectSpecs' 'projectBudget projectBudget' 'submit submit'",
+      }}
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="bot-field" />
+      {form.inputs.map(input => (
+        <Input key={input.name} {...input} />
+      ))}
+      {/* <Button type="submit" gridArea="submit">
+        Send
+      </Button> */}
+    </Form>
+  );
+
   return (
     <RootContainer>
       <Main
         gridTemplate={{
           xs: "'hero' 'form'",
-          lg: "'hero hero' 'form .' / 2fr 1fr",
+          lg: "'hero .' 'form .' / 2fr 1fr",
         }}
         gridGap="10vh 4rem"
       >
         <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
-        {location.hash === '#success' ? (
-          <Section gridArea="form">
-            <P margin="0 0 2rem 0">{form.success}</P>
-            <Link to="/">
-              <Button>{form.back}</Button>
-            </Link>
-          </Section>
-        ) : (
-          <ContactContainer />
-        )}
+        {location.hash === '#success' ? renderSuccess() : renderForm()}
       </Main>
     </RootContainer>
   );
