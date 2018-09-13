@@ -65,12 +65,13 @@ The knowledge base is split into several sections:
 
 #### General
 
+- [Algorithms in Javascript](https://medium.com/siliconwat/algorithms-in-javascript-b0bed68f4038)
 - [Daily JS tips](http://www.jstips.co/)
 - [How to write sensible code](https://www.sitepoint.com/self-documenting-javascript)
-- [JavaScript WAT](https://www.destroyallsoftware.com/talks/wat)
+- [Javascript WAT](https://www.destroyallsoftware.com/talks/wat)
 - [Original jQuery code annotated](http://genius.it/ejohn.org/files/jquery-original.html)
 - [Page transition event catching](https://github.com/luruke/barba.js)
-- [Pure JavaScript immutable arrays](http://vincent.billey.me/pure-javascript-immutable-array)
+- [Pure Javascript immutable arrays](http://vincent.billey.me/pure-javascript-immutable-array)
 - [Vibrate API](http://illyism.com/journal/vibrate-mobile-phone-web-vibration-api)
 - [What colours is your function](http://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/)
 
