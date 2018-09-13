@@ -17,6 +17,7 @@ export default styled.button`
   padding: 0;
   margin: ${({ margin }) => margin};
   width: ${({ width }) => width};
+  grid-area: ${({ gridArea }) => gridArea};
 
   ${({ type }) => {
     if (type === 'basic') {
