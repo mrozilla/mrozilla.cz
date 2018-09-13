@@ -42,10 +42,6 @@ export default class EmojiPage extends PureComponent {
     randomEmojis: [],
   };
 
-  componentDidMount = () => {
-    this.handleAddEmoji();
-  };
-
   getRandomEmoji = () => fetch('/.netlify/functions/emoji').then(r => r.json());
 
   handleAddEmoji = async () => {
@@ -66,8 +62,8 @@ export default class EmojiPage extends PureComponent {
           <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="random">
-            <H2>Random emoji</H2>
-            <Button onClick={this.handleAddEmoji}>Add</Button>
+            <H2>Emoji story generator</H2>
+            <Button onClick={this.handleAddEmoji}>Add topic</Button>
             <Button onClick={this.handleClear}>Clear</Button>
             <P fontSize="12rem" lineHeight={1} margin="2rem 0 0 0">
               {this.state.randomEmojis.map(emoji => (
