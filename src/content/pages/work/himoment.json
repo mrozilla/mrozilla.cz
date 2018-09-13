@@ -9,6 +9,7 @@
   },
   "body": {
     "title": "hiMoment",
-    "tagline": "Designing for happiness"
+    "tagline": "Designing for happiness",
+    "tags": ["design", "development", "product"]
   }
 }
