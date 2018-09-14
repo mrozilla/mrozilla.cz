@@ -70,9 +70,8 @@ export default function ContactPage({
       method="POST"
       action="/contact#success"
       gridTemplate={{
-        xs: "'name' 'email' 'projectSpecs' 'projectBudget' 'submit'",
-        lg:
-          "'name email' 'projectSpecs projectSpecs' 'projectBudget projectBudget' 'submit submit'",
+        xs: "'name' 'email' 'specs' 'budget' 'submit'",
+        lg: "'name email' 'specs specs' 'budget budget' 'submit submit'",
       }}
     >
       <input type="hidden" name="form-name" value="contact" />
@@ -80,9 +79,6 @@ export default function ContactPage({
       {form.inputs.map(input => (
         <Input key={input.name} {...input} />
       ))}
-      {/* <Button type="submit" gridArea="submit">
-        Send
-      </Button> */}
     </Form>
   );
 
