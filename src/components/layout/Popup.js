@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { fadeOutAnimation, mediaQuerise } from '../../utils';
+import { mediaQuerise, fadeOutAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -23,14 +23,14 @@ export default styled.aside(
     color = 'white',
     backgroundColor = 'var(--color-success)',
     fontSize,
-    bottom = 'auto',
     top = '0',
+    bottom = 'auto',
     animation = `250ms ${fadeOutAnimation} forwards`,
   }) => ({
     color,
     backgroundColor,
     fontSize,
-    ...mediaQuerise({ bottom, top }),
+    ...mediaQuerise({ top, bottom }),
     animation,
     animationDelay: `${duration - 250}ms`,
   }),
