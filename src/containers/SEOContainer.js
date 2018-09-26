@@ -45,7 +45,7 @@ export default class SEOContainer extends PureComponent {
           },
         }) => (
           <Helmet
-            title={this.props.meta.title.title}
+            title={this.props.meta.title}
             titleTemplate="%s | mrozilla"
             meta={[
               { name: 'description', content: this.props.meta.description },
