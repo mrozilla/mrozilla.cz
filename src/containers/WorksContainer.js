@@ -38,7 +38,8 @@ WorksContainer.propTypes = {
     shape({
       permalink: string.isRequired,
       title:     string.isRequired,
-      tags:      arrayOf(string).isRequired,
+      tagline:   string,
+      tags:      arrayOf(string),
     }),
   ).isRequired,
 };
