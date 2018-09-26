@@ -39,9 +39,8 @@ export default styled.p(
     whiteSpace,
     color,
     opacity,
-    ...mediaQuerise({ margin }),
-    ...mediaQuerise({ padding }),
     gridColumn,
     gridArea,
+    ...mediaQuerise({ margin, padding }),
   }),
 );

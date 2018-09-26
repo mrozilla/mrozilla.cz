@@ -117,6 +117,7 @@ The knowledge base is split into several sections:
 - [Let's write beautiful CSS comments](http://seesparkbox.com/foundry/lets_write_beautiful_css_comments?ref=heydesigner-weekly)
 - [Medium's CSS is actually pretty fucking good](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
 - [Modern CSS snippets](https://equinsuocha.io/blog/hot-tips-css)
+- [Modular CSS](https://spaceninja.com/2018/09/17/what-is-modular-css/)
 - [Responsive typography calculation](https://www.smashingmagazine.com/2016/05/fluid-typography/)
 - [Reuleaux polygons + SVG generation](https://varun.ca/reuleaux-polygons/)
 - [SVG in web design](http://www.designyourway.net/blog/resources/want-to-learn-about-svg-start-with-this-article/)

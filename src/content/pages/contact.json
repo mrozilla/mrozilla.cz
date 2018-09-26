@@ -26,14 +26,14 @@
           "required": true
         },
         {
-          "name": "projectSpecs",
-          "label": "Project requirements & features",
+          "name": "specs",
+          "label": "Project idea",
           "type": "textarea",
           "rows": "6",
           "required": true
         },
         {
-          "name": "projectBudget",
+          "name": "budget",
           "label": "Project budget",
           "type": "radio",
           "options": ["€1,000 – €5,000", "€5,000 – €10,000", "€10,000+"],

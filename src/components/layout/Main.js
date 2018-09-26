@@ -16,7 +16,6 @@ export default styled.main(
     // animation: `${fadeUpAnimation} 750ms forwards`,
   },
   ({ gridGap = '1rem', gridTemplate }) => ({
-    ...mediaQuerise({ gridGap }),
-    ...mediaQuerise({ gridTemplate }),
+    ...mediaQuerise({ gridGap, gridTemplate }),
   }),
 );

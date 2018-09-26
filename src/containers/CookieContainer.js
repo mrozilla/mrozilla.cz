@@ -33,6 +33,10 @@ export default class CookieContainer extends PureComponent {
             xs: 'auto',
             sm: '0',
           }}
+          top={{
+            xs: '0',
+            sm: 'auto',
+          }}
         >
           Yeah, we use cookies, we even have a{' '}
           <Link type="primary" to="/legal#cookies">

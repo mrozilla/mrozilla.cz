@@ -15,7 +15,6 @@ export default styled.form(
     display:  'grid',
   },
   ({ gridGap = '2rem 1rem', gridTemplate }) => ({
-    ...mediaQuerise({ gridTemplate }),
-    ...mediaQuerise({ gridGap }),
+    ...mediaQuerise({ gridTemplate, gridGap }),
   }),
 );
