@@ -25,7 +25,7 @@ ogImage: "../multimedia/og.png"
 - http://heystack.is/ <small style="opacity: 0.5">(2018)</small>
 - https://airtable.com <small style="opacity: 0.5">(2018)</small>
 - https://avocode.com/ <small style="opacity: 0.5">(2018)</small>
-- https://buffer.com/ <small style="opacity: 0.5">(2018)</small>
+- [https://buffer.com/](https://web.archive.org/web/20180714220518/https://buffer.com/) <small style="opacity: 0.5">(2018)</small>
 - https://carta.com/ <small style="opacity: 0.5">(2018)</small>
 - https://clickup.com/ <small style="opacity: 0.5">(2018)</small>
 - https://hellogustav.com/ <small style="opacity: 0.5">(2018)</small>
@@ -33,13 +33,12 @@ ogImage: "../multimedia/og.png"
 - https://intercom.com <small style="opacity: 0.5">(2018)</small>
 - https://ionicframework.com/ <small style="opacity: 0.5">(2018)</small>
 - https://later.com/ <small style="opacity: 0.5">(2018)</small>
-- https://mapbox.com <small style="opacity: 0.5">(2018)</small>
+- [https://mapbox.com](https://web.archive.org/web/20171203211916/https://www.mapbox.com/) <small style="opacity: 0.5">(2017)</small>
 - https://marvelapp.com/ <small style="opacity: 0.5">(2018)</small>
 - https://marvelapp.com/developers <small style="opacity: 0.5">(2018)</small>
-- https://rentberry.com/ <small style="opacity: 0.5">(2018)</small>
 - https://slack.com <small style="opacity: 0.5">(2018)</small>
 - https://stripe.com <small style="opacity: 0.5">(2018)</small>
-- https://www.atlassian.com/ <small style="opacity: 0.5">(2018)</small>
+- [https://www.atlassian.com/](https://web.archive.org/web/20180614225802/https://www.atlassian.com/) <small style="opacity: 0.5">(2018)</small>
 - https://www.checkout.com/ <small style="opacity: 0.5">(2018)</small>
 - https://www.digitalocean.com/ <small style="opacity: 0.5">(2018)</small>
 - https://yogalayout.com/ <small style="opacity: 0.5">(2018)</small>
