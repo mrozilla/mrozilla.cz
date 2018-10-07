@@ -6,33 +6,36 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import styled, { css } from 'styled-components';
-import {
-  Main, Section, H2, P, Button,
-} from '../../components';
+import { Main, Section, P, Button } from '../../components';
 import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
 // ─────────────────────────────────────────────────────────────────────────────
 
-// export const query = graphql`
-//   {
-//     page: labJson(meta: { permalink: { eq: "/lab/calendar" } }) {
-//       meta {
-//         title
-//         description
-//         ogImage {
-//           ...OgImageFragment
-//         }
-//       }
-//       body {
-//         hero {
-//           title
-//         }
-//       }
-//     }
-//   }
-// `;
+export const query = graphql`
+  {
+    page: labJson(meta: { permalink: { eq: "/lab/calendar" } }) {
+      meta {
+        title
+        description
+        permalink
+        ogImage {
+          ...OgImageFragment
+        }
+      }
+      body {
+        hero {
+          title
+        }
+      }
+    }
+  }
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// components
+// ─────────────────────────────────────────────────────────────────────────────
 
 const Calendar = styled.div`
   display: flex;
@@ -164,8 +167,8 @@ export default class CalendarPage extends PureComponent {
     return (
       <RootContainer>
         <Main gridTemplate="'hero' 'calendar'" gridGap="10vh 4rem">
-          {/* <SEOContainer meta={this.props.data.page.meta} /> */}
-          {/* <HeroContainer title={this.props.data.page.body.hero.title} /> */}
+          <SEOContainer meta={this.props.data.page.meta} />
+          <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="calendar">
             {this.renderCalendarHeader()}
             {this.renderCalendarWeekdays()}
