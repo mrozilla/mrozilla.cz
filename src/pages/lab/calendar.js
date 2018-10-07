@@ -42,6 +42,11 @@ Calendar.Header = styled.div`
   margin-bottom: 4rem;
 `;
 
+Calendar.Day = styled.p`
+  flex: 14.2857142857% 0;
+  text-align: center;
+`;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
@@ -53,7 +58,11 @@ export default class CalendarPage extends PureComponent {
   };
 
   helpers = {
+    getWeekdayNames: () => new Array(7)
+      .fill()
+      .map((_, i) => new Date(1970, 0, 5 + i).toLocaleString(this.state.locale, { weekday: 'short' })),
     getMonthName: (date = this.state.selectedMonth) => date.toLocaleString(this.state.locale, { month: 'long' }),
+    getYearName:  (date = this.state.selectedMonth) => date.toLocaleString(this.state.locale, { year: 'numeric' }),
   };
 
   handleChangeMonth = (offset) => {
@@ -66,7 +75,7 @@ export default class CalendarPage extends PureComponent {
   };
 
   renderCalendarHeader = () => {
-    const currentMonth = `${this.helpers.getMonthName()}, ${this.state.selectedMonth.getFullYear()}`;
+    const currentMonth = `${this.helpers.getMonthName()}, ${this.helpers.getYearName()}`;
     return (
       <Calendar.Header>
         <Button onClick={() => this.handleChangeMonth(-1)}>‹</Button>
@@ -76,13 +85,24 @@ export default class CalendarPage extends PureComponent {
     );
   };
 
+  renderCalendarWeekdays = () => (
+    <Calendar.Header>
+      {this.helpers.getWeekdayNames().map(weekday => (
+        <Calendar.Day key={weekday}>{weekday}</Calendar.Day>
+      ))}
+    </Calendar.Header>
+  );
+
   render() {
     return (
       <RootContainer>
         <Main gridTemplate="'hero' 'calendar'" gridGap="10vh 4rem">
           {/* <SEOContainer meta={this.props.data.page.meta} /> */}
           {/* <HeroContainer title={this.props.data.page.body.hero.title} /> */}
-          <Section gridArea="calendar">{this.renderCalendarHeader()}</Section>
+          <Section gridArea="calendar">
+            {this.renderCalendarHeader()}
+            {this.renderCalendarWeekdays()}
+          </Section>
         </Main>
       </RootContainer>
     );
