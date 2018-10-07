@@ -6,7 +6,9 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import styled, { css } from 'styled-components';
-import { Main, Section, P, Button } from '../../components';
+import {
+  Main, Section, P, Button,
+} from '../../components';
 import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -59,7 +61,6 @@ Calendar.Day = styled.p`
   flex: 14.2857142857% 0;
   text-align: center;
   margin-bottom: 0.5rem;
-  cursor: pointer;
 
   ${({ dayOffset }) => dayOffset
     && css`
