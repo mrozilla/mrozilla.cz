@@ -65,17 +65,16 @@ export default class CalendarPage extends PureComponent {
     }));
   };
 
-  renderCalendarHeader = () => (
-    <Calendar.Header>
-      <Button onClick={() => this.handleChangeMonth(-1)}>
-        ‹
-      </Button>
-      <P>
-        {this.helpers.getMonthName()}, {this.state.selectedMonth.getFullYear()}
-      </P>
-      <Button onClick={() => this.handleChangeMonth(1)}>›</Button>
-    </Calendar.Header>
-  );
+  renderCalendarHeader = () => {
+    const currentMonth = `${this.helpers.getMonthName()}, ${this.state.selectedMonth.getFullYear()}`;
+    return (
+      <Calendar.Header>
+        <Button onClick={() => this.handleChangeMonth(-1)}>‹</Button>
+        <P>{currentMonth}</P>
+        <Button onClick={() => this.handleChangeMonth(1)}>›</Button>
+      </Calendar.Header>
+    );
+  };
 
   render() {
     return (
