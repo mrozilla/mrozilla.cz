@@ -37,6 +37,8 @@ import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 const Calendar = styled.div``;
 
 Calendar.Header = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 4rem;
 `;
 
@@ -46,17 +48,32 @@ Calendar.Header = styled.div`
 
 export default class CalendarPage extends PureComponent {
   state = {
-    today:  new Date(),
-    locale: 'en',
+    selectedMonth: new Date(),
+    locale:        'en',
   };
 
   helpers = {
-    getMonthName: (date = this.state.today) => date.toLocaleString(this.state.locale, { month: 'long' }),
+    getMonthName: (date = this.state.selectedMonth) => date.toLocaleString(this.state.locale, { month: 'long' }),
+  };
+
+  handleChangeMonth = (offset) => {
+    this.setState(prevState => ({
+      selectedMonth: new Date(
+        prevState.selectedMonth.getFullYear(),
+        prevState.selectedMonth.getMonth() + offset,
+      ),
+    }));
   };
 
   renderCalendarHeader = () => (
     <Calendar.Header>
-      <P>{this.helpers.getMonthName()}</P>
+      <Button onClick={() => this.handleChangeMonth(-1)}>
+        ‹
+      </Button>
+      <P>
+        {this.helpers.getMonthName()}, {this.state.selectedMonth.getFullYear()}
+      </P>
+      <Button onClick={() => this.handleChangeMonth(1)}>›</Button>
     </Calendar.Header>
   );
 
