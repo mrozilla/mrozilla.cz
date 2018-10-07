@@ -113,11 +113,11 @@ export default class CalendarPage extends PureComponent {
     getYearName:  (date = this.state.selectedMonth) => date.toLocaleString(this.state.locale, { year: 'numeric' }),
   };
 
-  handleChangeMonth = (offset) => {
+  handleChangeSelection = ({ yearOffset = 0, monthOffset = 0 }) => {
     this.setState(prevState => ({
       selectedMonth: new Date(
-        prevState.selectedMonth.getFullYear(),
-        prevState.selectedMonth.getMonth() + offset,
+        prevState.selectedMonth.getFullYear() + yearOffset,
+        prevState.selectedMonth.getMonth() + monthOffset,
       ),
     }));
   };
@@ -126,9 +126,11 @@ export default class CalendarPage extends PureComponent {
     const currentMonth = `${this.helpers.getMonthName()}, ${this.helpers.getYearName()}`;
     return (
       <Calendar.Segment>
-        <Button onClick={() => this.handleChangeMonth(-1)}>‹</Button>
-        <P>{currentMonth}</P>
-        <Button onClick={() => this.handleChangeMonth(1)}>›</Button>
+        <Button onClick={() => this.handleChangeSelection({ yearOffset: -1 })}>«</Button>
+        <Button onClick={() => this.handleChangeSelection({ monthOffset: -1 })}>‹</Button>
+        <P margin="0 auto">{currentMonth}</P>
+        <Button onClick={() => this.handleChangeSelection({ monthOffset: 1 })}>›</Button>
+        <Button onClick={() => this.handleChangeSelection({ yearOffset: 1 })}>»</Button>
       </Calendar.Segment>
     );
   };
