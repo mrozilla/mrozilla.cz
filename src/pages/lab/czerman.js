@@ -11,7 +11,7 @@ import {
 } from '../../components';
 import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
-import { sample, metaTypes } from '../../utils';
+import { metaTypes } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -71,10 +71,15 @@ export default class CzermanPage extends PureComponent {
   };
 
   handleNextTerm = () => {
-    this.setState({
-      isModalOpen:   true,
-      isCardFlipped: false,
-      openTermId:    sample(this.props.data.page.dictionary).id,
+    this.setState((prevState) => {
+      const currentIndex = this.props.data.page.dictionary.findIndex(term => term.id === prevState.openTermId);      
+      return {
+        isModalOpen:   true,
+        isCardFlipped: false,
+        openTermId:    currentIndex === this.props.data.page.dictionary.length - 1
+          ? this.props.data.page.dictionary[0].id
+          : this.props.data.page.dictionary[currentIndex + 1].id,
+      };
     });
   };
 
