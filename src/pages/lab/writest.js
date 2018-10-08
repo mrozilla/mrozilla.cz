@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, Input, TextArea, H1, H2, P,
+  Main, Section, Input, H1, H2, P,
 } from '../../components';
 import { RootContainer, SEOContainer } from '../../containers';
 
@@ -20,6 +20,7 @@ export const query = graphql`
       meta {
         title
         description
+        permalink
         ogImage {
           ...OgImageFragment
         }

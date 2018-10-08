@@ -23,6 +23,7 @@ export const query = graphql`
       meta {
         title
         description
+        permalink
         ogImage {
           ...OgImageFragment
         }
