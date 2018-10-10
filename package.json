@@ -9,21 +9,21 @@
   "author": "Jan Hruby <jan@mrozilla.cz>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.8.0",
-    "gatsby": "2.0.19",
+    "gatsby": "2.0.21",
     "gatsby-plugin-google-analytics": "2.0.6",
-    "gatsby-plugin-manifest": "2.0.4",
+    "gatsby-plugin-manifest": "2.0.5",
     "gatsby-plugin-netlify": "2.0.1",
-    "gatsby-plugin-offline": "2.0.5",
+    "gatsby-plugin-offline": "2.0.6",
     "gatsby-plugin-react-helmet": "3.0.0",
     "gatsby-plugin-robots-txt": "^1.3.0",
     "gatsby-plugin-sharp": "2.0.6",
     "gatsby-plugin-sitemap": "2.0.1",
     "gatsby-plugin-styled-components": "3.0.0",
-    "gatsby-remark-images": "2.0.3",
+    "gatsby-remark-images": "2.0.4",
     "gatsby-remark-prismjs": "3.0.1",
-    "gatsby-source-filesystem": "2.0.2",
+    "gatsby-source-filesystem": "2.0.3",
     "gatsby-transformer-json": "2.1.4",
-    "gatsby-transformer-remark": "2.1.6",
+    "gatsby-transformer-remark": "2.1.7",
     "gatsby-transformer-sharp": "^2.1.3",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
@@ -31,7 +31,7 @@
     "react-dom": "16.5.2",
     "react-helmet": "^5.2.0",
     "rehype-react": "^3.0.3",
-    "styled-components": "^3.4.9"
+    "styled-components": "^3.4.10"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -45,10 +45,10 @@
   "scripts": {
     "start:gatsby": "gatsby develop",
     "start:lambda": "netlify-lambda serve src/lambda",
-    "start": "yarn start:gatsby & yarn start:lambda",
+    "start": "yarn start:lambda & yarn start:gatsby",
     "build:gatsby": "gatsby build",
     "build:lambda": "netlify-lambda build src/lambda",
-    "build": "yarn build:gatsby & yarn build:lambda",
+    "build": "yarn build:lambda && yarn build:gatsby",
     "serve": "gatsby serve",
     "lint": "eslint src/**"
   }
