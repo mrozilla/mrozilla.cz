@@ -25,7 +25,7 @@ export default styled.button`
     }
     return css`
       background-color: hsla(var(--hsl-text), 0.025);
-      box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+      box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
       padding: ${({ padding = '1rem 2rem' }) => padding};
       border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
       transition: 100ms;
