@@ -73,7 +73,7 @@ export default class CzermanPage extends PureComponent {
 
   handleNextTerm = () => {
     this.setState((prevState) => {
-      const currentIndex = this.props.data.page.dictionary.findIndex(term => term.id === prevState.openTermId);      
+      const currentIndex = this.props.data.page.dictionary.findIndex(term => term.id === prevState.openTermId);
       return {
         isModalOpen:   true,
         isCardFlipped: false,
@@ -99,40 +99,38 @@ export default class CzermanPage extends PureComponent {
   renderModal = () => {
     const modalTerm = this.props.data.page.dictionary.find(
       term => term.id === this.state.openTermId,
-    );
-    if (modalTerm) {
-      return (
-        <Modal
-          key={modalTerm.id}
-          isOpen={this.state.isModalOpen}
-          innerPadding="4rem 4rem 2rem 4rem"
-          innerMinWidth="15vw"
-          onClickBackground={this.handleModal}
+    ) || this.props.data.page.dictionary[0];
+    return (
+      <Modal
+        innerKey={modalTerm.id}
+        isOpen={this.state.isModalOpen}
+        innerPadding="4rem 4rem 2rem 4rem"
+        innerMinWidth="15vw"
+        onClickBackground={this.handleModal}
+        onClickEscape={this.handleModal}
+      >
+        <H2>Czech</H2>
+        <P>{modalTerm.czech.grammar}</P>
+        <H2>
+          Czech{' '}
+          <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
+            IPA
+          </Link>
+        </H2>
+        <P>{modalTerm.czech.ipa}</P>
+        <H2>German equivalent</H2>
+        <P>{this.state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
+        <H2>German IPA</H2>
+        <P>{this.state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
+        <Button
+          onClick={this.state.isCardFlipped ? this.handleNextTerm : this.handleFlipCard}
+          margin="4rem 0 0 0"
+          width="100%"
         >
-          <H2>Czech</H2>
-          <P>{modalTerm.czech.grammar}</P>
-          <H2>
-            Czech{' '}
-            <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
-              IPA
-            </Link>
-          </H2>
-          <P>{modalTerm.czech.ipa}</P>
-          <H2>German equivalent</H2>
-          <P>{this.state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
-          <H2>German IPA</H2>
-          <P>{this.state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
-          <Button
-            onClick={this.state.isCardFlipped ? this.handleNextTerm : this.handleFlipCard}
-            margin="4rem 0 0 0"
-            width="100%"
-          >
-            {this.state.isCardFlipped ? 'Next' : 'Reveal'}
-          </Button>
-        </Modal>
-      );
-    }
-    return null;
+          {this.state.isCardFlipped ? 'Next' : 'Reveal'}
+        </Button>
+      </Modal>
+    );
   };
 
   renderTable = () => (
