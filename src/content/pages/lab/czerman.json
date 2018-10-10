@@ -316,7 +316,7 @@
         "ipa": "[ˈkastlɛ]"
       },
       "german": {
-        "grammar": "die Kaserne",
+        "grammar": "der Kasten",
         "ipa": "[ˈkastn̩]"
       }
     },
@@ -398,17 +398,6 @@
       }
     },
     {
-      "id": "lustr",
-      "czech": {
-        "grammar": "lustr",
-        "ipa": "[lʊstr̩]"
-      },
-      "german": {
-        "grammar": "der Luster",
-        "ipa": "[ˈlʊstɐ]"
-      }
-    },
-    {
       "id": "lagr",
       "czech": {
         "grammar": "lágr",
@@ -417,6 +406,17 @@
       "german": {
         "grammar": "der Konzentrationslager",
         "ipa": "[kɔnʦɛntʀaˈʦi̯oːnsˌlaːɡɐ]"
+      }
+    },
+    {
+      "id": "lustr",
+      "czech": {
+        "grammar": "lustr",
+        "ipa": "[lʊstr̩]"
+      },
+      "german": {
+        "grammar": "der Luster",
+        "ipa": "[ˈlʊstɐ]"
       }
     },
     {
@@ -563,25 +563,14 @@
       }
     },
     {
-      "id": "rantl",
+      "id": "prekerni",
       "czech": {
-        "grammar": "rantl",
-        "ipa": "[rantl]"
+        "grammar": "prekérní",
+        "ipa": "[prɛkɛːrɲiː]"
       },
       "german": {
-        "grammar": "der Rand",
-        "ipa": "[ʀant]"
-      }
-    },
-    {
-      "id": "raus",
-      "czech": {
-        "grammar": "rauš",
-        "ipa": "[raʊʃ]"
-      },
-      "german": {
-        "grammar": "das Rausch",
-        "ipa": "[ʀaʊ̯ʃ]"
+        "grammar": "prekär",
+        "ipa": "[pʀeˈkɛːɐ̯]"
       }
     },
     {
@@ -596,6 +585,17 @@
       }
     },
     {
+      "id": "rantl",
+      "czech": {
+        "grammar": "rantl",
+        "ipa": "[rantl]"
+      },
+      "german": {
+        "grammar": "der Rand",
+        "ipa": "[ʀant]"
+      }
+    },
+    {
       "id": "rasple",
       "czech": {
         "grammar": "rašple",
@@ -604,6 +604,17 @@
       "german": {
         "grammar": "die Raspel",
         "ipa": "[ˈʀaspl̩]"
+      }
+    },
+    {
+      "id": "raus",
+      "czech": {
+        "grammar": "rauš",
+        "ipa": "[raʊʃ]"
+      },
+      "german": {
+        "grammar": "das Rausch",
+        "ipa": "[ʀaʊ̯ʃ]"
       }
     },
     {
@@ -640,28 +651,6 @@
       }
     },
     {
-      "id": "sichrhajcka",
-      "czech": {
-        "grammar": "sichrhajcka",
-        "ipa": "[sɪxr̩ɦajt͡ska]"
-      },
-      "german": {
-        "grammar": "die Sicherheitsnadel",
-        "ipa": "[ˈzɪçɐhaɪ̯tsˌnaːdl̩]"
-      }
-    },
-    {
-      "id": "skrupule",
-      "czech": {
-        "grammar": "skrupule",
-        "ipa": "[skrʊpʊlɛ]"
-      },
-      "german": {
-        "grammar": "der Skrupel",
-        "ipa": "[ˈskʀuːpl̩]"
-      }
-    },
-    {
       "id": "sachta",
       "czech": {
         "grammar": "šachta",
@@ -695,6 +684,17 @@
       }
     },
     {
+      "id": "sichrhajcka",
+      "czech": {
+        "grammar": "sichrhajcka",
+        "ipa": "[sɪxr̩ɦajt͡ska]"
+      },
+      "german": {
+        "grammar": "die Sicherheitsnadel",
+        "ipa": "[ˈzɪçɐhaɪ̯tsˌnaːdl̩]"
+      }
+    },
+    {
       "id": "sichta",
       "czech": {
         "grammar": "šichta",
@@ -703,6 +703,28 @@
       "german": {
         "grammar": "die Schicht",
         "ipa": "[ʃɪçt]"
+      }
+    },
+    {
+      "id": "skrupule",
+      "czech": {
+        "grammar": "skrupule",
+        "ipa": "[skrʊpʊlɛ]"
+      },
+      "german": {
+        "grammar": "der Skrupel",
+        "ipa": "[ˈskʀuːpl̩]"
+      }
+    },
+    {
+      "id": "sluk",
+      "czech": {
+        "grammar": "šluk",
+        "ipa": "[ʃlʊk]"
+      },
+      "german": {
+        "grammar": "der Schluck",
+        "ipa": "[ʃlʊk]"
       }
     },
     {
@@ -794,6 +816,17 @@
       }
     },
     {
+      "id": "snitlik",
+      "czech": {
+        "grammar": "šnytlik",
+        "ipa": "[ˈʃnɪtlik]"
+      },
+      "german": {
+        "grammar": "der Schnittlauch",
+        "ipa": "[ˈʃnɪtˌlaʊ̯χ]"
+      }
+    },
+    {
       "id": "snuptychl",
       "czech": {
         "grammar": "šnuptychl",
@@ -802,6 +835,28 @@
       "german": {
         "grammar": "das Schnupf-Tüchelchen",
         "ipa": "[ˈʃnʊpfˌtyːχlˌçən]"
+      }
+    },
+    {
+      "id": "snura",
+      "czech": {
+        "grammar": "šňůra",
+        "ipa": "[ʃɲuːrka]"
+      },
+      "german": {
+        "grammar": "die Schnur",
+        "ipa": "[ʃnuːɐ̯]"
+      }
+    },
+    {
+      "id": "spachtle",
+      "czech": {
+        "grammar": "špachtle",
+        "ipa": "[ʃpaxtlɛ]"
+      },
+      "german": {
+        "grammar": "der Spachtel",
+        "ipa": "[ˈʃpaχtl̩]"
       }
     },
     {
@@ -824,17 +879,6 @@
       "german": {
         "grammar": "die Speisekammer",
         "ipa": "[ˈʃpaɪ̯zəˌkamɐ]"
-      }
-    },
-    {
-      "id": "spachtle",
-      "czech": {
-        "grammar": "špachtle",
-        "ipa": "[ʃpaxtlɛ]"
-      },
-      "german": {
-        "grammar": "der Spachtel",
-        "ipa": "[ˈʃpaχtl̩]"
       }
     },
     {
@@ -959,28 +1003,6 @@
       }
     },
     {
-      "id": "snura",
-      "czech": {
-        "grammar": "šňůra",
-        "ipa": "[ʃɲuːrka]"
-      },
-      "german": {
-        "grammar": "die Schnur",
-        "ipa": "[ʃnuːɐ̯]"
-      }
-    },
-    {
-      "id": "snitlik",
-      "czech": {
-        "grammar": "šnytlik",
-        "ipa": "[ˈʃnɪtlik]"
-      },
-      "german": {
-        "grammar": "der Schnittlauch",
-        "ipa": "[ˈʃnɪtˌlaʊ̯χ]"
-      }
-    },
-    {
       "id": "tapecirung",
       "czech": {
         "grammar": "tapecírung",
@@ -1036,6 +1058,17 @@
       }
     },
     {
+      "id": "vagni",
+      "czech": {
+        "grammar": "vágní",
+        "ipa": "[vaːgɲiː]"
+      },
+      "german": {
+        "grammar": "vage",
+        "ipa": "[ˈvaːɡə]"
+      }
+    },
+    {
       "id": "vagon",
       "czech": {
         "grammar": "vagón",
@@ -1055,17 +1088,6 @@
       "german": {
         "grammar": "das Werkzeug",
         "ipa": "[ˈvɛʁkˌʦɔɪ̯k]"
-      }
-    },
-    {
-      "id": "vagni",
-      "czech": {
-        "grammar": "vágní",
-        "ipa": "[vaːgɲiː]"
-      },
-      "german": {
-        "grammar": "???",
-        "ipa": "[???]"
       }
     },
     {
