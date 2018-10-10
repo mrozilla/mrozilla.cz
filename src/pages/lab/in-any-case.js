@@ -20,6 +20,7 @@ export const query = graphql`
       meta {
         title
         description
+        permalink
         ogImage {
           ...OgImageFragment
         }
@@ -134,7 +135,7 @@ export default class InAnyCasePage extends PureComponent {
               value={this.state.input}
               placeholder="Start typing or paste text..."
               padding="2rem 1rem"
-              margin="0 0 2rem 0"
+              margin="0 0 4rem 0"
               onChange={this.handleInput}
             />
             {Object.entries(this.state.output).map(([key, value]) => (
@@ -145,6 +146,7 @@ export default class InAnyCasePage extends PureComponent {
                 label={key}
                 type="text"
                 value={value}
+                margin="0 0 1rem 0"
                 labelStyle={{
                   isFloating:    true,
                   textTransform: 'unset',

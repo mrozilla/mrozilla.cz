@@ -5,12 +5,11 @@
     "permalink": "https://movineurope.esn.org",
     "title": "Mov'in Europe",
     "tagline": "mobility is a lifestyle",
-    "description":
-      "Mov’in Europe is an international project of ESN started in 2014, running a multi-format campaign promoting various mobility opportunities to young people, students, and young graduates (volunteering, travelling, learning, studying, internships, working).",
-    "tags": ["design", "website"]
+    "description": "Mov’in Europe is an international project of ESN started in 2014, running a multi-format campaign promoting various mobility opportunities to young people, students, and young graduates (volunteering, travelling, learning, studying, internships, working)."
   },
   "body": {
     "title": "Mov'in Europe",
-    "tagline": "branding an international mobility campaign"
+    "tagline": "Branding an international mobility campaign",
+    "tags": ["design", "product", "website"]
   }
 }

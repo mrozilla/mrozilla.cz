@@ -21,6 +21,7 @@ export const query = graphql`
       meta {
         title
         description
+        permalink
         ogImage {
           ...OgImageFragment
         }
@@ -93,30 +94,23 @@ export default class PassworldPage extends Component {
 
   renderOutputs = () => [
     {
-      type:        'text',
-      name:        'password',
-      value:       this.state.password,
-      label:       'Generated password',
-      readOnly:    true,
-      renderRight: () => (
-        <P onClick={this.handleCopyToClipboard} style={{ cursor: 'pointer' }}>
-          <span role="img" aria-label="clipboard">
-              📋
-          </span>
-        </P>
-      ),
+      type:     'text',
+      name:     'password',
+      value:    this.state.password,
+      label:    'Generated password',
+      readOnly: true,
     },
-  ].map(output => <Input key={output.name} {...output} />);
+  ].map(output => <Input key={output.name} margin="0 0 1rem 0" {...output} />);
 
   renderInputs = () => [
     {
-      type:         'number',
-      name:         'length',
-      value:        this.state.length,
-      label:        'Password length',
-      description:  "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
-      marginBottom: '2rem',
-      onChange:     ({ target }) => this.setState({ ...parseInput(target) }),
+      type:        'number',
+      name:        'length',
+      value:       this.state.length,
+      label:       'Password length',
+      description: "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
+      margin:      '0 0 2rem 0',
+      onChange:    ({ target }) => this.setState({ ...parseInput(target) }),
     },
   ].map(input => <Input key={input.name} {...input} />);
 

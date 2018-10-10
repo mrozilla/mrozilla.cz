@@ -21,13 +21,7 @@ import {
 export const query = graphql`
   {
     page: pagesJson(meta: { permalink: { eq: "/lab" } }) {
-      meta {
-        title
-        description
-        ogImage {
-          ...OgImageFragment
-        }
-      }
+      ...MetaFragment
       body {
         hero {
           title
@@ -37,15 +31,7 @@ export const query = graphql`
     labs: allLabJson(sort: { fields: [meta___date], order: DESC }) {
       edges {
         node {
-          meta {
-            type
-            permalink
-            tags
-          }
-          body {
-            title
-            tagline
-          }
+          ...LabFragment
         }
       }
     }
@@ -85,7 +71,7 @@ export default function LabPage({
           <WorksContainer
             works={labs
               .filter(({ node: { meta: { type } } }) => type.includes('tool'))
-              .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
+              .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
           />
         </Section>
         <Section gridArea="products">
@@ -93,7 +79,7 @@ export default function LabPage({
           <WorksContainer
             works={labs
               .filter(({ node: { meta: { type } } }) => type.includes('product'))
-              .map(({ node: { meta, body } }) => ({ ...meta, ...body }))}
+              .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
           />
         </Section>
       </Main>

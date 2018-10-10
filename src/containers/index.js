@@ -3,7 +3,6 @@ export { default as BarrelRollContainer } from './BarrelRollContainer';
 // export { default as BlogPostContainer } from './BlogPostContainer';
 export { default as BlogPreviewsContainer } from './BlogPreviewsContainer';
 export { default as ColourThemeContainer } from './ColourThemeContainer';
-export { default as ContactContainer } from './ContactContainer';
 export { default as CookieContainer } from './CookieContainer';
 export { default as FooterContainer } from './FooterContainer';
 export { default as HeaderContainer } from './HeaderContainer';
