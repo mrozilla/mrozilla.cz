@@ -45,7 +45,7 @@
   "scripts": {
     "start:gatsby": "gatsby develop",
     "start:lambda": "netlify-lambda serve src/lambda",
-    "start": "yarn start:lambda & yarn start:gatsby",
+    "start": "yarn start:lambda | yarn start:gatsby",
     "build:gatsby": "gatsby build",
     "build:lambda": "netlify-lambda build src/lambda",
     "build": "yarn build:lambda && yarn build:gatsby",
