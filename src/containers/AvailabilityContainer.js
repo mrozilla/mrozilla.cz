@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { shape, string } from 'prop-types';
+import { instanceOf } from 'prop-types';
 import { P, Link } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -12,34 +12,30 @@ import { P, Link } from '../components';
 
 export default class AvailabilityContainer extends PureComponent {
   static propTypes = {
-    availability: shape({
-      title: string.isRequired,
-      text:  string.isRequired,
-    }).isRequired,
+    nowDate:          instanceOf(Date),
+    availabilityDate: instanceOf(Date),
   };
 
-  state = {
-    availability: this.props.availability.text,
+  static defaultProps = {
+    nowDate:          new Date(),
+    availabilityDate: new Date(),
   };
 
-  componentDidMount() {
-    const availabilityDate = new Date();
-    availabilityDate.setMonth(
-      availabilityDate.getMonth() + (availabilityDate.getDate() > 15 ? 2 : 1),
-    );
-    this.setState({
-      availability: availabilityDate.toLocaleDateString('en-GB', {
-        month: 'long',
-        year:  'numeric',
-      }),
-    });
-  }
+  availabilityDate = new Date(
+    Math.max(
+      this.props.nowDate.setMonth(this.props.nowDate.getMonth() + 1),
+      this.props.availabilityDate,
+    ),
+  );
 
   render() {
     return (
       <P fontSize="3rem">
         <Link to="/contact" type="primary">
-          {this.state.availability}
+          {this.availabilityDate.toLocaleDateString('en-GB', {
+            month: 'long',
+            year:  'numeric',
+          })}
         </Link>
       </P>
     );

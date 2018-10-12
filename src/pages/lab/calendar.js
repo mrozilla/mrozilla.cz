@@ -127,11 +127,11 @@ export default class CalendarPage extends PureComponent {
     const currentMonth = `${this.helpers.getMonthName()}, ${this.helpers.getYearName()}`;
     return (
       <Calendar.Segment>
-        <Button onClick={() => this.handleChangeSelection({ yearOffset: -1 })}>«</Button>
-        <Button onClick={() => this.handleChangeSelection({ monthOffset: -1 })}>‹</Button>
+        <Button type="basic" onClick={() => this.handleChangeSelection({ yearOffset: -1 })}>«</Button>
+        <Button type="basic" onClick={() => this.handleChangeSelection({ monthOffset: -1 })}>‹</Button>
         <P margin="0 auto">{currentMonth}</P>
-        <Button onClick={() => this.handleChangeSelection({ monthOffset: 1 })}>›</Button>
-        <Button onClick={() => this.handleChangeSelection({ yearOffset: 1 })}>»</Button>
+        <Button type="basic" onClick={() => this.handleChangeSelection({ monthOffset: 1 })}>›</Button>
+        <Button type="basic" onClick={() => this.handleChangeSelection({ yearOffset: 1 })}>»</Button>
       </Calendar.Segment>
     );
   };
@@ -169,7 +169,13 @@ export default class CalendarPage extends PureComponent {
   render() {
     return (
       <RootContainer>
-        <Main gridTemplate="'hero' 'calendar'" gridGap="10vh 4rem">
+        <Main
+          gridTemplate={{
+            xs: "'hero' 'calendar'",
+            lg: "'hero hero' 'calendar .'",
+          }}
+          gridGap="10vh 4rem"
+        >
           <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="calendar">
