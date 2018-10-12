@@ -8,7 +8,7 @@
   "bugs": "https://github.com/mrozilla/mrozilla.cz/issues",
   "author": "Jan Hruby <jan@mrozilla.cz>",
   "dependencies": {
-    "gatsby": "2.0.21",
+    "gatsby": "2.0.22",
     "gatsby-plugin-google-analytics": "2.0.6",
     "gatsby-plugin-manifest": "2.0.5",
     "gatsby-plugin-netlify": "2.0.1",
@@ -19,7 +19,7 @@
     "gatsby-plugin-sitemap": "2.0.1",
     "gatsby-plugin-styled-components": "3.0.0",
     "gatsby-remark-images": "2.0.4",
-    "gatsby-remark-prismjs": "3.0.1",
+    "gatsby-remark-prismjs": "3.0.2",
     "gatsby-source-filesystem": "2.0.3",
     "gatsby-transformer-json": "2.1.4",
     "gatsby-transformer-remark": "2.1.7",
@@ -35,12 +35,12 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.8.0",
-    "eslint": "^5.6.1",
+    "eslint": "^5.7.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "netlify-lambda": "^1.0.1"
+    "netlify-lambda": "^1.0.2"
   },
   "scripts": {
     "start:gatsby": "gatsby develop",
