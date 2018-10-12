@@ -35,7 +35,7 @@ export const query = graphql`
         }
         availability {
           title
-          text
+          dateISOString
         }
       }
     }
@@ -79,7 +79,7 @@ export default function HomePage({
       <Main
         gridTemplate={{
           xs: "'hero' 'based' 'availability' 'work' 'blog'",
-          md: "'hero hero' 'based availability' 'work blog' / 1fr 1fr",
+          md: "'hero hero' 'based availability' 'work blog'",
         }}
         gridGap="10vh 4rem"
       >
@@ -91,7 +91,7 @@ export default function HomePage({
         </Section>
         <Section gridArea="availability">
           <H2>{availability.title}</H2>
-          <AvailabilityContainer availability={availability} />
+          <AvailabilityContainer availabilityDate={new Date(availability.dateISOString)} />
         </Section>
         <Section gridArea="work" id="work">
           <H2>latest client work</H2>
