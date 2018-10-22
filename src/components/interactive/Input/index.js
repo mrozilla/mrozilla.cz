@@ -127,7 +127,7 @@ export default class Input extends PureComponent {
   render() {
     return (
       <InputWrapper
-        gridArea={this.props.name}
+        gridArea={this.props.gridArea || this.props.name}
         height={this.props.height}
         margin={this.props.margin}
       >
