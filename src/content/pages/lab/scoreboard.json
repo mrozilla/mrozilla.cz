@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2018-10-22T00:00:00.000Z",
+    "permalink": "/lab/scoreboard",
+    "title": "Table tennis scoreboard",
+    "description": "A simple implementation of table tennis scoring system",
+    "ogImage": "../../multimedia/og.png"
+  },
+  "body": {
+    "title": "table tennis scoreboard",
+    "tagline": "an implementation of table tennis scoring system",
+    "hero": {
+      "title": "Table tennis is awesome. Implementing scoring logic following the rules of the sport was obviously the next logical thing to do."
+    }
+  }
+}
