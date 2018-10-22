@@ -125,8 +125,8 @@ export default class InAnyCasePage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-          <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.body.title} />
           <Section gridArea="input">
             <Input

@@ -181,8 +181,8 @@ export default class CzermanPage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
-          <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.meta.description} />
           <Section gridArea="practice">
             <Button onClick={this.handleNextTerm}>Start practice</Button>

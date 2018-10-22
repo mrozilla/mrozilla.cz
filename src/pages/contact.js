@@ -84,6 +84,7 @@ export default function ContactPage({
 
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'form'",
@@ -91,7 +92,6 @@ export default function ContactPage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         {location.hash === '#success' ? renderSuccess() : renderForm()}
       </Main>

@@ -112,6 +112,7 @@ export default class WritestPage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main
           gridTemplate={{
             xs: "'input' 'stats'",
@@ -119,7 +120,6 @@ export default class WritestPage extends PureComponent {
           }}
           gridGap="10vh 4rem"
         >
-          <SEOContainer meta={this.props.data.page.meta} />
           <Section gridArea="input">
             <H1>words</H1>
             <Input

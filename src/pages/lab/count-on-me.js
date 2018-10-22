@@ -69,8 +69,8 @@ export default class CountOnMePage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main>
-          <SEOContainer meta={this.props.data.page.meta} />
           <Section
             onClick={e => this.handleCount(e, 1)}
             style={{
