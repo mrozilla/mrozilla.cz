@@ -162,13 +162,13 @@ export default class PassworldPage extends Component {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main
           gridTemplate={{
             xs: "'output .' / 1fr 0fr",
             md: "'output .' / 1fr 1fr",
           }}
         >
-          <SEOContainer meta={this.props.data.page.meta} />
           <Section gridArea="output">
             {this.renderOutputs()}
             {this.renderInputs()}

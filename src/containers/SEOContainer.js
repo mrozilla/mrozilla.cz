@@ -35,18 +35,19 @@ export default class SEOContainer extends PureComponent {
             site {
               siteMetadata {
                 siteUrl
+                title
               }
             }
           }
         `}
         render={({
           site: {
-            siteMetadata: { siteUrl },
+            siteMetadata: { siteUrl, title },
           },
         }) => (
           <Helmet
             title={this.props.meta.title}
-            titleTemplate="%s | mrozilla"
+            titleTemplate={`%s | ${title}`}
             meta={[
               { name: 'description', content: this.props.meta.description },
 

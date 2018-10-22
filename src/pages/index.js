@@ -76,6 +76,7 @@ export default function HomePage({
 }) {
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'based' 'availability' 'work' 'blog'",
@@ -83,7 +84,6 @@ export default function HomePage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="based">
           <H2>{location.title}</H2>
