@@ -72,6 +72,7 @@ The knowledge base is split into several sections:
 - [Original jQuery code annotated](http://genius.it/ejohn.org/files/jquery-original.html)
 - [Page transition event catching](https://github.com/luruke/barba.js)
 - [Pure Javascript immutable arrays](http://vincent.billey.me/pure-javascript-immutable-array)
+- [React job interview](https://medium.com/@baphemot/a-react-job-interview-recruiter-perspective-f1096f54dd16)
 - [Vibrate API](http://illyism.com/journal/vibrate-mobile-phone-web-vibration-api)
 - [What colours is your function](http://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/)
 
@@ -315,6 +316,7 @@ The knowledge base is split into several sections:
 - [Material Design Lite Framework](https://getmdl.io/components/index.html)
 - [Material Design](https://material.google.com/)
 - [Messenger Chatbots UI](https://chatbotsmagazine.com/cheat-sheet-all-facebook-chatbot-interactions-4b14e4e00178)
+- [Micro nudge: a micro animation for behavioral change](https://heydesigner.com/blog/micro-nudge-a-micro-animation-for-behavioral-change/)
 - [Modals best practices](https://uxplanet.org/best-practices-for-modals-overlays-dialog-windows-c00c66cddd8c)
 - [Multi Layer Reveal effect](http://tympanus.net/codrops/2016/06/01/multi-layer-page-reveal-effects/)
 - [Product design principles in a single card](https://blog.prototypr.io/product-design-principles-in-a-single-card-2f6023419a87)
