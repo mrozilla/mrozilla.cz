@@ -31,8 +31,8 @@ export default styled.button`
         padding: ${({ padding = '1rem 2rem' }) => padding};
         border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
 
-        &:hover,
-        &:focus {
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
           background-color: hsla(var(--hsl-text), 0.025);
           box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
           transform: translateY(-1px);
@@ -49,8 +49,8 @@ export default styled.button`
       padding: ${({ padding = '1rem 2rem' }) => padding};
       border-radius: ${({ borderRadius = '0.25rem' }) => borderRadius};
 
-      &:hover,
-      &:focus {
+      &:not(:disabled):hover,
+      &:not(:disabled):focus {
         box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.5);
         transform: translateY(-1px);
       }
