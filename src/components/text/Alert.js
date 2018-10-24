@@ -2,22 +2,26 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { Text } from '../primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.label`
-  color: hsla(var(--hsl-text), 0.75);
-  display: block;
+// prettier-ignore
+export const Alert = styled(Text)`
+  display: inline-block;
+  line-height: 3rem;
+  padding: 1rem 2rem;
+  margin: 0 0 1rem 0;
+  box-shadow: 0 0 0 1px;
+  border-radius: 0.25rem;
 
-  font-size: ${({ fontSize = '1.25rem' }) => fontSize};
-  line-height: ${({ lineHeight = '2rem' }) => lineHeight};
-  animation: ${({ animation }) => animation};
-  margin: ${({ margin }) => margin};
-  padding: ${({ padding = '0 1rem' }) => padding};
-  position: ${({ position }) => position};
-  text-transform: ${({ textTransform = 'uppercase' }) => textTransform};
-  visibility: ${({ visibility }) => visibility};
+  ${({ type }) => type
+    && css`
+      background-color: hsla(var(--hsl-${type}), 0.05);
+      color: var(--color-${type});
+    `};
 `;

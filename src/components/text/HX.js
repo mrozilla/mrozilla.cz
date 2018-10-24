@@ -2,29 +2,28 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import P from './P';
+import styled from 'styled-components';
+
+import { Text } from '../primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // h1
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H1 = P.withComponent('h1');
-
+export const H1 = styled(Text)``;
 H1.defaultProps = {
-  ...P.defaultProps,
+  as:         'h1',
   fontSize:   '3rem',
   lineHeight: '4rem',
-  margin:     '0 0 4rem 0',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // h2
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H2 = P.withComponent('h2');
-
+export const H2 = styled(Text)``;
 H2.defaultProps = {
-  ...P.defaultProps,
+  as:            'h2',
   fontSize:      '1.25rem',
   fontWeight:    '300',
   lineHeight:    '3rem',
@@ -37,10 +36,8 @@ H2.defaultProps = {
 // h3
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H3 = P.withComponent('h3');
-
+export const H3 = styled(Text)``;
 H3.defaultProps = {
-  ...P.defaultProps,
   fontSize:   '2.5rem',
   lineHeight: '2.5rem',
   margin:     '0 0 1rem 0',
