@@ -3,19 +3,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { mediaQuerise, fadeUpAnimation } from '../../utils';
+
+import { Layout } from '../primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.main(
-  {
-    gridArea: 'main',
-    display:  'grid',
-    // animation: `${fadeUpAnimation} 750ms forwards`,
-  },
-  ({ gridGap = '1rem', gridTemplate }) => ({
-    ...mediaQuerise({ gridGap, gridTemplate }),
-  }),
-);
+export const Main = styled(Layout)`
+  grid-area: main;
+  display: grid;
+`;
+Main.defaultProps = { as: 'main' };

@@ -8,7 +8,7 @@ import styled from 'styled-components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.div`
+export const Tooltip = styled.div`
   position: absolute;
   background-color: var(--color-info);
   border-radius: 1rem;

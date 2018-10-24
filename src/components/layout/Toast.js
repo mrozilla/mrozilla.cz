@@ -2,36 +2,31 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
-import { mediaQuerise, fadeOutAnimation } from '../../utils';
+import styled, { css } from 'styled-components';
+
+import { Layout } from '../primitives';
+
+import { fadeOutAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.aside(
-  {
-    position:  'fixed',
-    left:      0,
-    right:     0,
-    padding:   '1rem',
-    textAlign: 'center',
-    zIndex:    'var(--z-index-popup)',
-  },
-  ({
-    duration = 1000,
-    color = 'white',
-    backgroundColor = 'var(--color-success)',
-    fontSize,
-    top = '0',
-    bottom = 'auto',
-    animation = `250ms ${fadeOutAnimation} forwards`,
-  }) => ({
-    color,
-    backgroundColor,
-    fontSize,
-    ...mediaQuerise({ top, bottom }),
-    animation,
-    animationDelay: `${duration - 250}ms`,
-  }),
-);
+export const Toast = styled(Layout)`
+  position: fixed;
+  padding: 1rem;
+  text-align: center;
+
+  z-index: var(--z-index-popup);
+
+  animation: ${({ animation = css`250ms ${fadeOutAnimation} forwards 750ms` }) => animation};
+  font-size: ${({ fontSize }) => fontSize};
+  color: ${({ color = 'white' }) => color};
+`;
+Toast.defaultProps = {
+  as:              'aside',
+  backgroundColor: 'var(--color-success)',
+  top:             0,
+  right:           0,
+  left:            0,
+};

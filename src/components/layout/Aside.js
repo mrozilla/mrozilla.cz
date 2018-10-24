@@ -3,11 +3,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-// import { fadeLeftAnimation } from '../../utils';
-// animation: ${fadeLeftAnimation} 750ms forwards;
+
+import { Layout } from '../primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.aside``;
+export const Aside = styled(Layout)``;
+Aside.defaultProps = { as: 'aside' };

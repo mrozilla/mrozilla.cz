@@ -25,7 +25,7 @@ NativeTable.defaultProps = {
   whiteSpace: 'pre',
 };
 
-export default function Table({ children, ...rest }) {
+export function Table({ children, ...rest }) {
   return (
     <div style={{ overflowX: 'auto' }}>
       <NativeTable {...rest}>{children}</NativeTable>
@@ -34,40 +34,12 @@ export default function Table({ children, ...rest }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// tr
-// ─────────────────────────────────────────────────────────────────────────────
-
-Table.R = styled.tr`
-  box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
-  cursor: ${({ cursor }) => cursor};
-`;
-
-// ─────────────────────────────────────────────────────────────────────────────
-// th
-// ─────────────────────────────────────────────────────────────────────────────
-
-Table.H = styled.th``;
-
-// ─────────────────────────────────────────────────────────────────────────────
-// td
-// ─────────────────────────────────────────────────────────────────────────────
-
-Table.D = styled.td(({ padding, opacity }) => ({
-  padding,
-  opacity,
-}));
-
-Table.D.defaultProps = {
-  padding: '0.5rem',
-};
-
-// ─────────────────────────────────────────────────────────────────────────────
 // thead
 // ─────────────────────────────────────────────────────────────────────────────
 
-Table.Head = styled.thead`
+Table.Thead = styled.thead`
   box-shadow: 0 2px 0 0 hsla(var(--hsl-text), 0.1);
-  & ${Table.H} {
+  & th {
     padding: 1rem 0.5rem;
   }
 `;
@@ -76,8 +48,8 @@ Table.Head = styled.thead`
 // tbody
 // ─────────────────────────────────────────────────────────────────────────────
 
-Table.Body = styled.tbody`
-  & ${Table.R}:hover {
+Table.Tbody = styled.tbody`
+  & tr:hover {
     background-color: hsla(var(--hsl-text), 0.05);
   }
 `;
@@ -86,4 +58,28 @@ Table.Body = styled.tbody`
 // tfoot
 // ─────────────────────────────────────────────────────────────────────────────
 
-Table.Foot = styled.tfoot``;
+Table.Tfoot = styled.tfoot``;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// tr
+// ─────────────────────────────────────────────────────────────────────────────
+
+Table.Tr = styled.tr`
+  box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
+  cursor: ${({ cursor }) => cursor};
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// th
+// ─────────────────────────────────────────────────────────────────────────────
+
+Table.Th = styled.th``;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// td
+// ─────────────────────────────────────────────────────────────────────────────
+
+Table.Td = styled.td`
+  padding: ${({ padding = '0.5rem' }) => padding};
+  opacity: ${({ opacity }) => opacity};
+`;

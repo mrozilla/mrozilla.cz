@@ -4,30 +4,54 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '../primitives';
+import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Header = styled(Layout)`
-  grid-area: header;
-  align-self: start;
-  z-index: var(--z-index-header);
-  background-color: var(--color-bg);
-  bottom: 0;
-  width: 100%;
-
-  position: fixed;
-  padding: 0 1rem 1rem 1rem;
-  text-align: center;
-
-  @media screen and (min-width: 600px) {
-    position: sticky;
-    top: 20vh;
-    padding: 0;
-    text-align: right;
-    background-color: unset;
-  }
-`;
-Header.defaultProps = { as: 'header' };
+export const Layout = styled.div(
+  ({
+    position,
+    gridArea,
+    gridTemplate,
+    gridTemplateColumns,
+    gridTemplateRows,
+    gridGap,
+    alignSelf,
+    margin,
+    padding,
+    top,
+    right,
+    bottom,
+    left,
+    minWidth,
+    borderRadius,
+    backgroundColor,
+    backgroundImage,
+    backgroundPosition,
+    backgroundRepeat,
+  }) => ({
+    ...mediaQuerise({
+      position,
+      gridArea,
+      gridTemplate,
+      gridTemplateColumns,
+      gridTemplateRows,
+      gridGap,
+      alignSelf,
+      margin,
+      padding,
+      top,
+      right,
+      bottom,
+      left,
+      minWidth,
+      borderRadius,
+      backgroundColor,
+      backgroundImage,
+      backgroundPosition,
+      backgroundRepeat,
+    }),
+  }),
+);

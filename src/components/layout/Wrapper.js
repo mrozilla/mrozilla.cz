@@ -4,17 +4,12 @@
 
 import styled from 'styled-components';
 
+import { Layout } from '../primitives';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.div`
-  position: relative;
+export const Wrapper = styled(Layout)`
   display: grid;
-  grid-gap: 10vh 10vw;
-  grid-template:
-    'header main aside'
-    'header footer aside'
-    / var(--width-header) var(--width-main) var(--width-aside);
-  padding: 20vh 0;
 `;
