@@ -13,13 +13,10 @@ import styled, { css } from 'styled-components';
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const RouterLink = styled(GatsbyLink)`
-  line-height: 1.25;
+const StyledLink = styled(GatsbyLink)`
   ${({ type }) => {
     if (type === 'primary') {
       return css`
-        text-decoration: underline;
-        text-decoration-color: hsla(var(--hsl-text), 0.1);
         &:hover,
         &:focus,
         &:active {
@@ -42,8 +39,6 @@ const RouterLink = styled(GatsbyLink)`
   }};
 `;
 
-const ExternalLink = RouterLink.withComponent(OutboundLink);
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
@@ -54,15 +49,15 @@ export default function Link({
   const link = href || to;
   if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
     return (
-      <ExternalLink href={link} target="_blank" rel="noopener noreferrer" {...rest}>
+      <StyledLink as={OutboundLink} href={link} target="_blank" rel="noopener noreferrer" {...rest}>
         {children}
-      </ExternalLink>
+      </StyledLink>
     );
   }
   return (
-    <RouterLink to={link} {...rest}>
+    <StyledLink to={link} {...rest}>
       {children}
-    </RouterLink>
+    </StyledLink>
   );
 }
 
