@@ -10,13 +10,19 @@ import { mediaQuerise } from '../../utils';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Text = styled.div(
+export const Text = styled.span(
   ({
     position,
     display,
     gridArea,
     margin,
     padding,
+    height,
+    width,
+    top,
+    right,
+    bottom,
+    left,
     backgroundColor,
     boxShadow,
     opacity,
@@ -37,6 +43,12 @@ export const Text = styled.div(
       gridArea,
       margin,
       padding,
+      height,
+      width,
+      top,
+      right,
+      bottom,
+      left,
       backgroundColor,
       boxShadow,
       opacity,
