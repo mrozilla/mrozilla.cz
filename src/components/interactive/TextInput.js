@@ -2,6 +2,8 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
+import React from 'react';
+
 import styled from 'styled-components';
 
 import { Text } from '../primitives';
@@ -11,10 +13,10 @@ import { Label } from '../text/Label';
 import { Tooltip } from '../text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const TextInput = styled(Text)`
+export const StyledTextInput = styled(Text)`
   border: none;
   outline: none;
   resize: none;
@@ -65,8 +67,25 @@ export const TextInput = styled(Text)`
   }
 `;
 
-TextInput.defaultProps = {
+StyledTextInput.defaultProps = {
   as:        'input',
   boxShadow: '0 1px 0 0 hsla(var(--hsl-text), 0.25)',
   padding:   '2.5rem 0 1.5rem',
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default function TextInput({ onChange, ...rest }) {
+  const handleTextAreaResize = (event) => {
+    if (event.target.tagName === 'TEXTAREA') {
+      event.target.style.height = `${event.target.scrollHeight}px`; // eslint-disable-line no-param-reassign
+    }
+    if (onChange) {
+      onChange(event);
+    }
+  };
+
+  return <StyledTextInput onChange={handleTextAreaResize} {...rest} />;
+}

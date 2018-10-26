@@ -6,14 +6,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Button } from './Button';
+import { Checkbox } from './Checkbox';
+import { Error } from './Error';
 import { Fieldset } from './Fieldset';
 import { Radio } from './Radio';
-import { Checkbox } from './Checkbox';
-import { TextInput } from './TextInput';
-import { Error } from './Error';
+import TextInput from './TextInput';
 
-import { Tooltip } from '../text/Tooltip';
 import { Label } from '../text/Label';
+import { Tooltip } from '../text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // legend
@@ -43,6 +43,8 @@ export default function Input({
   onChange,
   ...rest
 }) {
+  console.log(name, value);
+
   const renderInput = () => {
     if (type === 'radio') {
       return (
@@ -135,7 +137,7 @@ export default function Input({
   };
 
   if (type === 'submit') {
-    return <Button as="input" type="submit" gridArea={name} value={value} />;
+    return <Button as="input" type="submit" gridArea={name} value={label} />;
   }
 
   return (
