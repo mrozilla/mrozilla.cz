@@ -4,12 +4,12 @@
 
 import styled from 'styled-components';
 
+import { Tooltip } from '../text/Tooltip';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-  font-size: initial;
-
-  margin: 0 1rem 0 0;
+export const Error = styled(Tooltip)`
+  --color: var(--color-danger);
 `;

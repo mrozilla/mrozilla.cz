@@ -4,12 +4,30 @@
 
 import styled from 'styled-components';
 
+import { Layout } from '../primitives';
+import { Tooltip } from '../text/Tooltip';
+
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// fieldset
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-  font-size: initial;
+export const Fieldset = styled(Layout)`
+  position: relative;
+  border: none;
 
-  margin: 0 1rem 0 0;
+  & ${Tooltip} {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  &:hover,
+  &:focus-within {
+    & ${Tooltip} {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
+Fieldset.defaultProps = { as: 'fieldset' };
