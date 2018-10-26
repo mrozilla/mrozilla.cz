@@ -1,0 +1,29 @@
+---
+permalink: "/legal/privacy"
+title: Privacy policy
+description: This privacy policy explains how we use any personal information we collect about you when you use this Website.
+# date: 2018-06-24T22:59:22.358Z
+ogImage: "../../multimedia/og.png"
+---
+
+1.  What information do we collect about you?
+    1.  This Website uses Google Analytics, a web analytics service provided by Google, Inc. ("Google"). The information about your use of the Website (including your IP address) will be transmitted to and stored by Google on servers in the United States. Google will use this information for the purpose of evaluating your use of the Website, compiling reports on website activity for us and providing other services relating to website activity and internet usage. Google may also transfer this information to third parties where required to do so by law, or where such third parties process the information on Google&apos;s behalf. Google will not associate your IP address with any other data held by Google.
+    1.  This Website uses Facebook Messenger, a platform provided by Facebook, Inc. ("Facebook"). The Website may ask for some Facebook permissions allowing it to perform actions with your Facebook account and to retrieve information, including personal data, from it. For more information about the following permissions, refer to the [Facebook permissions documentation](https://developers.facebook.com/docs/authentication/permissions/) and to the [Facebook privacy policy](https://www.facebook.com/about/privacy/). The permissions asked are the following:
+        1.  Basic information
+            1.  By default, this includes certain User’s Data such as id, name, picture, gender, and their locale. Certain connections of the User, such as the Friends, are also available. If the User has made more of their Data public, more information will be available.
+    1.  Website usage information is collected using <span id="cookies">cookies</span>.
+        1.  Cookies are text files placed on your computer to collect standard internet log information and visitor behaviour information. This information is used to track visitor use of the website and to compile statistical reports on website activity.
+        1.  For further information visit [www.aboutcookies.org](https://www.aboutcookies.org/) or [www.allaboutcookies.org](https://www.allaboutcookies.org).
+        1.  You can set your browser not to accept cookies and the above websites tell you how to remove cookies from your browser. However in a few cases some of the Website features may not function as a result.
+1.  How will we use the information about you?
+    1.  We use your information collected from the Website to personalise your repeated visits to the Website.
+    1.  We will not share your information for marketing purposes with any third-party organisation.
+1.  Access to your information and correction
+    1.  You have the right to request a copy of the information that we hold about you. If you would like a copy of some or all of your personal information, please email or write to us at the following address. We may make a small charge for this service.
+    1.  We want to make sure that your personal information is accurate and up to date. You may ask us to correct or remove information you think is inaccurate.
+1.  Other websites
+    1.  This Website contains links to other websites. This privacy policy only applies to this Website so when you link to other websites you should read their own privacy policies.
+1.  Changes to our privacy policy
+    1.  We keep our privacy policy under regular review and we will place any updates on this web page.
+1.  How to contact us
+    1.  Please [send us an email](mailto:jan@mrozilla.cz) if you have any questions about our privacy policy or information we hold about you.
