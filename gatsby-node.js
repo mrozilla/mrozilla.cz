@@ -11,7 +11,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
 
   return graphql(`
     {
-      posts: allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
+      posts: allMarkdownRemark(limit: 1000, sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
           node {
             frontmatter {
