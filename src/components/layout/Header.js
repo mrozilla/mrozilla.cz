@@ -4,11 +4,13 @@
 
 import styled from 'styled-components';
 
+import { Layout } from '../primitives';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.header`
+export const Header = styled(Layout)`
   grid-area: header;
   align-self: start;
   z-index: var(--z-index-header);
@@ -28,3 +30,4 @@ export default styled.header`
     background-color: unset;
   }
 `;
+Header.defaultProps = { as: 'header' };

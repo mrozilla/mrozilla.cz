@@ -4,20 +4,30 @@
 
 import styled from 'styled-components';
 
+import { Layout } from '../primitives';
+import { Tooltip } from '../text/Tooltip';
+
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// fieldset
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.label`
-  color: hsla(var(--hsl-text), 0.75);
-  display: block;
+export const Fieldset = styled(Layout)`
+  position: relative;
+  border: none;
 
-  font-size: ${({ fontSize = '1.25rem' }) => fontSize};
-  line-height: ${({ lineHeight = '2rem' }) => lineHeight};
-  animation: ${({ animation }) => animation};
-  margin: ${({ margin }) => margin};
-  padding: ${({ padding = '0 1rem' }) => padding};
-  position: ${({ position }) => position};
-  text-transform: ${({ textTransform = 'uppercase' }) => textTransform};
-  visibility: ${({ visibility }) => visibility};
+  & ${Tooltip} {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  &:hover,
+  &:focus-within {
+    & ${Tooltip} {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
+Fieldset.defaultProps = { as: 'fieldset' };

@@ -4,12 +4,14 @@
 
 import styled, { css } from 'styled-components';
 
+import { Text } from '../primitives';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 // prettier-ignore
-export default styled.div`
+export const Alert = styled(Text)`
   display: inline-block;
   line-height: 3rem;
   padding: 1rem 2rem;

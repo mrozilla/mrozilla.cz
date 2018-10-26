@@ -4,15 +4,13 @@
 
 import styled from 'styled-components';
 
+import { Layout } from '../primitives';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.section`
+export const Section = styled(Layout)`
   min-width: 0;
-
-  grid-area: ${({ gridArea }) => gridArea};
-  align-self: ${({ alignSelf }) => alignSelf};
-  position: ${({ position }) => position};
-  top: ${({ top }) => top};
 `;
+Section.defaultProps = { as: 'section' };

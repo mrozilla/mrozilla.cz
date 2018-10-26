@@ -3,18 +3,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { mediaQuerise } from '../../utils';
+
+import { Layout } from '../primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.form(
-  {
-    gridArea: 'form',
-    display:  'grid',
-  },
-  ({ gridGap = '2rem 1rem', gridTemplate }) => ({
-    ...mediaQuerise({ gridTemplate, gridGap }),
-  }),
-);
+export const Form = styled(Layout)`
+  display: grid;
+  grid-gap: 1rem;
+`;
+Form.defaultProps = { as: 'form', gridArea: 'form' };

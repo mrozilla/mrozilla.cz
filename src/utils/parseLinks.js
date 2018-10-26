@@ -9,7 +9,7 @@ import { Link } from '../components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default (str, { type = 'primary' } = {}) => {
+export default (str, { type } = {}) => {
   if (typeof str === 'string') {
     const re = /\[(.*?\]\(.*?)\)/;
     return str.split(re).map((item) => {
