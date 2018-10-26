@@ -17,7 +17,7 @@ export const Toast = styled(Layout)`
   padding: 1rem;
   text-align: center;
 
-  z-index: var(--z-index-popup);
+  z-index: var(--z-index-toast);
 
   animation: ${({ animation = css`250ms ${fadeOutAnimation} forwards 750ms` }) => animation};
   font-size: ${({ fontSize }) => fontSize};

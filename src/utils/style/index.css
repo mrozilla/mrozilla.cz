@@ -21,7 +21,7 @@
   --width-aside: 0fr;
 
   --z-index-header: 1000;
-  --z-index-popup: 1010;
+  --z-index-toast: 1010;
   --z-index-modal: 1020;
 }
 
@@ -159,9 +159,4 @@ textarea,
 input {
   color: inherit;
   font-size: inherit;
-}
-
-::selection {
-  color: var(--color-bg);
-  background-color: var(--color-text);
 }
