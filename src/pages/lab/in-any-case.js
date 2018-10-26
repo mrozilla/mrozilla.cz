@@ -40,18 +40,18 @@ export default class InAnyCasePage extends PureComponent {
   state = {
     input:  '',
     output: {
-      lowerCase:    '',
-      upperCase:    '',
-      titleCase:    '',
-      sentenceCase: '',
-      dotCase:      '',
-      URLCase:      '',
-      pathCase:     '',
-      snakeCase:    '',
-      constantCase: '',
-      headerCase:   '',
-      pascalCase:   '',
-      camelCase:    '',
+      'lower case':    '',
+      'UPPER CASE':    '',
+      'Title Case':    '',
+      'Sentence case': '',
+      'dot.case':      '',
+      'url-case':      '',
+      'path/case':     '',
+      'snake-case':    '',
+      CONSTANT_CASE:   '',
+      'Header-Case':   '',
+      PascalCase:      '',
+      camelCase:       '',
     },
   };
 
@@ -106,18 +106,18 @@ export default class InAnyCasePage extends PureComponent {
       ...parseInput(target),
       output: {
         ...prevState.output,
-        lowerCase:    changeCase.toLowerCase(target.value),
-        upperCase:    changeCase.toUpperCase(target.value),
-        titleCase:    changeCase.toTitleCase(target.value),
-        sentenceCase: changeCase.toSentenceCase(target.value),
-        dotCase:      changeCase.toDotCase(target.value),
-        URLCase:      changeCase.toURLCase(target.value),
-        pathCase:     changeCase.toPathCase(target.value),
-        snakeCase:    changeCase.toSnakeCase(target.value),
-        constantCase: changeCase.toConstantCase(target.value),
-        headerCase:   changeCase.toHeaderCase(target.value),
-        pascalCase:   changeCase.toPascalCase(target.value),
-        camelCase:    changeCase.toCamelCase(target.value),
+        'lower case':    changeCase.toLowerCase(target.value),
+        'UPPER CASE':    changeCase.toUpperCase(target.value),
+        'Title Case':    changeCase.toTitleCase(target.value),
+        'Sentence case': changeCase.toSentenceCase(target.value),
+        'dot.case':      changeCase.toDotCase(target.value),
+        'url-case':      changeCase.toURLCase(target.value),
+        'path/case':     changeCase.toPathCase(target.value),
+        'snake-case':    changeCase.toSnakeCase(target.value),
+        CONSTANT_CASE:   changeCase.toConstantCase(target.value),
+        'Header-Case':   changeCase.toHeaderCase(target.value),
+        PascalCase:      changeCase.toPascalCase(target.value),
+        camelCase:       changeCase.toCamelCase(target.value),
       },
     }));
   };
@@ -134,7 +134,6 @@ export default class InAnyCasePage extends PureComponent {
               type="text"
               value={this.state.input}
               placeholder="Start typing or paste text..."
-              padding="2rem 1rem"
               margin="0 0 4rem 0"
               onChange={this.handleInput}
             />

@@ -17,7 +17,7 @@ import {
 
 export default function BlogPreviewsContainer({ posts }) {
   return (
-    <Ul gridGap="0rem">
+    <Ul>
       {posts.map(post => (
         <Li key={post.permalink}>
           <Link to={post.permalink} type="primary">

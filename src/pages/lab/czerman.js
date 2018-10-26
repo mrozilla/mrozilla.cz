@@ -7,7 +7,14 @@ import { graphql } from 'gatsby';
 import { shape } from 'prop-types';
 
 import {
-  Main, Section, Table, Link, Button, Modal, H2, P,
+  Main,
+  Section,
+  Table,
+  Link,
+  Button,
+  Modal,
+  H2,
+  P,
 } from '../../components';
 import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
@@ -73,13 +80,16 @@ export default class CzermanPage extends PureComponent {
 
   handleNextTerm = () => {
     this.setState((prevState) => {
-      const currentIndex = this.props.data.page.dictionary.findIndex(term => term.id === prevState.openTermId);
+      const currentIndex = this.props.data.page.dictionary.findIndex(
+        term => term.id === prevState.openTermId,
+      );
       return {
         isModalOpen:   true,
         isCardFlipped: false,
-        openTermId:    currentIndex === this.props.data.page.dictionary.length - 1
-          ? this.props.data.page.dictionary[0].id
-          : this.props.data.page.dictionary[currentIndex + 1].id,
+        openTermId:
+          currentIndex === this.props.data.page.dictionary.length - 1
+            ? this.props.data.page.dictionary[0].id
+            : this.props.data.page.dictionary[currentIndex + 1].id,
       };
     });
   };
@@ -97,9 +107,8 @@ export default class CzermanPage extends PureComponent {
   };
 
   renderModal = () => {
-    const modalTerm = this.props.data.page.dictionary.find(
-      term => term.id === this.state.openTermId,
-    ) || this.props.data.page.dictionary[0];
+    const modalTerm = this.props.data.page.dictionary.find(term => term.id === this.state.openTermId)
+      || this.props.data.page.dictionary[0];
     return (
       <Modal
         innerKey={modalTerm.id}
@@ -135,46 +144,46 @@ export default class CzermanPage extends PureComponent {
 
   renderTable = () => (
     <Table margin="0 0 2rem 0" tableLayout="fixed">
-      <Table.Head>
-        <Table.R>
-          <Table.H>Czech</Table.H>
-          <Table.H>
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th>Czech</Table.Th>
+          <Table.Th>
             Czech{' '}
             <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
               IPA
             </Link>
-          </Table.H>
-          <Table.H>German equivalent</Table.H>
-          <Table.H>
+          </Table.Th>
+          <Table.Th>German equivalent</Table.Th>
+          <Table.Th>
             German{' '}
             <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/German">
               IPA
             </Link>
-          </Table.H>
-        </Table.R>
-      </Table.Head>
-      <Table.Body>
+          </Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
         {this.props.data.page.dictionary.map(term => (
-          <Table.R
+          <Table.Tr
             key={term.id}
             cursor="pointer"
             onClick={() => this.handleOpenTerm(this.state.openTermId !== term.id ? term.id : '')}
           >
-            <Table.D>{term.czech.grammar}</Table.D>
-            <Table.D>{term.czech.ipa}</Table.D>
+            <Table.Td>{term.czech.grammar}</Table.Td>
+            <Table.Td>{term.czech.ipa}</Table.Td>
             {this.state.openTermId === term.id || this.state.isOpenAll ? (
-              <Table.D>{term.german.grammar}</Table.D>
+              <Table.Td>{term.german.grammar}</Table.Td>
             ) : (
-              <Table.D colSpan="2" textAlign="center" opacity={0.5}>
+              <Table.Td colSpan="2" textAlign="center" opacity={0.5}>
                 Reveal
-              </Table.D>
+              </Table.Td>
             )}
             {this.state.openTermId === term.id || this.state.isOpenAll ? (
-              <Table.D>{term.german.ipa}</Table.D>
+              <Table.Td>{term.german.ipa}</Table.Td>
             ) : null}
-          </Table.R>
+          </Table.Tr>
         ))}
-      </Table.Body>
+      </Table.Tbody>
     </Table>
   );
 

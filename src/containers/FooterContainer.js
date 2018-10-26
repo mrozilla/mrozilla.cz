@@ -16,7 +16,21 @@ import { parseLinks } from '../utils';
 
 export default function FooterContainer({ footer }) {
   return (
-    <Footer>
+    <Footer
+      gridGap="2rem 1rem"
+      gridTemplate={{
+        xs: `
+          'contact'
+          'legal'
+          'colophon'
+          / 1fr;
+        `,
+        lg: `
+          'contact legal colophon colophon'
+          / 1fr 1fr 1fr 1fr
+        `,
+      }}
+    >
       <Section gridArea="contact">
         <H2>{footer.contact.title}</H2>
         <Ul>
@@ -43,7 +57,7 @@ export default function FooterContainer({ footer }) {
       </Section>
       <Section gridArea="colophon">
         <H2>{footer.colophon.title}</H2>
-        <P>{parseLinks(footer.colophon.text)}</P>
+        <P>{parseLinks(footer.colophon.text, { type: 'secondary' })}</P>
       </Section>
     </Footer>
   );
