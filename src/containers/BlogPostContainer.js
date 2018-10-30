@@ -61,6 +61,7 @@ export default function BlogPost({
 }) {
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'article' 'suggestions'",
@@ -68,7 +69,6 @@ export default function BlogPost({
         }}
         gridGap="5vw"
       >
-        <SEOContainer meta={meta} />
         <Article itemScope itemType="http://schema.org/BlogPosting">
           <header style={{ margin: '0 0 4rem 0' }}>
             <H1 itemprop="name" margin="0 0 3rem 0">
@@ -76,21 +76,25 @@ export default function BlogPost({
                 {meta.title}
               </Link>
             </H1>
-            <P fontSize="3rem">{parseLinks(meta.description)}</P>
-            <time
-              style={{
-                fontSize:      '1.25rem',
-                fontWeight:    '300',
-                lineHeight:    '2rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.2em',
-                marginTop:     '-2rem',
-              }}
-              dateTime={new Date(meta.date).toISOString()}
-              itemProp="datePublished"
-            >
-              {meta.date}
-            </time>
+            {meta.description && (
+              <P fontSize="3rem">{parseLinks(meta.description, { type: 'secondary' })}</P>
+            )}
+            {meta.date && (
+              <time
+                style={{
+                  fontSize:      '1.25rem',
+                  fontWeight:    '300',
+                  lineHeight:    '2rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.2em',
+                  marginTop:     '-2rem',
+                }}
+                dateTime={new Date(meta.date).toISOString()}
+                itemProp="datePublished"
+              >
+                {meta.date}
+              </time>
+            )}
           </header>
           {renderMarkdown(htmlAst)}
         </Article>

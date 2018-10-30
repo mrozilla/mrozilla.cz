@@ -17,7 +17,9 @@ export default function HeaderContainer({ header }) {
   return (
     <Header>
       <H1 fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
-        <Link to="/">mrozilla</Link>
+        <Link to="/" type="primary">
+          mrozilla
+        </Link>
       </H1>
       <Nav>
         <Nav.List>

@@ -3,44 +3,23 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { mediaQuerise } from '../../utils';
+
+import { Layout, Text } from '../primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// ul
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.p(
-  {},
-  ({
-    display,
-    fontFamily,
-    fontSize,
-    fontWeight,
-    lineHeight,
-    textAlign,
-    textTransform,
-    letterSpacing,
-    whiteSpace,
-    color,
-    opacity,
-    margin,
-    padding,
-    gridColumn,
-    gridArea,
-  }) => ({
-    display,
-    fontFamily,
-    fontSize,
-    fontWeight,
-    lineHeight,
-    textAlign,
-    textTransform,
-    letterSpacing,
-    whiteSpace,
-    color,
-    opacity,
-    gridColumn,
-    gridArea,
-    ...mediaQuerise({ margin, padding }),
-  }),
-);
+export const Ul = styled(Layout)`
+  display: grid;
+
+  list-style: ${({ listStyle = 'none' }) => listStyle};
+`;
+Ul.defaultProps = { as: 'ul' };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// li
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const Li = styled(Text)``;
+Li.defaultProps = { as: 'li' };

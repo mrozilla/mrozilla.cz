@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, Input, H1, H2, P,
+  Main, Section, TextInput, H1, H2, P,
 } from '../../components';
 import { RootContainer, SEOContainer } from '../../containers';
 
@@ -112,6 +112,7 @@ export default class WritestPage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main
           gridTemplate={{
             xs: "'input' 'stats'",
@@ -119,18 +120,16 @@ export default class WritestPage extends PureComponent {
           }}
           gridGap="10vh 4rem"
         >
-          <SEOContainer meta={this.props.data.page.meta} />
           <Section gridArea="input">
             <H1>words</H1>
-            <Input
+            <TextInput
+              as="textarea"
               name="writest"
-              type="textarea"
               value={this.state.textArea}
               placeholder="Start typing or paste text..."
-              backgroundColor="transparent"
               boxShadow="none"
-              hoverBoxShadow="none"
-              onInput={this.handleAnalyseText}
+              height="100%"
+              onChange={this.handleAnalyseText}
               autoFocus
             />
           </Section>

@@ -8,6 +8,7 @@
     "react/destructuring-assignment": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
+    "import/prefer-default-export": 0,
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
     "max-len": [2, { "code": 100, "ignoreComments": true }]

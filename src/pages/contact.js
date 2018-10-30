@@ -25,10 +25,14 @@ export const query = graphql`
         form {
           inputs {
             name
-            label
-            value
-            options
             type
+            label
+            description
+            error
+            options {
+              value
+              label
+            }
             rows
             required
           }
@@ -71,19 +75,20 @@ export default function ContactPage({
       action="/contact#success"
       gridTemplate={{
         xs: "'name' 'email' 'specs' 'budget' 'submit'",
-        lg: "'name email' 'specs specs' 'budget budget' 'submit submit'",
+        lg: "'name email' 'specs specs' 'budget budget' 'submit submit' / 1fr 1fr",
       }}
     >
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="bot-field" />
       {form.inputs.map(input => (
-        <Input key={input.name} {...input} />
+        <Input key={input.name} placeholder={input.label} isFloatingLabel {...input} />
       ))}
     </Form>
   );
 
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'form'",
@@ -91,7 +96,6 @@ export default function ContactPage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         {location.hash === '#success' ? renderSuccess() : renderForm()}
       </Main>

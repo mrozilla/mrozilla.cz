@@ -6,9 +6,9 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, P, Input, Checkbox, Button, Popup,
+  Main, Section, H1, Input, Button, Toast,
 } from '../../components';
-import { RootContainer, SEOContainer } from '../../containers';
+import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -24,6 +24,11 @@ export const query = graphql`
         permalink
         ogImage {
           ...OgImageFragment
+        }
+      }
+      body {
+        hero {
+          title
         }
       }
     }
@@ -63,6 +68,10 @@ export default class PassworldPage extends Component {
     }
   };
 
+  handleChangeCheckbox = ({ target }) => this.setState(prevState => ({
+    chars: { ...prevState.chars, ...parseInput(target) },
+  }));
+
   handleGenerateRandomCharacter = () => {
     const types = {
       lowerChars:   'abcdefghijklmnopqrstuvwxyz',
@@ -92,93 +101,82 @@ export default class PassworldPage extends Component {
     this.forceUpdate();
   };
 
-  renderOutputs = () => [
-    {
-      type:     'text',
-      name:     'password',
-      value:    this.state.password,
-      label:    'Generated password',
-      readOnly: true,
-    },
-  ].map(output => <Input key={output.name} margin="0 0 1rem 0" {...output} />);
-
-  renderInputs = () => [
+  inputs = [
     {
       type:        'number',
       name:        'length',
-      value:       this.state.length,
       label:       'Password length',
       description: "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
       margin:      '0 0 2rem 0',
       onChange:    ({ target }) => this.setState({ ...parseInput(target) }),
     },
-  ].map(input => <Input key={input.name} {...input} />);
+  ];
 
-  renderCheckboxes = () => [
+  checkboxes = [
     {
-      name:  'lowerChars',
-      label: 'Include lowercase letters',
+      type:     'checkbox',
+      name:     'lowerChars',
+      label:    'Include lowercase letters',
+      onChange: this.handleChangeCheckbox,
     },
     {
-      name:  'upperChars',
-      label: 'Include uppercase letters',
+      type:     'checkbox',
+      name:     'upperChars',
+      label:    'Include uppercase letters',
+      onChange: this.handleChangeCheckbox,
     },
     {
-      name:  'specialChars',
-      label: 'Include special characters',
+      type:     'checkbox',
+      name:     'specialChars',
+      label:    'Include special characters',
+      onChange: this.handleChangeCheckbox,
     },
     {
-      name:  'numbers',
-      label: 'Include numbers',
+      type:     'checkbox',
+      name:     'numbers',
+      label:    'Include numbers',
+      margin:   '0 0 2rem 0',
+      onChange: this.handleChangeCheckbox,
     },
-  ].map(input => (
-    <Checkbox
-      key={input.name}
-      {...input}
-      checked={this.state.chars[input.name]}
-      onChange={({ target }) => this.setState(prevState => ({
-        chars: { ...prevState.chars, ...parseInput(target) },
-      }))
-        }
-    />
-  ));
+  ];
 
-  renderButtons = () => [
+  buttons = [
     {
-      title:    'Generate password',
-      onClick:  this.handleGeneratePassword,
-      disabled: Object.values(this.state.chars).every(item => item === false),
+      title:   'Generate password',
+      onClick: this.handleGeneratePassword,
+      grouped: true,
     },
     {
       title:   'Copy to clipboard',
       onClick: this.handleCopyToClipboard,
+      grouped: true,
     },
-  ].map(button => (
-    <Button key={button.title} {...button} margin="1rem 0 0 0">
-      {button.title}
-    </Button>
-  ));
+  ];
 
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main
           gridTemplate={{
-            xs: "'output .' / 1fr 0fr",
-            md: "'output .' / 1fr 1fr",
+            xs: "'hero' 'output' 'input'",
+            md: "'hero hero' 'output input' / 1fr 1fr",
           }}
+          gridGap="10vh 1rem"
         >
-          <SEOContainer meta={this.props.data.page.meta} />
+          <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="output">
-            {this.renderOutputs()}
-            {this.renderInputs()}
-            {this.renderCheckboxes()}
-            {this.renderButtons()}
+            <H1>{this.state.password}</H1>
+          </Section>
+          <Section gridArea="input">
+            {this.inputs.map(input => <Input key={input.name} value={this.state[input.name]} {...input} />)}
+            {this.checkboxes.map(input => <Input key={input.name} checked={this.state.chars[input.name]} {...input} />)}
+            {this.buttons.map(button => <Button key={button.title} {...button} disabled={Object.values(this.state.chars).every(item => item === false)}>{button.title}</Button>)}
           </Section>
           {this.state.clipboard === this.state.password && (
-            <Popup key={window.performance.now()}>
+            <Toast key={window.performance.now()}>
               {this.state.clipboard} was copied to clipboard!
-            </Popup>
+            </Toast>
           )}
         </Main>
       </RootContainer>

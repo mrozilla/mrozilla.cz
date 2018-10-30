@@ -3,35 +3,65 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import styled from 'styled-components';
-import { mediaQuerise, fadeOutAnimation } from '../../utils';
+
+import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default styled.aside(
-  {
-    position:  'fixed',
-    left:      0,
-    right:     0,
-    padding:   '1rem',
-    textAlign: 'center',
-    zIndex:    'var(--z-index-popup)',
-  },
+export const Text = styled.span(
   ({
-    duration = 1000,
-    color = 'white',
-    backgroundColor = 'var(--color-success)',
-    fontSize,
-    top = '0',
-    bottom = 'auto',
-    animation = `250ms ${fadeOutAnimation} forwards`,
-  }) => ({
-    color,
+    position,
+    display,
+    gridArea,
+    margin,
+    padding,
+    height,
+    width,
+    top,
+    right,
+    bottom,
+    left,
     backgroundColor,
+    boxShadow,
+    opacity,
+    visibility,
+    color,
+    fontFamily,
     fontSize,
-    ...mediaQuerise({ top, bottom }),
-    animation,
-    animationDelay: `${duration - 250}ms`,
+    fontWeight,
+    lineHeight,
+    letterSpacing,
+    textAlign,
+    textTransform,
+    whiteSpace,
+  }) => ({
+    ...mediaQuerise({
+      position,
+      display,
+      gridArea,
+      margin,
+      padding,
+      height,
+      width,
+      top,
+      right,
+      bottom,
+      left,
+      backgroundColor,
+      boxShadow,
+      opacity,
+      visibility,
+      color,
+      fontFamily,
+      fontSize,
+      fontWeight,
+      lineHeight,
+      letterSpacing,
+      textAlign,
+      textTransform,
+      whiteSpace,
+    }),
   }),
 );

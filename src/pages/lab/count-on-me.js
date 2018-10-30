@@ -69,8 +69,8 @@ export default class CountOnMePage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main>
-          <SEOContainer meta={this.props.data.page.meta} />
           <Section
             onClick={e => this.handleCount(e, 1)}
             style={{
@@ -81,12 +81,18 @@ export default class CountOnMePage extends PureComponent {
               WebkitUserSelect: 'none',
             }}
           >
-            <H1 fontSize="8rem" textAlign="center">
+            <H1 fontSize="8rem" lineHeight="10rem" textAlign="center">
               {this.state.count.toLocaleString()}
             </H1>
-            <Button onClick={e => this.handleCount(e, 1)}>Add</Button>
-            <Button onClick={e => this.handleCount(e, -1)}>Subtract</Button>
-            <Button onClick={e => this.handleReset(e)}>Reset</Button>
+            <Button onClick={e => this.handleCount(e, 1)} grouped>
+              Add
+            </Button>
+            <Button onClick={e => this.handleCount(e, -1)} grouped>
+              Subtract
+            </Button>
+            <Button onClick={e => this.handleReset(e)} grouped>
+              Reset
+            </Button>
           </Section>
         </Main>
       </RootContainer>

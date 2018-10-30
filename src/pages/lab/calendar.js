@@ -169,6 +169,7 @@ export default class CalendarPage extends PureComponent {
   render() {
     return (
       <RootContainer>
+        <SEOContainer meta={this.props.data.page.meta} />
         <Main
           gridTemplate={{
             xs: "'hero' 'calendar'",
@@ -176,7 +177,6 @@ export default class CalendarPage extends PureComponent {
           }}
           gridGap="10vh 4rem"
         >
-          <SEOContainer meta={this.props.data.page.meta} />
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="calendar">
             {this.renderCalendarHeader()}

@@ -53,7 +53,15 @@ export default function RootContainer({ children }) {
         }
       `}
       render={({ menus: { header, footer } }) => (
-        <Wrapper>
+        <Wrapper
+          gridTemplate={`
+            'header main aside'
+            'header footer aside'
+            / var(--width-header) var(--width-main) var(--width-aside)
+          `}
+          gridGap="10vh 10vw"
+          padding="20vh 0"
+        >
           <HeaderContainer header={header} />
           {children}
           <FooterContainer footer={footer} />

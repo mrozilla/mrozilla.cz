@@ -53,6 +53,7 @@ export default function LabPage({
 }) {
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'theme' 'tools' 'products'",
@@ -60,7 +61,6 @@ export default function LabPage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="theme">
           <H2>current colour theme</H2>
