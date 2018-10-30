@@ -4,7 +4,7 @@
 
 import React, { PureComponent } from 'react';
 
-import { Popup, Link, Button } from '../components';
+import { Toast, Link, Button } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -24,7 +24,7 @@ export default class CookieContainer extends PureComponent {
   render() {
     if (!this.state.isHidden) {
       return (
-        <Popup
+        <Toast
           backgroundColor="var(--color-bg)"
           animation="none"
           color="var(--color-text)"
@@ -48,7 +48,7 @@ export default class CookieContainer extends PureComponent {
               🍪
             </span>
           </Button>
-        </Popup>
+        </Toast>
       );
     }
     return null;

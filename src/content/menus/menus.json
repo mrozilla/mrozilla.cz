@@ -47,12 +47,16 @@
       "title": "legal",
       "body": [
         {
-          "url": "/legal",
+          "url": "/legal/terms",
           "text": "Terms & conditions"
         },
         {
-          "url": "/legal#privacy",
+          "url": "/legal/privacy",
           "text": "Privacy policy"
+        },
+        {
+          "url": "/legal/imprint",
+          "text": "Imprint"
         }
       ]
     },

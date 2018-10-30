@@ -2,47 +2,31 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-import {
-  arrayOf, shape, string, number,
-} from 'prop-types';
+import styled, { css } from 'styled-components';
 
-import {
-  Ul, Li, Link, P,
-} from '../components';
+import { Layout } from '../primitives';
+
+import { fadeOutAnimation } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function BlogPreviewsContainer({ posts }) {
-  return (
-    <Ul>
-      {posts.map(post => (
-        <Li key={post.permalink}>
-          <Link to={post.permalink} type="primary">
-            {post.title}
-          </Link>
-          {(post.date || post.timeToRead) && (
-            <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem" margin="0 0 2rem 0">
-              {post.date}
-              {post.date && post.timeToRead && ' • '}
-              {post.timeToRead && `${post.timeToRead} min read`}
-            </P>
-          )}
-        </Li>
-      ))}
-    </Ul>
-  );
-}
+export const Toast = styled(Layout)`
+  position: fixed;
+  padding: 1rem;
+  text-align: center;
 
-BlogPreviewsContainer.propTypes = {
-  posts: arrayOf(
-    shape({
-      permalink:  string.isRequired,
-      title:      string.isRequired,
-      date:       string,
-      timeToRead: number,
-    }),
-  ).isRequired,
+  z-index: var(--z-index-toast);
+
+  animation: ${({ animation = css`250ms ${fadeOutAnimation} forwards 750ms` }) => animation};
+  font-size: ${({ fontSize }) => fontSize};
+  color: ${({ color = 'white' }) => color};
+`;
+Toast.defaultProps = {
+  as:              'aside',
+  backgroundColor: 'var(--color-success)',
+  top:             0,
+  right:           0,
+  left:            0,
 };

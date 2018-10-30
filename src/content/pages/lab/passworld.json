@@ -9,6 +9,9 @@
   },
   "body": {
     "title": "passworld",
-    "tagline": "your password must contain at least..."
+    "tagline": "your password must contain at least...",
+    "hero": {
+      "title": "Passworld is a simplified cryptographically strong password generator"
+    }
   }
 }

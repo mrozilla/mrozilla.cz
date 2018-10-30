@@ -3,28 +3,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import { Radio } from '../components';
+
+import { Input } from '../components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default class ColourThemeContainer extends PureComponent {
-  inputs = [
-    {
-      name:  'basic',
-      label: 'Basic',
-    },
-    {
-      name:  'dark',
-      label: 'Dark',
-    },
-    {
-      name:  'crazy',
-      label: 'Crazy',
-    },
-  ];
-
   state = {
     currentTheme:
       (typeof window !== 'undefined' && window.localStorage.getItem('currentTheme')) || 'basic',
@@ -34,7 +20,7 @@ export default class ColourThemeContainer extends PureComponent {
     this.handleChangeColorTheme(this.state.currentTheme);
   };
 
-  handleChangeColorTheme = (type = 'basic') => {
+  handleChangeColorTheme = (theme = 'basic') => {
     const seed = Math.floor(Math.random() * 360);
 
     const themes = {
@@ -52,25 +38,37 @@ export default class ColourThemeContainer extends PureComponent {
       },
     };
 
-    this.setState({ currentTheme: type }, () => {
-      document.documentElement.style.setProperty('--hsl-text', themes[type].color);
-      document.documentElement.style.setProperty('--hsl-bg', themes[type].backgroundColor);
-      window.localStorage.setItem('currentTheme', type);
+    this.setState({ currentTheme: theme }, () => {
+      document.documentElement.style.setProperty('--hsl-text', themes[theme].color);
+      document.documentElement.style.setProperty('--hsl-bg', themes[theme].backgroundColor);
+      window.localStorage.setItem('currentTheme', theme);
     });
   };
 
   render() {
     return (
-      <div>
-        {this.inputs.map(radio => (
-          <Radio
-            key={radio.name}
-            {...radio}
-            checked={this.state.currentTheme === radio.name}
-            onChange={() => this.handleChangeColorTheme(radio.name)}
-          />
-        ))}
-      </div>
+      <Input
+        type="radio"
+        name="theme"
+        options={[
+          {
+            value:   'basic',
+            label:   'Basic',
+            checked: this.state.currentTheme === 'basic',
+          },
+          {
+            value:   'dark',
+            label:   'Dark',
+            checked: this.state.currentTheme === 'dark',
+          },
+          {
+            value:   'crazy',
+            label:   'Crazy',
+            checked: this.state.currentTheme === 'crazy',
+          },
+        ]}
+        onChange={({ target: { value } }) => this.handleChangeColorTheme(value)}
+      />
     );
   }
 }

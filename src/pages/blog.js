@@ -52,8 +52,8 @@ export default function BlogPage({
 }) {
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
-        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="blog" id="blog">
           <H2>all blog articles</H2>

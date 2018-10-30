@@ -47,6 +47,7 @@ export default function AboutPage({
 }) {
   return (
     <RootContainer>
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'about'",
@@ -54,7 +55,6 @@ export default function AboutPage({
         }}
         gridGap="10vh 4rem"
       >
-        <SEOContainer meta={meta} />
         <HeroContainer title={hero.title} />
         <Section gridArea="about">
           <Ul gridGap="2rem">
