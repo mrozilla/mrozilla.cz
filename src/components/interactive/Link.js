@@ -9,11 +9,17 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 import styled, { css } from 'styled-components';
 
+import { Text } from '../primitives';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const StyledLink = styled(GatsbyLink)`
+const StyledLink = styled(Text)`
+  &[aria-current] {
+    font-weight: 700;
+  }
+
   ${({ type }) => {
     if (type === 'primary') {
       return css`
@@ -55,7 +61,7 @@ export default function Link({
     );
   }
   return (
-    <StyledLink to={link} {...rest}>
+    <StyledLink as={GatsbyLink} to={link} {...rest}>
       {children}
     </StyledLink>
   );
