@@ -43,8 +43,6 @@ export default function Input({
   onChange,
   ...rest
 }) {
-  console.log(name, value);
-
   const renderInput = () => {
     if (type === 'radio') {
       return (
