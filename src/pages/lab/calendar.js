@@ -39,35 +39,32 @@ export const query = graphql`
 // components
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Calendar = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const Calendar = {};
+
+Calendar.Controls = styled.div`
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  margin: 0 0 2rem 0;
 `;
 
-Calendar.Segment = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 4rem;
-`;
-
-Calendar.Weekday = styled.p`
-  flex: 14.2857142857% 0;
+Calendar.Weekdays = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0 0 2rem 0;
   text-align: center;
   opacity: 0.5;
 `;
 
+Calendar.Days = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+`;
+
 Calendar.Day = styled.p`
-  flex: 14.2857142857% 0;
   text-align: center;
-  margin-bottom: 0.5rem;
+  cursor: pointer;
 
-  ${({ dayOffset }) => dayOffset
-    && css`
-      margin-left: calc(14.2857142857% * ${dayOffset - 1});
-    `};
-
-  ${({ isToday }) => isToday
+  ${({ isCurrent }) => isCurrent
     && css`
       color: hsl(var(--hsl-info));
       background-image: radial-gradient(
@@ -92,79 +89,79 @@ Calendar.Day = styled.p`
 
 export default class CalendarPage extends PureComponent {
   state = {
-    today:         new Date(),
-    selectedMonth: new Date(),
-    locale:        'en',
+    selected: new Date(),
+    locale:   (typeof navigator !== 'undefined' && navigator.languages && navigator.languages[0]) || 'en',
   };
 
   helpers = {
-    getNumberOfDays: () => new Date(
-      this.state.selectedMonth.getFullYear(),
-      this.state.selectedMonth.getMonth(),
-      0,
-    ).getDate(),
-    getFirstDayOfMonth: () => new Date(
-      this.state.selectedMonth.getFullYear(),
-      this.state.selectedMonth.getMonth(),
-    ).getDay(),
-    getWeekdayNames: () => new Array(7)
+    getDaysArray: () => Array.from(
+      {
+        length: new Date(
+          this.state.selected.getFullYear(),
+          this.state.selected.getMonth() + 1,
+          0,
+        ).getDate(),
+      },
+      (_, i) => i + 1,
+    ),
+    getFirstDayOfMonth: () => new Date(this.state.selected.getFullYear(), this.state.selected.getMonth()).getDay(),
+    getWeekdayNames:    () => new Array(7)
       .fill()
       .map((_, i) => new Date(1970, 0, 5 + i).toLocaleString(this.state.locale, { weekday: 'short' })),
-    getMonthName: (date = this.state.selectedMonth) => date.toLocaleString(this.state.locale, { month: 'long' }),
-    getYearName:  (date = this.state.selectedMonth) => date.toLocaleString(this.state.locale, { year: 'numeric' }),
   };
 
-  handleChangeSelection = ({ yearOffset = 0, monthOffset = 0 }) => {
+  handleChangeDate = ({ yearOffset = 0, monthOffset = 0, dateOffset = 0 }) => {
     this.setState(prevState => ({
-      selectedMonth: new Date(
-        prevState.selectedMonth.getFullYear() + yearOffset,
-        prevState.selectedMonth.getMonth() + monthOffset,
+      selected: new Date(
+        prevState.selected.getFullYear() + yearOffset,
+        prevState.selected.getMonth() + monthOffset,
+        prevState.selected.getDate() + dateOffset,
       ),
     }));
   };
 
-  renderCalendarHeader = () => {
-    const currentMonth = `${this.helpers.getMonthName()}, ${this.helpers.getYearName()}`;
-    return (
-      <Calendar.Segment>
-        <Button type="basic" onClick={() => this.handleChangeSelection({ yearOffset: -1 })}>«</Button>
-        <Button type="basic" onClick={() => this.handleChangeSelection({ monthOffset: -1 })}>‹</Button>
-        <P margin="0 auto">{currentMonth}</P>
-        <Button type="basic" onClick={() => this.handleChangeSelection({ monthOffset: 1 })}>›</Button>
-        <Button type="basic" onClick={() => this.handleChangeSelection({ yearOffset: 1 })}>»</Button>
-      </Calendar.Segment>
-    );
-  };
-
-  renderCalendarWeekdays = () => (
-    <Calendar.Segment>
-      {this.helpers.getWeekdayNames().map(weekday => (
-        <Calendar.Weekday key={weekday}>{weekday}</Calendar.Weekday>
-      ))}
-    </Calendar.Segment>
+  renderCalendarControls = () => (
+    <Calendar.Controls>
+      <Button type="basic" onClick={() => this.handleChangeDate({ yearOffset: -1 })}>
+        «
+      </Button>
+      <Button type="basic" onClick={() => this.handleChangeDate({ monthOffset: -1 })}>
+        ‹
+      </Button>
+      <P textAlign="center">
+        {this.state.selected.toLocaleString(this.state.locale, { month: 'long', year: 'numeric' })}
+      </P>
+      <Button type="basic" onClick={() => this.handleChangeDate({ monthOffset: 1 })}>
+        ›
+      </Button>
+      <Button type="basic" onClick={() => this.handleChangeDate({ yearOffset: 1 })}>
+        »
+      </Button>
+    </Calendar.Controls>
   );
 
-  renderCalendarDays = () => {
-    const daysArray = Array.from({ length: this.helpers.getNumberOfDays() }, (_, i) => i + 1);
-    return (
-      <Calendar>
-        {daysArray.map((day, i) => {
-          const helpers = {
-            dayOffset: i === 0 && this.helpers.getFirstDayOfMonth(),
-            isToday:
-              this.state.today.getFullYear() === this.state.selectedMonth.getFullYear()
-              && this.state.today.getMonth() === this.state.selectedMonth.getMonth()
-              && this.state.today.getDate() === day,
-          };
-          return (
-            <Calendar.Day key={day} {...helpers}>
-              {day}
-            </Calendar.Day>
-          );
-        })}
-      </Calendar>
-    );
-  };
+  renderCalendarWeekdays = () => (
+    <Calendar.Weekdays>
+      {this.helpers.getWeekdayNames().map(weekday => (
+        <P key={weekday}>{weekday}</P>
+      ))}
+    </Calendar.Weekdays>
+  );
+
+  renderCalendarDays = () => (
+    <Calendar.Days>
+      {this.helpers.getDaysArray().map((day, i) => (
+        <Calendar.Day
+          key={day}
+          style={{ gridColumnStart: i === 0 && this.helpers.getFirstDayOfMonth() }}
+          isCurrent={this.state.selected.getDate() === day}
+          onClick={() => this.handleChangeDate({ dateOffset: day - this.state.selected.getDate() })}
+        >
+          {day}
+        </Calendar.Day>
+      ))}
+    </Calendar.Days>
+  );
 
   render() {
     return (
@@ -173,13 +170,13 @@ export default class CalendarPage extends PureComponent {
         <Main
           gridTemplate={{
             xs: "'hero' 'calendar'",
-            lg: "'hero hero' 'calendar .'",
+            lg: "'hero hero' 'calendar .' / 1fr 1fr",
           }}
           gridGap="10vh 4rem"
         >
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="calendar">
-            {this.renderCalendarHeader()}
+            {this.renderCalendarControls()}
             {this.renderCalendarWeekdays()}
             {this.renderCalendarDays()}
           </Section>
