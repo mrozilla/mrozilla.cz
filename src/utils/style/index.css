@@ -160,11 +160,3 @@ input {
   color: inherit;
   font-size: inherit;
 }
-
-button {
-  -webkit-appearance: none;
-  border: none;
-  background-color: transparent;
-
-  cursor: pointer;
-}
