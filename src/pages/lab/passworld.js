@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  Main, Section, H1, Input, Button, Toast,
+  Main, Section, H1, H2, Input, Button, Toast,
 } from '../../components';
 import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 import { copyToClipboard, parseInput } from '../../utils';
@@ -166,7 +166,8 @@ export default class PassworldPage extends Component {
         >
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="output">
-            <H1>{this.state.password}</H1>
+            <H2 as='h1'>Generated password</H2>
+            <H1 as="p">{this.state.password}</H1>
           </Section>
           <Section gridArea="input">
             {this.inputs.map(input => <Input key={input.name} value={this.state[input.name]} {...input} />)}
