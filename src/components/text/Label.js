@@ -13,11 +13,12 @@ import { Text } from '../primitives';
 export const Label = styled(Text)`
   animation: ${({ animation }) => animation};
 `;
+
 Label.defaultProps = {
   as:            'label',
-  display:       'block',
+  display:       'flex',
+  alignItems:    'center',
   color:         'hsla(var(--hsl-text), 0.75)',
   fontSize:      '1.25rem',
-  lineHeight:    '3rem',
   textTransform: 'uppercase',
 };
