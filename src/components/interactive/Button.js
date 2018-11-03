@@ -13,6 +13,7 @@ import { Layout } from '../primitives';
 export const Button = styled(Layout)`
   -webkit-appearance: none;
   border: none;
+  background-color: transparent;
 
   cursor: pointer;
 

@@ -53,17 +53,17 @@ export default class ColourThemeContainer extends PureComponent {
         options={[
           {
             value:   'basic',
-            label:   'Basic',
+            label:   'default',
             checked: this.state.currentTheme === 'basic',
           },
           {
             value:   'dark',
-            label:   'Dark',
+            label:   'dark',
             checked: this.state.currentTheme === 'dark',
           },
           {
             value:   'crazy',
-            label:   'Crazy',
+            label:   'crazy',
             checked: this.state.currentTheme === 'crazy',
           },
         ]}
