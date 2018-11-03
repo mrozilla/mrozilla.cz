@@ -8,6 +8,7 @@ import { shape, string, arrayOf } from 'prop-types';
 import {
   Footer, Section, H2, Ul, Li, Link, P,
 } from '../components';
+import ColourThemeContainer from './ColourThemeContainer';
 import { parseLinks } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -22,11 +23,12 @@ export default function FooterContainer({ footer }) {
         xs: `
           'contact'
           'legal'
+          'theme'
           'colophon'
           / 1fr;
         `,
         lg: `
-          'contact legal colophon colophon'
+          'theme contact legal colophon'
           / 1fr 1fr 1fr 1fr
         `,
       }}
@@ -54,6 +56,10 @@ export default function FooterContainer({ footer }) {
             </Li>
           ))}
         </Ul>
+      </Section>
+      <Section>
+        <H2>Colour theme</H2>
+        <ColourThemeContainer />
       </Section>
       <Section gridArea="colophon">
         <H2>{footer.colophon.title}</H2>

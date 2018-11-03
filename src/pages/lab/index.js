@@ -7,11 +7,7 @@ import { graphql } from 'gatsby';
 
 import { Main, Section, H2 } from '../../components';
 import {
-  RootContainer,
-  HeroContainer,
-  WorksContainer,
-  ColourThemeContainer,
-  SEOContainer,
+  RootContainer, HeroContainer, WorksContainer, SEOContainer,
 } from '../../containers';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -56,16 +52,12 @@ export default function LabPage({
       <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
-          xs: "'hero' 'theme' 'tools' 'products'",
-          md: "'hero hero' 'theme theme' 'tools products' / 1fr 1fr",
+          xs: "'hero' 'tools' 'products'",
+          md: "'hero hero' 'tools products' / 1fr 1fr",
         }}
         gridGap="10vh 4rem"
       >
         <HeroContainer title={hero.title} />
-        <Section gridArea="theme">
-          <H2>current colour theme</H2>
-          <ColourThemeContainer />
-        </Section>
         <Section gridArea="tools">
           <H2>little tools</H2>
           <WorksContainer
