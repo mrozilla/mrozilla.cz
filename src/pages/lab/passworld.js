@@ -142,7 +142,7 @@ export default class PassworldPage extends Component {
 
   buttons = [
     {
-      title:   'Generate password',
+      title:   'Generate',
       onClick: this.handleGeneratePassword,
       grouped: true,
     },
