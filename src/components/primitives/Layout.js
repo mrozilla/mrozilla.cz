@@ -12,12 +12,15 @@ import { mediaQuerise } from '../../utils';
 
 export const Layout = styled.div(
   ({
+    display,
     position,
     gridArea,
     gridTemplate,
     gridTemplateColumns,
     gridTemplateRows,
     gridGap,
+    alignItems,
+    justifyContent,
     alignSelf,
     margin,
     padding,
@@ -27,6 +30,7 @@ export const Layout = styled.div(
     left,
     width,
     minWidth,
+    boxShadow,
     borderRadius,
     backgroundColor,
     backgroundImage,
@@ -34,12 +38,15 @@ export const Layout = styled.div(
     backgroundRepeat,
   }) => ({
     ...mediaQuerise({
+      display,
       position,
       gridArea,
       gridTemplate,
       gridTemplateColumns,
       gridTemplateRows,
       gridGap,
+      alignItems,
+      justifyContent,
       alignSelf,
       margin,
       padding,
@@ -49,6 +56,7 @@ export const Layout = styled.div(
       left,
       width,
       minWidth,
+      boxShadow,
       borderRadius,
       backgroundColor,
       backgroundImage,
