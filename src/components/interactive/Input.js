@@ -5,6 +5,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Text } from '../primitives';
+
 import { Button } from './Button';
 import { Checkbox } from './Checkbox';
 import { Error } from './Error';
@@ -49,18 +51,18 @@ export default function Input({
         <>
           {label && <Legend>{label}</Legend>}
           {options.map(radio => (
-            <Label key={radio.value} htmlFor={radio.value} textTransform="unset" fontSize="unset">
+            <Label key={radio.value} htmlFor={radio.value}>
               <Radio
                 id={radio.value}
-                value={radio.value}
-                checked={radio.checked}
                 {...{
+                  value:   radio.value,
+                  checked: radio.checked,
                   name,
                   required,
                   onChange,
                 }}
               />
-              {radio.label}
+              <Text>{radio.label}</Text>
             </Label>
           ))}
           {description && <Tooltip>{description}</Tooltip>}
@@ -80,7 +82,7 @@ export default function Input({
                 onChange,
               }}
             />
-            {label}
+            <Text>{label}</Text>
           </Label>
           {description && <Tooltip>{description}</Tooltip>}
         </>

@@ -4,29 +4,17 @@
 
 import styled from 'styled-components';
 
+import { Layout } from './Layout';
+
 import { mediaQuerise } from '../../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Text = styled.span(
+export const Text = styled(Layout)(
+  {},
   ({
-    position,
-    display,
-    gridArea,
-    margin,
-    padding,
-    height,
-    width,
-    top,
-    right,
-    bottom,
-    left,
-    backgroundColor,
-    boxShadow,
-    opacity,
-    visibility,
     color,
     fontFamily,
     fontSize,
@@ -38,21 +26,6 @@ export const Text = styled.span(
     whiteSpace,
   }) => ({
     ...mediaQuerise({
-      position,
-      display,
-      gridArea,
-      margin,
-      padding,
-      height,
-      width,
-      top,
-      right,
-      bottom,
-      left,
-      backgroundColor,
-      boxShadow,
-      opacity,
-      visibility,
       color,
       fontFamily,
       fontSize,
@@ -65,3 +38,5 @@ export const Text = styled.span(
     }),
   }),
 );
+
+Text.defaultProps = { as: 'span' };

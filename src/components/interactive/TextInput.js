@@ -20,21 +20,18 @@ export const StyledTextInput = styled(Text)`
   border: none;
   outline: none;
   resize: none;
+  background-color: transparent;
 
   display: block;
   width: 100%;
 
+  &::placeholder {
+    opacity: 0.25;
+  }
+
   &:hover:not(:read-only),
   &:focus:not(:read-only) {
     box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
-  }
-
-  :read-only {
-    cursor: copy;
-  }
-
-  &::placeholder {
-    opacity: 0.5;
   }
 
   &:not(:placeholder-shown) {
