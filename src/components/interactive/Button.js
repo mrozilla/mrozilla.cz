@@ -13,6 +13,7 @@ import { Layout } from '../primitives';
 export const Button = styled(Layout)`
   -webkit-appearance: none;
   border: none;
+  outline: none;
   background-color: transparent;
 
   cursor: pointer;
@@ -22,8 +23,7 @@ export const Button = styled(Layout)`
     opacity: 0.5;
   }
 
-  &:not(:disabled):hover,
-  &:not(:disabled):focus {
+  &:not(:disabled):hover {
     transform: translateY(-1px);
   }
   &:active {
@@ -35,8 +35,9 @@ export const Button = styled(Layout)`
       return css`
         &:not(:disabled):hover,
         &:not(:disabled):focus {
+          color: var(--color-info);
           background-color: hsla(var(--hsl-text), 0.025);
-          box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+          box-shadow: 0 0 0 1px var(--color-info);
         }
       `;
     }
@@ -46,7 +47,9 @@ export const Button = styled(Layout)`
 
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.5);
+        color: var(--color-info);
+        background-color: hsla(var(--hsl-info), 0.05);
+        box-shadow: 0 0 0 1px var(--color-info);
       }
     `;
   }};
@@ -71,5 +74,5 @@ export const Button = styled(Layout)`
 Button.defaultProps = {
   as:           'button',
   padding:      '1rem 2rem',
-  borderRadius: '0.25rem',
+  borderRadius: '0.5rem',
 };

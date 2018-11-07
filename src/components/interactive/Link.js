@@ -16,6 +16,8 @@ import { Text } from '../primitives';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const StyledLink = styled(Text)`
+  outline: none;
+
   &[aria-current] {
     font-weight: 700;
   }
@@ -26,6 +28,7 @@ const StyledLink = styled(Text)`
         &:hover,
         &:focus,
         &:active {
+          color: var(--color-info);
           text-decoration: underline;
         }
       `;
@@ -37,6 +40,7 @@ const StyledLink = styled(Text)`
         &:hover,
         &:focus,
         &:active {
+          color: var(--color-info);
           text-decoration: underline;
         }
       `;
