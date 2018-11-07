@@ -29,9 +29,12 @@ export const StyledTextInput = styled(Text)`
     opacity: 0.25;
   }
 
-  &:hover:not(:read-only),
-  &:focus:not(:read-only) {
+  &:hover:not(:read-only) {
     box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
+  }
+
+  &:focus:not(:read-only) {
+    box-shadow: 0 1px 0 0 var(--color-info);
   }
 
   &:not(:placeholder-shown) {
