@@ -21,9 +21,9 @@ export default function FooterContainer({ footer }) {
       gridGap="2rem 1rem"
       gridTemplate={{
         xs: `
+          'theme'
           'contact'
           'legal'
-          'theme'
           'colophon'
           / 1fr;
         `,
@@ -33,6 +33,10 @@ export default function FooterContainer({ footer }) {
         `,
       }}
     >
+      <Section>
+        <H2>Colour theme</H2>
+        <ColourThemeContainer />
+      </Section>
       <Section gridArea="contact">
         <H2>{footer.contact.title}</H2>
         <Ul>
@@ -56,10 +60,6 @@ export default function FooterContainer({ footer }) {
             </Li>
           ))}
         </Ul>
-      </Section>
-      <Section>
-        <H2>Colour theme</H2>
-        <ColourThemeContainer />
       </Section>
       <Section gridArea="colophon">
         <H2>{footer.colophon.title}</H2>
