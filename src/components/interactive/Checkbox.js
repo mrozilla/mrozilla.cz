@@ -12,33 +12,43 @@ import { Text } from '../primitives';
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
+  outline: none;
 
+  position: relative;
   margin: 0 1rem 0 0;
+
   cursor: pointer;
+  font-size: 2rem;
+  width: 1em;
+  height: 1em;
+  background-color: hsla(var(--hsl-text), 0.05);
+  box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  border-radius: 0.25em;
 
-  &::before,
-  &::after {
-    content: '';
+  &:hover,
+  &:focus {
+    background-color: hsla(var(--hsl-info), 0.05);
+    box-shadow: inset 0 0 0 1px var(--color-info);
+    & ~ ${Text} {
+      color: var(--color-info) !important;
+    }
   }
 
-  &::before {
-    display: block;
-    width: 2rem;
-    height: 2rem;
-    background-color: hsla(var(--hsl-text), 0.05);
-    box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
-    border-radius: 0.5rem;
-  }
-
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      &::before {
-        box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.5);
-      }
-      & ~ ${Text} {
-        color: hsla(var(--hsl-text), 0.75);
-      }
+  &:checked {
+    background-color: var(--color-info);
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0.35em;
+      top: 0.15em;
+      width: 0.3em;
+      height: 0.55em;
+      border: solid var(--color-bg);
+      border-width: 0 0.125em 0.125em 0;
+      transform: rotate(40deg);
+    }
+    & ~ ${Text} {
+      color: var(--color-text);
     }
   }
 
@@ -47,25 +57,5 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     font-size: 2rem;
     text-transform: initial;
     color: hsla(var(--hsl-text), 0.5);
-  }
-
-  &:checked {
-    &::before {
-      box-shadow: none;
-      background-color: var(--color-info);
-    }
-    &::after {
-      position: absolute;
-      left: 0.75rem;
-      top: 1.35rem;
-      width: 0.6rem;
-      height: 1.1rem;
-      border: solid var(--color-bg);
-      border-width: 0 0.25rem 0.25rem 0;
-      transform: rotate(40deg);
-    }
-    & ~ ${Text} {
-      color: var(--color-text);
-    }
   }
 `;

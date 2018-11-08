@@ -66,18 +66,19 @@ Calendar.Day = styled.p`
 
   ${({ isCurrent }) => isCurrent
     && css`
-      color: hsl(var(--hsl-info));
+      color: hsl(var(--hsl-bg));
       background-image: radial-gradient(
         circle closest-side,
-        hsla(var(--hsl-info), 0.25) 100%,
+        var(--color-info) 100%,
         transparent 100%
       );
     `};
 
   &:hover {
+    color: var(--color-info);
     background-image: radial-gradient(
       circle closest-side,
-      hsla(var(--hsl-text), 0.1) 100%,
+      hsla(var(--hsl-info), 0.25) 100%,
       transparent 100%
     );
   }
@@ -90,7 +91,8 @@ Calendar.Day = styled.p`
 export default class CalendarPage extends PureComponent {
   state = {
     selected: new Date(),
-    locale:   (typeof navigator !== 'undefined' && navigator.languages && navigator.languages[0]) || 'en',
+    locale:
+      (typeof navigator !== 'undefined' && navigator.languages && navigator.languages[0]) || 'en',
   };
 
   helpers = {

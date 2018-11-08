@@ -39,9 +39,9 @@ export default function Input({
   checked,
   options,
   rows,
+  pattern,
   readOnly,
   required,
-  isFloatingLabel,
   onChange,
   ...rest
 }) {
@@ -99,8 +99,8 @@ export default function Input({
               value,
               placeholder,
               rows,
+              pattern,
               required,
-              isFloatingLabel,
               onChange,
             }}
           />
@@ -121,9 +121,9 @@ export default function Input({
             name,
             value,
             placeholder,
+            pattern,
             readOnly,
             required,
-            isFloatingLabel,
             onChange,
           }}
         />
