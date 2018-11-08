@@ -166,7 +166,7 @@ export default class PassworldPage extends Component {
         >
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="output">
-            <H2 as='h1'>Generated password</H2>
+            <H2 as="h1">Generated password</H2>
             <H1 as="p">{this.state.password}</H1>
           </Section>
           <Section gridArea="input">
@@ -176,7 +176,7 @@ export default class PassworldPage extends Component {
           </Section>
           {this.state.clipboard === this.state.password && (
             <Toast key={window.performance.now()}>
-              {this.state.clipboard} was copied to clipboard!
+              {this.state.clipboard} was copied to the clipboard
             </Toast>
           )}
         </Main>
