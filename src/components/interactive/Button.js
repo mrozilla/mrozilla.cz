@@ -26,7 +26,7 @@ export const Button = styled(Layout)`
   &:not(:disabled):hover {
     transform: translateY(-1px);
   }
-  &:active {
+  &:not(:disabled):active {
     transform: translateY(1px);
   }
 

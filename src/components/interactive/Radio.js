@@ -28,7 +28,7 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
   &:focus {
     box-shadow: inset 0 0 0 1px var(--color-info);
     & ~ ${Text} {
-      color: hsla(var(--hsl-text), 0.75);
+      color: var(--color-info) !important;
     }
   }
 

@@ -30,7 +30,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     background-color: hsla(var(--hsl-info), 0.05);
     box-shadow: inset 0 0 0 1px var(--color-info);
     & ~ ${Text} {
-      color: hsla(var(--hsl-text), 0.75);
+      color: var(--color-info) !important;
     }
   }
 
