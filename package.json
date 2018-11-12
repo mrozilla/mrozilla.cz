@@ -51,6 +51,6 @@
     "build:lambda": "netlify-lambda build src/lambda",
     "build": "yarn build:lambda && yarn build:gatsby",
     "serve": "gatsby serve",
-    "lint": "eslint src/**"
+    "lint": "eslint 'src/**/*.js'"
   }
 }
