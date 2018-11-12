@@ -11,7 +11,11 @@
     "import/prefer-default-export": 0,
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
-    "max-len": [2, { "code": 100, "ignoreComments": true }]
+    "max-len": [2, { "code": 100, "ignoreComments": true }],
+    "object-curly-newline": [
+      2,
+      { "ImportDeclaration": "never", "ExportDeclaration": "never" }
+    ]
   },
   "settings": {
     "import/resolver": {
