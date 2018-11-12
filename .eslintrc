@@ -12,5 +12,14 @@
     "indent": 1,
     "key-spacing": [1, { "align": "value" }],
     "max-len": [2, { "code": 100, "ignoreComments": true }]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["~components", "./src/components"],
+        ["~containers", "./src/containers"],
+        ["~utils", "./src/utils"]
+      ]
+    }
   }
 }
