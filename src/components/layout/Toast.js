@@ -4,9 +4,8 @@
 
 import styled, { css } from 'styled-components';
 
-import { Layout } from '../primitives';
-
-import { fadeOutAnimation } from '../../utils';
+import { Layout } from '~components/primitives';
+import { fadeOutAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

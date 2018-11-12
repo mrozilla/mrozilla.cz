@@ -4,9 +4,9 @@
 
 import styled from 'styled-components';
 
-import { Layout } from './Layout';
+import { Layout } from '~components/primitives/Layout';
 
-import { mediaQuerise } from '../../utils';
+import { mediaQuerise } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

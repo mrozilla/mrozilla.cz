@@ -5,13 +5,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Article, Aside, Link, Main, H1, H2, P,
-} from '../components';
 import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
-
-import { renderMarkdown, parseLinks } from '../utils';
-
+import { Article, Aside, Link, Main, H1, H2, P } from '~components';
+import { renderMarkdown, parseLinks } from '~utils';
 import 'prismjs/themes/prism.css';
 
 // ─────────────────────────────────────────────────────────────────────────────

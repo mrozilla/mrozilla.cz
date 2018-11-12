@@ -5,17 +5,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, H2, P,
-} from '../components';
-import {
-  RootContainer,
+import { RootContainer,
   HeroContainer,
   WorksContainer,
   AvailabilityContainer,
   BlogPreviewsContainer,
-  SEOContainer,
-} from '../containers';
+  SEOContainer } from '~containers';
+
+import { Main, Section, H2, P } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query

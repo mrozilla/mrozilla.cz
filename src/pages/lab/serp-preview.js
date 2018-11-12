@@ -6,10 +6,9 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { RootContainer, SEOContainer } from '../../containers';
-import { Main, Section, Alert } from '../../components';
-
-import { parseLinks } from '../../utils';
+import { RootContainer, SEOContainer } from '~containers';
+import { Main, Section, Alert } from '~components';
+import { parseLinks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers

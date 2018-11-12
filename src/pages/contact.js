@@ -5,10 +5,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, P, Link, Button, Form, Input,
-} from '../components';
-import { RootContainer, HeroContainer, SEOContainer } from '../containers';
+import { RootContainer, HeroContainer, SEOContainer } from '~containers';
+import { Main, Section, P, Link, Button, Form, Input } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query

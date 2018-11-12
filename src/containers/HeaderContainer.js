@@ -5,9 +5,7 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 
-import {
-  Header, H1, Link, Nav,
-} from '../components';
+import { Header, H1, Link, Nav } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

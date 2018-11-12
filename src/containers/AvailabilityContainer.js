@@ -4,7 +4,8 @@
 
 import React, { PureComponent } from 'react';
 import { instanceOf } from 'prop-types';
-import { P, Link } from '../components';
+
+import { P, Link } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

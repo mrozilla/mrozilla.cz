@@ -6,7 +6,7 @@ import React from 'react';
 import RehypeReact from 'rehype-react';
 import { node } from 'prop-types';
 
-import { Link } from '../components';
+import { Link } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers

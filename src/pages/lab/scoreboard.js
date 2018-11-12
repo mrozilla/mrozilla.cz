@@ -4,14 +4,11 @@
 
 import React, { PureComponent, Fragment } from 'react';
 import { graphql } from 'gatsby';
-
 import styled from 'styled-components';
-import {
-  Main, Section, Button, Input, Form,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
 
-import { parseInput } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, Button, Input, Form } from '~components';
+import { parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -107,9 +104,7 @@ export default class ScoreboardPage extends PureComponent {
         [player]: {
           ...prevState[player],
           points: [
-            ...prevState[player].points.map(
-              (point, i, arr) => (i === arr.length - 1 ? point + 1 : point),
-            ),
+            ...prevState[player].points.map((point, i, arr) => (i === arr.length - 1 ? point + 1 : point)),
             ...(isNextSet ? [0] : []),
           ],
         },
@@ -132,9 +127,7 @@ export default class ScoreboardPage extends PureComponent {
           ...prevState[player],
           points: isPreviousSet
             ? prevState[player].points.slice(0, -1)
-            : prevState[player].points.map(
-              (point, i, arr) => (i === arr.length - 1 ? point - 1 : point),
-            ),
+            : prevState[player].points.map((point, i, arr) => (i === arr.length - 1 ? point - 1 : point)),
         },
         [opponent]: {
           ...prevState[opponent],
@@ -189,9 +182,7 @@ export default class ScoreboardPage extends PureComponent {
       <Fragment key={this.state[player].name}>
         <Scoreboard.Team>{this.state[player].team}</Scoreboard.Team>
         <Scoreboard.Name>{this.state[player].name}</Scoreboard.Name>
-        <Scoreboard.Set fontWeight="bold">
-          {this.getSetCount(player)}
-        </Scoreboard.Set>
+        <Scoreboard.Set fontWeight="bold">{this.getSetCount(player)}</Scoreboard.Set>
         {winner === null && (
           <Scoreboard.Point>
             {this.state[player].points[this.state[player].points.length - 1]}
@@ -306,7 +297,6 @@ export default class ScoreboardPage extends PureComponent {
           }}
           gridGap="10vh 4rem"
         >
-
           <HeroContainer title={this.props.data.page.body.hero.title} />
 
           <Section gridArea="scoreboard">
@@ -317,7 +307,6 @@ export default class ScoreboardPage extends PureComponent {
           </Section>
 
           <Section gridArea="controls">{this.renderControls()}</Section>
-
         </Main>
       </RootContainer>
     );

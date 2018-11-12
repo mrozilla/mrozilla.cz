@@ -6,11 +6,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives';
 
-import { Error } from './Error';
-import { Label } from '../text/Label';
-import { Tooltip } from '../text/Tooltip';
+import { Error } from '~components/interactive/Error';
+import { Label } from '~components/text/Label';
+import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -64,6 +64,11 @@ export const StyledTextInput = styled(Text)`
         opacity: 0;
       }
     }
+  }
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-text);
+    transition: background-color 50000s ease-in-out;
   }
 `;
 

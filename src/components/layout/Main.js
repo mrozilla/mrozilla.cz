@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '../primitives';
+import { Layout } from '~components/primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
