@@ -3,12 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
+import { string, bool, node, func } from 'prop-types';
 import styled from 'styled-components';
-import {
-  string, bool, node, func,
-} from 'prop-types';
 
-import { fadeUpAnimation } from '../../utils';
+import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers

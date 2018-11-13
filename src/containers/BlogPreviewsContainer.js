@@ -3,13 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import {
-  arrayOf, shape, string, number,
-} from 'prop-types';
+import { arrayOf, shape, string, number } from 'prop-types';
 
-import {
-  Ul, Li, Link, P,
-} from '../components';
+import { Ul, Li, Link, P } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

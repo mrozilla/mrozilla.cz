@@ -16,11 +16,13 @@ ogImage: "../multimedia/og.png"
 - http://www.bbriel.me/ <small style="opacity: 0.5">(2018)</small>
 - http://www.fullstopnewparagraph.co.uk/ <small style="opacity: 0.5">(2018)</small>
 - https://chasem.co/ <small style="opacity: 0.5">(2018)</small>
+- https://timmyomahony.com/ <small style="opacity: 0.5">(2018)</small>
 - https://twnsnd.co/ <small style="opacity: 0.5">(2018)</small>
 - https://websmyth.co/ <small style="opacity: 0.5">(2018)</small>
 
 ## companies/startups/services
 
+- https://www.acorns.com/ <small style="opacity: 0.5">(2018)</small>
 - [https://www.airbnb.com](https://web.archive.org/web/20170701010531/https://www.airbnb.com/) <small style="opacity: 0.5">(2017)</small>
 - http://heystack.is/ <small style="opacity: 0.5">(2018)</small>
 - https://airtable.com <small style="opacity: 0.5">(2018)</small>

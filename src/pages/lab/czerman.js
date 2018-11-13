@@ -6,19 +6,9 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 import { shape } from 'prop-types';
 
-import {
-  Main,
-  Section,
-  Table,
-  Link,
-  Button,
-  Modal,
-  H2,
-  P,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
-
-import { metaTypes } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, Table, Link, Button, Modal, H2, P } from '~components';
+import { metaTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query

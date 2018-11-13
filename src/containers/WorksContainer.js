@@ -5,9 +5,7 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 
-import {
-  Ul, Li, H3, P, Link,
-} from '../components';
+import { Ul, Li, H3, P, Link } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

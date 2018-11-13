@@ -5,11 +5,9 @@
 import React from 'react';
 import { shape, string, arrayOf } from 'prop-types';
 
-import {
-  Footer, Section, H2, Ul, Li, Link, P,
-} from '../components';
 import ColourThemeContainer from './ColourThemeContainer';
-import { parseLinks } from '../utils';
+import { Footer, Section, H2, Ul, Li, Link, P } from '~components';
+import { parseLinks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

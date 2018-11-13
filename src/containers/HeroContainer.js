@@ -5,9 +5,8 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-import { H1 } from '../components';
-
-import { parseLinks } from '../utils';
+import { H1 } from '~components';
+import { parseLinks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

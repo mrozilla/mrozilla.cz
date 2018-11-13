@@ -5,10 +5,9 @@
 import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
-import { Main, Section, Input } from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
-
-import { parseInput } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, Input } from '~components';
+import { parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query

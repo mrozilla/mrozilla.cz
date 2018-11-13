@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { mediaQuerise } from '../../utils';
+import { mediaQuerise } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

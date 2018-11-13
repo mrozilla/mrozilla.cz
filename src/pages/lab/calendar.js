@@ -4,12 +4,10 @@
 
 import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
-
 import styled, { css } from 'styled-components';
-import {
-  Main, Section, P, Button,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
+
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, P, Button } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query

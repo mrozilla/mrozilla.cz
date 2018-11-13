@@ -4,7 +4,7 @@
 
 import React, { PureComponent } from 'react';
 
-import { Toast, Link, Button } from '../components';
+import { Toast, Link, Button } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

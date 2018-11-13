@@ -5,17 +5,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives';
 
-import { Button } from './Button';
-import { Checkbox } from './Checkbox';
-import { Error } from './Error';
-import { Fieldset } from './Fieldset';
-import { Radio } from './Radio';
-import TextInput from './TextInput';
+import { Button } from '~components/interactive/Button';
+import { Checkbox } from '~components/interactive/Checkbox';
+import { Error } from '~components/interactive/Error';
+import { Fieldset } from '~components/interactive/Fieldset';
+import { Radio } from '~components/interactive/Radio';
+import TextInput from '~components/interactive/TextInput';
 
-import { Label } from '../text/Label';
-import { Tooltip } from '../text/Tooltip';
+import { Label } from '~components/text/Label';
+import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // legend

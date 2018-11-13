@@ -6,10 +6,9 @@ import React from 'react';
 import { string, node } from 'prop-types';
 import { Link as GatsbyLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-
 import styled, { css } from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -53,9 +52,7 @@ const StyledLink = styled(Text)`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Link({
-  href, to, children, ...rest
-}) {
+export default function Link({ href, to, children, ...rest }) {
   const link = href || to;
   if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
     return (

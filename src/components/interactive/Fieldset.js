@@ -4,8 +4,8 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '../primitives';
-import { Tooltip } from '../text/Tooltip';
+import { Layout } from '~components/primitives';
+import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // fieldset

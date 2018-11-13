@@ -5,11 +5,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, H1, H2, Input, Button, Toast,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
-import { copyToClipboard, parseInput } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, H1, H2, Input, Button, Toast } from '~components';
+import { copyToClipboard, parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -106,9 +104,10 @@ export default class PassworldPage extends Component {
       type:        'number',
       name:        'length',
       label:       'Password length',
-      description: "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
-      margin:      '0 0 2rem 0',
-      onChange:    ({ target }) => this.setState({ ...parseInput(target) }),
+      description:
+        "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
+      margin:   '0 0 2rem 0',
+      onChange: ({ target }) => this.setState({ ...parseInput(target) }),
     },
   ];
 
@@ -170,9 +169,21 @@ export default class PassworldPage extends Component {
             <H1 as="p">{this.state.password}</H1>
           </Section>
           <Section gridArea="input">
-            {this.inputs.map(input => <Input key={input.name} value={this.state[input.name]} {...input} />)}
-            {this.checkboxes.map(input => <Input key={input.name} checked={this.state.chars[input.name]} {...input} />)}
-            {this.buttons.map(button => <Button key={button.title} {...button} disabled={Object.values(this.state.chars).every(item => item === false)}>{button.title}</Button>)}
+            {this.inputs.map(input => (
+              <Input key={input.name} value={this.state[input.name]} {...input} />
+            ))}
+            {this.checkboxes.map(input => (
+              <Input key={input.name} checked={this.state.chars[input.name]} {...input} />
+            ))}
+            {this.buttons.map(button => (
+              <Button
+                key={button.title}
+                {...button}
+                disabled={Object.values(this.state.chars).every(item => item === false)}
+              >
+                {button.title}
+              </Button>
+            ))}
           </Section>
           {this.state.clipboard === this.state.password && (
             <Toast key={window.performance.now()}>
