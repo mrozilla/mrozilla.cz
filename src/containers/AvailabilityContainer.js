@@ -32,7 +32,7 @@ export default class AvailabilityContainer extends PureComponent {
   render() {
     return (
       <P fontSize="3rem">
-        <Link to="/contact" type="primary">
+        <Link to="/contact" type="secondary">
           {this.availabilityDate.toLocaleDateString('en-GB', {
             month: 'long',
             year:  'numeric',

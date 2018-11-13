@@ -16,7 +16,7 @@ export default function BlogPreviewsContainer({ posts }) {
     <Ul>
       {posts.map(post => (
         <Li key={post.permalink}>
-          <Link to={post.permalink} type="primary">
+          <Link to={post.permalink} type="secondary">
             {post.title}
           </Link>
           {(post.date || post.timeToRead) && (

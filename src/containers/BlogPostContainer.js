@@ -73,7 +73,7 @@ export default function BlogPost({
               </Link>
             </H1>
             {meta.description && (
-              <P fontSize="3rem">{parseLinks(meta.description, { type: 'secondary' })}</P>
+              <P fontSize="3rem">{parseLinks(meta.description, { type: 'primary' })}</P>
             )}
             {meta.date && (
               <time

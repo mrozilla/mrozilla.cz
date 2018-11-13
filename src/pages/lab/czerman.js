@@ -119,7 +119,12 @@ export default class CzermanPage extends PureComponent {
         <P>{modalTerm.czech.ipa}</P>
         <H2>German equivalent</H2>
         <P>{this.state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
-        <H2>German IPA</H2>
+        <H2>
+          German{' '}
+          <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/German">
+            IPA
+          </Link>
+        </H2>
         <P>{this.state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
         <Button
           onClick={this.state.isCardFlipped ? this.handleNextTerm : this.handleFlipCard}

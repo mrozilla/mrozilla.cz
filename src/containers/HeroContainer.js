@@ -15,7 +15,7 @@ import { parseLinks } from '~utils';
 export default function HeroContainer({ title }) {
   return (
     <H1 fontSize="5rem" lineHeight="6rem" margin="-1rem 0 0 0" gridArea="hero">
-      {parseLinks(title, { type: 'secondary' })}
+      {parseLinks(title, { type: 'primary' })}
     </H1>
   );
 }

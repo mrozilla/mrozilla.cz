@@ -58,7 +58,7 @@ export default function AboutPage({
             {about.map(item => (
               <Li key={item.title}>
                 <H2>{item.title}</H2>
-                <P>{parseLinks(item.text, { type: 'secondary' })}</P>
+                <P>{parseLinks(item.text, { type: 'primary' })}</P>
               </Li>
             ))}
           </Ul>

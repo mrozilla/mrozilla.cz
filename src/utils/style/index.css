@@ -138,7 +138,7 @@ body {
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   font-size: 2rem;
-  line-height: 4rem;
+  line-height: 3rem;
   color: var(--color-text);
   background-color: var(--color-bg);
   scroll-behavior: smooth;
@@ -159,4 +159,16 @@ textarea,
 input {
   color: inherit;
   font-size: inherit;
+}
+
+/**
+ * removes webkit auto-filled input field styles
+ *
+ * 1. color doesn't work here, webkit fill color is required
+ * 2. background-color doesn't work here, long transition delay used instead
+ */
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text); /* 1 */
+  transition: background-color 0s 3600s; /* 2 */
 }

@@ -15,7 +15,7 @@ export default function HeaderContainer({ header }) {
   return (
     <Header>
       <H1 fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
-        <Link to="/" type="primary">
+        <Link to="/" type="secondary">
           mrozilla
         </Link>
       </H1>
@@ -23,7 +23,7 @@ export default function HeaderContainer({ header }) {
         <Nav.List>
           {header.map(item => (
             <Nav.List.Item key={item.url}>
-              <Link to={item.url} type="primary">
+              <Link to={item.url} type="secondary">
                 {item.text}
               </Link>
             </Nav.List.Item>
