@@ -24,7 +24,7 @@ export default class AvailabilityContainer extends PureComponent {
 
   availabilityDate = new Date(
     Math.max(
-      this.props.nowDate.setMonth(this.props.nowDate.getMonth() + 1),
+      new Date(this.props.nowDate.getFullYear(), this.props.nowDate.getMonth() + 1),
       this.props.availabilityDate,
     ),
   );
@@ -33,7 +33,7 @@ export default class AvailabilityContainer extends PureComponent {
     return (
       <P fontSize="3rem">
         <Link to="/contact" type="secondary">
-          {this.availabilityDate.toLocaleDateString('en-GB', {
+          {this.availabilityDate.toLocaleString('en-GB', {
             month: 'long',
             year:  'numeric',
           })}
