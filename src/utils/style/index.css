@@ -138,7 +138,7 @@ body {
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   font-size: 2rem;
-  line-height: 3rem;
+  line-height: 4rem;
   color: var(--color-text);
   background-color: var(--color-bg);
   scroll-behavior: smooth;
