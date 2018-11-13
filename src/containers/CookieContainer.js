@@ -22,7 +22,7 @@ export default class CookieContainer extends PureComponent {
   };
 
   render() {
-    if (!this.state.isHidden) {
+    if (this.state.isHidden) {
       return (
         <Toast
           backgroundColor="var(--color-bg)"
@@ -39,7 +39,7 @@ export default class CookieContainer extends PureComponent {
           }}
         >
           Yeah, we use cookies, we even have a{' '}
-          <Link type="secondary" to="/legal#cookies">
+          <Link type="primary" to="/legal#cookies">
             cookie policy
           </Link>
           <Button margin="0 0 0 1rem" onClick={this.handleVisibility}>

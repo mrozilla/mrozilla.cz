@@ -42,7 +42,7 @@ export default function FooterContainer({ footer }) {
         <Ul>
           {footer.contact.body.map(contact => (
             <Li key={contact.url}>
-              <Link to={contact.url} type="primary">
+              <Link to={contact.url} type="secondary">
                 {contact.text}
               </Link>
             </Li>
@@ -54,7 +54,7 @@ export default function FooterContainer({ footer }) {
         <Ul>
           {footer.legal.body.map(legal => (
             <Li key={legal.url}>
-              <Link to={legal.url} type="primary">
+              <Link to={legal.url} type="secondary">
                 {legal.text}
               </Link>
             </Li>
@@ -63,7 +63,7 @@ export default function FooterContainer({ footer }) {
       </Section>
       <Section gridArea="colophon">
         <H2>{footer.colophon.title}</H2>
-        <P>{parseLinks(footer.colophon.text, { type: 'secondary' })}</P>
+        <P>{parseLinks(footer.colophon.text, { type: 'primary' })}</P>
       </Section>
     </Footer>
   );
