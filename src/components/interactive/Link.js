@@ -25,18 +25,16 @@ const StyledLink = styled(Text)`
   ${({ type }) => {
     if (type === 'primary') {
       return css`
+        text-decoration: underline;
         &:hover,
         &:focus,
         &:active {
           color: var(--color-info);
-          text-decoration: underline;
         }
       `;
     }
     if (type === 'secondary') {
       return css`
-        text-decoration: underline;
-        text-decoration-color: hsla(var(--hsl-text), 0.5);
         &:hover,
         &:focus,
         &:active {
