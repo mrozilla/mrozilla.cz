@@ -38,8 +38,8 @@ export default class CountOnMePage extends PureComponent {
 
   handleCount = (event, value) => {
     event.stopPropagation();
-    this.setState(prevState => ({
-      count: prevState.count + value,
+    this.setState(state => ({
+      count: state.count + value,
     }));
 
     if ('vibrate' in navigator) {

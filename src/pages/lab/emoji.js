@@ -45,8 +45,8 @@ export default class EmojiPage extends PureComponent {
 
   handleAddEmoji = async () => {
     const emoji = await this.getRandomEmoji();
-    this.setState(prevState => ({
-      randomEmojis: [...prevState.randomEmojis, emoji],
+    this.setState(state => ({
+      randomEmojis: [...state.randomEmojis, emoji],
     }));
   };
 

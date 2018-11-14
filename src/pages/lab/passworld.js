@@ -54,20 +54,20 @@ export default class PassworldPage extends Component {
     this.handleGeneratePassword();
   };
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = (prevProps, state) => {
     if (
-      this.state.length !== prevState.length
-      || this.state.chars.lowerChars !== prevState.chars.lowerChars
-      || this.state.chars.upperChars !== prevState.chars.upperChars
-      || this.state.chars.numbers !== prevState.chars.numbers
-      || this.state.chars.specialChars !== prevState.chars.specialChars
+      this.state.length !== state.length
+      || this.state.chars.lowerChars !== state.chars.lowerChars
+      || this.state.chars.upperChars !== state.chars.upperChars
+      || this.state.chars.numbers !== state.chars.numbers
+      || this.state.chars.specialChars !== state.chars.specialChars
     ) {
       this.handleGeneratePassword();
     }
   };
 
-  handleChangeCheckbox = ({ target }) => this.setState(prevState => ({
-    chars: { ...prevState.chars, ...parseInput(target) },
+  handleChangeCheckbox = ({ target }) => this.setState(state => ({
+    chars: { ...state.chars, ...parseInput(target) },
   }));
 
   handleGenerateRandomCharacter = () => {
@@ -85,16 +85,16 @@ export default class PassworldPage extends Component {
   };
 
   handleGeneratePassword = () => {
-    this.setState(prevState => ({
-      password: Array(...new Array(prevState.length))
+    this.setState(state => ({
+      password: Array(...new Array(state.length))
         .map(() => this.handleGenerateRandomCharacter())
         .join(''),
     }));
   };
 
   handleCopyToClipboard = () => {
-    this.setState(prevState => ({
-      clipboard: copyToClipboard(prevState.password),
+    this.setState(state => ({
+      clipboard: copyToClipboard(state.password),
     }));
     this.forceUpdate();
   };

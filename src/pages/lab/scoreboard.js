@@ -94,59 +94,59 @@ export default class ScoreboardPage extends PureComponent {
   };
 
   handleAddPoint = (player) => {
-    this.setState((prevState) => {
+    this.setState((state) => {
       const opponent = this.getOpponent(player);
-      const playerPoint = prevState[player].points[prevState[player].points.length - 1] + 1;
-      const opponentPoint = prevState[opponent].points[prevState[opponent].points.length - 1];
+      const playerPoint = state[player].points[state[player].points.length - 1] + 1;
+      const opponentPoint = state[opponent].points[state[opponent].points.length - 1];
       const isNextSet = playerPoint > 10 && playerPoint - opponentPoint > 1 && this.getSetCount(player) < 3;
 
       return {
         [player]: {
-          ...prevState[player],
+          ...state[player],
           points: [
-            ...prevState[player].points.map((point, i, arr) => (i === arr.length - 1 ? point + 1 : point)),
+            ...state[player].points.map((point, i, arr) => (i === arr.length - 1 ? point + 1 : point)),
             ...(isNextSet ? [0] : []),
           ],
         },
         [opponent]: {
-          ...prevState[opponent],
-          points: [...prevState[opponent].points, ...(isNextSet ? [0] : [])],
+          ...state[opponent],
+          points: [...state[opponent].points, ...(isNextSet ? [0] : [])],
         },
       };
     });
   };
 
   handleRemovePoint = (player) => {
-    this.setState((prevState) => {
+    this.setState((state) => {
       const opponent = this.getOpponent(player);
-      const playerPoint = prevState[player].points[prevState[player].points.length - 1] - 1;
+      const playerPoint = state[player].points[state[player].points.length - 1] - 1;
       const isPreviousSet = playerPoint < 0;
 
       return {
         [player]: {
-          ...prevState[player],
+          ...state[player],
           points: isPreviousSet
-            ? prevState[player].points.slice(0, -1)
-            : prevState[player].points.map((point, i, arr) => (i === arr.length - 1 ? point - 1 : point)),
+            ? state[player].points.slice(0, -1)
+            : state[player].points.map((point, i, arr) => (i === arr.length - 1 ? point - 1 : point)),
         },
         [opponent]: {
-          ...prevState[opponent],
+          ...state[opponent],
           points: isPreviousSet
-            ? prevState[opponent].points.slice(0, -1)
-            : prevState[opponent].points,
+            ? state[opponent].points.slice(0, -1)
+            : state[opponent].points,
         },
       };
     });
   };
 
   handleResetScore = () => {
-    this.setState(prevState => ({
+    this.setState(state => ({
       home: {
-        ...prevState.home,
+        ...state.home,
         points: [0],
       },
       away: {
-        ...prevState.away,
+        ...state.away,
         points: [0],
       },
     }));
@@ -225,8 +225,8 @@ export default class ScoreboardPage extends PureComponent {
           type="text"
           value={this.state.home.name}
           name="name"
-          onChange={({ target }) => this.setState(prevState => ({
-            home: { ...prevState.home, ...parseInput(target) },
+          onChange={({ target }) => this.setState(state => ({
+            home: { ...state.home, ...parseInput(target) },
           }))
           }
         />
@@ -235,8 +235,8 @@ export default class ScoreboardPage extends PureComponent {
           type="text"
           name="team"
           value={this.state.home.team}
-          onChange={({ target }) => this.setState(prevState => ({
-            home: { ...prevState.home, ...parseInput(target) },
+          onChange={({ target }) => this.setState(state => ({
+            home: { ...state.home, ...parseInput(target) },
           }))
           }
         />
@@ -255,8 +255,8 @@ export default class ScoreboardPage extends PureComponent {
           type="text"
           value={this.state.away.name}
           name="name"
-          onChange={({ target }) => this.setState(prevState => ({
-            away: { ...prevState.away, ...parseInput(target) },
+          onChange={({ target }) => this.setState(state => ({
+            away: { ...state.away, ...parseInput(target) },
           }))
           }
         />
@@ -265,8 +265,8 @@ export default class ScoreboardPage extends PureComponent {
           type="text"
           value={this.state.away.team}
           name="team"
-          onChange={({ target }) => this.setState(prevState => ({
-            away: { ...prevState.away, ...parseInput(target) },
+          onChange={({ target }) => this.setState(state => ({
+            away: { ...state.away, ...parseInput(target) },
           }))
           }
         />
