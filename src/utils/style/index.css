@@ -21,8 +21,9 @@
   --width-aside: 0fr;
 
   --z-index-header: 1000;
-  --z-index-toast: 1010;
-  --z-index-modal: 1020;
+  --z-index-tooltip: 1010;
+  --z-index-toast: 1020;
+  --z-index-modal: 1030;
 }
 
 @media screen and (min-width: 600px) {
