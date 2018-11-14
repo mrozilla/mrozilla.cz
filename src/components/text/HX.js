@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Text } from '~components/primitives';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // h1

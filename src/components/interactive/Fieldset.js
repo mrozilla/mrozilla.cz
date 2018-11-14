@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '~components/primitives';
+import { Layout } from '~components/primitives/Layout';
 import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
