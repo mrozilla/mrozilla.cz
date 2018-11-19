@@ -12,24 +12,14 @@ import { Input } from '~components/primitives/Input';
 
 /* eslint-disable no-param-reassign */
 
-export default function TextInput({ onChange, ...rest }) {
+export default function TextAreaInput({ onChange, ...rest }) {
   const handleChange = (event) => {
-    if (event.target.type === 'url') {
-      if (event.target.value === 'https://') {
-        event.target.value = '';
-        return;
-      }
-      if (!event.target.value.includes('https://')) {
-        event.target.value = `https://${event.target.value}`;
-        return;
-      }
-      return;
-    }
+    event.target.style.height = `${event.target.scrollHeight}px`;
 
     if (onChange) {
       onChange(event);
     }
   };
 
-  return <Input onChange={handleChange} {...rest} />;
+  return <Input as="textarea" onChange={handleChange} {...rest} />;
 }
