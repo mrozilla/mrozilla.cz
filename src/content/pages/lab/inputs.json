@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2018-11-13T00:00:00.000Z",
+    "permalink": "/lab/inputs",
+    "title": "Inputs playground",
+    "description": "A collection of many different things inputs can do",
+    "ogImage": "../../multimedia/og.png"
+  },
+  "body": {
+    "title": "inputs playground",
+    "tagline": "a collection of different things inputs can do",
+    "hero": {
+      "title": "Inputs playground is a magical place to test all the marvellous things modern browsers can do for your HTML inputs."
+    }
+  }
+}
