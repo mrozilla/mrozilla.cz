@@ -18,7 +18,7 @@ export default class CookieContainer extends PureComponent {
 
   handleVisibility = () => {
     window.localStorage.setItem('isCookiesHidden', !this.state.isHidden);
-    this.setState(prevState => ({ isHidden: !prevState.isHidden }));
+    this.setState(state => ({ isHidden: !state.isHidden }));
   };
 
   render() {

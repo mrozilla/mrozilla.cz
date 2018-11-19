@@ -2,52 +2,24 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { PureComponent } from 'react';
+import React from 'react';
+
+import { Input } from '~components/primitives/Input';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class BarrelRollContainer extends PureComponent {
-  state = {
-    count: 0,
-  };
+/* eslint-disable no-param-reassign */
 
-  componentDidMount = () => {
-    document.addEventListener('keydown', this.handleBarrelRoll);
-  };
+export default function TextAreaInput({ onChange, ...rest }) {
+  const handleChange = (event) => {
+    event.target.style.height = `${event.target.scrollHeight}px`;
 
-  componentWillUnmount = () => {
-    document.removeEventListener('keydown', this.handleBarrelRoll);
-  };
-
-  handleBarrelRoll = (evt) => {
-    if (evt.key === 'r') {
-      if (this.state.count < 4) {
-        return this.setState(
-          state => ({
-            count: state.count + 1,
-          }),
-          () => {
-            document.body.style.transform = null;
-            document.body.style.transition = null;
-          },
-        );
-      }
-      return this.setState(
-        {
-          count: 0,
-        },
-        () => {
-          document.body.style.transition = '1000ms';
-          document.body.style.transform = 'rotate(360deg)';
-        },
-      );
+    if (onChange) {
+      onChange(event);
     }
-    return null;
   };
 
-  render() {
-    return null;
-  }
+  return <Input as="textarea" onChange={handleChange} {...rest} />;
 }

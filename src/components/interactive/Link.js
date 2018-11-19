@@ -8,7 +8,7 @@ import { Link as GatsbyLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import styled, { css } from 'styled-components';
 
-import { Text } from '~components/primitives';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers

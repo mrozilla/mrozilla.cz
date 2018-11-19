@@ -21,8 +21,9 @@
   --width-aside: 0fr;
 
   --z-index-header: 1000;
-  --z-index-toast: 1010;
-  --z-index-modal: 1020;
+  --z-index-tooltip: 1010;
+  --z-index-toast: 1020;
+  --z-index-modal: 1030;
 }
 
 @media screen and (min-width: 600px) {
@@ -59,6 +60,9 @@ figure,
 fieldset,
 legend,
 textarea,
+button,
+input,
+select,
 pre,
 iframe,
 hr,
@@ -82,11 +86,17 @@ h6 {
   font-weight: inherit;
 }
 
+/**
+ * fixes forced useragent styles
+ */
+
 button,
 input,
 select,
 textarea {
-  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
 }
 
 html {
@@ -152,13 +162,6 @@ a {
 
 ol {
   padding-left: 1em;
-}
-
-button,
-textarea,
-input {
-  color: inherit;
-  font-size: inherit;
 }
 
 /**

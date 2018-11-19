@@ -5,48 +5,68 @@
 import styled from 'styled-components';
 
 import { Text } from '~components/primitives/Text';
+import { Label } from '~components/text/Label';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Radio = styled.input.attrs({ type: 'radio' })`
+export const Select = styled(Text)`
   appearance: none;
   outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
 
-  margin: 0 1rem 0 0;
-
+  display: block;
+  width: 100%;
   cursor: pointer;
-  font-size: 2rem;
-  width: 1em;
-  height: 1em;
-  background-color: hsla(var(--hsl-text), 0.05);
-  box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
-  border-radius: 50%;
 
-  & ~ ${Text} {
-    cursor: pointer;
-    font-size: 2rem;
-    text-transform: initial;
-    color: hsla(var(--hsl-text), 0.5);
+  &:hover {
+    --color: hsla(var(--hsl-text), 0.5);
+    box-shadow: 0 1px 0 0 var(--color);
   }
 
-  &:not(:read-only):not(:disabled) {
-    &:hover,
-    &:focus {
-      box-shadow: inset 0 0 0 1px var(--color-info);
+  &:focus {
+    box-shadow: 0 1px 0 0 var(--color-info);
+  }
 
-      & ~ ${Text} {
-        color: var(--color-text);
-      }
+  &:hover,
+  &:focus {
+    & ~ svg {
+      fill: var(--color-info);
+    }
+  }
+
+  & ~ svg {
+    position: absolute;
+    bottom: 1rem;
+    right: 0;
+    pointer-events: none;
+    fill: hsla(var(--hsl-text), 0.25);
+  }
+
+  & ~ ${Label} {
+    pointer-events: none;
+  }
+
+  &:required:invalid {
+    color: hsla(var(--hsl-text), 0.25);
+    padding: 2.5rem 0 1.5rem;
+
+    &:hover {
+      color: hsla(var(--hsl-text), 0.5);
     }
 
-    &:checked {
-      box-shadow: inset 0 0 0 0.3em var(--color-info);
-
-      & ~ ${Text} {
-        color: var(--color-text);
-      }
+    & ~ ${Label} {
+      position: absolute;
+      clip: rect(0, 0, 0, 0);
     }
   }
 `;
+
+Select.defaultProps = {
+  as:        'select',
+  boxShadow: '0 1px 0 0 hsla(var(--hsl-text), 0.25)',
+  padding:   '3rem 0 1rem',
+};

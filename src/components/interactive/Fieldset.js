@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '~components/primitives';
+import { Layout } from '~components/primitives/Layout';
 import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,7 +15,7 @@ export const Fieldset = styled(Layout)`
   position: relative;
   border: none;
 
-  & ${Tooltip} {
+  & > ${Tooltip} {
     visibility: hidden;
     opacity: 0;
     transform: translateY(1rem);
@@ -23,7 +23,7 @@ export const Fieldset = styled(Layout)`
 
   &:hover,
   &:focus-within {
-    & ${Tooltip} {
+    & > ${Tooltip} {
       visibility: visible;
       opacity: 1;
       transform: translateY(0);

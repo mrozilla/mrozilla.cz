@@ -65,13 +65,13 @@ export default class CzermanPage extends PureComponent {
   };
 
   handleOpenAll = () => {
-    this.setState(prevState => ({ isOpenAll: !prevState.isOpenAll }));
+    this.setState(state => ({ isOpenAll: !state.isOpenAll }));
   };
 
   handleNextTerm = () => {
-    this.setState((prevState) => {
+    this.setState((state) => {
       const currentIndex = this.props.data.page.dictionary.findIndex(
-        term => term.id === prevState.openTermId,
+        term => term.id === state.openTermId,
       );
       return {
         isModalOpen:   true,
@@ -85,14 +85,14 @@ export default class CzermanPage extends PureComponent {
   };
 
   handleModal = () => {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen,
+    this.setState(state => ({
+      isModalOpen: !state.isModalOpen,
     }));
   };
 
   handleFlipCard = () => {
-    this.setState(prevState => ({
-      isCardFlipped: !prevState.isCardFlipped,
+    this.setState(state => ({
+      isCardFlipped: !state.isCardFlipped,
     }));
   };
 

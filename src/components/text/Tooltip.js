@@ -20,7 +20,7 @@ export const Tooltip = styled.div`
   padding: 1rem;
   top: calc(100% + 1rem);
   transition: 100ms;
-  z-index: var(--z-index-modal);
+  z-index: var(--z-index-tooltip);
 
   &::after {
     content: '';

@@ -111,11 +111,11 @@ export default class CalendarPage extends PureComponent {
   };
 
   handleChangeDate = ({ yearOffset = 0, monthOffset = 0, dateOffset = 0 }) => {
-    this.setState(prevState => ({
+    this.setState(state => ({
       selected: new Date(
-        prevState.selected.getFullYear() + yearOffset,
-        prevState.selected.getMonth() + monthOffset,
-        prevState.selected.getDate() + dateOffset,
+        state.selected.getFullYear() + yearOffset,
+        state.selected.getMonth() + monthOffset,
+        state.selected.getDate() + dateOffset,
       ),
     }));
   };

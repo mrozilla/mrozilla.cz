@@ -110,9 +110,9 @@ export default class SearchSnippetPage extends PureComponent {
   };
 
   handleTitleChange = ({ target }) => {
-    this.setState(prevState => ({
+    this.setState(state => ({
       isError: {
-        ...prevState.isError,
+        ...state.isError,
         titleTooShort: target.textContent.length < 30,
         titleTooLong:  target.textContent.length > 60,
       },
@@ -120,9 +120,9 @@ export default class SearchSnippetPage extends PureComponent {
   };
 
   handleDescriptionChange = ({ target }) => {
-    this.setState(prevState => ({
+    this.setState(state => ({
       isError: {
-        ...prevState.isError,
+        ...state.isError,
         descriptionTooShort: target.textContent.length < 70,
         descriptionTooLong:  target.textContent.length > 160,
       },
