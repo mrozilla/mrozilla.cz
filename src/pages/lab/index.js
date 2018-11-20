@@ -50,14 +50,14 @@ export default function LabPage({
       <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
-          xs: "'hero' 'tools' 'products'",
-          md: "'hero hero' 'tools products' / 1fr 1fr",
+          xs: "'hero' 'tools' 'products' 'demos'",
+          md: "'hero hero' 'tools products' 'tools demos' / 1fr 1fr",
         }}
         gridGap="10vh 4rem"
       >
         <HeroContainer title={hero.title} />
         <Section gridArea="tools">
-          <H2>little tools</H2>
+          <H2>Little tools</H2>
           <WorksContainer
             works={labs
               .filter(({ node: { meta: { type } } }) => type.includes('tool'))
@@ -65,10 +65,18 @@ export default function LabPage({
           />
         </Section>
         <Section gridArea="products">
-          <H2>standalone products</H2>
+          <H2>Standalone products</H2>
           <WorksContainer
             works={labs
               .filter(({ node: { meta: { type } } }) => type.includes('product'))
+              .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
+          />
+        </Section>
+        <Section gridArea="demos">
+          <H2>Demos</H2>
+          <WorksContainer
+            works={labs
+              .filter(({ node: { meta: { type } } }) => type.includes('demo'))
               .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
           />
         </Section>
