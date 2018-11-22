@@ -3,28 +3,11 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
 
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer, HeroContainer } from '~containers';
-import { Main, Section, Input, Image, H1, P, Ul, Li } from '~components';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// helpers
-// ─────────────────────────────────────────────────────────────────────────────
-
-const Item = styled.div`
-  transition: 250ms;
-
-  :hover {
-    transform: scale(1.05);
-  }
-
-  @media screen and (min-width: 600px) {
-    margin: ${({ margin, layout }) => layout === 'exciting' && margin};
-  }
-`;
+import { Main, Section, Input, Img, H1, P, Ul, Li } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -129,7 +112,7 @@ export default class GridPage extends PureComponent {
               }}
               transition="margin 250ms"
             >
-              <Image src={this.state.src} />
+              <Img src={this.state.src} alt="a random photo" />
               <H1 as="h2" fontSize="2.25rem" lineHeight="4rem">
                 What a great photo
               </H1>
