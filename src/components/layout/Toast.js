@@ -4,14 +4,14 @@
 
 import styled, { css } from 'styled-components';
 
-import { Layout } from '~components/primitives/Layout';
+import { View } from '~components/primitives/View';
 import { fadeOutAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Toast = styled(Layout)`
+export const Toast = styled(View)`
   position: fixed;
   padding: 1rem;
   text-align: center;

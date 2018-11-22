@@ -4,14 +4,14 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '~components/primitives/Layout';
+import { View } from '~components/primitives/View';
 import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // fieldset
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Fieldset = styled(Layout)`
+export const Fieldset = styled(View)`
   position: relative;
   border: none;
 
