@@ -10,7 +10,7 @@ import { mediaQuerise } from '~utils';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Layout = styled.div(
+export const View = styled.div(
   ({
     display,
     position,
@@ -36,6 +36,7 @@ export const Layout = styled.div(
     backgroundImage,
     backgroundPosition,
     backgroundRepeat,
+    transition,
   }) => ({
     ...mediaQuerise({
       display,
@@ -62,6 +63,7 @@ export const Layout = styled.div(
       backgroundImage,
       backgroundPosition,
       backgroundRepeat,
+      transition,
     }),
   }),
 );

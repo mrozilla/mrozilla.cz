@@ -32,7 +32,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     color: hsla(var(--hsl-text), 0.5);
   }
 
-  &:not(:read-only):not(:disabled) {
+  &:not(:disabled) {
     &:hover,
     &:focus {
       background-color: hsla(var(--hsl-info), 0.05);

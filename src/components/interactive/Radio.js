@@ -31,7 +31,7 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
     color: hsla(var(--hsl-text), 0.5);
   }
 
-  &:not(:read-only):not(:disabled) {
+  &:not(:disabled) {
     &:hover,
     &:focus {
       box-shadow: inset 0 0 0 1px var(--color-info);

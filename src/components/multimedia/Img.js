@@ -2,41 +2,50 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
+import React from 'react';
+import { string } from 'prop-types';
+
 import styled from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// h1
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H1 = styled(Text)``;
-H1.defaultProps = {
-  as:         'h1',
-  fontSize:   '3rem',
-  lineHeight: '4rem',
+export const StyledImg = styled(View)`
+  display: block;
+  width: 100%;
+
+  min-height: 25vmin;
+  background-color: hsla(var(--hsl-text), 0.1);
+`;
+
+StyledImg.defaultProps = {
+  as: 'img',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// h2
+// component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H2 = styled(Text)``;
-H2.defaultProps = {
-  as:            'h2',
-  fontSize:      '1.25rem',
-  fontWeight:    '300',
-  lineHeight:    '3rem',
-  textTransform: 'uppercase',
-  letterSpacing: '0.2em',
+export default function Img(props) {
+  const handleError = ({ target }) => {
+    // use a transparent svg as a default image
+    const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
+    target.src = placeholder; // eslint-disable-line no-param-reassign
+    target.classList.add('srcError');
+  };
+
+  return <StyledImg {...props} onError={handleError} />;
+}
+
+Img.propTypes = {
+  src: string,
+  alt: string,
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// h3
-// ─────────────────────────────────────────────────────────────────────────────
-
-export const H3 = styled(Text)``;
-H3.defaultProps = {
-  fontSize:   '2.5rem',
-  lineHeight: '2.5rem',
+Img.defaultProps = {
+  src: '',
+  alt: '',
 };

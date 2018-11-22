@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '~components/primitives/Layout';
+import { View } from '~components/primitives/View';
 
 import { mediaQuerise } from '~utils';
 
@@ -12,7 +12,7 @@ import { mediaQuerise } from '~utils';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Text = styled(Layout)(
+export const Text = styled(View)(
   {},
   ({
     color,
