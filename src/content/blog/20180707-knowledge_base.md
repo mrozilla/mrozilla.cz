@@ -319,6 +319,7 @@ The knowledge base is split into several sections:
 - [Micro nudge: a micro animation for behavioral change](https://heydesigner.com/blog/micro-nudge-a-micro-animation-for-behavioral-change/)
 - [Modals best practices](https://uxplanet.org/best-practices-for-modals-overlays-dialog-windows-c00c66cddd8c)
 - [Multi Layer Reveal effect](http://tympanus.net/codrops/2016/06/01/multi-layer-page-reveal-effects/)
+- [Perfect splash screen](https://uxdesign.cc/building-the-perfect-splash-screen-46e080395f06)
 - [Product design principles in a single card](https://blog.prototypr.io/product-design-principles-in-a-single-card-2f6023419a87)
 - [Scannable app previews](https://medium.freecodecamp.org/ux-best-practices-how-to-design-scannable-app-screenshots-89e370bf433e)
 - [Responsive deliverables](http://daverupert.com/2013/04/responsive-deliverables/)
