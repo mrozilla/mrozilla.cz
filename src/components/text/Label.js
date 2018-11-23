@@ -20,5 +20,6 @@ Label.defaultProps = {
   alignItems:    'center',
   color:         'hsla(var(--hsl-text), 0.75)',
   fontSize:      '1.25rem',
+  lineHeight:    '3rem',
   textTransform: 'uppercase',
 };
