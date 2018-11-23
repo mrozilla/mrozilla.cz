@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -24,25 +24,29 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
   box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
   border-radius: 50%;
 
-  &:hover,
-  &:focus {
-    box-shadow: inset 0 0 0 1px var(--color-info);
-    & ~ ${Text} {
-      color: var(--color-info) !important;
-    }
-  }
-
-  &:checked {
-    box-shadow: inset 0 0 0 0.3em var(--color-info);
-    & ~ ${Text} {
-      color: var(--color-text);
-    }
-  }
-
   & ~ ${Text} {
     cursor: pointer;
     font-size: 2rem;
     text-transform: initial;
     color: hsla(var(--hsl-text), 0.5);
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      box-shadow: inset 0 0 0 1px var(--color-info);
+
+      & ~ ${Text} {
+        color: var(--color-text);
+      }
+    }
+
+    &:checked {
+      box-shadow: inset 0 0 0 0.3em var(--color-info);
+
+      & ~ ${Text} {
+        color: var(--color-text);
+      }
+    }
   }
 `;

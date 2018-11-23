@@ -6,10 +6,9 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { RootContainer, SEOContainer } from '../../containers';
-import { Main, Section, Alert } from '../../components';
-
-import { parseLinks } from '../../utils';
+import { RootContainer, SEOContainer } from '~containers';
+import { Main, Section, Alert } from '~components';
+import { parseLinks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -111,9 +110,9 @@ export default class SearchSnippetPage extends PureComponent {
   };
 
   handleTitleChange = ({ target }) => {
-    this.setState(prevState => ({
+    this.setState(state => ({
       isError: {
-        ...prevState.isError,
+        ...state.isError,
         titleTooShort: target.textContent.length < 30,
         titleTooLong:  target.textContent.length > 60,
       },
@@ -121,9 +120,9 @@ export default class SearchSnippetPage extends PureComponent {
   };
 
   handleDescriptionChange = ({ target }) => {
-    this.setState(prevState => ({
+    this.setState(state => ({
       isError: {
-        ...prevState.isError,
+        ...state.isError,
         descriptionTooShort: target.textContent.length < 70,
         descriptionTooLong:  target.textContent.length > 160,
       },
@@ -159,7 +158,7 @@ export default class SearchSnippetPage extends PureComponent {
             {Object.entries(this.state.isError).map(
               ([errorType, isError]) => isError && (
               <Alert type="danger" key={errorType}>
-                {parseLinks(searchSnippet.error[errorType], { type: 'secondary' })}
+                {parseLinks(searchSnippet.error[errorType], { type: 'primary' })}
               </Alert>
               ),
             )}

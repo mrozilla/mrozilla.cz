@@ -5,10 +5,8 @@
 import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, H1, Button,
-} from '../../components';
-import { RootContainer, SEOContainer } from '../../containers';
+import { RootContainer, SEOContainer } from '~containers';
+import { Main, Section, H1, Button } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -40,8 +38,8 @@ export default class CountOnMePage extends PureComponent {
 
   handleCount = (event, value) => {
     event.stopPropagation();
-    this.setState(prevState => ({
-      count: prevState.count + value,
+    this.setState(state => ({
+      count: state.count + value,
     }));
 
     if ('vibrate' in navigator) {

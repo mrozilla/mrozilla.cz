@@ -6,19 +6,9 @@ import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 import { shape } from 'prop-types';
 
-import {
-  Main,
-  Section,
-  Table,
-  Link,
-  Button,
-  Modal,
-  H2,
-  P,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
-
-import { metaTypes } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, Table, Link, Button, Modal, H2, P } from '~components';
+import { metaTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -75,13 +65,13 @@ export default class CzermanPage extends PureComponent {
   };
 
   handleOpenAll = () => {
-    this.setState(prevState => ({ isOpenAll: !prevState.isOpenAll }));
+    this.setState(state => ({ isOpenAll: !state.isOpenAll }));
   };
 
   handleNextTerm = () => {
-    this.setState((prevState) => {
+    this.setState((state) => {
       const currentIndex = this.props.data.page.dictionary.findIndex(
-        term => term.id === prevState.openTermId,
+        term => term.id === state.openTermId,
       );
       return {
         isModalOpen:   true,
@@ -95,14 +85,14 @@ export default class CzermanPage extends PureComponent {
   };
 
   handleModal = () => {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen,
+    this.setState(state => ({
+      isModalOpen: !state.isModalOpen,
     }));
   };
 
   handleFlipCard = () => {
-    this.setState(prevState => ({
-      isCardFlipped: !prevState.isCardFlipped,
+    this.setState(state => ({
+      isCardFlipped: !state.isCardFlipped,
     }));
   };
 
@@ -129,7 +119,12 @@ export default class CzermanPage extends PureComponent {
         <P>{modalTerm.czech.ipa}</P>
         <H2>German equivalent</H2>
         <P>{this.state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
-        <H2>German IPA</H2>
+        <H2>
+          German{' '}
+          <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/German">
+            IPA
+          </Link>
+        </H2>
         <P>{this.state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
         <Button
           onClick={this.state.isCardFlipped ? this.handleNextTerm : this.handleFlipCard}

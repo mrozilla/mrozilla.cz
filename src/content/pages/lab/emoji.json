@@ -1,6 +1,6 @@
 {
   "meta": {
-    "type": ["page", "lab", "tool"],
+    "type": ["page", "lab", "demo"],
     "date": "2018-09-05T00:00:00.000Z",
     "permalink": "/lab/emoji",
     "title": "Emoji experiments",

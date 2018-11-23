@@ -25,8 +25,8 @@ export default class BarrelRollContainer extends PureComponent {
     if (evt.key === 'r') {
       if (this.state.count < 4) {
         return this.setState(
-          prevState => ({
-            count: prevState.count + 1,
+          state => ({
+            count: state.count + 1,
           }),
           () => {
             document.body.style.transform = null;

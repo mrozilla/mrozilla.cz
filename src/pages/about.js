@@ -5,12 +5,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, P, Ul, Li, H2,
-} from '../components';
-import { RootContainer, HeroContainer, SEOContainer } from '../containers';
-
-import { parseLinks } from '../utils';
+import { RootContainer, HeroContainer, SEOContainer } from '~containers';
+import { Main, Section, P, Ul, Li, H2 } from '~components';
+import { parseLinks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -61,7 +58,7 @@ export default function AboutPage({
             {about.map(item => (
               <Li key={item.title}>
                 <H2>{item.title}</H2>
-                <P>{parseLinks(item.text, { type: 'secondary' })}</P>
+                <P>{parseLinks(item.text, { type: 'primary' })}</P>
               </Li>
             ))}
           </Ul>

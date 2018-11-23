@@ -4,12 +4,12 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '../primitives';
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Wrapper = styled(Layout)`
+export const Wrapper = styled(View)`
   display: grid;
 `;

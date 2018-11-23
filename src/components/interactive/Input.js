@@ -5,17 +5,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives/Text';
 
-import { Button } from './Button';
-import { Checkbox } from './Checkbox';
-import { Error } from './Error';
-import { Fieldset } from './Fieldset';
-import { Radio } from './Radio';
-import TextInput from './TextInput';
+import { Button } from '~components/interactive/Button';
+import { Checkbox } from '~components/interactive/Checkbox';
+import { Error } from '~components/interactive/Error';
+import { Fieldset } from '~components/interactive/Fieldset';
+import { Radio } from '~components/interactive/Radio';
+import { Select } from '~components/interactive/Select';
+import TextInput from '~components/interactive/TextInput';
+import TextAreaInput from '~components/interactive/TextAreaInput';
 
-import { Label } from '../text/Label';
-import { Tooltip } from '../text/Tooltip';
+import { Label } from '~components/text/Label';
+import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // legend
@@ -39,6 +41,9 @@ export default function Input({
   checked,
   options,
   rows,
+  min,
+  max,
+  step,
   pattern,
   readOnly,
   required,
@@ -51,7 +56,7 @@ export default function Input({
         <>
           {label && <Legend>{label}</Legend>}
           {options.map(radio => (
-            <Label key={radio.value} htmlFor={radio.value}>
+            <Label key={radio.value} htmlFor={radio.value} lineHeight="4rem">
               <Radio
                 id={radio.value}
                 {...{
@@ -69,30 +74,87 @@ export default function Input({
         </>
       );
     }
+
     if (type === 'checkbox') {
       return (
         <>
-          <Label htmlFor={name}>
-            <Checkbox
-              id={name}
-              {...{
-                name,
-                checked,
-                required,
-                onChange,
-              }}
-            />
-            <Text>{label}</Text>
-          </Label>
+          {label && <Legend>{label}</Legend>}
+          {options.map(checkbox => (
+            <Label key={checkbox.value} htmlFor={checkbox.value} lineHeight="4rem">
+              <Checkbox
+                id={checkbox.value}
+                {...{
+                  value:   checkbox.value,
+                  checked: checkbox.checked,
+                  name,
+                  required,
+                  onChange,
+                }}
+              />
+              <Text>{checkbox.label}</Text>
+            </Label>
+          ))}
           {description && <Tooltip>{description}</Tooltip>}
         </>
       );
     }
-    if (type === 'textarea') {
+
+    if (type === 'select') {
+      return (
+        <>
+          <Select id={name} {...{ name, value, required, onChange }}>
+            <option hidden value="">
+              {placeholder}
+            </option>
+            <optgroup label={placeholder}>
+              {options.map(option => (
+                <option key={option.value} value={option.value} selected={option.selected}>
+                  {option.label}
+                </option>
+              ))}
+            </optgroup>
+          </Select>
+          <Label htmlFor={name} position="absolute" top="0">
+            {label}
+          </Label>
+          <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z" />
+          </svg>
+          {description && <Tooltip>{description}</Tooltip>}
+        </>
+      );
+    }
+
+    if (type === 'search') {
       return (
         <>
           <TextInput
-            as="textarea"
+            type="search"
+            id={name}
+            list={`datalist-${name}`}
+            autoComplete="off"
+            {...{ name, value, placeholder, options, required, onChange }}
+          />
+          <Label htmlFor={name} position="absolute" top="0">
+            {label}
+          </Label>
+          <datalist id={`datalist-${name}`}>
+            {options.map(option => (
+              <option key={option.name}>{option.name}</option>
+            ))}
+          </datalist>
+          <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z" />
+          </svg>
+          {error && <Error>{error}</Error>}
+        </>
+      );
+    }
+
+    if (type === 'textarea') {
+      return (
+        <>
+          <TextAreaInput
             id={name}
             {...{
               name,
@@ -112,6 +174,7 @@ export default function Input({
         </>
       );
     }
+
     return (
       <>
         <TextInput
@@ -122,10 +185,14 @@ export default function Input({
             value,
             placeholder,
             pattern,
+            min,
+            max,
+            step,
             readOnly,
             required,
             onChange,
           }}
+          {...rest}
         />
         <Label htmlFor={name} position="absolute" top="0">
           {label}

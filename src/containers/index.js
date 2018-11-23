@@ -10,5 +10,4 @@ export { default as HeroContainer } from './HeroContainer';
 export { default as InactiveTabContainer } from './InactiveTabContainer';
 export { default as RootContainer } from './RootContainer';
 export { default as SEOContainer } from './SEOContainer';
-export { default as TextBackgroundContainer } from './TextBackgroundContainer';
 export { default as WorksContainer } from './WorksContainer';

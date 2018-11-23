@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // h1
@@ -27,7 +27,6 @@ H2.defaultProps = {
   fontSize:      '1.25rem',
   fontWeight:    '300',
   lineHeight:    '3rem',
-  margin:        '0',
   textTransform: 'uppercase',
   letterSpacing: '0.2em',
 };
@@ -38,7 +37,7 @@ H2.defaultProps = {
 
 export const H3 = styled(Text)``;
 H3.defaultProps = {
+  as:         'h3',
   fontSize:   '2.5rem',
   lineHeight: '2.5rem',
-  margin:     '0 0 1rem 0',
 };

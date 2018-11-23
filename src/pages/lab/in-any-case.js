@@ -5,10 +5,9 @@
 import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
-import { Main, Section, Input } from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
-
-import { parseInput } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, Input } from '~components';
+import { parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -102,10 +101,10 @@ export default class InAnyCasePage extends PureComponent {
       reset: () => this.state.original,
     };
 
-    this.setState(prevState => ({
+    this.setState(state => ({
       ...parseInput(target),
       output: {
-        ...prevState.output,
+        ...state.output,
         'lower case':    changeCase.toLowerCase(target.value),
         'UPPER CASE':    changeCase.toUpperCase(target.value),
         'Title Case':    changeCase.toTitleCase(target.value),
