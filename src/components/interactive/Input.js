@@ -56,7 +56,7 @@ export default function Input({
         <>
           {label && <Legend>{label}</Legend>}
           {options.map(radio => (
-            <Label key={radio.value} htmlFor={radio.value}>
+            <Label key={radio.value} htmlFor={radio.value} lineHeight="4rem">
               <Radio
                 id={radio.value}
                 {...{
@@ -80,7 +80,7 @@ export default function Input({
         <>
           {label && <Legend>{label}</Legend>}
           {options.map(checkbox => (
-            <Label key={checkbox.value} htmlFor={checkbox.value}>
+            <Label key={checkbox.value} htmlFor={checkbox.value} lineHeight="4rem">
               <Checkbox
                 id={checkbox.value}
                 {...{

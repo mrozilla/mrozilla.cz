@@ -24,6 +24,7 @@ export const Text = styled(View)(
     textAlign,
     textTransform,
     whiteSpace,
+    hyphens,
   }) => ({
     ...mediaQuerise({
       color,
@@ -35,6 +36,7 @@ export const Text = styled(View)(
       textAlign,
       textTransform,
       whiteSpace,
+      hyphens,
     }),
   }),
 );

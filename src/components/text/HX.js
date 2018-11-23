@@ -37,6 +37,7 @@ H2.defaultProps = {
 
 export const H3 = styled(Text)``;
 H3.defaultProps = {
+  as:         'h3',
   fontSize:   '2.5rem',
   lineHeight: '2.5rem',
 };
