@@ -4,13 +4,13 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '../primitives';
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Header = styled(Layout)`
+export const Header = styled(View)`
   grid-area: header;
   align-self: start;
   z-index: var(--z-index-header);

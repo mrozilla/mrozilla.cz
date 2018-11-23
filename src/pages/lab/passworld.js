@@ -5,11 +5,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, H1, H2, Input, Button, Toast,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
-import { copyToClipboard, parseInput } from '../../utils';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, H1, H2, Input, Button, Toast } from '~components';
+import { copyToClipboard, parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -49,56 +47,53 @@ export default class PassworldPage extends Component {
       numbers:      false,
       specialChars: false,
     },
-    clipboard: false,
+    clipboard: '',
+    isCopied:  false,
   };
 
-  componentDidMount = () => {
-    this.handleGeneratePassword();
-  };
+  static getDerivedStateFromProps(_, prevState) {
+    const generateRandomCharacter = () => {
+      if (typeof window === 'undefined') {
+        return '';
+      }
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if (
-      this.state.length !== prevState.length
-      || this.state.chars.lowerChars !== prevState.chars.lowerChars
-      || this.state.chars.upperChars !== prevState.chars.upperChars
-      || this.state.chars.numbers !== prevState.chars.numbers
-      || this.state.chars.specialChars !== prevState.chars.specialChars
-    ) {
-      this.handleGeneratePassword();
+      const types = {
+        lowerChars:   'abcdefghijklmnopqrstuvwxyz',
+        upperChars:   'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        specialChars: '@#$%-_',
+        numbers:      '0123456789',
+      };
+      const pool = Object.keys(types)
+        .map(key => (prevState.chars[key] ? types[key] : null))
+        .join('');
+      const seed = window.crypto.getRandomValues(new Uint8Array(1));
+      
+      return pool.charAt(seed[0] % pool.length);
+    };
+
+    if (prevState.clipboard !== '') {
+      return {
+        clipboard: '',
+        isCopied:  true,
+      };
     }
-  };
 
-  handleChangeCheckbox = ({ target }) => this.setState(prevState => ({
-    chars: { ...prevState.chars, ...parseInput(target) },
+    return {
+      password: Array(...new Array(prevState.length))
+        .map(() => generateRandomCharacter())
+        .join(''),
+      isCopied: false,
+    };
+  }
+
+  handleChangeCheckbox = ({ target }) => this.setState(state => ({
+    chars: { ...state.chars, [target.value]: target.checked },
   }));
 
-  handleGenerateRandomCharacter = () => {
-    const types = {
-      lowerChars:   'abcdefghijklmnopqrstuvwxyz',
-      upperChars:   'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      specialChars: '@#$%-_',
-      numbers:      '0123456789',
-    };
-    const pool = Object.keys(types)
-      .map(key => (this.state.chars[key] ? types[key] : null))
-      .join('');
-    const seed = window.crypto.getRandomValues(new Uint8Array(1));
-    return pool.charAt(seed[0] % pool.length);
-  };
-
-  handleGeneratePassword = () => {
-    this.setState(prevState => ({
-      password: Array(...new Array(prevState.length))
-        .map(() => this.handleGenerateRandomCharacter())
-        .join(''),
-    }));
-  };
-
   handleCopyToClipboard = () => {
-    this.setState(prevState => ({
-      clipboard: copyToClipboard(prevState.password),
+    this.setState(state => ({
+      clipboard: copyToClipboard(state.password),
     }));
-    this.forceUpdate();
   };
 
   inputs = [
@@ -106,35 +101,33 @@ export default class PassworldPage extends Component {
       type:        'number',
       name:        'length',
       label:       'Password length',
-      description: "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
-      margin:      '0 0 2rem 0',
-      onChange:    ({ target }) => this.setState({ ...parseInput(target) }),
-    },
-  ];
-
-  checkboxes = [
-    {
-      type:     'checkbox',
-      name:     'lowerChars',
-      label:    'Include lowercase letters',
-      onChange: this.handleChangeCheckbox,
+      description:
+        "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
+      margin:   '0 0 1rem 0',
+      onChange: ({ target }) => this.setState({ ...parseInput(target) }),
     },
     {
-      type:     'checkbox',
-      name:     'upperChars',
-      label:    'Include uppercase letters',
-      onChange: this.handleChangeCheckbox,
-    },
-    {
-      type:     'checkbox',
-      name:     'specialChars',
-      label:    'Include special characters',
-      onChange: this.handleChangeCheckbox,
-    },
-    {
-      type:     'checkbox',
-      name:     'numbers',
-      label:    'Include numbers',
+      type:    'checkbox',
+      name:    'characters',
+      label:   'Characters',
+      options: [
+        {
+          value: 'lowerChars',
+          label: 'Include lowercase letters',
+        },
+        {
+          value: 'upperChars',
+          label: 'Include uppercase letters',
+        },
+        {
+          value: 'specialChars',
+          label: 'Include special characters',
+        },
+        {
+          value: 'numbers',
+          label: 'Include numbers',
+        },
+      ],
       margin:   '0 0 2rem 0',
       onChange: this.handleChangeCheckbox,
     },
@@ -143,7 +136,7 @@ export default class PassworldPage extends Component {
   buttons = [
     {
       title:   'Generate',
-      onClick: this.handleGeneratePassword,
+      onClick: () => this.forceUpdate(),
       grouped: true,
     },
     {
@@ -167,16 +160,38 @@ export default class PassworldPage extends Component {
           <HeroContainer title={this.props.data.page.body.hero.title} />
           <Section gridArea="output">
             <H2 as="h1">Generated password</H2>
-            <H1 as="p">{this.state.password}</H1>
+            <H1 as="p" hyphens="auto">
+              {this.state.password}
+            </H1>
           </Section>
           <Section gridArea="input">
-            {this.inputs.map(input => <Input key={input.name} value={this.state[input.name]} {...input} />)}
-            {this.checkboxes.map(input => <Input key={input.name} checked={this.state.chars[input.name]} {...input} />)}
-            {this.buttons.map(button => <Button key={button.title} {...button} disabled={Object.values(this.state.chars).every(item => item === false)}>{button.title}</Button>)}
+            {this.inputs.map(input => (
+              <Input
+                key={input.name}
+                {...input}
+                value={input.name === 'length' ? this.state.length : undefined}
+                options={
+                  input.options
+                  && input.options.map(option => ({
+                    ...option,
+                    checked: this.state.chars[option.value],
+                  }))
+                }
+              />
+            ))}
+            {this.buttons.map(button => (
+              <Button
+                key={button.title}
+                {...button}
+                disabled={Object.values(this.state.chars).every(item => item === false)}
+              >
+                {button.title}
+              </Button>
+            ))}
           </Section>
-          {this.state.clipboard === this.state.password && (
+          {this.state.isCopied && (
             <Toast key={window.performance.now()}>
-              {this.state.clipboard} was copied to the clipboard
+              {this.state.password} was copied to the clipboard
             </Toast>
           )}
         </Main>

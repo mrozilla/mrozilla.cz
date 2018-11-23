@@ -2,53 +2,50 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-const path = require('path');
+import React from 'react';
+import { string } from 'prop-types';
+
+import styled from 'styled-components';
+
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// aliases
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        '~components': path.resolve(__dirname, 'src/components'),
-        '~containers': path.resolve(__dirname, 'src/containers'),
-        '~utils':      path.resolve(__dirname, 'src/utils'),
-      },
-    },
-  });
+export const StyledImg = styled(View)`
+  display: block;
+  width: 100%;
+
+  min-height: 25vmin;
+  background-color: hsla(var(--hsl-text), 0.1);
+`;
+
+StyledImg.defaultProps = {
+  as: 'img',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// automatic pages
+// component
 // ─────────────────────────────────────────────────────────────────────────────
 
-exports.createPages = ({ actions: { createPage }, graphql }) => {
-  const BlogPostContainer = path.resolve('src/containers/BlogPostContainer.js');
+export default function Img(props) {
+  const handleError = ({ target }) => {
+    // use a transparent svg as a default image
+    const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
+    target.src = placeholder; // eslint-disable-line no-param-reassign
+    target.classList.add('srcError');
+  };
 
-  return graphql(`
-    {
-      posts: allMarkdownRemark(limit: 1000, sort: { order: DESC, fields: [frontmatter___date] }) {
-        edges {
-          node {
-            frontmatter {
-              permalink
-            }
-          }
-        }
-      }
-    }
-  `).then((result) => {
-    if (result.errors) {
-      return Promise.reject(result.errors);
-    }
+  return <StyledImg {...props} onError={handleError} />;
+}
 
-    return result.data.posts.edges.forEach(({ node }) => {
-      createPage({
-        path:      node.frontmatter.permalink,
-        component: BlogPostContainer,
-      });
-    });
-  });
+Img.propTypes = {
+  src: string,
+  alt: string,
+};
+
+Img.defaultProps = {
+  src: '',
+  alt: '',
 };

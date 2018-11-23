@@ -3,13 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import {
-  arrayOf, shape, string, number,
-} from 'prop-types';
+import { arrayOf, shape, string, number } from 'prop-types';
 
-import {
-  Ul, Li, Link, P,
-} from '../components';
+import { Ul, Li, Link, P } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -20,7 +16,7 @@ export default function BlogPreviewsContainer({ posts }) {
     <Ul>
       {posts.map(post => (
         <Li key={post.permalink}>
-          <Link to={post.permalink} type="primary">
+          <Link to={post.permalink} type="secondary">
             {post.title}
           </Link>
           {(post.date || post.timeToRead) && (

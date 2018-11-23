@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Tooltip } from '../text/Tooltip';
+import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

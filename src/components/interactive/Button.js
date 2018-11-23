@@ -4,13 +4,13 @@
 
 import styled, { css } from 'styled-components';
 
-import { Layout } from '../primitives';
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Button = styled(Layout)`
+export const Button = styled(View)`
   -webkit-appearance: none;
   border: none;
   outline: none;

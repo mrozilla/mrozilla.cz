@@ -5,10 +5,8 @@
 import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Main, Section, H2, P, Button,
-} from '../../components';
-import { RootContainer, SEOContainer, HeroContainer } from '../../containers';
+import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { Main, Section, H2, P, Button } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -47,8 +45,8 @@ export default class EmojiPage extends PureComponent {
 
   handleAddEmoji = async () => {
     const emoji = await this.getRandomEmoji();
-    this.setState(prevState => ({
-      randomEmojis: [...prevState.randomEmojis, emoji],
+    this.setState(state => ({
+      randomEmojis: [...state.randomEmojis, emoji],
     }));
   };
 

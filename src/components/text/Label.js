@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-import { Text } from '../primitives';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -20,5 +20,6 @@ Label.defaultProps = {
   alignItems:    'center',
   color:         'hsla(var(--hsl-text), 0.75)',
   fontSize:      '1.25rem',
+  lineHeight:    '3rem',
   textTransform: 'uppercase',
 };

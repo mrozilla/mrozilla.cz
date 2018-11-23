@@ -4,8 +4,8 @@
 
 import React from 'react';
 
-import { RootContainer, HeroContainer } from '../containers';
-import { Main } from '../components';
+import { RootContainer, HeroContainer } from '~containers';
+import { Main } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

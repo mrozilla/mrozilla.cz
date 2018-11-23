@@ -2,13 +2,24 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import React from 'react';
 
-import { View } from '~components/primitives/View';
+import { Input } from '~components/primitives/Input';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Aside = styled(View)``;
-Aside.defaultProps = { as: 'aside' };
+/* eslint-disable no-param-reassign */
+
+export default function TextAreaInput({ onChange, ...rest }) {
+  const handleChange = (event) => {
+    event.target.style.height = `${event.target.scrollHeight}px`;
+
+    if (onChange) {
+      onChange(event);
+    }
+  };
+
+  return <Input as="textarea" onChange={handleChange} {...rest} />;
+}

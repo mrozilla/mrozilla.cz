@@ -4,13 +4,13 @@
 
 import styled from 'styled-components';
 
-import { Layout } from '../primitives';
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Main = styled(Layout)`
+export const Main = styled(View)`
   grid-area: main;
   display: grid;
 `;

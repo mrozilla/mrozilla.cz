@@ -4,7 +4,8 @@
 
 import React, { PureComponent } from 'react';
 import { instanceOf } from 'prop-types';
-import { P, Link } from '../components';
+
+import { P, Link } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -23,7 +24,7 @@ export default class AvailabilityContainer extends PureComponent {
 
   availabilityDate = new Date(
     Math.max(
-      this.props.nowDate.setMonth(this.props.nowDate.getMonth() + 1),
+      new Date(this.props.nowDate.getFullYear(), this.props.nowDate.getMonth() + 1),
       this.props.availabilityDate,
     ),
   );
@@ -31,8 +32,8 @@ export default class AvailabilityContainer extends PureComponent {
   render() {
     return (
       <P fontSize="3rem">
-        <Link to="/contact" type="primary">
-          {this.availabilityDate.toLocaleDateString('en-GB', {
+        <Link to="/contact" type="secondary">
+          {this.availabilityDate.toLocaleString('en-GB', {
             month: 'long',
             year:  'numeric',
           })}

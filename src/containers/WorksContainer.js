@@ -5,9 +5,7 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 
-import {
-  Ul, Li, H3, P, Link,
-} from '../components';
+import { Ul, Li, H3, P, Link } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -19,7 +17,7 @@ export default function WorksContainer({ works }) {
       {works.map(work => (
         <Li key={work.permalink}>
           <H3 fontSize="3rem" lineHeight="4rem" margin="0">
-            <Link to={work.permalink} type="primary">
+            <Link to={work.permalink} type="secondary">
               {work.title}
             </Link>
           </H3>

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~components/*": ["src/components/*"],
+      "~containers/*": ["src/containers/*"],
+      "~utils/*": ["src/utils/*"]
+    }
+  },
+  "exclude": ["node_modules", "lambda", "public"]
+}

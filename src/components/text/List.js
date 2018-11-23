@@ -4,13 +4,14 @@
 
 import styled from 'styled-components';
 
-import { Layout, Text } from '../primitives';
+import { View } from '~components/primitives/View';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ul
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Ul = styled(Layout)`
+export const Ul = styled(View)`
   display: grid;
 
   list-style: ${({ listStyle = 'none' }) => listStyle};
