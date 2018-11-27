@@ -8,7 +8,8 @@ import { graphql } from 'gatsby';
 import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
 import { Article, Aside, Link, Main, H1, H2, P } from '~components';
 import { renderMarkdown, parseLinks } from '~utils';
-import 'prismjs/themes/prism.css';
+
+import '~utils/style/highlight.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
