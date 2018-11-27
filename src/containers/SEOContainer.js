@@ -61,12 +61,12 @@ export default class SEOContainer extends PureComponent {
                 content: this.props.meta.ogImage.childImageSharp.resize.src,
               },
 
-              { name: 'og:title', content: `${this.props.meta.title}` },
-              { name: 'og:type', content: 'website' },
-              { name: 'og:url', content: this.props.meta.permalink },
-              { name: 'og:image', content: this.props.meta.ogImage.childImageSharp.resize.src },
-              { name: 'og:description', content: this.props.meta.description },
-              // { name: 'fb:app_id', content: '<FB App ID>' },
+              { property: 'og:title', content: `${this.props.meta.title}` },
+              { property: 'og:type', content: 'website' },
+              { property: 'og:url', content: this.props.meta.permalink },
+              { property: 'og:image', content: this.props.meta.ogImage.childImageSharp.resize.src },
+              { property: 'og:description', content: this.props.meta.description },
+              // { property: 'fb:app_id', content: '<FB App ID>' },
 
               process.env.CONTEXT === 'production' ? {} : { name: 'robots', content: 'noindex' },
             ]}
