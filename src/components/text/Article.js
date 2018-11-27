@@ -21,8 +21,8 @@ export const Article = styled.article`
   & h2 {
     font-size: 3.5rem;
     font-weight: 600;
-    line-height: 6rem;
-    margin: 6rem 0 0 0;
+    line-height: 4rem;
+    margin: 8rem 0 1rem 0;
   }
   & h3 {
     font-size: 3rem;
@@ -67,6 +67,9 @@ export const Article = styled.article`
   & pre {
     font-size: 1.75rem;
     border-radius: 1rem;
-    margin: 0 -3rem 3rem -3rem !important;
+    margin: 0 -2rem 3rem !important;
+  }
+  & code {
+    font-size: 1.75rem;
   }
 `;
