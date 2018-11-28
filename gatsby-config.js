@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-var proxy = require("http-proxy-middleware");
+const proxy = require('http-proxy-middleware');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
