@@ -2,7 +2,7 @@
   "meta": {
     "type": ["page", "lab", "tool"],
     "date": "2018-08-24T00:00:00.000Z",
-    "permalink": "/lab/serp-preview",
+    "permalink": "/lab/serp-preview/",
     "title": "Google SERP preview visual optimiser",
     "description": "Optimise the length of your website's titles and descriptions for Google search snippets, easily, visually, with hints and explanations",
     "ogImage": "../../multimedia/og.png"

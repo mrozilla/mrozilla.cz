@@ -2,16 +2,14 @@
   "meta": {
     "type": ["page"],
     "date": "2018-06-01T00:00:00.000Z",
-    "permalink": "/lab",
+    "permalink": "/lab/",
     "title": "lab & experiments",
-    "description":
-      "random selection of silly, silly experiments, proof-of-concepts, and little tools, pushing the limits of the canvas (both figuratively & literally)",
+    "description": "random selection of silly, silly experiments, proof-of-concepts, and little tools, pushing the limits of the canvas (both figuratively & literally)",
     "ogImage": "../multimedia/og.png"
   },
   "body": {
     "hero": {
-      "title":
-        "random selection of silly, silly experiments, proof-of-concepts, and little tools, pushing the limits of the canvas (both figuratively & literally)"
+      "title": "random selection of silly, silly experiments, proof-of-concepts, and little tools, pushing the limits of the canvas (both figuratively & literally)"
     }
   }
 }

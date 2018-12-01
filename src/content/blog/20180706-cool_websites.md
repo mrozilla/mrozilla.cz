@@ -1,5 +1,5 @@
 ---
-permalink: /blog/cool-websites
+permalink: /blog/cool-websites/
 title: Various cool/interesting websites
 description: Here's a collection of websites I find to be cool. Sorted alphabetically. Happy to evaluate your suggestion.
 date: 2018-07-06T00:00:00.000Z
@@ -36,6 +36,7 @@ ogImage: "../multimedia/og.png"
 - https://ionicframework.com/ <small style="opacity: 0.5">(2018)</small>
 - https://later.com/ <small style="opacity: 0.5">(2018)</small>
 - [https://mapbox.com](https://web.archive.org/web/20171203211916/https://www.mapbox.com/) <small style="opacity: 0.5">(2017)</small>
+- https://lesap.es/ <small style="opacity: 0.5">(2018)</small>
 - https://marvelapp.com/ <small style="opacity: 0.5">(2018)</small>
 - https://marvelapp.com/developers <small style="opacity: 0.5">(2018)</small>
 - https://slack.com <small style="opacity: 0.5">(2018)</small>

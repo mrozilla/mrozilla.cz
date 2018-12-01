@@ -16,7 +16,7 @@ import { parseInput } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/scoreboard" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/scoreboard/" } }) {
       meta {
         title
         description

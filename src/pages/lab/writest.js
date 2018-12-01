@@ -14,7 +14,7 @@ import { Main, Section, TextInput, H1, H2, P } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/writest" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/writest/" } }) {
       meta {
         title
         description

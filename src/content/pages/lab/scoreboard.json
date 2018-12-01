@@ -2,7 +2,7 @@
   "meta": {
     "type": ["page", "lab", "demo"],
     "date": "2018-10-22T00:00:00.000Z",
-    "permalink": "/lab/scoreboard",
+    "permalink": "/lab/scoreboard/",
     "title": "Table tennis scoreboard",
     "description": "A simple implementation of table tennis scoring system",
     "ogImage": "../../multimedia/og.png"

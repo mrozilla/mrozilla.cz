@@ -58,15 +58,18 @@ export default class SEOContainer extends PureComponent {
               { name: 'twitter:creator', content: '@mrozilla' },
               {
                 name:    'twitter:image:src',
-                content: this.props.meta.ogImage.childImageSharp.resize.src,
+                content: `${siteUrl}${this.props.meta.ogImage.childImageSharp.resize.src}`,
               },
 
               { property: 'og:title', content: `${this.props.meta.title}` },
               { property: 'og:type', content: 'website' },
-              { property: 'og:url', content: this.props.meta.permalink },
-              { property: 'og:image', content: this.props.meta.ogImage.childImageSharp.resize.src },
+              { property: 'og:url', content: `${siteUrl}${this.props.meta.permalink}` },
+              {
+                property: 'og:image',
+                content:  `${siteUrl}${this.props.meta.ogImage.childImageSharp.resize.src}`,
+              },
               { property: 'og:description', content: this.props.meta.description },
-              // { property: 'fb:app_id', content: '<FB App ID>' },
+              { property: 'fb:app_id', content: process.env.GATSBY_FB_APP_ID },
 
               process.env.CONTEXT === 'production' ? {} : { name: 'robots', content: 'noindex' },
             ]}

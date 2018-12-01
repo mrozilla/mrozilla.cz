@@ -5,19 +5,19 @@
       "text": "work"
     },
     {
-      "url": "/lab",
+      "url": "/lab/",
       "text": "lab"
     },
     {
-      "url": "/blog",
+      "url": "/blog/",
       "text": "blog"
     },
     {
-      "url": "/about",
+      "url": "/about/",
       "text": "about"
     },
     {
-      "url": "/contact",
+      "url": "/contact/",
       "text": "contact"
     }
   ],
@@ -47,15 +47,15 @@
       "title": "legal",
       "body": [
         {
-          "url": "/legal/terms",
+          "url": "/legal/terms/",
           "text": "Terms & conditions"
         },
         {
-          "url": "/legal/privacy",
+          "url": "/legal/privacy/",
           "text": "Privacy policy"
         },
         {
-          "url": "/legal/imprint",
+          "url": "/legal/imprint/",
           "text": "Imprint"
         }
       ]

@@ -39,7 +39,7 @@ export default class CookieContainer extends PureComponent {
           }}
         >
           Yeah, we use cookies, we even have a{' '}
-          <Link type="primary" to="/legal#cookies">
+          <Link type="primary" to="/legal/privacy/">
             cookie policy
           </Link>
           <Button margin="0 0 0 1rem" onClick={this.handleVisibility}>

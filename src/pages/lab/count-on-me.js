@@ -14,7 +14,7 @@ import { Main, Section, H1, Button } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/count-on-me" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/count-on-me/" } }) {
       meta {
         title
         description

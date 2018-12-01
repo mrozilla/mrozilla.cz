@@ -14,7 +14,7 @@ import { Main, Section, H2 } from '~components';
 
 export const query = graphql`
   {
-    page: pagesJson(meta: { permalink: { eq: "/blog" } }) {
+    page: pagesJson(meta: { permalink: { eq: "/blog/" } }) {
       ...MetaFragment
       body {
         hero {

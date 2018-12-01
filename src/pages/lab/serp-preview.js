@@ -66,7 +66,7 @@ const GoogleRatingStars = styled.span`
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/serp-preview" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/serp-preview/" } }) {
       meta {
         title
         description
