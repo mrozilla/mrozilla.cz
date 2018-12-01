@@ -15,7 +15,7 @@ import { copyToClipboard, parseInput } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/passworld" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/passworld/" } }) {
       meta {
         title
         description

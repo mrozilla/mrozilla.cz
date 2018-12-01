@@ -14,7 +14,7 @@ import { Main, Form, H1, Input } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/inputs" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/inputs/" } }) {
       meta {
         title
         description

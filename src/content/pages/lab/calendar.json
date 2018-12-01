@@ -2,7 +2,7 @@
   "meta": {
     "type": ["page", "lab", "demo"],
     "date": "2018-10-07T00:00:00.000Z",
-    "permalink": "/lab/calendar",
+    "permalink": "/lab/calendar/",
     "title": "Simplistic calendar",
     "description": "A simplistic implementation of a monhly calendar",
     "ogImage": "../../multimedia/og.png"

@@ -1,5 +1,5 @@
 ---
-permalink: /blog/gatsby-eslint-vscode-import-alias
+permalink: /blog/gatsby-eslint-vscode-import-alias/
 title: How to set up import aliases for Gatsby.js
 description: A step-by-step guide to use import aliases with Webpack, ESlint, and VS Code
 date: 2018-11-23T00:00:00.000Z

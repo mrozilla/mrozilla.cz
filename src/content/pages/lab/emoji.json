@@ -2,7 +2,7 @@
   "meta": {
     "type": ["page", "lab", "demo"],
     "date": "2018-09-05T00:00:00.000Z",
-    "permalink": "/lab/emoji",
+    "permalink": "/lab/emoji/",
     "title": "Emoji experiments",
     "description": "In fascination by the concept and the implementation of emojis, this page lists random experiments distilling human communication to its bare minimum",
     "ogImage": "../../multimedia/og.png"

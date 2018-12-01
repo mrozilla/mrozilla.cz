@@ -15,7 +15,7 @@ import { parseInput } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/in-any-case" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/in-any-case/" } }) {
       meta {
         title
         description
