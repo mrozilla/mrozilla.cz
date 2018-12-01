@@ -15,7 +15,7 @@ import { Main, Section, Input, Img, H1, P, Ul, Li } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/grid" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/grid/" } }) {
       meta {
         title
         description

@@ -14,7 +14,7 @@ import { Main, Section, H2, P, Button } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/emoji" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/emoji/" } }) {
       meta {
         title
         description

@@ -1,5 +1,5 @@
 ---
-permalink: /blog/knowledge-base
+permalink: /blog/knowledge-base/
 title: Personal knowledge base
 description: This is a semi-structured collection of helpful articles, case studies, and tutorials I collected over time.
 date: 2018-07-07T00:00:00.000Z

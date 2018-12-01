@@ -2,7 +2,7 @@
   "meta": {
     "type": ["page", "lab", "tool"],
     "date": "2016-06-01T00:00:00.000Z",
-    "permalink": "/lab/count-on-me",
+    "permalink": "/lab/count-on-me/",
     "title": "count on me — a counting tool you can count on",
     "description": "Count the things that need to be counted, completely revolutionary...",
     "ogImage": "../../multimedia/og.png"

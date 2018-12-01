@@ -2,7 +2,7 @@
   "meta": {
     "type": ["page", "lab", "demo"],
     "date": "2018-11-13T00:00:00.000Z",
-    "permalink": "/lab/inputs",
+    "permalink": "/lab/inputs/",
     "title": "Inputs playground",
     "description": "A collection of many different things inputs can do",
     "ogImage": "../../multimedia/og.png"

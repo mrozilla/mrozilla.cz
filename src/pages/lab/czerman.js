@@ -16,7 +16,7 @@ import { metaTypes } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/czerman" } }) {
+    page: labJson(meta: { permalink: { eq: "/lab/czerman/" } }) {
       meta {
         title
         description
