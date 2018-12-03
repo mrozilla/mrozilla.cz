@@ -9,9 +9,7 @@ import styled from 'styled-components';
 // table
 // ─────────────────────────────────────────────────────────────────────────────
 
-const NativeTable = styled.table(({
-  width, tableLayout, whiteSpace, margin,
-}) => ({
+const NativeTable = styled.table(({ width, tableLayout, whiteSpace, margin }) => ({
   width,
   '@media screen and (min-width: 1200px)': {
     tableLayout,
@@ -38,7 +36,9 @@ export function Table({ children, ...rest }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.Thead = styled.thead`
-  box-shadow: 0 2px 0 0 hsla(var(--hsl-text), 0.1);
+  --shadow: 0 2px 0 0 hsla(var(--hsl-text), 0.1);
+
+  box-shadow: var(--shadow);
   & th {
     padding: 1rem 0.5rem;
   }
@@ -65,7 +65,9 @@ Table.Tfoot = styled.tfoot``;
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.Tr = styled.tr`
-  box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
+  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
+
+  box-shadow: var(--shadow);
   cursor: ${({ cursor }) => cursor};
 `;
 

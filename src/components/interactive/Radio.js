@@ -11,6 +11,8 @@ import { Text } from '~components/primitives/Text';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Radio = styled.input.attrs({ type: 'radio' })`
+  --shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
+
   appearance: none;
   outline: none;
 
@@ -21,7 +23,7 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
   width: 1em;
   height: 1em;
   background-color: hsla(var(--hsl-text), 0.05);
-  box-shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  box-shadow: var(--shadow);
   border-radius: 50%;
 
   & ~ ${Text} {
