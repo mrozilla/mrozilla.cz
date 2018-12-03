@@ -9,7 +9,6 @@ import { Text } from '~components/primitives/Text';
 
 import { Button } from '~components/interactive/Button';
 import { Checkbox } from '~components/interactive/Checkbox';
-import { Error } from '~components/interactive/Error';
 import { Fieldset } from '~components/interactive/Fieldset';
 import { Radio } from '~components/interactive/Radio';
 import { Select } from '~components/interactive/Select';
@@ -18,6 +17,7 @@ import TextAreaInput from '~components/interactive/TextAreaInput';
 
 import { Label } from '~components/text/Label';
 import { Tooltip } from '~components/text/Tooltip';
+import { Error } from '~components/text/Error';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // legend
