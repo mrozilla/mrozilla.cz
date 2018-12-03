@@ -11,6 +11,8 @@ import { View } from '~components/primitives/View';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Button = styled(View)`
+  --shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+
   -webkit-appearance: none;
   border: none;
   outline: none;
@@ -43,7 +45,7 @@ export const Button = styled(View)`
     }
     return css`
       background-color: hsla(var(--hsl-text), 0.025);
-      box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+      box-shadow: var(--shadow);
 
       &:not(:disabled):hover,
       &:not(:disabled):focus {

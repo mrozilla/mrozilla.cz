@@ -57,8 +57,10 @@ pre[class*="language-"] {
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
+  --shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+
   background-color: hsla(var(--hsl-text), 0.1);
-  box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  box-shadow: var(--shadow);
   color: inherit;
 
   padding: 0.25rem 0.5rem;
