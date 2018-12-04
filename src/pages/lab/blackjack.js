@@ -42,10 +42,10 @@ const Card = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  min-width: 6rem;
+  min-width: 4rem;
 
   line-height: 1;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 1rem 1rem 0.5rem 1rem;
   border-radius: 0.5rem;
   margin: 0.25rem;
@@ -57,7 +57,7 @@ const Card = styled.div`
   
   &::after {
     content: '${({ suit }) => suit}';
-    font-size: 4rem;
+    font-size: 3rem;
   }
   &::before {
     content: '${({ rank }) => rank}';
@@ -67,7 +67,7 @@ const Card = styled.div`
     if (suit === '♥' || suit === '♦') {
       return 'color: var(--color-danger);';
     }
-    // return 'color: red;';
+    return 'color: inherit;';
   }}
 `;
 
@@ -77,8 +77,12 @@ const Card = styled.div`
 
 export default class BlackjackPage extends PureComponent {
   state = {
-    deck:  [],
-    drawn: [],
+    deck:   [],
+    drawn:  [],
+    dealer: [],
+    player: [],
+    winner: '',
+    game:   'DEAL',
   };
 
   componentDidMount = () => {
@@ -109,16 +113,72 @@ export default class BlackjackPage extends PureComponent {
     this.setState({ deck: shuffle(deck), drawn: [] });
   };
 
-  handleDrawCard = () => {
-    if (this.state.deck.length > 0) {
-      return this.setState(state => ({
-        deck:  state.deck.splice(1),
-        drawn: [...state.drawn, state.deck[0]],
-      }));
+  handleDealCard = (player) => {
+    if (this.state.deck.length === 0) {
+      this.handleNewDeck();
     }
 
-    return this.handleNewDeck();
+    this.setState(state => ({
+      [player]: [...state[player], state.deck[0]],
+      deck:     state.deck.slice(1),
+      drawn:    [...state.drawn, ...state.deck.slice(0, 1)],
+      game:     'PLAYER',
+    }));
   };
+
+  handleDeal = async () => {
+    if (this.state.game === 'OVER') {
+      await this.setState({ player: [], dealer: [] });
+    }
+
+    await this.handleDealCard('player');
+    await this.handleDealCard('dealer');
+    await this.handleDealCard('player');
+    await this.handleDealCard('dealer');
+
+    if (this.getScore('player') === 21) {
+      this.handleWinner('player');
+    }
+  };
+
+  handleWinner = player => this.setState({
+    winner: player,
+    game:   'OVER',
+  });
+
+  handleHit = async () => {
+    await this.handleDealCard('player');
+
+    const score = this.getScore('player');
+    if (score === 21) {
+      return this.handleWinner('player');
+    }
+    if (score > 21) {
+      return this.handleWinner('dealer');
+    }
+
+    return null;
+  };
+
+  getScore = (player) => {
+    const naiveScore = this.state[player].reduce((acc, card) => {
+      if (card.rank === 'A') {
+        return acc + 11;
+      }
+      if (['K', 'Q', 'J'].some(rank => card.rank === rank)) {
+        return acc + 10;
+      }
+      return acc + parseInt(card.rank, 10);
+    }, 0);
+
+    if (naiveScore > 21 && this.state[player].some(card => card.rank === 'A')) {
+      return naiveScore - 10;
+    }
+
+    return naiveScore;
+  };
+
+  renderCard = card => <Card key={`${card.rank}${card.suit}`} {...card} />;
 
   render() {
     return (
@@ -127,25 +187,42 @@ export default class BlackjackPage extends PureComponent {
         <Main
           gridTemplate={{
             xs: "'deck' 'drawn' 'controls'",
-            lg: "'deck controls' 'drawn controls' / 3fr 1fr",
+            lg: "'dealer controls' 'player controls' 'deck deck' 'drawn drawn' / 3fr 1fr",
           }}
           gridGap="10vh 4rem"
         >
-          <Section gridArea="deck">
-            <H1>Deck</H1>
-            {this.state.deck.map(card => (
-              <Card {...card} />
-            ))}
+          <Section gridArea="dealer">
+            <H1>Dealer ({this.getScore('dealer')})</H1>
+            {this.state.dealer.map(this.renderCard)}
           </Section>
-          <Section gridArea="drawn">
-            <H1>Drawn</H1>
-            {this.state.drawn.map(card => (
-              <Card {...card} />
-            ))}
+
+          <Section gridArea="player">
+            <H1>Player ({this.getScore('player')})</H1>
+            {this.state.player.map(this.renderCard)}
           </Section>
+
           <Section gridArea="controls">
             <H1>Controls</H1>
-            <Button onClick={this.handleDrawCard}>Draw</Button>
+            <p>Winner: {this.state.winner}</p>
+            <Button
+              onClick={this.handleDeal}
+              disabled={!['DEAL', 'OVER'].some(state => this.state.game === state)}
+            >
+              Deal
+            </Button>
+            <Button onClick={this.handleHit} disabled={this.state.game !== 'PLAYER'}>
+              Hit
+            </Button>
+          </Section>
+
+          <Section gridArea="deck">
+            <H1>Deck</H1>
+            {this.state.deck.map(this.renderCard)}
+          </Section>
+
+          <Section gridArea="drawn">
+            <H1>Drawn</H1>
+            {this.state.drawn.map(this.renderCard)}
           </Section>
         </Main>
       </RootContainer>
