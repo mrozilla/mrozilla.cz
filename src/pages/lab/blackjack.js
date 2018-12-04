@@ -4,11 +4,12 @@
 
 import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, Button } from '~components';
+import {fadeUpAnimation} from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -51,6 +52,8 @@ const Card = styled.div`
   margin: 0.25rem;
   box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
 
+  animation: ${fadeUpAnimation} 250ms both;
+
   &:hover {
     transform: translateY(-1px);
   }
@@ -68,6 +71,35 @@ const Card = styled.div`
       return 'color: var(--color-danger);';
     }
     return 'color: inherit;';
+  }}
+`;
+
+const Score = styled.span`
+  position: absolute;
+  top: 0;
+  left: -3rem;
+
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+
+  ${({ winner, player }) => {
+    console.log(winner, player);
+
+    if (winner === player) {
+      return css`
+        background-color: var(--color-success);
+        color: var(--color-bg);
+      `;
+    }
+    if (winner && winner !== player) {
+      return css`
+        background-color: var(--color-danger);
+        color: var(--color-bg);
+      `;
+    }
+    return 'background-color: hsla(var(--hsl-text), 0.1)';
   }}
 `;
 
@@ -114,7 +146,8 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleDealCard = (player) => {
-    if (this.state.deck.length === 0) {
+    // shuffle at 75% of deck used
+    if (this.state.deck.length < 13) {
       this.handleNewDeck();
     }
 
@@ -128,7 +161,7 @@ export default class BlackjackPage extends PureComponent {
 
   handleDeal = async () => {
     if (this.state.game === 'OVER') {
-      await this.setState({ player: [], dealer: [] });
+      await this.setState({ player: [], dealer: [], winner: '' });
     }
 
     await this.handleDealCard('player');
@@ -160,6 +193,21 @@ export default class BlackjackPage extends PureComponent {
     return null;
   };
 
+  handleStand = async () => {
+    await this.handleDealCard('dealer');
+
+    const dealerScore = this.getScore('dealer');
+    const playerScore = this.getScore('player');
+
+    if (dealerScore > 21) {
+      return this.handleWinner('player');
+    }
+    if (dealerScore > playerScore) {
+      return this.handleWinner('dealer');
+    }
+    return this.handleStand();
+  };
+
   getScore = (player) => {
     const naiveScore = this.state[player].reduce((acc, card) => {
       if (card.rank === 'A') {
@@ -189,39 +237,64 @@ export default class BlackjackPage extends PureComponent {
             xs: "'deck' 'drawn' 'controls'",
             lg: "'dealer controls' 'player controls' 'deck deck' 'drawn drawn' / 3fr 1fr",
           }}
-          gridGap="10vh 4rem"
+          gridGap="4rem 4rem"
         >
-          <Section gridArea="dealer">
-            <H1>Dealer ({this.getScore('dealer')})</H1>
+          <Section gridArea="dealer" position="relative">
             {this.state.dealer.map(this.renderCard)}
+            {this.state.drawn.length > 0 && (
+              <Score winner={this.state.winner} player="dealer">
+                {this.getScore('dealer')}
+              </Score>
+            )}
           </Section>
 
-          <Section gridArea="player">
-            <H1>Player ({this.getScore('player')})</H1>
+          <Section gridArea="player" position="relative">
             {this.state.player.map(this.renderCard)}
+            {this.state.drawn.length > 0 && (
+              <Score winner={this.state.winner} player="player">
+                {this.getScore('player')}
+              </Score>
+            )}
           </Section>
 
           <Section gridArea="controls">
-            <H1>Controls</H1>
-            <p>Winner: {this.state.winner}</p>
             <Button
+              width="100%"
+              margin="0 0 1rem"
               onClick={this.handleDeal}
               disabled={!['DEAL', 'OVER'].some(state => this.state.game === state)}
             >
               Deal
             </Button>
-            <Button onClick={this.handleHit} disabled={this.state.game !== 'PLAYER'}>
+            <Button
+              margin="0 0 1rem"
+              width="100%"
+              disabled={this.state.game !== 'PLAYER'}
+              onClick={this.handleHit}
+            >
               Hit
+            </Button>
+            <Button
+              margin="0 0 1rem"
+              width="100%"
+              disabled={this.state.game !== 'PLAYER'}
+              onClick={this.handleStand}
+            >
+              Stand
+            </Button>
+            <Button margin="0 0 1rem" width="100%" disabled>
+              Double
+            </Button>
+            <Button margin="0 0 1rem" width="100%" disabled>
+              Split
             </Button>
           </Section>
 
           <Section gridArea="deck">
-            <H1>Deck</H1>
             {this.state.deck.map(this.renderCard)}
           </Section>
 
           <Section gridArea="drawn">
-            <H1>Drawn</H1>
             {this.state.drawn.map(this.renderCard)}
           </Section>
         </Main>
