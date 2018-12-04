@@ -57,47 +57,64 @@ const Card = styled.div`
   &:hover {
     transform: translateY(-1px);
   }
-  
-  &::after {
-    content: '${({ suit }) => suit}';
-    font-size: 3rem;
-  }
-  &::before {
-    content: '${({ rank }) => rank}';
-    font-weight: 700;
-  }
+
+  ${({ suit, rank, isFaceDown }) => css`
+    &::after {
+      content: '${isFaceDown ? ' ' : suit}';
+      white-space: pre;
+      font-size: 3rem;
+    }
+    &::before {
+      content: '${isFaceDown ? ' ' : rank}';
+      white-space: pre;
+      font-weight: 700;
+    }
+  `};
+
   ${({ suit }) => {
     if (suit === '♥' || suit === '♦') {
       return 'color: var(--color-danger);';
     }
-    return 'color: inherit;';
+    return 'color: var(--color-text);';
   }}
 `;
 
 const Score = styled.span`
+  --background-color: hsla(var(--hsl-text), 0.1);
+  --color: var(--color-text);
+
   position: absolute;
-  top: 0;
-  left: -3rem;
+  top: 0.25rem;
+  right: calc(100% + 0.5rem);
 
   font-size: 1.5rem;
   line-height: 1;
   padding: 0.5rem;
   border-radius: 0.25rem;
 
+  background-color: var(--background-color);
+  color: var(--color);
+
   ${({ winner, player }) => {
+    if (winner === 'draw') {
+      return `
+        --background-color: var(--color-info);
+        --color: var(--color-bg);
+      `;
+    }
     if (winner === player) {
-      return css`
-        background-color: var(--color-success);
-        color: var(--color-bg);
+      return `
+        --background-color: var(--color-success);
+        --color: var(--color-bg);
       `;
     }
     if (winner && winner !== player) {
-      return css`
-        background-color: var(--color-danger);
-        color: var(--color-bg);
+      return `
+        --background-color: var(--color-danger);
+        --color: var(--color-bg);
       `;
     }
-    return 'background-color: hsla(var(--hsl-text), 0.1)';
+    return null;
   }}
 `;
 
@@ -162,7 +179,7 @@ export default class BlackjackPage extends PureComponent {
   });
 
   handleDraw = () => this.setState({
-    winner: '',
+    winner: 'draw',
     game:   'DEAL',
   });
 
@@ -194,17 +211,19 @@ export default class BlackjackPage extends PureComponent {
     await this.handleDealCard('player');
     await this.handleDealCard('dealer');
 
-    if (this.getScore('player') === 21) {
-      this.handleWinner('player');
+    if (this.getScore(this.state.player) === 21) {
+      return this.handleStand();
     }
+
+    return null;
   };
 
   handleHit = async () => {
     await this.handleDealCard('player');
 
-    const score = this.getScore('player');
+    const score = this.getScore(this.state.player);
     if (score === 21) {
-      return this.handleWinner('player');
+      return this.handleStand();
     }
     if (score > 21) {
       return this.handleWinner('dealer');
@@ -214,8 +233,8 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleStand = async () => {
-    const dealerScore = this.getScore('dealer');
-    const playerScore = this.getScore('player');
+    const dealerScore = this.getScore(this.state.dealer);
+    const playerScore = this.getScore(this.state.player);
 
     if (dealerScore < 17) {
       await this.handleDealCard('dealer');
@@ -231,13 +250,14 @@ export default class BlackjackPage extends PureComponent {
     if (dealerScore === playerScore) {
       return this.handleDraw();
     }
+
     return null;
   };
 
-  getScore = (player) => {
-    const naiveScore = this.state[player].reduce((acc, card) => {
+  getScore = (cards) => {
+    const score = cards.reduce((acc, card) => {
       if (card.rank === 'A') {
-        return acc + 11;
+        return acc + 1; // count each ace as 1 at first
       }
       if (['K', 'Q', 'J'].some(rank => card.rank === rank)) {
         return acc + 10;
@@ -245,14 +265,12 @@ export default class BlackjackPage extends PureComponent {
       return acc + parseInt(card.rank, 10);
     }, 0);
 
-    if (naiveScore > 21 && this.state[player].some(card => card.rank === 'A')) {
-      return naiveScore - 10;
+    if (score < 12 && cards.some(card => card.rank === 'A')) {
+      return score + 10; // if aces and score still 11 or lower, count 1 ace as 11
     }
 
-    return naiveScore;
+    return score;
   };
-
-  renderCard = card => <Card key={`${card.rank}${card.suit}`} {...card} />;
 
   renderCurrency = amount => new Intl.NumberFormat('en-US', {
     style:                 'currency',
@@ -272,19 +290,29 @@ export default class BlackjackPage extends PureComponent {
           gridGap="0.5rem"
         >
           <Section gridArea="dealer" position="relative" minHeight="7rem">
-            {this.state.dealer.map(this.renderCard)}
+            {this.state.dealer.map((card, i) => (
+              <Card
+                key={`${card.rank}${card.suit}`}
+                {...card}
+                isFaceDown={this.state.game === 'PLAYER' && i > 0}
+              />
+            ))}
             {this.state.drawn.length > 0 && (
               <Score winner={this.state.winner} player="dealer">
-                {this.getScore('dealer')}
+                {this.getScore(
+                  this.state.game === 'PLAYER' ? this.state.dealer.slice(0, 1) : this.state.dealer,
+                )}
               </Score>
             )}
           </Section>
 
           <Section gridArea="player" position="relative" minHeight="7rem" margin="0 0 4rem 0">
-            {this.state.player.map(this.renderCard)}
+            {this.state.player.map(card => (
+              <Card key={`${card.rank}${card.suit}`} {...card} />
+            ))}
             {this.state.drawn.length > 0 && (
               <Score winner={this.state.winner} player="player">
-                {this.getScore('player')}
+                {this.getScore(this.state.player)}
               </Score>
             )}
           </Section>
