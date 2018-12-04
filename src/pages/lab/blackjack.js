@@ -8,8 +8,8 @@ import styled, { css } from 'styled-components';
 import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, H1, Button } from '~components';
-import {fadeUpAnimation} from '~utils';
+import { Main, Section, H1, Button, P } from '~components';
+import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -43,7 +43,7 @@ const Card = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  min-width: 4rem;
+  min-width: 4.5rem;
 
   line-height: 1;
   font-size: 2rem;
@@ -52,7 +52,7 @@ const Card = styled.div`
   margin: 0.25rem;
   box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
 
-  animation: ${fadeUpAnimation} 250ms both;
+  animation: ${fadeUpAnimation} 250ms;
 
   &:hover {
     transform: translateY(-1px);
@@ -85,8 +85,6 @@ const Score = styled.span`
   border-radius: 0.25rem;
 
   ${({ winner, player }) => {
-    console.log(winner, player);
-
     if (winner === player) {
       return css`
         background-color: var(--color-success);
@@ -103,19 +101,23 @@ const Score = styled.span`
   }}
 `;
 
+const initialState = {
+  deck:   [],
+  drawn:  [],
+  dealer: [],
+  player: [],
+  winner: '',
+  game:   'DEAL',
+  bank:   500,
+  bet:    500,
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default class BlackjackPage extends PureComponent {
-  state = {
-    deck:   [],
-    drawn:  [],
-    dealer: [],
-    player: [],
-    winner: '',
-    game:   'DEAL',
-  };
+  state = { ...initialState };
 
   componentDidMount = () => {
     this.handleNewDeck();
@@ -145,10 +147,33 @@ export default class BlackjackPage extends PureComponent {
     this.setState({ deck: shuffle(deck), drawn: [] });
   };
 
+  handleWinner = winner => this.setState((state) => {
+    const bank = Math.max(
+      winner === 'dealer' ? state.bank - state.bet : state.bank + state.bet,
+      0,
+    );
+    const bet = winner === 'dealer' ? Math.min(state.bet, state.bank) : state.bet;
+    return {
+      winner,
+      game: 'DEAL',
+      bank,
+      bet,
+    };
+  });
+
+  handleDraw = () => this.setState({
+    winner: '',
+    game:   'DEAL',
+  });
+
+  handleBet = bet => this.setState(state => ({
+    bet:  state.bet + bet,
+    bank: state.bank - bet,
+  }));
+
   handleDealCard = (player) => {
-    // shuffle at 75% of deck used
     if (this.state.deck.length < 13) {
-      this.handleNewDeck();
+      this.handleNewDeck(); // shuffle at 75% of deck used
     }
 
     this.setState(state => ({
@@ -160,7 +185,7 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleDeal = async () => {
-    if (this.state.game === 'OVER') {
+    if (this.state.game === 'DEAL') {
       await this.setState({ player: [], dealer: [], winner: '' });
     }
 
@@ -173,11 +198,6 @@ export default class BlackjackPage extends PureComponent {
       this.handleWinner('player');
     }
   };
-
-  handleWinner = player => this.setState({
-    winner: player,
-    game:   'OVER',
-  });
 
   handleHit = async () => {
     await this.handleDealCard('player');
@@ -194,18 +214,24 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleStand = async () => {
-    await this.handleDealCard('dealer');
-
     const dealerScore = this.getScore('dealer');
     const playerScore = this.getScore('player');
 
-    if (dealerScore > 21) {
+    if (dealerScore < 17) {
+      await this.handleDealCard('dealer');
+      return this.handleStand();
+    }
+
+    if (dealerScore > 21 || playerScore > dealerScore) {
       return this.handleWinner('player');
     }
     if (dealerScore > playerScore) {
       return this.handleWinner('dealer');
     }
-    return this.handleStand();
+    if (dealerScore === playerScore) {
+      return this.handleDraw();
+    }
+    return null;
   };
 
   getScore = (player) => {
@@ -228,18 +254,24 @@ export default class BlackjackPage extends PureComponent {
 
   renderCard = card => <Card key={`${card.rank}${card.suit}`} {...card} />;
 
+  renderCurrency = amount => new Intl.NumberFormat('en-US', {
+    style:                 'currency',
+    currency:              'USD',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  }).format(amount);
+
   render() {
     return (
       <RootContainer>
         <SEOContainer meta={this.props.data.page.meta} />
         <Main
           gridTemplate={{
-            xs: "'deck' 'drawn' 'controls'",
-            lg: "'dealer controls' 'player controls' 'deck deck' 'drawn drawn' / 3fr 1fr",
+            xs: "'dealer' 'player' 'controls' 'bank'",
           }}
-          gridGap="4rem 4rem"
+          gridGap="0.5rem"
         >
-          <Section gridArea="dealer" position="relative">
+          <Section gridArea="dealer" position="relative" minHeight="7rem">
             {this.state.dealer.map(this.renderCard)}
             {this.state.drawn.length > 0 && (
               <Score winner={this.state.winner} player="dealer">
@@ -248,7 +280,7 @@ export default class BlackjackPage extends PureComponent {
             )}
           </Section>
 
-          <Section gridArea="player" position="relative">
+          <Section gridArea="player" position="relative" minHeight="7rem" margin="0 0 4rem 0">
             {this.state.player.map(this.renderCard)}
             {this.state.drawn.length > 0 && (
               <Score winner={this.state.winner} player="player">
@@ -258,45 +290,65 @@ export default class BlackjackPage extends PureComponent {
           </Section>
 
           <Section gridArea="controls">
+            <P margin="0 0 2rem 0">
+              <P as="span" fontWeight="700" fontSize="3rem">
+                {this.renderCurrency(this.state.bet)}
+              </P>{' '}
+              / {this.renderCurrency(this.state.bank)}
+            </P>
             <Button
-              width="100%"
-              margin="0 0 1rem"
               onClick={this.handleDeal}
-              disabled={!['DEAL', 'OVER'].some(state => this.state.game === state)}
+              disabled={this.state.game !== 'DEAL' || this.state.bet === 0}
+              grouped
             >
               Deal
             </Button>
-            <Button
-              margin="0 0 1rem"
-              width="100%"
-              disabled={this.state.game !== 'PLAYER'}
-              onClick={this.handleHit}
-            >
+            <Button disabled={this.state.game !== 'PLAYER'} grouped onClick={this.handleHit}>
               Hit
             </Button>
-            <Button
-              margin="0 0 1rem"
-              width="100%"
-              disabled={this.state.game !== 'PLAYER'}
-              onClick={this.handleStand}
-            >
+            <Button disabled={this.state.game !== 'PLAYER'} grouped onClick={this.handleStand}>
               Stand
             </Button>
-            <Button margin="0 0 1rem" width="100%" disabled>
+            <Button disabled grouped>
               Double
             </Button>
-            <Button margin="0 0 1rem" width="100%" disabled>
+            <Button disabled grouped>
               Split
             </Button>
           </Section>
 
-          <Section gridArea="deck">
-            {this.state.deck.map(this.renderCard)}
+          <Section gridArea="bank">
+            <Button
+              disabled={this.state.game !== 'DEAL'}
+              grouped
+              onClick={() => this.setState(state => ({ bet: 0, bank: state.bank + state.bet }))}
+            >
+              {this.renderCurrency(0)}
+            </Button>
+            {[25, 100, 1000].map(bet => (
+              <Button
+                key={bet}
+                disabled={this.state.game !== 'DEAL' || this.state.bank < bet}
+                grouped
+                onClick={() => this.handleBet(bet)}
+              >
+                + {this.renderCurrency(bet)}
+              </Button>
+            ))}
           </Section>
 
-          <Section gridArea="drawn">
-            {this.state.drawn.map(this.renderCard)}
-          </Section>
+          {this.state.bank === 0 && this.state.bet === 0 && (
+            <Section>
+              <Button
+                onClick={() => this.setState({
+                  ...initialState,
+                })
+                }
+              >
+                Reset
+              </Button>
+            </Section>
+          )}
         </Main>
       </RootContainer>
     );
