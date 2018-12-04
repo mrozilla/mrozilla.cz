@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, H1, Button, P } from '~components';
+import { Main, Section, Button, P } from '~components';
 import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -202,10 +202,7 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleDeal = async () => {
-    if (this.state.game === 'DEAL') {
-      await this.setState({ player: [], dealer: [], winner: '' });
-    }
-
+    await this.setState({ player: [], dealer: [], winner: '' });
     await this.handleDealCard('player');
     await this.handleDealCard('dealer');
     await this.handleDealCard('player');
@@ -252,6 +249,12 @@ export default class BlackjackPage extends PureComponent {
     }
 
     return null;
+  };
+
+  handleDouble = async () => {
+    await this.handleBet(this.state.bet);
+    await this.handleDealCard('player');
+    this.handleStand();
   };
 
   getScore = (cards) => {
@@ -337,7 +340,11 @@ export default class BlackjackPage extends PureComponent {
             <Button disabled={this.state.game !== 'PLAYER'} grouped onClick={this.handleStand}>
               Stand
             </Button>
-            <Button disabled grouped>
+            <Button
+              disabled={this.state.game !== 'PLAYER' || this.state.bank < this.state.bet}
+              grouped
+              onClick={this.handleDouble}
+            >
               Double
             </Button>
             <Button disabled grouped>
