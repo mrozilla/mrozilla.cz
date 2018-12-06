@@ -164,17 +164,26 @@ export default class BlackjackPage extends PureComponent {
     this.setState({ deck: shuffle(deck), drawn: [] });
   };
 
-  handleWinner = winner => this.setState((state) => {
-    const bank = Math.max(
-      winner === 'dealer' ? state.bank - state.bet : state.bank + state.bet,
-      0,
-    );
-    const bet = winner === 'dealer' ? Math.min(state.bet, state.bank) : state.bet;
+  handleWinner = (winner, { isBlackjack = false } = {}) => this.setState((state) => {
+    function calculateBank() {
+      if (winner === 'dealer') {
+        return Math.max(state.bank - state.bet, 0);
+      }
+      return Math.max(state.bank + (isBlackjack ? state.bet * 1.5 : state.bet), 0);
+    }
+
+    function calculateBet() {
+      if (winner === 'dealer') {
+        return Math.min(state.bet, state.bank);
+      }
+      return state.bet;
+    }
+
     return {
       winner,
       game: 'DEAL',
-      bank,
-      bet,
+      bank: calculateBank(),
+      bet:  calculateBet(),
     };
   });
 
@@ -209,7 +218,7 @@ export default class BlackjackPage extends PureComponent {
     await this.handleDealCard('dealer');
 
     if (this.getScore(this.state.player) === 21) {
-      return this.handleStand();
+      return this.handleStand({ isBlackjack: true });
     }
 
     return null;
@@ -229,17 +238,17 @@ export default class BlackjackPage extends PureComponent {
     return null;
   };
 
-  handleStand = async () => {
+  handleStand = async ({ isBlackjack = false } = {}) => {
     const dealerScore = this.getScore(this.state.dealer);
     const playerScore = this.getScore(this.state.player);
 
     if (dealerScore < 17) {
       await this.handleDealCard('dealer');
-      return this.handleStand();
+      return this.handleStand({ isBlackjack });
     }
 
     if (dealerScore > 21 || playerScore > dealerScore) {
-      return this.handleWinner('player');
+      return this.handleWinner('player', { isBlackjack });
     }
     if (dealerScore > playerScore) {
       return this.handleWinner('dealer');
