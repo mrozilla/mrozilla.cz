@@ -119,16 +119,20 @@ const Score = styled.span`
 `;
 
 const initialState = {
-  deck:        [],
-  drawn:       [],
-  dealer:      [],
-  player:      [],
-  winner:      '',
-  game:        'DEAL',
-  bank:        1000,
-  bet:         0,
-  games:       0,
+  deck:  [],
+  drawn: [],
+
+  dealer: [],
+  player: [],
+  winner: '',
+  game:   'DEAL',
+
+  bank: 1000,
+  bet:  0,
+
+  hands:       0,
   victories:   0,
+  maxBank:     0,
   isModalOpen: false,
 };
 
@@ -184,16 +188,20 @@ export default class BlackjackPage extends PureComponent {
 
     return {
       winner,
-      game: 'DEAL',
-      bank: calculateBank(),
-      bet:  calculateBet(),
+      game:      'DEAL',
+      bank:      calculateBank(),
+      bet:       calculateBet(),
+      hands:     state.hands + 1,
+      victories: state.victories + (winner === 'player' ? 1 : 0),
+      maxBank:   Math.max(state.maxBank, state.bank + state.bet),
     };
   });
 
-  handleDraw = () => this.setState({
+  handleDraw = () => this.setState(state => ({
     winner: 'draw',
     game:   'DEAL',
-  });
+    hands:  state.hands + 1,
+  }));
 
   handleBet = bet => this.setState(state => ({
     bet:  state.bet + bet,
@@ -409,18 +417,30 @@ export default class BlackjackPage extends PureComponent {
             </Modal>
           </Section>
 
-          {this.state.bank === 0 && this.state.bet === 0 && (
-            <Section>
-              <Button
-                onClick={() => this.setState({
-                  ...initialState,
-                })
-                }
-              >
-                Reset
-              </Button>
-            </Section>
-          )}
+          <Section minHeight="15rem">
+            {this.state.bank === 0 && this.state.bet === 0 && (
+              <>
+                <Button
+                  onClick={() => this.setState({
+                    ...initialState,
+                  })
+                  }
+                >
+                  Reset
+                </Button>
+                <Ul margin="2rem 0 0">
+                  <Li>{this.state.hands} hands played</Li>
+                  <Li>
+                    {this.state.victories} hands won (
+                    {((this.state.victories / this.state.hands) * 100).toFixed(2)}%)
+                  </Li>
+                  <Li>
+                    {this.renderCurrency(this.state.maxBank)} maximum bank
+                  </Li>
+                </Ul>
+              </>
+            )}
+          </Section>
         </Main>
       </RootContainer>
     );
