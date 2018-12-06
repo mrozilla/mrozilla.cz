@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Button, P } from '~components';
+import { Main, Section, Button, P, Modal, Ul, Li } from '~components';
 import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -119,14 +119,17 @@ const Score = styled.span`
 `;
 
 const initialState = {
-  deck:   [],
-  drawn:  [],
-  dealer: [],
-  player: [],
-  winner: '',
-  game:   'DEAL',
-  bank:   500,
-  bet:    500,
+  deck:        [],
+  drawn:       [],
+  dealer:      [],
+  player:      [],
+  winner:      '',
+  game:        'DEAL',
+  bank:        1000,
+  bet:         0,
+  games:       0,
+  victories:   0,
+  isModalOpen: false,
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -266,6 +269,8 @@ export default class BlackjackPage extends PureComponent {
     this.handleStand();
   };
 
+  handleModal = () => this.setState(state => ({ isModalOpen: !state.isModalOpen }));
+
   getScore = (cards) => {
     const score = cards.reduce((acc, card) => {
       if (card.rank === 'A') {
@@ -379,6 +384,29 @@ export default class BlackjackPage extends PureComponent {
                 + {this.renderCurrency(bet)}
               </Button>
             ))}
+            <Button onClick={this.handleModal}>?</Button>
+            <Modal
+              isOpen={this.state.isModalOpen}
+              innerPadding="4rem 4rem 2rem 4rem"
+              innerMinWidth="15vw"
+              onClickBackground={this.handleModal}
+              onClickEscape={this.handleModal}
+            >
+              <P fontSize="3rem">Table rules</P>
+              <Ul listStyle="disc" padding="0 0 2rem 1em">
+                <Li>Blackjack pays 3 to 2</Li>
+                {/* <Li>Insurance pays 2 to 1</Li> */}
+                <Li>Dealer stands on soft 17</Li>
+                <Li>One deck of 52 cards</Li>
+                <Li>Dealer shuffles after dealing 75% of the deck</Li>
+                <Li>Minimum bet $25, no maximum bet</Li>
+              </Ul>
+              <P fontSize="3rem">Currently missing</P>
+              <Ul listStyle="disc" padding="0 0 0 1em">
+                <Li>Insurance logic</Li>
+                <Li>Split logic</Li>
+              </Ul>
+            </Modal>
           </Section>
 
           {this.state.bank === 0 && this.state.bet === 0 && (
