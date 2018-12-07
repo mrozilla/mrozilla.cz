@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Button, P, Modal, Ul, Li } from '~components';
+import { Main, Section, Button, P, Modal, Ul, Li, Toast } from '~components';
 import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -119,8 +119,9 @@ const Score = styled.span`
 `;
 
 const initialState = {
-  deck:  [],
-  drawn: [],
+  deck:         [],
+  drawn:        [],
+  shuffleLimit: 13,
 
   dealer: [],
   player: [],
@@ -130,10 +131,11 @@ const initialState = {
   bank: 1000,
   bet:  0,
 
-  hands:       0,
-  victories:   0,
-  maxBank:     0,
-  isModalOpen: false,
+  hands:     0,
+  victories: 0,
+  maxBank:   0,
+
+  isModal: false,
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -208,21 +210,21 @@ export default class BlackjackPage extends PureComponent {
     bank: state.bank - bet,
   }));
 
-  handleDealCard = (player) => {
-    if (this.state.deck.length < 13) {
-      this.handleNewDeck(); // shuffle at 75% of deck used
+  handleDealCard = async (player) => {
+    if (this.state.deck.length < this.state.shuffleLimit) {
+      await this.handleNewDeck(); // shuffle at 75% of deck used
+      this.Toast.show();
     }
 
     this.setState(state => ({
       [player]: [...state[player], state.deck[0]],
       deck:     state.deck.slice(1),
       drawn:    [...state.drawn, ...state.deck.slice(0, 1)],
-      game:     'PLAYER',
     }));
   };
 
   handleDeal = async () => {
-    await this.setState({ player: [], dealer: [], winner: '' });
+    await this.setState({ player: [], dealer: [], winner: '', game: 'PLAYER' });
     await this.handleDealCard('player');
     await this.handleDealCard('dealer');
     await this.handleDealCard('player');
@@ -277,7 +279,7 @@ export default class BlackjackPage extends PureComponent {
     this.handleStand();
   };
 
-  handleModal = () => this.setState(state => ({ isModalOpen: !state.isModalOpen }));
+  handleModal = () => this.setState(state => ({ isModal: !state.isModal }));
 
   getScore = (cards) => {
     const score = cards.reduce((acc, card) => {
@@ -393,28 +395,6 @@ export default class BlackjackPage extends PureComponent {
               </Button>
             ))}
             <Button onClick={this.handleModal}>?</Button>
-            <Modal
-              isOpen={this.state.isModalOpen}
-              innerPadding="4rem 4rem 2rem 4rem"
-              innerMinWidth="15vw"
-              onClickBackground={this.handleModal}
-              onClickEscape={this.handleModal}
-            >
-              <P fontSize="3rem">Table rules</P>
-              <Ul listStyle="disc" padding="0 0 2rem 1em">
-                <Li>Blackjack pays 3 to 2</Li>
-                {/* <Li>Insurance pays 2 to 1</Li> */}
-                <Li>Dealer stands on soft 17</Li>
-                <Li>One deck of 52 cards</Li>
-                <Li>Dealer shuffles after dealing 75% of the deck</Li>
-                <Li>Minimum bet $25, no maximum bet</Li>
-              </Ul>
-              <P fontSize="3rem">Currently missing</P>
-              <Ul listStyle="disc" padding="0 0 0 1em">
-                <Li>Insurance logic</Li>
-                <Li>Split logic</Li>
-              </Ul>
-            </Modal>
           </Section>
 
           <Section minHeight="15rem">
@@ -434,14 +414,41 @@ export default class BlackjackPage extends PureComponent {
                     {this.state.victories} hands won (
                     {((this.state.victories / this.state.hands) * 100).toFixed(2)}%)
                   </Li>
-                  <Li>
-                    {this.renderCurrency(this.state.maxBank)} maximum bank
-                  </Li>
+                  <Li>{this.renderCurrency(this.state.maxBank)} maximum bank</Li>
                 </Ul>
               </>
             )}
           </Section>
+          <Modal
+            isOpen={this.state.isModal}
+            innerPadding="4rem 4rem 2rem 4rem"
+            innerMinWidth="15vw"
+            onClickBackground={this.handleModal}
+            onClickEscape={this.handleModal}
+          >
+            <P fontSize="3rem">Table rules</P>
+            <Ul listStyle="disc" padding="0 0 2rem 1em">
+              <Li>Blackjack pays 3 to 2</Li>
+              {/* <Li>Insurance pays 2 to 1</Li> */}
+              <Li>Dealer stands on soft 17</Li>
+              <Li>One deck of 52 cards</Li>
+              <Li>Dealer shuffles after dealing 75% of the deck</Li>
+              <Li>Minimum bet $25, no maximum bet</Li>
+            </Ul>
+            <P fontSize="3rem">Currently missing</P>
+            <Ul listStyle="disc" padding="0 0 0 1em">
+              <Li>Insurance logic</Li>
+              <Li>Split logic</Li>
+            </Ul>
+          </Modal>
         </Main>
+        <Toast
+          ref={(ref) => {
+            this.Toast = ref;
+          }}
+        >
+          Deck shuffled
+        </Toast>
       </RootContainer>
     );
   }
