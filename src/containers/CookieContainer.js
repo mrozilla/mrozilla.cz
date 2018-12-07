@@ -12,45 +12,45 @@ import { Toast, Link, Button } from '~components';
 
 export default class CookieContainer extends PureComponent {
   state = {
-    isHidden:
-      (typeof window !== 'undefined' && window.localStorage.getItem('isCookiesHidden')) || false,
+    isVisible:
+      (typeof window !== 'undefined'
+        && JSON.parse(window.localStorage.getItem('isCookiesHidden')))
+      || false,
   };
 
   handleVisibility = () => {
-    window.localStorage.setItem('isCookiesHidden', !this.state.isHidden);
-    this.setState(state => ({ isHidden: !state.isHidden }));
+    window.localStorage.setItem('isCookiesHidden', JSON.stringify(!this.state.isVisible));
+    this.setState(state => ({ isVisible: !state.isVisible }));
   };
 
   render() {
-    if (this.state.isHidden) {
-      return (
-        <Toast
-          backgroundColor="var(--color-bg)"
-          animation="none"
-          color="var(--color-text)"
-          fontSize="1.25rem"
-          bottom={{
-            xs: 'auto',
-            sm: '0',
-          }}
-          top={{
-            xs: '0',
-            sm: 'auto',
-          }}
-        >
-          Yeah, we use cookies, we even have a{' '}
-          <Link type="primary" to="/legal/privacy/">
-            cookie policy
-          </Link>
-          <Button margin="0 0 0 1rem" onClick={this.handleVisibility}>
-            Accept{' '}
-            <span role="img" aria-label="cookie">
-              🍪
-            </span>
-          </Button>
-        </Toast>
-      );
-    }
-    return null;
+    return (
+      <Toast
+        backgroundColor="var(--color-bg)"
+        animation="none"
+        color="var(--color-text)"
+        fontSize="1.25rem"
+        bottom={{
+          xs: 'auto',
+          sm: '0',
+        }}
+        top={{
+          xs: '0',
+          sm: 'auto',
+        }}
+        isVisible={this.state.isVisible}
+      >
+        Yeah, we use cookies, we even have a{' '}
+        <Link type="primary" to="/legal/privacy/">
+          cookie policy
+        </Link>
+        <Button margin="0 0 0 1rem" onClick={this.handleVisibility}>
+          Accept{' '}
+          <span role="img" aria-label="cookie">
+            🍪
+          </span>
+        </Button>
+      </Toast>
+    );
   }
 }

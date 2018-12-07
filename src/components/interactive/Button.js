@@ -58,23 +58,24 @@ export const Button = styled(View)`
 
   ${({ grouped }) => grouped
     && css`
-      @media screen and (min-width: 900px) {
-        &:not(:last-of-type) {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-          margin-right: 1px;
-        }
+      &:not(:last-of-type) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-right: 1px;
+      }
 
-        & + & {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
+      & + & {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
     `};
 `;
 
 Button.defaultProps = {
-  as:           'button',
-  padding:      '1rem 2rem',
+  as:      'button',
+  padding: {
+    xs: '0.75rem 1.25rem',
+    lg: '1rem 2rem',
+  },
   borderRadius: '0.5rem',
 };
