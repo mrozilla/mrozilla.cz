@@ -2,30 +2,83 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled, { css } from 'styled-components';
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
+import { number, bool } from 'prop-types';
 
 import { View } from '~components/primitives/View';
-import { fadeOutAnimation } from '~utils';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const StyledToast = styled(View)`
+  position: fixed;
+  padding: 1rem;
+  z-index: var(--z-index-toast);
+  visibility: hidden;
+
+  font-size: ${({ fontSize }) => fontSize};
+  text-align: center;
+  color: ${({ color = 'white' }) => color};
+
+  &[open] {
+    visibility: visible;
+  }
+`;
+
+StyledToast.defaultProps = {
+  as:              'aside',
+  backgroundColor: 'var(--color-info)',
+  top:             0,
+  right:           0,
+  left:            0,
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Toast = styled(View)`
-  position: fixed;
-  padding: 1rem;
-  text-align: center;
+export default class Toast extends PureComponent {
+  static propTypes = {
+    delay:     number,
+    isVisible: bool,
+  };
 
-  z-index: var(--z-index-toast);
+  static defaultProps = {
+    delay:     2000,
+    isVisible: false,
+  };
 
-  animation: ${({ animation = css`250ms ${fadeOutAnimation} forwards 750ms` }) => animation};
-  font-size: ${({ fontSize }) => fontSize};
-  color: ${({ color = 'white' }) => color};
-`;
-Toast.defaultProps = {
-  as:              'aside',
-  backgroundColor: 'var(--color-success)',
-  top:             0,
-  right:           0,
-  left:            0,
-};
+  state = {
+    isVisible: this.props.isVisible,
+  };
+
+  show = () => {
+    clearTimeout(this.timeoutHelper);
+    this.setState(
+      {
+        isVisible: true,
+      },
+      () => {
+        this.timeoutHelper = setTimeout(
+          () => this.setState({ isVisible: false }),
+          this.props.delay,
+        );
+      },
+    );
+  };
+
+  hide = () => {
+    clearTimeout(this.timeoutHelper);
+    this.setState({ isVisible: false });
+  };
+
+  render() {
+    return (
+      <StyledToast {...this.props} open={this.state.isVisible}>
+        {this.props.children}
+      </StyledToast>
+    );
+  }
+}
