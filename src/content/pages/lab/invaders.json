@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": ["page", "lab", "tool"],
+    "date": "2018-12-07T00:00:00.000Z",
+    "permalink": "/lab/invaders/",
+    "title": "invaders",
+    "description": "Generative art straight FROM SPACE",
+    "ogImage": "../../multimedia/og.png"
+  },
+  "body": {
+    "title": "invaders",
+    "tagline": "pixel-based generative art",
+    "hero": {
+      "title": "There's never too many space invaders. When randomly generated with 5x5 horizontally-mirrored pixels there are 32,768 variants"
+    }
+  }
+}
