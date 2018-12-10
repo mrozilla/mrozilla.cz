@@ -122,19 +122,19 @@ export default class CalendarPage extends PureComponent {
 
   renderCalendarControls = () => (
     <Calendar.Controls>
-      <Button type="basic" onClick={() => this.handleChangeDate({ yearOffset: -1 })}>
+      <Button secondary onClick={() => this.handleChangeDate({ yearOffset: -1 })}>
         «
       </Button>
-      <Button type="basic" onClick={() => this.handleChangeDate({ monthOffset: -1 })}>
+      <Button secondary onClick={() => this.handleChangeDate({ monthOffset: -1 })}>
         ‹
       </Button>
       <P textAlign="center">
         {this.state.selected.toLocaleString(this.state.locale, { month: 'long', year: 'numeric' })}
       </P>
-      <Button type="basic" onClick={() => this.handleChangeDate({ monthOffset: 1 })}>
+      <Button secondary onClick={() => this.handleChangeDate({ monthOffset: 1 })}>
         ›
       </Button>
-      <Button type="basic" onClick={() => this.handleChangeDate({ yearOffset: 1 })}>
+      <Button secondary onClick={() => this.handleChangeDate({ yearOffset: 1 })}>
         »
       </Button>
     </Calendar.Controls>
