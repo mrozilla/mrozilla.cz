@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Button, P, Modal, Ul, Li, Toast } from '~components';
+import { Main, Section, Button, P, Modal, Ul, Li, Link, Toast } from '~components';
 import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -279,6 +279,13 @@ export default class BlackjackPage extends PureComponent {
     this.handleStand();
   };
 
+  handleReset = async () => {
+    await this.handleNewDeck();
+    this.setState({
+      ...initialState,
+    });
+  };
+
   handleModal = () => this.setState(state => ({ isModal: !state.isModal }));
 
   getScore = (cards) => {
@@ -378,7 +385,7 @@ export default class BlackjackPage extends PureComponent {
 
           <Section gridArea="bank">
             <Button
-              disabled={this.state.game !== 'DEAL'}
+              disabled={this.state.game !== 'DEAL' || this.state.bank === 0}
               grouped
               onClick={() => this.setState(state => ({ bet: 0, bank: state.bank + state.bet }))}
             >
@@ -400,14 +407,7 @@ export default class BlackjackPage extends PureComponent {
           <Section minHeight="15rem">
             {this.state.bank === 0 && this.state.bet === 0 && (
               <>
-                <Button
-                  onClick={() => this.setState({
-                    ...initialState,
-                  })
-                  }
-                >
-                  Reset
-                </Button>
+                <Button onClick={this.handleReset}>Reset</Button>
                 <Ul margin="2rem 0 0">
                   <Li>{this.state.hands} hands played</Li>
                   <Li>
@@ -436,9 +436,17 @@ export default class BlackjackPage extends PureComponent {
               <Li>Minimum bet $25, no maximum bet</Li>
             </Ul>
             <P fontSize="3rem">Currently missing</P>
-            <Ul listStyle="disc" padding="0 0 0 1em">
+            <Ul listStyle="disc" padding="0 0 2rem 1em">
               <Li>Insurance logic</Li>
               <Li>Split logic</Li>
+            </Ul>
+            <P fontSize="3rem">Inspiration</P>
+            <Ul listStyle="disc" padding="0 0 0 1em">
+              <Li>
+                <Link to="https://blackjackbreak.com/" type="primary">
+                  https://blackjackbreak.com/
+                </Link>
+              </Li>
             </Ul>
           </Modal>
         </Main>
