@@ -21,18 +21,11 @@ const StyledLink = styled(Text)`
     font-weight: 700;
   }
 
-  ${({ type }) => {
-    if (type === 'primary') {
-      return css`
-        text-decoration: underline;
-        &:hover,
-        &:focus,
-        &:active {
-          color: var(--color-info);
-        }
-      `;
+  ${({ look }) => {
+    if (look.tertiary) {
+      return null;
     }
-    if (type === 'secondary') {
+    if (look.secondary) {
       return css`
         &:hover,
         &:focus,
@@ -42,7 +35,14 @@ const StyledLink = styled(Text)`
         }
       `;
     }
-    return null;
+    return css`
+      text-decoration: underline;
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color-info);
+      }
+    `;
   }};
 `;
 
@@ -50,17 +50,24 @@ const StyledLink = styled(Text)`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Link({ href, to, children, ...rest }) {
+export default function Link({ href, to, children, primary, secondary, tertiary, ...rest }) {
   const link = href || to;
   if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
     return (
-      <StyledLink as={OutboundLink} href={link} target="_blank" rel="noopener noreferrer" {...rest}>
+      <StyledLink
+        as={OutboundLink}
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        look={{ primary, secondary, tertiary }}
+        {...rest}
+      >
         {children}
       </StyledLink>
     );
   }
   return (
-    <StyledLink as={GatsbyLink} to={link} {...rest}>
+    <StyledLink as={GatsbyLink} to={link} look={{ primary, secondary, tertiary }} {...rest}>
       {children}
     </StyledLink>
   );

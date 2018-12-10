@@ -25,15 +25,24 @@ export const Button = styled(View)`
     opacity: 0.5;
   }
 
-  &:not(:disabled):hover {
+  &:not(:disabled):hover,
+  &:not(:disabled):focus {
     transform: translateY(-1px);
   }
   &:not(:disabled):active {
     transform: translateY(1px);
   }
 
-  ${({ type }) => {
-    if (type === 'basic') {
+  ${({ primary, secondary, tertiary }) => {
+    if (tertiary) {
+      return css`
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+          color: var(--color-info);
+        }
+      `;
+    }
+    if (secondary) {
       return css`
         &:not(:disabled):hover,
         &:not(:disabled):focus {

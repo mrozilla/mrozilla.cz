@@ -106,13 +106,14 @@ export default class CzermanPage extends PureComponent {
         innerPadding="4rem 4rem 2rem 4rem"
         innerMinWidth="15vw"
         onClickBackground={this.handleModal}
+        onClickClose={this.handleModal}
         onClickEscape={this.handleModal}
       >
         <H2>Czech</H2>
         <P>{modalTerm.czech.grammar}</P>
         <H2>
           Czech{' '}
-          <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
+          <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
             IPA
           </Link>
         </H2>
@@ -121,7 +122,7 @@ export default class CzermanPage extends PureComponent {
         <P>{this.state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
         <H2>
           German{' '}
-          <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/German">
+          <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">
             IPA
           </Link>
         </H2>
@@ -144,14 +145,14 @@ export default class CzermanPage extends PureComponent {
           <Table.Th>Czech</Table.Th>
           <Table.Th>
             Czech{' '}
-            <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
+            <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
               IPA
             </Link>
           </Table.Th>
           <Table.Th>German equivalent</Table.Th>
           <Table.Th>
             German{' '}
-            <Link type="primary" to="https://en.wikipedia.org/wiki/Help:IPA/German">
+            <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">
               IPA
             </Link>
           </Table.Th>
