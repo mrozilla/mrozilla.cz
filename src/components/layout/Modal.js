@@ -6,6 +6,8 @@ import React, { PureComponent } from 'react';
 import { string, bool, node, func } from 'prop-types';
 import styled from 'styled-components';
 
+import { Button } from '~components/interactive/Button';
+
 import { fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -18,21 +20,27 @@ const ModalBackground = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: hsla(var(--hsl-bg), 0.95);
   z-index: var(--z-index-modal);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5vh;
+
+  overscroll-behavior: contain;
+
+  background-color: hsla(var(--hsl-bg), 0.95);
+
+  padding: ${({ padding }) => padding};
 `;
 
 const ModalWrapper = styled.div`
   --shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
 
+  position: relative;
+
   border-radius: 0.25rem;
   background-color: var(--color-bg);
   box-shadow: var(--shadow);
-
   animation: ${fadeUpAnimation} 500ms both;
 
   padding: ${({ padding }) => padding};
@@ -52,15 +60,17 @@ export default class Modal extends PureComponent {
     innerPadding:      string,
     innerMinWidth:     string,
     onClickBackground: func,
+    onClickClose:      func,
     onClickEscape:     func,
   };
 
   static defaultProps = {
     innerKey:          null,
-    outerPadding:      '2rem',
+    outerPadding:      '5vmin',
     innerPadding:      '2rem',
     innerMinWidth:     null,
     onClickBackground: x => x,
+    onClickClose:      x => x,
     onClickEscape:     x => x,
   };
 
@@ -95,6 +105,15 @@ export default class Modal extends PureComponent {
             minWidth={this.props.innerMinWidth}
           >
             {this.props.children}
+            <Button
+              position="absolute"
+              top="0"
+              right="0"
+              tertiary
+              onClick={this.props.onClickClose}
+            >
+              ×
+            </Button>
           </ModalWrapper>
         </ModalBackground>
       );

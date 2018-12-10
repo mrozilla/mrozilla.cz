@@ -424,6 +424,7 @@ export default class BlackjackPage extends PureComponent {
             innerPadding="4rem 4rem 2rem 4rem"
             innerMinWidth="15vw"
             onClickBackground={this.handleModal}
+            onClickClose={this.handleModal}
             onClickEscape={this.handleModal}
           >
             <P fontSize="3rem">Table rules</P>
@@ -443,7 +444,7 @@ export default class BlackjackPage extends PureComponent {
             <P fontSize="3rem">Inspiration</P>
             <Ul listStyle="disc" padding="0 0 0 1em">
               <Li>
-                <Link to="https://blackjackbreak.com/" type="primary">
+                <Link to="https://blackjackbreak.com/">
                   https://blackjackbreak.com/
                 </Link>
               </Li>
