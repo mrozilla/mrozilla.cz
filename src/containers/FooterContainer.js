@@ -40,7 +40,7 @@ export default function FooterContainer({ footer }) {
         <Ul>
           {footer.contact.body.map(contact => (
             <Li key={contact.url}>
-              <Link to={contact.url} type="secondary">
+              <Link to={contact.url} secondary>
                 {contact.text}
               </Link>
             </Li>
@@ -52,7 +52,7 @@ export default function FooterContainer({ footer }) {
         <Ul>
           {footer.legal.body.map(legal => (
             <Li key={legal.url}>
-              <Link to={legal.url} type="secondary">
+              <Link to={legal.url} secondary>
                 {legal.text}
               </Link>
             </Li>

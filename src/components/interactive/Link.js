@@ -21,18 +21,11 @@ const StyledLink = styled(Text)`
     font-weight: 700;
   }
 
-  ${({ type }) => {
-    if (type === 'primary') {
-      return css`
-        text-decoration: underline;
-        &:hover,
-        &:focus,
-        &:active {
-          color: var(--color-info);
-        }
-      `;
+  ${({ primary, secondary, tertiary }) => {
+    if (tertiary) {
+      return null;
     }
-    if (type === 'secondary') {
+    if (secondary) {
       return css`
         &:hover,
         &:focus,
@@ -42,7 +35,14 @@ const StyledLink = styled(Text)`
         }
       `;
     }
-    return null;
+    return css`
+      text-decoration: underline;
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color-info);
+      }
+    `;
   }};
 `;
 
