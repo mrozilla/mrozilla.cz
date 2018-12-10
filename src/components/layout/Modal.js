@@ -27,9 +27,11 @@ const ModalBackground = styled.div`
 `;
 
 const ModalWrapper = styled.div`
+  --shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+
   border-radius: 0.25rem;
   background-color: var(--color-bg);
-  box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  box-shadow: var(--shadow);
 
   animation: ${fadeUpAnimation} 500ms both;
 

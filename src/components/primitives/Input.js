@@ -5,15 +5,18 @@
 import styled from 'styled-components';
 
 import { Text } from '~components/primitives/Text';
-import { Error } from '~components/interactive/Error';
 import { Label } from '~components/text/Label';
 import { Tooltip } from '~components/text/Tooltip';
+import { Error } from '~components/text/Error';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Input = styled(Text)`
+  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
+  --shadow-light: 0 1px 0 0 hsla(var(--hsl-text), 0.25);
+
   border: none;
   outline: none;
   resize: none;
@@ -22,13 +25,22 @@ export const Input = styled(Text)`
   display: block;
   width: 100%;
 
+  box-shadow: var(--shadow-light);
+  padding: 2.5rem 0 1.5rem;
+
+  & ~ ${Tooltip} {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
   &::placeholder {
     opacity: 0.25;
   }
 
   &:not(:read-only):not(:disabled) {
     :hover {
-      box-shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
+      box-shadow: var(--shadow);
       ::placeholder {
         opacity: 0.5;
       }
@@ -43,6 +55,11 @@ export const Input = styled(Text)`
     &:focus {
       & ~ svg {
         fill: var(--color-info);
+      }
+      & ~ ${Tooltip} {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   }
@@ -118,7 +135,5 @@ export const Input = styled(Text)`
 `;
 
 Input.defaultProps = {
-  as:        'input',
-  boxShadow: '0 1px 0 0 hsla(var(--hsl-text), 0.25)',
-  padding:   '2.5rem 0 1.5rem',
+  as: 'input',
 };

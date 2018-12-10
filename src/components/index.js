@@ -1,5 +1,6 @@
 export { Button } from './interactive/Button';
 export { Checkbox } from './interactive/Checkbox';
+export { Details, Summary } from './interactive/Details';
 export { Error } from './interactive/Error';
 export { Fieldset } from './interactive/Fieldset';
 export { Form } from './interactive/Form';
@@ -16,7 +17,7 @@ export { default as Modal } from './layout/Modal';
 export { Nav } from './layout/Nav';
 export { Section } from './layout/Section';
 export { Table } from './layout/Table';
-export { Toast } from './layout/Toast';
+export { default as Toast } from './layout/Toast';
 export { Wrapper } from './layout/Wrapper';
 
 export { default as Img } from './multimedia/Img';

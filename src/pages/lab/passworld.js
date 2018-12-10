@@ -47,8 +47,6 @@ export default class PassworldPage extends Component {
       numbers:      false,
       specialChars: false,
     },
-    clipboard: '',
-    isCopied:  false,
   };
 
   static getDerivedStateFromProps(_, prevState) {
@@ -67,23 +65,20 @@ export default class PassworldPage extends Component {
         .map(key => (prevState.chars[key] ? types[key] : null))
         .join('');
       const seed = window.crypto.getRandomValues(new Uint8Array(1));
-      
+
       return pool.charAt(seed[0] % pool.length);
     };
 
-    if (prevState.clipboard !== '') {
-      return {
-        clipboard: '',
-        isCopied:  true,
-      };
-    }
-
     return {
       password: Array(...new Array(prevState.length))
-        .map(() => generateRandomCharacter())
-        .join(''),
-      isCopied: false,
+          .map(() => generateRandomCharacter())
+          .join(''),
     };
+  }
+
+  handleGenerate = () => {
+    this.Toast.hide();
+    this.forceUpdate();
   }
 
   handleChangeCheckbox = ({ target }) => this.setState(state => ({
@@ -91,9 +86,8 @@ export default class PassworldPage extends Component {
   }));
 
   handleCopyToClipboard = () => {
-    this.setState(state => ({
-      clipboard: copyToClipboard(state.password),
-    }));
+    copyToClipboard(this.state.password);
+    this.Toast.show();
   };
 
   inputs = [
@@ -136,7 +130,7 @@ export default class PassworldPage extends Component {
   buttons = [
     {
       title:   'Generate',
-      onClick: () => this.forceUpdate(),
+      onClick: this.handleGenerate,
       grouped: true,
     },
     {
@@ -189,12 +183,14 @@ export default class PassworldPage extends Component {
               </Button>
             ))}
           </Section>
-          {this.state.isCopied && (
-            <Toast key={window.performance.now()}>
-              {this.state.password} was copied to the clipboard
-            </Toast>
-          )}
         </Main>
+        <Toast
+          ref={(ref) => {
+            this.Toast = ref;
+          }}
+        >
+          {this.state.password} was copied to the clipboard
+        </Toast>
       </RootContainer>
     );
   }

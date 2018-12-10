@@ -11,6 +11,8 @@ import { View } from '~components/primitives/View';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Button = styled(View)`
+  --shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+
   -webkit-appearance: none;
   border: none;
   outline: none;
@@ -43,7 +45,7 @@ export const Button = styled(View)`
     }
     return css`
       background-color: hsla(var(--hsl-text), 0.025);
-      box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+      box-shadow: var(--shadow);
 
       &:not(:disabled):hover,
       &:not(:disabled):focus {
@@ -56,23 +58,24 @@ export const Button = styled(View)`
 
   ${({ grouped }) => grouped
     && css`
-      @media screen and (min-width: 900px) {
-        &:not(:last-of-type) {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-          margin-right: 1px;
-        }
+      &:not(:last-of-type) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-right: 1px;
+      }
 
-        & + & {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
+      & + & {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
     `};
 `;
 
 Button.defaultProps = {
-  as:           'button',
-  padding:      '1rem 2rem',
+  as:      'button',
+  padding: {
+    xs: '0.75rem 1.25rem',
+    lg: '1rem 2rem',
+  },
   borderRadius: '0.5rem',
 };

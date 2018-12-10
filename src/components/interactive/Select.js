@@ -12,6 +12,8 @@ import { Label } from '~components/text/Label';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Select = styled(Text)`
+  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
+
   appearance: none;
   outline: none;
   border: none;
@@ -23,8 +25,7 @@ export const Select = styled(Text)`
   cursor: pointer;
 
   &:hover {
-    --color: hsla(var(--hsl-text), 0.5);
-    box-shadow: 0 1px 0 0 var(--color);
+    box-shadow: var(--shadow);
   }
 
   &:focus {
