@@ -12,11 +12,7 @@ import { Link } from '~components';
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const BlogLink = ({ children, ...rest }) => (
-  <Link {...rest} type="primary">
-    {children}
-  </Link>
-);
+const BlogLink = ({ children, ...rest }) => <Link {...rest}>{children}</Link>;
 
 BlogLink.propTypes = {
   children: node.isRequired,

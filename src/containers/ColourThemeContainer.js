@@ -5,6 +5,7 @@
 import React, { PureComponent } from 'react';
 
 import { Input } from '~components';
+import { persist } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -12,12 +13,11 @@ import { Input } from '~components';
 
 export default class ColourThemeContainer extends PureComponent {
   state = {
-    currentTheme:
-      (typeof window !== 'undefined' && window.localStorage.getItem('currentTheme')) || 'basic',
+    theme: persist.getItem('theme', 'basic'),
   };
 
   componentDidMount = () => {
-    this.handleChangeColorTheme(this.state.currentTheme);
+    this.handleChangeColorTheme(this.state.theme);
   };
 
   handleChangeColorTheme = (theme = 'basic') => {
@@ -38,10 +38,10 @@ export default class ColourThemeContainer extends PureComponent {
       },
     };
 
-    this.setState({ currentTheme: theme }, () => {
+    this.setState({ theme }, () => {
       document.documentElement.style.setProperty('--hsl-text', themes[theme].color);
       document.documentElement.style.setProperty('--hsl-bg', themes[theme].backgroundColor);
-      window.localStorage.setItem('currentTheme', theme);
+      persist.setItem('theme', theme);
     });
   };
 
@@ -54,17 +54,17 @@ export default class ColourThemeContainer extends PureComponent {
           {
             value:   'basic',
             label:   'default',
-            checked: this.state.currentTheme === 'basic',
+            checked: this.state.theme === 'basic',
           },
           {
             value:   'dark',
             label:   'dark',
-            checked: this.state.currentTheme === 'dark',
+            checked: this.state.theme === 'dark',
           },
           {
             value:   'crazy',
             label:   'crazy',
-            checked: this.state.currentTheme === 'crazy',
+            checked: this.state.theme === 'crazy',
           },
         ]}
         onChange={({ target: { value } }) => this.handleChangeColorTheme(value)}

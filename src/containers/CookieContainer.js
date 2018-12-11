@@ -40,10 +40,7 @@ export default class CookieContainer extends PureComponent {
         }}
         isVisible={this.state.isVisible}
       >
-        Yeah, we use cookies, we even have a{' '}
-        <Link type="primary" to="/legal/privacy/">
-          cookie policy
-        </Link>
+        Yeah, we use cookies, we even have a <Link to="/legal/privacy/">cookie policy</Link>
         <Button margin="0 0 0 1rem" onClick={this.handleVisibility}>
           Accept{' '}
           <span role="img" aria-label="cookie">
