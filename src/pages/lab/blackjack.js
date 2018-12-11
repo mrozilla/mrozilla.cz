@@ -9,7 +9,7 @@ import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, P, Modal, Ul, Li, Link, Toast } from '~components';
-import { fadeUpAnimation } from '~utils';
+import { persist, fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -143,10 +143,10 @@ const initialState = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default class BlackjackPage extends PureComponent {
-  state = { ...initialState };
+  state = persist.getItem('blackjack', initialState);
 
-  componentDidMount = () => {
-    this.handleNewDeck();
+  componentDidUpdate = () => {
+    persist.setItem('blackjack', this.state);
   };
 
   handleNewDeck = () => {
@@ -224,6 +224,10 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleDeal = async () => {
+    if (this.state.drawn.length === 0) {
+      await this.handleNewDeck();
+    }
+
     await this.setState({ player: [], dealer: [], winner: '', game: 'PLAYER' });
     await this.handleDealCard('player');
     await this.handleDealCard('dealer');
@@ -313,6 +317,13 @@ export default class BlackjackPage extends PureComponent {
     minimumFractionDigits: 0,
   }).format(amount);
 
+  renderPlural = (word, count) => {
+    if (count === 1) {
+      return word;
+    }
+    return `${word}s`;
+  }
+
   render() {
     return (
       <RootContainer>
@@ -385,7 +396,9 @@ export default class BlackjackPage extends PureComponent {
 
           <Section gridArea="bank">
             <Button
-              disabled={this.state.game !== 'DEAL' || this.state.bank === 0}
+              disabled={
+                this.state.game !== 'DEAL' || (this.state.bank === 0 && this.state.bet === 0)
+              }
               grouped
               onClick={() => this.setState(state => ({ bet: 0, bank: state.bank + state.bet }))}
             >
@@ -409,9 +422,9 @@ export default class BlackjackPage extends PureComponent {
               <>
                 <Button onClick={this.handleReset}>Reset</Button>
                 <Ul margin="2rem 0 0">
-                  <Li>{this.state.hands} hands played</Li>
+                  <Li>{this.state.hands} {this.renderPlural('hand', this.state.hands)} played</Li>
                   <Li>
-                    {this.state.victories} hands won (
+                    {this.state.victories} {this.renderPlural('hand', this.state.victories)} won (
                     {((this.state.victories / this.state.hands) * 100).toFixed(2)}%)
                   </Li>
                   <Li>{this.renderCurrency(this.state.maxBank)} maximum bank</Li>
@@ -435,6 +448,7 @@ export default class BlackjackPage extends PureComponent {
               <Li>One deck of 52 cards</Li>
               <Li>Dealer shuffles after dealing 75% of the deck</Li>
               <Li>Minimum bet $25, no maximum bet</Li>
+              <Li>Your progress is saved automatically</Li>
             </Ul>
             <P fontSize="3rem">Currently missing</P>
             <Ul listStyle="disc" padding="0 0 2rem 1em">
@@ -444,9 +458,7 @@ export default class BlackjackPage extends PureComponent {
             <P fontSize="3rem">Inspiration</P>
             <Ul listStyle="disc" padding="0 0 0 1em">
               <Li>
-                <Link to="https://blackjackbreak.com/">
-                  https://blackjackbreak.com/
-                </Link>
+                <Link to="https://blackjackbreak.com/">https://blackjackbreak.com/</Link>
               </Li>
             </Ul>
           </Modal>
