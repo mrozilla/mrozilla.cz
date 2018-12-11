@@ -224,6 +224,10 @@ export default class BlackjackPage extends PureComponent {
   };
 
   handleDeal = async () => {
+    if (this.state.drawn.length === 0) {
+      await this.handleNewDeck();
+    }
+
     await this.setState({ player: [], dealer: [], winner: '', game: 'PLAYER' });
     await this.handleDealCard('player');
     await this.handleDealCard('dealer');
@@ -385,7 +389,9 @@ export default class BlackjackPage extends PureComponent {
 
           <Section gridArea="bank">
             <Button
-              disabled={this.state.game !== 'DEAL' || this.state.bank === 0}
+              disabled={
+                this.state.game !== 'DEAL' || (this.state.bank === 0 && this.state.bet === 0)
+              }
               grouped
               onClick={() => this.setState(state => ({ bet: 0, bank: state.bank + state.bet }))}
             >
@@ -435,6 +441,7 @@ export default class BlackjackPage extends PureComponent {
               <Li>One deck of 52 cards</Li>
               <Li>Dealer shuffles after dealing 75% of the deck</Li>
               <Li>Minimum bet $25, no maximum bet</Li>
+              <Li>Your progress is saved automatically</Li>
             </Ul>
             <P fontSize="3rem">Currently missing</P>
             <Ul listStyle="disc" padding="0 0 2rem 1em">
@@ -444,9 +451,7 @@ export default class BlackjackPage extends PureComponent {
             <P fontSize="3rem">Inspiration</P>
             <Ul listStyle="disc" padding="0 0 0 1em">
               <Li>
-                <Link to="https://blackjackbreak.com/">
-                  https://blackjackbreak.com/
-                </Link>
+                <Link to="https://blackjackbreak.com/">https://blackjackbreak.com/</Link>
               </Li>
             </Ul>
           </Modal>
