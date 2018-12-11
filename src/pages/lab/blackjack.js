@@ -317,6 +317,13 @@ export default class BlackjackPage extends PureComponent {
     minimumFractionDigits: 0,
   }).format(amount);
 
+  renderPlural = (word, count) => {
+    if (count === 1) {
+      return word;
+    }
+    return `${word}s`;
+  }
+
   render() {
     return (
       <RootContainer>
@@ -415,9 +422,9 @@ export default class BlackjackPage extends PureComponent {
               <>
                 <Button onClick={this.handleReset}>Reset</Button>
                 <Ul margin="2rem 0 0">
-                  <Li>{this.state.hands} hands played</Li>
+                  <Li>{this.state.hands} {this.renderPlural('hand', this.state.hands)} played</Li>
                   <Li>
-                    {this.state.victories} hands won (
+                    {this.state.victories} {this.renderPlural('hand', this.state.victories)} won (
                     {((this.state.victories / this.state.hands) * 100).toFixed(2)}%)
                   </Li>
                   <Li>{this.renderCurrency(this.state.maxBank)} maximum bank</Li>
