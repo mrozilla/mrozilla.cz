@@ -5,6 +5,7 @@
 import React, { PureComponent } from 'react';
 
 import { Input } from '~components';
+import { persist } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -12,8 +13,7 @@ import { Input } from '~components';
 
 export default class ColourThemeContainer extends PureComponent {
   state = {
-    currentTheme:
-      (typeof window !== 'undefined' && window.localStorage.getItem('currentTheme')) || 'basic',
+    currentTheme: persist.getItem('currentTheme', 'basic'),
   };
 
   componentDidMount = () => {
@@ -41,7 +41,7 @@ export default class ColourThemeContainer extends PureComponent {
     this.setState({ currentTheme: theme }, () => {
       document.documentElement.style.setProperty('--hsl-text', themes[theme].color);
       document.documentElement.style.setProperty('--hsl-bg', themes[theme].backgroundColor);
-      window.localStorage.setItem('currentTheme', theme);
+      persist.setItem('currentTheme', theme);
     });
   };
 

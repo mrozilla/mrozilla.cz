@@ -9,7 +9,7 @@ import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, P, Modal, Ul, Li, Link, Toast } from '~components';
-import { fadeUpAnimation } from '~utils';
+import { persist, fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -143,10 +143,10 @@ const initialState = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default class BlackjackPage extends PureComponent {
-  state = { ...initialState };
+  state = persist.getItem('blackjack', initialState);
 
-  componentDidMount = () => {
-    this.handleNewDeck();
+  componentDidUpdate = () => {
+    persist.setItem('blackjack', this.state);
   };
 
   handleNewDeck = () => {
