@@ -28,6 +28,8 @@ export default class SEOContainer extends PureComponent {
   };
 
   render() {
+    console.log(process.env.CONTEXT);
+
     return (
       <StaticQuery
         query={graphql`
@@ -71,7 +73,7 @@ export default class SEOContainer extends PureComponent {
               { property: 'og:description', content: this.props.meta.description },
               { property: 'fb:app_id', content: process.env.GATSBY_FB_APP_ID },
 
-              process.env.CONTEXT === 'production' ? {} : { name: 'robots', content: 'noindex' },
+              // process.env.CONTEXT === 'production' ? {} : { name: 'robots', content: 'noindex' },
             ]}
             link={[
               {
