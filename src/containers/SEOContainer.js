@@ -57,7 +57,7 @@ export default class SEOContainer extends PureComponent {
               { name: 'twitter:description', content: this.props.meta.description },
               { name: 'twitter:creator', content: '@mrozilla' },
               {
-                name:    'twitter:image:src',
+                name:    'twitter:image',
                 content: `${siteUrl}${this.props.meta.ogImage.childImageSharp.resize.src}`,
               },
 
