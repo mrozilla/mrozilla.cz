@@ -28,6 +28,8 @@ export default class SEOContainer extends PureComponent {
   };
 
   render() {
+    console.log(process.env.CONTEXT);
+
     return (
       <StaticQuery
         query={graphql`
