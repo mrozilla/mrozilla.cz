@@ -8,10 +8,17 @@ const proxy = require('http-proxy-middleware');
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
+const {
+  NODE_ENV,
+  URL: NETLIFY_PRODUCTION_URL = 'https://www.mrozilla.cz',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_PRODUCTION_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env;
+
 module.exports = {
   siteMetadata: {
     title:   'mrozilla',
-    siteUrl: 'https://www.mrozilla.cz',
+    siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
   },
   developMiddleware: (app) => {
     app.use(
