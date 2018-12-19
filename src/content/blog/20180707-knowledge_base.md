@@ -300,6 +300,7 @@ The knowledge base is split into several sections:
 - [Buttons design](https://medium.com/eightshapes-llc/buttons-in-design-systems-eac3acf7e23)
 - [Cards design](http://babich.biz/using-card-based-design-to-enhance-ux/)
 - [Checkbox vs. toggle switch](https://heydesigner.com/blog/checkbox-vs-toggle-switch/)
+- [Checkbox vs. toggle switch v2](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 - [CSS evaluation](http://cssstats.com/)
 - [Data tables UI](https://uxdesign.cc/design-better-data-tables-4ecc99d23356)
 - [Design better cards](https://uxdesign.cc/design-better-cards-c0d12ab581c4#.gvpeuerot)

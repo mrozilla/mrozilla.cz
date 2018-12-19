@@ -57,7 +57,7 @@ export default class SEOContainer extends PureComponent {
               { name: 'twitter:description', content: this.props.meta.description },
               { name: 'twitter:creator', content: '@mrozilla' },
               {
-                name:    'twitter:image:src',
+                name:    'twitter:image',
                 content: `${siteUrl}${this.props.meta.ogImage.childImageSharp.resize.src}`,
               },
 
@@ -70,8 +70,6 @@ export default class SEOContainer extends PureComponent {
               },
               { property: 'og:description', content: this.props.meta.description },
               { property: 'fb:app_id', content: process.env.GATSBY_FB_APP_ID },
-
-              process.env.CONTEXT === 'production' ? {} : { name: 'robots', content: 'noindex' },
             ]}
             link={[
               {
