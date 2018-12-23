@@ -39,7 +39,10 @@ export const View = styled.div(
     backgroundImage,
     backgroundPosition,
     backgroundRepeat,
+    cursor,
     transition,
+    before,
+    after,
   }) => ({
     ...mediaQuerise({
       display,
@@ -69,7 +72,14 @@ export const View = styled.div(
       backgroundImage,
       backgroundPosition,
       backgroundRepeat,
+      cursor,
       transition,
     }),
+    '&::before': {
+      ...before,
+    },
+    '&::after': {
+      ...after,
+    },
   }),
 );
