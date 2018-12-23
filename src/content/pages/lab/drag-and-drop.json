@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": ["page", "lab", "demo"],
+    "date": "2018-12-023T00:00:00.000Z",
+    "permalink": "/lab/drag-and-drop/",
+    "title": "Drag-and-drop",
+    "description": "Implementing drag-and-drop functionality in React without any dependencies",
+    "ogImage": "../../multimedia/og.png"
+  },
+  "body": {
+    "title": "drag-and-drop",
+    "tagline": "native implementation without dependencies",
+    "hero": {
+      "title": "A simple drag-and-drop doesn't require any additional dependencies in React, everything is possible through the native API."
+    }
+  }
+}

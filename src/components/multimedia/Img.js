@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { string } from 'prop-types';
+import { string, number } from 'prop-types';
 
 import styled from 'styled-components';
 
@@ -13,12 +13,33 @@ import { View } from '~components/primitives/View';
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const StyledImg = styled(View)`
+export const Picture = styled(View)`
+  position: relative;
   display: block;
-  width: 100%;
 
-  min-height: 25vmin;
   background-color: hsla(var(--hsl-text), 0.1);
+
+  &::before {
+    content: '';
+
+    display: block;
+
+    padding-bottom: ${({ ratio }) => ratio * 100}%;
+  }
+`;
+
+Picture.defaultProps = {
+  as: 'picture',
+};
+
+export const StyledImg = styled(View)`
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 StyledImg.defaultProps = {
@@ -29,23 +50,26 @@ StyledImg.defaultProps = {
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Img(props) {
+export default function Img({ ratio, ...rest }) {
   const handleError = ({ target }) => {
     // use a transparent svg as a default image
     const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
     target.src = placeholder; // eslint-disable-line no-param-reassign
-    target.classList.add('srcError');
   };
 
-  return <StyledImg {...props} onError={handleError} />;
+  return (
+    <Picture ratio={ratio}>
+      <StyledImg {...rest} onError={handleError} />
+    </Picture>
+  );
 }
 
 Img.propTypes = {
-  src: string,
-  alt: string,
+  ratio: number,
+  src:   string.isRequired,
+  alt:   string.isRequired,
 };
 
 Img.defaultProps = {
-  src: '',
-  alt: '',
+  ratio: 1,
 };

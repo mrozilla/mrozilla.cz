@@ -97,20 +97,15 @@ export default class GridPage extends PureComponent {
             xs: '1fr',
             md: '1fr 1fr',
           }}
-          gridGap="10vh 2rem"
+          gridGap="4rem 2rem"
         >
-          {[
-            '6rem 8rem -6rem 0',
-            '-4rem 0 4rem 0',
-            '-4rem -8rem 4rem 16rem',
-            '8rem 6rem 8rem 12rem',
-          ].map(margin => (
+          {['4rem 0 0 0', '0 8rem 0 0', '0 0 0 8rem', '6rem'].map(margin => (
             <Li
               key={margin}
-              margin={{
+              padding={{
                 md: this.state.layout === 'exciting' ? margin : undefined,
               }}
-              transition="margin 250ms"
+              transition="padding 250ms"
             >
               <Img src={this.state.src} alt="a random photo" />
               <H1 as="h2" fontSize="2.25rem" lineHeight="4rem">
