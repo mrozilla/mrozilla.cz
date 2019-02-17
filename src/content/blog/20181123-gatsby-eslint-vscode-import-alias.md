@@ -114,7 +114,7 @@ Let's add the following to our `jsconfig.json` (or create [this file](https://co
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~components/*": ["src/components/*"]
+      "~components": ["src/components"]
     }
   }
 }

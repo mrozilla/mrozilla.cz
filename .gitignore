@@ -20,7 +20,7 @@
 .env*
 
 # gatsby
-lambda
+/lambda
 
 # misc
 .cache
