@@ -882,6 +882,17 @@
       }
     },
     {
+      "id": "spion",
+      "czech": {
+        "grammar": "špión",
+        "ipa": "[ʃpɪɔːn]"
+      },
+      "german": {
+        "grammar": "der Spion",
+        "ipa": "[ˈʃpiˈoːn]"
+      }
+    },
+    {
       "id": "spunt",
       "czech": {
         "grammar": "špunt",
