@@ -43,7 +43,7 @@ export const query = graphql`
         }
       }
     }
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/" } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 5

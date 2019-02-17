@@ -3,29 +3,43 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import RehypeReact from 'rehype-react';
-import { node } from 'prop-types';
-
-import { Link } from '~components';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// helpers
-// ─────────────────────────────────────────────────────────────────────────────
-
-const BlogLink = ({ children, ...rest }) => <Link {...rest}>{children}</Link>;
-
-BlogLink.propTypes = {
-  children: node.isRequired,
-};
+import Highlight, { defaultProps } from 'prism-react-renderer';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default new RehypeReact({
-  createElement: React.createElement,
-  components:    {
-    a: BlogLink,
-    // blockquote: BlockQuoteContainer, // TODO add tweetable quotes
-  },
-}).Compiler;
+export default function Pre({ children, ...props }) {
+  if (
+    // children is MDXTag
+    children
+    // MDXTag props
+    && children.props
+    // if MDXTag is going to render a <code>
+    && children.props.name === 'code'
+  ) {
+    const language = children.props.props.className.split('-')[1];
+    return (
+      <Highlight
+        {...defaultProps}
+        code={children.props.children.trim()}
+        language={language}
+        theme={undefined}
+      >
+        {({ className, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    );
+  }
+
+  return <pre {...props}>{children}</pre>;
+}

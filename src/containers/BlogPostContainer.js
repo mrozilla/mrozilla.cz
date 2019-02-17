@@ -4,10 +4,11 @@
 
 import React from 'react';
 import { graphql } from 'gatsby';
+import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 
 import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
-import { Article, Aside, Link, Main, H1, H2, P } from '~components';
-import { renderMarkdown, parseLinks } from '~utils';
+import { Article, Aside, Link, Main, H1, H2, P, Pre } from '~components';
+import { parseLinks } from '~utils';
 
 import '~utils/style/highlight.css';
 
@@ -17,7 +18,7 @@ import '~utils/style/highlight.css';
 
 export const query = graphql`
   query($path: String!) {
-    article: markdownRemark(frontmatter: { permalink: { eq: $path } }) {
+    article: mdx(frontmatter: { permalink: { eq: $path } }) {
       meta: frontmatter {
         date(formatString: "MMMM D, YYYY")
         permalink
@@ -27,9 +28,11 @@ export const query = graphql`
           ...OgImageFragment
         }
       }
-      htmlAst
+      mdx: code {
+        body
+      }
     }
-    relatedArticles: allMarkdownRemark(
+    relatedArticles: allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { related: { in: [$path] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -52,7 +55,7 @@ export const query = graphql`
 
 export default function BlogPost({
   data: {
-    article: { meta, htmlAst },
+    article: { meta, mdx },
     relatedArticles,
   },
 }) {
@@ -93,7 +96,14 @@ export default function BlogPost({
               </time>
             )}
           </header>
-          {renderMarkdown(htmlAst)}
+          <MDXRenderer
+            components={{
+              a:   Link,
+              pre: Pre,
+            }}
+          >
+            {mdx.body}
+          </MDXRenderer>
         </Article>
         {relatedArticles && (
           <Aside>

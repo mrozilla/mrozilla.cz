@@ -22,7 +22,7 @@ export const query = graphql`
         }
       }
     }
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -32,6 +32,16 @@ export const query = graphql`
         }
       }
     }
+    # posts: allMarkdownRemark(
+    #   filter: { fileAbsolutePath: { regex: "/blog/" } }
+    #   sort: { fields: [frontmatter___date], order: DESC }
+    # ) {
+    #   edges {
+    #     node {
+    #       ...BlogPreviewFragment
+    #     }
+    #   }
+    # }
   }
 `;
 
