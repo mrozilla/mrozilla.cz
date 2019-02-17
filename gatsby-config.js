@@ -41,21 +41,13 @@ module.exports = {
     },
 
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-mdx',
       options: {
-        plugins: [
+        gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 590,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-prismjs',
-            options: {
-              classPrefix:      'language-',
-              inlineCodeMarker: null,
-              aliases:          {},
             },
           },
         ],
