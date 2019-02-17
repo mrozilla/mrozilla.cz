@@ -39,6 +39,7 @@ ogImage: "../multimedia/og.png"
 - https://lesap.es/ <small style="opacity: 0.5">(2018)</small>
 - https://marvelapp.com/ <small style="opacity: 0.5">(2018)</small>
 - https://marvelapp.com/developers <small style="opacity: 0.5">(2018)</small>
+- https://openmindlearning.com/ <small style="opacity: 0.5">(2018)</small>
 - https://slack.com <small style="opacity: 0.5">(2018)</small>
 - https://stripe.com <small style="opacity: 0.5">(2018)</small>
 - [https://www.atlassian.com/](https://web.archive.org/web/20180614225802/https://www.atlassian.com/) <small style="opacity: 0.5">(2018)</small>
