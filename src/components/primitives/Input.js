@@ -17,6 +17,7 @@ export const Input = styled(Text)`
   --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
   --shadow-light: 0 1px 0 0 hsla(var(--hsl-text), 0.25);
 
+  appearance: none;
   border: none;
   outline: none;
   resize: none;
@@ -26,6 +27,7 @@ export const Input = styled(Text)`
   width: 100%;
 
   box-shadow: var(--shadow-light);
+  border-radius: 0;
   padding: 2.5rem 0 1.5rem;
 
   & ~ ${Tooltip} {
@@ -96,7 +98,7 @@ export const Input = styled(Text)`
    */
 
   &:required:not(:focus):not(:placeholder-shown) {
-    &:invalid {
+    &:invalid:not([type*='date']):not([type='time']):not([type='month']) {
       color: var(--color-danger);
       box-shadow: 0 1px 0 0 var(--color-danger);
 
@@ -128,9 +130,30 @@ export const Input = styled(Text)`
    * remove search input additional styling in webkit
    */
 
-  &::-webkit-calendar-picker-indicator,
-  &::-webkit-search-cancel-button {
+  &[type='search']::-webkit-calendar-picker-indicator,
+  &[type='search']::-webkit-search-cancel-button {
     display: none;
+  }
+
+  /**
+   * add temporal fields placeholder, doesn't work in Firefox
+   */
+
+  &[type*='date'],
+  &[type='time'],
+  &[type='month'] {
+    &::before {
+      content: attr(placeholder) ':';
+      opacity: 0.25;
+      margin: 0 1rem 0 0;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      color: var(--color-info);
+    }
+    &::-webkit-datetime-edit-text {
+      opacity: 0.5;
+    }
   }
 `;
 

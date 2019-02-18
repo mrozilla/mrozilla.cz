@@ -54,7 +54,7 @@ export default class InputsPage extends PureComponent {
   renderTextInputs = () => (
     <Form
       gridArea="text"
-      gridTemplate="'title' 'text' 'pattern' 'email' 'password' 'number' 'website'"
+      gridTemplate="'title' 'text' 'pattern' 'email' 'password' 'number' 'website' 'date' 'time'"
     >
       <H1 gridArea="title">Text inputs</H1>
       <Input name="text" type="text" placeholder="First name" label="Generic text input" required />
@@ -107,6 +107,40 @@ export default class InputsPage extends PureComponent {
       />
     </Form>
   );
+
+  renderTimeInputs = () => (
+    <Form gridArea="time" gridTemplate="'title' 'date' 'datetime-local' 'month' 'time'">
+      <H1 gridArea="title">Date inputs</H1>
+      <Input
+        name="date"
+        type="date"
+        placeholder="Date"
+        label="Date field with a custom placeholder"
+        required
+      />
+      <Input
+        name="datetime-local"
+        type="datetime-local"
+        placeholder="Date & time"
+        label="Datetime field with a custom placeholder"
+        required
+      />
+      <Input
+        name="month"
+        type="month"
+        placeholder="Month"
+        label="Month field with a custom placeholder"
+        required
+      />
+      <Input
+        name="time"
+        type="time"
+        placeholder="Time"
+        label="Time field with a custom placeholder"
+        required
+      />
+    </Form>
+  )
 
   renderSelects = () => (
     <Form gridArea="select" gridTemplate="'title' 'select' 'search'">
@@ -213,13 +247,14 @@ export default class InputsPage extends PureComponent {
         <SEOContainer meta={meta} />
         <Main
           gridTemplate={{
-            xs: "'hero' 'text' 'select' 'checkbox' 'radio'",
-            md: "'hero hero' 'text .' 'select .' 'checkbox .' 'radio .' / 1fr 1fr",
+            xs: "'hero' 'text' 'time' 'select' 'checkbox' 'radio'",
+            md: "'hero hero' 'text .' 'time .' 'select .' 'checkbox .' 'radio .' / 1fr 1fr",
           }}
           gridGap="10vh 1rem"
         >
           <HeroContainer title={hero.title} />
           {this.renderTextInputs()}
+          {this.renderTimeInputs()}
           {this.renderSelects()}
           {this.renderCheckboxes()}
           {this.renderRadios()}
