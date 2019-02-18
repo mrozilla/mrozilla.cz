@@ -17,6 +17,7 @@ export const Input = styled(Text)`
   --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
   --shadow-light: 0 1px 0 0 hsla(var(--hsl-text), 0.25);
 
+  appearance: none;
   border: none;
   outline: none;
   resize: none;
@@ -26,6 +27,7 @@ export const Input = styled(Text)`
   width: 100%;
 
   box-shadow: var(--shadow-light);
+  border-radius: 0;
   padding: 2.5rem 0 1.5rem;
 
   & ~ ${Tooltip} {
