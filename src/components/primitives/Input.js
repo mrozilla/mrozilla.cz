@@ -98,7 +98,7 @@ export const Input = styled(Text)`
    */
 
   &:required:not(:focus):not(:placeholder-shown) {
-    &:invalid:not([type*='date']):not([type='time']):not([type='month']) {
+    &:invalid:not([type^='date']):not([type='time']):not([type='month']) {
       color: var(--color-danger);
       box-shadow: 0 1px 0 0 var(--color-danger);
 
@@ -139,7 +139,7 @@ export const Input = styled(Text)`
    * add temporal fields placeholder, doesn't work in Firefox
    */
 
-  &[type*='date'],
+  &[type^='date'],
   &[type='time'],
   &[type='month'] {
     &::before {
