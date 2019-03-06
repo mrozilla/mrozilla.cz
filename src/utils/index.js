@@ -6,4 +6,7 @@ export { default as persist } from './persist';
 
 export * from './style/animations';
 
+export { default as useBarrelRoll } from './hooks/useBarrelRoll';
+export { default as useInactiveTab } from './hooks/useInactiveTab';
+
 export { default as metaTypes } from './types/metaTypes';

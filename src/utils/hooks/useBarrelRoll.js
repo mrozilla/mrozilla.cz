@@ -2,33 +2,33 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { PureComponent } from 'react';
+import { useState, useEffect } from 'react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class InactiveTabContainer extends PureComponent {
-  componentDidMount = () => {
-    document.addEventListener('visibilitychange', this.handleInactiveTab);
-  };
+export default function useBarrelRoll() {
+  const [count, setCount] = useState(0);
 
-  componentWillUnmount = () => {
-    document.removeEventListener('visibilitychange', this.handleInactiveTab);
-  };
-
-  handleInactiveTab = () => {
-    if (document.visibilityState === 'hidden') {
-      document.title = `😴 ${document.title}`;
-      return;
-    }
-
-    if (document.visibilityState === 'visible') {
-      document.title = document.title.substr(2);
+  const handleBarrelRoll = (evt) => {
+    if (evt.key === 'r') {
+      setCount(c => (c < 5 ? c + 1 : 1));
     }
   };
 
-  render() {
-    return null;
-  }
+  useEffect(() => {
+    document.addEventListener('keydown', handleBarrelRoll);
+    return () => document.removeEventListener('keydown', handleBarrelRoll);
+  }, []);
+
+  useEffect(() => {
+    if (count === 5) {
+      document.body.style.transition = '1000ms';
+      document.body.style.transform = 'rotate(360deg)';
+    } else {
+      document.body.style.transform = null;
+      document.body.style.transition = null;
+    }
+  }, [count]);
 }
