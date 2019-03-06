@@ -61,9 +61,8 @@ export default function SEOContainer({ meta: { title, description, permalink, og
               href: `${siteUrl}${permalink}`,
             },
           ]}
-        >
-          <html lang="en" />
-        </Helmet>
+          htmlAttributes={{ lang: 'en' }}
+        />
       )}
     />
   );
