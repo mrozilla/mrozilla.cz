@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
@@ -31,69 +31,64 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class CountOnMePage extends PureComponent {
-  state = {
-    count: 0,
-  };
+export default function CountOnMePage({
+  data: {
+    page: { meta },
+  },
+}) {
+  const [count, setCount] = useState(0);
 
-  handleCount = (event, value) => {
+  const handleCount = (event, value) => {
     event.stopPropagation();
-    this.setState(state => ({
-      count: state.count + value,
-    }));
+
+    setCount(prevCount => prevCount + value);
 
     if ('vibrate' in navigator) {
       if (value > 0) {
         navigator.vibrate(100);
       }
-      navigator.vibrate([100, 100, 100]);
+      navigator.vibrate([100, 100]);
     }
   };
 
-  handleReset = (event) => {
+  const handleReset = (event) => {
     event.stopPropagation();
-    this.setState(
-      {
-        count: 0,
-      },
-      () => {
-        if ('vibrate' in navigator) {
-          navigator.vibrate(500);
-        }
-      },
-    );
+
+    setCount(0);
+
+    if ('vibrate' in navigator) {
+      navigator.vibrate(500);
+    }
   };
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main>
-          <Section
-            onClick={e => this.handleCount(e, 1)}
-            style={{
-              textAlign:        'center',
-              userSelect:       'none',
-              msUserSelect:     'none',
-              MozUserSelect:    'none',
-              WebkitUserSelect: 'none',
-            }}
-          >
-            <H1 fontSize="8rem" lineHeight="10rem" textAlign="center">
-              {this.state.count.toLocaleString()}
-            </H1>
-            <Button onClick={e => this.handleCount(e, 1)} grouped>
-              Add
-            </Button>
-            <Button onClick={e => this.handleCount(e, -1)} grouped>
-              Subtract
-            </Button>
-            <Button onClick={e => this.handleReset(e)} grouped>
-              Reset
-            </Button>
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+  return (
+    <RootContainer>
+      <SEOContainer meta={meta} />
+      <Main>
+        <Section
+          onClick={e => handleCount(e, 1)}
+          style={{
+            textAlign:        'center',
+            userSelect:       'none',
+            msUserSelect:     'none',
+            MozUserSelect:    'none',
+            WebkitUserSelect: 'none',
+          }}
+        >
+          <H1 fontSize="8rem" lineHeight="10rem" textAlign="center">
+            {count.toLocaleString()}
+          </H1>
+          <Button onClick={e => handleCount(e, 1)} grouped>
+            Add
+          </Button>
+          <Button onClick={e => handleCount(e, -1)} grouped>
+            Subtract
+          </Button>
+          <Button onClick={e => handleReset(e)} grouped>
+            Reset
+          </Button>
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }
