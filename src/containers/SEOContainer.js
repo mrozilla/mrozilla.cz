@@ -19,7 +19,7 @@ export default function SEOContainer({ meta: { title, description, permalink, og
           site {
             siteMetadata {
               siteUrl
-              title
+              siteTitle
             }
           }
         }
