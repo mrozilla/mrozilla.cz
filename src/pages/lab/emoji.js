@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer, HeroContainer } from '~containers';
@@ -36,53 +36,45 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class EmojiPage extends PureComponent {
-  state = {
-    randomEmojis: [],
+export default function EmojiPage(props) {
+  const [randomEmojis, setRandomEmojis] = useState([]);
+
+  const getRandomEmoji = () => fetch('/.netlify/functions/emoji').then(r => r.json());
+
+  const handleAddEmoji = async () => {
+    const emoji = await getRandomEmoji();
+    setRandomEmojis(prev => [...prev, emoji]);
   };
 
-  getRandomEmoji = () => fetch('/.netlify/functions/emoji').then(r => r.json());
+  const handleClear = () => setRandomEmojis([]);
 
-  handleAddEmoji = async () => {
-    const emoji = await this.getRandomEmoji();
-    this.setState(state => ({
-      randomEmojis: [...state.randomEmojis, emoji],
-    }));
-  };
-
-  handleClear = () => this.setState({
-    randomEmojis: [],
-  });
-
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main gridTemplate="'hero' 'random' 'map'" gridGap="10vh 4rem">
-          <HeroContainer title={this.props.data.page.body.hero.title} />
-          <Section gridArea="random">
-            <H2>Emoji story generator</H2>
-            <Button onClick={this.handleAddEmoji} grouped>
-              Add topic
-            </Button>
-            <Button onClick={this.handleClear} grouped>
-              Clear
-            </Button>
-            <P fontSize="12rem" lineHeight={1} margin="2rem 0 0 0">
-              {this.state.randomEmojis.map(emoji => (
-                <span
-                  key={emoji.description}
-                  role="img"
-                  aria-label={emoji.description}
-                  title={emoji.description}
-                >
-                  {String.fromCodePoint(...emoji.codepoint)}
-                </span>
-              ))}
-            </P>
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+  return (
+    <RootContainer>
+      <SEOContainer meta={props.data.page.meta} />
+      <Main gridTemplate="'hero' 'random' 'map'" gridGap="10vh 4rem">
+        <HeroContainer title={props.data.page.body.hero.title} />
+        <Section gridArea="random">
+          <H2>Emoji story generator</H2>
+          <Button onClick={handleAddEmoji} grouped>
+            Add topic
+          </Button>
+          <Button onClick={handleClear} grouped>
+            Clear
+          </Button>
+          <P fontSize="12rem" lineHeight={1} margin="2rem 0 0 0">
+            {randomEmojis.map(emoji => (
+              <span
+                key={emoji.description}
+                role="img"
+                aria-label={emoji.description}
+                title={emoji.description}
+              >
+                {String.fromCodePoint(...emoji.codepoint)}
+              </span>
+            ))}
+          </P>
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }
