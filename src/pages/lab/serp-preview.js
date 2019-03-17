@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
@@ -99,75 +99,67 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class SearchSnippetPage extends PureComponent {
-  state = {
-    isError: {
-      titleTooShort:       false,
-      titleTooLong:        false,
-      descriptionTooShort: false,
-      descriptionTooLong:  false,
+export default function SearchSnippetPage({
+  data: {
+    page: {
+      meta,
+      body: { searchSnippet },
     },
-  };
+  },
+}) {
+  const [errors, setErrors] = useState({
+    titleTooShort:       false,
+    titleTooLong:        false,
+    descriptionTooShort: false,
+    descriptionTooLong:  false,
+  });
 
-  handleTitleChange = ({ target }) => {
-    this.setState(state => ({
-      isError: {
-        ...state.isError,
-        titleTooShort: target.textContent.length < 30,
-        titleTooLong:  target.textContent.length > 60,
-      },
+  const handleTitleChange = ({ target }) => {
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      titleTooShort: target.textContent.length < 30,
+      titleTooLong:  target.textContent.length > 60,
     }));
   };
 
-  handleDescriptionChange = ({ target }) => {
-    this.setState(state => ({
-      isError: {
-        ...state.isError,
-        descriptionTooShort: target.textContent.length < 70,
-        descriptionTooLong:  target.textContent.length > 160,
-      },
+  const handleDescriptionChange = ({ target }) => {
+    setErrors(prevErrors => ({
+      ...prevErrors.isError,
+      descriptionTooShort: target.textContent.length < 70,
+      descriptionTooLong:  target.textContent.length > 160,
     }));
   };
 
-  render() {
-    const {
-      page: {
-        meta,
-        body: { searchSnippet },
-      },
-    } = this.props.data;
-
-    return (
-      <RootContainer>
-        <SEOContainer meta={meta} />
-        <Main gridTemplate="'snippet .' 'errors errors' / 600px 1fr" gridGap="10vh 4rem">
-          <Section gridArea="snippet">
-            <GoogleTitle onInput={this.handleTitleChange} contentEditable>
-              {searchSnippet.default.title}
-            </GoogleTitle>
-            <GoogleWebsite contentEditable>{searchSnippet.default.url}</GoogleWebsite>
-            <GoogleRatingStars>
-              ★★★★★
-              <span style={{ color: '#808080', lineHeight: '18px' }}> Rating: 4.7 - 6 reviews</span>
-            </GoogleRatingStars>
-            <GoogleDescription onInput={this.handleDescriptionChange} contentEditable>
-              {searchSnippet.default.description}
-            </GoogleDescription>
-          </Section>
-          <Section gridArea="errors">
-            {Object.entries(this.state.isError).map(
-              ([errorType, isError]) => isError && (
-              <Alert type="danger" key={errorType}>
-                {parseLinks(searchSnippet.error[errorType], { type: 'primary' })}
-              </Alert>
-              ),
-            )}
-            {Object.values(this.state.isError).every(isError => !isError) && (
-              <Alert type="success">{searchSnippet.success}</Alert>
-            )}
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+  return (
+    <RootContainer>
+      <SEOContainer meta={meta} />
+      <Main gridTemplate="'snippet .' 'errors errors' / 600px 1fr" gridGap="10vh 4rem">
+        <Section gridArea="snippet">
+          <GoogleTitle onInput={handleTitleChange} contentEditable>
+            {searchSnippet.default.title}
+          </GoogleTitle>
+          <GoogleWebsite contentEditable>{searchSnippet.default.url}</GoogleWebsite>
+          <GoogleRatingStars>
+            ★★★★★
+            <span style={{ color: '#808080', lineHeight: '18px' }}> Rating: 4.7 - 6 reviews</span>
+          </GoogleRatingStars>
+          <GoogleDescription onInput={handleDescriptionChange} contentEditable>
+            {searchSnippet.default.description}
+          </GoogleDescription>
+        </Section>
+        <Section gridArea="errors">
+          {Object.entries(errors).map(
+            ([errorType, isError]) => isError && (
+            <Alert type="danger" key={errorType}>
+              {parseLinks(searchSnippet.error[errorType], { type: 'primary' })}
+            </Alert>
+            ),
+          )}
+          {Object.values(errors).every(isError => !isError) && (
+            <Alert type="success">{searchSnippet.success}</Alert>
+          )}
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }
