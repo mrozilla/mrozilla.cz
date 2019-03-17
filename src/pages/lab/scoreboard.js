@@ -2,13 +2,12 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent, Fragment } from 'react';
+import React, { Fragment, useReducer } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { RootContainer, SEOContainer, HeroContainer } from '~containers';
 import { Main, Section, Button, Input, Form } from '~components';
-import { parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -76,11 +75,112 @@ Scoreboard.Point = styled.div`
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
+// reducer
+// ─────────────────────────────────────────────────────────────────────────────
+
+const utils = {
+  getOpponent: (state, player) => (player === 'home' ? 'away' : 'home'),
+  getSetCount: (state, player) => {
+    const opponent = utils.getOpponent(state, player);
+
+    return state[player].points.reduce((acc, point, i) => {
+      if (point > 10 && point - state[opponent].points[i] > 1) {
+        return acc + 1;
+      }
+      
+      return acc;
+    }, 0);
+  },
+  getWinner: (state) => {
+    if (utils.getSetCount(state, 'home') > 3) {
+      return 'home';
+    }
+    if (utils.getSetCount(state, 'away') > 3) {
+      return 'away';
+    }
+    return null;
+  },
+};
+
+const reducer = (state, { type, payload }) => {
+  switch (type) {
+    case 'addPoint': {
+      const opponent = utils.getOpponent(state, payload.player);
+      const playerPoint = state[payload.player].points[state[payload.player].points.length - 1] + 1;
+      const opponentPoint = state[opponent].points[state[opponent].points.length - 1];
+      const isNextSet = playerPoint > 10
+        && playerPoint - opponentPoint > 1
+        && utils.getSetCount(state, payload.player) < 3;
+
+      return {
+        [payload.player]: {
+          ...state[payload.player],
+          points: [
+            ...state[payload.player].points.map((point, i, arr) => (i === arr.length - 1 ? point + 1 : point)),
+            ...(isNextSet ? [0] : []),
+          ],
+        },
+        [opponent]: {
+          ...state[opponent],
+          points: [...state[opponent].points, ...(isNextSet ? [0] : [])],
+        },
+      };
+    }
+
+    case 'removePoint': {
+      const opponent = utils.getOpponent(state, payload.player);
+      const playerPoint = state[payload.player].points[state[payload.player].points.length - 1] - 1;
+      const isPreviousSet = playerPoint < 0;
+
+      return {
+        [payload.player]: {
+          ...state[payload.player],
+          points: isPreviousSet
+            ? state[payload.player].points.slice(0, -1)
+            : state[payload.player].points.map((point, i, arr) => (i === arr.length - 1 ? point - 1 : point)),
+        },
+        [opponent]: {
+          ...state[opponent],
+          points: isPreviousSet ? state[opponent].points.slice(0, -1) : state[opponent].points,
+        },
+      };
+    }
+
+    case 'reset': {
+      return {
+        home: {
+          ...state.home,
+          points: [0],
+        },
+        away: {
+          ...state.away,
+          points: [0],
+        },
+      };
+    }
+
+    case 'input': {
+      return {
+        ...state,
+        [payload.player]: {
+          ...state[payload.player],
+          [payload.name]: payload.value,
+        },
+      };
+    }
+
+    default:
+      console.warn('UNKNOWN ACTION', type); // eslint-disable-line no-console
+      return state;
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class ScoreboardPage extends PureComponent {
-  state = {
+export default function ScoreboardPage(props) {
+  const [state, dispatch] = useReducer(reducer, {
     home: {
       name:   'MA Long',
       team:   'CHN',
@@ -91,109 +191,50 @@ export default class ScoreboardPage extends PureComponent {
       team:   'CHN',
       points: [0],
     },
+  });
+
+  const handleAddPoint = (player) => {
+    dispatch({ type: 'addPoint', payload: { player } });
   };
 
-  handleAddPoint = (player) => {
-    this.setState((state) => {
-      const opponent = this.getOpponent(player);
-      const playerPoint = state[player].points[state[player].points.length - 1] + 1;
-      const opponentPoint = state[opponent].points[state[opponent].points.length - 1];
-      const isNextSet = playerPoint > 10 && playerPoint - opponentPoint > 1 && this.getSetCount(player) < 3;
+  const handleRemovePoint = (player) => {
+    dispatch({ type: 'removePoint', payload: { player } });
+  };
 
-      return {
-        [player]: {
-          ...state[player],
-          points: [
-            ...state[player].points.map((point, i, arr) => (i === arr.length - 1 ? point + 1 : point)),
-            ...(isNextSet ? [0] : []),
-          ],
-        },
-        [opponent]: {
-          ...state[opponent],
-          points: [...state[opponent].points, ...(isNextSet ? [0] : [])],
-        },
-      };
+  const handleResetScore = () => {
+    dispatch({ type: 'reset' });
+  };
+
+  const handleInput = (player, { name, value }) => {
+    dispatch({
+      type:    'input',
+      payload: {
+        player,
+        name,
+        value,
+      },
     });
   };
 
-  handleRemovePoint = (player) => {
-    this.setState((state) => {
-      const opponent = this.getOpponent(player);
-      const playerPoint = state[player].points[state[player].points.length - 1] - 1;
-      const isPreviousSet = playerPoint < 0;
-
-      return {
-        [player]: {
-          ...state[player],
-          points: isPreviousSet
-            ? state[player].points.slice(0, -1)
-            : state[player].points.map((point, i, arr) => (i === arr.length - 1 ? point - 1 : point)),
-        },
-        [opponent]: {
-          ...state[opponent],
-          points: isPreviousSet
-            ? state[opponent].points.slice(0, -1)
-            : state[opponent].points,
-        },
-      };
-    });
-  };
-
-  handleResetScore = () => {
-    this.setState(state => ({
-      home: {
-        ...state.home,
-        points: [0],
-      },
-      away: {
-        ...state.away,
-        points: [0],
-      },
-    }));
-  };
-
-  getSetCount = (player) => {
-    const opponent = this.getOpponent(player);
-
-    return this.state[player].points.reduce((acc, point, i) => {
-      if (point > 10 && point - this.state[opponent].points[i] > 1) {
-        return acc + 1;
-      }
-      return acc;
-    }, 0);
-  };
-
-  getOpponent = player => (player === 'home' ? 'away' : 'home');
-
-  getWinner = () => {
-    if (this.getSetCount('home') > 3) {
-      return 'home';
-    }
-    if (this.getSetCount('away') > 3) {
-      return 'away';
-    }
-    return null;
-  };
-
-  renderPlayer = (player) => {
-    const winner = this.getWinner();
-    const opponent = this.getOpponent(player);
+  const renderPlayer = (player) => {
+    const winner = utils.getWinner(state);
+    const opponent = utils.getOpponent(state, player);
     return (
-      <Fragment key={this.state[player].name}>
-        <Scoreboard.Team>{this.state[player].team}</Scoreboard.Team>
-        <Scoreboard.Name>{this.state[player].name}</Scoreboard.Name>
-        <Scoreboard.Set fontWeight="bold">{this.getSetCount(player)}</Scoreboard.Set>
+      <Fragment key={state[player].name}>
+        <Scoreboard.Team>{state[player].team}</Scoreboard.Team>
+        <Scoreboard.Name>{state[player].name}</Scoreboard.Name>
+        <Scoreboard.Set fontWeight="bold">{utils.getSetCount(state, player)}</Scoreboard.Set>
         {winner === null && (
           <Scoreboard.Point>
-            {this.state[player].points[this.state[player].points.length - 1]}
+            {state[player].points[state[player].points.length - 1]}
           </Scoreboard.Point>
         )}
         {winner
-          && this.state[player].points.map((point, i) => (
+          && state[player].points.map((point, i) => (
             <Scoreboard.Point
               opacity={
-                this.state[player].points[i] > 10
-                && this.state[player].points[i] - this.state[opponent].points[i] > 1
+                state[player].points[i] > 10
+                && state[player].points[i] - state[opponent].points[i] > 1
                   ? 1
                   : 0.5
               }
@@ -205,8 +246,8 @@ export default class ScoreboardPage extends PureComponent {
     );
   };
 
-  renderControls = () => {
-    const isEnd = this.getWinner() !== null;
+  const renderControls = () => {
+    const isEnd = utils.getWinner(state) !== null;
     return (
       <Form
         gridTemplate={{
@@ -223,92 +264,78 @@ export default class ScoreboardPage extends PureComponent {
         <Input
           gridArea="homeName"
           type="text"
-          value={this.state.home.name}
+          value={state.home.name}
           name="name"
-          onChange={({ target }) => this.setState(state => ({
-            home: { ...state.home, ...parseInput(target) },
-          }))
-          }
+          onChange={({ target }) => handleInput('home', target)}
         />
         <Input
           gridArea="homeTeam"
           type="text"
           name="team"
-          value={this.state.home.team}
-          onChange={({ target }) => this.setState(state => ({
-            home: { ...state.home, ...parseInput(target) },
-          }))
-          }
+          value={state.home.team}
+          onChange={({ target }) => handleInput('home', target)}
         />
-        <Button gridArea="homeUp" onClick={() => this.handleAddPoint('home')} disabled={isEnd}>
+        <Button gridArea="homeUp" onClick={() => handleAddPoint('home')} disabled={isEnd}>
           ↑
         </Button>
         <Button
           gridArea="homeDown"
-          onClick={() => this.handleRemovePoint('home')}
-          disabled={this.state.home.points.every(point => point === 0)}
+          onClick={() => handleRemovePoint('home')}
+          disabled={state.home.points.every(point => point === 0)}
         >
           ↓
         </Button>
         <Input
           gridArea="awayName"
           type="text"
-          value={this.state.away.name}
+          value={state.away.name}
           name="name"
-          onChange={({ target }) => this.setState(state => ({
-            away: { ...state.away, ...parseInput(target) },
-          }))
-          }
+          onChange={({ target }) => handleInput('away', target)}
         />
         <Input
           gridArea="awayTeam"
           type="text"
-          value={this.state.away.team}
+          value={state.away.team}
           name="team"
-          onChange={({ target }) => this.setState(state => ({
-            away: { ...state.away, ...parseInput(target) },
-          }))
-          }
+          onChange={({ target }) => handleInput('away', target)}
         />
-        <Button gridArea="awayUp" onClick={() => this.handleAddPoint('away')} disabled={isEnd}>
+        <Button gridArea="awayUp" onClick={() => handleAddPoint('away')} disabled={isEnd}>
           ↑
         </Button>
         <Button
           gridArea="awayDown"
-          onClick={() => this.handleRemovePoint('away')}
-          disabled={this.state.away.points.every(point => point === 0)}
+          onClick={() => handleRemovePoint('away')}
+          disabled={state.away.points.every(point => point === 0)}
         >
           ↓
         </Button>
-        <Button gridArea="reset" onClick={this.handleResetScore}>
+        <Button gridArea="reset" onClick={handleResetScore}>
           Reset score
         </Button>
       </Form>
     );
   };
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main
-          gridTemplate={{
-            xs: "'hero' 'scoreboard' 'controls'",
-          }}
-          gridGap="10vh 4rem"
-        >
-          <HeroContainer title={this.props.data.page.body.hero.title} />
+  return (
+    <RootContainer>
+      <SEOContainer meta={props.data.page.meta} />
+      <Main
+        gridTemplate={{
+          xs: "'hero' 'scoreboard' 'controls'",
+        }}
+        gridGap="10vh 4rem"
+      >
+        <HeroContainer title={props.data.page.body.hero.title} />
 
-          <Section gridArea="scoreboard">
-            <Scoreboard>
-              {this.renderPlayer('home')}
-              {this.renderPlayer('away')}
-            </Scoreboard>
-          </Section>
+        <Section gridArea="scoreboard">
+          <Scoreboard>
+            {renderPlayer('home')}
+            {renderPlayer('away')}
+          </Scoreboard>
+        </Section>
 
-          <Section gridArea="controls">{this.renderControls()}</Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+        <Section gridArea="controls">{renderControls()}</Section>
+      </Main>
+    </RootContainer>
+  );
 }
