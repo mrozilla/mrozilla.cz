@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer, HeroContainer } from '~containers';
@@ -36,106 +36,99 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class DragAndDropPage extends PureComponent {
-  state = {
-    items: [
-      '🍎 Apple',
-      '🍞 Bread',
-      '🍰 Cake',
-      '🍩 Donut',
-      '🥚 Egg',
-      '🍟 Fries',
-      '🍇 Grapes',
-      '🍯 Honey',
-      '🍦 Icecream',
-      '🌶 Jalapeño',
-      '🥝 Kiwi',
-      '🍋 Lemon',
-    ],
-  };
+export default function DragAndDropPage(props) {
+  const [items, setItems] = useState([
+    '🍎 Apple',
+    '🍞 Bread',
+    '🍰 Cake',
+    '🍩 Donut',
+    '🥚 Egg',
+    '🍟 Fries',
+    '🍇 Grapes',
+    '🍯 Honey',
+    '🍦 Icecream',
+    '🌶 Jalapeño',
+    '🥝 Kiwi',
+    '🍋 Lemon',
+  ]);
+  const draggedIdx = useRef(null);
 
-  onDragStart = (e, i) => {
-    const element = e.target;
+  const handleDragStart = (event, idx) => {
+    const element = event.target;
 
     window.requestAnimationFrame(() => {
       element.style.opacity = '0';
     });
 
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', element);
-    this.draggedIdx = i;
+    event.dataTransfer.effectAllowed = 'move'; // eslint-disable-line no-param-reassign
+    event.dataTransfer.setData('text/html', element);
+    draggedIdx.current = idx;
   };
 
-  handleDragEnter = (idx) => {
-    this.setState(
-      state => ({
-        items: state.items.map((item, i) => {
-          if (i === this.draggedIdx) {
-            return state.items[idx];
-          }
-          if (i === idx) {
-            return state.items[this.draggedIdx];
-          }
-          return item;
-        }),
+  const handleDragEnter = (idx) => {
+    setItems(
+      items.map((item, i) => {
+        if (i === draggedIdx.current) {
+          return items[idx];
+        }
+        if (i === idx) {
+          return items[draggedIdx.current];
+        }
+        return item;
       }),
-      () => {
-        this.draggedIdx = idx;
-      },
     );
+    draggedIdx.current = idx;
   };
 
-  handleDragEnd = (e) => {
-    e.target.style.opacity = '1';
-    this.draggedIdx = null;
+  const handleDragEnd = (event) => {
+    event.target.style.opacity = '1'; // eslint-disable-line no-param-reassign
+    draggedIdx.current = null;
   };
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main
-          gridTemplate={{
-            xs: "'hero' 'dnd'",
-            lg: "'hero hero' 'dnd .' / 1fr 1fr",
-          }}
-          gridGap="10vh 1rem"
-        >
-          <HeroContainer title={this.props.data.page.body.hero.title} />
+  return (
+    <RootContainer>
+      <SEOContainer meta={props.data.page.meta} />
+      <Main
+        gridTemplate={{
+          xs: "'hero' 'dnd'",
+          lg: "'hero hero' 'dnd .' / 1fr 1fr",
+        }}
+        gridGap="10vh 1rem"
+      >
+        <HeroContainer title={props.data.page.body.hero.title} />
 
-          <Section gridArea="dnd">
-            <Ul
-              gridGap="1rem"
-              padding="1rem"
-              backgroundColor="hsla(var(--hsl-text), 0.1)"
-              borderRadius="1rem"
-            >
-              {this.state.items.map((item, i) => (
-                <Li
-                  key={item}
-                  backgroundColor="var(--color-bg)"
-                  padding="1rem"
-                  borderRadius="0.5rem"
-                  cursor="pointer"
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  after={{
-                    content: "'☰'",
-                    opacity: 0.25,
-                  }}
-                  draggable
-                  onDragStart={e => this.onDragStart(e, i)}
-                  onDragEnter={() => this.handleDragEnter(i)}
-                  onDragEnd={this.handleDragEnd}
-                >
-                  {item}
-                </Li>
-              ))}
-            </Ul>
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+        <Section gridArea="dnd">
+          <Ul
+            gridGap="1rem"
+            padding="1rem"
+            backgroundColor="hsla(var(--hsl-text), 0.1)"
+            borderRadius="1rem"
+          >
+            {items.map((item, i) => (
+              <Li
+                key={item}
+                backgroundColor="var(--color-bg)"
+                padding="1rem"
+                borderRadius="0.5rem"
+                cursor="pointer"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                after={{
+                  content: "'☰'",
+                  opacity: 0.25,
+                }}
+                draggable
+                onDragStart={e => handleDragStart(e, i)}
+                onDragEnter={() => handleDragEnter(i)}
+                onDragEnd={handleDragEnd}
+              >
+                {item}
+              </Li>
+            ))}
+          </Ul>
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }
