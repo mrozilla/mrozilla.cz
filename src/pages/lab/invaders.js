@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import uniqueId from 'lodash/uniqueId';
@@ -61,57 +61,53 @@ Invader.Pixel = styled.div`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class InvadersPage extends PureComponent {
-  state = {
-    amount: 200,
-  };
+export default function InvadersPage(props) {
+  const [amount, setAmount] = useState(200);
+  const [_, forceUpdate] = useState();
 
-  getInvader = () => Array.from({ length: 15 }, () => Math.random() > 0.5);
+  const getInvader = () => Array.from({ length: 15 }, () => Math.random() > 0.5);
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main
-          gridTemplate={{
-            xs: "'hero' 'specimen' 'invaders'",
+  return (
+    <RootContainer>
+      <SEOContainer meta={props.data.page.meta} />
+      <Main
+        gridTemplate={{
+          xs: "'hero' 'specimen' 'invaders'",
+        }}
+        gridGap="10vh 4rem"
+      >
+        <HeroContainer title={props.data.page.body.hero.title} />
+        <Section gridArea="specimen">
+          <H1 gridColumn="1 / -1" margin="0 0 1rem">
+            Your personal one:
+          </H1>
+          <Invader pixels={getInvader()} maxWidth="8rem" margin="0 0 2rem" />
+          <Button gridColumn="1 / -1" onClick={() => forceUpdate(Date.now())}>
+            Generate new
+          </Button>
+        </Section>
+        <Section
+          gridArea="invaders"
+          display="grid"
+          gridTemplateColumns={{
+            xs: 'repeat(8, 1fr)',
+            lg: 'repeat(24, 1fr)',
           }}
-          gridGap="10vh 4rem"
+          gridGap="1rem"
         >
-          <HeroContainer title={this.props.data.page.body.hero.title} />
-          <Section gridArea="specimen">
-            <H1 gridColumn="1 / -1" margin="0 0 1rem">
-              Your personal one:
-            </H1>
-            <Invader pixels={this.getInvader()} maxWidth="8rem" margin="0 0 2rem" />
-            <Button gridColumn="1 / -1" onClick={() => this.forceUpdate()}>
-              Generate new
-            </Button>
-          </Section>
-          <Section
-            gridArea="invaders"
-            display="grid"
-            gridTemplateColumns={{
-              xs: 'repeat(8, 1fr)',
-              lg: 'repeat(24, 1fr)',
-            }}
-            gridGap="1rem"
-          >
-            <H1 gridColumn="1 / -1" margin="0 0 1rem">
-              {this.state.amount} more examples ({((this.state.amount / 32768) * 100).toFixed(1)}%
-              of all possibilities):
-            </H1>
-            {Array.from(
-              {
-                length: this.state.amount,
-              },
-              (_, i) => i + 1,
-            ).map(item => (
-              <Invader key={item} pixels={this.getInvader()} />
-            ))}
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+          <H1 gridColumn="1 / -1" margin="0 0 1rem">
+            {amount} more examples ({((amount / 32768) * 100).toFixed(1)}% of all possibilities):
+          </H1>
+          {Array.from(
+            {
+              length: amount,
+            },
+            (_, i) => i + 1,
+          ).map(item => (
+            <Invader key={item} pixels={getInvader()} />
+          ))}
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }
