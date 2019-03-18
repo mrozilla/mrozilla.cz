@@ -7,6 +7,49 @@ media_folder: static/assets
 public_folder: assets
 
 collections:
+  - label: "Menus"
+    label_singular: "Menu"
+    name: menus
+    folder: menus
+    create: true
+    fields:
+      - label: "Title"
+        name: title
+        widget: string
+      - label: "Links"
+        label_singular: "Link"
+        name: links
+        widget: list
+        types:
+          - name: link
+            label: "Link"
+            fields:
+              - label: "Text"
+                name: text
+              - label: "URL"
+                name: url
+          - name: markdown
+            label: "Markdown"
+            fields:
+              - label: "Title"
+                name: title
+              - label: "text"
+                name: text
+                widget: markdown
+          - name: nested
+            label: "Nested"
+            fields:
+              - label: "Title"
+                name: title
+              - label: "Links"
+                name: links
+                widget: list
+                fields:
+                  - label: "Text"
+                    name: text
+                  - label: "URL"
+                    name: url
+
   - label: "Blog"
     label_singular: "Blog post"
     name: blog
