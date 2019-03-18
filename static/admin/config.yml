@@ -1,0 +1,30 @@
+backend:
+  name: test-repo
+  # branch: master
+  squash_merges: true
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - label: "Blog"
+    label_singular: "Blog post"
+    name: blog
+    folder: blog
+    create: true
+    fields:
+      - label: "Title"
+        name: title
+      - label: "Description"
+        name: description
+      - label: "Permalink"
+        name: permalink
+      - label: "Date"
+        name: date
+        widget: date
+      - label: "ogImage"
+        name: ogImage
+        widget: image
+      - label: "Body"
+        name: body
+        widget: markdown
