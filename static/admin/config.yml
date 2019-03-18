@@ -50,6 +50,18 @@ collections:
                   - label: "URL"
                     name: url
 
+  - label: "General"
+    name: general
+    folder: general
+    fields:
+      - label: "Hero"
+        name: hero
+      - label: "Location"
+        name: location
+      - label: "Availability"
+        name: availability
+        widget: date
+
   - label: "Blog"
     label_singular: "Blog post"
     name: blog
