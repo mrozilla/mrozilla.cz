@@ -62,6 +62,47 @@ collections:
         name: availability
         widget: date
 
+  - label: "Works"
+    label_singular: "Work"
+    name: works
+    folder: works
+    create: true
+    fields:
+      - label: "Meta"
+        name: meta
+        widget: object
+        fields:
+          - label: "Title"
+            name: title
+          - label: "Description"
+            name: description
+          - label: "Tags"
+            name: tags
+            widget: select
+            options: [
+              "Branding",
+              "Design",
+              "Development",
+              "Product",
+              "Website",
+            ]
+          - label: "Date"
+            name: date
+            widget: date
+          - label: "Permalink"
+            name: permalink
+      - label: "Body"
+        name: body
+        widget: object
+        fields:
+          - label: "Title"
+            name: title
+          - label: "Description"
+            name: description
+          - label: "Case study"
+            name: caseStudy
+            widget: markdown
+
   - label: "Blog"
     label_singular: "Blog post"
     name: blog
