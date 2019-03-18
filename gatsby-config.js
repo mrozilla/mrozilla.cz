@@ -17,8 +17,8 @@ const {
 
 module.exports = {
   siteMetadata: {
-    title:   'mrozilla',
-    siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
+    siteTitle: 'mrozilla',
+    siteUrl:   NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
   },
   developMiddleware: (app) => {
     app.use(

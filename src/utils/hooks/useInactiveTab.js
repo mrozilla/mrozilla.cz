@@ -2,52 +2,25 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { PureComponent } from 'react';
+import { useEffect } from 'react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class BarrelRollContainer extends PureComponent {
-  state = {
-    count: 0,
-  };
-
-  componentDidMount = () => {
-    document.addEventListener('keydown', this.handleBarrelRoll);
-  };
-
-  componentWillUnmount = () => {
-    document.removeEventListener('keydown', this.handleBarrelRoll);
-  };
-
-  handleBarrelRoll = (evt) => {
-    if (evt.key === 'r') {
-      if (this.state.count < 4) {
-        return this.setState(
-          state => ({
-            count: state.count + 1,
-          }),
-          () => {
-            document.body.style.transform = null;
-            document.body.style.transition = null;
-          },
-        );
-      }
-      return this.setState(
-        {
-          count: 0,
-        },
-        () => {
-          document.body.style.transition = '1000ms';
-          document.body.style.transform = 'rotate(360deg)';
-        },
-      );
+export default function useInactiveTab() {
+  const handleInactiveTab = (evt) => {
+    if (evt.target.visibilityState === 'hidden') {
+      document.title = `😴 ${document.title}`;
     }
-    return null;
+
+    if (evt.target.visibilityState === 'visible') {
+      document.title = document.title.substr(2);
+    }
   };
 
-  render() {
-    return null;
-  }
+  useEffect(() => {
+    document.addEventListener('visibilitychange', handleInactiveTab);
+    return () => document.removeEventListener('visibilitychange', handleInactiveTab);
+  });
 }

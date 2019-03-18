@@ -9,9 +9,8 @@ import { StaticQuery, graphql } from 'gatsby';
 import HeaderContainer from './HeaderContainer';
 import FooterContainer from './FooterContainer';
 import CookieContainer from './CookieContainer';
-import InactiveTabContainer from './InactiveTabContainer';
-import BarrelRollContainer from './BarrelRollContainer';
 import { Wrapper } from '~components';
+import { useBarrelRoll, useInactiveTab } from '~utils';
 import '~utils/style/index.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -19,6 +18,9 @@ import '~utils/style/index.css';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function RootContainer({ children }) {
+  useBarrelRoll();
+  useInactiveTab();
+
   return (
     <StaticQuery
       query={graphql`
@@ -65,8 +67,6 @@ export default function RootContainer({ children }) {
           {children}
           <FooterContainer footer={footer} />
           <CookieContainer />
-          <InactiveTabContainer />
-          <BarrelRollContainer />
         </Wrapper>
       )}
     />

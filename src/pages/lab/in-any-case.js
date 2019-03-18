@@ -2,12 +2,11 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer, HeroContainer } from '~containers';
 import { Main, Section, Input } from '~components';
-import { parseInput } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -35,26 +34,24 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class InAnyCasePage extends PureComponent {
-  state = {
-    input:  '',
-    output: {
-      'lower case':    '',
-      'UPPER CASE':    '',
-      'Title Case':    '',
-      'Sentence case': '',
-      'dot.case':      '',
-      'url-case':      '',
-      'path/case':     '',
-      'snake-case':    '',
-      CONSTANT_CASE:   '',
-      'Header-Case':   '',
-      PascalCase:      '',
-      camelCase:       '',
-    },
-  };
+export default function InAnyCasePage(props) {
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState({
+    'lower case':    '',
+    'UPPER CASE':    '',
+    'Title Case':    '',
+    'Sentence case': '',
+    'dot.case':      '',
+    'url-case':      '',
+    'path/case':     '',
+    'snake-case':    '',
+    CONSTANT_CASE:   '',
+    'Header-Case':   '',
+    PascalCase:      '',
+    camelCase:       '',
+  });
 
-  handleInput = ({ target }) => {
+  const handleInput = ({ target: { value } }) => {
     const changeCase = {
       toLowerCase: s => s.toLowerCase(),
       toUpperCase: s => s.toUpperCase(),
@@ -98,63 +95,57 @@ export default class InAnyCasePage extends PureComponent {
         .toPascalCase(s)
         .charAt(0)
         .toLowerCase() + changeCase.toPascalCase(s).slice(1),
-      reset: () => this.state.original,
     };
 
-    this.setState(state => ({
-      ...parseInput(target),
-      output: {
-        ...state.output,
-        'lower case':    changeCase.toLowerCase(target.value),
-        'UPPER CASE':    changeCase.toUpperCase(target.value),
-        'Title Case':    changeCase.toTitleCase(target.value),
-        'Sentence case': changeCase.toSentenceCase(target.value),
-        'dot.case':      changeCase.toDotCase(target.value),
-        'url-case':      changeCase.toURLCase(target.value),
-        'path/case':     changeCase.toPathCase(target.value),
-        'snake-case':    changeCase.toSnakeCase(target.value),
-        CONSTANT_CASE:   changeCase.toConstantCase(target.value),
-        'Header-Case':   changeCase.toHeaderCase(target.value),
-        PascalCase:      changeCase.toPascalCase(target.value),
-        camelCase:       changeCase.toCamelCase(target.value),
-      },
-    }));
+    setInput(value);
+    setOutput({
+      'lower case':    changeCase.toLowerCase(value),
+      'UPPER CASE':    changeCase.toUpperCase(value),
+      'Title Case':    changeCase.toTitleCase(value),
+      'Sentence case': changeCase.toSentenceCase(value),
+      'dot.case':      changeCase.toDotCase(value),
+      'url-case':      changeCase.toURLCase(value),
+      'path/case':     changeCase.toPathCase(value),
+      'snake-case':    changeCase.toSnakeCase(value),
+      CONSTANT_CASE:   changeCase.toConstantCase(value),
+      'Header-Case':   changeCase.toHeaderCase(value),
+      PascalCase:      changeCase.toPascalCase(value),
+      camelCase:       changeCase.toCamelCase(value),
+    });
   };
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-          <HeroContainer title={this.props.data.page.body.title} />
-          <Section gridArea="input">
+  return (
+    <RootContainer>
+      <SEOContainer meta={props.data.page.meta} />
+      <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
+        <HeroContainer title={props.data.page.body.title} />
+        <Section gridArea="input">
+          <Input
+            name="input"
+            type="text"
+            value={input}
+            placeholder="Start typing or paste text..."
+            margin="0 0 4rem 0"
+            onChange={handleInput}
+          />
+          {Object.entries(output).map(([key, value]) => (
             <Input
-              name="input"
+              key={key}
+              placeholder={key}
+              name={key}
+              label={key}
               type="text"
-              value={this.state.input}
-              placeholder="Start typing or paste text..."
-              margin="0 0 4rem 0"
-              onChange={this.handleInput}
+              value={value}
+              margin="0 0 1rem 0"
+              labelStyle={{
+                isFloating:    true,
+                textTransform: 'unset',
+              }}
+              readOnly
             />
-            {Object.entries(this.state.output).map(([key, value]) => (
-              <Input
-                {...{ key }}
-                placeholder={key}
-                name={key}
-                label={key}
-                type="text"
-                value={value}
-                margin="0 0 1rem 0"
-                labelStyle={{
-                  isFloating:    true,
-                  textTransform: 'unset',
-                }}
-                readOnly
-              />
-            ))}
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+          ))}
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }

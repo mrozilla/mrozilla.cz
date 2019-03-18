@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer, HeroContainer } from '~containers';
@@ -36,22 +36,28 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class InputsPage extends PureComponent {
-  state = {
-    countries: [],
-  };
+export default function InputsPage({
+  data: {
+    page: {
+      meta,
+      body: { hero },
+    },
+  },
+}) {
+  const [countries, setCountries] = useState([]);
 
-  componentDidMount = async () => {
-    const countries = await fetch('https://restcountries.eu/rest/v2/all?fields=name').then(res => res.json());
-    this.setState({
-      countries: countries.map(country => ({
-        value: country.alpha2Code,
-        name:  country.name,
-      })),
-    });
-  };
+  useEffect(() => {
+    fetch('https://restcountries.eu/rest/v2/all?fields=name')
+      .then(res => res.json())
+      .then(data => setCountries(
+        data.map(country => ({
+          value: country.alpha2Code,
+          name:  country.name,
+        })),
+      ));
+  }, []);
 
-  renderTextInputs = () => (
+  const renderTextInputs = () => (
     <Form
       gridArea="text"
       gridTemplate="'title' 'text' 'pattern' 'email' 'password' 'number' 'website' 'date' 'time'"
@@ -108,7 +114,7 @@ export default class InputsPage extends PureComponent {
     </Form>
   );
 
-  renderTimeInputs = () => (
+  const renderTimeInputs = () => (
     <Form gridArea="time" gridTemplate="'title' 'date' 'datetime-local' 'month' 'time'">
       <H1 gridArea="title">Date inputs</H1>
       <Input
@@ -140,9 +146,9 @@ export default class InputsPage extends PureComponent {
         required
       />
     </Form>
-  )
+  );
 
-  renderSelects = () => (
+  const renderSelects = () => (
     <Form gridArea="select" gridTemplate="'title' 'select' 'search'">
       <H1 gridArea="title">Select inputs</H1>
       <Input
@@ -172,13 +178,13 @@ export default class InputsPage extends PureComponent {
         placeholder="Country"
         label="Select input with search and filtering"
         error="Please choose one of the options"
-        options={this.state.countries}
+        options={countries}
         required
       />
     </Form>
   );
 
-  renderCheckboxes = () => (
+  const renderCheckboxes = () => (
     <Form gridArea="checkbox" gridTemplate="'title' 'checkbox'">
       <H1 gridArea="title">Checkbox inputs</H1>
       <Input
@@ -203,7 +209,7 @@ export default class InputsPage extends PureComponent {
     </Form>
   );
 
-  renderRadios = () => (
+  const renderRadios = () => (
     <Form gridArea="radio" gridTemplate="'title' 'radio'">
       <H1 gridArea="title">Radio inputs</H1>
       <Input
@@ -232,34 +238,23 @@ export default class InputsPage extends PureComponent {
     </Form>
   );
 
-  render() {
-    const {
-      data: {
-        page: {
-          meta,
-          body: { hero },
-        },
-      },
-    } = this.props;
-
-    return (
-      <RootContainer>
-        <SEOContainer meta={meta} />
-        <Main
-          gridTemplate={{
-            xs: "'hero' 'text' 'time' 'select' 'checkbox' 'radio'",
-            md: "'hero hero' 'text .' 'time .' 'select .' 'checkbox .' 'radio .' / 1fr 1fr",
-          }}
-          gridGap="10vh 1rem"
-        >
-          <HeroContainer title={hero.title} />
-          {this.renderTextInputs()}
-          {this.renderTimeInputs()}
-          {this.renderSelects()}
-          {this.renderCheckboxes()}
-          {this.renderRadios()}
-        </Main>
-      </RootContainer>
-    );
-  }
+  return (
+    <RootContainer>
+      <SEOContainer meta={meta} />
+      <Main
+        gridTemplate={{
+          xs: "'hero' 'text' 'time' 'select' 'checkbox' 'radio'",
+          md: "'hero hero' 'text .' 'time .' 'select .' 'checkbox .' 'radio .' / 1fr 1fr",
+        }}
+        gridGap="10vh 1rem"
+      >
+        <HeroContainer title={hero.title} />
+        {renderTextInputs()}
+        {renderTimeInputs()}
+        {renderSelects()}
+        {renderCheckboxes()}
+        {renderRadios()}
+      </Main>
+    </RootContainer>
+  );
 }
