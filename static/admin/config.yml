@@ -6,6 +6,11 @@ backend:
 media_folder: static/assets
 public_folder: assets
 
+development_overrides:
+  backend:
+    name: file-system
+    api_root: 'http://localhost:8000/api'
+
 collections:
   - label: "Menus"
     label_singular: "Menu"

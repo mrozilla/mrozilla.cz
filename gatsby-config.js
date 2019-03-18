@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const proxy = require('http-proxy-middleware');
+const fsApi = require('netlify-cms-backend-fs/dist/fs/fs-express-api');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -20,19 +21,29 @@ module.exports = {
     siteTitle: 'mrozilla',
     siteUrl:   NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
   },
-  developMiddleware: (app) => {
-    app.use(
-      '/.netlify/functions/',
-      proxy({
-        target:      'http://localhost:9000',
-        pathRewrite: {
-          '/.netlify/functions/': '',
-        },
-      }),
-    );
-  },
-  plugins: [
-    'gatsby-plugin-netlify-cms',
+  developMiddleware: fsApi,
+  // developMiddleware: (app) => {
+  //   app.use(
+  //     '/.netlify/functions/',
+  //     proxy({
+  //       target:      'http://localhost:9000',
+  //       pathRewrite: {
+  //         '/.netlify/functions/': '',
+  //       },
+  //     }),
+  //   );
+  // },
+  plugins:           [
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath:           `${__dirname}/src/utils/cms.js`, // Or another path if you don't want to create /src/cms/init.js
+        enableIdentityWidget: false,
+        publicPath:           'admin',
+        htmlTitle:            'Content Manager',
+        manualInit:           true,
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
