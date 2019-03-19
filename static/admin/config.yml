@@ -3,19 +3,19 @@ backend:
   # branch: master
   squash_merges: true
 
-media_folder: static/assets
+media_folder: src/content/cms/multimedia
 public_folder: assets
 
 development_overrides:
   backend:
     name: file-system
-    api_root: 'http://localhost:8000/api'
+    api_root: "http://localhost:8000/api"
 
 collections:
   - label: "Menus"
     label_singular: "Menu"
     name: menus
-    folder: menus
+    folder: src/content/cms/menus
     create: true
     fields:
       - label: "Title"
@@ -57,22 +57,30 @@ collections:
 
   - label: "General"
     name: general
-    folder: general
-    fields:
-      - label: "Hero"
-        name: hero
-      - label: "Location"
-        name: location
-      - label: "Availability"
-        name: availability
-        widget: date
+    files:
+      - label: "General"
+        name: general
+        file: src/content/cms/general/general.json
+        delete: false
+        fields:
+          - label: "Hero"
+            name: hero
+          - label: "Location"
+            name: location
+          - label: "Availability"
+            name: availability
+            widget: date
 
   - label: "Works"
     label_singular: "Work"
     name: works
-    folder: works
+    folder: src/content/cms/works
     create: true
     fields:
+      - label: "Title"
+        name: title
+      - label: "Description"
+        name: description
       - label: "Meta"
         name: meta
         widget: object
@@ -84,6 +92,7 @@ collections:
           - label: "Tags"
             name: tags
             widget: select
+            multiple: true
             options: [
               "Branding",
               "Design",
@@ -98,20 +107,12 @@ collections:
             name: permalink
       - label: "Body"
         name: body
-        widget: object
-        fields:
-          - label: "Title"
-            name: title
-          - label: "Description"
-            name: description
-          - label: "Case study"
-            name: caseStudy
-            widget: markdown
+        widget: markdown
 
   - label: "Blog"
     label_singular: "Blog post"
     name: blog
-    folder: blog
+    folder: src/content/cms/blog
     create: true
     fields:
       - label: "Title"
