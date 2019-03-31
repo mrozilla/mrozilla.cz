@@ -20,37 +20,45 @@ import { Main, Section, H2, P } from '~components';
 
 export const query = graphql`
   {
-    page: pagesJson(meta: { permalink: { eq: "/" } }) {
-      ...MetaFragment
-      body {
-        hero {
-          title
-        }
-        location {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
           text
-        }
-        availability {
-          title
-          dateISOString
+          date
+          type
         }
       }
     }
-    works: allWorkJson(sort: { fields: [meta___date], order: DESC }) {
+    works: allMdx(
+      filter: { fields: { sourceName: { eq: "works" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
-          ...WorkFragment
+          frontmatter {
+            title
+            meta {
+              permalink
+              tags
+            }
+          }
         }
       }
     }
     posts: allMdx(
-      filter: { fileAbsolutePath: { regex: "/blog/" } }
+      filter: { fields: { sourceName: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 5
     ) {
       edges {
         node {
-          ...BlogPreviewFragment
+          frontmatter {
+            title
+            permalink
+            date(formatString: "MMMM D, YYYY")
+          }
         }
       }
     }
@@ -64,8 +72,7 @@ export const query = graphql`
 export default function HomePage({
   data: {
     page: {
-      meta,
-      body: { hero, location, availability },
+      frontmatter: { meta, blocks },
     },
     works,
     posts,
@@ -76,34 +83,57 @@ export default function HomePage({
       <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
-          xs: "'hero' 'based' 'availability' 'work' 'blog'",
-          md: "'hero hero' 'based availability' 'work blog'",
+          xs: "'hero' 'location' 'availability' 'work' 'blog'",
+          md: "'hero hero' 'location availability' 'work blog'",
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={hero.title} />
-        <Section gridArea="based">
-          <H2>{location.title}</H2>
-          <P fontSize="3rem">{location.text}</P>
-        </Section>
-        <Section gridArea="availability">
-          <H2>{availability.title}</H2>
-          <AvailabilityContainer availabilityDate={new Date(availability.dateISOString)} />
-        </Section>
+        {blocks.map((block) => {
+          if (block.type === 'hero') {
+            return <HeroContainer key={block.title} title={block.title} />;
+          }
+          if (block.type === 'location') {
+            return (
+              <Section key={block.title} gridArea="location">
+                <H2>{block.title}</H2>
+                <P fontSize="3rem">{block.text}</P>
+              </Section>
+            );
+          }
+          if (block.type === 'availability') {
+            return (
+              <Section key={block.title} gridArea="availability">
+                <H2>{block.title}</H2>
+                <AvailabilityContainer availabilityDate={new Date(block.date)} />
+              </Section>
+            );
+          }
+          return null;
+        })}
         <Section gridArea="work" id="work">
           <H2>latest client work</H2>
           <WorksContainer
-            works={works.edges.map(({ node: { meta: { permalink }, body } }) => ({
-              permalink,
-              ...body,
-            }))}
+            works={works.edges.map(
+              ({
+                node: {
+                  frontmatter: {
+                    title,
+                    meta: { permalink, tags },
+                  },
+                },
+              }) => ({
+                title,
+                permalink,
+                tags,
+              }),
+            )}
           />
         </Section>
         <Section gridArea="blog" id="blog">
           <H2>latest blog articles</H2>
           <BlogPreviewsContainer
-            posts={posts.edges.map(({ node: { frontmatter: post } }) => ({
-              ...post,
+            posts={posts.edges.map(({ node: { frontmatter } }) => ({
+              ...frontmatter,
             }))}
           />
         </Section>
