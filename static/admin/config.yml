@@ -3,7 +3,7 @@ backend:
   # branch: master
   squash_merges: true
 
-media_folder: src/content/cms/multimedia
+media_folder: static/assets
 public_folder: assets
 
 development_overrides:
@@ -17,6 +17,8 @@ collections:
     name: menus
     folder: src/content/cms/menus
     create: true
+    extension: mdx
+    format: frontmatter
     fields:
       - label: "Title"
         name: title
@@ -55,32 +57,162 @@ collections:
                   - label: "URL"
                     name: url
 
-  - label: "General"
-    name: general
-    files:
-      - label: "General"
-        name: general
-        file: src/content/cms/general/general.json
-        delete: false
+  - label: "Pages"
+    label_singular: "Page"
+    name: pages
+    folder: src/content/cms/pages
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields: 
+      - label: "Title"
+        name: title
+      - label: "Date"
+        name: date
+        widget: date
+      - label: "Meta"
+        name: meta
+        widget: object
         fields:
+          - label: "Title"
+            name: title
+          - label: "Description"
+            name: description
+          - label: "Permalink"
+            name: permalink
+          - label: "ogImage"
+            name: ogImage
+            widget: image
+      - label: "Blocks"
+        label_singular: "Block"
+        name: blocks
+        widget: list
+        types:
           - label: "Hero"
             name: hero
+            fields: 
+              - label: "Title"
+                name: title
+          - label: "Body"
+            name: body
+            fields: 
+              - label: "Body"
+                name: body
+                widget: markdown
           - label: "Location"
             name: location
+            fields:
+              - label: "Title"
+                name: title
+              - label: "Text"
+                name: text
           - label: "Availability"
             name: availability
-            widget: date
+            fields:
+              - label: "Title"
+                name: title
+              - label: "Date"
+                name: date
+                widget: date
+          - label: "Form"
+            name: form
+            fields:
+              - label: "Inputs"
+                name: inputs
+                widget: list
+                types:
+                  - label: "Text"
+                    name: text
+                    fields:
+                      - label: "Name"
+                        name: name
+                        default: "name"
+                      - label: "Label"
+                        name: label
+                      - label: "Required"
+                        name: required
+                        widget: boolean
+                        default: true
+                  - label: "Email"
+                    name: email
+                    fields:
+                      - label: "Name"
+                        name: name
+                        default: "email"
+                      - label: "Label"
+                        name: label
+                      - label: "Required"
+                        name: required
+                        widget: boolean
+                      - label: "Error"
+                        name: error
+                  - label: "Textarea"
+                    name: textarea
+                    fields:
+                      - label: "Name"
+                        name: name
+                        default: "name"
+                      - label: "Label"
+                        name: label
+                      - label: "Description"
+                        name: description
+                      - label: "Required"
+                        name: required
+                        widget: boolean
+                        default: true
+                      - label: "Rows"
+                        name: rows
+                        widget: number
+                        valueType: int
+                  - label: "Radio"
+                    name: radio
+                    fields:
+                      - label: "Name"
+                        name: name
+                        default: "name"
+                      - label: "Label"
+                        name: label
+                      - label: "Description"
+                        name: description
+                      - label: "Required"
+                        name: required
+                        widget: boolean
+                        default: true
+                      - label: "Options"
+                        name: options
+                        widget: list
+                        fields:
+                          - label: "Value"
+                            name: value
+                          - label: "Label"
+                            name: label
+                  - label: "Submit"
+                    name: submit
+                    fields:
+                      - label: "Name"
+                        name: name
+                        default: "name"
+                      - label: "Label"
+                        name: label
+              - label: "Success"
+                name: success
+                widget: markdown
 
   - label: "Works"
     label_singular: "Work"
     name: works
     folder: src/content/cms/works
+    extension: mdx
+    format: frontmatter
     create: true
     fields:
       - label: "Title"
         name: title
       - label: "Description"
         name: description
+      - label: "Date"
+        name: date
+        widget: date
       - label: "Meta"
         name: meta
         widget: object
@@ -100,9 +232,6 @@ collections:
               "Product",
               "Website",
             ]
-          - label: "Date"
-            name: date
-            widget: date
           - label: "Permalink"
             name: permalink
       - label: "Body"
@@ -114,6 +243,8 @@ collections:
     name: blog
     folder: src/content/cms/blog
     create: true
+    extension: mdx
+    format: frontmatter
     fields:
       - label: "Title"
         name: title
@@ -127,6 +258,31 @@ collections:
       - label: "ogImage"
         name: ogImage
         widget: image
+      - label: "Related"
+        name: related
+        widget: relation
+        collection: blog
+        searchFields: ["title", "permalink"]
+        valueField: "permalink"
+        displayFields: ["title"]
+        multiple: true
+      - label: "Body"
+        name: body
+        widget: markdown
+
+  - label: "Legal"
+    name: legal
+    folder: src/content/cms/legal
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - label: "Title"
+        name: title
+      - label: "Description"
+        name: description
+      - label: "Permalink"
+        name: permalink
       - label: "Body"
         name: body
         widget: markdown
