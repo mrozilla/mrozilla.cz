@@ -1,0 +1,51 @@
+---
+title: Contact
+meta:
+  date: 2018-07-09T22:00:00.000Z
+  description: You've got a project in mind and we'd love to hear everything about it
+  ogImage: /assets/og.png
+  permalink: /contact/
+  title: Contact
+blocks:
+  - title: You've got a project in mind and we'd love to hear everything about it
+    type: hero
+  - inputs:
+      - label: Your name
+        name: name
+        required: true
+        type: text
+      - error: An email should be in the format of name@example.com
+        label: Your email
+        name: email
+        required: true
+        type: email
+      - description: Try to outline the requirements and the scope of the project
+        label: Your project
+        name: specs
+        required: true
+        rows: 6
+        type: textarea
+      - description: 'An estimate is perfectly okay, we''d refine it together'
+        label: Your budget
+        name: budget
+        options:
+          - label: '€1,000 – €5,000'
+            value: small
+          - label: '€5,000 – €10,000'
+            value: medium
+          - label: '€10,000+'
+            value: large
+        required: true
+        type: radio
+      - label: Send
+        name: submit
+        type: submit
+    success: >-
+      What a pleasure to hear from you. We'll get back to you soon, keep an eye
+      out on your inbox!
+
+
+      [Back to main page](/)
+    type: form
+---
+
