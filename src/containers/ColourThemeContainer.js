@@ -43,17 +43,17 @@ export default function ColourThemeContainer() {
       options={[
         {
           value:   'basic',
-          label:   'default',
+          label:   'Default',
           checked: theme === 'basic',
         },
         {
           value:   'dark',
-          label:   'dark',
+          label:   'Dark',
           checked: theme === 'dark',
         },
         {
           value:   'crazy',
-          label:   'crazy',
+          label:   'Crazy',
           checked: theme === 'crazy',
         },
       ]}
