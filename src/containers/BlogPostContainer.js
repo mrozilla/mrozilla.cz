@@ -24,16 +24,16 @@ export const query = graphql`
         permalink
         title
         description
-        ogImage {
-          ...OgImageFragment
-        }
+        # ogImage {
+        #   ...OgImageFragment
+        # }
       }
       mdx: code {
         body
       }
     }
     relatedArticles: allMdx(
-      filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { related: { in: [$path] } } }
+      filter: { fields: { sourceName: { eq: "blog" } }, frontmatter: { related: { in: [$path] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
