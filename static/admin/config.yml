@@ -20,42 +20,75 @@ collections:
     extension: mdx
     format: frontmatter
     fields:
-      - label: "Title"
-        name: title
-        widget: string
-      - label: "Links"
-        label_singular: "Link"
-        name: links
+      - name: title
+      - name: links
         widget: list
         types:
           - name: link
-            label: "Link"
             fields:
-              - label: "Text"
-                name: text
-              - label: "URL"
-                name: url
+              - name: text
+              - name: url
           - name: markdown
-            label: "Markdown"
             fields:
-              - label: "Title"
-                name: title
-              - label: "text"
-                name: text
+              - name: title
+              - name: text
                 widget: markdown
           - name: nested
-            label: "Nested"
             fields:
-              - label: "Title"
-                name: title
-              - label: "Links"
-                name: links
+              - name: title
+              - name: links
                 widget: list
                 fields:
-                  - label: "Text"
-                    name: text
-                  - label: "URL"
-                    name: url
+                  - name: text
+                  - name: url
+
+  - label: "Labs"
+    label_singular: "Lab"
+    name: labs
+    folder: src/content/cms/labs
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - name: tagline
+      - name: date
+        widget: date
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - name: ogImage
+            widget: image
+          - name: tags
+            widget: select
+            multiple: true
+            options: ["tool", "demo", "product"]
+      - name: blocks
+        widget: list
+        types:
+          - name: hero
+            label: "Hero"
+            fields:
+              - name: title
+          - name: dictionary
+            label: "Dictionary"
+            fields:
+              - name: items
+                widget: list
+                fields:
+                  - name: czech
+                    widget: object
+                    fields:
+                      - name: grammar
+                      - name: ipa
+                  - name: german
+                    widget: object
+                    fields:
+                      - name: grammar
+                      - name: ipa
 
   - label: "Pages"
     label_singular: "Page"
@@ -64,136 +97,89 @@ collections:
     create: true
     extension: mdx
     format: frontmatter
-    fields: 
-      - label: "Title"
-        name: title
-      - label: "Date"
-        name: date
+    fields:
+      - name: title
+      - name: date
         widget: date
-      - label: "Meta"
-        name: meta
+      - name: meta
         widget: object
         fields:
-          - label: "Title"
-            name: title
-          - label: "Description"
-            name: description
-          - label: "Permalink"
-            name: permalink
-          - label: "ogImage"
-            name: ogImage
+          - name: title
+          - name: description
+          - name: permalink
+          - name: ogImage
             widget: image
-      - label: "Blocks"
-        label_singular: "Block"
-        name: blocks
+      - name: blocks
         widget: list
         types:
-          - label: "Hero"
-            name: hero
-            fields: 
-              - label: "Title"
-                name: title
-          - label: "Body"
-            name: body
-            fields: 
-              - label: "Body"
-                name: body
+          - name: hero
+            fields:
+              - name: title
+          - name: body
+            fields:
+              - name: body
                 widget: markdown
-          - label: "Location"
-            name: location
+          - name: location
             fields:
-              - label: "Title"
-                name: title
-              - label: "Text"
-                name: text
-          - label: "Availability"
-            name: availability
+              - name: title
+              - name: text
+          - name: availability
             fields:
-              - label: "Title"
-                name: title
-              - label: "Date"
-                name: date
+              - name: title
+              - name: date
                 widget: date
-          - label: "Form"
-            name: form
+          - name: form
             fields:
-              - label: "Inputs"
-                name: inputs
+              - name: inputs
                 widget: list
                 types:
-                  - label: "Text"
-                    name: text
+                  - name: text
                     fields:
-                      - label: "Name"
-                        name: name
+                      - name: name
                         default: "name"
-                      - label: "Label"
-                        name: label
-                      - label: "Required"
-                        name: required
+                      - name: label
+                      - name: required
                         widget: boolean
                         default: true
-                  - label: "Email"
-                    name: email
+                  - name: email
                     fields:
-                      - label: "Name"
-                        name: name
+                      - name: name
                         default: "email"
-                      - label: "Label"
-                        name: label
-                      - label: "Required"
-                        name: required
+                      - name: label
+                      - name: required
                         widget: boolean
-                      - label: "Error"
-                        name: error
-                  - label: "Textarea"
-                    name: textarea
+                      - name: error
+                  - name: textarea
                     fields:
-                      - label: "Name"
-                        name: name
+                      - name: name
                         default: "name"
-                      - label: "Label"
-                        name: label
-                      - label: "Description"
-                        name: description
-                      - label: "Required"
-                        name: required
+                      - name: label
+                      - name: description
+                      - name: required
                         widget: boolean
                         default: true
-                      - label: "Rows"
-                        name: rows
+                      - name: rows
                         widget: number
                         valueType: int
-                  - label: "Radio"
-                    name: radio
+                  - name: radio
                     fields:
-                      - label: "Name"
-                        name: name
+                      - name: name
                         default: "name"
-                      - label: "Label"
-                        name: label
-                      - label: "Description"
-                        name: description
-                      - label: "Required"
-                        name: required
+                      - name: label
+                      - name: description
+                      - name: required
                         widget: boolean
                         default: true
-                      - label: "Options"
-                        name: options
+                      - name: options
                         widget: list
                         fields:
-                          - label: "Value"
-                            name: value
-                          - label: "Label"
-                            name: label
-                  - label: "Submit"
-                    name: submit
+                          - name: value
+                          - name: label
+                  - name: submit
                     fields:
-                      - label: "Name"
-                        name: name
+                      - name: name
                         default: "name"
-                      - label: "Label"
-                        name: label
+                      - name: label
               - label: "Success"
                 name: success
                 widget: markdown
@@ -206,36 +192,21 @@ collections:
     format: frontmatter
     create: true
     fields:
-      - label: "Title"
-        name: title
-      - label: "Description"
-        name: description
-      - label: "Date"
-        name: date
+      - name: title
+      - name: description
+      - name: date
         widget: date
-      - label: "Meta"
-        name: meta
+      - name: meta
         widget: object
         fields:
-          - label: "Title"
-            name: title
-          - label: "Description"
-            name: description
-          - label: "Tags"
-            name: tags
+          - name: title
+          - name: description
+          - name: tags
             widget: select
             multiple: true
-            options: [
-              "Branding",
-              "Design",
-              "Development",
-              "Product",
-              "Website",
-            ]
-          - label: "Permalink"
-            name: permalink
-      - label: "Body"
-        name: body
+            options: ["Branding", "Design", "Development", "Product", "Website"]
+          - name: permalink
+      - name: body
         widget: markdown
 
   - label: "Blog"
@@ -246,28 +217,21 @@ collections:
     extension: mdx
     format: frontmatter
     fields:
-      - label: "Title"
-        name: title
-      - label: "Description"
-        name: description
-      - label: "Permalink"
-        name: permalink
-      - label: "Date"
-        name: date
+      - name: title
+      - name: description
+      - name: permalink
+      - name: date
         widget: date
-      - label: "ogImage"
-        name: ogImage
+      - name: ogImage
         widget: image
-      - label: "Related"
-        name: related
+      - name: related
         widget: relation
         collection: blog
         searchFields: ["title", "permalink"]
         valueField: "permalink"
         displayFields: ["title"]
         multiple: true
-      - label: "Body"
-        name: body
+      - name: body
         widget: markdown
 
   - label: "Legal"
@@ -277,12 +241,8 @@ collections:
     extension: mdx
     format: frontmatter
     fields:
-      - label: "Title"
-        name: title
-      - label: "Description"
-        name: description
-      - label: "Permalink"
-        name: permalink
-      - label: "Body"
-        name: body
+      - name: title
+      - name: description
+      - name: permalink
+      - name: body
         widget: markdown
