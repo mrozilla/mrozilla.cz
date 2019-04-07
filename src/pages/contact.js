@@ -14,13 +14,11 @@ import { Main, Section, P, Link, Button, Form, Input } from '~components';
 
 export const query = graphql`
   {
-    page: pagesJson(meta: { permalink: { eq: "/contact/" } }) {
-      ...MetaFragment
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/contact/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
-        }
-        form {
           inputs {
             name
             type
@@ -35,7 +33,7 @@ export const query = graphql`
             required
           }
           success
-          back
+          type
         }
       }
     }
@@ -49,17 +47,17 @@ export const query = graphql`
 export default function ContactPage({
   data: {
     page: {
-      meta,
-      body: { hero, form },
+      frontmatter: { meta, blocks },
     },
   },
   location,
 }) {
+  const [hero, form] = blocks;
   const renderSuccess = () => (
     <Section gridArea="form">
       <P margin="0 0 2rem 0">{form.success}</P>
       <Link to="/">
-        <Button>{form.back}</Button>
+        <Button>Back to home page</Button>
       </Link>
     </Section>
   );
