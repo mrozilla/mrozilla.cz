@@ -14,17 +14,10 @@ import { Main, Section, Ul, Li } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/drag-and-drop/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/drag-and-drop/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
         }
       }
@@ -36,7 +29,13 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function DragAndDropPage(props) {
+export default function DragAndDropPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
   const [items, setItems] = useState([
     '🍎 Apple',
     '🍞 Bread',
@@ -87,7 +86,7 @@ export default function DragAndDropPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'dnd'",
@@ -95,7 +94,7 @@ export default function DragAndDropPage(props) {
         }}
         gridGap="10vh 1rem"
       >
-        <HeroContainer title={props.data.page.body.hero.title} />
+        <HeroContainer title={blocks[0].title} />
 
         <Section gridArea="dnd">
           <Ul

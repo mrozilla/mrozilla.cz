@@ -16,17 +16,10 @@ import { useLocale } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/calendar/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/calendar/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
         }
       }
@@ -89,7 +82,7 @@ Calendar.Day = styled.p`
 
 export default function CalendarPage({
   data: {
-    page: { meta, body },
+    page: { frontmatter: {meta, blocks} },
   },
 }) {
   const [selected, setDate] = useState(new Date());
@@ -171,7 +164,7 @@ export default function CalendarPage({
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={body.hero.title} />
+        <HeroContainer title={blocks[0].title} />
         <Section gridArea="calendar">
           {renderCalendarControls()}
           {renderCalendarWeekdays()}

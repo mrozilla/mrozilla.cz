@@ -14,14 +14,9 @@ import { Main, Section, Input, H1, H2, P } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/writest/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/writest/" } } }) {
+      frontmatter {
+        ...MetaFragment
       }
     }
   }
@@ -31,7 +26,13 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function WritestPage(props) {
+export default function WritestPage({
+  data: {
+    page: {
+      frontmatter: { meta },
+    },
+  },
+}) {
   const [input, setInput] = useState('');
   const [stats, setStats] = useState({
     charCount:             0,
@@ -109,7 +110,7 @@ export default function WritestPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'input' 'stats'",

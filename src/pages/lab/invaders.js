@@ -17,17 +17,10 @@ import { View } from '~components/primitives/View';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/invaders/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/invaders/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
         }
       }
@@ -61,7 +54,13 @@ Invader.Pixel = styled.div`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function InvadersPage(props) {
+export default function InvadersPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
   const [amount, setAmount] = useState(200);
   const [_, forceUpdate] = useState();
 
@@ -69,14 +68,14 @@ export default function InvadersPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'specimen' 'invaders'",
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={props.data.page.body.hero.title} />
+        <HeroContainer title={blocks[0].title} />
         <Section gridArea="specimen">
           <H1 gridColumn="1 / -1" margin="0 0 1rem">
             Your personal one:

@@ -14,17 +14,10 @@ import { Main, Section, H2, P, Button } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/emoji/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/emoji/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
         }
       }
@@ -36,7 +29,13 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function EmojiPage(props) {
+export default function EmojiPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
   const [randomEmojis, setRandomEmojis] = useState([]);
 
   const getRandomEmoji = () => fetch('/.netlify/functions/emoji').then(r => r.json());
@@ -50,9 +49,9 @@ export default function EmojiPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'random' 'map'" gridGap="10vh 4rem">
-        <HeroContainer title={props.data.page.body.hero.title} />
+        <HeroContainer title={blocks[0].title} />
         <Section gridArea="random">
           <H2>Emoji story generator</H2>
           <Button onClick={handleAddEmoji} grouped>

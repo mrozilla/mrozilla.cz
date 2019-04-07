@@ -15,32 +15,53 @@ import { Main, Section, Input, Img, H1, P, Ul, Li } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/grid/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/grid/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
-        }
-        controls {
-          type
-          name
-          label
-          options {
-            value
-            label
-          }
         }
       }
     }
   }
 `;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+const controls = [
+  {
+    type:    'radio',
+    name:    'layout',
+    label:   'Current layout',
+    options: [
+      {
+        value: 'exciting',
+        label: 'Exciting',
+      },
+      {
+        value: 'boring',
+        label: 'Boring',
+      },
+    ],
+  },
+  {
+    type:    'radio',
+    name:    'src',
+    label:   'Images',
+    options: [
+      {
+        value: 'https://source.unsplash.com/random/400x600',
+        label: 'Real photos',
+      },
+      {
+        value: 'broken.jpg',
+        label: 'Placeholders',
+      },
+    ],
+  },
+];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -49,8 +70,7 @@ export const query = graphql`
 export default function GridPage({
   data: {
     page: {
-      meta,
-      body: { hero, controls },
+      frontmatter: { meta, blocks },
     },
   },
 }) {
@@ -116,13 +136,13 @@ export default function GridPage({
         ))}
       </Ul>
     </Section>
-  );  
+  );
 
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'controls' 'grid'" gridGap="10vh 1rem">
-        <HeroContainer title={hero.title} />
+        <HeroContainer title={blocks[0].title} />
         {renderGrid()}
         {renderControls()}
       </Main>

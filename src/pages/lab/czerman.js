@@ -16,35 +16,66 @@ import { metaTypes } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/czerman/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      dictionary {
-        id
-        czech {
-          grammar
-          ipa
-        }
-        german {
-          grammar
-          ipa
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/czerman/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
+          type
+          title
+          items {
+            czech {
+              grammar
+              ipa
+            }
+            german {
+              grammar
+              ipa
+            }
+          }
         }
       }
     }
   }
 `;
 
+// export const query = graphql`
+//   {
+//     page: labJson(meta: { permalink: { eq: "/lab/czerman/" } }) {
+//       meta {
+//         title
+//         description
+//         permalink
+//         ogImage {
+//           ...OgImageFragment
+//         }
+//       }
+//       dictionary {
+//         id
+//         czech {
+//           grammar
+//           ipa
+//         }
+//         german {
+//           grammar
+//           ipa
+//         }
+//       }
+//     }
+//   }
+// `;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function CzermanPage(props) {
+export default function CzermanPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
+  const { items: dictionary } = blocks[1];
   const [state, setState] = useState({
     openTermId:    '',
     isOpenAll:     false,
@@ -53,11 +84,7 @@ export default function CzermanPage(props) {
   });
 
   const handleOpenTerm = (openTermId) => {
-    setState({
-      ...state,
-      isOpenAll: false,
-      openTermId,
-    });
+    setState({ ...state, isOpenAll: false, openTermId });
   };
 
   const handleOpenAll = () => {
@@ -66,17 +93,15 @@ export default function CzermanPage(props) {
 
   const handleNextTerm = () => {
     setState((prevState) => {
-      const currentIndex = props.data.page.dictionary.findIndex(
-        term => term.id === prevState.openTermId,
-      );
+      const currentIndex = dictionary.findIndex(term => term.czech.grammar === prevState.openTermId);
       return {
         ...prevState,
         isModalOpen:   true,
         isCardFlipped: false,
         openTermId:
-          currentIndex === props.data.page.dictionary.length - 1
-            ? props.data.page.dictionary[0].id
-            : props.data.page.dictionary[currentIndex + 1].id,
+          currentIndex === dictionary.length - 1
+            ? dictionary[0].czech.grammar
+            : dictionary[currentIndex + 1].czech.grammar,
       };
     });
   };
@@ -96,11 +121,10 @@ export default function CzermanPage(props) {
   };
 
   const renderModal = () => {
-    const modalTerm = props.data.page.dictionary.find(term => term.id === state.openTermId)
-      || props.data.page.dictionary[0];
+    const modalTerm = dictionary.find(term => term.czech.grammar === state.openTermId) || dictionary[0];
     return (
       <Modal
-        innerKey={modalTerm.id}
+        innerKey={modalTerm.czech.grammar}
         isOpen={state.isModalOpen}
         innerPadding="4rem 4rem 2rem 4rem"
         innerMinWidth="15vw"
@@ -146,22 +170,22 @@ export default function CzermanPage(props) {
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>
-        {props.data.page.dictionary.map(term => (
+        {dictionary.map(term => (
           <Table.Tr
-            key={term.id}
+            key={term.czech.grammar}
             cursor="pointer"
-            onClick={() => handleOpenTerm(state.openTermId !== term.id ? term.id : '')}
+            onClick={() => handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')}
           >
             <Table.Td>{term.czech.grammar}</Table.Td>
             <Table.Td>{term.czech.ipa}</Table.Td>
-            {state.openTermId === term.id || state.isOpenAll ? (
+            {state.openTermId === term.czech.grammar || state.isOpenAll ? (
               <Table.Td>{term.german.grammar}</Table.Td>
             ) : (
               <Table.Td colSpan="2" textAlign="center" opacity={0.5}>
                 Reveal
               </Table.Td>
             )}
-            {state.openTermId === term.id || state.isOpenAll ? (
+            {state.openTermId === term.czech.grammar || state.isOpenAll ? (
               <Table.Td>{term.german.ipa}</Table.Td>
             ) : null}
           </Table.Tr>
@@ -172,18 +196,16 @@ export default function CzermanPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
-        <HeroContainer title={props.data.page.meta.description} />
+        <HeroContainer title={blocks[0].title} />
         <Section gridArea="practice">
           <Button onClick={handleNextTerm}>Start practice</Button>
           {renderModal()}
         </Section>
         <Section gridArea="dictionary">
           {renderTable()}
-          <Button onClick={handleOpenAll}>
-            {state.isOpenAll ? 'Hide' : 'Reveal'} all
-          </Button>
+          <Button onClick={handleOpenAll}>{state.isOpenAll ? 'Hide' : 'Reveal'} all</Button>
         </Section>
       </Main>
     </RootContainer>

@@ -15,17 +15,10 @@ import { Main, Section, Button, Input, Form } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/scoreboard/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/scoreboard/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
         }
       }
@@ -179,7 +172,7 @@ const reducer = (state, { type, payload }) => {
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function ScoreboardPage(props) {
+export default function ScoreboardPage({data: {page: {frontmatter: {meta, blocks}}}}) {
   const [state, dispatch] = useReducer(reducer, {
     home: {
       name:   'MA Long',
@@ -318,14 +311,14 @@ export default function ScoreboardPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'scoreboard' 'controls'",
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={props.data.page.body.hero.title} />
+        <HeroContainer title={blocks[0].title} />
 
         <Section gridArea="scoreboard">
           <Scoreboard>

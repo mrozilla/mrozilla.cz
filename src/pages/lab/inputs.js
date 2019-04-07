@@ -14,17 +14,10 @@ import { Main, Form, H1, Input } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/inputs/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/inputs/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
         }
       }
@@ -38,10 +31,7 @@ export const query = graphql`
 
 export default function InputsPage({
   data: {
-    page: {
-      meta,
-      body: { hero },
-    },
+    page: {frontmatter: {meta, blocks}}
   },
 }) {
   const [countries, setCountries] = useState([]);
@@ -248,7 +238,7 @@ export default function InputsPage({
         }}
         gridGap="10vh 1rem"
       >
-        <HeroContainer title={hero.title} />
+        <HeroContainer title={blocks[0].title} />
         {renderTextInputs()}
         {renderTimeInputs()}
         {renderSelects()}

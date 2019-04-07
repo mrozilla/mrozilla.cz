@@ -60,36 +60,29 @@ const GoogleRatingStars = styled.span`
   outline: none;
 `;
 
+const copy = {
+  error: {
+    titleTooShort:
+      'Your title is too short, try aiming for ~50 characters in total to [fully utilise the available space](https://support.google.com/webmasters/answer/35624)',
+    titleTooLong:
+      "Your title is too long, it's generally smart to stay under 60 characters in total as [Google truncates titles at 600px width (on desktop)](https://moz.com/learn/seo/title-tag)",
+    descriptionTooShort:
+      'Your description is too short, try aiming for ~100 characters to [provide more information to the users](https://support.google.com/webmasters/answer/35624)',
+    descriptionTooLong:
+      'Your description is too long, you generally want to stay under 300 characters in total to avoid [Google truncating your description](https://moz.com/learn/seo/meta-description)',
+  },
+  success: "Everything's looking good!",
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // query
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/serp-preview/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        searchSnippet {
-          default {
-            title
-            url
-            description
-          }
-          error {
-            titleTooShort
-            titleTooLong
-            descriptionTooShort
-            descriptionTooLong
-          }
-          success
-        }
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/serp-preview/" } } }) {
+      frontmatter {
+        ...MetaFragment
       }
     }
   }
@@ -101,10 +94,7 @@ export const query = graphql`
 
 export default function SearchSnippetPage({
   data: {
-    page: {
-      meta,
-      body: { searchSnippet },
-    },
+    page: { frontmatter: { meta } },
   },
 }) {
   const [errors, setErrors] = useState({
@@ -136,27 +126,28 @@ export default function SearchSnippetPage({
       <Main gridTemplate="'snippet .' 'errors errors' / 600px 1fr" gridGap="10vh 4rem">
         <Section gridArea="snippet">
           <GoogleTitle onInput={handleTitleChange} contentEditable>
-            {searchSnippet.default.title}
+            Google SERP preview visual optimiser | mrozilla
           </GoogleTitle>
-          <GoogleWebsite contentEditable>{searchSnippet.default.url}</GoogleWebsite>
+          <GoogleWebsite contentEditable>https://www.mrozilla.cz/lab/serp-preview</GoogleWebsite>
           <GoogleRatingStars>
             ★★★★★
             <span style={{ color: '#808080', lineHeight: '18px' }}> Rating: 4.7 - 6 reviews</span>
           </GoogleRatingStars>
           <GoogleDescription onInput={handleDescriptionChange} contentEditable>
-            {searchSnippet.default.description}
+            Click to edit the fields directly to optimise the length of your website's titles and
+            descriptions for Google search snippets visually with hints
           </GoogleDescription>
         </Section>
         <Section gridArea="errors">
           {Object.entries(errors).map(
             ([errorType, isError]) => isError && (
             <Alert type="danger" key={errorType}>
-              {parseLinks(searchSnippet.error[errorType], { type: 'primary' })}
+              {parseLinks(copy.error[errorType], { type: 'primary' })}
             </Alert>
             ),
           )}
           {Object.values(errors).every(isError => !isError) && (
-            <Alert type="success">{searchSnippet.success}</Alert>
+            <Alert type="success">{copy.success}</Alert>
           )}
         </Section>
       </Main>
