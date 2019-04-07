@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { shape } from 'prop-types';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Table, Link, Button, Modal, H2, P } from '~components';
-import { metaTypes } from '~utils';
+import { metaTypes, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -37,32 +37,6 @@ export const query = graphql`
     }
   }
 `;
-
-// export const query = graphql`
-//   {
-//     page: labJson(meta: { permalink: { eq: "/lab/czerman/" } }) {
-//       meta {
-//         title
-//         description
-//         permalink
-//         ogImage {
-//           ...OgImageFragment
-//         }
-//       }
-//       dictionary {
-//         id
-//         czech {
-//           grammar
-//           ipa
-//         }
-//         german {
-//           grammar
-//           ipa
-//         }
-//       }
-//     }
-//   }
-// `;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -93,7 +67,9 @@ export default function CzermanPage({
 
   const handleNextTerm = () => {
     setState((prevState) => {
-      const currentIndex = dictionary.findIndex(term => term.czech.grammar === prevState.openTermId);
+      const currentIndex = dictionary.findIndex(
+        term => term.czech.grammar === prevState.openTermId,
+      );
       return {
         ...prevState,
         isModalOpen:   true,
@@ -174,7 +150,8 @@ export default function CzermanPage({
           <Table.Tr
             key={term.czech.grammar}
             cursor="pointer"
-            onClick={() => handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')}
+            onClick={() => handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')
+            }
           >
             <Table.Td>{term.czech.grammar}</Table.Td>
             <Table.Td>{term.czech.ipa}</Table.Td>
@@ -198,7 +175,7 @@ export default function CzermanPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
-        <HeroContainer title={blocks[0].title} />
+        {renderBlocks(blocks)}
         <Section gridArea="practice">
           <Button onClick={handleNextTerm}>Start practice</Button>
           {renderModal()}

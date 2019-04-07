@@ -5,8 +5,9 @@
 import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Form, H1, Input } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -19,6 +20,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          type
         }
       }
     }
@@ -31,7 +33,9 @@ export const query = graphql`
 
 export default function InputsPage({
   data: {
-    page: {frontmatter: {meta, blocks}}
+    page: {
+      frontmatter: { meta, blocks },
+    },
   },
 }) {
   const [countries, setCountries] = useState([]);
@@ -238,7 +242,7 @@ export default function InputsPage({
         }}
         gridGap="10vh 1rem"
       >
-        <HeroContainer title={blocks[0].title} />
+        {renderBlocks(blocks)}
         {renderTextInputs()}
         {renderTimeInputs()}
         {renderSelects()}

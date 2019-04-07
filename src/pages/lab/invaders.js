@@ -7,9 +7,10 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import uniqueId from 'lodash/uniqueId';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, H1 } from '~components';
 import { View } from '~components/primitives/View';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -22,6 +23,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          type
         }
       }
     }
@@ -75,7 +77,7 @@ export default function InvadersPage({
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={blocks[0].title} />
+        {renderBlocks(blocks)}
         <Section gridArea="specimen">
           <H1 gridColumn="1 / -1" margin="0 0 1rem">
             Your personal one:

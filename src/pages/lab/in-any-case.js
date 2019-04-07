@@ -5,8 +5,9 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Input } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -19,6 +20,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          type
         }
       }
     }
@@ -119,7 +121,7 @@ export default function InAnyCasePage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-        <HeroContainer title={blocks[0].title} />
+      {renderBlocks(blocks)}
         <Section gridArea="input">
           <Input
             name="input"

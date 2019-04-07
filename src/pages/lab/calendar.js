@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, P, Button } from '~components';
-import { useLocale } from '~utils';
+import { useLocale, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -21,6 +21,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          type
         }
       }
     }
@@ -164,7 +165,7 @@ export default function CalendarPage({
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={blocks[0].title} />
+        {renderBlocks(blocks)}
         <Section gridArea="calendar">
           {renderCalendarControls()}
           {renderCalendarWeekdays()}

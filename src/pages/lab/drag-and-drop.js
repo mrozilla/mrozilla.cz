@@ -5,8 +5,9 @@
 import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Ul, Li } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -19,6 +20,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          type
         }
       }
     }
@@ -94,8 +96,7 @@ export default function DragAndDropPage({
         }}
         gridGap="10vh 1rem"
       >
-        <HeroContainer title={blocks[0].title} />
-
+        {renderBlocks(blocks)}
         <Section gridArea="dnd">
           <Ul
             gridGap="1rem"

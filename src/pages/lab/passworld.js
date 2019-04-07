@@ -5,9 +5,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, H2, Input, Button, Toast } from '~components';
-import { copyToClipboard, parseInput } from '~utils';
+import { copyToClipboard, parseInput, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -20,6 +20,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          type
         }
       }
     }
@@ -144,7 +145,7 @@ export default class PassworldPage extends Component {
           }}
           gridGap="10vh 1rem"
         >
-          <HeroContainer title={this.props.data.page.frontmatter.blocks[0].title} />
+          {renderBlocks(this.props.data.page.frontmatter.blocks)}
           <Section gridArea="output">
             <H2 as="h1">Generated password</H2>
             <H1 as="p" hyphens="auto">
