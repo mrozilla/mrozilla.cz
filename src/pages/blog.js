@@ -5,8 +5,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, HeroContainer, BlogPreviewsContainer, SEOContainer } from '~containers';
+import { RootContainer, BlogPreviewsContainer, SEOContainer } from '~containers';
 import { Main, Section, H2 } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -14,16 +15,17 @@ import { Main, Section, H2 } from '~components';
 
 export const query = graphql`
   {
-    page: pagesJson(meta: { permalink: { eq: "/blog/" } }) {
-      ...MetaFragment
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/blog/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
     posts: allMdx(
-      filter: { fileAbsolutePath: { regex: "/blog/" } }
+      filter: { fields: { sourceName: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
@@ -32,16 +34,6 @@ export const query = graphql`
         }
       }
     }
-    # posts: allMarkdownRemark(
-    #   filter: { fileAbsolutePath: { regex: "/blog/" } }
-    #   sort: { fields: [frontmatter___date], order: DESC }
-    # ) {
-    #   edges {
-    #     node {
-    #       ...BlogPreviewFragment
-    #     }
-    #   }
-    # }
   }
 `;
 
@@ -52,21 +44,20 @@ export const query = graphql`
 export default function BlogPage({
   data: {
     page: {
-      meta,
-      body: { hero },
+      frontmatter: { meta, blocks },
     },
-    posts: { edges: posts },
+    posts,
   },
 }) {
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
-        <HeroContainer title={hero.title} />
+        {renderBlocks(blocks)}
         <Section gridArea="blog" id="blog">
           <H2>all blog articles</H2>
           <BlogPreviewsContainer
-            posts={posts.map(({ node: { frontmatter: post, timeToRead } }) => ({
+            posts={posts.edges.map(({ node: { frontmatter: post, timeToRead } }) => ({
               ...post,
               timeToRead,
             }))}
