@@ -9,54 +9,53 @@ import { graphql } from 'gatsby';
 // ─────────────────────────────────────────────────────────────────────────────
 
 // separate due to being used in other fragments
-export const OgImageFragment = graphql`
-  fragment OgImageFragment on File {
-    childImageSharp {
-      resize(width: 1200, height: 630) {
-        src
-      }
-    }
-  }
-`;
+// export const OgImageFragment = graphql`
+//   fragment OgImageFragment on File {
+//     childImageSharp {
+//       resize(width: 1200, height: 630) {
+//         src
+//       }
+//     }
+//   }
+// `;
 
 export const fragments = graphql`
-  fragment MetaFragment on PagesJson {
+  fragment MetaFragment on frontmatter_2 {
     meta {
       permalink
       title
       description
-      ogImage {
-        ...OgImageFragment
+      # ogImage {
+      #   ...OgImageFragment
+      # }
+    }
+  }
+
+  fragment WorkPreviewFragment on Mdx {
+    frontmatter {
+      title
+      meta {
+        permalink
+        tags
       }
     }
   }
 
-  fragment WorkFragment on WorkJson {
-    meta {
-      permalink
-    }
-    body {
-      title
-      tags
-    }
-  }
-
-  fragment LabFragment on LabJson {
-    meta {
-      type
-      permalink
-    }
-    body {
+  fragment LabPreviewFragment on Mdx {
+    frontmatter {
       title
       tagline
+      date
+      meta {
+        permalink
+      }
     }
   }
 
   fragment BlogPreviewFragment on Mdx {
-    # timeToRead
     frontmatter {
-      permalink
       title
+      permalink
       date(formatString: "MMMM D, YYYY")
     }
   }
