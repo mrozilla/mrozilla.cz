@@ -113,22 +113,27 @@ collections:
         widget: list
         types:
           - name: hero
+            label: "Hero"
             fields:
               - name: title
-          - name: body
+          - name: markdown
+            label: "Markdown"
             fields:
-              - name: body
+              - name: markdown
                 widget: markdown
           - name: location
+            label: "Location"
             fields:
               - name: title
               - name: text
           - name: availability
+            label: "Availability"
             fields:
               - name: title
               - name: date
                 widget: date
           - name: form
+            label: "Form"
             fields:
               - name: inputs
                 widget: list
