@@ -5,14 +5,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer,
-  HeroContainer,
-  WorksContainer,
-  AvailabilityContainer,
-  BlogPreviewsContainer,
-  SEOContainer } from '~containers';
+import { RootContainer, WorksContainer, BlogPreviewsContainer, SEOContainer } from '~containers';
 
-import { Main, Section, H2, P } from '~components';
+import { Main, Section, H2 } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -20,7 +16,10 @@ import { Main, Section, H2, P } from '~components';
 
 export const query = graphql`
   {
-    page: mdx(frontmatter: { meta: { permalink: { eq: "/" } } }) {
+    page: mdx(
+      fields: { sourceName: { eq: "pages" } }
+      frontmatter: { meta: { permalink: { eq: "/" } } }
+    ) {
       frontmatter {
         ...MetaFragment
         blocks {
@@ -37,13 +36,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          frontmatter {
-            title
-            meta {
-              permalink
-              tags
-            }
-          }
+          ...WorkPreviewFragment
         }
       }
     }
@@ -54,11 +47,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          frontmatter {
-            title
-            permalink
-            date(formatString: "MMMM D, YYYY")
-          }
+          ...BlogPreviewFragment
         }
       }
     }
@@ -88,53 +77,17 @@ export default function HomePage({
         }}
         gridGap="10vh 4rem"
       >
-        {blocks.map((block) => {
-          if (block.type === 'hero') {
-            return <HeroContainer key={block.title} title={block.title} />;
-          }
-          if (block.type === 'location') {
-            return (
-              <Section key={block.title} gridArea="location">
-                <H2>{block.title}</H2>
-                <P fontSize="3rem">{block.text}</P>
-              </Section>
-            );
-          }
-          if (block.type === 'availability') {
-            return (
-              <Section key={block.title} gridArea="availability">
-                <H2>{block.title}</H2>
-                <AvailabilityContainer availabilityDate={new Date(block.date)} />
-              </Section>
-            );
-          }
-          return null;
-        })}
+        {renderBlocks(blocks)}
         <Section gridArea="work" id="work">
-          <H2>latest client work</H2>
+          <H2>Latest client work</H2>
           <WorksContainer
-            works={works.edges.map(
-              ({
-                node: {
-                  frontmatter: {
-                    title,
-                    meta: { permalink, tags },
-                  },
-                },
-              }) => ({
-                title,
-                permalink,
-                tags,
-              }),
-            )}
+            works={works.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
           />
         </Section>
         <Section gridArea="blog" id="blog">
-          <H2>latest blog articles</H2>
+          <H2>Latest blog articles</H2>
           <BlogPreviewsContainer
-            posts={posts.edges.map(({ node: { frontmatter } }) => ({
-              ...frontmatter,
-            }))}
+            posts={posts.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
           />
         </Section>
       </Main>

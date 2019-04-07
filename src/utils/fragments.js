@@ -53,6 +53,7 @@ export const fragments = graphql`
   }
 
   fragment BlogPreviewFragment on Mdx {
+    timeToRead
     frontmatter {
       title
       permalink
