@@ -9,25 +9,25 @@ import { graphql } from 'gatsby';
 // ─────────────────────────────────────────────────────────────────────────────
 
 // separate due to being used in other fragments
-// export const OgImageFragment = graphql`
-//   fragment OgImageFragment on File {
-//     childImageSharp {
-//       resize(width: 1200, height: 630) {
-//         src
-//       }
-//     }
-//   }
-// `;
+export const OgImageFragment = graphql`
+  fragment OgImageFragment on File {
+    childImageSharp {
+      resize(width: 1200, height: 630) {
+        src
+      }
+    }
+  }
+`;
 
 export const fragments = graphql`
-  fragment MetaFragment on frontmatter_2 {
+  fragment MetaFragment on MdxFrontmatter {
     meta {
       permalink
       title
       description
-      # ogImage {
-      #   ...OgImageFragment
-      # }
+      ogImage {
+        ...OgImageFragment
+      }
     }
   }
 
