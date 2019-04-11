@@ -25,7 +25,7 @@ export const query = graphql`
       }
     }
     posts: allMdx(
-      filter: { fields: { sourceName: { eq: "blog" } } }
+      filter: { fields: { sourceName: { eq: "posts" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
@@ -55,13 +55,8 @@ export default function BlogPage({
       <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
         {renderBlocks(blocks)}
         <Section gridArea="blog" id="blog">
-          <H2>all blog articles</H2>
-          <BlogPreviewsContainer
-            posts={posts.edges.map(({ node: { frontmatter: post, timeToRead } }) => ({
-              ...post,
-              timeToRead,
-            }))}
-          />
+          <H2>All blog articles</H2>
+          <BlogPreviewsContainer posts={posts} />
         </Section>
       </Main>
     </RootContainer>

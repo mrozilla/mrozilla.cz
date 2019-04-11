@@ -41,7 +41,7 @@ export const query = graphql`
       }
     }
     posts: allMdx(
-      filter: { fields: { sourceName: { eq: "blog" } } }
+      filter: { fields: { sourceName: { eq: "posts" } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 5
     ) {

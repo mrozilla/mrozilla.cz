@@ -30,8 +30,7 @@ collections:
           - name: markdown
             fields:
               - name: title
-              - name: text
-                widget: markdown
+              - { name: text, widget: markdown }
           - name: nested
             fields:
               - name: title
@@ -51,16 +50,14 @@ collections:
     fields:
       - name: title
       - name: tagline
-      - name: date
-        widget: date
+      - { name: date, widget: date }
       - name: meta
         widget: object
         fields:
           - name: title
           - name: description
           - name: permalink
-          - name: ogImage
-            widget: image
+          - { name: ogImage, widget: image }
           - name: tags
             widget: select
             multiple: true
@@ -98,16 +95,14 @@ collections:
     format: frontmatter
     fields:
       - name: title
-      - name: date
-        widget: date
+      - { name: date, widget: date }
       - name: meta
         widget: object
         fields:
           - name: title
           - name: description
           - name: permalink
-          - name: ogImage
-            widget: image
+          - { name: ogImage, widget: image }
       - name: blocks
         widget: list
         types:
@@ -129,8 +124,7 @@ collections:
             label: "Availability"
             fields:
               - name: title
-              - name: date
-                widget: date
+              - { name: date, widget: date }
           - name: form
             label: "Form"
             fields:
@@ -139,19 +133,14 @@ collections:
                 types:
                   - name: text
                     fields:
-                      - name: name
-                        default: "name"
+                      - { name: name, default: "name" }
                       - name: label
-                      - name: required
-                        widget: boolean
-                        default: true
+                      - { name: required, widget: boolean, default: true }
                   - name: email
                     fields:
-                      - name: name
-                        default: "email"
+                      - { name: name, default: "email" }
                       - name: label
-                      - name: required
-                        widget: boolean
+                      - { name: required, widget: boolean }
                       - name: error
                   - name: textarea
                     fields:
@@ -159,21 +148,14 @@ collections:
                         default: "name"
                       - name: label
                       - name: description
-                      - name: required
-                        widget: boolean
-                        default: true
-                      - name: rows
-                        widget: number
-                        valueType: int
+                      - { name: required, widget: boolean, default: true }
+                      - { name: rows, widget: number, valueType: int }
                   - name: radio
                     fields:
-                      - name: name
-                        default: "name"
+                      - { name: name, default: "name" }
                       - name: label
                       - name: description
-                      - name: required
-                        widget: boolean
-                        default: true
+                      - { name: required, widget: boolean, default: true }
                       - name: options
                         widget: list
                         fields:
@@ -181,12 +163,9 @@ collections:
                           - name: label
                   - name: submit
                     fields:
-                      - name: name
-                        default: "name"
+                      - { name: name, default: "name" }
                       - name: label
-              - label: "Success"
-                name: success
-                widget: markdown
+              - { label: "Success", name: success, widget: markdown }
 
   - label: "Works"
     label_singular: "Work"
@@ -198,8 +177,7 @@ collections:
     fields:
       - name: title
       - name: description
-      - name: date
-        widget: date
+      - { name: date, widget: date }
       - name: meta
         widget: object
         fields:
@@ -210,35 +188,34 @@ collections:
             multiple: true
             options: ["Branding", "Design", "Development", "Product", "Website"]
           - name: permalink
-      - name: body
-        widget: markdown
+      - { name: body, widget: markdown }
 
   - label: "Blog"
     label_singular: "Blog post"
-    name: blog
-    folder: src/content/cms/blog
+    name: posts
+    folder: src/content/cms/posts
     create: true
     extension: mdx
     format: frontmatter
     fields:
       - name: title
-      - name: description
-      - name: permalink
-      - name: date
-        widget: date
-      - name: ogImage
-        widget: image
-        required: false
+      - { name: date, widget: date }
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - { name: ogImage, widget: image }
       - name: related
         widget: relation
-        collection: blog
+        collection: posts
         searchFields: ["title", "permalink"]
         valueField: "permalink"
         displayFields: ["title"]
         multiple: true
         required: false
-      - name: body
-        widget: markdown
+      - { name: body, widget: markdown }
 
   - label: "Legal"
     name: legal
@@ -248,7 +225,13 @@ collections:
     format: frontmatter
     fields:
       - name: title
-      - name: description
-      - name: permalink
-      - name: body
-        widget: markdown
+      - { name: date, widget: date }
+      # - name: description
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - { name: ogImage, widget: image }
+      - { name: body, widget: markdown }
