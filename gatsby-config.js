@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const proxy = require('http-proxy-middleware');
-const fsApi = require('netlify-cms-backend-fs/dist/fs/fs-express-api');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -21,36 +20,33 @@ module.exports = {
     siteTitle: 'mrozilla',
     siteUrl:   NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
   },
-  developMiddleware: fsApi,
-  // developMiddleware: (app) => {
-  //   app.use(
-  //     '/.netlify/functions/',
-  //     proxy({
-  //       target:      'http://localhost:9000',
-  //       pathRewrite: {
-  //         '/.netlify/functions/': '',
-  //       },
-  //     }),
-  //   );
-  // },
-  plugins:           [
+  developMiddleware: (app) => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target:      'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      }),
+    );
+  },
+  plugins: [
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath:           `${__dirname}/src/utils/cms.js`, // Or another path if you don't want to create /src/cms/init.js
-        enableIdentityWidget: false,
-        publicPath:           'admin',
-        htmlTitle:            'Content Manager',
-        manualInit:           true,
+        modulePath: `${__dirname}/src/utils/cms.js`, // Or another path if you don't want to create /src/cms/init.js
+        manualInit: true,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'content',
-        path: `${__dirname}/src/content`,
-      },
+      options: { path: `${__dirname}/static/assets`, name: 'assets' },
     },
+    ...['blog', 'legal', 'menus', 'pages', 'works', 'labs'].map(name => ({
+      resolve: 'gatsby-source-filesystem',
+      options: { name, path: `${__dirname}/src/content/cms/${name}` },
+    })),
 
     {
       resolve: 'gatsby-mdx',
@@ -58,14 +54,11 @@ module.exports = {
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 590,
-            },
+            options: { maxWidth: 590 },
           },
         ],
       },
     },
-    'gatsby-transformer-json',
     'gatsby-transformer-sharp',
 
     {
@@ -115,6 +108,6 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-netlify',
+    'gatsby-plugin-netlify', // keep last
   ],
 };

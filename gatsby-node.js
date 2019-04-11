@@ -3,6 +3,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const path = require('path');
+const fsMiddlewareAPI = require('netlify-cms-backend-fs/dist/fs');
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 // const mdx = require('@mdx-js/mdx');
 // const babel = require('@babel/core');
 
@@ -27,6 +29,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
+  fmImagesToRelative(node); // transform Netlify CMS' absolute paths to relative for gatsby-image
+
   if (node.internal.type === 'Mdx') {
     const parent = getNode(node.parent);
 
@@ -89,4 +93,12 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
       });
     });
   });
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Netlify CMS setup
+// ─────────────────────────────────────────────────────────────────────────────
+
+exports.onCreateDevServer = ({ app }) => {
+  fsMiddlewareAPI(app);
 };
