@@ -18,31 +18,23 @@ import '~utils/style/highlight.css';
 
 export const query = graphql`
   query($path: String!) {
-    article: mdx(frontmatter: { permalink: { eq: $path } }) {
-      meta: frontmatter {
-        date(formatString: "MMMM D, YYYY")
-        permalink
+    article: mdx(frontmatter: { meta: { permalink: { eq: $path } } }) {
+      frontmatter {
+        ...MetaFragment
         title
-        description
-        # ogImage {
-        #   ...OgImageFragment
-        # }
+        date(formatString: "MMMM D, YYYY")
       }
       mdx: code {
         body
       }
     }
     relatedArticles: allMdx(
-      filter: { fields: { sourceName: { eq: "blog" } }, frontmatter: { related: { in: [$path] } } }
+      filter: { fields: { sourceName: { eq: "posts" } }, frontmatter: { related: { in: [$path] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
-          timeToRead
-          frontmatter {
-            permalink
-            title
-          }
+          ...BlogPreviewFragment
         }
       }
     }
@@ -55,7 +47,10 @@ export const query = graphql`
 
 export default function BlogPost({
   data: {
-    article: { meta, mdx },
+    article: {
+      frontmatter: { title, date, meta },
+      mdx,
+    },
     relatedArticles,
   },
 }) {
@@ -73,13 +68,13 @@ export default function BlogPost({
           <header style={{ margin: '0 0 4rem 0' }}>
             <H1 itemProp="name" margin="0 0 3rem 0">
               <Link to={meta.permalink} itemProp="url" tertiary>
-                {meta.title}
+                {title}
               </Link>
             </H1>
             {meta.description && (
               <P fontSize="3rem">{parseLinks(meta.description, { type: 'primary' })}</P>
             )}
-            {meta.date && (
+            {date && (
               <time
                 style={{
                   fontSize:      '1.25rem',
@@ -89,10 +84,10 @@ export default function BlogPost({
                   letterSpacing: '0.2em',
                   marginTop:     '-2rem',
                 }}
-                dateTime={new Date(meta.date).toISOString()}
+                dateTime={new Date(date).toISOString()}
                 itemProp="datePublished"
               >
-                {meta.date}
+                {date}
               </time>
             )}
           </header>
@@ -105,15 +100,10 @@ export default function BlogPost({
             {mdx.body}
           </MDXRenderer>
         </Article>
-        {relatedArticles && (
+        {relatedArticles.edges.length > 0 && (
           <Aside>
             <H2>Related articles</H2>
-            <BlogPreviewsContainer
-              posts={relatedArticles.edges.map(({ node: { frontmatter: post, timeToRead } }) => ({
-                ...post,
-                timeToRead,
-              }))}
-            />
+            <BlogPreviewsContainer posts={relatedArticles} />
           </Aside>
         )}
       </Main>

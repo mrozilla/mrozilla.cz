@@ -68,14 +68,24 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
 
   return graphql(`
     {
-      posts: allMdx(
-        filter: { fields: { sourceName: { eq: "blog" } } }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
+      posts: allMdx(filter: { fields: { sourceName: { eq: "posts" } } }) {
         edges {
           node {
             frontmatter {
-              permalink
+              meta {
+                permalink
+              }
+            }
+          }
+        }
+      }
+      legal: allMdx(filter: { fields: { sourceName: { eq: "legal" } } }) {
+        edges {
+          node {
+            frontmatter {
+              meta {
+                permalink
+              }
             }
           }
         }
@@ -86,9 +96,16 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
       return Promise.reject(result.errors);
     }
 
+    result.data.legal.edges.forEach(({ node }) => {
+      createPage({
+        path:      node.frontmatter.meta.permalink,
+        component: BlogPostContainer,
+      });
+    });
+
     return result.data.posts.edges.forEach(({ node }) => {
       createPage({
-        path:      node.frontmatter.permalink,
+        path:      node.frontmatter.meta.permalink,
         component: BlogPostContainer,
       });
     });

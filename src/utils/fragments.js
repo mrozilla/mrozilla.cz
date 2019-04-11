@@ -56,8 +56,10 @@ export const fragments = graphql`
     timeToRead
     frontmatter {
       title
-      permalink
       date(formatString: "MMMM D, YYYY")
+      meta {
+        permalink
+      }
     }
   }
 `;

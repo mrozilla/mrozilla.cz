@@ -86,9 +86,7 @@ export default function HomePage({
         </Section>
         <Section gridArea="blog" id="blog">
           <H2>Latest blog articles</H2>
-          <BlogPreviewsContainer
-            posts={posts.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
-          />
+          <BlogPreviewsContainer posts={posts} />
         </Section>
       </Main>
     </RootContainer>
