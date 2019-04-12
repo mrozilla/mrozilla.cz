@@ -1,5 +1,8 @@
 backend:
-  name: test-repo
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
   squash_merges: true
 site_url: https://www.mrozilla.cz
 media_folder: static/assets
