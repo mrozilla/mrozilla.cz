@@ -7,9 +7,10 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import uniqueId from 'lodash/uniqueId';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, H1 } from '~components';
 import { View } from '~components/primitives/View';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -17,18 +18,12 @@ import { View } from '~components/primitives/View';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/invaders/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/invaders/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
@@ -61,7 +56,13 @@ Invader.Pixel = styled.div`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function InvadersPage(props) {
+export default function InvadersPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
   const [amount, setAmount] = useState(200);
   const [_, forceUpdate] = useState();
 
@@ -69,14 +70,14 @@ export default function InvadersPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'specimen' 'invaders'",
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={props.data.page.body.hero.title} />
+        {renderBlocks(blocks)}
         <Section gridArea="specimen">
           <H1 gridColumn="1 / -1" margin="0 0 1rem">
             Your personal one:

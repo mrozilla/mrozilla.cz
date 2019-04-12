@@ -17,20 +17,10 @@ import { persist, fadeUpAnimation } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/blackjack/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/blackjack/" } } }) {
+      frontmatter {
+        ...MetaFragment
       }
-      # body {
-      #   hero {
-      #     title
-      #   }
-      # }
     }
   }
 `;
@@ -322,12 +312,12 @@ export default class BlackjackPage extends PureComponent {
       return word;
     }
     return `${word}s`;
-  }
+  };
 
   render() {
     return (
       <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
+        <SEOContainer meta={this.props.data.page.frontmatter.meta} />
         <Main
           gridTemplate={{
             xs: "'dealer' 'player' 'controls' 'bank'",
@@ -422,7 +412,9 @@ export default class BlackjackPage extends PureComponent {
               <>
                 <Button onClick={this.handleReset}>Reset</Button>
                 <Ul margin="2rem 0 0">
-                  <Li>{this.state.hands} {this.renderPlural('hand', this.state.hands)} played</Li>
+                  <Li>
+                    {this.state.hands} {this.renderPlural('hand', this.state.hands)} played
+                  </Li>
                   <Li>
                     {this.state.victories} {this.renderPlural('hand', this.state.victories)} won (
                     {((this.state.victories / this.state.hands) * 100).toFixed(2)}%)

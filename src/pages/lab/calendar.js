@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, P, Button } from '~components';
-import { useLocale } from '~utils';
+import { useLocale, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -16,18 +16,12 @@ import { useLocale } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/calendar/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/calendar/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
@@ -89,7 +83,7 @@ Calendar.Day = styled.p`
 
 export default function CalendarPage({
   data: {
-    page: { meta, body },
+    page: { frontmatter: {meta, blocks} },
   },
 }) {
   const [selected, setDate] = useState(new Date());
@@ -171,7 +165,7 @@ export default function CalendarPage({
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={body.hero.title} />
+        {renderBlocks(blocks)}
         <Section gridArea="calendar">
           {renderCalendarControls()}
           {renderCalendarWeekdays()}

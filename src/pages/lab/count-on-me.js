@@ -14,14 +14,9 @@ import { Main, Section, H1, Button } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/count-on-me/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/count-on-me/" } } }) {
+      frontmatter {
+        ...MetaFragment
       }
     }
   }
@@ -33,7 +28,9 @@ export const query = graphql`
 
 export default function CountOnMePage({
   data: {
-    page: { meta },
+    page: {
+      frontmatter: { meta },
+    },
   },
 }) {
   const [count, setCount] = useState(0);
@@ -68,14 +65,13 @@ export default function CountOnMePage({
         <Section
           onClick={e => handleCount(e, 1)}
           style={{
-            textAlign:        'center',
             userSelect:       'none',
             msUserSelect:     'none',
             MozUserSelect:    'none',
             WebkitUserSelect: 'none',
           }}
         >
-          <H1 fontSize="8rem" lineHeight="10rem" textAlign="center">
+          <H1 fontSize="8rem" lineHeight="10rem">
             {count.toLocaleString()}
           </H1>
           <Button onClick={e => handleCount(e, 1)} grouped>

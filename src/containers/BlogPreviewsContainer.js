@@ -14,16 +14,14 @@ import { Ul, Li, Link, P } from '~components';
 export default function BlogPreviewsContainer({ posts }) {
   return (
     <Ul>
-      {posts.map(post => (
-        <Li key={post.permalink}>
-          <Link to={post.permalink} secondary>
-            {post.title}
+      {posts.edges.map(({ node: { frontmatter: { title, date, meta }, timeToRead } }) => (
+        <Li key={meta.permalink}>
+          <Link to={meta.permalink} secondary>
+            {title}
           </Link>
-          {(post.date || post.timeToRead) && (
+          {(date || timeToRead) && (
             <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem" margin="0 0 2rem 0">
-              {post.date}
-              {post.date && post.timeToRead && ' • '}
-              {post.timeToRead && `${post.timeToRead} min read`}
+              {`${date} • ${timeToRead} min read`}
             </P>
           )}
         </Li>
@@ -33,12 +31,20 @@ export default function BlogPreviewsContainer({ posts }) {
 }
 
 BlogPreviewsContainer.propTypes = {
-  posts: arrayOf(
-    shape({
-      permalink:  string.isRequired,
-      title:      string.isRequired,
-      date:       string,
-      timeToRead: number,
-    }),
-  ).isRequired,
+  posts: shape({
+    edges: arrayOf(
+      shape({
+        node: shape({
+          frontmatter: shape({
+            title: string.isRequired,
+            date:  string.isRequired,
+            meta:  shape({
+              permalink: string.isRequired,
+            }).isRequired,
+          }).isRequired,
+          timeToRead: number.isRequired,
+        }),
+      }).isRequired,
+    ).isRequired,
+  }).isRequired,
 };

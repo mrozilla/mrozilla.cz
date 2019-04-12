@@ -33,12 +33,20 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        name: 'content',
-        path: `${__dirname}/src/content`,
+        modulePath: `${__dirname}/src/utils/cms.js`, // Or another path if you don't want to create /src/cms/init.js
+        manualInit: true,
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: { path: `${__dirname}/static/assets`, name: 'assets' },
+    },
+    ...['posts', 'legal', 'menus', 'pages', 'works', 'labs'].map(name => ({
+      resolve: 'gatsby-source-filesystem',
+      options: { name, path: `${__dirname}/src/content/cms/${name}` },
+    })),
 
     {
       resolve: 'gatsby-mdx',
@@ -46,14 +54,11 @@ module.exports = {
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 590,
-            },
+            options: { maxWidth: 590 },
           },
         ],
       },
     },
-    'gatsby-transformer-json',
     'gatsby-transformer-sharp',
 
     {
@@ -103,6 +108,6 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-netlify',
+    'gatsby-plugin-netlify', // keep last
   ],
 };

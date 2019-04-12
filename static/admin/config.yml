@@ -1,0 +1,240 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  squash_merges: true
+site_url: https://www.mrozilla.cz
+media_folder: static/assets
+public_folder: assets
+
+development_overrides:
+  backend:
+    name: file-system
+    api_root: "http://localhost:8000/api"
+
+collections:
+  - label: "Menus"
+    label_singular: "Menu"
+    name: menus
+    folder: src/content/cms/menus
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - name: links
+        widget: list
+        types:
+          - name: link
+            fields:
+              - name: text
+              - name: url
+          - name: markdown
+            fields:
+              - name: title
+              - { name: text, widget: markdown }
+          - name: nested
+            fields:
+              - name: title
+              - name: links
+                widget: list
+                fields:
+                  - name: text
+                  - name: url
+
+  - label: "Labs"
+    label_singular: "Lab"
+    name: labs
+    folder: src/content/cms/labs
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - name: tagline
+      - { name: date, widget: date }
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - { name: ogImage, widget: image }
+          - name: tags
+            widget: select
+            multiple: true
+            options: ["tool", "demo", "product"]
+      - name: blocks
+        widget: list
+        types:
+          - name: hero
+            label: "Hero"
+            fields:
+              - name: title
+          - name: dictionary
+            label: "Dictionary"
+            fields:
+              - name: items
+                widget: list
+                fields:
+                  - name: czech
+                    widget: object
+                    fields:
+                      - name: grammar
+                      - name: ipa
+                  - name: german
+                    widget: object
+                    fields:
+                      - name: grammar
+                      - name: ipa
+
+  - label: "Pages"
+    label_singular: "Page"
+    name: pages
+    folder: src/content/cms/pages
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - { name: date, widget: date }
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - { name: ogImage, widget: image }
+      - name: blocks
+        widget: list
+        types:
+          - name: hero
+            label: "Hero"
+            fields:
+              - name: title
+          - name: markdown
+            label: "Markdown"
+            fields:
+              - name: markdown
+                widget: markdown
+          - name: location
+            label: "Location"
+            fields:
+              - name: title
+              - name: text
+          - name: availability
+            label: "Availability"
+            fields:
+              - name: title
+              - { name: date, widget: date }
+          - name: form
+            label: "Form"
+            fields:
+              - name: inputs
+                widget: list
+                types:
+                  - name: text
+                    fields:
+                      - { name: name, default: "name" }
+                      - name: label
+                      - { name: required, widget: boolean, default: true }
+                  - name: email
+                    fields:
+                      - { name: name, default: "email" }
+                      - name: label
+                      - { name: required, widget: boolean }
+                      - name: error
+                  - name: textarea
+                    fields:
+                      - name: name
+                        default: "name"
+                      - name: label
+                      - name: description
+                      - { name: required, widget: boolean, default: true }
+                      - { name: rows, widget: number, valueType: int }
+                  - name: radio
+                    fields:
+                      - { name: name, default: "name" }
+                      - name: label
+                      - name: description
+                      - { name: required, widget: boolean, default: true }
+                      - name: options
+                        widget: list
+                        fields:
+                          - name: value
+                          - name: label
+                  - name: submit
+                    fields:
+                      - { name: name, default: "name" }
+                      - name: label
+              - { label: "Success", name: success, widget: markdown }
+
+  - label: "Works"
+    label_singular: "Work"
+    name: works
+    folder: src/content/cms/works
+    extension: mdx
+    format: frontmatter
+    create: true
+    fields:
+      - name: title
+      - name: description
+      - { name: date, widget: date }
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: tags
+            widget: select
+            multiple: true
+            options: ["Branding", "Design", "Development", "Product", "Website"]
+          - name: permalink
+      - { name: body, widget: markdown }
+
+  - label: "Blog"
+    label_singular: "Blog post"
+    name: posts
+    folder: src/content/cms/posts
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - { name: date, widget: date }
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - { name: ogImage, widget: image }
+      - name: related
+        widget: relation
+        collection: posts
+        searchFields: ["title", "permalink"]
+        valueField: "permalink"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+      - { name: body, widget: markdown }
+
+  - label: "Legal"
+    name: legal
+    folder: src/content/cms/legal
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - { name: date, widget: date }
+      # - name: description
+      - name: meta
+        widget: object
+        fields:
+          - name: title
+          - name: description
+          - name: permalink
+          - { name: ogImage, widget: image }
+      - { name: body, widget: markdown }

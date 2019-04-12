@@ -5,8 +5,9 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Input } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -14,17 +15,13 @@ import { Main, Section, Input } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/in-any-case/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/in-any-case/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
+          title
+          type
         }
-      }
-      body {
-        title
       }
     }
   }
@@ -34,7 +31,13 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function InAnyCasePage(props) {
+export default function InAnyCasePage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState({
     'lower case':    '',
@@ -116,9 +119,9 @@ export default function InAnyCasePage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-        <HeroContainer title={props.data.page.body.title} />
+      {renderBlocks(blocks)}
         <Section gridArea="input">
           <Input
             name="input"

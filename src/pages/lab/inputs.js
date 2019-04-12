@@ -5,8 +5,9 @@
 import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Form, H1, Input } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -14,18 +15,12 @@ import { Main, Form, H1, Input } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/inputs/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/inputs/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
@@ -39,8 +34,7 @@ export const query = graphql`
 export default function InputsPage({
   data: {
     page: {
-      meta,
-      body: { hero },
+      frontmatter: { meta, blocks },
     },
   },
 }) {
@@ -248,7 +242,7 @@ export default function InputsPage({
         }}
         gridGap="10vh 1rem"
       >
-        <HeroContainer title={hero.title} />
+        {renderBlocks(blocks)}
         {renderTextInputs()}
         {renderTimeInputs()}
         {renderSelects()}

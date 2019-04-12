@@ -6,8 +6,9 @@ import React, { Fragment, useReducer } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, Input, Form } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -15,18 +16,12 @@ import { Main, Section, Button, Input, Form } from '~components';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/scoreboard/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/scoreboard/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
@@ -87,7 +82,7 @@ const utils = {
       if (point > 10 && point - state[opponent].points[i] > 1) {
         return acc + 1;
       }
-      
+
       return acc;
     }, 0);
   },
@@ -179,7 +174,13 @@ const reducer = (state, { type, payload }) => {
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function ScoreboardPage(props) {
+export default function ScoreboardPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
   const [state, dispatch] = useReducer(reducer, {
     home: {
       name:   'MA Long',
@@ -318,14 +319,14 @@ export default function ScoreboardPage(props) {
 
   return (
     <RootContainer>
-      <SEOContainer meta={props.data.page.meta} />
+      <SEOContainer meta={meta} />
       <Main
         gridTemplate={{
           xs: "'hero' 'scoreboard' 'controls'",
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={props.data.page.body.hero.title} />
+        {renderBlocks(blocks)}
 
         <Section gridArea="scoreboard">
           <Scoreboard>

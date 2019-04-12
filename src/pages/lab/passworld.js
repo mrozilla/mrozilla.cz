@@ -5,9 +5,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, H2, Input, Button, Toast } from '~components';
-import { copyToClipboard, parseInput } from '~utils';
+import { copyToClipboard, parseInput, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -15,18 +15,12 @@ import { copyToClipboard, parseInput } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/passworld/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      body {
-        hero {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/passworld/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
@@ -71,15 +65,15 @@ export default class PassworldPage extends Component {
 
     return {
       password: Array(...new Array(prevState.length))
-          .map(() => generateRandomCharacter())
-          .join(''),
+        .map(() => generateRandomCharacter())
+        .join(''),
     };
   }
 
   handleGenerate = () => {
     this.Toast.hide();
     this.forceUpdate();
-  }
+  };
 
   handleChangeCheckbox = ({ target }) => this.setState(state => ({
     chars: { ...state.chars, [target.value]: target.checked },
@@ -143,7 +137,7 @@ export default class PassworldPage extends Component {
   render() {
     return (
       <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
+        <SEOContainer meta={this.props.data.page.frontmatter.meta} />
         <Main
           gridTemplate={{
             xs: "'hero' 'output' 'input'",
@@ -151,7 +145,7 @@ export default class PassworldPage extends Component {
           }}
           gridGap="10vh 1rem"
         >
-          <HeroContainer title={this.props.data.page.body.hero.title} />
+          {renderBlocks(this.props.data.page.frontmatter.blocks)}
           <Section gridArea="output">
             <H2 as="h1">Generated password</H2>
             <H1 as="p" hyphens="auto">
