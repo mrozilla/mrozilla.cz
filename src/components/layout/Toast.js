@@ -54,6 +54,12 @@ export default class Toast extends PureComponent {
     isVisible: this.props.isVisible,
   };
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      isVisible: props.isVisible,
+    };
+  }
+
   show = () => {
     clearTimeout(this.timeoutHelper);
     this.setState(

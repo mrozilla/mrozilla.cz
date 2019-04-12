@@ -5,9 +5,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, HeroContainer, SEOContainer } from '~containers';
-import { Main, Section, P, Ul, Li, H2 } from '~components';
-import { parseLinks } from '~utils';
+import { RootContainer, SEOContainer } from '~containers';
+import { Main } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -15,15 +15,16 @@ import { parseLinks } from '~utils';
 
 export const query = graphql`
   {
-    page: pagesJson(meta: { permalink: { eq: "/about/" } }) {
-      ...MetaFragment
-      body {
-        hero {
+    page: mdx(
+      fields: { sourceName: { eq: "pages" } }
+      frontmatter: { meta: { permalink: { eq: "/about/" } } }
+    ) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
-        }
-        about {
-          title
-          text
+          markdown
+          type
         }
       }
     }
@@ -37,8 +38,7 @@ export const query = graphql`
 export default function AboutPage({
   data: {
     page: {
-      meta,
-      body: { hero, about },
+      frontmatter: { meta, blocks },
     },
   },
 }) {
@@ -52,17 +52,7 @@ export default function AboutPage({
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={hero.title} />
-        <Section gridArea="about">
-          <Ul gridGap="2rem">
-            {about.map(item => (
-              <Li key={item.title}>
-                <H2>{item.title}</H2>
-                <P>{parseLinks(item.text, { type: 'primary' })}</P>
-              </Li>
-            ))}
-          </Ul>
-        </Section>
+        {renderBlocks(blocks)}
       </Main>
     </RootContainer>
   );

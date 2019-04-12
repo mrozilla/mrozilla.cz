@@ -2,13 +2,13 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { shape } from 'prop-types';
 
-import { RootContainer, SEOContainer, HeroContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Table, Link, Button, Modal, H2, P } from '~components';
-import { metaTypes } from '~utils';
+import { metaTypes, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -16,24 +16,22 @@ import { metaTypes } from '~utils';
 
 export const query = graphql`
   {
-    page: labJson(meta: { permalink: { eq: "/lab/czerman/" } }) {
-      meta {
-        title
-        description
-        permalink
-        ogImage {
-          ...OgImageFragment
-        }
-      }
-      dictionary {
-        id
-        czech {
-          grammar
-          ipa
-        }
-        german {
-          grammar
-          ipa
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/czerman/" } } }) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
+          type
+          title
+          items {
+            czech {
+              grammar
+              ipa
+            }
+            german {
+              grammar
+              ipa
+            }
+          }
         }
       }
     }
@@ -44,137 +42,127 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class CzermanPage extends PureComponent {
-  static propTypes = {
-    data: shape({
-      page: shape({
-        ...metaTypes,
-      }).isRequired,
-    }).isRequired,
-  };
-
-  state = {
+export default function CzermanPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
+    },
+  },
+}) {
+  const { items: dictionary } = blocks[1];
+  const [state, setState] = useState({
     openTermId:    '',
     isOpenAll:     false,
     isModalOpen:   false,
     isCardFlipped: false,
+  });
+
+  const handleOpenTerm = (openTermId) => {
+    setState({ ...state, isOpenAll: false, openTermId });
   };
 
-  handleOpenTerm = (openTermId) => {
-    this.setState({ isOpenAll: false, openTermId });
+  const handleOpenAll = () => {
+    setState(prevState => ({ ...prevState, isOpenAll: !prevState.isOpenAll }));
   };
 
-  handleOpenAll = () => {
-    this.setState(state => ({ isOpenAll: !state.isOpenAll }));
-  };
-
-  handleNextTerm = () => {
-    this.setState((state) => {
-      const currentIndex = this.props.data.page.dictionary.findIndex(
-        term => term.id === state.openTermId,
+  const handleNextTerm = () => {
+    setState((prevState) => {
+      const currentIndex = dictionary.findIndex(
+        term => term.czech.grammar === prevState.openTermId,
       );
       return {
+        ...prevState,
         isModalOpen:   true,
         isCardFlipped: false,
         openTermId:
-          currentIndex === this.props.data.page.dictionary.length - 1
-            ? this.props.data.page.dictionary[0].id
-            : this.props.data.page.dictionary[currentIndex + 1].id,
+          currentIndex === dictionary.length - 1
+            ? dictionary[0].czech.grammar
+            : dictionary[currentIndex + 1].czech.grammar,
       };
     });
   };
 
-  handleModal = () => {
-    this.setState(state => ({
-      isModalOpen: !state.isModalOpen,
+  const handleModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      isModalOpen: !prevState.isModalOpen,
     }));
   };
 
-  handleFlipCard = () => {
-    this.setState(state => ({
-      isCardFlipped: !state.isCardFlipped,
+  const handleFlipCard = () => {
+    setState(prevState => ({
+      ...prevState,
+      isCardFlipped: !prevState.isCardFlipped,
     }));
   };
 
-  renderModal = () => {
-    const modalTerm = this.props.data.page.dictionary.find(term => term.id === this.state.openTermId)
-      || this.props.data.page.dictionary[0];
+  const renderModal = () => {
+    const modalTerm = dictionary.find(term => term.czech.grammar === state.openTermId) || dictionary[0];
     return (
       <Modal
-        innerKey={modalTerm.id}
-        isOpen={this.state.isModalOpen}
+        innerKey={modalTerm.czech.grammar}
+        isOpen={state.isModalOpen}
         innerPadding="4rem 4rem 2rem 4rem"
         innerMinWidth="15vw"
-        onClickBackground={this.handleModal}
-        onClickClose={this.handleModal}
-        onClickEscape={this.handleModal}
+        onClickBackground={handleModal}
+        onClickClose={handleModal}
+        onClickEscape={handleModal}
       >
         <H2>Czech</H2>
         <P>{modalTerm.czech.grammar}</P>
         <H2>
-          Czech{' '}
-          <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
-            IPA
-          </Link>
+          Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">IPA</Link>
         </H2>
         <P>{modalTerm.czech.ipa}</P>
         <H2>German equivalent</H2>
-        <P>{this.state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
+        <P>{state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
         <H2>
-          German{' '}
-          <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">
-            IPA
-          </Link>
+          German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">IPA</Link>
         </H2>
-        <P>{this.state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
+        <P>{state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
         <Button
-          onClick={this.state.isCardFlipped ? this.handleNextTerm : this.handleFlipCard}
+          onClick={state.isCardFlipped ? handleNextTerm : handleFlipCard}
           margin="4rem 0 0 0"
           width="100%"
         >
-          {this.state.isCardFlipped ? 'Next' : 'Reveal'}
+          {state.isCardFlipped ? 'Next' : 'Reveal'}
         </Button>
       </Modal>
     );
   };
 
-  renderTable = () => (
+  const renderTable = () => (
     <Table margin="0 0 2rem 0" tableLayout="fixed">
       <Table.Thead>
         <Table.Tr>
           <Table.Th>Czech</Table.Th>
           <Table.Th>
-            Czech{' '}
-            <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">
-              IPA
-            </Link>
+            Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">IPA</Link>
           </Table.Th>
           <Table.Th>German equivalent</Table.Th>
           <Table.Th>
-            German{' '}
-            <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">
-              IPA
-            </Link>
+            German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">IPA</Link>
           </Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>
-        {this.props.data.page.dictionary.map(term => (
+        {dictionary.map(term => (
           <Table.Tr
-            key={term.id}
+            key={term.czech.grammar}
             cursor="pointer"
-            onClick={() => this.handleOpenTerm(this.state.openTermId !== term.id ? term.id : '')}
+            onClick={() => handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')
+            }
           >
             <Table.Td>{term.czech.grammar}</Table.Td>
             <Table.Td>{term.czech.ipa}</Table.Td>
-            {this.state.openTermId === term.id || this.state.isOpenAll ? (
+            {state.openTermId === term.czech.grammar || state.isOpenAll ? (
               <Table.Td>{term.german.grammar}</Table.Td>
             ) : (
               <Table.Td colSpan="2" textAlign="center" opacity={0.5}>
                 Reveal
               </Table.Td>
             )}
-            {this.state.openTermId === term.id || this.state.isOpenAll ? (
+            {state.openTermId === term.czech.grammar || state.isOpenAll ? (
               <Table.Td>{term.german.ipa}</Table.Td>
             ) : null}
           </Table.Tr>
@@ -183,24 +171,28 @@ export default class CzermanPage extends PureComponent {
     </Table>
   );
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.meta} />
-        <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
-          <HeroContainer title={this.props.data.page.meta.description} />
-          <Section gridArea="practice">
-            <Button onClick={this.handleNextTerm}>Start practice</Button>
-            {this.renderModal()}
-          </Section>
-          <Section gridArea="dictionary">
-            {this.renderTable()}
-            <Button onClick={this.handleOpenAll}>
-              {this.state.isOpenAll ? 'Hide' : 'Reveal'} all
-            </Button>
-          </Section>
-        </Main>
-      </RootContainer>
-    );
-  }
+  return (
+    <RootContainer>
+      <SEOContainer meta={meta} />
+      <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
+        {renderBlocks(blocks)}
+        <Section gridArea="practice">
+          <Button onClick={handleNextTerm}>Start practice</Button>
+          {renderModal()}
+        </Section>
+        <Section gridArea="dictionary">
+          {renderTable()}
+          <Button onClick={handleOpenAll}>{state.isOpenAll ? 'Hide' : 'Reveal'} all</Button>
+        </Section>
+      </Main>
+    </RootContainer>
+  );
 }
+
+CzermanPage.propTypes = {
+  data: shape({
+    page: shape({
+      ...metaTypes,
+    }).isRequired,
+  }).isRequired,
+};

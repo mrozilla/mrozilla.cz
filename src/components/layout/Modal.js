@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { string, bool, node, func } from 'prop-types';
 import styled from 'styled-components';
 
@@ -51,73 +51,71 @@ const ModalWrapper = styled.div`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class Modal extends PureComponent {
-  static propTypes = {
-    innerKey:          string,
-    isOpen:            bool.isRequired,
-    children:          node.isRequired,
-    outerPadding:      string,
-    innerPadding:      string,
-    innerMinWidth:     string,
-    onClickBackground: func,
-    onClickClose:      func,
-    onClickEscape:     func,
-  };
-
-  static defaultProps = {
-    innerKey:          null,
-    outerPadding:      '5vmin',
-    innerPadding:      '2rem',
-    innerMinWidth:     null,
-    onClickBackground: x => x,
-    onClickClose:      x => x,
-    onClickEscape:     x => x,
-  };
-
-  componentDidUpdate = (prevProps) => {
-    if (!prevProps.isOpen && this.props.isOpen) {
-      document.addEventListener('keydown', this.handleKeyDown);
-    }
-    if (prevProps.isOpen && !this.props.isOpen) {
-      document.removeEventListener('keydown', this.handleKeyDown);
-    }
-  };
-
-  handleKeyDown = (event) => {
+export default function Modal({
+  innerKey,
+  isOpen,
+  outerPadding,
+  innerPadding,
+  innerMinWidth,
+  onClickEscape,
+  onClickBackground,
+  onClickClose,
+  children,
+}) {
+  const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
-      this.props.onClickEscape();
+      onClickEscape();
     }
   };
 
-  handleClickBackground = (event) => {
+  const handleClickBackground = (event) => {
     if (event.target === event.currentTarget) {
-      this.props.onClickBackground();
+      onClickBackground();
     }
   };
 
-  render() {
-    if (this.props.isOpen) {
-      return (
-        <ModalBackground onClick={this.handleClickBackground} padding={this.props.outerPadding}>
-          <ModalWrapper
-            key={this.props.innerKey}
-            padding={this.props.innerPadding}
-            minWidth={this.props.innerMinWidth}
-          >
-            {this.props.children}
-            <Button
-              position="absolute"
-              top="0"
-              right="0"
-              tertiary
-              onClick={this.props.onClickClose}
-            >
-              ×
-            </Button>
-          </ModalWrapper>
-        </ModalBackground>
-      );
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
     }
-    return null;
+
+    return undefined;
+  }, [isOpen]);
+
+  if (isOpen) {
+    return (
+      <ModalBackground onClick={handleClickBackground} padding={outerPadding}>
+        <ModalWrapper key={innerKey} padding={innerPadding} minWidth={innerMinWidth}>
+          {children}
+          <Button position="absolute" top="0" right="0" tertiary onClick={onClickClose}>
+            ×
+          </Button>
+        </ModalWrapper>
+      </ModalBackground>
+    );
   }
+  return null;
 }
+
+Modal.propTypes = {
+  innerKey:          string,
+  isOpen:            bool.isRequired,
+  children:          node.isRequired,
+  outerPadding:      string,
+  innerPadding:      string,
+  innerMinWidth:     string,
+  onClickBackground: func,
+  onClickClose:      func,
+  onClickEscape:     func,
+};
+
+Modal.defaultProps = {
+  innerKey:          null,
+  outerPadding:      '5vmin',
+  innerPadding:      '2rem',
+  innerMinWidth:     null,
+  onClickBackground: x => x,
+  onClickClose:      x => x,
+  onClickEscape:     x => x,
+};

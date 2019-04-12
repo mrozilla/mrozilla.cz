@@ -17,8 +17,8 @@ const {
 
 module.exports = {
   siteMetadata: {
-    title:   'mrozilla',
-    siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
+    siteTitle: 'mrozilla',
+    siteUrl:   NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
   },
   developMiddleware: (app) => {
     app.use(
@@ -33,35 +33,32 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        name: 'content',
-        path: `${__dirname}/src/content`,
+        modulePath: `${__dirname}/src/utils/cms.js`, // Or another path if you don't want to create /src/cms/init.js
+        manualInit: true,
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: { path: `${__dirname}/static/assets`, name: 'assets' },
+    },
+    ...['posts', 'legal', 'menus', 'pages', 'works', 'labs'].map(name => ({
+      resolve: 'gatsby-source-filesystem',
+      options: { name, path: `${__dirname}/src/content/cms/${name}` },
+    })),
 
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-mdx',
       options: {
-        plugins: [
+        gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 590,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-prismjs',
-            options: {
-              classPrefix:      'language-',
-              inlineCodeMarker: null,
-              aliases:          {},
-            },
+            options: { maxWidth: 590 },
           },
         ],
       },
     },
-    'gatsby-transformer-json',
     'gatsby-transformer-sharp',
 
     {
@@ -111,6 +108,6 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-netlify',
+    'gatsby-plugin-netlify', // keep last
   ],
 };

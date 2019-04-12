@@ -5,8 +5,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, HeroContainer, WorksContainer, SEOContainer } from '~containers';
+import { RootContainer, WorksContainer, SEOContainer } from '~containers';
 import { Main, Section, H2 } from '~components';
+import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -14,18 +15,51 @@ import { Main, Section, H2 } from '~components';
 
 export const query = graphql`
   {
-    page: pagesJson(meta: { permalink: { eq: "/lab/" } }) {
-      ...MetaFragment
-      body {
-        hero {
+    page: mdx(
+      fields: { sourceName: { eq: "pages" } }
+      frontmatter: { meta: { permalink: { eq: "/lab/" } } }
+    ) {
+      frontmatter {
+        ...MetaFragment
+        blocks {
           title
+          type
         }
       }
     }
-    labs: allLabJson(sort: { fields: [meta___date], order: DESC }) {
+    tools: allMdx(
+      filter: {
+        fields: { sourceName: { eq: "labs" } }
+        frontmatter: { meta: { tags: { in: "tool" } } }
+      }
+    ) {
       edges {
         node {
-          ...LabFragment
+          ...LabPreviewFragment
+        }
+      }
+    }
+    demos: allMdx(
+      filter: {
+        fields: { sourceName: { eq: "labs" } }
+        frontmatter: { meta: { tags: { in: "demo" } } }
+      }
+    ) {
+      edges {
+        node {
+          ...LabPreviewFragment
+        }
+      }
+    }
+    products: allMdx(
+      filter: {
+        fields: { sourceName: { eq: "labs" } }
+        frontmatter: { meta: { tags: { in: "product" } } }
+      }
+    ) {
+      edges {
+        node {
+          ...LabPreviewFragment
         }
       }
     }
@@ -39,10 +73,11 @@ export const query = graphql`
 export default function LabPage({
   data: {
     page: {
-      meta,
-      body: { hero },
+      frontmatter: { meta, blocks },
     },
-    labs: { edges: labs },
+    tools,
+    products,
+    demos,
   },
 }) {
   return (
@@ -55,29 +90,23 @@ export default function LabPage({
         }}
         gridGap="10vh 4rem"
       >
-        <HeroContainer title={hero.title} />
+        {renderBlocks(blocks)}
         <Section gridArea="tools">
           <H2>Little tools</H2>
           <WorksContainer
-            works={labs
-              .filter(({ node: { meta: { type } } }) => type.includes('tool'))
-              .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
+            works={tools.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
           />
         </Section>
         <Section gridArea="products">
           <H2>Standalone products</H2>
           <WorksContainer
-            works={labs
-              .filter(({ node: { meta: { type } } }) => type.includes('product'))
-              .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
+            works={products.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
           />
         </Section>
         <Section gridArea="demos">
           <H2>Demos</H2>
           <WorksContainer
-            works={labs
-              .filter(({ node: { meta: { type } } }) => type.includes('demo'))
-              .map(({ node: { meta: { permalink }, body } }) => ({ permalink, ...body }))}
+            works={demos.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
           />
         </Section>
       </Main>

@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { instanceOf } from 'prop-types';
 
 import { P, Link } from '~components';
@@ -11,34 +11,32 @@ import { P, Link } from '~components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class AvailabilityContainer extends PureComponent {
-  static propTypes = {
-    nowDate:          instanceOf(Date),
-    availabilityDate: instanceOf(Date),
-  };
-
-  static defaultProps = {
-    nowDate:          new Date(),
-    availabilityDate: new Date(),
-  };
-
-  availabilityDate = new Date(
-    Math.max(
-      new Date(this.props.nowDate.getFullYear(), this.props.nowDate.getMonth() + 1),
-      this.props.availabilityDate,
-    ),
+export default function AvailabilityContainer({
+  nowDate = new Date(),
+  availabilityDate = new Date(),
+}) {
+  const availableDate = new Date(
+    Math.max(new Date(nowDate.getFullYear(), nowDate.getMonth() + 1), availabilityDate),
   );
 
-  render() {
-    return (
-      <P fontSize="3rem">
-        <Link to="/contact" secondary>
-          {this.availabilityDate.toLocaleString('en-GB', {
-            month: 'long',
-            year:  'numeric',
-          })}
-        </Link>
-      </P>
-    );
-  }
+  return (
+    <P fontSize="3rem">
+      <Link to="/contact" secondary>
+        {availableDate.toLocaleString('en-GB', {
+          month: 'long',
+          year:  'numeric',
+        })}
+      </Link>
+    </P>
+  );
 }
+
+AvailabilityContainer.propTypes = {
+  nowDate:          instanceOf(Date),
+  availabilityDate: instanceOf(Date),
+};
+
+AvailabilityContainer.defaultProps = {
+  nowDate:          new Date(),
+  availabilityDate: new Date(),
+};

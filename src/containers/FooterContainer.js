@@ -3,11 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { shape, string, arrayOf } from 'prop-types';
+import MDX from '@mdx-js/runtime';
 
 import ColourThemeContainer from './ColourThemeContainer';
-import { Footer, Section, H2, Ul, Li, Link, P } from '~components';
-import { parseLinks } from '~utils';
+import { Footer, Section, H2, Ul, Li, Link } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -35,61 +34,31 @@ export default function FooterContainer({ footer }) {
         <H2>Colour theme</H2>
         <ColourThemeContainer />
       </Section>
-      <Section gridArea="contact">
-        <H2>{footer.contact.title}</H2>
-        <Ul>
-          {footer.contact.body.map(contact => (
-            <Li key={contact.url}>
-              <Link to={contact.url} secondary>
-                {contact.text}
-              </Link>
-            </Li>
-          ))}
-        </Ul>
-      </Section>
-      <Section gridArea="legal">
-        <H2>{footer.legal.title}</H2>
-        <Ul>
-          {footer.legal.body.map(legal => (
-            <Li key={legal.url}>
-              <Link to={legal.url} secondary>
-                {legal.text}
-              </Link>
-            </Li>
-          ))}
-        </Ul>
-      </Section>
-      <Section gridArea="colophon">
-        <H2>{footer.colophon.title}</H2>
-        <P>{parseLinks(footer.colophon.text, { type: 'primary' })}</P>
-      </Section>
+      {footer.map(item => (
+        <Section key={item.title} gridArea={item.title.toLowerCase()}>
+          <H2>{item.title}</H2>
+          {item.type === 'nested' && (
+            <Ul>
+              {item.links.map(link => (
+                <Li key={link.url}>
+                  <Link to={link.url} secondary>
+                    {link.text}
+                  </Link>
+                </Li>
+              ))}
+            </Ul>
+          )}
+          {item.type === 'markdown' && (
+            <MDX
+              components={{
+                a: Link,
+              }}
+            >
+              {item.text}
+            </MDX>
+          )}
+        </Section>
+      ))}
     </Footer>
   );
 }
-
-FooterContainer.propTypes = {
-  footer: shape({
-    contact: shape({
-      title: string,
-      body:  arrayOf(
-        shape({
-          url:  string.isRequired,
-          text: string.isRequired,
-        }),
-      ),
-    }),
-    legal: shape({
-      title: string,
-      body:  arrayOf(
-        shape({
-          url:  string.isRequired,
-          text: string.isRequired,
-        }),
-      ),
-    }),
-    colophon: shape({
-      title: string.isRequired,
-      text:  string.isRequired,
-    }),
-  }).isRequired,
-};

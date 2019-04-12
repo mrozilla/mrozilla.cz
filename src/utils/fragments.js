@@ -20,7 +20,7 @@ export const OgImageFragment = graphql`
 `;
 
 export const fragments = graphql`
-  fragment MetaFragment on PagesJson {
+  fragment MetaFragment on MdxFrontmatter {
     meta {
       permalink
       title
@@ -31,33 +31,35 @@ export const fragments = graphql`
     }
   }
 
-  fragment WorkFragment on WorkJson {
-    meta {
-      permalink
-    }
-    body {
+  fragment WorkPreviewFragment on Mdx {
+    frontmatter {
       title
-      tags
+      meta {
+        permalink
+        tags
+      }
     }
   }
 
-  fragment LabFragment on LabJson {
-    meta {
-      type
-      permalink
-    }
-    body {
+  fragment LabPreviewFragment on Mdx {
+    frontmatter {
       title
       tagline
+      date
+      meta {
+        permalink
+      }
     }
   }
 
-  fragment BlogPreviewFragment on MarkdownRemark {
+  fragment BlogPreviewFragment on Mdx {
     timeToRead
     frontmatter {
-      permalink
       title
       date(formatString: "MMMM D, YYYY")
+      meta {
+        permalink
+      }
     }
   }
 `;

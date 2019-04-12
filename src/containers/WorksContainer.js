@@ -15,14 +15,14 @@ export default function WorksContainer({ works }) {
   return (
     <Ul gridGap="3rem">
       {works.map(work => (
-        <Li key={work.permalink}>
+        <Li key={work.meta.permalink}>
           <H3 fontSize="3rem" lineHeight="4rem" margin="0">
-            <Link to={work.permalink} secondary>
+            <Link to={work.meta.permalink} secondary>
               {work.title}
             </Link>
           </H3>
           <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
-            {work.tags && work.tags.join(', ')}
+            {work.meta.tags && work.meta.tags.join(', ')}
             {work.tagline && work.tagline}
           </P>
         </Li>
@@ -34,10 +34,12 @@ export default function WorksContainer({ works }) {
 WorksContainer.propTypes = {
   works: arrayOf(
     shape({
-      permalink: string.isRequired,
-      title:     string.isRequired,
-      tagline:   string,
-      tags:      arrayOf(string),
+      title:   string.isRequired,
+      tagline: string,
+      meta:    shape({
+        permalink: string.isRequired,
+        tags:      arrayOf(string),
+      }),
     }),
   ).isRequired,
 };

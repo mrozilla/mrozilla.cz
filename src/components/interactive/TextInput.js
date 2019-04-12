@@ -15,15 +15,14 @@ import { Input } from '~components/primitives/Input';
 export default function TextInput({ onChange, ...rest }) {
   const handleChange = (event) => {
     if (event.target.type === 'url') {
-      if (event.target.value === 'https://') {
+      // intentional check for state of one slash deleted
+      if (event.target.value === 'https:/') {
         event.target.value = '';
-        return;
       }
+
       if (!event.target.value.includes('https://')) {
         event.target.value = `https://${event.target.value}`;
-        return;
       }
-      return;
     }
 
     if (onChange) {
