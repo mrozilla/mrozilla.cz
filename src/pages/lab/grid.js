@@ -121,11 +121,11 @@ export default function GridPage({
         }}
         gridGap="4rem 2rem"
       >
-        {['4rem 0 0 0', '0 8rem 0 0', '0 0 0 8rem', '6rem'].map(margin => (
+        {['4rem 0 0 0', '0 8rem 0 0', '0 0 0 8rem', '6rem'].map(padding => (
           <Li
-            key={margin}
+            key={padding}
             padding={{
-              md: state.layout === 'exciting' ? margin : undefined,
+              md: state.layout === 'exciting' ? padding : undefined,
             }}
             transition="padding 250ms"
           >

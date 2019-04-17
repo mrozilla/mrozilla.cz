@@ -74,10 +74,7 @@ export default function CzermanPage({
         ...prevState,
         isModalOpen:   true,
         isCardFlipped: false,
-        openTermId:
-          currentIndex === dictionary.length - 1
-            ? dictionary[0].czech.grammar
-            : dictionary[currentIndex + 1].czech.grammar,
+        openTermId:    dictionary[(currentIndex + 1) % dictionary.length].czech.grammar,
       };
     });
   };
@@ -188,11 +185,3 @@ export default function CzermanPage({
     </RootContainer>
   );
 }
-
-CzermanPage.propTypes = {
-  data: shape({
-    page: shape({
-      ...metaTypes,
-    }).isRequired,
-  }).isRequired,
-};
