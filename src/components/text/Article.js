@@ -34,6 +34,7 @@ export const Article = styled.article`
   }
   & p {
     margin-bottom: 3rem;
+    max-width: 50ch;
   }
   & ul {
     margin-bottom: 3rem;
