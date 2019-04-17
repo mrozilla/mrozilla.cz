@@ -5,8 +5,9 @@
 const path = require('path');
 const fsMiddlewareAPI = require('netlify-cms-backend-fs/dist/fs');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
-// const mdx = require('@mdx-js/mdx');
-// const babel = require('@babel/core');
+const mdx = require('@mdx-js/mdx');
+const babel = require('@babel/core');
+const deepMap = require('deep-map');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // aliases
@@ -34,6 +35,40 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
   if (node.internal.type === 'Mdx') {
     const parent = getNode(node.parent);
 
+    // TODO: finalise for merge into gatsby-mdx/fork
+    deepMap(
+      node.frontmatter,
+      (value, key) => {
+        if (key === 'markdown' || key === 'mdx') {
+          const mdxed = mdx.sync(value);
+          const babeled = babel.transform(mdxed, {
+            configFile: false,
+            // plugins:    [instance.plugin, objRestSpread, htmlAttrToJSXAttr],
+            presets:    [
+              require('@babel/preset-react'),
+              [
+                require('@babel/preset-env'),
+                {
+                  useBuiltIns: 'entry',
+                  corejs:      2,
+                  modules:     'false',
+                },
+              ],
+            ],
+          });
+          const replaced = babeled.code
+            .replace(/export\s*default\s*function\s*MDXContent\s*/, 'return function MDXContent')
+            .replace(/export\s*{\s*MDXContent\s+as\s+default\s*};?/, 'return MDXContent;')
+            .replace(/\nexport /g, '\n');
+
+          return replaced;
+        }
+
+        return value;
+      },
+      { inPlace: true },
+    );
+
     if (parent.internal.type === 'File') {
       createNodeField({
         node,
@@ -43,25 +78,6 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
     }
   }
 };
-
-// exports.onCreateNode = ({ node }) => {
-//   if (node.frontmatter && node.frontmatter.links) {
-//     node.frontmatter.links.map(async (link) => {
-//       if (link.type === 'markdown') {
-//         // link.text = await mdx(link.text);
-//         const mdxed = await mdx(link.text);
-//         console.log(mdxed);
-//         console.log(
-//           babel.transform(mdxed, {
-//             configFile: false,
-//           }),
-//         );
-//         return link;
-//       }
-//       return link;
-//     });
-//   }
-// };
 
 exports.createPages = ({ actions: { createPage }, graphql }) => {
   const BlogPostContainer = path.resolve('src/containers/BlogPostContainer.js');
