@@ -33,7 +33,7 @@ collections:
           - name: markdown
             fields:
               - name: title
-              - { name: text, widget: markdown }
+              - { name: mdx, widget: markdown }
           - name: nested
             fields:
               - name: title
@@ -116,7 +116,7 @@ collections:
           - name: markdown
             label: "Markdown"
             fields:
-              - name: markdown
+              - name: mdx
                 widget: markdown
           - name: location
             label: "Location"
