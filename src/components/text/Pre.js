@@ -10,20 +10,12 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Pre({ children, ...props }) {
-  if (
-    // children is MDXTag
-    children
-    // MDXTag props
-    && children.props
-    // if MDXTag is going to render a <code>
-    && children.props.name === 'code'
-  ) {
-    const language = children.props.props.className.split('-')[1];
+  if (children && children.props && children.props.mdxType === 'code') {
     return (
       <Highlight
         {...defaultProps}
         code={children.props.children.trim()}
-        language={language}
+        language={children.props.className.split('-')[1]}
         theme={undefined}
       >
         {({ className, tokens, getLineProps, getTokenProps }) => (
