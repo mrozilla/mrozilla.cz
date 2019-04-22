@@ -77,8 +77,7 @@ export default function Carousel({ children, visibleItems, gap, loop }) {
     return undefined;
   }, []);
 
-  const events = {
-    ref,
+  const handlers = {
     onMouseDown: ({ nativeEvent: e }) => {
       setinitMouseX(e.clientX);
       setInitScrollX(ref.current.scrollLeft);
@@ -96,7 +95,12 @@ export default function Carousel({ children, visibleItems, gap, loop }) {
   };
 
   return (
-    <CarouselWrapper ref={ref} gridAutoColumns={`${100 / visibleItems}%`} gridGap={gap} {...events}>
+    <CarouselWrapper
+      ref={ref}
+      gridAutoColumns={`${100 / visibleItems}%`}
+      gridGap={gap}
+      {...handlers}
+    >
       {Children.map(children, child => (
         <CarouselItem>{child}</CarouselItem>
       ))}
