@@ -39,10 +39,12 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
     "@mdx-js/loader": "^1.0.5",
     "@mdx-js/mdx": "^1.0.5",
     "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.10.0",
+    "deep-map": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -53,7 +55,7 @@
     "netlify-lambda": "^1.4.4"
   },
   "scripts": {
-    "start:gatsby": "gatsby develop",
+    "start:gatsby": "gatsby clean && gatsby develop",
     "start:lambda": "netlify-lambda serve src/lambda",
     "start": "yarn start:gatsby",
     "build:gatsby": "gatsby build",

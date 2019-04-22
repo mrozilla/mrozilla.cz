@@ -4294,6 +4294,14 @@ deep-map@1.5.0:
     lodash "^4.17.4"
     tslib "^1.6.0"
 
+deep-map@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/deep-map/-/deep-map-2.0.0.tgz#17bbc2f513ba658fdd5cd8fb2b8bd5b0afef5456"
+  integrity sha512-guIurpeZi1wiclCEEHpJmFx7Tr4gkmSBNcUpY67maP4BJeEa1JPVf9KXURcCI/cAHsvGtqVwQKI/X39rY735Rg==
+  dependencies:
+    lodash "^4.17.11"
+    tslib "^1.6.0"
+
 deepmerge@^2.0.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"

@@ -5,6 +5,8 @@
 const path = require('path');
 const fsMiddlewareAPI = require('netlify-cms-backend-fs/dist/fs');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
+
+// TODO: finalise for merge into gatsby-mdx/fork
 const mdx = require('@mdx-js/mdx');
 const babel = require('@babel/core');
 const deepMap = require('deep-map');
@@ -26,7 +28,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// automatic pages
+// node transformations
 // ─────────────────────────────────────────────────────────────────────────────
 
 exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
@@ -78,6 +80,10 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
     }
   }
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// automatic pages
+// ─────────────────────────────────────────────────────────────────────────────
 
 exports.createPages = ({ actions: { createPage }, graphql }) => {
   const BlogPostContainer = path.resolve('src/containers/BlogPostContainer.js');
