@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main } from '~components';
+import { Main, Article } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
-          markdown
+          mdx
           type
         }
       }
@@ -45,14 +45,8 @@ export default function AboutPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main
-        gridTemplate={{
-          xs: "'hero' 'about'",
-          md: "'hero hero' 'about .' / 2fr 1fr",
-        }}
-        gridGap="10vh 4rem"
-      >
-        {renderBlocks(blocks)}
+      <Main gridTemplate="'hero' 'about'" gridGap="10vh 4rem">
+        {renderBlocks(blocks, { wrapper: Article })}
       </Main>
     </RootContainer>
   );

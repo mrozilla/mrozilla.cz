@@ -36,7 +36,7 @@ const StyledLink = styled(Text)`
       `;
     }
     return css`
-      text-decoration: underline;
+      text-decoration: underline var(--color-info);
       &:hover,
       &:focus,
       &:active {

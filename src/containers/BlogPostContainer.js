@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 
 import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
-import { Article, Aside, Link, Main, H1, H2, P, Pre } from '~components';
+import { Article, Aside, Link, Main, H1, H2, P } from '~components';
 import { parseLinks } from '~utils';
 
 import '~utils/style/highlight.css';
@@ -75,30 +75,12 @@ export default function BlogPost({
               <P fontSize="3rem">{parseLinks(meta.description, { type: 'primary' })}</P>
             )}
             {date && (
-              <time
-                style={{
-                  fontSize:      '1.25rem',
-                  fontWeight:    '300',
-                  lineHeight:    '2rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.2em',
-                  marginTop:     '-2rem',
-                }}
-                dateTime={new Date(date).toISOString()}
-                itemProp="datePublished"
-              >
+              <H2 as="time" dateTime={new Date(date).toISOString()} itemProp="datePublished">
                 {date}
-              </time>
+              </H2>
             )}
           </header>
-          <MDXRenderer
-            components={{
-              a:   Link,
-              pre: Pre,
-            }}
-          >
-            {mdx.body}
-          </MDXRenderer>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
         </Article>
         {relatedArticles.edges.length > 0 && (
           <Aside>

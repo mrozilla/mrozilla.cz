@@ -12,9 +12,10 @@ import { Text } from '~components/primitives/Text';
 
 export const H1 = styled(Text)``;
 H1.defaultProps = {
-  as:         'h1',
-  fontSize:   '3rem',
-  lineHeight: '4rem',
+  as:            'h1',
+  fontSize:      '3rem',
+  lineHeight:    '4rem',
+  letterSpacing: '0.025em',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import MDX from '@mdx-js/runtime';
+import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 
 import ColourThemeContainer from './ColourThemeContainer';
 import { Footer, Section, H2, Ul, Li, Link } from '~components';
@@ -49,13 +49,13 @@ export default function FooterContainer({ footer }) {
             </Ul>
           )}
           {item.type === 'markdown' && (
-            <MDX
+            <MDXRenderer
               components={{
                 a: Link,
               }}
             >
-              {item.text}
-            </MDX>
+              {item.mdx}
+            </MDXRenderer>
           )}
         </Section>
       ))}
