@@ -3,10 +3,11 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Article } from '~components';
+import { Main, Section, Masonry, Img } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,15 +16,11 @@ import { renderBlocks } from '~utils';
 
 export const query = graphql`
   {
-    page: mdx(
-      fields: { sourceName: { eq: "pages" } }
-      frontmatter: { meta: { permalink: { eq: "/about/" } } }
-    ) {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/masonry/" } } }) {
       frontmatter {
         ...MetaFragment
         blocks {
           title
-          mdx
           type
         }
       }
@@ -35,7 +32,7 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function AboutPage({
+export default function MasonryPage({
   data: {
     page: {
       frontmatter: { meta, blocks },
@@ -45,8 +42,20 @@ export default function AboutPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'about'" gridGap="10vh 4rem">
-        {renderBlocks(blocks, { wrapper: Article })}
+      <Main gridTemplate="'hero' 'masonry'" gridGap="10vh 1rem">
+        {renderBlocks(blocks)}
+        <Section gridArea="masonry">
+          <Masonry>
+            {Array.from({ length: 15 }, (_, i) => i).map(order => (
+              <Img
+                key={order}
+                ratio={Math.random() + 0.5}
+                src="https://source.unsplash.com/random/400x400"
+                alt="a random photo"
+              />
+            ))}
+          </Masonry>
+        </Section>
       </Main>
     </RootContainer>
   );

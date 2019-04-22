@@ -121,7 +121,7 @@ export default function InAnyCasePage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
-      {renderBlocks(blocks)}
+        {renderBlocks(blocks)}
         <Section gridArea="input">
           <Input
             name="input"

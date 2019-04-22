@@ -16,7 +16,7 @@ export default function HeaderContainer({ header }) {
     <Header>
       <H1 fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
         <Link to="/" secondary>
-          mrozilla
+          Mrozilla
         </Link>
       </H1>
       <Nav>
