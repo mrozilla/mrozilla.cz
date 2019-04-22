@@ -40,6 +40,8 @@ export const StyledImg = styled(View)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  user-drag: none;
 `;
 
 StyledImg.defaultProps = {
