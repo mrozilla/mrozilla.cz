@@ -2,21 +2,21 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { Children, useRef, useState } from 'react';
+import React, { Children, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { number, string, node, bool } from 'prop-types';
+import { number, string, node, shape } from 'prop-types';
 
 import { Ul, Li } from '../text/List';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// component
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CarouselWrapper = styled(Ul)`
   grid-auto-flow: column;
 
   overflow-x: scroll;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x mandatory;
   scroll-padding: 0 calc(${({ gridGap }) => gridGap} * 2);
   -webkit-overflow-scrolling: touch;
 
@@ -51,10 +51,31 @@ const CarouselItem = styled(Li)`
   scroll-snap-align: start;
 `;
 
-export default function Carousel({ children, itemWidth, gap }) {
+// ─────────────────────────────────────────────────────────────────────────────
+// component
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default function Carousel({ children, visibleItems, gap, loop }) {
   const ref = useRef();
   const [initMouseX, setinitMouseX] = useState(0);
   const [initScrollX, setInitScrollX] = useState(0);
+
+  const handleLoop = () => {
+    const { scrollLeft, offsetWidth, scrollWidth } = ref.current; // get currect sizing outside of useEffect closure
+    const isEnd = scrollLeft >= scrollWidth - offsetWidth; // detect end of scrolling
+    const left = isEnd ? 0 : scrollLeft + offsetWidth / visibleItems; // scroll back to 0 if at the end
+
+    ref.current.scrollTo({ left, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    // only run if loop props passed
+    if (loop && loop.interval) {
+      const interval = setInterval(handleLoop, loop.interval);
+      return () => clearInterval(interval);
+    }
+    return undefined;
+  }, []);
 
   const events = {
     ref,
@@ -75,21 +96,25 @@ export default function Carousel({ children, itemWidth, gap }) {
   };
 
   return (
-    <CarouselWrapper ref={ref} gridAutoColumns={itemWidth} gridGap={gap} {...events}>
-      {Children.map(children, (child, i) => (
-        <CarouselItem key={i}>{child}</CarouselItem>
+    <CarouselWrapper ref={ref} gridAutoColumns={`${100 / visibleItems}%`} gridGap={gap} {...events}>
+      {Children.map(children, child => (
+        <CarouselItem>{child}</CarouselItem>
       ))}
     </CarouselWrapper>
   );
 }
 
 Carousel.propTypes = {
-  children:  node.isRequired,
-  itemWidth: string,
-  gap:       string,
+  children:     node.isRequired,
+  visibleItems: number,
+  gap:          string,
+  loop:         shape({
+    interval: number,
+  }),
 };
 
 Carousel.defaultProps = {
-  itemWidth: '25%',
-  gap:       '1rem',
+  visibleItems: 4,
+  gap:          '1rem',
+  loop:         undefined,
 };
