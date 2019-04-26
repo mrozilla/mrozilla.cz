@@ -129,7 +129,7 @@ export default function GridPage({
             }}
             transition="padding 250ms"
           >
-            <Img src={state.src} alt="a random photo" />
+            <Img src={state.src} alt="a random photo" zoom />
             <H1 as="h2" fontSize="2.25rem" lineHeight="4rem">
               What a great photo
             </H1>

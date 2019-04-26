@@ -32,6 +32,7 @@ export const query = graphql`
         fields: { sourceName: { eq: "labs" } }
         frontmatter: { meta: { tags: { in: "tool" } } }
       }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
@@ -44,6 +45,7 @@ export const query = graphql`
         fields: { sourceName: { eq: "labs" } }
         frontmatter: { meta: { tags: { in: "demo" } } }
       }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
@@ -56,6 +58,7 @@ export const query = graphql`
         fields: { sourceName: { eq: "labs" } }
         frontmatter: { meta: { tags: { in: "product" } } }
       }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
