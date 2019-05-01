@@ -14,21 +14,17 @@ import { Error } from '~components/text/Error';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Input = styled(Text)`
-  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
-  --shadow-light: 0 1px 0 0 hsla(var(--hsl-text), 0.25);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
 
   appearance: none;
   border: none;
   outline: none;
   resize: none;
-  background-color: transparent;
 
   display: block;
   width: 100%;
-
-  box-shadow: var(--shadow-light);
-  border-radius: 0;
-  padding: 2.5rem 0 1.5rem;
+  background-color: hsla(var(--hsl-text), 0.05);
+  line-height: 1.5em;
 
   & ~ ${Tooltip} {
     visibility: hidden;
@@ -37,20 +33,20 @@ export const Input = styled(Text)`
   }
 
   &::placeholder {
-    opacity: 0.25;
+    opacity: 0.5;
   }
 
   &:not(:read-only):not(:disabled) {
     :hover {
       box-shadow: var(--shadow);
       ::placeholder {
-        opacity: 0.5;
+        opacity: 0.75;
       }
     }
     &:focus {
-      box-shadow: 0 1px 0 0 var(--color-info);
+      box-shadow: inset 0 0 0 2px var(--color-info);
       ::placeholder {
-        opacity: 0.5;
+        opacity: 0.75;
       }
     }
     &:hover,
@@ -67,7 +63,7 @@ export const Input = styled(Text)`
   }
 
   &:not(:placeholder-shown) {
-    padding: 3rem 0 1rem;
+    padding: 3rem 1rem 1rem;
   }
   &:placeholder-shown ~ ${Label} {
     display: none;
@@ -83,12 +79,19 @@ export const Input = styled(Text)`
    * position svg chevron for select and search inputs
    */
 
-  & ~ svg {
-    position: absolute;
-    bottom: 1rem;
-    right: 0;
-    pointer-events: none;
-    fill: hsla(var(--hsl-text), 0.25);
+  &[type='select'],
+  &[type='search'] {
+    &::after {
+      content: 'test';
+    }
+
+    & ~ svg {
+      position: absolute;
+      bottom: 2rem;
+      right: 1rem;
+      pointer-events: none;
+      fill: hsla(var(--hsl-text), 0.25);
+    }
   }
 
   /**
@@ -100,7 +103,7 @@ export const Input = styled(Text)`
   &:required:not(:focus):not(:placeholder-shown) {
     &:invalid:not([type^='date']):not([type='time']):not([type='month']) {
       color: var(--color-danger);
-      box-shadow: 0 1px 0 0 var(--color-danger);
+      box-shadow: inset 0 0 0 2px var(--color-danger);
 
       & ~ ${Error} {
         visibility: visible; /* 1 */
@@ -158,5 +161,7 @@ export const Input = styled(Text)`
 `;
 
 Input.defaultProps = {
-  as: 'input',
+  as:           'input',
+  padding:      '2rem',
+  borderRadius: '0.5rem',
 };

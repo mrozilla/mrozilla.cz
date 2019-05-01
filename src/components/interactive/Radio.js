@@ -11,7 +11,7 @@ import { Text } from '~components/primitives/Text';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Radio = styled.input.attrs({ type: 'radio' })`
-  --shadow: inset 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
 
   appearance: none;
   outline: none;
@@ -37,7 +37,7 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
   &:not(:disabled) {
     &:hover,
     &:focus {
-      box-shadow: inset 0 0 0 1px var(--color-info);
+      box-shadow: inset 0 0 0 2px var(--color-info);
 
       & ~ ${Text} {
         color: var(--color-text);
