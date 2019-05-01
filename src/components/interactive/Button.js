@@ -4,14 +4,15 @@
 
 import styled, { css } from 'styled-components';
 
-import { View } from '~components/primitives/View';
+import { Text } from '~components/primitives/Text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Button = styled(View)`
-  --shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+export const Button = styled(Text)`
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
+  --shadow-info: inset 0 0 0 2px hsla(var(--hsl-info), 0.25);
 
   -webkit-appearance: none;
   border: none;
@@ -19,6 +20,7 @@ export const Button = styled(View)`
   background-color: transparent;
 
   cursor: pointer;
+  line-height: 1em;
 
   &:disabled {
     cursor: not-allowed;
@@ -46,9 +48,22 @@ export const Button = styled(View)`
       return css`
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          color: var(--color-info);
           background-color: hsla(var(--hsl-text), 0.025);
-          box-shadow: 0 0 0 1px var(--color-info);
+          box-shadow: inset 0 0 0 2px var(--color-info);
+          color: var(--color-info);
+        }
+      `;
+    }
+    if (primary) {
+      return css`
+        background-color: hsla(var(--hsl-info), 0.05);
+        box-shadow: var(--shadow-info);
+        color: var(--color-info);
+
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+          box-shadow: inset 0 0 0 2px var(--color-info);
+          color: var(--color-info);
         }
       `;
     }
@@ -58,9 +73,9 @@ export const Button = styled(View)`
 
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        color: var(--color-info);
         background-color: hsla(var(--hsl-info), 0.05);
-        box-shadow: 0 0 0 1px var(--color-info);
+        box-shadow: inset 0 0 0 2px var(--color-info);
+        color: var(--color-info);
       }
     `;
   }};
@@ -70,7 +85,7 @@ export const Button = styled(View)`
       &:not(:last-of-type) {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        margin-right: 1px;
+        margin-right: 2px;
       }
 
       & + & {
@@ -84,7 +99,7 @@ Button.defaultProps = {
   as:      'button',
   padding: {
     xs: '0.75rem 1.25rem',
-    lg: '1rem 2rem',
+    lg: '2rem',
   },
   borderRadius: '0.5rem',
 };

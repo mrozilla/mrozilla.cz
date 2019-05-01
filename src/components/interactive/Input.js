@@ -13,6 +13,7 @@ import { Fieldset } from '~components/interactive/Fieldset';
 import { Radio } from '~components/interactive/Radio';
 import { Select } from '~components/interactive/Select';
 import TextInput from '~components/interactive/TextInput';
+import PasswordInput from '~components/interactive/PasswordInput';
 import TextAreaInput from '~components/interactive/TextAreaInput';
 
 import { Label } from '~components/text/Label';
@@ -114,7 +115,7 @@ export default function Input({
               ))}
             </optgroup>
           </Select>
-          <Label htmlFor={name} position="absolute" top="0">
+          <Label htmlFor={name} position="absolute" top="0" left="1rem">
             {label}
           </Label>
           <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
@@ -135,7 +136,7 @@ export default function Input({
             autoComplete="off"
             {...{ name, value, placeholder, options, required, onChange }}
           />
-          <Label htmlFor={name} position="absolute" top="0">
+          <Label htmlFor={name} position="absolute" top="0" left="1rem">
             {label}
           </Label>
           <datalist id={`datalist-${name}`}>
@@ -166,7 +167,36 @@ export default function Input({
               onChange,
             }}
           />
-          <Label htmlFor={name} position="absolute" top="0">
+          <Label htmlFor={name} position="absolute" top="0" left="1rem">
+            {label}
+          </Label>
+          {description && <Tooltip>{description}</Tooltip>}
+          {error && <Error>{error}</Error>}
+        </>
+      );
+    }
+
+    if (type === 'password') {
+      return (
+        <>
+          <PasswordInput
+            id={name}
+            {...{
+              type,
+              name,
+              value,
+              placeholder,
+              pattern,
+              min,
+              max,
+              step,
+              readOnly,
+              required,
+              onChange,
+            }}
+            {...rest}
+          />
+          <Label htmlFor={name} position="absolute" top="0" left="1rem">
             {label}
           </Label>
           {description && <Tooltip>{description}</Tooltip>}
@@ -194,7 +224,7 @@ export default function Input({
           }}
           {...rest}
         />
-        <Label htmlFor={name} position="absolute" top="0">
+        <Label htmlFor={name} position="absolute" top="0" left="1rem">
           {label}
         </Label>
         {description && <Tooltip>{description}</Tooltip>}

@@ -77,7 +77,7 @@ export default function ContactPage({
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="bot-field" />
       {form.inputs.map(input => (
-        <Input key={input.name} placeholder={input.label} isFloatingLabel {...input} />
+        <Input key={input.name} placeholder={input.label} {...input} />
       ))}
     </Form>
   );

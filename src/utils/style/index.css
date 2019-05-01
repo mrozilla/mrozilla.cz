@@ -9,6 +9,8 @@
   --color-info: hsl(var(--hsl-info));
   --hsl-danger: 20, 100%, 50%;
   --color-danger: hsl(var(--hsl-danger));
+  --hsl-warning: 40, 100%, 50%;
+  --color-warning: hsl(var(--hsl-warning));
 
   --hsl-bg: 0, 100%, 100%;
   --color-bg: hsl(var(--hsl-bg));
@@ -96,6 +98,7 @@ select,
 textarea {
   color: inherit;
   font-size: inherit;
+  line-height: inherit;
   font-family: inherit;
 }
 
