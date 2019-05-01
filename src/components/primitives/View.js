@@ -32,6 +32,7 @@ export const View = styled.div(
     right,
     bottom,
     left,
+    height,
     width,
     minWidth,
     minHeight,
@@ -43,7 +44,9 @@ export const View = styled.div(
     backgroundPosition,
     backgroundRepeat,
     cursor,
+    pointerEvents,
     transition,
+    hover,
     before,
     after,
   }) => ({
@@ -68,6 +71,7 @@ export const View = styled.div(
       right,
       bottom,
       left,
+      height,
       width,
       minWidth,
       minHeight,
@@ -79,8 +83,12 @@ export const View = styled.div(
       backgroundPosition,
       backgroundRepeat,
       cursor,
+      pointerEvents,
       transition,
     }),
+    '&:hover': {
+      ...hover,
+    },
     '&::before': {
       ...before,
     },
