@@ -24,6 +24,11 @@ export default function TextInput({ onChange, type, ...rest }) {
     }
 
     const { score } = zxcvbn(event.target.value);
+
+    if (onChange) {
+      onChange(event);
+    }
+
     return setColors(
       Array.from({ length: 4 }, (_, i) => {
         if (score < 2 && i === 3) return 'var(--color-danger)';

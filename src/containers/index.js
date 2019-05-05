@@ -9,3 +9,7 @@ export { default as HeroContainer } from './HeroContainer';
 export { default as RootContainer } from './RootContainer';
 export { default as SEOContainer } from './SEOContainer';
 export { default as WorksContainer } from './WorksContainer';
+
+export { default as Signup } from './daily-ui/SignupContainer';
+export { default as Login } from './daily-ui/LoginContainer';
+export { default as CardCheckout } from './daily-ui/CardCheckoutContainer';
