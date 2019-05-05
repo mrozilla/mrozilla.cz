@@ -96,10 +96,7 @@ export const Button = styled(Text)`
 `;
 
 Button.defaultProps = {
-  as:      'button',
-  padding: {
-    xs: '0.75rem 1.25rem',
-    lg: '2rem',
-  },
+  as:           'button',
+  padding:      '2rem',
   borderRadius: '0.5rem',
 };
