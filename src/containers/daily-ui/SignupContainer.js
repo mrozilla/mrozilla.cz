@@ -68,6 +68,7 @@ export default function Signup({ onSubmit }) {
         </H1>
         <Input
           type="text"
+          name="name"
           value={name}
           label="Your name"
           placeholder="Name..."
@@ -76,6 +77,7 @@ export default function Signup({ onSubmit }) {
         />
         <Input
           type="email"
+          name="email"
           value={email}
           label="Your email"
           placeholder="Email..."
@@ -85,6 +87,7 @@ export default function Signup({ onSubmit }) {
         />
         <Input
           type="password"
+          name="password"
           value={password}
           label="Create a password"
           placeholder="Create a password..."

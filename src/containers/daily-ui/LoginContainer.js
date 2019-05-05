@@ -66,6 +66,7 @@ export default function Login({ onSubmit }) {
         </H1>
         <Input
           type="email"
+          name="email"
           value={email}
           label="Your email"
           placeholder="Email..."
@@ -75,6 +76,7 @@ export default function Login({ onSubmit }) {
         />
         <Input
           type="password"
+          name="password"
           value={password}
           label="Your password"
           placeholder="Password..."
