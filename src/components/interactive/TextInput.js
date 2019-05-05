@@ -2,7 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { Input } from '~components/primitives/Input';
 
@@ -12,7 +12,7 @@ import { Input } from '~components/primitives/Input';
 
 /* eslint-disable no-param-reassign */
 
-export default function TextInput({ onChange, ...rest }) {
+export default forwardRef(({ onChange, ...rest }, ref) => {
   const handleChange = (event) => {
     if (event.target.type === 'url') {
       // intentional check for state of one slash deleted
@@ -30,5 +30,5 @@ export default function TextInput({ onChange, ...rest }) {
     }
   };
 
-  return <Input onChange={handleChange} {...rest} />;
-}
+  return <Input ref={ref} onChange={handleChange} {...rest} />;
+});
