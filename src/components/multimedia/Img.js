@@ -16,10 +16,6 @@ export const Picture = styled(View)`
   position: relative;
   display: block;
 
-  overflow: hidden;
-
-  background-color: hsla(var(--hsl-text), 0.1);
-
   &::before {
     content: '';
 
@@ -30,7 +26,8 @@ export const Picture = styled(View)`
 `;
 
 Picture.defaultProps = {
-  as: 'picture',
+  as:       'picture',
+  overflow: 'hidden',
 };
 
 export const StyledImg = styled(View)`
@@ -40,7 +37,7 @@ export const StyledImg = styled(View)`
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: ${({ objectFit }) => objectFit};
 
   user-drag: none;
 
@@ -56,7 +53,9 @@ export const StyledImg = styled(View)`
 `;
 
 StyledImg.defaultProps = {
-  as: 'img',
+  as:              'img',
+  objectFit:       'cover',
+  backgroundColor: 'hsla(var(--hsl-text), 0.1)',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
