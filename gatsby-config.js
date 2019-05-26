@@ -24,7 +24,7 @@ module.exports = {
     app.use(
       '/.netlify/functions/',
       proxy({
-        target:      'http://localhost:9000',
+        target:      'http://localhost:34567', // TODO: watch out for changes
         pathRewrite: {
           '/.netlify/functions/': '',
         },

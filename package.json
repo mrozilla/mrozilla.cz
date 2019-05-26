@@ -53,11 +53,9 @@
   },
   "scripts": {
     "start:gatsby": "gatsby clean && gatsby develop",
-    "start:lambda": "netlify-lambda serve src/lambda",
     "start": "yarn start:gatsby",
     "build:gatsby": "gatsby build",
-    "build:lambda": "netlify-lambda build src/lambda",
-    "build": "yarn build:lambda && yarn build:gatsby",
+    "build": "yarn build:gatsby",
     "serve": "gatsby serve",
     "lint": "eslint 'src/**/*.js'",
     "bump": "yarn upgrade-interactive --latest",

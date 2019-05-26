@@ -62,7 +62,7 @@ export default function EmojiPage({
           <Button onClick={handleClear} grouped>
             Clear
           </Button>
-          <P fontSize="12rem" lineHeight={1} margin="2rem 0 0 0">
+          <P fontSize="10rem" lineHeight={1} margin="2rem 0 0 0">
             {randomEmojis.map(emoji => (
               <span
                 key={emoji.description}
