@@ -2,11 +2,12 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useState } from 'react';
+import React, { Fragment } from 'react';
+
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, H2, P, Button } from '~components';
+import { Main, Section, Carousel, Img, H1 } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,7 +16,7 @@ import { renderBlocks } from '~utils';
 
 export const query = graphql`
   {
-    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/emoji/" } } }) {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/carousel/" } } }) {
       frontmatter {
         ...MetaFragment
         blocks {
@@ -31,49 +32,29 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function EmojiPage({
+export default function CarouselPage({
   data: {
     page: {
       frontmatter: { meta, blocks },
     },
   },
 }) {
-  const [randomEmojis, setRandomEmojis] = useState([]);
-
-  const getRandomEmoji = () => fetch('/.netlify/functions/emoji').then(r => r.json());
-
-  const handleAddEmoji = async () => {
-    const emoji = await getRandomEmoji();
-    setRandomEmojis(prev => [...prev, emoji]);
-  };
-
-  const handleClear = () => setRandomEmojis([]);
-
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'random' 'map'" gridGap="10vh 4rem">
+      <Main gridTemplate="'hero' 'carousel'" gridGap="10vh 1rem">
         {renderBlocks(blocks)}
-        <Section gridArea="random">
-          <H2>Emoji story generator</H2>
-          <Button onClick={handleAddEmoji} grouped>
-            Add topic
-          </Button>
-          <Button onClick={handleClear} grouped>
-            Clear
-          </Button>
-          <P fontSize="10rem" lineHeight={1} margin="2rem 0 0 0">
-            {randomEmojis.map(emoji => (
-              <span
-                key={emoji.description}
-                role="img"
-                aria-label={emoji.description}
-                title={emoji.description}
-              >
-                {String.fromCodePoint(...emoji.codepoint)}
-              </span>
+        <Section gridArea="carousel">
+          <Carousel loop={{ interval: 5000 }}>
+            {Array.from({ length: 15 }, (_, i) => i).map(order => (
+              <Fragment key={order}>
+                <Img src="https://source.unsplash.com/random/400x400" alt="a random photo" />
+                <H1 as="h2" fontSize="2.25rem" lineHeight="4rem">
+                  Photo #{order + 1}
+                </H1>
+              </Fragment>
             ))}
-          </P>
+          </Carousel>
         </Section>
       </Main>
     </RootContainer>

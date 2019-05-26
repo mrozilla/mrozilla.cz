@@ -267,12 +267,14 @@ export default function ScoreboardPage({
           type="text"
           value={state.home.name}
           name="name"
+          label="Home player name"
           onChange={({ target }) => handleInput('home', target)}
         />
         <Input
           gridArea="homeTeam"
           type="text"
           name="team"
+          label="Home player team"
           value={state.home.team}
           onChange={({ target }) => handleInput('home', target)}
         />
@@ -291,6 +293,7 @@ export default function ScoreboardPage({
           type="text"
           value={state.away.name}
           name="name"
+          label="Away player name"
           onChange={({ target }) => handleInput('away', target)}
         />
         <Input
@@ -298,6 +301,7 @@ export default function ScoreboardPage({
           type="text"
           value={state.away.team}
           name="team"
+          label="Away player team"
           onChange={({ target }) => handleInput('away', target)}
         />
         <Button gridArea="awayUp" onClick={() => handleAddPoint('away')} disabled={isEnd}>

@@ -2,54 +2,27 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import React from 'react';
 
-import { Text } from '~components/primitives/Text';
+import { View } from '../primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Radio = styled.input.attrs({ type: 'radio' })`
-  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
+export default function Dots({ size, amount, orientation, gap, colors, ...rest }) {
+  return (
+    <View display="grid" gridGap={gap} {...rest}>
+      {Array.from({ length: amount }, (_, i) => i).map((dot, i) => (
+        <View key={dot} height={size} width={size} backgroundColor={colors[i]} borderRadius="50%" />
+      ))}
+    </View>
+  );
+}
 
-  appearance: none;
-  outline: none;
-  border: none;
-
-  margin: 0 1rem 0 0;
-
-  cursor: pointer;
-  font-size: 2rem;
-  width: 1em;
-  height: 1em;
-  background-color: hsla(var(--hsl-text), 0.05);
-  box-shadow: var(--shadow);
-  border-radius: 50%;
-
-  & ~ ${Text} {
-    cursor: pointer;
-    font-size: 2rem;
-    text-transform: initial;
-    color: hsla(var(--hsl-text), 0.5);
-  }
-
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      box-shadow: inset 0 0 0 2px var(--color-info);
-
-      & ~ ${Text} {
-        color: var(--color-text);
-      }
-    }
-
-    &:checked {
-      box-shadow: inset 0 0 0 0.3em var(--color-info);
-
-      & ~ ${Text} {
-        color: var(--color-text);
-      }
-    }
-  }
-`;
+Dots.defaultProps = {
+  size:        '0.5rem',
+  amount:      3,
+  orientation: 'row',
+  gap:         '0.25rem',
+};

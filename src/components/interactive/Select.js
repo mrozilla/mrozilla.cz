@@ -12,16 +12,16 @@ import { Label } from '~components/text/Label';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Select = styled(Text)`
-  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.5);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
 
   appearance: none;
   outline: none;
   border: none;
-  background-color: transparent;
-  border-radius: 0;
 
   display: block;
   width: 100%;
+  background-color: hsla(var(--hsl-text), 0.05);
+  line-height: 1.5em;
   cursor: pointer;
 
   &:hover {
@@ -29,7 +29,7 @@ export const Select = styled(Text)`
   }
 
   &:focus {
-    box-shadow: 0 1px 0 0 var(--color-info);
+    box-shadow: inset 0 0 0 2px var(--color-info);
   }
 
   &:hover,
@@ -41,8 +41,8 @@ export const Select = styled(Text)`
 
   & ~ svg {
     position: absolute;
-    bottom: 1rem;
-    right: 0;
+    bottom: 2rem;
+    right: 1rem;
     pointer-events: none;
     fill: hsla(var(--hsl-text), 0.25);
   }
@@ -52,11 +52,11 @@ export const Select = styled(Text)`
   }
 
   &:required:invalid {
-    color: hsla(var(--hsl-text), 0.25);
-    padding: 2.5rem 0 1.5rem;
+    color: hsla(var(--hsl-text), 0.5);
+    padding: 2rem;
 
     &:hover {
-      color: hsla(var(--hsl-text), 0.5);
+      color: hsla(var(--hsl-text), 0.75);
     }
 
     & ~ ${Label} {
@@ -67,7 +67,7 @@ export const Select = styled(Text)`
 `;
 
 Select.defaultProps = {
-  as:        'select',
-  boxShadow: '0 1px 0 0 hsla(var(--hsl-text), 0.25)',
-  padding:   '3rem 0 1rem',
+  as:           'select',
+  padding:      '3rem 1rem 1rem;',
+  borderRadius: '0.5rem',
 };

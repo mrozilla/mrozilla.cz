@@ -24,7 +24,7 @@ module.exports = {
     app.use(
       '/.netlify/functions/',
       proxy({
-        target:      'http://localhost:9000',
+        target:      'http://localhost:34567', // TODO: watch out for changes
         pathRewrite: {
           '/.netlify/functions/': '',
         },
@@ -79,7 +79,7 @@ module.exports = {
         background_color: '#ffffff',
         theme_color:      '#000000',
         display:          'minimal-ui',
-        icon:             'src/content/multimedia/favicon.png',
+        icon:             'static/assets/favicon.png',
       },
     },
     {

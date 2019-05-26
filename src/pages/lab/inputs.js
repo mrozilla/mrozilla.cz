@@ -80,7 +80,7 @@ export default function InputsPage({
         name="password"
         type="password"
         placeholder="Password"
-        label="Password input with validation"
+        label="Full-fledged password input"
         error="Your password has to contain at least 8 letters or numbers"
         pattern="^[A-Za-z0-9]{8,99}$"
         required

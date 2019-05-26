@@ -322,7 +322,7 @@ export default class BlackjackPage extends PureComponent {
           gridTemplate={{
             xs: "'dealer' 'player' 'controls' 'bank'",
           }}
-          gridGap="0.5rem"
+          gridGap="1rem"
         >
           <Section gridArea="dealer" position="relative" minHeight="7rem">
             {this.state.dealer.map((card, i) => (

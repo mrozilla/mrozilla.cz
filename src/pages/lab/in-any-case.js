@@ -127,6 +127,7 @@ export default function InAnyCasePage({
             name="input"
             type="text"
             value={input}
+            label="Original text"
             placeholder="Start typing or paste text..."
             margin="0 0 4rem 0"
             onChange={handleInput}
@@ -140,10 +141,6 @@ export default function InAnyCasePage({
               type="text"
               value={value}
               margin="0 0 1rem 0"
-              labelStyle={{
-                isFloating:    true,
-                textTransform: 'unset',
-              }}
               readOnly
             />
           ))}
