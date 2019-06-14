@@ -2,19 +2,27 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import zxcvbn from 'zxcvbn';
 
 import { Input } from '~components/primitives/Input';
+import { Icon } from '~components/multimedia/Icon';
 import Dots from '~components/interactive/Dots';
+import { Button } from '~components/interactive/Button';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+const defaultColors = Array.from({ length: 4 }, () => 'hsla(var(--hsl-text), 0.25)');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-const defaultColors = Array.from({ length: 4 }, () => 'hsla(var(--hsl-text), 0.25)');
-
 export default function TextInput({ onChange, type, ...rest }) {
+  const inputRef = useRef();
   const [isHidden, setIsHidden] = useState(type === 'password');
   const [colors, setColors] = useState(defaultColors);
 
@@ -40,9 +48,32 @@ export default function TextInput({ onChange, type, ...rest }) {
     );
   };
 
+  const handleFocus = () => inputRef.current.focus();
+  const handleVisibility = () => {
+    handleFocus();
+    setIsHidden(prev => !prev);
+  };
+
   return (
     <>
-      <Input type={isHidden ? type : 'text'} onChange={handleChange} {...rest} />
+      <Input ref={inputRef} type={isHidden ? type : 'text'} onChange={handleChange} {...rest} />
+      <Button
+        type="button"
+        tertiary
+        position="absolute"
+        top="2.5rem"
+        right="3rem"
+        cursor="pointer"
+        opacity="0.5"
+        padding="0"
+        hover={{
+          opacity: '1',
+          fill:    'var(--color-info)',
+        }}
+        onClick={handleVisibility}
+      >
+        <Icon as={isHidden ? FaEyeSlash : FaEye} />
+      </Button>
       <Dots
         position="absolute"
         top="2rem"
