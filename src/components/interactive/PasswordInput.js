@@ -9,7 +9,7 @@ import zxcvbn from 'zxcvbn';
 import { Input } from '~components/primitives/Input';
 import { Icon } from '~components/multimedia/Icon';
 import Dots from '~components/interactive/Dots';
-import { Button } from '~components/interactive/Button';
+import { Button } from '~components/interactive/Button';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -27,14 +27,14 @@ export default function TextInput({ onChange, type, ...rest }) {
   const [colors, setColors] = useState(defaultColors);
 
   const handleChange = (event) => {
-    if (event.target.value === '') {
-      return setColors(defaultColors);
-    }
-
     const { score } = zxcvbn(event.target.value);
 
     if (onChange) {
       onChange(event);
+    }
+
+    if (event.target.value === '') {
+      return setColors(defaultColors);
     }
 
     return setColors(
