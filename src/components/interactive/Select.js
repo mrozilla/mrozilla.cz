@@ -33,18 +33,12 @@ export const Select = styled(Text)`
   }
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     & ~ svg {
+      opacity: 1;
       fill: var(--color-info);
     }
-  }
-
-  & ~ svg {
-    position: absolute;
-    bottom: 2rem;
-    right: 1rem;
-    pointer-events: none;
-    fill: hsla(var(--hsl-text), 0.25);
   }
 
   & ~ ${Label} {
