@@ -59,7 +59,6 @@ export default function TextInput({ onChange, type, ...rest }) {
       <Input ref={inputRef} type={isHidden ? type : 'text'} onChange={handleChange} {...rest} />
       <Button
         type="button"
-        tertiary
         position="absolute"
         top="2.5rem"
         right="3rem"

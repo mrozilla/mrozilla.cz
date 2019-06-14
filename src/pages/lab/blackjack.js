@@ -360,32 +360,45 @@ export default class BlackjackPage extends PureComponent {
               / {this.renderCurrency(this.state.bank)}
             </P>
             <Button
+              look="secondary"
               onClick={this.handleDeal}
               disabled={this.state.game !== 'DEAL' || this.state.bet === 0}
               grouped
             >
               Deal
             </Button>
-            <Button disabled={this.state.game !== 'PLAYER'} grouped onClick={this.handleHit}>
+            <Button
+              look="secondary"
+              disabled={this.state.game !== 'PLAYER'}
+              grouped
+              onClick={this.handleHit}
+            >
               Hit
             </Button>
-            <Button disabled={this.state.game !== 'PLAYER'} grouped onClick={this.handleStand}>
+            <Button
+              look="secondary"
+              disabled={this.state.game !== 'PLAYER'}
+              grouped
+              onClick={this.handleStand}
+            >
               Stand
             </Button>
             <Button
+              look="secondary"
               disabled={this.state.game !== 'PLAYER' || this.state.bank < this.state.bet}
               grouped
               onClick={this.handleDouble}
             >
               Double
             </Button>
-            <Button disabled grouped>
+            <Button look="secondary" disabled grouped>
               Split
             </Button>
           </Section>
 
           <Section gridArea="bank">
             <Button
+              look="secondary"
               disabled={
                 this.state.game !== 'DEAL' || (this.state.bank === 0 && this.state.bet === 0)
               }
@@ -396,6 +409,7 @@ export default class BlackjackPage extends PureComponent {
             </Button>
             {[25, 100, 1000].map(bet => (
               <Button
+                look="secondary"
                 key={bet}
                 disabled={this.state.game !== 'DEAL' || this.state.bank < bet}
                 grouped
@@ -404,7 +418,9 @@ export default class BlackjackPage extends PureComponent {
                 + {this.renderCurrency(bet)}
               </Button>
             ))}
-            <Button onClick={this.handleModal}>?</Button>
+            <Button look="secondary" onClick={this.handleModal}>
+              ?
+            </Button>
           </Section>
 
           <Section minHeight="15rem">

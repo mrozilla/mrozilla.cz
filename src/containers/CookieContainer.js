@@ -31,7 +31,7 @@ export default function CookieContainer() {
       isVisible={isVisible}
     >
       Yeah, we use cookies, we even have a <Link to="/legal/privacy/">cookie policy</Link>
-      <Button margin="0 0 0 1rem" onClick={() => setIsVisible(!isVisible)}>
+      <Button margin="0 0 0 1rem" look="secondary" onClick={() => setIsVisible(!isVisible)}>
         Accept{' '}
         <span role="img" aria-label="cookie">
           🍪

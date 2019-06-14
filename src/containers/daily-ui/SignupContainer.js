@@ -102,10 +102,10 @@ export default function Signup({ onSubmit }) {
           onChange={({ target: { value } }) => setPassword(value)}
           required
         />
-        <Button type="submit" primary fontWeight="600">
+        <Button type="submit" look="primary" fontWeight="600">
           Sign up
         </Button>
-        <Button type="submit" position="relative">
+        <Button type="submit" look="secondary" position="relative">
           <GoogleLogo /> Sign up with Google
         </Button>
         <P fontSize="1.5rem" lineHeight="2rem">

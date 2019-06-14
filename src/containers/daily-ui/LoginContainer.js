@@ -90,10 +90,10 @@ export default function Login({ onSubmit }) {
           onChange={({ target: { value } }) => setPassword(value)}
           required
         />
-        <Button type="submit" primary fontWeight="600">
+        <Button type="submit" look="primary" fontWeight="600">
           Log in
         </Button>
-        <Button type="submit" position="relative">
+        <Button type="submit" look="secondary" position="relative">
           <GoogleLogo /> Log in with Google
         </Button>
         <Link to="#fake" fontSize="1.5rem" lineHeight="2rem">

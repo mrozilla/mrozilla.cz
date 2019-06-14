@@ -118,6 +118,7 @@ export default function CzermanPage({
         </H2>
         <P>{state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
         <Button
+          look="primary"
           onClick={state.isCardFlipped ? handleNextTerm : handleFlipCard}
           margin="4rem 0 0 0"
           width="100%"
@@ -174,12 +175,16 @@ export default function CzermanPage({
       <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
         {renderBlocks(blocks)}
         <Section gridArea="practice">
-          <Button onClick={handleNextTerm}>Start practice</Button>
+          <Button look="primary" onClick={handleNextTerm}>
+            Start practice
+          </Button>
           {renderModal()}
         </Section>
         <Section gridArea="dictionary">
           {renderTable()}
-          <Button onClick={handleOpenAll}>{state.isOpenAll ? 'Hide' : 'Reveal'} all</Button>
+          <Button look="secondary" onClick={handleOpenAll}>
+            {state.isOpenAll ? 'Hide' : 'Reveal'} all
+          </Button>
         </Section>
       </Main>
     </RootContainer>

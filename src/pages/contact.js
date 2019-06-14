@@ -57,7 +57,7 @@ export default function ContactPage({
     <Section gridArea="form">
       <P margin="0 0 2rem 0">{form.success}</P>
       <Link to="/">
-        <Button>Back to home page</Button>
+        <Button look="primary">Back to home page</Button>
       </Link>
     </Section>
   );

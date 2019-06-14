@@ -180,7 +180,7 @@ export default function CardCheckout({ onSubmit }) {
         onChange={handleCVC}
         required
       />
-      <Button gridArea="pay" primary disabled={!(cardHolder && cardNumber && expiration && cvc)}>
+      <Button gridArea="pay" look="primary" disabled={!(cardHolder && cardNumber && expiration && cvc)}>
         Pay €19.99
       </Button>
     </Form>

@@ -114,19 +114,19 @@ export default function CalendarPage({
 
   const renderCalendarControls = () => (
     <Calendar.Controls>
-      <Button secondary onClick={() => handleChangeDate({ yearOffset: -1 })}>
+      <Button onClick={() => handleChangeDate({ yearOffset: -1 })}>
         «
       </Button>
-      <Button secondary onClick={() => handleChangeDate({ monthOffset: -1 })}>
+      <Button onClick={() => handleChangeDate({ monthOffset: -1 })}>
         ‹
       </Button>
       <P textAlign="center">
         {selected.toLocaleString(locale, { month: 'long', year: 'numeric' })}
       </P>
-      <Button secondary onClick={() => handleChangeDate({ monthOffset: 1 })}>
+      <Button onClick={() => handleChangeDate({ monthOffset: 1 })}>
         ›
       </Button>
-      <Button secondary onClick={() => handleChangeDate({ yearOffset: 1 })}>
+      <Button onClick={() => handleChangeDate({ yearOffset: 1 })}>
         »
       </Button>
     </Calendar.Controls>

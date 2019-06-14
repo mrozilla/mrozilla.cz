@@ -278,11 +278,17 @@ export default function ScoreboardPage({
           value={state.home.team}
           onChange={({ target }) => handleInput('home', target)}
         />
-        <Button gridArea="homeUp" onClick={() => handleAddPoint('home')} disabled={isEnd}>
+        <Button
+          gridArea="homeUp"
+          look="secondary"
+          onClick={() => handleAddPoint('home')}
+          disabled={isEnd}
+        >
           ↑
         </Button>
         <Button
           gridArea="homeDown"
+          look="secondary"
           onClick={() => handleRemovePoint('home')}
           disabled={state.home.points.every(point => point === 0)}
         >
@@ -304,17 +310,23 @@ export default function ScoreboardPage({
           label="Away player team"
           onChange={({ target }) => handleInput('away', target)}
         />
-        <Button gridArea="awayUp" onClick={() => handleAddPoint('away')} disabled={isEnd}>
+        <Button
+          gridArea="awayUp"
+          look="secondary"
+          onClick={() => handleAddPoint('away')}
+          disabled={isEnd}
+        >
           ↑
         </Button>
         <Button
           gridArea="awayDown"
+          look="secondary"
           onClick={() => handleRemovePoint('away')}
           disabled={state.away.points.every(point => point === 0)}
         >
           ↓
         </Button>
-        <Button gridArea="reset" onClick={handleResetScore}>
+        <Button gridArea="reset" look="secondary" onClick={handleResetScore}>
           Reset score
         </Button>
       </Form>
