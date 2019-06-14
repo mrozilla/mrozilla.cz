@@ -53,6 +53,11 @@ export default function Login({ onSubmit }) {
   return (
     <Section gridArea="login" display="grid" gridTemplate="'form'">
       <Form
+        gridTemplate={`
+          'title'
+          'email'
+          'password'
+        `}
         boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
         padding="4rem 4rem 3rem"
         borderRadius="1rem"

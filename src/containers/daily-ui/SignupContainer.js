@@ -55,6 +55,12 @@ export default function Signup({ onSubmit }) {
   return (
     <Section gridArea="signup" display="grid" gridTemplate="'form'">
       <Form
+        gridTemplate={`
+        'title'
+        'name'
+        'email'
+        'password'
+      `}
         boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
         padding="4rem 4rem 3rem"
         borderRadius="1rem"
