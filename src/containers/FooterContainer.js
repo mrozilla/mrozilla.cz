@@ -41,7 +41,7 @@ export default function FooterContainer({ footer }) {
             <Ul>
               {item.links.map(link => (
                 <Li key={link.url}>
-                  <Link to={link.url} secondary>
+                  <Link to={link.url} look="tertiary">
                     {link.text}
                   </Link>
                 </Li>

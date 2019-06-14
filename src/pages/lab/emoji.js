@@ -56,10 +56,10 @@ export default function EmojiPage({
         {renderBlocks(blocks)}
         <Section gridArea="random">
           <H2>Emoji story generator</H2>
-          <Button onClick={handleAddEmoji} grouped>
+          <Button look="primary" onClick={handleAddEmoji} grouped>
             Add topic
           </Button>
-          <Button onClick={handleClear} grouped>
+          <Button look="secondary" onClick={handleClear} grouped>
             Clear
           </Button>
           <P fontSize="10rem" lineHeight={1} margin="2rem 0 0 0">

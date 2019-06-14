@@ -22,10 +22,25 @@ const StyledLink = styled(Text)`
   }
 
   ${({ look }) => {
-    if (look.tertiary) {
-      return null;
+    if (look === 'primary') {
+      return css`
+        color: var(--color-info);
+        text-decoration: underline;
+      `;
     }
-    if (look.secondary) {
+
+    if (look === 'secondary') {
+      return css`
+        text-decoration: underline var(--color-info);
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--color-info);
+        }
+      `;
+    }
+
+    if (look === 'tertiary') {
       return css`
         &:hover,
         &:focus,
@@ -35,14 +50,6 @@ const StyledLink = styled(Text)`
         }
       `;
     }
-    return css`
-      text-decoration: underline var(--color-info);
-      &:hover,
-      &:focus,
-      &:active {
-        color: var(--color-info);
-      }
-    `;
   }};
 `;
 

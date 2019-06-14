@@ -67,7 +67,7 @@ export default function BlogPost({
         <Article itemScope itemType="http://schema.org/BlogPosting">
           <header style={{ margin: '0 0 4rem 0' }}>
             <H1 itemProp="name" margin="0 0 3rem 0">
-              <Link to={meta.permalink} itemProp="url" tertiary>
+              <Link to={meta.permalink} itemProp="url">
                 {title}
               </Link>
             </H1>

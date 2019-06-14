@@ -74,13 +74,13 @@ export default function CountOnMePage({
           <H1 fontSize="8rem" lineHeight="10rem">
             {count.toLocaleString()}
           </H1>
-          <Button onClick={e => handleCount(e, 1)} grouped>
+          <Button look="secondary" onClick={e => handleCount(e, 1)} grouped>
             Add
           </Button>
-          <Button onClick={e => handleCount(e, -1)} grouped>
+          <Button look="secondary" onClick={e => handleCount(e, -1)} grouped>
             Subtract
           </Button>
-          <Button onClick={e => handleReset(e)} grouped>
+          <Button look="secondary" onClick={e => handleReset(e)} grouped>
             Reset
           </Button>
         </Section>

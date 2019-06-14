@@ -51,9 +51,6 @@ export const Input = styled(Text)`
     }
     &:hover,
     &:focus {
-      & ~ svg {
-        fill: var(--color-info);
-      }
       & ~ ${Tooltip} {
         visibility: visible;
         opacity: 1;
@@ -76,21 +73,16 @@ export const Input = styled(Text)`
   }
 
   /**
-   * position svg chevron for select and search inputs
+   * color svg chevron for select and search inputs
    */
 
   &[type='select'],
   &[type='search'] {
-    &::after {
-      content: 'test';
-    }
-
-    & ~ svg {
-      position: absolute;
-      bottom: 2rem;
-      right: 1rem;
-      pointer-events: none;
-      fill: hsla(var(--hsl-text), 0.25);
+    &:hover, &:focus, &:active {
+      & ~ svg {
+        opacity: 1;
+        fill: var(--color-info);
+      }
     }
   }
 
