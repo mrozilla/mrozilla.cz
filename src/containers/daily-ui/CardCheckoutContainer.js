@@ -180,7 +180,7 @@ export default function CardCheckout({ onSubmit }) {
         onChange={handleCVC}
         required
       />
-      <Button gridArea="pay" primary>
+      <Button gridArea="pay" primary disabled={!(cardHolder && cardNumber && expiration && cvc)}>
         Pay €19.99
       </Button>
     </Form>
@@ -192,5 +192,5 @@ CardCheckout.propTypes = {
 };
 
 CardCheckout.defaultProps = {
-  onSubmit: () => null,
+  onSubmit: () => alert('What a success! This would send your data to the server.'), // eslint-disable-line no-alert
 };

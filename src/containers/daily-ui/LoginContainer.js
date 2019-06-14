@@ -112,5 +112,5 @@ Login.propTypes = {
 };
 
 Login.defaultProps = {
-  onSubmit: () => null,
+  onSubmit: () => alert('What a success! This would send your data to the server.'), // eslint-disable-line no-alert
 };
