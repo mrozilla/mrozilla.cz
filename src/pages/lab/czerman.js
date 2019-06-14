@@ -108,13 +108,13 @@ export default function CzermanPage({
         <H2>Czech</H2>
         <P>{modalTerm.czech.grammar}</P>
         <H2>
-          Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">IPA</Link>
+          Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech" look="secondary">IPA</Link>
         </H2>
         <P>{modalTerm.czech.ipa}</P>
         <H2>German equivalent</H2>
         <P>{state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
         <H2>
-          German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">IPA</Link>
+          German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German" look="secondary">IPA</Link>
         </H2>
         <P>{state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
         <Button
@@ -135,11 +135,11 @@ export default function CzermanPage({
         <Table.Tr>
           <Table.Th>Czech</Table.Th>
           <Table.Th>
-            Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech">IPA</Link>
+            Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech" look="secondary">IPA</Link>
           </Table.Th>
           <Table.Th>German equivalent</Table.Th>
           <Table.Th>
-            German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German">IPA</Link>
+            German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German" look="secondary">IPA</Link>
           </Table.Th>
         </Table.Tr>
       </Table.Thead>

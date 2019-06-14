@@ -466,7 +466,7 @@ export default class BlackjackPage extends PureComponent {
             <P fontSize="3rem">Inspiration</P>
             <Ul listStyle="disc" padding="0 0 0 1em">
               <Li>
-                <Link to="https://blackjackbreak.com/">https://blackjackbreak.com/</Link>
+                <Link to="https://blackjackbreak.com/" look="secondary">https://blackjackbreak.com/</Link>
               </Li>
             </Ul>
           </Modal>

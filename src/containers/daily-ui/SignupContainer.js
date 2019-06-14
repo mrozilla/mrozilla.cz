@@ -109,11 +109,17 @@ export default function Signup({ onSubmit }) {
           <GoogleLogo /> Sign up with Google
         </Button>
         <P fontSize="1.5rem" lineHeight="2rem">
-          By creating an account, you agree to our <Link to="#fake">Terms of Service</Link>
+          By creating an account, you agree to our{' '}
+          <Link to="#fake" look="secondary">
+            Terms of Service
+          </Link>
         </P>
       </Form>
       <P fontSize="1.5rem" margin="0 4rem">
-        Already have an account? <Link to="#fake">Log in</Link>
+        Already have an account?{' '}
+        <Link to="#fake" look="secondary">
+          Log in
+        </Link>
       </P>
     </Section>
   );

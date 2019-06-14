@@ -96,12 +96,15 @@ export default function Login({ onSubmit }) {
         <Button type="submit" look="secondary" position="relative">
           <GoogleLogo /> Log in with Google
         </Button>
-        <Link to="#fake" fontSize="1.5rem" lineHeight="2rem">
+        <Link to="#fake" look="secondary" fontSize="1.5rem" lineHeight="2rem">
           Forgot password?
         </Link>
       </Form>
       <P fontSize="1.5rem" margin="0 4rem">
-        Don&apos;t have an account? <Link to="#fake">Sign up</Link>
+        Don&apos;t have an account?{' '}
+        <Link to="#fake" look="secondary">
+          Sign up
+        </Link>
       </P>
     </Section>
   );
