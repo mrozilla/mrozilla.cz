@@ -21,7 +21,7 @@ export default function AvailabilityContainer({
 
   return (
     <P fontSize="3rem">
-      <Link to="/contact" secondary>
+      <Link to="/contact" look="secondary">
         {availableDate.toLocaleString('en-GB', {
           month: 'long',
           year:  'numeric',

@@ -53,6 +53,11 @@ export default function Login({ onSubmit }) {
   return (
     <Section gridArea="login" display="grid" gridTemplate="'form'">
       <Form
+        gridTemplate={`
+          'title'
+          'email'
+          'password'
+        `}
         boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
         padding="4rem 4rem 3rem"
         borderRadius="1rem"
@@ -85,18 +90,21 @@ export default function Login({ onSubmit }) {
           onChange={({ target: { value } }) => setPassword(value)}
           required
         />
-        <Button type="submit" primary fontWeight="600">
+        <Button type="submit" look="primary" fontWeight="600">
           Log in
         </Button>
-        <Button type="submit" position="relative">
+        <Button type="submit" look="secondary" position="relative">
           <GoogleLogo /> Log in with Google
         </Button>
-        <Link to="#fake" fontSize="1.5rem" lineHeight="2rem">
+        <Link to="#fake" look="secondary" fontSize="1.5rem" lineHeight="2rem">
           Forgot password?
         </Link>
       </Form>
       <P fontSize="1.5rem" margin="0 4rem">
-        Don&apos;t have an account? <Link to="#fake">Sign up</Link>
+        Don&apos;t have an account?{' '}
+        <Link to="#fake" look="secondary">
+          Sign up
+        </Link>
       </P>
     </Section>
   );
@@ -107,5 +115,5 @@ Login.propTypes = {
 };
 
 Login.defaultProps = {
-  onSubmit: () => null,
+  onSubmit: () => alert('What a success! This would send your data to the server.'), // eslint-disable-line no-alert
 };

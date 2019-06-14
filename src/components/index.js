@@ -23,6 +23,7 @@ export { Table } from './layout/Table';
 export { default as Toast } from './layout/Toast';
 export { Wrapper } from './layout/Wrapper';
 
+export { Icon } from './multimedia/Icon';
 export { default as Img } from './multimedia/Img';
 
 export { Alert } from './text/Alert';

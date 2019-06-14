@@ -83,7 +83,7 @@ export default function InvadersPage({
             Your personal one:
           </H1>
           <Invader pixels={getInvader()} maxWidth="8rem" margin="0 0 2rem" />
-          <Button gridColumn="1 / -1" onClick={() => forceUpdate(Date.now())}>
+          <Button gridColumn="1 / -1" look="primary" onClick={() => forceUpdate(Date.now())}>
             Generate new
           </Button>
         </Section>

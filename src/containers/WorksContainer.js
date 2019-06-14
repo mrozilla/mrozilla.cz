@@ -17,7 +17,7 @@ export default function WorksContainer({ works }) {
       {works.map(work => (
         <Li key={work.meta.permalink}>
           <H3 fontSize="3rem" lineHeight="4rem" margin="0">
-            <Link to={work.meta.permalink} secondary>
+            <Link to={work.meta.permalink} look="tertiary">
               {work.title}
             </Link>
           </H3>

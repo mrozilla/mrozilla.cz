@@ -55,6 +55,12 @@ export default function Signup({ onSubmit }) {
   return (
     <Section gridArea="signup" display="grid" gridTemplate="'form'">
       <Form
+        gridTemplate={`
+        'title'
+        'name'
+        'email'
+        'password'
+      `}
         boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
         padding="4rem 4rem 3rem"
         borderRadius="1rem"
@@ -96,18 +102,24 @@ export default function Signup({ onSubmit }) {
           onChange={({ target: { value } }) => setPassword(value)}
           required
         />
-        <Button type="submit" primary fontWeight="600">
+        <Button type="submit" look="primary" fontWeight="600">
           Sign up
         </Button>
-        <Button type="submit" position="relative">
+        <Button type="submit" look="secondary" position="relative">
           <GoogleLogo /> Sign up with Google
         </Button>
         <P fontSize="1.5rem" lineHeight="2rem">
-          By creating an account, you agree to our <Link to="#fake">Terms of Service</Link>
+          By creating an account, you agree to our{' '}
+          <Link to="#fake" look="secondary">
+            Terms of Service
+          </Link>
         </P>
       </Form>
       <P fontSize="1.5rem" margin="0 4rem">
-        Already have an account? <Link to="#fake">Log in</Link>
+        Already have an account?{' '}
+        <Link to="#fake" look="secondary">
+          Log in
+        </Link>
       </P>
     </Section>
   );
@@ -118,5 +130,5 @@ Signup.propTypes = {
 };
 
 Signup.defaultProps = {
-  onSubmit: () => null,
+  onSubmit: () => alert('What a success! This would send your data to the server.'), // eslint-disable-line no-alert
 };

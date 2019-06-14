@@ -35,16 +35,8 @@ export const Button = styled(Text)`
     transform: translateY(1px);
   }
 
-  ${({ primary, secondary, tertiary }) => {
-    if (tertiary) {
-      return css`
-        &:not(:disabled):hover,
-        &:not(:disabled):focus {
-          color: var(--color-info);
-        }
-      `;
-    }
-    if (secondary) {
+  ${({ look }) => {
+    if (look === 'tertiary') {
       return css`
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -54,7 +46,20 @@ export const Button = styled(Text)`
         }
       `;
     }
-    if (primary) {
+    if (look === 'secondary') {
+      return css`
+        background-color: hsla(var(--hsl-text), 0.025);
+        box-shadow: var(--shadow);
+
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+          background-color: hsla(var(--hsl-info), 0.05);
+          box-shadow: inset 0 0 0 2px var(--color-info);
+          color: var(--color-info);
+        }
+      `;
+    }
+    if (look === 'primary') {
       return css`
         background-color: hsla(var(--hsl-info), 0.05);
         box-shadow: var(--shadow-info);
@@ -67,14 +72,10 @@ export const Button = styled(Text)`
         }
       `;
     }
-    return css`
-      background-color: hsla(var(--hsl-text), 0.025);
-      box-shadow: var(--shadow);
 
+    return css`
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        background-color: hsla(var(--hsl-info), 0.05);
-        box-shadow: inset 0 0 0 2px var(--color-info);
         color: var(--color-info);
       }
     `;

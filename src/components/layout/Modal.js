@@ -88,7 +88,7 @@ export default function Modal({
       <ModalBackground onClick={handleClickBackground} padding={outerPadding}>
         <ModalWrapper key={innerKey} padding={innerPadding} minWidth={innerMinWidth}>
           {children}
-          <Button position="absolute" top="0" right="0" tertiary onClick={onClickClose}>
+          <Button position="absolute" top="0" right="0" onClick={onClickClose}>
             ×
           </Button>
         </ModalWrapper>

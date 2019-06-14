@@ -170,6 +170,7 @@ export default class PassworldPage extends Component {
             {this.buttons.map(button => (
               <Button
                 key={button.title}
+                look="secondary"
                 {...button}
                 disabled={Object.values(this.state.chars).every(item => item === false)}
               >
