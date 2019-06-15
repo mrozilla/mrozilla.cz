@@ -3,10 +3,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { Children, useRef, useState, useEffect } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
-import { number, string, node, shape } from 'prop-types';
+import { number, string, node, shape, bool } from 'prop-types';
 
-import { Ul, Li } from '../text/List';
+import { View } from '~components/primitives/View';
+import { Ul, Li } from '~components/text/List';
+import { Icon } from '~components/multimedia/Icon';
+import { Button } from '~components/interactive/Button';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -55,23 +59,29 @@ const CarouselItem = styled(Li)`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Carousel({ children, visibleItems, gap, loop }) {
+export default function Carousel({ children, visibleItems, gap, loop, isControls, ...rest }) {
   const ref = useRef();
   const [initMouseX, setinitMouseX] = useState(0);
   const [initScrollX, setInitScrollX] = useState(0);
 
-  const handleLoop = () => {
+  const handleScroll = (direction) => {
     const { scrollLeft, offsetWidth, scrollWidth } = ref.current; // get currect sizing outside of useEffect closure
+
+    if (direction === 'previous') {
+      const isEnd = scrollLeft === 0; // detect end of scrolling
+      const left = isEnd ? scrollWidth : scrollLeft - offsetWidth / visibleItems; // scroll back to 0 if at the end
+      return ref.current.scrollTo({ left, behavior: 'smooth' });
+    }
+
     const isEnd = scrollLeft >= scrollWidth - offsetWidth; // detect end of scrolling
     const left = isEnd ? 0 : scrollLeft + offsetWidth / visibleItems; // scroll back to 0 if at the end
-
-    ref.current.scrollTo({ left, behavior: 'smooth' });
+    return ref.current.scrollTo({ left, behavior: 'smooth' });
   };
 
   useEffect(() => {
     // only run if loop props passed
     if (loop && loop.interval) {
-      const interval = setInterval(handleLoop, loop.interval);
+      const interval = setInterval(handleScroll, loop.interval);
       return () => clearInterval(interval);
     }
     return undefined;
@@ -95,16 +105,41 @@ export default function Carousel({ children, visibleItems, gap, loop }) {
   };
 
   return (
-    <CarouselWrapper
-      ref={ref}
-      gridAutoColumns={`${100 / visibleItems}%`}
-      gridGap={gap}
-      {...handlers}
-    >
-      {Children.map(children, child => (
-        <CarouselItem>{child}</CarouselItem>
-      ))}
-    </CarouselWrapper>
+    <View display="grid" position="relative" {...rest}>
+      <CarouselWrapper
+        ref={ref}
+        gridAutoColumns={`${100 / visibleItems}%`}
+        gridGap={gap}
+        position="relative"
+        {...handlers}
+      >
+        {Children.map(children, child => (
+          <CarouselItem>{child}</CarouselItem>
+        ))}
+      </CarouselWrapper>
+      {isControls && (
+        <>
+          <Button
+            position="absolute"
+            left="-6rem"
+            alignSelf="center"
+            opacity="0.5"
+            onClick={() => handleScroll('previous')}
+          >
+            <Icon as={FaChevronLeft} />
+          </Button>
+          <Button
+            position="absolute"
+            right="-6rem"
+            alignSelf="center"
+            opacity="0.5"
+            onClick={handleScroll}
+          >
+            <Icon as={FaChevronRight} />
+          </Button>
+        </>
+      )}
+    </View>
   );
 }
 
@@ -115,10 +150,12 @@ Carousel.propTypes = {
   loop:         shape({
     interval: number,
   }),
+  isControls: bool,
 };
 
 Carousel.defaultProps = {
   visibleItems: 4,
   gap:          '1rem',
   loop:         undefined,
+  isControls:   true,
 };

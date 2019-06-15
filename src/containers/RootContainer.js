@@ -58,7 +58,7 @@ export default function RootContainer({ children }) {
         }
       `}
       render={({ header, footer }) => (
-        <MDXProvider components={{ a: Link, pre: Pre }}>
+        <MDXProvider components={{ a: props => <Link look="secondary" {...props} />, pre: Pre }}>
           <Wrapper
             gridTemplate={`
             'header main aside'
