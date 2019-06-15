@@ -29,9 +29,11 @@ export const Button = styled(Text)`
 
   &:not(:disabled):hover,
   &:not(:disabled):focus {
+    opacity: 1; /* fix non-hover opacity changes */
     transform: translateY(-1px);
   }
   &:not(:disabled):active {
+    opacity: 1; /* fix non-hover opacity changes */
     transform: translateY(1px);
   }
 
