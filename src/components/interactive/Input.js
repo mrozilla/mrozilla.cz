@@ -252,7 +252,7 @@ export default forwardRef(
     };
 
     if (type === 'submit') {
-      return <Button as="input" type="submit" gridArea={name} value={label} />;
+      return <Button as="input" type="submit" gridArea={name} value={label} look="primary" />;
     }
 
     return (
