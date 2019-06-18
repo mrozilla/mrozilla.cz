@@ -12,7 +12,7 @@ import { Text } from '~components/primitives/Text';
 
 export const Button = styled(Text)`
   --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
-  --shadow-info: inset 0 0 0 2px hsla(var(--hsl-info), 0.25);
+  --shadow-active: inset 0 0 0 2px hsla(var(--hsl-brand-primary), 0.25);
 
   -webkit-appearance: none;
   border: none;
@@ -43,8 +43,8 @@ export const Button = styled(Text)`
         &:not(:disabled):hover,
         &:not(:disabled):focus {
           background-color: hsla(var(--hsl-text), 0.025);
-          box-shadow: inset 0 0 0 2px var(--color-info);
-          color: var(--color-info);
+          box-shadow: inset 0 0 0 2px var(--color-brand-primary);
+          color: var(--color-brand-primary);
         }
       `;
     }
@@ -55,22 +55,22 @@ export const Button = styled(Text)`
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          background-color: hsla(var(--hsl-info), 0.05);
-          box-shadow: inset 0 0 0 2px var(--color-info);
-          color: var(--color-info);
+          background-color: hsla(var(--hsl-brand-primary), 0.05);
+          box-shadow: inset 0 0 0 2px var(--color-brand-primary);
+          color: var(--color-brand-primary);
         }
       `;
     }
     if (look === 'primary') {
       return css`
-        background-color: hsla(var(--hsl-info), 0.05);
-        box-shadow: var(--shadow-info);
-        color: var(--color-info);
+        background-color: hsla(var(--hsl-brand-primary), 0.05);
+        box-shadow: var(--shadow-active);
+        color: var(--color-brand-primary);
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          box-shadow: inset 0 0 0 2px var(--color-info);
-          color: var(--color-info);
+          box-shadow: inset 0 0 0 2px var(--color-brand-primary);
+          color: var(--color-brand-primary);
         }
       `;
     }
@@ -78,7 +78,7 @@ export const Button = styled(Text)`
     return css`
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        color: var(--color-info);
+        color: var(--color-brand-primary);
       }
     `;
   }};

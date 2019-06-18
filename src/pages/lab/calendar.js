@@ -62,16 +62,16 @@ Calendar.Day = styled.p`
       color: hsl(var(--hsl-bg));
       background-image: radial-gradient(
         circle closest-side,
-        var(--color-info) 100%,
+        var(--color-brand-primary) 100%,
         transparent 100%
       );
     `};
 
   &:hover {
-    color: var(--color-info);
+    color: var(--color-brand-primary);
     background-image: radial-gradient(
       circle closest-side,
-      hsla(var(--hsl-info), 0.25) 100%,
+      hsla(var(--hsl-brand-primary), 0.25) 100%,
       transparent 100%
     );
   }

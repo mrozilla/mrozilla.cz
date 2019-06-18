@@ -45,10 +45,12 @@ export const View = styled.div(
     backgroundRepeat,
     opacity,
     overflow,
+    outline,
     cursor,
     pointerEvents,
     transition,
     hover,
+    focus,
     before,
     after,
   }) => ({
@@ -86,12 +88,16 @@ export const View = styled.div(
       backgroundRepeat,
       opacity,
       overflow,
+      outline,
       cursor,
       pointerEvents,
       transition,
     }),
     '&:hover': {
       ...hover,
+    },
+    '&:focus': {
+      ...focus,
     },
     '&::before': {
       ...before,

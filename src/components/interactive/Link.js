@@ -24,18 +24,18 @@ const StyledLink = styled(Text)`
   ${({ look }) => {
     if (look === 'primary') {
       return css`
-        color: var(--color-info);
+        color: var(--color-brand-primary);
         text-decoration: underline;
       `;
     }
 
     if (look === 'secondary') {
       return css`
-        text-decoration: underline var(--color-info);
+        text-decoration: underline var(--color-brand-primary);
         &:hover,
         &:focus,
         &:active {
-          color: var(--color-info);
+          color: var(--color-brand-primary);
         }
       `;
     }
@@ -45,11 +45,13 @@ const StyledLink = styled(Text)`
         &:hover,
         &:focus,
         &:active {
-          color: var(--color-info);
+          color: var(--color-brand-primary);
           text-decoration: underline;
         }
       `;
     }
+
+    return null;
   }};
 `;
 

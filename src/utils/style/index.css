@@ -3,6 +3,15 @@
 /* ────────────────────────────────────────────────────────────────────────── */
 
 :root {
+  --hsl-brand-primary: 211, 100%, 60%;
+  --color-brand-primary: hsl(var(--hsl-brand-primary));
+
+  --hsl-bg: 0, 100%, 100%;
+  --color-bg: hsl(var(--hsl-bg));
+
+  --hsl-text: 200, 5%, 45%;
+  --color-text: hsl(var(--hsl-text));
+
   --hsl-success: 100, 70%, 60%;
   --color-success: hsl(var(--hsl-success));
   --hsl-info: 211, 100%, 60%;
@@ -11,12 +20,6 @@
   --color-danger: hsl(var(--hsl-danger));
   --hsl-warning: 40, 100%, 50%;
   --color-warning: hsl(var(--hsl-warning));
-
-  --hsl-bg: 0, 100%, 100%;
-  --color-bg: hsl(var(--hsl-bg));
-
-  --hsl-text: 200, 5%, 45%;
-  --color-text: hsl(var(--hsl-text));
 
   --width-header: 0fr;
   --width-main: 1fr;
@@ -137,14 +140,13 @@ th {
   text-align: left;
 }
 
+/* ────────────────────────────────────────────────────────────────────────── */
+/* reboot
+/* ────────────────────────────────────────────────────────────────────────── */
+
 html {
-  box-sizing: border-box;
   font-size: 50%;
 }
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/* Reboot
-/* ────────────────────────────────────────────────────────────────────────── */
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
