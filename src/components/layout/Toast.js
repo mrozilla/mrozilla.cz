@@ -29,7 +29,7 @@ export const StyledToast = styled(View)`
 
 StyledToast.defaultProps = {
   as:              'aside',
-  backgroundColor: 'var(--color-info)',
+  backgroundColor: 'var(--color-brand-primary)',
   top:             0,
   right:           0,
   left:            0,

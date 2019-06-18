@@ -44,7 +44,7 @@ export const Input = styled(Text)`
       }
     }
     &:focus {
-      box-shadow: inset 0 0 0 2px var(--color-info);
+      box-shadow: inset 0 0 0 2px var(--color-brand-primary);
       ::placeholder {
         opacity: 0.75;
       }
@@ -78,10 +78,12 @@ export const Input = styled(Text)`
 
   &[type='select'],
   &[type='search'] {
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       & ~ svg {
         opacity: 1;
-        fill: var(--color-info);
+        fill: var(--color-brand-primary);
       }
     }
   }
@@ -144,7 +146,7 @@ export const Input = styled(Text)`
     }
 
     &::-webkit-calendar-picker-indicator {
-      color: var(--color-info);
+      color: var(--color-brand-primary);
     }
     &::-webkit-datetime-edit-text {
       opacity: 0.5;

@@ -71,13 +71,13 @@ export default function Tabs({ content }) {
             outline="none"
             cursor="pointer"
             padding="1rem"
-            boxShadow={i === activeTabIdx && 'inset 0 -2px var(--color-info)'}
+            boxShadow={i === activeTabIdx && 'inset 0 -2px var(--color-brand-primary)'}
             hover={{
-              color:     'var(--color-info)',
-              boxShadow: 'inset 0 -2px var(--color-info)',
+              color:     'var(--color-brand-primary)',
+              boxShadow: 'inset 0 -2px var(--color-brand-primary)',
             }}
             focus={{
-              color: 'var(--color-info)',
+              color: 'var(--color-brand-primary)',
             }}
             onFocus={() => setActiveTabIdx(i)}
             onClick={() => setActiveTabIdx(i)}

@@ -38,8 +38,8 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   &:not(:disabled) {
     &:hover,
     &:focus {
-      background-color: hsla(var(--hsl-info), 0.05);
-      box-shadow: inset 0 0 0 2px var(--color-info);
+      background-color: hsla(var(--hsl-brand-primary), 0.05);
+      box-shadow: inset 0 0 0 2px var(--color-brand-primary);
 
       & ~ ${Text} {
         color: var(--color-text);
@@ -47,7 +47,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     }
 
     &:checked {
-      background-color: var(--color-info);
+      background-color: var(--color-brand-primary);
 
       &::after {
         content: '';
@@ -64,7 +64,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
       }
 
       &:focus ~ ${Text} {
-        color: var(--color-info);
+        color: var(--color-brand-primary);
       }
     }
   }

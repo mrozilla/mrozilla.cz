@@ -36,7 +36,7 @@ export const Summary = styled(Text)`
   &:focus,
   &:active {
     &::before {
-      color: var(--color-info);
+      color: var(--color-brand-primary);
     }
   }
 `;
@@ -50,7 +50,7 @@ export const Details = styled(View)`
   &[open] {
     & > ${Summary}::before {
       transform: rotate(0);
-      color: var(--color-info);
+      color: var(--color-brand-primary);
     }
   }
 `;

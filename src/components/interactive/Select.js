@@ -29,7 +29,7 @@ export const Select = styled(Text)`
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 2px var(--color-info);
+    box-shadow: inset 0 0 0 2px var(--color-brand-primary);
   }
 
   &:hover,
@@ -37,7 +37,7 @@ export const Select = styled(Text)`
   &:active {
     & ~ svg {
       opacity: 1;
-      fill: var(--color-info);
+      fill: var(--color-brand-primary);
     }
   }
 
