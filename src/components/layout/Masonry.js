@@ -5,7 +5,7 @@
 import React, { Children } from 'react';
 import { number, string, node, bool } from 'prop-types';
 
-import { Ul, Li } from '../text/List';
+import { Ul, Li } from '~components/text/List';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

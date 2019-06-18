@@ -50,6 +50,8 @@ const StyledLink = styled(Text)`
         }
       `;
     }
+
+    return null;
   }};
 `;
 
