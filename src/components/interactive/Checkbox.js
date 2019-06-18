@@ -48,6 +48,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
     &:checked {
       background-color: var(--color-info);
+
       &::after {
         content: '';
         display: block;
@@ -57,8 +58,13 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
         border-width: 0 0.125em 0.125em 0;
         transform: translate(0.35em, 0.15em) rotate(45deg);
       }
+
       & ~ ${Text} {
         color: var(--color-text);
+      }
+
+      &:focus ~ ${Text} {
+        color: var(--color-info);
       }
     }
   }

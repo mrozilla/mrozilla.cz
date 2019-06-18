@@ -50,6 +50,10 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
       & ~ ${Text} {
         color: var(--color-text);
       }
+
+      &:focus ~ ${Text} {
+        color: var(--color-info);
+      }
     }
   }
 `;
