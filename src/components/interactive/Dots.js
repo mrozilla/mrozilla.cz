@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import { View } from '../primitives/View';
+import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

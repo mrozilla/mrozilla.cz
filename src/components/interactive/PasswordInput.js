@@ -67,7 +67,7 @@ export default function TextInput({ onChange, type, ...rest }) {
         padding="0"
         hover={{
           opacity: '1',
-          fill:    'var(--color-info)',
+          fill:    'var(--color-brand-primary)',
         }}
         onClick={handleVisibility}
       >
