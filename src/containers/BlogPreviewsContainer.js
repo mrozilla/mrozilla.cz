@@ -15,8 +15,8 @@ export default function BlogPreviewsContainer({ posts }) {
   return (
     <Ul>
       {posts.edges.map(({ node: { frontmatter: { title, date, meta }, timeToRead } }) => (
-        <Li key={meta.permalink}>
-          <Link to={meta.permalink} look="tertiary">
+        <Li key={meta.permalink} lineHeight="3rem">
+          <Link to={meta.permalink} look="tertiary" display="block" padding="0.5rem 0">
             {title}
           </Link>
           {(date || timeToRead) && (

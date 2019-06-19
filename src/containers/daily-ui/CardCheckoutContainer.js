@@ -45,7 +45,7 @@ export default function CardCheckout({ onSubmit }) {
     }
 
     const filtered = value.replace(/[^\d]/g, '');
-    const masked = filtered.replace(/(\d{4})(?<!\d{16})/g, '$1 ');
+    const masked = filtered.replace(/(\d{4})/g, '$1 ').trim();
     const isDeleting = cardNumber.length > value.length;
 
     setCardNumber(isDeleting ? value : masked);
@@ -74,7 +74,7 @@ export default function CardCheckout({ onSubmit }) {
     }
 
     const filtered = value.replace(/[^\d]/g, '');
-    const masked = filtered.replace(/(\d{2})(?<!\d{4})/g, '$1/');
+    const masked = filtered.replace(/(\d{2})/g, '$1/').substr(0, 5);
     const isDeleting = expiration.length > value.length;
 
     return setExpiration(isDeleting ? value : masked);
@@ -180,7 +180,11 @@ export default function CardCheckout({ onSubmit }) {
         onChange={handleCVC}
         required
       />
-      <Button gridArea="pay" look="primary" disabled={!(cardHolder && cardNumber && expiration && cvc)}>
+      <Button
+        gridArea="pay"
+        look="primary"
+        disabled={!(cardHolder && cardNumber && expiration && cvc)}
+      >
         Pay €19.99
       </Button>
     </Form>
