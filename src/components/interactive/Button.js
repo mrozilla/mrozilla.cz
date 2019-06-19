@@ -38,6 +38,12 @@ export const Button = styled(Text)`
   }
 
   ${({ look }) => {
+    if (look === 'inverse') {
+      return css`
+        color: var(--color-bg);
+      `;
+    }
+
     if (look === 'tertiary') {
       return css`
         &:not(:disabled):hover,

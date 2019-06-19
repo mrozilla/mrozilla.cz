@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 
-import { RootContainer, SEOContainer, BlogPreviewsContainer } from '.';
+import { RootContainer, SEOContainer, BlogPreviewsContainer, HighlightShareContainer } from '.';
 import { Article, Aside, Link, Main, H1, H2, P } from '~components';
 import { parseLinks } from '~utils';
 
@@ -53,6 +53,7 @@ export default function BlogPost({
     },
     relatedArticles,
   },
+  location,
 }) {
   return (
     <RootContainer>
@@ -89,6 +90,7 @@ export default function BlogPost({
           </Aside>
         )}
       </Main>
+      <HighlightShareContainer location={location} />
     </RootContainer>
   );
 }
