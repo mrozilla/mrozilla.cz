@@ -34,10 +34,8 @@ export const query = graphql`
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
-          ...LabPreviewFragment
-        }
+      nodes {
+        ...LabPreviewFragment
       }
     }
     demos: allMdx(
@@ -47,10 +45,8 @@ export const query = graphql`
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
-          ...LabPreviewFragment
-        }
+      nodes {
+        ...LabPreviewFragment
       }
     }
     products: allMdx(
@@ -60,10 +56,8 @@ export const query = graphql`
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
-          ...LabPreviewFragment
-        }
+      nodes {
+        ...LabPreviewFragment
       }
     }
   }
@@ -96,21 +90,15 @@ export default function LabPage({
         {renderBlocks(blocks)}
         <Section gridArea="tools">
           <H2>Little tools</H2>
-          <WorksContainer
-            works={tools.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
-          />
+          <WorksContainer works={tools.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
         <Section gridArea="products">
           <H2>Standalone products</H2>
-          <WorksContainer
-            works={products.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
-          />
+          <WorksContainer works={products.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
         <Section gridArea="demos">
           <H2>Demos</H2>
-          <WorksContainer
-            works={demos.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
-          />
+          <WorksContainer works={demos.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
       </Main>
     </RootContainer>
