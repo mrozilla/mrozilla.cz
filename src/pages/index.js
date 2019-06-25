@@ -34,10 +34,8 @@ export const query = graphql`
       filter: { fields: { sourceName: { eq: "works" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
-          ...WorkPreviewFragment
-        }
+      nodes {
+        ...WorkPreviewFragment
       }
     }
     posts: allMdx(
@@ -45,10 +43,8 @@ export const query = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 5
     ) {
-      edges {
-        node {
-          ...BlogPreviewFragment
-        }
+      nodes {
+        ...BlogPreviewFragment
       }
     }
   }
@@ -80,9 +76,7 @@ export default function HomePage({
         {renderBlocks(blocks)}
         <Section gridArea="work" id="work">
           <H2>Latest client work</H2>
-          <WorksContainer
-            works={works.edges.map(({ node: { frontmatter } }) => ({ ...frontmatter }))}
-          />
+          <WorksContainer works={works.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
         <Section gridArea="blog" id="blog">
           <H2>Latest blog articles</H2>

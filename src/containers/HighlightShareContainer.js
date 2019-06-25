@@ -17,7 +17,7 @@ export default function HighlightShareContainer({ location }) {
 
   const handleMouseUp = () => {
     const selection = document.getSelection();
-    if (selection) {
+    if (selection && selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
       if (range) {
         setPosition(range.getBoundingClientRect());

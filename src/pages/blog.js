@@ -28,10 +28,8 @@ export const query = graphql`
       filter: { fields: { sourceName: { eq: "posts" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
-          ...BlogPreviewFragment
-        }
+      nodes {
+        ...BlogPreviewFragment
       }
     }
   }
