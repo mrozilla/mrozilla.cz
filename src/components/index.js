@@ -27,6 +27,9 @@ export { Wrapper } from './layout/Wrapper';
 export { Icon } from './multimedia/Icon';
 export { default as Img } from './multimedia/Img';
 
+export { Text } from './primitives/Text';
+export { View } from './primitives/View';
+
 export { Alert } from './text/Alert';
 export { Article } from './text/Article';
 export { H1, H2, H3 } from './text/HX';

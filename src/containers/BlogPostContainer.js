@@ -32,10 +32,8 @@ export const query = graphql`
       filter: { fields: { sourceName: { eq: "posts" } }, frontmatter: { related: { in: [$path] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
-          ...BlogPreviewFragment
-        }
+      nodes {
+        ...BlogPreviewFragment
       }
     }
   }
@@ -83,7 +81,7 @@ export default function BlogPost({
           </header>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </Article>
-        {relatedArticles.edges.length > 0 && (
+        {relatedArticles.nodes.length > 0 && (
           <Aside>
             <H2>Related articles</H2>
             <BlogPreviewsContainer posts={relatedArticles} />
