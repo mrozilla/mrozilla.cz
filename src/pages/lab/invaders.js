@@ -8,8 +8,7 @@ import styled from 'styled-components';
 import uniqueId from 'lodash/uniqueId';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Button, H1 } from '~components';
-import { View } from '~components/primitives/View';
+import { Main, Section, Button, H1, View } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
