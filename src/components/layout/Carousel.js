@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { Children, useRef, useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 import { number, string, node, shape, bool } from 'prop-types';
 
@@ -59,7 +58,15 @@ const CarouselItem = styled(Li)`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Carousel({ children, visibleItems, gap, loop, isControls, ...rest }) {
+export default function Carousel({
+  children,
+  visibleItems,
+  gap,
+  loop,
+  isControls,
+  itemProps,
+  ...rest
+}) {
   const ref = useRef();
   const [initMouseX, setinitMouseX] = useState(0);
   const [initScrollX, setInitScrollX] = useState(0);
@@ -88,16 +95,16 @@ export default function Carousel({ children, visibleItems, gap, loop, isControls
   }, []);
 
   const handlers = {
-    onMouseDown: ({ nativeEvent: e }) => {
-      setinitMouseX(e.clientX);
+    onMouseDown: (event) => {
+      setinitMouseX(event.clientX);
       setInitScrollX(ref.current.scrollLeft);
     },
-    onMouseMove: ({ nativeEvent: e }) => {
+    onMouseMove: (event) => {
       // check if mouse down
-      if (e.buttons > 0) {
-        e.preventDefault();
+      if (event.buttons > 0) {
+        event.preventDefault();
         ref.current.scrollTo({
-          left:     initScrollX + initMouseX - e.clientX,
+          left:     initScrollX + initMouseX - event.clientX,
           behavior: 'smooth',
         });
       }
@@ -108,34 +115,34 @@ export default function Carousel({ children, visibleItems, gap, loop, isControls
     <View display="grid" position="relative" {...rest}>
       <CarouselWrapper
         ref={ref}
-        gridAutoColumns={`${100 / visibleItems}%`}
+        gridAutoColumns={`calc(${100 / visibleItems}% - ${gap})`}
         gridGap={gap}
         position="relative"
         {...handlers}
       >
         {Children.map(children, child => (
-          <CarouselItem>{child}</CarouselItem>
+          <CarouselItem {...itemProps}>{child}</CarouselItem>
         ))}
       </CarouselWrapper>
       {isControls && (
         <>
           <Button
             position="absolute"
-            left="-6rem"
+            left="-7rem"
             alignSelf="center"
             opacity="0.5"
             onClick={() => handleScroll('previous')}
           >
-            <Icon as={FaChevronLeft} />
+            <Icon icon="FaChevronLeft" />
           </Button>
           <Button
             position="absolute"
-            right="-6rem"
+            right="-7rem"
             alignSelf="center"
             opacity="0.5"
             onClick={handleScroll}
           >
-            <Icon as={FaChevronRight} />
+            <Icon icon="FaChevronRight" />
           </Button>
         </>
       )}
