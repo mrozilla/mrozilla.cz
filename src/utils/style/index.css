@@ -9,6 +9,9 @@
   --hsl-bg: 0, 100%, 100%;
   --color-bg: hsl(var(--hsl-bg));
 
+  --hsl-inverse: 0, 100%, 100%;
+  --color-inverse: hsl(var(--hsl-inverse));
+
   --hsl-text: 200, 5%, 45%;
   --color-text: hsl(var(--hsl-text));
 
