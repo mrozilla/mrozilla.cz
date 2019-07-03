@@ -58,17 +58,17 @@ export default function HighlightShareContainer({ location }) {
         >
           <Li lineHeight="3rem">
             <Button look="inverse" padding="0.5rem" onClick={() => share('twitter')}>
-              <Icon as={FaTwitter} fontSize="2.5rem" />
+              <Icon icon="FaTwitter" fontSize="2.5rem" />
             </Button>
           </Li>
           <Li lineHeight="3rem">
             <Button look="inverse" padding="0.5rem" onClick={() => share('facebook')}>
-              <Icon as={FaFacebook} fontSize="2.5rem" />
+              <Icon icon="FaFacebook" fontSize="2.5rem" />
             </Button>
           </Li>
           <Li lineHeight="3rem">
             <Button look="inverse" padding="0.5rem" onClick={() => share('messenger')}>
-              <Icon as={FaFacebookMessenger} fontSize="2.5rem" />
+              <Icon icon="FaFacebookMessenger" fontSize="2.5rem" />
             </Button>
           </Li>
         </Ul>
