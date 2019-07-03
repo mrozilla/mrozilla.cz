@@ -6,7 +6,7 @@ import React from 'react';
 import { FaTwitter, FaFacebook, FaFacebookMessenger } from 'react-icons/fa';
 
 import { Aside, Icon, Button, Ul, Li } from '~components';
-import { useSocialShare, useSelection, fadeUpAnimation } from '~utils';
+import { useSocialShare, useSelection, animation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -25,7 +25,17 @@ export default function HighlightShareContainer({ location }) {
         top={`calc(${selectedTextPosition.top + window.pageYOffset}px - 5rem)`}
         left={selectedTextPosition.left}
         width={selectedTextPosition.width}
-        // animation={fadeUpAnimation}
+        animation={animation({
+          from: {
+            opacity:   '0',
+            transform: 'translateY(-0.5rem)',
+          },
+          to: {
+            opacity:   '1',
+            transform: 'translateY(0)',
+          },
+          properties: '250ms',
+        })}
       >
         <Ul
           position="relative"

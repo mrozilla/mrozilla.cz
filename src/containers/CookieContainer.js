@@ -17,7 +17,6 @@ export default function CookieContainer() {
   return (
     <Toast
       backgroundColor="var(--color-bg)"
-      animation="none"
       color="var(--color-text)"
       fontSize="1.25rem"
       bottom={{

@@ -9,7 +9,7 @@ import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, P, Modal, Ul, Li, Link, Toast } from '~components';
-import { persist, fadeUpAnimation } from '~utils';
+import { persist, animation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -42,7 +42,17 @@ const Card = styled.div`
   margin: 0.25rem;
   box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
 
-  animation: ${fadeUpAnimation} 250ms;
+  animation: ${animation({
+    from: {
+      opacity:   '0',
+      transform: 'translateY(1vh)',
+    },
+    to: {
+      opacity:   '1',
+      transform: 'translateY(0)',
+    },
+    properties: '250ms both',
+  })};
 
   &:hover {
     transform: translateY(-1px);
