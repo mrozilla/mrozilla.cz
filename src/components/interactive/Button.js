@@ -40,7 +40,7 @@ export const Button = styled(Text)`
   ${({ look }) => {
     if (look === 'inverse') {
       return css`
-        color: var(--color-bg);
+        color: var(--color-inverse);
       `;
     }
 

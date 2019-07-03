@@ -71,7 +71,7 @@ export default function TextInput({ onChange, type, ...rest }) {
         }}
         onClick={handleVisibility}
       >
-        <Icon as={isHidden ? FaEyeSlash : FaEye} />
+        <Icon icon={isHidden ? 'FaEyeSlash' : 'FaEye'} />
       </Button>
       <Dots
         position="absolute"

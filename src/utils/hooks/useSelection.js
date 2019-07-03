@@ -1,44 +1,32 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// import
+//  import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from 'react';
-
-import { Toast, Link, Button } from '~components';
-import { useLocalStorage } from '~utils/';
+import { useState, useEffect } from 'react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function CookieContainer() {
-  const [isVisible, setIsVisible] = useLocalStorage('isShowCookies', true);
+export default function useSelection() {
+  const [selectedText, setSelectedText] = useState('');
+  const [selectedTextPosition, setSelectedTextPosition] = useState({});
 
-  return (
-    <Toast
-      backgroundColor="var(--color-bg)"
-      color="var(--color-text)"
-      fontSize="1.25rem"
-      bottom={{
-        xs: 'auto',
-        sm: '0',
-      }}
-      top={{
-        xs: '0',
-        sm: 'auto',
-      }}
-      isVisible={isVisible}
-    >
-      Yeah, we use cookies, we even have a{' '}
-      <Link to="/legal/privacy/" look="secondary">
-        cookie policy
-      </Link>
-      <Button margin="0 0 0 1rem" look="secondary" onClick={() => setIsVisible(!isVisible)}>
-        Accept{' '}
-        <span role="img" aria-label="cookie">
-          🍪
-        </span>
-      </Button>
-    </Toast>
-  );
+  const handleMouseUp = () => {
+    const selection = document.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      if (range) {
+        setSelectedTextPosition(range.getBoundingClientRect());
+        setSelectedText(document.getSelection().toString());
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mouseup', handleMouseUp);
+    return () => document.removeEventListener('mouseup', handleMouseUp);
+  }, []);
+
+  return [selectedText, selectedTextPosition];
 }

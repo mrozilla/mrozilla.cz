@@ -10,9 +10,7 @@ import { Text } from '~components/primitives/Text';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Label = styled(Text)`
-  animation: ${({ animation }) => animation};
-`;
+export const Label = styled(Text)``;
 
 Label.defaultProps = {
   as:            'label',
