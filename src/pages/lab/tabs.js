@@ -54,7 +54,7 @@ export default function CarouselPage({
               {
                 title: (
                   <P>
-                    <Icon as={FaEye} fontSize="1.5rem" /> Components
+                    <Icon icon="FaEye" fontSize="1.5rem" /> Components
                   </P>
                 ),
                 body: (

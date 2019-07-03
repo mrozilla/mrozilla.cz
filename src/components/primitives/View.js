@@ -7,10 +7,19 @@ import styled from 'styled-components';
 import { mediaQuerise } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
+// helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+// consuming animations is currently only supported via the interpolated string syntax: https://spectrum.chat/styled-components/help/how-can-i-use-a-custom-animation-with-the-style-object-syntax~91d624ea-a5a3-4d0e-9314-4da860059112
+const AnimatedView = styled.div`
+  animation: ${({ animation }) => animation};
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const View = styled.div(
+export const View = styled(AnimatedView)(
   ({
     display,
     position,
@@ -93,17 +102,9 @@ export const View = styled.div(
       pointerEvents,
       transition,
     }),
-    '&:hover': {
-      ...hover,
-    },
-    '&:focus': {
-      ...focus,
-    },
-    '&::before': {
-      ...before,
-    },
-    '&::after': {
-      ...after,
-    },
+    '&:hover':   { ...hover },
+    '&:focus':   { ...focus },
+    '&::before': { ...before },
+    '&::after':  { ...after },
   }),
 );

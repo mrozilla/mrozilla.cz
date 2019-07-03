@@ -121,7 +121,7 @@ export default forwardRef(
               {label}
             </Label>
             <Icon
-              as={FaChevronDown}
+              icon="FaChevronDown"
               position="absolute"
               top="2.75rem"
               right="1rem"
@@ -154,7 +154,7 @@ export default forwardRef(
               ))}
             </datalist>
             <Icon
-              as={FaChevronDown}
+              icon="FaChevronDown"
               position="absolute"
               top="2.75rem"
               right="1rem"
