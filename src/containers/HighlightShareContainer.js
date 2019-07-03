@@ -2,68 +2,30 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaTwitter, FaFacebook, FaFacebookMessenger } from 'react-icons/fa';
 
 import { Aside, Icon, Button, Ul, Li } from '~components';
+import { useSocialShare, useSelection, fadeUpAnimation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function HighlightShareContainer({ location }) {
-  const [highlightedText, setHighlightedText] = useState('');
-  const [position, setPosition] = useState({});
-
-  const handleMouseUp = () => {
-    const selection = document.getSelection();
-    if (selection && selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-      if (range) {
-        setPosition(range.getBoundingClientRect());
-        setHighlightedText(document.getSelection().toString());
-      }
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mouseup', handleMouseUp);
-    return () => document.removeEventListener('mouseup', handleMouseUp);
-  }, []);
-
-  const handleShare = (service) => {
-    const text = encodeURIComponent(highlightedText);
-    const url = encodeURIComponent(location.href);
-
-    if (service === 'twitter') {
-      return window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_newtab');
-    }
-
-    if (service === 'facebook') {
-      window.open(`https://www.facebook.com/sharer/sharer.php?quote=${text}&u=${url}`, '_newtab');
-    }
-
-    if (service === 'messenger') {
-      window.open(
-        `https://www.facebook.com/dialog/send?app_id=${
-          process.env.GATSBY_FB_APP_ID
-        }&link=${url}&redirect_uri=${url}`,
-        '_newtab',
-      );
-    }
-
-    return null;
-  };
+  const [selectedText, selectedTextPosition] = useSelection();
+  const share = useSocialShare({ text: selectedText, url: location.href });
 
   return (
-    highlightedText && (
+    selectedText && (
       <Aside
         display="flex"
         justifyContent="center"
         position="absolute"
-        top={`calc(${position.top + window.pageYOffset}px - 5rem)`}
-        left={position.left}
-        width={position.width}
+        top={`calc(${selectedTextPosition.top + window.pageYOffset}px - 5rem)`}
+        left={selectedTextPosition.left}
+        width={selectedTextPosition.width}
+        // animation={fadeUpAnimation}
       >
         <Ul
           position="relative"
@@ -85,17 +47,17 @@ export default function HighlightShareContainer({ location }) {
           }}
         >
           <Li lineHeight="3rem">
-            <Button look="inverse" padding="0.5rem" onClick={() => handleShare('twitter')}>
+            <Button look="inverse" padding="0.5rem" onClick={() => share('twitter')}>
               <Icon as={FaTwitter} fontSize="2.5rem" />
             </Button>
           </Li>
           <Li lineHeight="3rem">
-            <Button look="inverse" padding="0.5rem" onClick={() => handleShare('facebook')}>
+            <Button look="inverse" padding="0.5rem" onClick={() => share('facebook')}>
               <Icon as={FaFacebook} fontSize="2.5rem" />
             </Button>
           </Li>
           <Li lineHeight="3rem">
-            <Button look="inverse" padding="0.5rem" onClick={() => handleShare('messenger')}>
+            <Button look="inverse" padding="0.5rem" onClick={() => share('messenger')}>
               <Icon as={FaFacebookMessenger} fontSize="2.5rem" />
             </Button>
           </Li>
