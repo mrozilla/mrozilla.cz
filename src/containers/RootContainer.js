@@ -11,7 +11,7 @@ import { MDXProvider } from '@mdx-js/react';
 import HeaderContainer from './HeaderContainer';
 import FooterContainer from './FooterContainer';
 import CookieContainer from './CookieContainer';
-import { Wrapper, Link, Pre } from '~components';
+import { View, Link, Pre } from '~components';
 import { useBarrelRoll, useInactiveTab } from '~utils';
 import '~utils/style/index.css';
 
@@ -58,7 +58,8 @@ export default function RootContainer({ children }) {
 
   return (
     <MDXProvider components={{ a: props => <Link look="secondary" {...props} />, pre: Pre }}>
-      <Wrapper
+      <View
+        display="grid"
         gridTemplate={`
             'header main aside'
             'header footer aside'
@@ -71,7 +72,7 @@ export default function RootContainer({ children }) {
         {children}
         <FooterContainer footer={footer.frontmatter.links} />
         <CookieContainer />
-      </Wrapper>
+      </View>
     </MDXProvider>
   );
 }
