@@ -49,6 +49,15 @@ export default function PassworldPage({
   const ToastRef = useRef();
 
   const handleGeneratePassword = () => {
+    if (Object.values(chars).every(charSet => !charSet)) {
+      return setPassword('');
+    }
+
+    const generateSeed = () => {
+      const random = window.crypto.getRandomValues(new Uint8Array(1));
+      return random[0];
+    };
+
     const generateRandomCharacter = () => {
       if (typeof window === 'undefined') {
         return '';
@@ -60,12 +69,14 @@ export default function PassworldPage({
         specialChars: '@#$%-_',
         numbers:      '0123456789',
       };
-      const pool = Object.keys(types)
-        .map(key => (chars[key] ? types[key] : null))
-        .join('');
-      const seed = window.crypto.getRandomValues(new Uint8Array(1));
 
-      return pool.charAt(seed[0] % pool.length);
+      const availableTypes = Object.entries(types).reduce((acc, [key, value]) => {
+        if (chars[key]) return [...acc, value];
+        return acc;
+      }, []);
+      const pool = availableTypes[generateSeed() % availableTypes.length];
+
+      return pool.charAt(generateSeed() % pool.length);
     };
 
     return setPassword(
@@ -169,10 +180,15 @@ export default function PassworldPage({
             `}
             onChange={handleChangeChars}
           />
-          <Button look="secondary" onClick={handleGeneratePassword} grouped>
+          <Button
+            look="secondary"
+            onClick={handleGeneratePassword}
+            disabled={Object.values(chars).every(charSet => !charSet)}
+            grouped
+          >
             Generate
           </Button>
-          <Button look="secondary" onClick={handleCopyToClipboard} grouped>
+          <Button look="secondary" onClick={handleCopyToClipboard} disabled={!password} grouped>
             Copy to clipboard
           </Button>
         </Section>
