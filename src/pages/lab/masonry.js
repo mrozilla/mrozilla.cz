@@ -42,9 +42,18 @@ export default function MasonryPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'masonry'" gridGap="10vh 1rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'masonry';
+          grid-gap: 10vh 1rem;
+        `}
+      >
         {renderBlocks(blocks)}
-        <Section gridArea="masonry">
+        <Section
+          css={`
+            grid-area: masonry;
+          `}
+        >
           <Masonry>
             {Array.from({ length: 15 }, (_, i) => i).map(order => (
               <Img

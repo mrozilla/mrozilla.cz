@@ -9,23 +9,18 @@ import styled from 'styled-components';
 // table
 // ─────────────────────────────────────────────────────────────────────────────
 
-const NativeTable = styled.table(({ width, tableLayout, whiteSpace, margin }) => ({
-  width,
-  '@media screen and (min-width: 1200px)': {
-    tableLayout,
-  },
-  whiteSpace,
-  margin,
-}));
-
-NativeTable.defaultProps = {
-  width:      '100%',
-  whiteSpace: 'pre',
-};
+const NativeTable = styled.table`
+  width: 100%;
+  white-space: pre;
+`;
 
 export function Table({ children, ...rest }) {
   return (
-    <div style={{ overflowX: 'auto' }}>
+    <div
+      css={`
+        overflow-x: auto;
+      `}
+    >
       <NativeTable {...rest}>{children}</NativeTable>
     </div>
   );

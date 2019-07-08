@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { forwardRef } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
 
 import { Text } from '~components/primitives/Text';
 
@@ -47,6 +46,7 @@ export default forwardRef(
       readOnly,
       required,
       onChange,
+      css,
       ...rest
     },
     ref,
@@ -57,7 +57,13 @@ export default forwardRef(
           <>
             {label && <Legend>{label}</Legend>}
             {options.map(radio => (
-              <Label key={radio.value} htmlFor={radio.value} lineHeight="4rem">
+              <Label
+                key={radio.value}
+                htmlFor={radio.value}
+                css={`
+                  line-height: 4rem;
+                `}
+              >
                 <Radio
                   ref={ref}
                   id={radio.value}
@@ -82,7 +88,13 @@ export default forwardRef(
           <>
             {label && <Legend>{label}</Legend>}
             {options.map(checkbox => (
-              <Label key={checkbox.value} htmlFor={checkbox.value} lineHeight="4rem">
+              <Label
+                key={checkbox.value}
+                htmlFor={checkbox.value}
+                css={`
+                  line-height: 4rem;
+                `}
+              >
                 <Checkbox
                   ref={ref}
                   id={checkbox.value}
@@ -117,17 +129,26 @@ export default forwardRef(
                 ))}
               </optgroup>
             </Select>
-            <Label htmlFor={name} position="absolute" top="0" left="1rem">
+            <Label
+              htmlFor={name}
+              css={`
+                position: absolute;
+                top: 0;
+                left: 1rem;
+              `}
+            >
               {label}
             </Label>
             <Icon
               icon="FaChevronDown"
-              position="absolute"
-              top="2.75rem"
-              right="1rem"
-              pointerEvents="none"
-              fontSize="1.75rem"
-              opacity="0.25"
+              css={`
+                position: absolute;
+                top: 2.75rem;
+                right: 1rem;
+                pointer-events: none;
+                font-size: 1.75rem;
+                opacity: 0.25;
+              `}
             />
             {description && <Tooltip>{description}</Tooltip>}
           </>
@@ -145,7 +166,14 @@ export default forwardRef(
               autoComplete="off"
               {...{ name, value, placeholder, options, required, onChange }}
             />
-            <Label htmlFor={name} position="absolute" top="0" left="1rem">
+            <Label
+              htmlFor={name}
+              css={`
+                position: absolute;
+                top: 0;
+                left: 1rem;
+              `}
+            >
               {label}
             </Label>
             <datalist id={`datalist-${name}`}>
@@ -155,12 +183,14 @@ export default forwardRef(
             </datalist>
             <Icon
               icon="FaChevronDown"
-              position="absolute"
-              top="2.75rem"
-              right="1rem"
-              pointerEvents="none"
-              fontSize="1.75rem"
-              opacity="0.25"
+              css={`
+                position: absolute;
+                top: 2.75rem;
+                right: 1rem;
+                pointer-events: none;
+                font-size: 1.75rem;
+                opacity: 0.25;
+              `}
             />
             {error && <Error>{error}</Error>}
           </>
@@ -183,7 +213,14 @@ export default forwardRef(
                 onChange,
               }}
             />
-            <Label htmlFor={name} position="absolute" top="0" left="1rem">
+            <Label
+              htmlFor={name}
+              css={`
+                position: absolute;
+                top: 0;
+                left: 1rem;
+              `}
+            >
               {label}
             </Label>
             {description && <Tooltip>{description}</Tooltip>}
@@ -213,7 +250,14 @@ export default forwardRef(
               }}
               {...rest}
             />
-            <Label htmlFor={name} position="absolute" top="0" left="1rem">
+            <Label
+              htmlFor={name}
+              css={`
+                position: absolute;
+                top: 0;
+                left: 1rem;
+              `}
+            >
               {label}
             </Label>
             {description && <Tooltip>{description}</Tooltip>}
@@ -242,7 +286,14 @@ export default forwardRef(
             }}
             {...rest}
           />
-          <Label htmlFor={name} position="absolute" top="0" left="1rem">
+          <Label
+            htmlFor={name}
+            css={`
+              position: absolute;
+              top: 0;
+              left: 1rem;
+            `}
+          >
             {label}
           </Label>
           {description && <Tooltip>{description}</Tooltip>}
@@ -252,11 +303,27 @@ export default forwardRef(
     };
 
     if (type === 'submit') {
-      return <Button as="input" type="submit" gridArea={name} value={label} look="primary" />;
+      return (
+        <Button
+          as="input"
+          type="submit"
+          value={label}
+          look="primary"
+          css={`
+            grid-area: ${name};
+          `}
+        />
+      );
     }
 
     return (
-      <Fieldset gridArea={name} {...rest}>
+      <Fieldset
+        css={`
+          grid-area: ${name};
+          ${css}
+        `}
+        {...rest}
+      >
         {renderInput()}
       </Fieldset>
     );

@@ -45,7 +45,12 @@ export default function AboutPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'about'" gridGap="10vh 4rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'about';
+          grid-gap: 10vh 4rem;
+        `}
+      >
         {renderBlocks(blocks, { wrapper: Article })}
       </Main>
     </RootContainer>

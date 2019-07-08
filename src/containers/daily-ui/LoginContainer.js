@@ -51,22 +51,31 @@ export default function Login({ onSubmit }) {
   };
 
   return (
-    <Section gridArea="login" display="grid" gridTemplate="'form'">
+    <Section
+      css={`
+        grid-area: login;
+      `}
+    >
       <Form
-        gridTemplate={`
-          'title'
-          'email'
-          'password'
+        css={`
+          grid-template: 'title' 'email' 'password';
+          box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.1);
+          padding: 4rem 4rem 3rem;
+          border-radius: 0.5rem;
+
+          &:hover {
+            box-shadow: 0 0 0 2px hsla(var(--hsl-text), 0.1);
+          }
         `}
-        boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
-        padding="4rem 4rem 3rem"
-        borderRadius="1rem"
-        hover={{
-          boxShadow: '0 0 0 2px hsla(var(--hsl-text),0.1)',
-        }}
         onSubmit={handleSubmit}
       >
-        <H1 fontSize="2.5rem" fontWeight="500" margin="0 0 2rem">
+        <H1
+          css={`
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin: 0 0 2rem;
+          `}
+        >
           Log in to your account
         </H1>
         <Input
@@ -90,17 +99,41 @@ export default function Login({ onSubmit }) {
           onChange={({ target: { value } }) => setPassword(value)}
           required
         />
-        <Button type="submit" look="primary" fontWeight="600">
+        <Button
+          type="submit"
+          look="primary"
+          css={`
+            font-weight: 600;
+          `}
+        >
           Log in
         </Button>
-        <Button type="submit" look="secondary" position="relative">
+        <Button
+          type="submit"
+          look="secondary"
+          css={`
+            position: relative;
+          `}
+        >
           <GoogleLogo /> Log in with Google
         </Button>
-        <Link to="#fake" look="secondary" fontSize="1.5rem" lineHeight="2rem">
+        <Link
+          to="#fake"
+          look="secondary"
+          css={`
+            font-size: 1.5rem;
+            line-height: 2rem;
+          `}
+        >
           Forgot password?
         </Link>
       </Form>
-      <P fontSize="1.5rem" margin="0 4rem">
+      <P
+        css={`
+          font-size: 1.5rem;
+          margin: 0 4rem;
+        `}
+      >
         Don&apos;t have an account?{' '}
         <Link to="#fake" look="secondary">
           Sign up

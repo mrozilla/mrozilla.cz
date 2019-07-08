@@ -95,10 +95,28 @@ export default function Modal({
 
   if (isOpen) {
     return (
-      <ModalBackground onClick={handleClickBackground} padding={outerPadding}>
-        <ModalWrapper key={innerKey} padding={innerPadding} minWidth={innerMinWidth}>
+      <ModalBackground
+        onClick={handleClickBackground}
+        css={`
+          padding: ${outerPadding};
+        `}
+      >
+        <ModalWrapper
+          key={innerKey}
+          css={`
+            padding: ${innerPadding};
+            minwidth: ${innerMinWidth};
+          `}
+        >
           {children}
-          <Button position="absolute" top="0" right="0" onClick={onClickClose}>
+          <Button
+            css={`
+              position: absolute;
+              top: 0;
+              right: 0;
+            `}
+            onClick={onClickClose}
+          >
             ×
           </Button>
         </ModalWrapper>

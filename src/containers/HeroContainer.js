@@ -14,7 +14,14 @@ import { parseLinks } from '~utils';
 
 export default function HeroContainer({ title }) {
   return (
-    <H1 fontSize="5rem" lineHeight="6rem" margin="-1rem 0 0 0" gridArea="hero">
+    <H1
+      css={`
+        font-size: 5rem;
+        line-height: 6rem;
+        margin: -1rem 0 0;
+        grid-area: hero;
+      `}
+    >
       {parseLinks(title, { type: 'primary' })}
     </H1>
   );

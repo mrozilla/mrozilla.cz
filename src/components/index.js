@@ -22,7 +22,6 @@ export { Section } from './layout/Section';
 export { Table } from './layout/Table';
 export { default as Tabs } from './layout/Tabs';
 export { default as Toast } from './layout/Toast';
-export { Wrapper } from './layout/Wrapper';
 
 export { Icon } from './multimedia/Icon';
 export { default as Img } from './multimedia/Img';

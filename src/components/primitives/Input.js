@@ -4,7 +4,6 @@
 
 import styled from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
 import { Label } from '~components/text/Label';
 import { Tooltip } from '~components/text/Tooltip';
 import { Error } from '~components/text/Error';
@@ -13,7 +12,7 @@ import { Error } from '~components/text/Error';
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Input = styled(Text)`
+export const Input = styled.input`
   --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
 
   appearance: none;
@@ -25,6 +24,8 @@ export const Input = styled(Text)`
   width: 100%;
   background-color: hsla(var(--hsl-text), 0.05);
   line-height: 1.5em;
+  padding: 2rem;
+  border-radius: 0.5rem;
 
   & ~ ${Tooltip} {
     visibility: hidden;
@@ -153,9 +154,3 @@ export const Input = styled(Text)`
     }
   }
 `;
-
-Input.defaultProps = {
-  as:           'input',
-  padding:      '2rem',
-  borderRadius: '0.5rem',
-};

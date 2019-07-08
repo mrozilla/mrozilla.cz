@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Alert } from '~components';
+import { Main, Section, Alert, Text } from '~components';
 import { parseLinks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -94,7 +94,9 @@ export const query = graphql`
 
 export default function SearchSnippetPage({
   data: {
-    page: { frontmatter: { meta } },
+    page: {
+      frontmatter: { meta },
+    },
   },
 }) {
   const [errors, setErrors] = useState({
@@ -123,25 +125,46 @@ export default function SearchSnippetPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'snippet .' 'errors errors' / 600px 1fr" gridGap="10vh 4rem">
-        <Section gridArea="snippet">
+      <Main
+        css={`
+          grid-template: 'snippet .' 'errors errors' / 600px 1fr;
+          grid-gap: 10vh 4rem;
+        `}
+      >
+        <Section
+          css={`
+            grid-area: snippet;
+          `}
+        >
           <GoogleTitle onInput={handleTitleChange} contentEditable>
             Google SERP preview visual optimiser | mrozilla
           </GoogleTitle>
           <GoogleWebsite contentEditable>https://www.mrozilla.cz/lab/serp-preview</GoogleWebsite>
           <GoogleRatingStars>
             ★★★★★
-            <span style={{ color: '#808080', lineHeight: '18px' }}> Rating: 4.7 - 6 reviews</span>
+            <Text
+              css={`
+                color: #808080;
+                line-height: 18px;
+              `}
+            >
+              {' '}
+              Rating: 4.7 - 6 reviews
+            </Text>
           </GoogleRatingStars>
           <GoogleDescription onInput={handleDescriptionChange} contentEditable>
             Click to edit the fields directly to optimise the length of your website's titles and
             descriptions for Google search snippets visually with hints
           </GoogleDescription>
         </Section>
-        <Section gridArea="errors">
+        <Section
+          css={`
+            grid-area: errors;
+          `}
+        >
           {Object.entries(errors).map(
             ([errorType, isError]) => isError && (
-            <Alert type="danger" key={errorType}>
+            <Alert key={errorType} type="danger">
               {parseLinks(copy.error[errorType], { type: 'primary' })}
             </Alert>
             ),

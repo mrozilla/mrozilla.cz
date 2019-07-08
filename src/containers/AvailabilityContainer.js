@@ -20,7 +20,11 @@ export default function AvailabilityContainer({
   );
 
   return (
-    <P fontSize="3rem">
+    <P
+      css={`
+        font-size: 3rem;
+      `}
+    >
       <Link to="/contact" look="secondary">
         {availableDate.toLocaleString('en-GB', {
           month: 'long',

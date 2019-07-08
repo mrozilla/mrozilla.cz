@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import uniqueId from 'lodash/uniqueId';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Button, H1, View } from '~components';
+import { Main, Section, Button, H1 } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -40,7 +40,7 @@ function Invader({ pixels, ...rest }) {
   return <Invader.Body {...rest}>{mirroredPixels.map(renderPixels)}</Invader.Body>;
 }
 
-Invader.Body = styled(View)`
+Invader.Body = styled.div`
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-auto-flow: column;
@@ -71,31 +71,60 @@ export default function InvadersPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'specimen' 'invaders'",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'hero' 'specimen' 'invaders';
+          grid-gap: 10vh 4rem;
+        `}
       >
         {renderBlocks(blocks)}
-        <Section gridArea="specimen">
-          <H1 gridColumn="1 / -1" margin="0 0 1rem">
+        <Section
+          css={`
+            grid-area: specimen;
+          `}
+        >
+          <H1
+            css={`
+              grid-column: 1 / -1;
+              margin: 0 0 1rem;
+            `}
+          >
             Your personal one:
           </H1>
-          <Invader pixels={getInvader()} maxWidth="8rem" margin="0 0 2rem" />
-          <Button gridColumn="1 / -1" look="primary" onClick={() => forceUpdate(Date.now())}>
+          <Invader
+            pixels={getInvader()}
+            css={`
+              max-width: 8rem;
+              margin: 0 0 2rem;
+            `}
+          />
+          <Button
+            look="primary"
+            css={`
+              grid-column: 1 / -1;
+            `}
+            onClick={() => forceUpdate(Date.now())}
+          >
             Generate new
           </Button>
         </Section>
         <Section
-          gridArea="invaders"
-          display="grid"
-          gridTemplateColumns={{
-            xs: 'repeat(8, 1fr)',
-            lg: 'repeat(24, 1fr)',
-          }}
-          gridGap="1rem"
+          css={`
+            grid-area: invaders;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-gap: 1rem;
+
+            @media screen and (min-width: 1200px) {
+              grid-template-columns: repeat(24, 1fr);
+            }
+          `}
         >
-          <H1 gridColumn="1 / -1" margin="0 0 1rem">
+          <H1
+            css={`
+              grid-column: 1 / -1;
+              margin: 0 0 1rem;
+            `}
+          >
             {amount} more examples ({((amount / 32768) * 100).toFixed(1)}% of all possibilities):
           </H1>
           {Array.from(

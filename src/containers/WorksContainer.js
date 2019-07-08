@@ -13,15 +13,30 @@ import { Ul, Li, H3, P, Link } from '~components';
 
 export default function WorksContainer({ works }) {
   return (
-    <Ul gridGap="3rem">
+    <Ul
+      css={`
+        grid-gap: 3rem;
+      `}
+    >
       {works.map(work => (
         <Li key={work.meta.permalink}>
-          <H3 fontSize="3rem" lineHeight="4rem" margin="0">
+          <H3
+            css={`
+              font-size: 3rem;
+              line-height: 4rem;
+            `}
+          >
             <Link to={work.meta.permalink} look="tertiary">
               {work.title}
             </Link>
           </H3>
-          <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem">
+          <P
+            css={`
+              opacity: 0.75;
+              font-size: 1.5rem;
+              line-height: 2rem;
+            `}
+          >
             {work.meta.tags && work.meta.tags.join(', ')}
             {work.tagline && work.tagline}
           </P>

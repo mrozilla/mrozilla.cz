@@ -57,21 +57,39 @@ export default function BlogPost({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'article' 'suggestions'",
-          lg: "'article suggestions' / 3fr 1fr",
-        }}
-        gridGap="5vw"
+        css={`
+          grid-template: 'article' 'suggestions';
+          grid-gap: 5vw;
+
+          @media screen and (min-width: 1200px) {
+            grid-template: 'article suggestions' / 3fr 1fr;
+          }
+        `}
       >
         <Article itemScope itemType="http://schema.org/BlogPosting">
-          <header style={{ margin: '0 0 4rem 0' }}>
-            <H1 itemProp="name" margin="0 0 3rem 0">
+          <header
+            css={`
+              margin: 0 0 4rem;
+            `}
+          >
+            <H1
+              itemProp="name"
+              css={`
+                margin: 0 0 3rem 0;
+              `}
+            >
               <Link to={meta.permalink} itemProp="url">
                 {title}
               </Link>
             </H1>
             {meta.description && (
-              <P fontSize="3rem">{parseLinks(meta.description, { type: 'primary' })}</P>
+              <P
+                css={`
+                  font-size: 3rem;
+                `}
+              >
+                {parseLinks(meta.description, { type: 'primary' })}
+              </P>
             )}
             {date && (
               <H2 as="time" dateTime={new Date(date).toISOString()} itemProp="datePublished">

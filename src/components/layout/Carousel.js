@@ -6,8 +6,8 @@ import React, { Children, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { number, string, node, shape, bool } from 'prop-types';
 
-import { View } from '~components/primitives/View';
 import { Ul, Li } from '~components/text/List';
+import { View } from '~components/primitives/View';
 import { Icon } from '~components/multimedia/Icon';
 import { Button } from '~components/interactive/Button';
 
@@ -20,7 +20,6 @@ const CarouselWrapper = styled(Ul)`
 
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-  scroll-padding: 0 calc(${({ gridGap }) => gridGap} * 2);
   -webkit-overflow-scrolling: touch;
 
   /*
@@ -59,12 +58,13 @@ const CarouselItem = styled(Li)`
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Carousel({
-  children,
   visibleItems,
   gap,
   loop,
   isControls,
   itemProps,
+  css,
+  children,
   ...rest
 }) {
   const ref = useRef();
@@ -112,12 +112,23 @@ export default function Carousel({
   };
 
   return (
-    <View display="grid" position="relative" {...rest}>
+    <View
+      css={`
+        ${css};
+        display: grid;
+        position: relative;
+      `}
+      {...rest}
+    >
       <CarouselWrapper
         ref={ref}
-        gridAutoColumns={`calc(${100 / visibleItems}% - ${gap})`}
-        gridGap={gap}
-        position="relative"
+        css={`
+          position: relative;
+          grid-auto-columns: calc(${100 / visibleItems}% - ${gap});
+          grid-gap: ${gap};
+
+          scroll-padding: 0 calc(${gap} * 2);
+        `}
         {...handlers}
       >
         {Children.map(children, child => (
@@ -127,19 +138,23 @@ export default function Carousel({
       {isControls && (
         <>
           <Button
-            position="absolute"
-            left="-7rem"
-            alignSelf="center"
-            opacity="0.5"
+            css={`
+              position: absolute;
+              left: -7rem;
+              align-self: center;
+              opacity: 0.5;
+            `}
             onClick={() => handleScroll('previous')}
           >
             <Icon icon="FaChevronLeft" />
           </Button>
           <Button
-            position="absolute"
-            right="-7rem"
-            alignSelf="center"
-            opacity="0.5"
+            css={`
+              position: absolute;
+              right: -7rem;
+              align-self: center;
+              opacity: 0.5;
+            `}
             onClick={handleScroll}
           >
             <Icon icon="FaChevronRight" />
@@ -158,6 +173,7 @@ Carousel.propTypes = {
     interval: number,
   }),
   isControls: bool,
+  css:        string,
 };
 
 Carousel.defaultProps = {
@@ -165,4 +181,5 @@ Carousel.defaultProps = {
   gap:          '1rem',
   loop:         undefined,
   isControls:   true,
+  css:          '',
 };

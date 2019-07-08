@@ -88,14 +88,16 @@ export default function GridPage({
 
   const renderControls = () => (
     <Section
-      gridArea="controls"
-      display="grid"
-      gridTemplate="'layout src . .'"
-      position="sticky"
-      top="0px"
-      backgroundColor="var(--color-bg)"
-      padding="2rem"
-      margin="-2rem"
+      css={`
+        grid-area: controls;
+        display: grid;
+        grid-template: 'layout src . .';
+        position: sticky;
+        top: 0px;
+        background-color: var(--color-bg);
+        padding: 2rem;
+        margin: -2rem;
+      `}
     >
       {controls.map(input => (
         <Input
@@ -112,28 +114,45 @@ export default function GridPage({
   );
 
   const renderGrid = () => (
-    <Section gridArea="grid">
+    <Section
+      css={`
+        grid-area: grid;
+      `}
+    >
       <Ul
-        display="grid"
-        gridTemplateColumns={{
-          xs: '1fr',
-          md: '1fr 1fr',
-        }}
-        gridGap="4rem 2rem"
+        css={`
+          grid-gap: 4rem 2rem;
+
+          @media screen and (min-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+          }
+        `}
       >
         {['4rem 0 0 0', '0 8rem 0 0', '0 0 0 8rem', '6rem'].map(padding => (
           <Li
             key={padding}
-            padding={{
-              md: state.layout === 'exciting' ? padding : undefined,
-            }}
-            transition="padding 250ms"
+            css={`
+              padding: ${state.layout === 'exciting' ? padding : ''};
+              transition: padding 250ms;
+            `}
           >
             <Img src={state.src} alt="a random photo" zoom />
-            <H1 as="h2" fontSize="2.25rem" lineHeight="4rem">
+            <H1
+              as="h2"
+              css={`
+                font-size: 2.25rem;
+                line-height: 4rem;
+              `}
+            >
               What a great photo
             </H1>
-            <P lineHeight="2rem">€4.99</P>
+            <P
+              css={`
+                line-height: 2rem;
+              `}
+            >
+              €4.99
+            </P>
           </Li>
         ))}
       </Ul>
@@ -143,7 +162,12 @@ export default function GridPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'controls' 'grid'" gridGap="10vh 1rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'controls' 'grid';
+          grid-gap: 10vh 1rem;
+        `}
+      >
         {renderBlocks(blocks)}
         {renderGrid()}
         {renderControls()}

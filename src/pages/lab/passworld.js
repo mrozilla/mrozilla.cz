@@ -91,7 +91,9 @@ export default class PassworldPage extends Component {
       label:       'Password length',
       description:
         "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
-      margin:   '0 0 1rem 0',
+      css: `
+        margin: 0 0 2rem 0;
+      `,
       onChange: ({ target }) => this.setState({ ...parseInput(target) }),
     },
     {
@@ -116,7 +118,9 @@ export default class PassworldPage extends Component {
           label: 'Include numbers',
         },
       ],
-      margin:   '0 0 2rem 0',
+      css: `
+        margin: 0 0 2rem 0;
+      `,
       onChange: this.handleChangeCheckbox,
     },
   ];
@@ -139,20 +143,36 @@ export default class PassworldPage extends Component {
       <RootContainer>
         <SEOContainer meta={this.props.data.page.frontmatter.meta} />
         <Main
-          gridTemplate={{
-            xs: "'hero' 'output' 'input'",
-            md: "'hero hero' 'output input' / 1fr 1fr",
-          }}
-          gridGap="10vh 1rem"
+          css={`
+            grid-template: 'hero' 'output' 'input';
+            grid-gap: 10vh 1rem;
+
+            @media screen and (min-width: 900px) {
+              grid-template: 'hero hero' 'output input' / 1fr 1fr;
+            }
+          `}
         >
           {renderBlocks(this.props.data.page.frontmatter.blocks)}
-          <Section gridArea="output">
+          <Section
+            css={`
+              grid-area: output;
+            `}
+          >
             <H2 as="h1">Generated password</H2>
-            <H1 as="p" hyphens="auto">
+            <H1
+              as="p"
+              css={`
+                hyphens: auto;
+              `}
+            >
               {this.state.password}
             </H1>
           </Section>
-          <Section gridArea="input">
+          <Section
+            css={`
+              grid-area: input;
+            `}
+          >
             {this.inputs.map(input => (
               <Input
                 key={input.name}

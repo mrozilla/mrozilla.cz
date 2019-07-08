@@ -50,9 +50,19 @@ export default function BlogPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'blog'" gridGap="10vh 4rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'blog';
+          grid-gap: 10vh 4rem;
+        `}
+      >
         {renderBlocks(blocks)}
-        <Section gridArea="blog" id="blog">
+        <Section
+          id="blog"
+          css={`
+            grid-area: blog;
+          `}
+        >
           <H2>All blog articles</H2>
           <BlogPreviewsContainer posts={posts} />
         </Section>
