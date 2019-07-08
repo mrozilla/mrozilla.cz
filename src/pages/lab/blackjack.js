@@ -213,7 +213,9 @@ export default class BlackjackPage extends PureComponent {
   handleDealCard = async (player) => {
     if (this.state.deck.length < this.state.shuffleLimit) {
       await this.handleNewDeck(); // shuffle at 75% of deck used
-      this.Toast.show();
+      this.Toast.show({
+        message: 'Deck shuffled',
+      });
     }
 
     this.setState(state => ({
@@ -559,9 +561,7 @@ export default class BlackjackPage extends PureComponent {
           ref={(ref) => {
             this.Toast = ref;
           }}
-        >
-          Deck shuffled
-        </Toast>
+        />
       </RootContainer>
     );
   }

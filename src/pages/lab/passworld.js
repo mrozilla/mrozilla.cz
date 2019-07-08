@@ -2,12 +2,12 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { Component } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, H2, Input, Button, Toast } from '~components';
-import { copyToClipboard, parseInput, renderBlocks } from '~utils';
+import { copyToClipboard, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -31,19 +31,24 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default class PassworldPage extends Component {
-  state = {
-    password: '',
-    length:   10,
-    chars:    {
-      lowerChars:   true,
-      upperChars:   true,
-      numbers:      false,
-      specialChars: false,
+export default function PassworldPage({
+  data: {
+    page: {
+      frontmatter: { meta, blocks },
     },
-  };
+  },
+}) {
+  const [password, setPassword] = useState('');
+  const [length, setLength] = useState(10);
+  const [chars, setChars] = useState({
+    lowerChars:   true,
+    upperChars:   true,
+    specialChars: false,
+    numbers:      false,
+  });
+  const ToastRef = useRef();
 
-  static getDerivedStateFromProps(_, prevState) {
+  const handleGeneratePassword = () => {
     const generateRandomCharacter = () => {
       if (typeof window === 'undefined') {
         return '';
@@ -56,157 +61,123 @@ export default class PassworldPage extends Component {
         numbers:      '0123456789',
       };
       const pool = Object.keys(types)
-        .map(key => (prevState.chars[key] ? types[key] : null))
+        .map(key => (chars[key] ? types[key] : null))
         .join('');
       const seed = window.crypto.getRandomValues(new Uint8Array(1));
 
       return pool.charAt(seed[0] % pool.length);
     };
 
-    return {
-      password: Array(...new Array(prevState.length))
+    return setPassword(
+      Array(...new Array(length))
         .map(() => generateRandomCharacter())
         .join(''),
-    };
-  }
-
-  handleGenerate = () => {
-    this.Toast.hide();
-    this.forceUpdate();
+    );
   };
 
-  handleChangeCheckbox = ({ target }) => this.setState(state => ({
-    chars: { ...state.chars, [target.value]: target.checked },
+  const handleChangeChars = ({ target }) => setChars(prev => ({
+    ...prev,
+    [target.value]: target.checked,
   }));
 
-  handleCopyToClipboard = () => {
-    copyToClipboard(this.state.password);
-    this.Toast.show();
+  const handleCopyToClipboard = () => {
+    copyToClipboard(password);
+    ToastRef.current.show({
+      message: `${password} was copied to the clipboard`,
+      css:     'background-color: var(--color-success);',
+      delay:   2000,
+    });
   };
 
-  inputs = [
-    {
-      type:        'number',
-      name:        'length',
-      label:       'Password length',
-      description:
-        "Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way.",
-      css: `
-        margin: 0 0 2rem 0;
-      `,
-      onChange: ({ target }) => this.setState({ ...parseInput(target) }),
-    },
-    {
-      type:    'checkbox',
-      name:    'characters',
-      label:   'Characters',
-      options: [
-        {
-          value: 'lowerChars',
-          label: 'Include lowercase letters',
-        },
-        {
-          value: 'upperChars',
-          label: 'Include uppercase letters',
-        },
-        {
-          value: 'specialChars',
-          label: 'Include special characters',
-        },
-        {
-          value: 'numbers',
-          label: 'Include numbers',
-        },
-      ],
-      css: `
-        margin: 0 0 2rem 0;
-      `,
-      onChange: this.handleChangeCheckbox,
-    },
-  ];
+  useEffect(() => {
+    handleGeneratePassword();
+  }, [length, chars]);
 
-  buttons = [
-    {
-      title:   'Generate',
-      onClick: this.handleGenerate,
-      grouped: true,
-    },
-    {
-      title:   'Copy to clipboard',
-      onClick: this.handleCopyToClipboard,
-      grouped: true,
-    },
-  ];
+  return (
+    <RootContainer>
+      <SEOContainer meta={meta} />
+      <Main
+        css={`
+          grid-template: 'hero' 'output' 'input';
+          grid-gap: 10vh 1rem;
 
-  render() {
-    return (
-      <RootContainer>
-        <SEOContainer meta={this.props.data.page.frontmatter.meta} />
-        <Main
+          @media screen and (min-width: 900px) {
+            grid-template: 'hero hero' 'output input' / 1fr 1fr;
+          }
+        `}
+      >
+        {renderBlocks(blocks)}
+        <Section
           css={`
-            grid-template: 'hero' 'output' 'input';
-            grid-gap: 10vh 1rem;
-
-            @media screen and (min-width: 900px) {
-              grid-template: 'hero hero' 'output input' / 1fr 1fr;
-            }
+            grid-area: output;
           `}
         >
-          {renderBlocks(this.props.data.page.frontmatter.blocks)}
-          <Section
+          <H2 as="h1">Generated password</H2>
+          <H1
+            as="p"
             css={`
-              grid-area: output;
+              hyphens: auto;
             `}
           >
-            <H2 as="h1">Generated password</H2>
-            <H1
-              as="p"
-              css={`
-                hyphens: auto;
-              `}
-            >
-              {this.state.password}
-            </H1>
-          </Section>
-          <Section
-            css={`
-              grid-area: input;
-            `}
-          >
-            {this.inputs.map(input => (
-              <Input
-                key={input.name}
-                {...input}
-                value={input.name === 'length' ? this.state.length : undefined}
-                options={
-                  input.options
-                  && input.options.map(option => ({
-                    ...option,
-                    checked: this.state.chars[option.value],
-                  }))
-                }
-              />
-            ))}
-            {this.buttons.map(button => (
-              <Button
-                key={button.title}
-                look="secondary"
-                {...button}
-                disabled={Object.values(this.state.chars).every(item => item === false)}
-              >
-                {button.title}
-              </Button>
-            ))}
-          </Section>
-        </Main>
-        <Toast
-          ref={(ref) => {
-            this.Toast = ref;
-          }}
+            {password}
+          </H1>
+        </Section>
+        <Section
+          css={`
+            grid-area: input;
+          `}
         >
-          {this.state.password} was copied to the clipboard
-        </Toast>
-      </RootContainer>
-    );
-  }
+          <Input
+            type="number"
+            name="length"
+            label="Password length"
+            description="Don't go for any password that is shorter than 10 characters. Sh*t's not safe that way."
+            value={length}
+            css={`
+              margin: 0 0 2rem;
+            `}
+            onChange={({ target }) => setLength(parseInt(target.value, 10))}
+          />
+          <Input
+            type="checkbox"
+            name="characters"
+            label="Characters"
+            options={[
+              {
+                value:   'lowerChars',
+                label:   'Include lowercase letters',
+                checked: chars.lowerChars,
+              },
+              {
+                value:   'upperChars',
+                label:   'Include uppercase letters',
+                checked: chars.upperChars,
+              },
+              {
+                value:   'specialChars',
+                label:   'Include special characters',
+                checked: chars.specialChars,
+              },
+              {
+                value:   'numbers',
+                label:   'Include numbers',
+                checked: chars.numbers,
+              },
+            ]}
+            css={`
+              margin: 0 0 2rem;
+            `}
+            onChange={handleChangeChars}
+          />
+          <Button look="secondary" onClick={handleGeneratePassword} grouped>
+            Generate
+          </Button>
+          <Button look="secondary" onClick={handleCopyToClipboard} grouped>
+            Copy to clipboard
+          </Button>
+        </Section>
+      </Main>
+      <Toast ref={ToastRef} />
+    </RootContainer>
+  );
 }
