@@ -10,11 +10,9 @@ import { Input } from '~components/primitives/Input';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-/* eslint-disable no-param-reassign */
-
 export default function TextAreaInput({ onChange, ...rest }) {
   const handleChange = (event) => {
-    event.target.style.height = `${event.target.scrollHeight}px`;
+    event.target.style.height = `${event.target.scrollHeight}px`; // eslint-disable-line no-param-reassign
 
     if (onChange) {
       onChange(event);

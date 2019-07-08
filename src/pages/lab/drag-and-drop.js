@@ -90,35 +90,47 @@ export default function DragAndDropPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'dnd'",
-          lg: "'hero hero' 'dnd .' / 1fr 1fr",
-        }}
-        gridGap="10vh 1rem"
+        css={`
+          grid-template: 'hero' 'dnd';
+          grid-gap: 10vh 1rem;
+
+          @media screen and (min-width: 1200px) {
+            grid-template: 'hero hero' 'dnd .' / 1fr 1fr;
+          }
+        `}
       >
         {renderBlocks(blocks)}
-        <Section gridArea="dnd">
+        <Section
+          css={`
+            grid-area: dnd;
+          `}
+        >
           <Ul
-            gridGap="1rem"
-            padding="1rem"
-            backgroundColor="hsla(var(--hsl-text), 0.1)"
-            borderRadius="1rem"
+            css={`
+              grid-gap: 1rem;
+              padding: 1rem;
+              background-color: hsla(var(--hsl-text), 0.1);
+              border-radius: 1rem;
+            `}
           >
             {items.map((item, i) => (
               <Li
                 key={item}
-                backgroundColor="var(--color-bg)"
-                padding="1rem"
-                borderRadius="0.5rem"
-                cursor="pointer"
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                after={{
-                  content: "'☰'",
-                  opacity: 0.25,
-                }}
                 draggable
+                css={`
+                  background-color: var(--color-bg);
+                  padding: 1rem;
+                  border-radius: 0.5rem;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+
+                  &::after {
+                    content: '☰';
+                    opacity: 0.25;
+                  }
+                `}
                 onDragStart={e => handleDragStart(e, i)}
                 onDragEnter={() => handleDragEnter(i)}
                 onDragEnd={handleDragEnd}

@@ -4,13 +4,11 @@
 
 import styled, { css } from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Button = styled(Text)`
+export const Button = styled.button`
   --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
   --shadow-active: inset 0 0 0 2px hsla(var(--hsl-brand-primary), 0.25);
 
@@ -21,6 +19,10 @@ export const Button = styled(Text)`
 
   cursor: pointer;
   line-height: 1em;
+  padding: 2rem;
+  border-radius: 0.5rem;
+
+  transition: box-shadow 250ms;
 
   &:disabled {
     cursor: not-allowed;
@@ -103,9 +105,3 @@ export const Button = styled(Text)`
       }
     `};
 `;
-
-Button.defaultProps = {
-  as:           'button',
-  padding:      '2rem',
-  borderRadius: '0.5rem',
-};

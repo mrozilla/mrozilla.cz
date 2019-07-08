@@ -4,11 +4,8 @@
 
 import styled from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const P = styled(Text)``;
-P.defaultProps = { as: 'p' };
+export const P = styled.p``;

@@ -120,16 +120,27 @@ export default function InAnyCasePage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'input'" gridGap="5vh 4rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'input';
+          grid-gap: 5vh 4rem;
+        `}
+      >
         {renderBlocks(blocks)}
-        <Section gridArea="input">
+        <Section
+          css={`
+            grid-area: input;
+          `}
+        >
           <Input
             name="input"
             type="text"
             value={input}
             label="Original text"
             placeholder="Start typing or paste text..."
-            margin="0 0 4rem 0"
+            css={`
+              margin: 0 0 4rem 0;
+            `}
             onChange={handleInput}
           />
           {Object.entries(output).map(([key, value]) => (
@@ -140,7 +151,9 @@ export default function InAnyCasePage({
               label={key}
               type="text"
               value={value}
-              margin="0 0 1rem 0"
+              css={`
+                margin: 0 0 1rem 0;
+              `}
               readOnly
             />
           ))}

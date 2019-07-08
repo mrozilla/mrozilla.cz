@@ -329,12 +329,18 @@ export default class BlackjackPage extends PureComponent {
       <RootContainer>
         <SEOContainer meta={this.props.data.page.frontmatter.meta} />
         <Main
-          gridTemplate={{
-            xs: "'dealer' 'player' 'controls' 'bank'",
-          }}
-          gridGap="1rem"
+          css={`
+            grid-template: 'dealer' 'player' 'controls' 'bank';
+            grid-gap: 1rem;
+          `}
         >
-          <Section gridArea="dealer" position="relative" minHeight="7rem">
+          <Section
+            css={`
+              grid-area: dealer;
+              position: relative;
+              min-height: 7rem;
+            `}
+          >
             {this.state.dealer.map((card, i) => (
               <Card
                 key={`${card.rank}${card.suit}`}
@@ -351,7 +357,14 @@ export default class BlackjackPage extends PureComponent {
             )}
           </Section>
 
-          <Section gridArea="player" position="relative" minHeight="7rem" margin="0 0 4rem 0">
+          <Section
+            css={`
+              grid-area: player;
+              position: relative;
+              min-height: 7rem;
+              margin: 0 0 4rem 0;
+            `}
+          >
             {this.state.player.map(card => (
               <Card key={`${card.rank}${card.suit}`} {...card} />
             ))}
@@ -362,9 +375,23 @@ export default class BlackjackPage extends PureComponent {
             )}
           </Section>
 
-          <Section gridArea="controls">
-            <P margin="0 0 2rem 0">
-              <P as="span" fontWeight="700" fontSize="3rem">
+          <Section
+            css={`
+              grid-area: controls;
+            `}
+          >
+            <P
+              css={`
+                margin: 0 0 2rem 0;
+              `}
+            >
+              <P
+                as="span"
+                css={`
+                  font-weight: 700;
+                  font-size: 3rem;
+                `}
+              >
                 {this.renderCurrency(this.state.bet)}
               </P>{' '}
               / {this.renderCurrency(this.state.bank)}
@@ -406,7 +433,11 @@ export default class BlackjackPage extends PureComponent {
             </Button>
           </Section>
 
-          <Section gridArea="bank">
+          <Section
+            css={`
+              grid-area: bank;
+            `}
+          >
             <Button
               look="secondary"
               disabled={
@@ -433,11 +464,19 @@ export default class BlackjackPage extends PureComponent {
             </Button>
           </Section>
 
-          <Section minHeight="15rem">
+          <Section
+            css={`
+              min-height: 15rem;
+            `}
+          >
             {this.state.bank === 0 && this.state.bet === 0 && (
               <>
                 <Button onClick={this.handleReset}>Reset</Button>
-                <Ul margin="2rem 0 0">
+                <Ul
+                  css={`
+                    margin: 2rem 0 0;
+                  `}
+                >
                   <Li>
                     {this.state.hands} {this.renderPlural('hand', this.state.hands)} played
                   </Li>
@@ -458,8 +497,19 @@ export default class BlackjackPage extends PureComponent {
             onClickClose={this.handleModal}
             onClickEscape={this.handleModal}
           >
-            <P fontSize="3rem">Table rules</P>
-            <Ul listStyle="disc" padding="0 0 2rem 1em">
+            <P
+              css={`
+                font-size: 3rem;
+              `}
+            >
+              Table rules
+            </P>
+            <Ul
+              css={`
+                list-style: disc;
+                padding: 0 0 2rem 1em;
+              `}
+            >
               <Li>Blackjack pays 3 to 2</Li>
               {/* <Li>Insurance pays 2 to 1</Li> */}
               <Li>Dealer stands on soft 17</Li>
@@ -468,15 +518,39 @@ export default class BlackjackPage extends PureComponent {
               <Li>Minimum bet $25, no maximum bet</Li>
               <Li>Your progress is saved automatically</Li>
             </Ul>
-            <P fontSize="3rem">Currently missing</P>
-            <Ul listStyle="disc" padding="0 0 2rem 1em">
+            <P
+              css={`
+                font-size: 3rem;
+              `}
+            >
+              Currently missing
+            </P>
+            <Ul
+              css={`
+                list-style: disc;
+                padding: 0 0 2rem 1em;
+              `}
+            >
               <Li>Insurance logic</Li>
               <Li>Split logic</Li>
             </Ul>
-            <P fontSize="3rem">Inspiration</P>
-            <Ul listStyle="disc" padding="0 0 0 1em">
+            <P
+              css={`
+                font-size: 3rem;
+              `}
+            >
+              Inspiration
+            </P>
+            <Ul
+              css={`
+                list-style: disc;
+                padding: 0 0 0 1em;
+              `}
+            >
               <Li>
-                <Link to="https://blackjackbreak.com/" look="secondary">https://blackjackbreak.com/</Link>
+                <Link to="https://blackjackbreak.com/" look="secondary">
+                  https://blackjackbreak.com/
+                </Link>
               </Li>
             </Ul>
           </Modal>

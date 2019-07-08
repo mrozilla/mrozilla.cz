@@ -7,7 +7,9 @@ import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 
 import { HeroContainer, AvailabilityContainer } from '~containers';
 
-import { Section, H2, P } from '~components';
+import { Section } from '~components/layout/Section';
+import { H2 } from '~components/text/HX';
+import { P } from '~components/text/P';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -21,16 +23,32 @@ export default function renderBlocks(blocks, components = { wrapper: Section }) 
 
     if (block.type === 'location') {
       return (
-        <Section key={block.title} gridArea="location">
+        <Section
+          key={block.title}
+          css={`
+            grid-area: location;
+          `}
+        >
           <H2>{block.title}</H2>
-          <P fontSize="3rem">{block.text}</P>
+          <P
+            css={`
+              font-size: 3rem;
+            `}
+          >
+            {block.text}
+          </P>
         </Section>
       );
     }
 
     if (block.type === 'availability') {
       return (
-        <Section key={block.title} gridArea="availability">
+        <Section
+          key={block.title}
+          css={`
+            grid-area: availability;
+          `}
+        >
           <H2>{block.title}</H2>
           <AvailabilityContainer availabilityDate={new Date(block.date)} />
         </Section>
@@ -44,6 +62,7 @@ export default function renderBlocks(blocks, components = { wrapper: Section }) 
         </MDXRenderer>
       );
     }
+
     return null;
   });
 }

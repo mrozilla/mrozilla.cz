@@ -4,11 +4,8 @@
 
 import styled from 'styled-components';
 
-import { View } from '~components/primitives/View';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Aside = styled(View)``;
-Aside.defaultProps = { as: 'aside' };
+export const Aside = styled.aside``;

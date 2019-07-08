@@ -4,14 +4,13 @@
 
 import styled from 'styled-components';
 
-import { View } from '~components/primitives/View';
 import { Tooltip } from '~components/text/Tooltip';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // fieldset
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Fieldset = styled(View)`
+export const Fieldset = styled.fieldset`
   position: relative;
   border: none;
 
@@ -27,4 +26,3 @@ export const Fieldset = styled(View)`
     transform: translateY(0);
   }
 `;
-Fieldset.defaultProps = { as: 'fieldset' };

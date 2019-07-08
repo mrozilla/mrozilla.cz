@@ -63,15 +63,17 @@ export default function CountOnMePage({
       <SEOContainer meta={meta} />
       <Main>
         <Section
+          css={`
+            user-select: none;
+          `}
           onClick={e => handleCount(e, 1)}
-          style={{
-            userSelect:       'none',
-            msUserSelect:     'none',
-            MozUserSelect:    'none',
-            WebkitUserSelect: 'none',
-          }}
         >
-          <H1 fontSize="8rem" lineHeight="10rem">
+          <H1
+            css={`
+              font-size: 8rem;
+              line-height: 10rem;
+            `}
+          >
             {count.toLocaleString()}
           </H1>
           <Button look="secondary" onClick={e => handleCount(e, 1)} grouped>

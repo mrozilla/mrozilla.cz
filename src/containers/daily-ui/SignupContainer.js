@@ -53,23 +53,33 @@ export default function Signup({ onSubmit }) {
   };
 
   return (
-    <Section gridArea="signup" display="grid" gridTemplate="'form'">
-      <Form
-        gridTemplate={`
-        'title'
-        'name'
-        'email'
-        'password'
+    <Section
+      css={`
+        grid-area: signup;
+        display: grid;
+        grid-template: form;
       `}
-        boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
-        padding="4rem 4rem 3rem"
-        borderRadius="1rem"
-        hover={{
-          boxShadow: '0 0 0 2px hsla(var(--hsl-text),0.1)',
-        }}
+    >
+      <Form
+        css={`
+          grid-template: 'title' 'name' 'email' 'password';
+          box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.1);
+          padding: 4rem 4rem 3rem;
+          border-radius: 0.5rem;
+
+          &:hover {
+            box-shadow: 0 0 0 2px hsla(var(--hsl-text), 0.1);
+          }
+        `}
         onSubmit={handleSubmit}
       >
-        <H1 fontSize="2.5rem" fontWeight="500" margin="0 0 2rem">
+        <H1
+          css={`
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin: 0 0 2rem;
+          `}
+        >
           Create an account
         </H1>
         <Input
@@ -102,20 +112,42 @@ export default function Signup({ onSubmit }) {
           onChange={({ target: { value } }) => setPassword(value)}
           required
         />
-        <Button type="submit" look="primary" fontWeight="600">
+        <Button
+          type="submit"
+          look="primary"
+          css={`
+            font-weight: 600;
+          `}
+        >
           Sign up
         </Button>
-        <Button type="submit" look="secondary" position="relative">
+        <Button
+          type="submit"
+          look="secondary"
+          css={`
+            position: relative;
+          `}
+        >
           <GoogleLogo /> Sign up with Google
         </Button>
-        <P fontSize="1.5rem" lineHeight="2rem">
+        <P
+          css={`
+            font-size: 1.5rem;
+            line-height: 2rem;
+          `}
+        >
           By creating an account, you agree to our{' '}
           <Link to="#fake" look="secondary">
             Terms of Service
           </Link>
         </P>
       </Form>
-      <P fontSize="1.5rem" margin="0 4rem">
+      <P
+        css={`
+          font-size: 1.5rem;
+          margin: 0 4rem;
+        `}
+      >
         Already have an account?{' '}
         <Link to="#fake" look="secondary">
           Log in

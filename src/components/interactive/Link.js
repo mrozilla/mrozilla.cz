@@ -8,13 +8,11 @@ import { Link as GatsbyLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import styled, { css } from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const StyledLink = styled(Text)`
+const StyledLink = styled.a`
   outline: none;
 
   &[aria-current] {
@@ -59,24 +57,17 @@ const StyledLink = styled(Text)`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Link({ href, to, children, primary, secondary, tertiary, ...rest }) {
+export default function Link({ href, to, children, ...rest }) {
   const link = href || to;
   if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
     return (
-      <StyledLink
-        as={OutboundLink}
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        look={{ primary, secondary, tertiary }}
-        {...rest}
-      >
+      <StyledLink as={OutboundLink} href={link} target="_blank" rel="noopener noreferrer" {...rest}>
         {children}
       </StyledLink>
     );
   }
   return (
-    <StyledLink as={GatsbyLink} to={link} look={{ primary, secondary, tertiary }} {...rest}>
+    <StyledLink as={GatsbyLink} to={link} {...rest}>
       {children}
     </StyledLink>
   );

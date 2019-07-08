@@ -13,14 +13,26 @@ import { Ul, Li, Link, P } from '~components';
 
 export default function BlogPreviewsContainer({ posts }) {
   return (
-    <Ul>
+    <Ul
+      css={`
+        grid-gap: 2rem;
+        line-height: 3rem;
+      `}
+    >
       {posts.nodes.map(({ frontmatter: { title, date, meta }, timeToRead }) => (
-        <Li key={meta.permalink} lineHeight="3rem">
-          <Link to={meta.permalink} look="tertiary" display="block" padding="0.5rem 0">
+        <Li key={meta.permalink}>
+          <Link to={meta.permalink} look="tertiary">
             {title}
           </Link>
           {(date || timeToRead) && (
-            <P opacity="0.75" fontSize="1.5rem" lineHeight="2rem" margin="0 0 2rem 0">
+            <P
+              css={`
+                opacity: 0.75;
+                font-size: 1.5rem;
+                line-height: 2rem;
+                padding: 0.5rem 0;
+              `}
+            >
               {`${date} • ${timeToRead} min read`}
             </P>
           )}

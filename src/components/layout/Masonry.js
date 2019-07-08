@@ -11,7 +11,7 @@ import { Ul, Li } from '~components/text/List';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Masonry({ columns, gridGap, isProvideLi, children }) {
+export default function Masonry({ columns, gap, isProvideLi, children }) {
   // split children into N arrays for columns
   const masonry = Children.toArray(children).reduce((acc, child, i) => {
     acc[i % columns] = [
@@ -22,10 +22,29 @@ export default function Masonry({ columns, gridGap, isProvideLi, children }) {
   }, new Array(columns).fill([]));
 
   return (
-    <Ul gridTemplateColumns={`repeat(${columns}, 1fr)`} gridGap={gridGap}>
+    <Ul
+      css={`
+        grid-template-columns: repeat(${columns}, 1fr);
+        grid-gap: ${gap};
+      `}
+    >
       {masonry.map((column, i) => (
-        <Li key={i} as="li" display="grid" gridGap={gridGap} gridAutoRows="max-content">
-          <Ul gridGap={gridGap}>{column}</Ul>
+        <Li
+          key={i}
+          as="li"
+          css={`
+            display: grid;
+            grid-gap: ${gap};
+            grid-auto-rows: max-content;
+          `}
+        >
+          <Ul
+            css={`
+              grid-gap: ${gap};
+            `}
+          >
+            {column}
+          </Ul>
         </Li>
       ))}
     </Ul>
@@ -34,13 +53,13 @@ export default function Masonry({ columns, gridGap, isProvideLi, children }) {
 
 Masonry.propTypes = {
   columns:     number,
-  gridGap:     string,
+  gap:         string,
   children:    node.isRequired,
   isProvideLi: bool,
 };
 
 Masonry.defaultProps = {
   columns:     3,
-  gridGap:     '1rem',
+  gap:         '1rem',
   isProvideLi: true,
 };

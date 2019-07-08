@@ -58,9 +58,11 @@ export default function Tabs({ content }) {
     <>
       <Ul
         role="tablist"
-        gridAutoFlow="column"
-        gridAutoColumns="max-content"
-        boxShadow="inset 0 -2px hsla(var(--hsl-text),0.1)"
+        css={`
+          grid-auto-flow: column;
+          grid-auto-columns: max-content;
+          box-shadow: inset 0 -2px hsla(var(--hsl-text), 0.1);
+        `}
       >
         {content.map(({ title }, i) => (
           <Li
@@ -68,17 +70,22 @@ export default function Tabs({ content }) {
             role="tab"
             tabIndex="0"
             aria-selected={activeTabIdx === i}
-            outline="none"
-            cursor="pointer"
-            padding="1rem"
-            boxShadow={i === activeTabIdx && 'inset 0 -2px var(--color-brand-primary)'}
-            hover={{
-              color:     'var(--color-brand-primary)',
-              boxShadow: 'inset 0 -2px var(--color-brand-primary)',
-            }}
-            focus={{
-              color: 'var(--color-brand-primary)',
-            }}
+            css={`
+              outline: none;
+
+              cursor: pointer;
+              padding: 1rem;
+              box-shadow: ${i === activeTabIdx && 'inset 0 -2px var(--color-brand-primary)'};
+
+              &:hover {
+                color: var(--color-brand-primary);
+                box-shadow: inset 0 -2px var(--color-brand-primary);
+              }
+
+              &:focus {
+                color: var(--color-brand-primary);
+              }
+            `}
             onFocus={() => setActiveTabIdx(i)}
             onClick={() => setActiveTabIdx(i)}
           >
@@ -86,7 +93,13 @@ export default function Tabs({ content }) {
           </Li>
         ))}
       </Ul>
-      <View role="tabpanel" padding="1rem 0" aria-expanded>
+      <View
+        role="tabpanel"
+        aria-expanded
+        css={`
+          padding: 1rem 0;
+        `}
+      >
         {content[activeTabIdx].body}
       </View>
     </>

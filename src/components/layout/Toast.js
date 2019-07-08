@@ -6,34 +6,28 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { number, bool } from 'prop-types';
 
-import { View } from '~components/primitives/View';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const StyledToast = styled(View)`
+export const StyledToast = styled.aside`
   position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+
   padding: 1rem;
   z-index: var(--z-index-toast);
   visibility: hidden;
 
-  font-size: ${({ fontSize }) => fontSize};
   text-align: center;
-  color: ${({ color = 'white' }) => color};
+  color: var(--color-inverse);
+  background-color: var(--color-brand-primary);
 
   &[open] {
     visibility: visible;
   }
 `;
-
-StyledToast.defaultProps = {
-  as:              'aside',
-  backgroundColor: 'var(--color-brand-primary)',
-  top:             0,
-  right:           0,
-  left:            0,
-};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

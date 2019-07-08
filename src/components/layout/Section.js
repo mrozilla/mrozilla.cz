@@ -4,13 +4,10 @@
 
 import styled from 'styled-components';
 
-import { View } from '~components/primitives/View';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Section = styled(View)`
+export const Section = styled.section`
   min-width: 0;
 `;
-Section.defaultProps = { as: 'section' };

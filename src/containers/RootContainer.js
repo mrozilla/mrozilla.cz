@@ -59,14 +59,15 @@ export default function RootContainer({ children }) {
   return (
     <MDXProvider components={{ a: props => <Link look="secondary" {...props} />, pre: Pre }}>
       <View
-        display="grid"
-        gridTemplate={`
+        css={`
+          display: grid;
+          grid-template:
             'header main aside'
             'header footer aside'
-            / var(--width-header) var(--width-main) var(--width-aside)
-          `}
-        gridGap="10vh 10vw"
-        padding="20vh 0"
+            / var(--width-header) var(--width-main) var(--width-aside);
+          grid-gap: 10vh 10vw;
+          padding: 20vh 0;
+        `}
       >
         <HeaderContainer header={header.frontmatter.links} />
         {children}
