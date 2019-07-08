@@ -81,22 +81,37 @@ export default function LabPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'tools' 'products' 'demos'",
-          md: "'hero hero' 'tools products' 'tools demos' / 1fr 1fr",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'hero' 'tools' 'products' 'demos';
+          grid-gap: 10vh 4rem;
+
+          @media screen and (min-width: 900px) {
+            grid-template: 'hero hero' 'tools products' 'tools demos' / 1fr 1fr;
+          }
+        `}
       >
         {renderBlocks(blocks)}
-        <Section gridArea="tools">
+        <Section
+          css={`
+            grid-area: tools;
+          `}
+        >
           <H2>Little tools</H2>
           <WorksContainer works={tools.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
-        <Section gridArea="products">
+        <Section
+          css={`
+            grid-area: products;
+          `}
+        >
           <H2>Standalone products</H2>
           <WorksContainer works={products.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
-        <Section gridArea="demos">
+        <Section
+          css={`
+            grid-area: demos;
+          `}
+        >
           <H2>Demos</H2>
           <WorksContainer works={demos.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>

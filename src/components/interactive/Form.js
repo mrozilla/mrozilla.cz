@@ -4,14 +4,11 @@
 
 import styled from 'styled-components';
 
-import { View } from '~components/primitives/View';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Form = styled(View)`
+export const Form = styled.form`
   display: grid;
   grid-gap: 1rem;
 `;
-Form.defaultProps = { as: 'form', gridArea: 'form' };

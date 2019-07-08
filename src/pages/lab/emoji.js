@@ -52,9 +52,18 @@ export default function EmojiPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'random' 'map'" gridGap="10vh 4rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'random' 'map';
+          grid-gap: 10vh 4rem;
+        `}
+      >
         {renderBlocks(blocks)}
-        <Section gridArea="random">
+        <Section
+          css={`
+            grid-area: random;
+          `}
+        >
           <H2>Emoji story generator</H2>
           <Button look="primary" onClick={handleAddEmoji} grouped>
             Add topic
@@ -62,7 +71,13 @@ export default function EmojiPage({
           <Button look="secondary" onClick={handleClear} grouped>
             Clear
           </Button>
-          <P fontSize="10rem" lineHeight={1} margin="2rem 0 0 0">
+          <P
+            css={`
+              font-size: 10rem;
+              line-height: 1;
+              margin: 2rem 0 0 0;
+            `}
+          >
             {randomEmojis.map(emoji => (
               <span
                 key={emoji.description}

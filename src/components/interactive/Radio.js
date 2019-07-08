@@ -27,6 +27,8 @@ export const Radio = styled.input.attrs({ type: 'radio' })`
   box-shadow: var(--shadow);
   border-radius: 50%;
 
+  transition: box-shadow 250ms;
+
   & ~ ${Text} {
     cursor: pointer;
     font-size: 2rem;

@@ -4,41 +4,33 @@
 
 import styled from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // h1
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H1 = styled(Text)``;
-H1.defaultProps = {
-  as:            'h1',
-  fontSize:      '3rem',
-  lineHeight:    '4rem',
-  letterSpacing: '0.025em',
-};
+export const H1 = styled.h1`
+  font-size: 3rem;
+  line-height: 4rem;
+  letter-spacing: 0.025em;
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // h2
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H2 = styled(Text)``;
-H2.defaultProps = {
-  as:            'h2',
-  fontSize:      '1.25rem',
-  fontWeight:    '300',
-  lineHeight:    '3rem',
-  textTransform: 'uppercase',
-  letterSpacing: '0.2em',
-};
+export const H2 = styled.h2`
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // h3
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const H3 = styled(Text)``;
-H3.defaultProps = {
-  as:         'h3',
-  fontSize:   '2.5rem',
-  lineHeight: '2.5rem',
-};
+export const H3 = styled.h3`
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+`;

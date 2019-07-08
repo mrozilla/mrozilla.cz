@@ -112,24 +112,38 @@ export default function WritestPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'input' 'stats'",
-          md: "'input stats' / 2fr 1fr",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'input' 'stats';
+          grid-gap: 10vh 4rem;
+
+          @media screen and (min-width: 900px) {
+            grid-template: 'input stats' / 2fr 1fr;
+          }
+        `}
       >
-        <Section gridArea="input">
+        <Section
+          css={`
+            grid-area: input;
+          `}
+        >
           <H1>words</H1>
           <Input
             type="textarea"
             name="writest"
             value={input}
             placeholder="Start typing or paste text..."
-            onChange={handleAnalyseText}
             autoFocus
+            onChange={handleAnalyseText}
           />
         </Section>
-        <Section gridArea="stats" position="sticky" top="2rem" alignSelf="start">
+        <Section
+          css={`
+            grid-area: stats;
+            position: sticky;
+            top: 2rem;
+            align-self: start;
+          `}
+        >
           <H1>stats</H1>
           <H2>Characters with spaces</H2>
           <P>{stats.charCount.toLocaleString()}</P>

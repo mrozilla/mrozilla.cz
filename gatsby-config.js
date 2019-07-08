@@ -103,11 +103,16 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-styled-components',
+      options: {
+        displayName: NODE_ENV === 'development',
+      },
+    },
     'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
     'gatsby-plugin-netlify', // keep last
   ],
 };

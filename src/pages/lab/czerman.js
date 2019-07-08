@@ -108,20 +108,28 @@ export default function CzermanPage({
         <H2>Czech</H2>
         <P>{modalTerm.czech.grammar}</P>
         <H2>
-          Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech" look="secondary">IPA</Link>
+          Czech{' '}
+          <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech" look="secondary">
+            IPA
+          </Link>
         </H2>
         <P>{modalTerm.czech.ipa}</P>
         <H2>German equivalent</H2>
         <P>{state.isCardFlipped ? modalTerm.german.grammar : '...'}</P>
         <H2>
-          German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German" look="secondary">IPA</Link>
+          German{' '}
+          <Link to="https://en.wikipedia.org/wiki/Help:IPA/German" look="secondary">
+            IPA
+          </Link>
         </H2>
         <P>{state.isCardFlipped ? modalTerm.german.ipa : '...'}</P>
         <Button
           look="primary"
+          css={`
+            margin: 4rem 0 0 0;
+            width: 100%;
+          `}
           onClick={state.isCardFlipped ? handleNextTerm : handleFlipCard}
-          margin="4rem 0 0 0"
-          width="100%"
         >
           {state.isCardFlipped ? 'Next' : 'Reveal'}
         </Button>
@@ -130,16 +138,30 @@ export default function CzermanPage({
   };
 
   const renderTable = () => (
-    <Table margin="0 0 2rem 0" tableLayout="fixed">
+    <Table
+      css={`
+        margin: 0 0 2rem 0;
+
+        @media screen and (min-width: 1200px) {
+          table-layout: fixed;
+        }
+      `}
+    >
       <Table.Thead>
         <Table.Tr>
           <Table.Th>Czech</Table.Th>
           <Table.Th>
-            Czech <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech" look="secondary">IPA</Link>
+            Czech{' '}
+            <Link to="https://en.wikipedia.org/wiki/Help:IPA/Czech" look="secondary">
+              IPA
+            </Link>
           </Table.Th>
           <Table.Th>German equivalent</Table.Th>
           <Table.Th>
-            German <Link to="https://en.wikipedia.org/wiki/Help:IPA/German" look="secondary">IPA</Link>
+            German{' '}
+            <Link to="https://en.wikipedia.org/wiki/Help:IPA/German" look="secondary">
+              IPA
+            </Link>
           </Table.Th>
         </Table.Tr>
       </Table.Thead>
@@ -147,7 +169,9 @@ export default function CzermanPage({
         {dictionary.map(term => (
           <Table.Tr
             key={term.czech.grammar}
-            cursor="pointer"
+            css={`
+              cursor: pointer;
+            `}
             onClick={() => handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')
             }
           >
@@ -156,7 +180,13 @@ export default function CzermanPage({
             {state.openTermId === term.czech.grammar || state.isOpenAll ? (
               <Table.Td>{term.german.grammar}</Table.Td>
             ) : (
-              <Table.Td colSpan="2" textAlign="center" opacity={0.5}>
+              <Table.Td
+                colSpan="2"
+                css={`
+                  textalign: center;
+                  opacity: 0.5;
+                `}
+              >
                 Reveal
               </Table.Td>
             )}
@@ -172,15 +202,28 @@ export default function CzermanPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'practice' 'dictionary'" gridGap="10vh 4rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'practice' 'dictionary';
+          grid-gap: 10vh 4rem;
+        `}
+      >
         {renderBlocks(blocks)}
-        <Section gridArea="practice">
+        <Section
+          css={`
+            grid-area: practice;
+          `}
+        >
           <Button look="primary" onClick={handleNextTerm}>
             Start practice
           </Button>
           {renderModal()}
         </Section>
-        <Section gridArea="dictionary">
+        <Section
+          css={`
+            grid-area: dictionary;
+          `}
+        >
           {renderTable()}
           <Button look="secondary" onClick={handleOpenAll}>
             {state.isOpenAll ? 'Hide' : 'Reveal'} all

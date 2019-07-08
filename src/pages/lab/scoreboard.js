@@ -224,7 +224,13 @@ export default function ScoreboardPage({
       <Fragment key={state[player].name}>
         <Scoreboard.Team>{state[player].team}</Scoreboard.Team>
         <Scoreboard.Name>{state[player].name}</Scoreboard.Name>
-        <Scoreboard.Set fontWeight="bold">{utils.getSetCount(state, player)}</Scoreboard.Set>
+        <Scoreboard.Set
+          css={`
+            font-weight: bold;
+          `}
+        >
+          {utils.getSetCount(state, player)}
+        </Scoreboard.Set>
         {winner === null && (
           <Scoreboard.Point>
             {state[player].points[state[player].points.length - 1]}
@@ -233,12 +239,12 @@ export default function ScoreboardPage({
         {winner
           && state[player].points.map((point, i) => (
             <Scoreboard.Point
-              opacity={
-                state[player].points[i] > 10
+              css={`
+                opacity: ${state[player].points[i] > 10
                 && state[player].points[i] - state[opponent].points[i] > 1
-                  ? 1
-                  : 0.5
-              }
+                ? '1'
+                : '0.5'};
+              `}
             >
               {point}
             </Scoreboard.Point>
@@ -251,82 +257,103 @@ export default function ScoreboardPage({
     const isEnd = utils.getWinner(state) !== null;
     return (
       <Form
-        gridTemplate={{
-          xs: `
+        css={`
+          grid-template:
             'homeName homeTeam homeUp homeDown'
             'awayName awayTeam awayUp awayDown'
             '. . reset reset'
-            / 2fr 1fr auto auto
-          `,
-        }}
-        gridGap="1rem"
+            / 2fr 1fr auto auto;
+          grid-gap: 1rem;
+        `}
         onSubmit={event => event.preventDefault()}
       >
         <Input
-          gridArea="homeName"
           type="text"
           value={state.home.name}
           name="name"
           label="Home player name"
+          css={`
+            grid-area: homeName;
+          `}
           onChange={({ target }) => handleInput('home', target)}
         />
         <Input
-          gridArea="homeTeam"
           type="text"
+          value={state.home.team}
           name="team"
           label="Home player team"
-          value={state.home.team}
+          css={`
+            grid-area: homeTeam;
+          `}
           onChange={({ target }) => handleInput('home', target)}
         />
         <Button
-          gridArea="homeUp"
           look="secondary"
-          onClick={() => handleAddPoint('home')}
           disabled={isEnd}
+          css={`
+            grid-area: homeUp;
+          `}
+          onClick={() => handleAddPoint('home')}
         >
           ↑
         </Button>
         <Button
-          gridArea="homeDown"
           look="secondary"
-          onClick={() => handleRemovePoint('home')}
           disabled={state.home.points.every(point => point === 0)}
+          css={`
+            grid-area: homeDown;
+          `}
+          onClick={() => handleRemovePoint('home')}
         >
           ↓
         </Button>
         <Input
-          gridArea="awayName"
           type="text"
           value={state.away.name}
           name="name"
           label="Away player name"
+          css={`
+            grid-area: awayName;
+          `}
           onChange={({ target }) => handleInput('away', target)}
         />
         <Input
-          gridArea="awayTeam"
           type="text"
           value={state.away.team}
           name="team"
           label="Away player team"
+          css={`
+            grid-area: awayTeam;
+          `}
           onChange={({ target }) => handleInput('away', target)}
         />
         <Button
-          gridArea="awayUp"
           look="secondary"
-          onClick={() => handleAddPoint('away')}
           disabled={isEnd}
+          css={`
+            grid-area: awayUp;
+          `}
+          onClick={() => handleAddPoint('away')}
         >
           ↑
         </Button>
         <Button
-          gridArea="awayDown"
           look="secondary"
-          onClick={() => handleRemovePoint('away')}
           disabled={state.away.points.every(point => point === 0)}
+          css={`
+            grid-area: awayDown;
+          `}
+          onClick={() => handleRemovePoint('away')}
         >
           ↓
         </Button>
-        <Button gridArea="reset" look="secondary" onClick={handleResetScore}>
+        <Button
+          look="secondary"
+          css={`
+            grid-area: reset;
+          `}
+          onClick={handleResetScore}
+        >
           Reset score
         </Button>
       </Form>
@@ -337,21 +364,31 @@ export default function ScoreboardPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'scoreboard' 'controls'",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'hero' 'scoreboard' 'controls';
+          grid-gap: 10vh 4rem;
+        `}
       >
         {renderBlocks(blocks)}
 
-        <Section gridArea="scoreboard">
+        <Section
+          css={`
+            grid-area: scoreboard;
+          `}
+        >
           <Scoreboard>
             {renderPlayer('home')}
             {renderPlayer('away')}
           </Scoreboard>
         </Section>
 
-        <Section gridArea="controls">{renderControls()}</Section>
+        <Section
+          css={`
+            grid-area: controls;
+          `}
+        >
+          {renderControls()}
+        </Section>
       </Main>
     </RootContainer>
   );

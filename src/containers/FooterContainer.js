@@ -15,27 +15,26 @@ import { Footer, Section, H2, Ul, Li, Link } from '~components';
 export default function FooterContainer({ footer }) {
   return (
     <Footer
-      gridGap="2rem 1rem"
-      gridTemplate={{
-        xs: `
-          'theme'
-          'contact'
-          'legal'
-          'colophon'
-          / 1fr;
-        `,
-        lg: `
-          'theme contact legal colophon'
-          / 1fr 1fr 1fr 1fr
-        `,
-      }}
+      css={`
+        grid-gap: 2rem 1rem;
+        grid-template: 'theme' 'contact' 'legal' / 1fr;
+
+        @media screen and (min-width: 1200px) {
+          grid-template: 'theme contact legal colophon' / 1fr 1fr 1fr 1fr;
+        }
+      `}
     >
       <Section>
         <H2>Colour theme</H2>
         <ColourThemeContainer />
       </Section>
       {footer.map(item => (
-        <Section key={item.title} gridArea={item.title.toLowerCase()}>
+        <Section
+          key={item.title}
+          css={`
+            grid-area: ${item.title.toLowerCase()};
+          `}
+        >
           <H2>{item.title}</H2>
           {item.type === 'nested' && (
             <Ul>
@@ -48,15 +47,7 @@ export default function FooterContainer({ footer }) {
               ))}
             </Ul>
           )}
-          {item.type === 'markdown' && (
-            <MDXRenderer
-              components={{
-                a: Link,
-              }}
-            >
-              {item.mdx}
-            </MDXRenderer>
-          )}
+          {item.type === 'markdown' && <MDXRenderer>{item.mdx}</MDXRenderer>}
         </Section>
       ))}
     </Footer>

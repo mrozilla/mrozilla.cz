@@ -54,8 +54,18 @@ export default function ContactPage({
 }) {
   const [hero, form] = blocks;
   const renderSuccess = () => (
-    <Section gridArea="form">
-      <P margin="0 0 2rem 0">{form.success}</P>
+    <Section
+      css={`
+        grid-area: form;
+      `}
+    >
+      <P
+        css={`
+          margin: 0 0 2rem 0;
+        `}
+      >
+        {form.success}
+      </P>
       <Link to="/">
         <Button look="primary">Back to home page</Button>
       </Link>
@@ -69,10 +79,14 @@ export default function ContactPage({
       data-netlify-honeypot="bot-field"
       method="POST"
       action="/contact#success"
-      gridTemplate={{
-        xs: "'name' 'email' 'specs' 'budget' 'submit'",
-        lg: "'name email' 'specs specs' 'budget budget' 'submit submit' / 1fr 1fr",
-      }}
+      css={`
+        grid-area: form;
+        grid-template: 'name' 'email' 'specs' 'budget' 'submit';
+
+        @media screen and (min-width: 1200px) {
+          grid-template: 'name email' 'specs specs' 'budget budget' 'submit submit' / 1fr 1fr;
+        }
+      `}
     >
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="bot-field" />
@@ -86,11 +100,14 @@ export default function ContactPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'form'",
-          lg: "'hero .' 'form .' / 2fr 1fr",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'hero' 'form';
+          grid-gap: 10vh 4rem;
+
+          @media screen and (min-width: 1200px) {
+            grid-template: 'hero .' 'form .' / 2fr 1fr;
+          }
+        `}
       >
         <HeroContainer title={hero.title} />
         {location.hash === '#success' ? renderSuccess() : renderForm()}

@@ -67,18 +67,31 @@ export default function HomePage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'location' 'availability' 'work' 'blog'",
-          md: "'hero hero' 'location availability' 'work blog'",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'hero' 'location' 'availability' 'work' 'blog';
+          grid-gap: 10vh 4rem;
+
+          @media screen and (min-width: 900px) {
+            grid-template: 'hero hero' 'location availability' 'work blog';
+          }
+        `}
       >
         {renderBlocks(blocks)}
-        <Section gridArea="work" id="work">
+        <Section
+          id="work"
+          css={`
+            grid-area: work;
+          `}
+        >
           <H2>Latest client work</H2>
           <WorksContainer works={works.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
-        <Section gridArea="blog" id="blog">
+        <Section
+          id="blog"
+          css={`
+            grid-area: blog;
+          `}
+        >
           <H2>Latest blog articles</H2>
           <BlogPreviewsContainer posts={posts} />
         </Section>

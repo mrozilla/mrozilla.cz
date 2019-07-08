@@ -14,7 +14,12 @@ import { Main } from '~components';
 export default function NotFoundPage() {
   return (
     <RootContainer>
-      <Main gridTemplate="'hero' 'hints'" gridGap="10vh 4rem">
+      <Main
+        css={`
+        grid-template: 'hero' hints';
+        grid-gap: 10vh 4rem;
+      `}
+      >
         <HeroContainer title="Whoops, this page doesn't exist. Check the links in the menus around, they might help. Or you can always head back to [the home page](/)" />
       </Main>
     </RootContainer>

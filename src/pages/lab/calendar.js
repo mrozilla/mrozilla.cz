@@ -37,6 +37,7 @@ const Calendar = {};
 Calendar.Controls = styled.div`
   display: grid;
   grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
   margin: 0 0 2rem 0;
 `;
 
@@ -83,7 +84,9 @@ Calendar.Day = styled.p`
 
 export default function CalendarPage({
   data: {
-    page: { frontmatter: {meta, blocks} },
+    page: {
+      frontmatter: { meta, blocks },
+    },
   },
 }) {
   const [selected, setDate] = useState(new Date());
@@ -114,21 +117,17 @@ export default function CalendarPage({
 
   const renderCalendarControls = () => (
     <Calendar.Controls>
-      <Button onClick={() => handleChangeDate({ yearOffset: -1 })}>
-        «
-      </Button>
-      <Button onClick={() => handleChangeDate({ monthOffset: -1 })}>
-        ‹
-      </Button>
-      <P textAlign="center">
+      <Button onClick={() => handleChangeDate({ yearOffset: -1 })}>«</Button>
+      <Button onClick={() => handleChangeDate({ monthOffset: -1 })}>‹</Button>
+      <P
+        css={`
+          text-align: center;
+        `}
+      >
         {selected.toLocaleString(locale, { month: 'long', year: 'numeric' })}
       </P>
-      <Button onClick={() => handleChangeDate({ monthOffset: 1 })}>
-        ›
-      </Button>
-      <Button onClick={() => handleChangeDate({ yearOffset: 1 })}>
-        »
-      </Button>
+      <Button onClick={() => handleChangeDate({ monthOffset: 1 })}>›</Button>
+      <Button onClick={() => handleChangeDate({ yearOffset: 1 })}>»</Button>
     </Calendar.Controls>
   );
 
@@ -145,7 +144,9 @@ export default function CalendarPage({
       {helpers.getDaysArray().map((day, i) => (
         <Calendar.Day
           key={day}
-          style={{ gridColumnStart: i === 0 && helpers.getFirstDayOfMonth() }}
+          css={`
+            grid-column-start: ${i === 0 && helpers.getFirstDayOfMonth()};
+          `}
           isCurrent={selected.getDate() === day}
           onClick={() => handleChangeDate({ dateOffset: day - selected.getDate() })}
         >
@@ -159,14 +160,21 @@ export default function CalendarPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'calendar'",
-          lg: "'hero hero' 'calendar .' / 1fr 1fr",
-        }}
-        gridGap="10vh 4rem"
+        css={`
+          grid-template: 'hero' 'calendar';
+          grid-gap: 10vh 4rem;
+
+          @media screen and (min-width: 1200px) {
+            grid-template: 'hero hero' 'calendar .' / 1fr 1fr;
+          }
+        `}
       >
         {renderBlocks(blocks)}
-        <Section gridArea="calendar">
+        <Section
+          css={`
+            grid-area: calendar;
+          `}
+        >
           {renderCalendarControls()}
           {renderCalendarWeekdays()}
           {renderCalendarDays()}

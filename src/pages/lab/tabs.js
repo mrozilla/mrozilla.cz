@@ -3,11 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { FaEye } from 'react-icons/fa';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Tabs, Img, H1, P, Icon } from '~components';
+import { Main, Section, Tabs, H1, P, Icon } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -42,9 +41,18 @@ export default function CarouselPage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main gridTemplate="'hero' 'carousel'" gridGap="10vh 1rem">
+      <Main
+        css={`
+          grid-template: 'hero' 'carousel';
+          grid-gap: 10vh 1rem;
+        `}
+      >
         {renderBlocks(blocks)}
-        <Section gridArea="carousel">
+        <Section
+          css={`
+            grid-area: carousel;
+          `}
+        >
           <Tabs
             content={[
               {
@@ -54,7 +62,13 @@ export default function CarouselPage({
               {
                 title: (
                   <P>
-                    <Icon icon="FaEye" fontSize="1.5rem" /> Components
+                    <Icon
+                      icon="FaEye"
+                      css={`
+                        font-size: 1.5rem;
+                      `}
+                    />{' '}
+                    Components
                   </P>
                 ),
                 body: (

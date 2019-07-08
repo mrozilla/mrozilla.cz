@@ -53,10 +53,27 @@ export default function InputsPage({
 
   const renderTextInputs = () => (
     <Form
-      gridArea="text"
-      gridTemplate="'title' 'text' 'pattern' 'email' 'password' 'number' 'website' 'date' 'time'"
+      css={`
+        grid-area: text;
+        grid-template:
+          'title'
+          'text'
+          'pattern'
+          'email'
+          'password'
+          'number'
+          'website'
+          'date'
+          'time';
+      `}
     >
-      <H1 gridArea="title">Text inputs</H1>
+      <H1
+        css={`
+          grid-area: title;
+        `}
+      >
+        Text inputs
+      </H1>
       <Input name="text" type="text" placeholder="First name" label="Generic text input" required />
       <Input
         name="pattern"
@@ -109,8 +126,19 @@ export default function InputsPage({
   );
 
   const renderTimeInputs = () => (
-    <Form gridArea="time" gridTemplate="'title' 'date' 'datetime-local' 'month' 'time'">
-      <H1 gridArea="title">Date inputs</H1>
+    <Form
+      css={`
+        grid-area: time;
+        grid-template: 'title' 'date' 'datetime-local' 'month' 'time';
+      `}
+    >
+      <H1
+        css={`
+          grid-area: title;
+        `}
+      >
+        Date inputs
+      </H1>
       <Input
         name="date"
         type="date"
@@ -143,8 +171,19 @@ export default function InputsPage({
   );
 
   const renderSelects = () => (
-    <Form gridArea="select" gridTemplate="'title' 'select' 'search'">
-      <H1 gridArea="title">Select inputs</H1>
+    <Form
+      css={`
+        grid-area: select;
+        grid-template: 'title' 'select' 'search';
+      `}
+    >
+      <H1
+        css={`
+          grid-area: title;
+        `}
+      >
+        Select inputs
+      </H1>
       <Input
         name="select"
         type="select"
@@ -179,8 +218,19 @@ export default function InputsPage({
   );
 
   const renderCheckboxes = () => (
-    <Form gridArea="checkbox" gridTemplate="'title' 'checkbox'">
-      <H1 gridArea="title">Checkbox inputs</H1>
+    <Form
+      css={`
+        grid-area: checkbox;
+        grid-template: 'title' 'checkbox';
+      `}
+    >
+      <H1
+        css={`
+          grid-area: title;
+        `}
+      >
+        Checkbox inputs
+      </H1>
       <Input
         name="checkbox"
         type="checkbox"
@@ -204,8 +254,19 @@ export default function InputsPage({
   );
 
   const renderRadios = () => (
-    <Form gridArea="radio" gridTemplate="'title' 'radio'">
-      <H1 gridArea="title">Radio inputs</H1>
+    <Form
+      css={`
+        grid-area: radio;
+        grid-template: 'title' 'radio';
+      `}
+    >
+      <H1
+        css={`
+          grid-area: title;
+        `}
+      >
+        Radio inputs
+      </H1>
       <Input
         name="radio"
         type="radio"
@@ -236,11 +297,14 @@ export default function InputsPage({
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
-        gridTemplate={{
-          xs: "'hero' 'text' 'time' 'select' 'checkbox' 'radio'",
-          md: "'hero hero' 'text .' 'time .' 'select .' 'checkbox .' 'radio .' / 1fr 1fr",
-        }}
-        gridGap="10vh 1rem"
+        css={`
+          grid-template: 'hero' 'text' 'time' 'select' 'checkbox' 'radio';
+          grid-gap: 10vh 1rem;
+
+          @media screen and (min-width: 900px) {
+            grid-template: 'hero hero' 'text .' 'time .' 'select .' 'checkbox .' 'radio .' / 1fr 1fr;
+          }
+        `}
       >
         {renderBlocks(blocks)}
         {renderTextInputs()}

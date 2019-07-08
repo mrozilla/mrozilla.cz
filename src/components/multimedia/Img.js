@@ -6,13 +6,12 @@ import React from 'react';
 import { string, number, bool } from 'prop-types';
 
 import styled, { css } from 'styled-components';
-import { View } from '~components/primitives/View';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Picture = styled(View)`
+export const Picture = styled.picture`
   position: relative;
   display: block;
 
@@ -30,16 +29,18 @@ Picture.defaultProps = {
   overflow: 'hidden',
 };
 
-export const StyledImg = styled(View)`
+export const StyledImg = styled.img`
+  user-drag: none;
+
   position: absolute;
   display: block;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: ${({ objectFit }) => objectFit};
 
-  user-drag: none;
+  object-fit: cover;
+  background-color: hsla(var(--hsl-text), 0.1);
 
   ${({ zoom }) => zoom
     && css`
@@ -51,12 +52,6 @@ export const StyledImg = styled(View)`
       }
     `}
 `;
-
-StyledImg.defaultProps = {
-  as:              'img',
-  objectFit:       'cover',
-  backgroundColor: 'hsla(var(--hsl-text), 0.1)',
-};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component

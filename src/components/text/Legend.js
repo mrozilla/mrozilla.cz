@@ -11,4 +11,4 @@ import { Label } from '~components/text/Label';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Legend = styled(Label)``;
-Legend.defaultProps = { ...Label.defaultProps, as: 'legend' };
+Legend.defaultProps = { as: 'legend' };

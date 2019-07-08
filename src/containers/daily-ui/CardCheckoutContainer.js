@@ -98,37 +98,55 @@ export default function CardCheckout({ onSubmit }) {
 
   return (
     <Form
-      boxShadow="0 0 0 1px hsla(var(--hsl-text),0.1)"
-      padding="4rem 4rem 3rem"
-      borderRadius="1rem"
-      gridTemplate={`
-        'title title'
-        'cards cards'
-        'cardHolder cardHolder'
-        'cardNumber cardNumber'
-        'expiration cvc'
-        'pay pay'
-        / 1fr 1fr
+      css={`
+        grid-template:
+          'title title'
+          'cards cards'
+          'cardHolder cardHolder'
+          'cardNumber cardNumber'
+          'expiration cvc'
+          'pay pay'
+          / 1fr 1fr;
+        box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.1);
+        padding: 4rem 4rem 3rem;
+        border-radius: 1rem;
+
+        &:hover {
+          box-shadow: 0 0 0 2px hsla(var(--hsl-text), 0.1);
+        }
       `}
-      hover={{
-        boxShadow: '0 0 0 2px hsla(var(--hsl-text),0.1)',
-      }}
       onSubmit={handleSubmit}
     >
-      <H1 gridArea="title" fontSize="2.5rem" fontWeight="500" margin="0 0 2rem">
+      <H1
+        css={`
+          grid-area: title;
+          font-size: 2.5rem;
+          font-weight: 500;
+          margin: 0 0 2rem;
+        `}
+      >
         Pay invoice: €19.99
       </H1>
-      <Ul gridArea="cards" gridAutoFlow="column" gridGap="1rem" margin="0 50% 0 0">
+      <Ul
+        css={`
+          grid-area: cards;
+          grid-auto-flow: column;
+          grid-gap: 1rem;
+          margin: 0 50% 0 0;
+        `}
+      >
         {cardProviders.map(({ name, image, firstDigit }) => (
           <Img
             key={name}
             src={image}
             alt={name}
             ratio={1 / 1.75}
-            maxHeight="4rem"
-            objectFit="contain"
-            opacity={!cardNumber || cardNumber.substr(0, 1) === firstDigit ? 1 : 0.25}
-            backgroundColor="transparent"
+            css={`
+              maxheight: 4rem;
+              object-fit: contain;
+              opacity: ${!cardNumber || cardNumber.substr(0, 1) === firstDigit ? '1' : '0.25'};
+              background-color: transparent;
+            `}
           />
         ))}
       </Ul>
@@ -181,9 +199,11 @@ export default function CardCheckout({ onSubmit }) {
         required
       />
       <Button
-        gridArea="pay"
         look="primary"
         disabled={!(cardHolder && cardNumber && expiration && cvc)}
+        css={`
+          grid-area: pay;
+        `}
       >
         Pay €19.99
       </Button>

@@ -4,14 +4,12 @@
 
 import styled, { css } from 'styled-components';
 
-import { Text } from '~components/primitives/Text';
-
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 // prettier-ignore
-export const Alert = styled(Text)`
+export const Alert = styled.span`
   display: inline-block;
   line-height: 3rem;
   padding: 1rem 2rem;

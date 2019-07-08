@@ -14,7 +14,16 @@ import { Header, H1, Link, Nav } from '~components';
 export default function HeaderContainer({ header }) {
   return (
     <Header>
-      <H1 fontSize="3rem" margin={{ xs: '0', md: '0 0 4rem 0' }}>
+      <H1
+        css={`
+          font-size: 3rem;
+          margin: 0;
+
+          @media screen and (min-width: 900px) {
+            margin: 0 0 4rem;
+          }
+        `}
+      >
         <Link to="/" look="tertiary">
           Mrozilla
         </Link>
