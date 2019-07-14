@@ -63,8 +63,12 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
         color: var(--color-text);
       }
 
-      &:focus ~ ${Text} {
-        color: var(--color-brand-primary);
+      &:focus {
+        box-shadow: 0 0 2px 0 var(--color-brand-primary);
+
+        & ~ ${Text} {
+          color: var(--color-brand-primary);
+        }
       }
     }
   }

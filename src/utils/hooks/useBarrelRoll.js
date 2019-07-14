@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect } from 'react';
+import useEventListener from './useEventListener';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -11,16 +12,11 @@ import { useState, useEffect } from 'react';
 export default function useBarrelRoll() {
   const [count, setCount] = useState(0);
 
-  const handleBarrelRoll = (evt) => {
+  useEventListener('keydown', (evt) => {
     if (evt.key === 'r') {
       setCount(c => (c < 5 ? c + 1 : 1));
     }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleBarrelRoll);
-    return () => document.removeEventListener('keydown', handleBarrelRoll);
-  }, []);
+  });
 
   useEffect(() => {
     if (count === 5) {

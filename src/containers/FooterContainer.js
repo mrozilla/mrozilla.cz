@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import ColourThemeContainer from './ColourThemeContainer';
 import { Footer, Section, H2, Ul, Li, Link } from '~components';
@@ -17,7 +17,7 @@ export default function FooterContainer({ footer }) {
     <Footer
       css={`
         grid-gap: 2rem 1rem;
-        grid-template: 'theme' 'contact' 'legal' / 1fr;
+        grid-template: 'theme' 'contact' 'legal' 'colophon' / 1fr;
 
         @media screen and (min-width: 1200px) {
           grid-template: 'theme contact legal colophon' / 1fr 1fr 1fr 1fr;

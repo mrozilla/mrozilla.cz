@@ -7,6 +7,14 @@ export default function useSocialShare({ text, url }) {
     const encodedText = encodeURIComponent(text);
     const encodedUrl = encodeURIComponent(url);
 
+    if (navigator.share) {
+      return navigator.share({
+        url,
+        text,
+        title: '',
+      });
+    }
+
     if (service === 'twitter') {
       return window.open(`https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`, '_newtab');
     }

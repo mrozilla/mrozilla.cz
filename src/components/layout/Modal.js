@@ -2,13 +2,13 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { string, bool, node, func } from 'prop-types';
 import styled from 'styled-components';
 
 import { Button } from '~components/interactive/Button';
 
-import { animation } from '~utils';
+import { animation, useEventListener } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -72,26 +72,17 @@ export default function Modal({
   onClickClose,
   children,
 }) {
-  const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
+  useEventListener('keydown', (event) => {
+    if (isOpen && event.key === 'Escape') {
       onClickEscape();
     }
-  };
+  })
 
   const handleClickBackground = (event) => {
     if (event.target === event.currentTarget) {
       onClickBackground();
     }
   };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
-    }
-
-    return undefined;
-  }, [isOpen]);
 
   if (isOpen) {
     return (
