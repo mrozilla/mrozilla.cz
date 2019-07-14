@@ -40,7 +40,7 @@ export const StyledImg = styled.img`
   height: 100%;
 
   object-fit: cover;
-  background-color: hsla(var(--hsl-text), 0.1);
+  background-color: hsla(var(--hsl-text), .1);
 
   ${({ zoom }) => zoom
     && css`

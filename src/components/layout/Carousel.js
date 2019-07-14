@@ -142,7 +142,7 @@ export default function Carousel({
               position: absolute;
               left: -7rem;
               align-self: center;
-              opacity: 0.5;
+              opacity: .5;
             `}
             onClick={() => handleScroll('previous')}
           >
@@ -153,7 +153,7 @@ export default function Carousel({
               position: absolute;
               right: -7rem;
               align-self: center;
-              opacity: 0.5;
+              opacity: .5;
             `}
             onClick={handleScroll}
           >

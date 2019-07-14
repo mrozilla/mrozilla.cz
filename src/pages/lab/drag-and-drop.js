@@ -109,7 +109,7 @@ export default function DragAndDropPage({
             css={`
               grid-gap: 1rem;
               padding: 1rem;
-              background-color: hsla(var(--hsl-text), 0.1);
+              background-color: hsla(var(--hsl-text), .1);
               border-radius: 1rem;
             `}
           >
@@ -120,7 +120,7 @@ export default function DragAndDropPage({
                 css={`
                   background-color: var(--color-bg);
                   padding: 1rem;
-                  border-radius: 0.5rem;
+                  border-radius: .5rem;
                   cursor: pointer;
                   display: flex;
                   justify-content: space-between;
@@ -128,7 +128,7 @@ export default function DragAndDropPage({
 
                   &::after {
                     content: '☰';
-                    opacity: 0.25;
+                    opacity: .25;
                   }
                 `}
                 onDragStart={e => handleDragStart(e, i)}

@@ -37,8 +37,8 @@ export default function Dots({ size, amount, orientation, gap, colors, css, ...r
 }
 
 Dots.defaultProps = {
-  size:        '0.5rem',
+  size:        '.5rem',
   amount:      3,
   orientation: 'row',
-  gap:         '0.25rem',
+  gap:         '.25rem',
 };

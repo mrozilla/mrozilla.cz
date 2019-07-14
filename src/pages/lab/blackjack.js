@@ -37,10 +37,10 @@ const Card = styled.div`
 
   line-height: 1;
   font-size: 2rem;
-  padding: 1rem 1rem 0.5rem 1rem;
-  border-radius: 0.5rem;
-  margin: 0.25rem;
-  box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  padding: 1rem 1rem .5rem 1rem;
+  border-radius: .5rem;
+  margin: .25rem;
+  box-shadow: 0 0 0 1px hsla(var(--hsl-text), .25);
 
   animation: ${animation({
     from: {
@@ -80,17 +80,17 @@ const Card = styled.div`
 `;
 
 const Score = styled.span`
-  --background-color: hsla(var(--hsl-text), 0.1);
+  --background-color: hsla(var(--hsl-text), .1);
   --color: var(--color-text);
 
   position: absolute;
-  top: 0.25rem;
-  right: calc(100% + 0.5rem);
+  top: .25rem;
+  right: calc(100% + .5rem);
 
   font-size: 1.5rem;
   line-height: 1;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  padding: .5rem;
+  border-radius: .25rem;
 
   background-color: var(--background-color);
   color: var(--color);

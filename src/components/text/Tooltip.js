@@ -26,7 +26,7 @@ export const Tooltip = styled.div`
     content: '';
     position: absolute;
     border-style: solid;
-    border-width: 0.5rem;
+    border-width: .5rem;
     bottom: 100%;
     left: 1rem;
 

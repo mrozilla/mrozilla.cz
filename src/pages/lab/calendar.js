@@ -46,7 +46,7 @@ Calendar.Weekdays = styled.div`
   grid-template-columns: repeat(7, 1fr);
   margin: 0 0 2rem 0;
   text-align: center;
-  opacity: 0.5;
+  opacity: .5;
 `;
 
 Calendar.Days = styled.div`
@@ -72,7 +72,7 @@ Calendar.Day = styled.p`
     color: var(--color-brand-primary);
     background-image: radial-gradient(
       circle closest-side,
-      hsla(var(--hsl-brand-primary), 0.25) 100%,
+      hsla(var(--hsl-brand-primary), .25) 100%,
       transparent 100%
     );
   }

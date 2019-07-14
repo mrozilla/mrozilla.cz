@@ -31,11 +31,11 @@ export function Table({ children, ...rest }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.Thead = styled.thead`
-  --shadow: 0 2px 0 0 hsla(var(--hsl-text), 0.1);
+  --shadow: 0 2px 0 0 hsla(var(--hsl-text), .1);
 
   box-shadow: var(--shadow);
   & th {
-    padding: 1rem 0.5rem;
+    padding: 1rem .5rem;
   }
 `;
 
@@ -45,7 +45,7 @@ Table.Thead = styled.thead`
 
 Table.Tbody = styled.tbody`
   & tr:hover {
-    background-color: hsla(var(--hsl-text), 0.05);
+    background-color: hsla(var(--hsl-text), .05);
   }
 `;
 
@@ -60,7 +60,7 @@ Table.Tfoot = styled.tfoot``;
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.Tr = styled.tr`
-  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
+  --shadow: 0 1px 0 0 hsla(var(--hsl-text), .1);
 
   box-shadow: var(--shadow);
   cursor: ${({ cursor }) => cursor};
@@ -77,6 +77,6 @@ Table.Th = styled.th``;
 // ─────────────────────────────────────────────────────────────────────────────
 
 Table.Td = styled.td`
-  padding: ${({ padding = '0.5rem' }) => padding};
+  padding: ${({ padding = '.5rem' }) => padding};
   opacity: ${({ opacity }) => opacity};
 `;

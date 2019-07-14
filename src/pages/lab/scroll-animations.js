@@ -32,20 +32,20 @@ export const query = graphql`
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Block({ item }) {
-  const [ref, isIntersecting] = useOnScreen({ threshold: 0.5 });
+  const [ref, isIntersecting] = useOnScreen({ threshold: .5 });
 
   return (
     <Li
       key={item}
       ref={ref}
       css={`
-        background-color: hsla(var(--hsl-text), 0.1);
-        border-radius: 0.5rem;
+        background-color: hsla(var(--hsl-text), .1);
+        border-radius: .5rem;
         text-align: center;
         padding: 8rem 4rem;
 
         opacity: ${isIntersecting ? '1' : '0'};
-        transform: scale(${isIntersecting ? '1' : '0.9'});
+        transform: scale(${isIntersecting ? '1' : '.9'});
         transition: opacity 500ms, transform 500ms;
         transition-delay: calc(100ms * ${item});
       `}
