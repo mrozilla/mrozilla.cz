@@ -2,11 +2,12 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { arrayOf, oneOfType, shape, string, node } from 'prop-types';
 
 import { Ul, Li } from '~components/text/List';
 import { View } from '~components/primitives/View';
+import { useEventListener } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // import
@@ -15,7 +16,7 @@ import { View } from '~components/primitives/View';
 export default function Tabs({ content }) {
   const [activeTabIdx, setActiveTabIdx] = useState(0);
 
-  const handleKeyDown = (event) => {
+  useEventListener('keydown', (event) => {
     if (
       !event.target
       || !('getAttribute' in event.target)
@@ -47,12 +48,7 @@ export default function Tabs({ content }) {
     }
 
     return null;
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  });
 
   return (
     <>
