@@ -8,7 +8,7 @@ import { useRef, useEffect } from 'react';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function useEventListener(eventName, handler, element = window) {
+export default function useEventListener(eventName, handler, element) {
   // Create a ref that stores handler
   const savedHandler = useRef();
 
@@ -22,10 +22,11 @@ export default function useEventListener(eventName, handler, element = window) {
 
   useEffect(
     () => {
+      // avoid argument defaults due to build time ReferenceError
+      const target = element || window;
+
       // Make sure element supports addEventListener
-      // On
-      const isSupported = element && element.addEventListener;
-      if (!isSupported) {
+      if (!(target && target.addEventListener)) {
         return undefined;
       }
 
@@ -33,11 +34,11 @@ export default function useEventListener(eventName, handler, element = window) {
       const eventListener = event => savedHandler.current(event);
 
       // Add event listener
-      element.addEventListener(eventName, eventListener);
+      target.addEventListener(eventName, eventListener);
 
       // Remove event listener on cleanup
       return () => {
-        element.removeEventListener(eventName, eventListener);
+        target.removeEventListener(eventName, eventListener);
       };
     },
     [eventName, element], // Re-run if eventName or element changes

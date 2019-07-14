@@ -2,12 +2,12 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Ul, Li } from '~components';
-import { renderBlocks, useOnScreen, animation } from '~utils';
+import { renderBlocks, useOnScreen } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -68,7 +68,7 @@ export default function ScrollAnimationsPage({
 }) {
   return (
     <RootContainer>
-      {/* <SEOContainer meta={meta} /> */}
+      <SEOContainer meta={meta} />
       <Main
         css={`
           grid-template: 'hero' 'list';
