@@ -48,8 +48,10 @@ module.exports = {
       options: { name, path: `${__dirname}/src/content/cms/${name}` },
     })),
 
+    'gatsby-transformer-sharp',
+
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [
           {
@@ -59,8 +61,6 @@ module.exports = {
         ],
       },
     },
-    'gatsby-transformer-sharp',
-
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

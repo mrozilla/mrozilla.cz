@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { graphql } from 'gatsby';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { RootContainer, SEOContainer, BlogPreviewsContainer, HighlightShareContainer } from '.';
 import { Article, Aside, Link, Main, H1, H2, P } from '~components';
@@ -24,9 +24,7 @@ export const query = graphql`
         title
         date(formatString: "MMMM D, YYYY")
       }
-      mdx: code {
-        body
-      }
+      body
     }
     relatedArticles: allMdx(
       filter: { fields: { sourceName: { eq: "posts" } }, frontmatter: { related: { in: [$path] } } }
@@ -47,7 +45,7 @@ export default function BlogPost({
   data: {
     article: {
       frontmatter: { title, date, meta },
-      mdx,
+      body
     },
     relatedArticles,
   },
@@ -97,7 +95,7 @@ export default function BlogPost({
               </H2>
             )}
           </header>
-          <MDXRenderer>{mdx.body}</MDXRenderer>
+          <MDXRenderer>{body}</MDXRenderer>
         </Article>
         {relatedArticles.nodes.length > 0 && (
           <Aside>
