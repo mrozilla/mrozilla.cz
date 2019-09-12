@@ -9,8 +9,8 @@ import styled, { css } from 'styled-components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Button = styled.button`
-  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), .1);
-  --shadow-active: inset 0 0 0 2px hsla(var(--hsl-brand-primary), .25);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
+  --shadow-active: inset 0 0 0 2px hsla(var(--hsl-primary), 0.25);
 
   -webkit-appearance: none;
   border: none;
@@ -20,13 +20,13 @@ export const Button = styled.button`
   cursor: pointer;
   line-height: 1em;
   padding: 2rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 
   transition: box-shadow 250ms;
 
   &:disabled {
     cursor: not-allowed;
-    opacity: .5;
+    opacity: 0.5;
   }
 
   &:not(:disabled):hover,
@@ -50,35 +50,35 @@ export const Button = styled.button`
       return css`
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          background-color: hsla(var(--hsl-text), .025);
-          box-shadow: inset 0 0 0 2px var(--color-brand-primary);
-          color: var(--color-brand-primary);
+          background-color: hsla(var(--hsl-text), 0.025);
+          box-shadow: inset 0 0 0 2px var(--color-primary);
+          color: var(--color-primary);
         }
       `;
     }
     if (look === 'secondary') {
       return css`
-        background-color: hsla(var(--hsl-text), .025);
+        background-color: hsla(var(--hsl-text), 0.025);
         box-shadow: var(--shadow);
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          background-color: hsla(var(--hsl-brand-primary), .05);
-          box-shadow: inset 0 0 0 2px var(--color-brand-primary);
-          color: var(--color-brand-primary);
+          background-color: hsla(var(--hsl-primary), 0.05);
+          box-shadow: inset 0 0 0 2px var(--color-primary);
+          color: var(--color-primary);
         }
       `;
     }
     if (look === 'primary') {
       return css`
-        background-color: hsla(var(--hsl-brand-primary), .05);
+        background-color: hsla(var(--hsl-primary), 0.05);
         box-shadow: var(--shadow-active);
-        color: var(--color-brand-primary);
+        color: var(--color-primary);
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          box-shadow: inset 0 0 0 2px var(--color-brand-primary);
-          color: var(--color-brand-primary);
+          box-shadow: inset 0 0 0 2px var(--color-primary);
+          color: var(--color-primary);
         }
       `;
     }
@@ -86,13 +86,14 @@ export const Button = styled.button`
     return css`
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        color: var(--color-brand-primary);
+        color: var(--color-primary);
       }
     `;
   }};
 
-  ${({ grouped }) => grouped
-    && css`
+  ${({ grouped }) =>
+    grouped &&
+    css`
       &:not(:last-of-type) {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;

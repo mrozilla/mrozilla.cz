@@ -71,15 +71,15 @@ export default function Tabs({ content }) {
 
               cursor: pointer;
               padding: 1rem;
-              box-shadow: ${i === activeTabIdx && 'inset 0 -2px var(--color-brand-primary)'};
+              box-shadow: ${i === activeTabIdx && 'inset 0 -2px var(--color-primary)'};
 
               &:hover {
-                color: var(--color-brand-primary);
-                box-shadow: inset 0 -2px var(--color-brand-primary);
+                color: var(--color-primary);
+                box-shadow: inset 0 -2px var(--color-primary);
               }
 
               &:focus {
-                color: var(--color-brand-primary);
+                color: var(--color-primary);
               }
             `}
             onFocus={() => setActiveTabIdx(i)}

@@ -30,7 +30,7 @@ export const Select = styled.select`
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 2px var(--color-brand-primary);
+    box-shadow: inset 0 0 0 2px var(--color-primary);
   }
 
   &:hover,
@@ -38,7 +38,7 @@ export const Select = styled.select`
   &:active {
     & ~ svg {
       opacity: 1;
-      fill: var(--color-brand-primary);
+      fill: var(--color-primary);
     }
   }
 

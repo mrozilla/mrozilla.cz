@@ -33,7 +33,7 @@ export const Summary = styled.summary`
   &:focus,
   &:active {
     &::before {
-      color: var(--color-brand-primary);
+      color: var(--color-primary);
     }
   }
 `;
@@ -42,7 +42,7 @@ export const Details = styled.details`
   &[open] {
     & > ${Summary}::before {
       transform: rotate(0);
-      color: var(--color-brand-primary);
+      color: var(--color-primary);
     }
   }
 `;

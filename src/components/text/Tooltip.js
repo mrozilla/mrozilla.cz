@@ -9,7 +9,7 @@ import styled from 'styled-components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Tooltip = styled.div`
-  --color: var(--color-brand-primary); /* TODO: is this needed? */
+  --color: var(--color-primary); /* TODO: is this needed? */
 
   position: absolute;
   background-color: var(--color);
