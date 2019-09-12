@@ -14,7 +14,7 @@ import { Button } from '~components/interactive/Button';
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const defaultColors = Array.from({ length: 4 }, () => 'hsla(var(--hsl-text), 0.25)');
+const defaultColors = Array.from({ length: 4 }, () => 'hsla(var(--hsl-text), .25)');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -42,7 +42,7 @@ export default function TextInput({ onChange, type, ...rest }) {
         if (score === 2 && i > 1) return 'var(--color-warning)';
         if (score === 3 && i > 0) return 'var(--color-success)';
         if (score === 4) return 'var(--color-success)';
-        return 'hsla(var(--hsl-text), 0.25)';
+        return 'hsla(var(--hsl-text), .25)';
       }),
     );
   };
@@ -63,7 +63,7 @@ export default function TextInput({ onChange, type, ...rest }) {
           top: 2.5rem;
           right: 3rem;
           cursor: pointer;
-          opacity: 0.5;
+          opacity: .5;
           padding: 0;
           
           &:hover {

@@ -11,7 +11,7 @@ import { Label } from '~components/text/Label';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Select = styled.select`
-  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), .1);
 
   appearance: none;
   outline: none;
@@ -19,11 +19,11 @@ export const Select = styled.select`
 
   display: block;
   width: 100%;
-  background-color: hsla(var(--hsl-text), 0.05);
+  background-color: hsla(var(--hsl-text), .05);
   line-height: 1.5em;
   cursor: pointer;
   padding: 3rem 1rem 1rem;
-  border-radius: '0.5rem';
+  border-radius: '.5rem';
 
   &:hover {
     box-shadow: var(--shadow);
@@ -47,11 +47,11 @@ export const Select = styled.select`
   }
 
   &:required:invalid {
-    color: hsla(var(--hsl-text), 0.5);
+    color: hsla(var(--hsl-text), .5);
     padding: 2rem;
 
     &:hover {
-      color: hsla(var(--hsl-text), 0.75);
+      color: hsla(var(--hsl-text), .75);
     }
 
     & ~ ${Label} {

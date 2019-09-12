@@ -184,7 +184,7 @@ export default function CzermanPage({
                 colSpan="2"
                 css={`
                   textalign: center;
-                  opacity: 0.5;
+                  opacity: .5;
                 `}
               >
                 Reveal

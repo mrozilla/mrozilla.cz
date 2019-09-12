@@ -20,10 +20,10 @@ export const Summary = styled.summary`
   &::before {
     content: "▼";
     display: inline-block;
-    margin: 0 0.5rem 0 0;
+    margin: 0 .5rem 0 0;
 
     font-size: 2rem;
-    color: hsla(var(--hsl-text), 0.25);
+    color: hsla(var(--hsl-text), .25);
     transform: rotate(-90deg);
 
     transition: transform 250ms;

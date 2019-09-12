@@ -29,7 +29,7 @@ export default function HighlightShareContainer({ location }) {
           animation: ${animation({
           from: {
             opacity:   '0',
-            transform: 'translateY(-0.5rem)',
+            transform: 'translateY(-.5rem)',
           },
           to: {
             opacity:   '1',
@@ -44,18 +44,18 @@ export default function HighlightShareContainer({ location }) {
             position: relative;
 
             grid-auto-flow: column;
-            border-radius: 0.5rem;
-            padding: 0 0.5rem;
+            border-radius: .5rem;
+            padding: 0 .5rem;
             background-color: var(--color-brand-primary);
-            box-shadow: 0 0.5rem 1rem hsla(-var(--hsl-text), 0.25);
+            box-shadow: 0 .5rem 1rem hsla(-var(--hsl-text), .25);
             line-height: 3rem;
 
             &::after {
               content: '';
               position: absolute;
               border-style: solid;
-              border-width: 0.5rem;
-              margin-left: -0.5rem;
+              border-width: .5rem;
+              margin-left: -.5rem;
               top: 100%;
               left: 50%;
               border-color: var(--color-brand-primary) transparent transparent transparent;
@@ -66,7 +66,7 @@ export default function HighlightShareContainer({ location }) {
             <Button
               look="inverse"
               css={`
-                padding: 0.5rem;
+                padding: .5rem;
               `}
               onClick={() => share('twitter')}
             >
@@ -82,7 +82,7 @@ export default function HighlightShareContainer({ location }) {
             <Button
               look="inverse"
               css={`
-                padding: 0.5rem;
+                padding: .5rem;
               `}
               onClick={() => share('facebook')}
             >
@@ -98,7 +98,7 @@ export default function HighlightShareContainer({ location }) {
             <Button
               look="inverse"
               css={`
-                padding: 0.5rem;
+                padding: .5rem;
               `}
               onClick={() => share('messenger')}
             >

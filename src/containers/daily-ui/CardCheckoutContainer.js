@@ -107,12 +107,12 @@ export default function CardCheckout({ onSubmit }) {
           'expiration cvc'
           'pay pay'
           / 1fr 1fr;
-        box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.1);
+        box-shadow: 0 0 0 1px hsla(var(--hsl-text), .1);
         padding: 4rem 4rem 3rem;
         border-radius: 1rem;
 
         &:hover {
-          box-shadow: 0 0 0 2px hsla(var(--hsl-text), 0.1);
+          box-shadow: 0 0 0 2px hsla(var(--hsl-text), .1);
         }
       `}
       onSubmit={handleSubmit}
@@ -144,7 +144,7 @@ export default function CardCheckout({ onSubmit }) {
             css={`
               maxheight: 4rem;
               object-fit: contain;
-              opacity: ${!cardNumber || cardNumber.substr(0, 1) === firstDigit ? '1' : '0.25'};
+              opacity: ${!cardNumber || cardNumber.substr(0, 1) === firstDigit ? '1' : '.25'};
               background-color: transparent;
             `}
           />

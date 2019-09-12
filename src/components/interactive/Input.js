@@ -147,7 +147,7 @@ export default forwardRef(
                 right: 1rem;
                 pointer-events: none;
                 font-size: 1.75rem;
-                opacity: 0.25;
+                opacity: .25;
               `}
             />
             {description && <Tooltip>{description}</Tooltip>}
@@ -189,7 +189,7 @@ export default forwardRef(
                 right: 1rem;
                 pointer-events: none;
                 font-size: 1.75rem;
-                opacity: 0.25;
+                opacity: .25;
               `}
             />
             {error && <Error>{error}</Error>}
