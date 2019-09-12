@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { HeroContainer, AvailabilityContainer } from '~containers';
@@ -15,7 +16,7 @@ import { P } from '~components/text/P';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function renderBlocks(blocks) {
+export default function renderBlocks(blocks, components) {
   return blocks.map((block) => {
     if (block.type === 'hero') {
       return <HeroContainer key={block.title} title={block.title} />;
@@ -57,9 +58,9 @@ export default function renderBlocks(blocks) {
 
     if (block.type === 'markdown') {
       return (
-        <MDXRenderer key={block.mdx}>
-          {block.mdx}
-        </MDXRenderer>
+        <MDXProvider components={components}>
+          <MDXRenderer key={block.mdx}>{block.mdx}</MDXRenderer>
+        </MDXProvider>
       );
     }
 
