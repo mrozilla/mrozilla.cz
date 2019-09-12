@@ -32,7 +32,7 @@ export default function WorksContainer({ works }) {
           </H3>
           <P
             css={`
-              opacity: 0.75;
+              opacity: .75;
               font-size: 1.5rem;
               line-height: 2rem;
             `}

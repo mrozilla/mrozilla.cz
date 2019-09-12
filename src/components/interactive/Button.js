@@ -9,8 +9,8 @@ import styled, { css } from 'styled-components';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Button = styled.button`
-  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
-  --shadow-active: inset 0 0 0 2px hsla(var(--hsl-brand-primary), 0.25);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), .1);
+  --shadow-active: inset 0 0 0 2px hsla(var(--hsl-brand-primary), .25);
 
   -webkit-appearance: none;
   border: none;
@@ -20,13 +20,13 @@ export const Button = styled.button`
   cursor: pointer;
   line-height: 1em;
   padding: 2rem;
-  border-radius: 0.5rem;
+  border-radius: .5rem;
 
   transition: box-shadow 250ms;
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: .5;
   }
 
   &:not(:disabled):hover,
@@ -50,7 +50,7 @@ export const Button = styled.button`
       return css`
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          background-color: hsla(var(--hsl-text), 0.025);
+          background-color: hsla(var(--hsl-text), .025);
           box-shadow: inset 0 0 0 2px var(--color-brand-primary);
           color: var(--color-brand-primary);
         }
@@ -58,12 +58,12 @@ export const Button = styled.button`
     }
     if (look === 'secondary') {
       return css`
-        background-color: hsla(var(--hsl-text), 0.025);
+        background-color: hsla(var(--hsl-text), .025);
         box-shadow: var(--shadow);
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          background-color: hsla(var(--hsl-brand-primary), 0.05);
+          background-color: hsla(var(--hsl-brand-primary), .05);
           box-shadow: inset 0 0 0 2px var(--color-brand-primary);
           color: var(--color-brand-primary);
         }
@@ -71,7 +71,7 @@ export const Button = styled.button`
     }
     if (look === 'primary') {
       return css`
-        background-color: hsla(var(--hsl-brand-primary), 0.05);
+        background-color: hsla(var(--hsl-brand-primary), .05);
         box-shadow: var(--shadow-active);
         color: var(--color-brand-primary);
 

@@ -59,12 +59,12 @@ export default function Login({ onSubmit }) {
       <Form
         css={`
           grid-template: 'title' 'email' 'password';
-          box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.1);
+          box-shadow: 0 0 0 1px hsla(var(--hsl-text), .1);
           padding: 4rem 4rem 3rem;
-          border-radius: 0.5rem;
+          border-radius: .5rem;
 
           &:hover {
-            box-shadow: 0 0 0 2px hsla(var(--hsl-text), 0.1);
+            box-shadow: 0 0 0 2px hsla(var(--hsl-text), .1);
           }
         `}
         onSubmit={handleSubmit}

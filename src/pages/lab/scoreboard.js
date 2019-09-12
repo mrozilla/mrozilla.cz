@@ -243,7 +243,7 @@ export default function ScoreboardPage({
                 opacity: ${state[player].points[i] > 10
                 && state[player].points[i] - state[opponent].points[i] > 1
                 ? '1'
-                : '0.5'};
+                : '.5'};
               `}
             >
               {point}

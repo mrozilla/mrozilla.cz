@@ -57,7 +57,7 @@ export default function Tabs({ content }) {
         css={`
           grid-auto-flow: column;
           grid-auto-columns: max-content;
-          box-shadow: inset 0 -2px hsla(var(--hsl-text), 0.1);
+          box-shadow: inset 0 -2px hsla(var(--hsl-text), .1);
         `}
       >
         {content.map(({ title }, i) => (

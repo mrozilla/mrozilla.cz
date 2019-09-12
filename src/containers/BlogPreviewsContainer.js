@@ -27,10 +27,10 @@ export default function BlogPreviewsContainer({ posts }) {
           {(date || timeToRead) && (
             <P
               css={`
-                opacity: 0.75;
+                opacity: .75;
                 font-size: 1.5rem;
                 line-height: 2rem;
-                padding: 0.5rem 0;
+                padding: .5rem 0;
               `}
             >
               {`${date} • ${timeToRead} min read`}

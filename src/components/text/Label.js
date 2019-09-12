@@ -11,7 +11,7 @@ import styled from 'styled-components';
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  color: hsla(var(--hsl-text), 0.75);
+  color: hsla(var(--hsl-text), .75);
   font-size: 1.25rem;
   line-height: 3rem;
   text-transform: uppercase;

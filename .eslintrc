@@ -4,24 +4,27 @@
   },
   "parser": "babel-eslint",
   "extends": ["airbnb"],
+  "plugins": ["prettier"],
+  "globals": {
+    "__DEV__": true
+  },
   "rules": {
-    "react/destructuring-assignment": 0,
-    "react/jsx-filename-extension": 0,
+    "object-curly-newline": 0,
     "react/jsx-one-expression-per-line": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-props-no-spreading": 0,
     "import/prefer-default-export": 0,
-    "indent": 1,
     "key-spacing": [1, { "align": "value" }],
-    "max-len": [2, { "code": 100, "ignoreComments": true }],
-    "object-curly-newline": [
-      2,
-      { "ImportDeclaration": "never", "ExportDeclaration": "never" }
-    ]
+    "max-len": [1, { "code": 100, "ignoreComments": true }],
+    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+    "no-underscore-dangle": [2, { "allow": ["_id"] }]
   },
   "settings": {
     "import/resolver": {
       "alias": [
         ["~components", "./src/components"],
         ["~containers", "./src/containers"],
+        ["~screens", "./src/screens"],
         ["~utils", "./src/utils"]
       ]
     }

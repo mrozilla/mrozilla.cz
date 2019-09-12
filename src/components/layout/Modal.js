@@ -28,17 +28,17 @@ const ModalBackground = styled.aside`
 
   overscroll-behavior: contain;
 
-  background-color: hsla(var(--hsl-bg), 0.95);
+  background-color: hsla(var(--hsl-bg), .95);
 
   padding: ${({ padding }) => padding};
 `;
 
 const ModalWrapper = styled.div`
-  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), .1);
 
   position: relative;
 
-  border-radius: 0.5rem;
+  border-radius: .5rem;
   background-color: var(--color-bg);
   box-shadow: var(--shadow);
   animation: ${animation({

@@ -34,6 +34,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
+    color: inherit;
     opacity: 0.5;
   }
 
