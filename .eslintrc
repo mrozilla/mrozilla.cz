@@ -4,6 +4,9 @@
   },
   "parser": "babel-eslint",
   "extends": ["airbnb"],
+  "globals": {
+    "__DEV__": true
+  },
   "rules": {
     "react/destructuring-assignment": 0,
     "react/jsx-filename-extension": 0,
