@@ -13,7 +13,7 @@ import { Error } from '~components/text/Error';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const Input = styled.input`
-  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), .1);
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
 
   appearance: none;
   border: none;
@@ -22,10 +22,10 @@ export const Input = styled.input`
 
   display: block;
   width: 100%;
-  background-color: hsla(var(--hsl-text), .05);
+  background-color: hsla(var(--hsl-text), 0.05);
   line-height: 1.5em;
   padding: 2rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 
   & ~ ${Tooltip} {
     visibility: hidden;
@@ -34,20 +34,21 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    opacity: .5;
+    color: inherit;
+    opacity: 0.5;
   }
 
   &:not(:read-only):not(:disabled) {
     :hover {
       box-shadow: var(--shadow);
       ::placeholder {
-        opacity: .75;
+        opacity: 0.75;
       }
     }
     &:focus {
       box-shadow: inset 0 0 0 2px var(--color-brand-primary);
       ::placeholder {
-        opacity: .75;
+        opacity: 0.75;
       }
     }
     &:hover,
@@ -142,7 +143,7 @@ export const Input = styled.input`
   &[type='month'] {
     &::before {
       content: attr(placeholder) ':';
-      opacity: .25;
+      opacity: 0.25;
       margin: 0 1rem 0 0;
     }
 
@@ -150,7 +151,7 @@ export const Input = styled.input`
       color: var(--color-brand-primary);
     }
     &::-webkit-datetime-edit-text {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 `;
