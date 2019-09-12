@@ -4,6 +4,7 @@
     "paths": {
       "~components": ["src/components"],
       "~containers": ["src/containers"],
+      "~screens": ["src/screens"],
       "~utils": ["src/utils"]
     }
   },
