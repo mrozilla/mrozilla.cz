@@ -46,7 +46,7 @@ export const Input = styled.input`
       }
     }
     &:focus {
-      box-shadow: inset 0 0 0 2px var(--color-brand-primary);
+      box-shadow: inset 0 0 0 2px var(--color-primary);
       ::placeholder {
         opacity: 0.75;
       }
@@ -85,7 +85,7 @@ export const Input = styled.input`
     &:active {
       & ~ svg {
         opacity: 1;
-        fill: var(--color-brand-primary);
+        fill: var(--color-primary);
       }
     }
   }
@@ -148,7 +148,7 @@ export const Input = styled.input`
     }
 
     &::-webkit-calendar-picker-indicator {
-      color: var(--color-brand-primary);
+      color: var(--color-primary);
     }
     &::-webkit-datetime-edit-text {
       opacity: 0.5;

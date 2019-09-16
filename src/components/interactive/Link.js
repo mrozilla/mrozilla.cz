@@ -22,18 +22,18 @@ const StyledLink = styled.a`
   ${({ look }) => {
     if (look === 'primary') {
       return css`
-        color: var(--color-brand-primary);
+        color: var(--color-primary);
         text-decoration: underline;
       `;
     }
 
     if (look === 'secondary') {
       return css`
-        text-decoration: underline var(--color-brand-primary);
+        text-decoration: underline var(--color-primary);
         &:hover,
         &:focus,
         &:active {
-          color: var(--color-brand-primary);
+          color: var(--color-primary);
         }
       `;
     }
@@ -43,7 +43,7 @@ const StyledLink = styled.a`
         &:hover,
         &:focus,
         &:active {
-          color: var(--color-brand-primary);
+          color: var(--color-primary);
           text-decoration: underline;
         }
       `;

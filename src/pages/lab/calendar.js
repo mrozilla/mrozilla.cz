@@ -46,7 +46,7 @@ Calendar.Weekdays = styled.div`
   grid-template-columns: repeat(7, 1fr);
   margin: 0 0 2rem 0;
   text-align: center;
-  opacity: .5;
+  opacity: 0.5;
 `;
 
 Calendar.Days = styled.div`
@@ -58,21 +58,22 @@ Calendar.Day = styled.p`
   text-align: center;
   cursor: pointer;
 
-  ${({ isCurrent }) => isCurrent
-    && css`
+  ${({ isCurrent }) =>
+    isCurrent &&
+    css`
       color: hsl(var(--hsl-bg));
       background-image: radial-gradient(
         circle closest-side,
-        var(--color-brand-primary) 100%,
+        var(--color-primary) 100%,
         transparent 100%
       );
     `};
 
   &:hover {
-    color: var(--color-brand-primary);
+    color: var(--color-primary);
     background-image: radial-gradient(
       circle closest-side,
-      hsla(var(--hsl-brand-primary), .25) 100%,
+      hsla(var(--hsl-primary), 0.25) 100%,
       transparent 100%
     );
   }
@@ -93,25 +94,28 @@ export default function CalendarPage({
   const [locale] = useLocale();
 
   const helpers = {
-    getDaysArray: () => Array.from(
-      {
-        length: new Date(selected.getFullYear(), selected.getMonth() + 1, 0).getDate(),
-      },
-      (_, i) => i + 1,
-    ),
+    getDaysArray: () =>
+      Array.from(
+        {
+          length: new Date(selected.getFullYear(), selected.getMonth() + 1, 0).getDate(),
+        },
+        (_, i) => i + 1,
+      ),
     getFirstDayOfMonth: () => new Date(selected.getFullYear(), selected.getMonth()).getDay(),
-    getWeekdayNames:    () => new Array(7)
-      .fill()
-      .map((_, i) => new Date(1970, 0, 5 + i).toLocaleString(locale, { weekday: 'short' })),
+    getWeekdayNames: () =>
+      new Array(7)
+        .fill()
+        .map((_, i) => new Date(1970, 0, 5 + i).toLocaleString(locale, { weekday: 'short' })),
   };
 
   const handleChangeDate = ({ yearOffset = 0, monthOffset = 0, dateOffset = 0 }) => {
     setDate(
-      date => new Date(
-        date.getFullYear() + yearOffset,
-        date.getMonth() + monthOffset,
-        date.getDate() + dateOffset,
-      ),
+      date =>
+        new Date(
+          date.getFullYear() + yearOffset,
+          date.getMonth() + monthOffset,
+          date.getDate() + dateOffset,
+        ),
     );
   };
 
