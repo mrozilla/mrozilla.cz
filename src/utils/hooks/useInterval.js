@@ -2,34 +2,25 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import styled from 'styled-components';
+import { useEffect, useRef } from 'react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Tooltip = styled.div`
-  --color: var(--color-primary); /* TODO: is this needed? */
+export default function useInterval(callback, delay) {
+  const savedCallback = useRef();
 
-  position: absolute;
-  background-color: var(--color);
-  border-radius: 1rem;
-  color: white;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  padding: 1rem;
-  top: calc(100% + 1rem);
-  transition: 100ms;
-  z-index: var(--z-index-tooltip);
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
 
-  &::after {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: .5rem;
-    bottom: 100%;
-    left: 1rem;
+  useEffect(() => {
+    const handler = (...args) => savedCallback.current(...args);
 
-    border-color: transparent transparent var(--color) transparent;
-  }
-`;
+    if (delay !== null) {
+      const id = setInterval(handler, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}

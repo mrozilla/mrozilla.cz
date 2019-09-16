@@ -68,7 +68,7 @@ export default function TextInput({ onChange, type, ...rest }) {
           
           &:hover {
             opacity: 1;
-            fill: var(--color-brand-primary);
+            fill: var(--color-primary);
           }
         `}
         onClick={handleVisibility}
