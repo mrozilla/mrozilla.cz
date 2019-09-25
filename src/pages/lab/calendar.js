@@ -58,9 +58,8 @@ Calendar.Day = styled.p`
   text-align: center;
   cursor: pointer;
 
-  ${({ isCurrent }) =>
-    isCurrent &&
-    css`
+  ${({ isCurrent }) => isCurrent
+    && css`
       color: hsl(var(--hsl-bg));
       background-image: radial-gradient(
         circle closest-side,
@@ -94,24 +93,21 @@ export default function CalendarPage({
   const [locale] = useLocale();
 
   const helpers = {
-    getDaysArray: () =>
-      Array.from(
+    getDaysArray: () => Array.from(
         {
           length: new Date(selected.getFullYear(), selected.getMonth() + 1, 0).getDate(),
         },
         (_, i) => i + 1,
       ),
     getFirstDayOfMonth: () => new Date(selected.getFullYear(), selected.getMonth()).getDay(),
-    getWeekdayNames: () =>
-      new Array(7)
+    getWeekdayNames:    () => new Array(7)
         .fill()
         .map((_, i) => new Date(1970, 0, 5 + i).toLocaleString(locale, { weekday: 'short' })),
   };
 
   const handleChangeDate = ({ yearOffset = 0, monthOffset = 0, dateOffset = 0 }) => {
     setDate(
-      date =>
-        new Date(
+      date => new Date(
           date.getFullYear() + yearOffset,
           date.getMonth() + monthOffset,
           date.getDate() + dateOffset,
@@ -149,7 +145,7 @@ export default function CalendarPage({
         <Calendar.Day
           key={day}
           css={`
-            grid-column-start: ${i === 0 && helpers.getFirstDayOfMonth()};
+            grid-column-start: ${i === 0 && (helpers.getFirstDayOfMonth() || 7)};
           `}
           isCurrent={selected.getDate() === day}
           onClick={() => handleChangeDate({ dateOffset: day - selected.getDate() })}

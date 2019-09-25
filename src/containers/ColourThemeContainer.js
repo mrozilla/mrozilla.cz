@@ -12,13 +12,13 @@ import { useLocalStorage } from '~utils';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function ColourThemeContainer() {
-  const [theme, setTheme] = useLocalStorage('theme', 'basic');
+  const [theme, setTheme] = useLocalStorage('theme', 'light');
 
   useEffect(() => {
     const seed = Math.floor(Math.random() * 360);
 
     const themes = {
-      basic: {
+      light: {
         color:           '200, 5%, 45%',
         backgroundColor: '0, 100%, 100%',
       },
@@ -42,9 +42,9 @@ export default function ColourThemeContainer() {
       name="theme"
       options={[
         {
-          value:   'basic',
+          value:   'light',
           label:   'Default',
-          checked: theme === 'basic',
+          checked: theme === 'light',
         },
         {
           value:   'dark',
