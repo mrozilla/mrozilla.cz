@@ -14,6 +14,8 @@ import { useLocalStorage } from '~utils/';
 export default function CookieContainer() {
   const [isVisible, setIsVisible] = useLocalStorage('isShowCookies', true);
 
+  if (!isVisible) return null;
+
   return (
     <Toast
       css={`
@@ -28,7 +30,7 @@ export default function CookieContainer() {
           top: auto;
         }
       `}
-      isVisible={isVisible}
+      isVisible
     >
       Yeah, we use cookies, we even have a{' '}
       <Link to="/legal/privacy/" look="secondary">
