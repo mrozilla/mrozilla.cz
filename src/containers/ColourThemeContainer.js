@@ -32,8 +32,10 @@ export default function ColourThemeContainer() {
       },
     };
 
-    document.documentElement.style.setProperty('--hsl-text', themes[theme].color);
-    document.documentElement.style.setProperty('--hsl-bg', themes[theme].backgroundColor);
+    const selectedTheme = themes[theme] || themes.light;
+
+    document.documentElement.style.setProperty('--hsl-text', selectedTheme.color);
+    document.documentElement.style.setProperty('--hsl-bg', selectedTheme.backgroundColor);
   }, [theme]);
 
   return (
@@ -43,7 +45,7 @@ export default function ColourThemeContainer() {
       options={[
         {
           value:   'light',
-          label:   'Default',
+          label:   'Light',
           checked: theme === 'light',
         },
         {
