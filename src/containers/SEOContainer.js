@@ -4,7 +4,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { shape, string } from 'prop-types';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -12,58 +12,55 @@ import { shape, string } from 'prop-types';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function SEOContainer({ meta: { title, description, permalink, ogImage } }) {
-  return (
-    <StaticQuery
-      query={graphql`
-        {
-          site {
-            siteMetadata {
-              siteUrl
-              siteTitle
-            }
-          }
+  const {
+    site: {
+      siteMetadata: { siteUrl, siteTitle },
+    },
+  } = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          siteUrl
+          siteTitle
         }
-      `}
-      render={({
-        site: {
-          siteMetadata: { siteUrl, siteTitle },
+      }
+    }
+  `);
+
+  return (
+    <Helmet
+      title={title}
+      titleTemplate={`%s | ${siteTitle}`}
+      meta={[
+        { name: 'description', content: description },
+
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@mrozilla' },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: description },
+        { name: 'twitter:creator', content: '@mrozilla' },
+        {
+          name:    'twitter:image',
+          content: `${siteUrl}${ogImage.childImageSharp.resize.src}`,
         },
-      }) => (
-        <Helmet
-          title={title}
-          titleTemplate={`%s | ${siteTitle}`}
-          meta={[
-            { name: 'description', content: description },
 
-            { name: 'twitter:card', content: 'summary_large_image' },
-            { name: 'twitter:site', content: '@mrozilla' },
-            { name: 'twitter:title', content: title },
-            { name: 'twitter:description', content: description },
-            { name: 'twitter:creator', content: '@mrozilla' },
-            {
-              name:    'twitter:image',
-              content: `${siteUrl}${ogImage.childImageSharp.resize.src}`,
-            },
-
-            { property: 'og:title', content: `${title}` },
-            { property: 'og:type', content: 'website' },
-            { property: 'og:url', content: `${siteUrl}${permalink}` },
-            {
-              property: 'og:image',
-              content:  `${siteUrl}${ogImage.childImageSharp.resize.src}`,
-            },
-            { property: 'og:description', content: description },
-            { property: 'fb:app_id', content: process.env.GATSBY_FB_APP_ID },
-          ]}
-          link={[
-            {
-              rel:  'canonical',
-              href: `${siteUrl}${permalink}`,
-            },
-          ]}
-          htmlAttributes={{ lang: 'en' }}
-        />
-      )}
+        { property: 'og:title', content: `${title}` },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: `${siteUrl}${permalink}` },
+        {
+          property: 'og:image',
+          content:  `${siteUrl}${ogImage.childImageSharp.resize.src}`,
+        },
+        { property: 'og:description', content: description },
+        { property: 'fb:app_id', content: process.env.GATSBY_FB_APP_ID },
+      ]}
+      link={[
+        {
+          rel:  'canonical',
+          href: `${siteUrl}${permalink}`,
+        },
+      ]}
+      htmlAttributes={{ lang: 'en' }}
     />
   );
 }
