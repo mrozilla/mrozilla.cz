@@ -5,9 +5,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, SEOContainer, WorksContainer, BlogPreviewsContainer } from '~containers';
+import { RootContainer, SEOContainer } from '~containers';
 
-import { Main, Section, H2 } from '~components';
+import { Main, Section, H2, Ul, Li, H3, P, Link } from '~components';
 import { renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -18,7 +18,7 @@ export const query = graphql`
   {
     page: mdx(
       fields: { sourceName: { eq: "pages" } }
-      frontmatter: { meta: { permalink: { eq: "/" } } }
+      frontmatter: { meta: { permalink: { eq: "/collabs/" } } }
     ) {
       frontmatter {
         ...MetaFragment
@@ -30,21 +30,17 @@ export const query = graphql`
         }
       }
     }
-    works: allMdx(
-      filter: { fields: { sourceName: { eq: "works" } } }
-      sort: { fields: [frontmatter___date], order: DESC }
+    collaborators: allMdx(
+      filter: { fields: { sourceName: { eq: "collaborators" } } }
+      sort: { fields: [frontmatter___title], order: ASC }
     ) {
       nodes {
-        ...WorkPreviewFragment
-      }
-    }
-    posts: allMdx(
-      filter: { fields: { sourceName: { eq: "posts" } } }
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 5
-    ) {
-      nodes {
-        ...BlogPreviewFragment
+        frontmatter {
+          title
+          description
+          url
+          tags
+        }
       }
     }
   }
@@ -54,46 +50,61 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HomePage({
+export default function CollaboratorsPage({
   data: {
     page: {
       frontmatter: { meta, blocks },
     },
-    works,
-    posts,
+    collaborators,
   },
 }) {
+  console.log(collaborators);
+
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
         css={`
-          grid-template: 'hero' 'location' 'availability' 'work' 'blog';
+          grid-template: 'hero' 'collaborators';
           grid-gap: 10vh 4rem;
-
-          @media screen and (min-width: 900px) {
-            grid-template: 'hero hero' 'location availability' 'work blog';
-          }
         `}
       >
         {renderBlocks(blocks)}
         <Section
-          id="work"
           css={`
-            grid-area: work;
+            grid-area: collaborators;
           `}
         >
-          <H2>Latest client work</H2>
-          <WorksContainer works={works.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
-        </Section>
-        <Section
-          id="blog"
-          css={`
-            grid-area: blog;
-          `}
-        >
-          <H2>Latest blog articles</H2>
-          <BlogPreviewsContainer posts={posts} />
+          <H2>Collaborators</H2>
+          <Ul
+            css={`
+              grid-gap: 3rem;
+            `}
+          >
+            {collaborators.nodes.map(({ frontmatter }) => (
+              <Li key={frontmatter.url}>
+                <H3
+                  css={`
+                    font-size: 3rem;
+                    line-height: 4rem;
+                  `}
+                >
+                  <Link to={frontmatter.url} look="tertiary">
+                    {frontmatter.title}
+                  </Link>
+                </H3>
+                <P
+                  css={`
+                    opacity: 0.75;
+                    font-size: 1.5rem;
+                    line-height: 2rem;
+                  `}
+                >
+                  {frontmatter.description}
+                </P>
+              </Li>
+            ))}
+          </Ul>
         </Section>
       </Main>
     </RootContainer>

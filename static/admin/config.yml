@@ -239,3 +239,22 @@ collections:
           - name: permalink
           - { name: ogImage, widget: image }
       - { name: body, widget: markdown }
+
+  - label: "Collaborators"
+    label_singular: "Collaborator"
+    name: collaborators
+    folder: src/content/cms/collaborators
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - name: title
+      - name: description
+      - name: url
+        hint: A URL must start with "http://" or "https://"
+        pattern: ['^(http|https)://', 'A URL must start with "http://" or "https://"']
+      - name: tags
+        widget: select
+        multiple: true
+        create: true
+        options: ["Video making"]

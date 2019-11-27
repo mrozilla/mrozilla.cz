@@ -43,7 +43,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: { path: `${__dirname}/static/assets`, name: 'assets' },
     },
-    ...['posts', 'legal', 'menus', 'pages', 'works', 'labs'].map(name => ({
+    ...['posts', 'legal', 'menus', 'pages', 'works', 'labs', 'collaborators'].map(name => ({
       resolve: 'gatsby-source-filesystem',
       options: { name, path: `${__dirname}/src/content/cms/${name}` },
     })),
