@@ -37,19 +37,19 @@ function Maze() {
     height: 20,
   });
 
-  const [maze, generateMaze] = useMaze();
+  const [maze, generateMaze] = useMaze(size.width, size.height);
 
-  // const handleSizeChange = ({ target }) => {
-  //   setSize((prev) => ({ ...prev, [target.name]: Number(target.value) }));
-  // };
+  const handleSizeChange = ({ target }) => {
+    setSize((prev) => ({ ...prev, [target.name]: Number(target.value) }));
+  };
 
-  // React.useEffect(() => {
-  //   generateMaze(size);
-  // }, [size.width, size.height]);
+  React.useEffect(() => {
+    generateMaze(size.width, size.height);
+  }, [size.width, size.height]);
 
   return (
     <>
-      {/* <Form
+      <Form
         css={`
           grid-template: 'width height button';
         `}
@@ -67,18 +67,18 @@ function Maze() {
           value={size.height}
           label="Height"
           onChange={handleSizeChange}
-        /> */}
-      <Button
-        type="button"
-        look="primary"
-        onClick={() => generateMaze()}
-        css={`
-          grid-area: 'button';
-        `}
-      >
-        Generate maze
-      </Button>
-      {/* </Form> */}
+        />
+        <Button
+          type="button"
+          look="primary"
+          onClick={() => generateMaze()}
+          css={`
+            grid-area: 'button';
+          `}
+        >
+          Regenerate
+        </Button>
+      </Form>
       <Ul
         css={`
           display: grid;
