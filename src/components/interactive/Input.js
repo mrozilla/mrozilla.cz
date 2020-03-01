@@ -26,7 +26,7 @@ import { Icon } from '~components/multimedia/Icon';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default forwardRef(
+const Input = forwardRef(
   (
     {
       type,
@@ -56,7 +56,7 @@ export default forwardRef(
         return (
           <>
             {label && <Legend>{label}</Legend>}
-            {options.map(radio => (
+            {options.map((radio) => (
               <Label
                 key={radio.value}
                 htmlFor={radio.value}
@@ -68,7 +68,7 @@ export default forwardRef(
                   ref={ref}
                   id={radio.value}
                   {...{
-                    value:   radio.value,
+                    value: radio.value,
                     checked: radio.checked,
                     name,
                     required,
@@ -87,7 +87,7 @@ export default forwardRef(
         return (
           <>
             {label && <Legend>{label}</Legend>}
-            {options.map(checkbox => (
+            {options.map((checkbox) => (
               <Label
                 key={checkbox.value}
                 htmlFor={checkbox.value}
@@ -99,7 +99,7 @@ export default forwardRef(
                   ref={ref}
                   id={checkbox.value}
                   {...{
-                    value:   checkbox.value,
+                    value: checkbox.value,
                     checked: checkbox.checked,
                     name,
                     required,
@@ -122,7 +122,7 @@ export default forwardRef(
                 {placeholder}
               </option>
               <optgroup label={placeholder}>
-                {options.map(option => (
+                {options.map((option) => (
                   <option key={option.value} value={option.value} selected={option.selected}>
                     {option.label}
                   </option>
@@ -147,7 +147,7 @@ export default forwardRef(
                 right: 1rem;
                 pointer-events: none;
                 font-size: 1.75rem;
-                opacity: .25;
+                opacity: 0.25;
               `}
             />
             {description && <Tooltip>{description}</Tooltip>}
@@ -177,7 +177,7 @@ export default forwardRef(
               {label}
             </Label>
             <datalist id={`datalist-${name}`}>
-              {options.map(option => (
+              {options.map((option) => (
                 <option key={option.name}>{option.name}</option>
               ))}
             </datalist>
@@ -189,7 +189,7 @@ export default forwardRef(
                 right: 1rem;
                 pointer-events: none;
                 font-size: 1.75rem;
-                opacity: .25;
+                opacity: 0.25;
               `}
             />
             {error && <Error>{error}</Error>}
@@ -329,3 +329,7 @@ export default forwardRef(
     );
   },
 );
+
+Input.displayName = 'Input';
+
+export default Input;

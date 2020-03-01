@@ -14,9 +14,7 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
     "import/prefer-default-export": 0,
-    "key-spacing": [1, { "align": "value" }],
     "max-len": [1, { "code": 100, "ignoreComments": true }],
-    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
     "no-underscore-dangle": [2, { "allow": ["_id"] }]
   },
   "settings": {
