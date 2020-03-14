@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, Ul, Li, Form, Input } from '~components';
-import { renderBlocks, useMaze } from '~utils';
+import { renderBlocks, useMaze, useEventListener } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -46,7 +46,44 @@ function Maze() {
 
   React.useEffect(() => {
     generateMaze(size.width, size.height);
-  }, [size.width, size.height]);
+  }, [size.width, size.height, generateMaze]);
+
+  React.useEffect(() => {
+    if (playerIdx === size.width * size.height - 1) {
+      generateMaze(size.width, size.height);
+      setPlayerIdx(0);
+    }
+  }, [playerIdx, size.width, size.height]);
+
+  const handleUpdatePlayerPosition = (direction) => {
+    const currentCell = maze[playerIdx];
+    const keys = {
+      ArrowUp: {
+        move: size.width * -1,
+        check: playerIdx >= size.width && !currentCell.top,
+      },
+      ArrowRight: {
+        move: 1,
+        check: playerIdx % size.width !== size.width - 1 && !currentCell.right,
+      },
+      ArrowDown: {
+        move: size.width,
+        check: playerIdx < maze.length - size.width && !currentCell.bottom,
+      },
+      ArrowLeft: {
+        move: -1,
+        check: playerIdx % size.width !== 0 && !currentCell.left,
+      },
+    };
+    if (keys[direction].check) setPlayerIdx((prev) => prev + keys[direction].move);
+  };
+
+  useEventListener('keydown', (event) => {
+    if (event.key.includes('Arrow')) {
+      event.preventDefault();
+      handleUpdatePlayerPosition(event.key);
+    }
+  });
 
   return (
     <>
