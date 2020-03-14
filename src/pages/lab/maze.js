@@ -38,6 +38,7 @@ function Maze() {
   });
 
   const [maze, generateMaze] = useMaze(size.width, size.height);
+  const [playerIdx, setPlayerIdx] = React.useState(0);
 
   const handleSizeChange = ({ target }) => {
     setSize((prev) => ({ ...prev, [target.name]: Number(target.value) }));
@@ -45,7 +46,7 @@ function Maze() {
 
   React.useEffect(() => {
     generateMaze(size.width, size.height);
-  }, [size.width, size.height, generateMaze]);
+  }, [size.width, size.height]);
 
   return (
     <>
@@ -112,6 +113,7 @@ function Maze() {
 
                 margin: calc(var(--border-width) * -0.5);
 
+                background: ${playerIdx === idx && 'hsla(var(--hsl-primary), 0.5)'};
                 border: var(--border-width) solid var(--color-primary);
                 border-top-width: ${top ? 'var(--border-width)' : '0px'};
                 border-right-width: ${right ? 'var(--border-width)' : '0px'};
