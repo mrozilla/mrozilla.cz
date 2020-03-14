@@ -45,7 +45,7 @@ function Maze() {
 
   React.useEffect(() => {
     generateMaze(size.width, size.height);
-  }, [size.width, size.height]);
+  }, [size.width, size.height, generateMaze]);
 
   return (
     <>
