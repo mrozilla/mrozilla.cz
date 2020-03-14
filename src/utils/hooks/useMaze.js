@@ -123,5 +123,5 @@ export default function useMaze(defaultWidth, defaultHeight) {
   }, [size.current]);
 
   // return hook surface API
-  return [maze, regenerateMaze];
+  return [maze, React.useCallback(regenerateMaze, [])];
 }
