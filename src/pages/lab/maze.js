@@ -4,10 +4,13 @@
 
 import React from 'react';
 import { graphql } from 'gatsby';
+import { shape, number } from 'prop-types';
+
+import { keyframes } from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, Ul, Li, Form, Input } from '~components';
-import { renderBlocks, useMaze } from '~utils';
+import { renderBlocks, useMaze, useEventListener } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -31,13 +34,55 @@ export const query = graphql`
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
+const revealAnimation = ({ width, height }) => keyframes`
+  from {
+    transform: scale(1,1) translate(${(width - 1) * 100}%, ${(height - 1) * 100}%);
+    transform-origin: ${width * 100}% ${height * 100}%;
+  }
+  50% {
+    transform: scale(${width},${height}) translate(${(width - 1) * 100}%, ${(height - 1) * 100}%);
+    transform-origin: ${width * 100}% ${height * 100}%;
+  }
+  50.001% {
+    transform: scale(${width},${height}) translate(0,0);
+    transform-origin: 0 0;
+  }
+  to {
+    transform: scale(1,1) translate(0,0);
+    transform-origin: 0 0;
+  }
+`;
+
+function Revealer({ size }) {
+  return (
+    <div
+      css={`
+        position: absolute;
+        width: calc(100% / ${size.width});
+        height: calc(100% / ${size.height});
+        background: hsla(var(--hsl-primary), 1);
+
+        animation: ${revealAnimation(size)} 1000ms alternate forwards;
+      `}
+    />
+  );
+}
+Revealer.propTypes = {
+  size: shape({
+    width: number.isRequired,
+    height: number.isRequired,
+  }).isRequired,
+};
+
 function Maze() {
   const [size, setSize] = React.useState({
-    width: 20,
-    height: 20,
+    width: 10,
+    height: 10,
   });
 
   const [maze, generateMaze] = useMaze(size.width, size.height);
+  const [playerIdx, setPlayerIdx] = React.useState(0);
+  const [isTransition, setIsTransition] = React.useState(false);
 
   const handleSizeChange = ({ target }) => {
     setSize((prev) => ({ ...prev, [target.name]: Number(target.value) }));
@@ -45,13 +90,116 @@ function Maze() {
 
   React.useEffect(() => {
     generateMaze(size.width, size.height);
-  }, [size.width, size.height]);
+  }, [size, generateMaze]);
+
+  React.useEffect(() => {
+    if (playerIdx === size.width * size.height - 1) {
+      setIsTransition(true);
+      setTimeout(() => {
+        generateMaze(size.width, size.height);
+        setPlayerIdx(0);
+      }, 500);
+      setTimeout(() => {
+        setIsTransition(false);
+      }, 1000);
+    }
+  }, [playerIdx, size, generateMaze]);
+
+  const handleUpdatePlayerPosition = (direction) => {
+    const currentCell = maze[playerIdx];
+    const keys = {
+      ArrowUp: {
+        move: size.width * -1,
+        check: playerIdx >= size.width && !currentCell.top,
+      },
+      ArrowRight: {
+        move: 1,
+        check: playerIdx % size.width !== size.width - 1 && !currentCell.right,
+      },
+      ArrowDown: {
+        move: size.width,
+        check: playerIdx < maze.length - size.width && !currentCell.bottom,
+      },
+      ArrowLeft: {
+        move: -1,
+        check: playerIdx % size.width !== 0 && !currentCell.left,
+      },
+    };
+    if (keys[direction].check) setPlayerIdx((prev) => prev + keys[direction].move);
+  };
+
+  useEventListener('keydown', (event) => {
+    if (event.key.includes('Arrow')) {
+      event.preventDefault();
+      handleUpdatePlayerPosition(event.key);
+    }
+  });
 
   return (
-    <>
+    <Section
+      css={`
+        display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+        grid-gap: 2rem;
+      `}
+    >
+      <Ul
+        css={`
+          display: grid;
+          grid-template-columns: repeat(${size.width}, 1fr);
+
+          position: relative;
+          margin: 0 0 0 0.5rem;
+
+          --border-width: 1rem;
+        `}
+      >
+        {maze.map(({ top, right, bottom, left }, idx) => {
+          function getBackgroundColor() {
+            if (playerIdx === idx) return 'hsla(var(--hsl-primary), 0.5)';
+            if (idx === maze.length - 1) return 'hsla(var(--hsl-success),0.25)';
+            return null;
+          }
+
+          return (
+            <Li
+              key={idx} // eslint-disable-line react/no-array-index-key
+              css={`
+                position: relative;
+                background: ${getBackgroundColor()};
+
+                &::before {
+                  content: '';
+                  display: block;
+                  padding-bottom: 100%;
+                }
+
+                &::after {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  bottom: 0;
+                  left: 0;
+
+                  margin: calc(var(--border-width) * -0.5);
+
+                  border: var(--border-width) solid var(--color-primary);
+                  border-top-width: ${top ? 'var(--border-width)' : '0px'};
+                  border-right-width: ${right ? 'var(--border-width)' : '0px'};
+                  border-bottom-width: ${bottom ? 'var(--border-width)' : '0px'};
+                  border-left-width: ${left ? 'var(--border-width)' : '0px'};
+                }
+              `}
+            />
+          );
+        })}
+        {isTransition && <Revealer size={size} />}
+      </Ul>
       <Form
         css={`
-          grid-template: 'width height button';
+          grid-template: 'width' 'height' 'button';
+          align-content: start;
         `}
       >
         <Input
@@ -79,50 +227,7 @@ function Maze() {
           Regenerate
         </Button>
       </Form>
-      <Ul
-        css={`
-          display: grid;
-          grid-template-columns: repeat(${size.width}, 1fr);
-
-          padding: 2rem 5px 0;
-          max-width: 500px;
-        `}
-      >
-        {maze.map(({ top, right, bottom, left }, idx) => (
-          <Li
-            key={idx} // eslint-disable-line react/no-array-index-key
-            css={`
-              --border-width: 1rem;
-
-              position: relative;
-
-              &::before {
-                content: '';
-                display: block;
-                padding-bottom: 100%;
-              }
-
-              &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-
-                margin: calc(var(--border-width) * -0.5);
-
-                border: var(--border-width) solid var(--color-primary);
-                border-top-width: ${top ? 'var(--border-width)' : '0px'};
-                border-right-width: ${right ? 'var(--border-width)' : '0px'};
-                border-bottom-width: ${bottom ? 'var(--border-width)' : '0px'};
-                border-left-width: ${left ? 'var(--border-width)' : '0px'};
-              }
-            `}
-          />
-        ))}
-      </Ul>
-    </>
+    </Section>
   );
 }
 
@@ -147,13 +252,7 @@ export default function MazePage({
         `}
       >
         {renderBlocks(blocks)}
-        <Section
-          css={`
-            grid-area: maze;
-          `}
-        >
-          <Maze />
-        </Section>
+        <Maze />
       </Main>
     </RootContainer>
   );
