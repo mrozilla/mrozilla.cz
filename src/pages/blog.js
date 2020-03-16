@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, BlogPreviewsContainer, SEOContainer } from '~containers';
 import { Main, Section, H2 } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -70,3 +70,5 @@ export default function BlogPage({
     </RootContainer>
   );
 }
+
+BlogPage.propTypes = pagePropTypes;

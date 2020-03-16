@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer, Signup, Login, CardCheckout } from '~containers';
 import { Main, Section, H1 } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -32,7 +32,7 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function CarouselPage({
+export default function DailyUIPage({
   data: {
     page: {
       frontmatter: { meta, blocks },
@@ -71,8 +71,8 @@ export default function CarouselPage({
           >
             001 Signup
           </H1>
-          <Signup onSubmit={data => console.log(data)} />
-          <Login onSubmit={data => console.log(data)} />
+          <Signup onSubmit={(data) => console.log(data)} />
+          <Login onSubmit={(data) => console.log(data)} />
         </Section>
         <Section
           id="002"
@@ -93,9 +93,11 @@ export default function CarouselPage({
           >
             002 Card checkout
           </H1>
-          <CardCheckout onSubmit={data => console.log(data)} />
+          <CardCheckout onSubmit={(data) => console.log(data)} />
         </Section>
       </Main>
     </RootContainer>
   );
 }
+
+DailyUIPage.propTypes = pagePropTypes;

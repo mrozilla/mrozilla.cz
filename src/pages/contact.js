@@ -7,6 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, HeroContainer, SEOContainer } from '~containers';
 import { Main, Section, P, Link, Button, Form, Input } from '~components';
+import { pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -90,7 +91,7 @@ export default function ContactPage({
     >
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="bot-field" />
-      {form.inputs.map(input => (
+      {form.inputs.map((input) => (
         <Input key={input.name} placeholder={input.label} {...input} />
       ))}
     </Form>
@@ -115,3 +116,5 @@ export default function ContactPage({
     </RootContainer>
   );
 }
+
+ContactPage.propTypes = pagePropTypes;

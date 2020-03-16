@@ -9,7 +9,7 @@ import uniqueId from 'lodash/uniqueId';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, H1 } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -35,7 +35,7 @@ export const query = graphql`
 
 function Invader({ pixels, ...rest }) {
   const mirroredPixels = [...pixels, ...pixels.slice(5, 10), ...pixels.slice(0, 5)];
-  const renderPixels = pixel => <Invader.Pixel key={uniqueId()} pixel={pixel} />;
+  const renderPixels = (pixel) => <Invader.Pixel key={uniqueId()} pixel={pixel} />;
 
   return <Invader.Body {...rest}>{mirroredPixels.map(renderPixels)}</Invader.Body>;
 }
@@ -132,7 +132,7 @@ export default function InvadersPage({
               length: amount,
             },
             (_, i) => i + 1,
-          ).map(item => (
+          ).map((item) => (
             <Invader key={item} pixels={getInvader()} />
           ))}
         </Section>
@@ -140,3 +140,5 @@ export default function InvadersPage({
     </RootContainer>
   );
 }
+
+InvadersPage.propTypes = pagePropTypes;

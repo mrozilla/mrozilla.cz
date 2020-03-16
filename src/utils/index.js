@@ -18,4 +18,5 @@ export { default as useSocialShare } from './hooks/useSocialShare';
 export { default as useEventListener } from './hooks/useEventListener';
 export { default as useOnScreen } from './hooks/useOnScreen';
 
-export { default as metaTypes } from './types/metaTypes';
+export { default as metaPropTypes } from './types/metaPropTypes';
+export { default as pagePropTypes } from './types/pagePropTypes';

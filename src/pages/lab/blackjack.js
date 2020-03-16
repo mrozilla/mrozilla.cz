@@ -9,7 +9,7 @@ import shuffle from 'lodash/shuffle';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, P, Modal, Ul, Li, Link, Toast } from '~components';
-import { persist, animation } from '~utils';
+import { persist, animation, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -37,18 +37,18 @@ const Card = styled.div`
 
   line-height: 1;
   font-size: 2rem;
-  padding: 1rem 1rem .5rem 1rem;
-  border-radius: .5rem;
-  margin: .25rem;
-  box-shadow: 0 0 0 1px hsla(var(--hsl-text), .25);
+  padding: 1rem 1rem 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.25rem;
+  box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
 
   animation: ${animation({
     from: {
-      opacity:   '0',
+      opacity: '0',
       transform: 'translateY(1vh)',
     },
     to: {
-      opacity:   '1',
+      opacity: '1',
       transform: 'translateY(0)',
     },
     properties: '250ms both',
@@ -80,17 +80,17 @@ const Card = styled.div`
 `;
 
 const Score = styled.span`
-  --background-color: hsla(var(--hsl-text), .1);
+  --background-color: hsla(var(--hsl-text), 0.1);
   --color: var(--color-text);
 
   position: absolute;
-  top: .25rem;
-  right: calc(100% + .5rem);
+  top: 0.25rem;
+  right: calc(100% + 0.5rem);
 
   font-size: 1.5rem;
   line-height: 1;
-  padding: .5rem;
-  border-radius: .25rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 
   background-color: var(--background-color);
   color: var(--color);
@@ -119,21 +119,21 @@ const Score = styled.span`
 `;
 
 const initialState = {
-  deck:         [],
-  drawn:        [],
+  deck: [],
+  drawn: [],
   shuffleLimit: 13,
 
   dealer: [],
   player: [],
   winner: '',
-  game:   'DEAL',
+  game: 'DEAL',
 
   bank: 1000,
-  bet:  0,
+  bet: 0,
 
-  hands:     0,
+  hands: 0,
   victories: 0,
-  maxBank:   0,
+  maxBank: 0,
 
   isModal: false,
 };
@@ -173,42 +173,45 @@ export default class BlackjackPage extends PureComponent {
     this.setState({ deck: shuffle(deck), drawn: [] });
   };
 
-  handleWinner = (winner, { isBlackjack = false } = {}) => this.setState((state) => {
-    function calculateBank() {
-      if (winner === 'dealer') {
-        return Math.max(state.bank - state.bet, 0);
+  handleWinner = (winner, { isBlackjack = false } = {}) =>
+    this.setState((state) => {
+      function calculateBank() {
+        if (winner === 'dealer') {
+          return Math.max(state.bank - state.bet, 0);
+        }
+        return Math.max(state.bank + (isBlackjack ? state.bet * 1.5 : state.bet), 0);
       }
-      return Math.max(state.bank + (isBlackjack ? state.bet * 1.5 : state.bet), 0);
-    }
 
-    function calculateBet() {
-      if (winner === 'dealer') {
-        return Math.min(state.bet, state.bank);
+      function calculateBet() {
+        if (winner === 'dealer') {
+          return Math.min(state.bet, state.bank);
+        }
+        return state.bet;
       }
-      return state.bet;
-    }
 
-    return {
-      winner,
-      game:      'DEAL',
-      bank:      calculateBank(),
-      bet:       calculateBet(),
-      hands:     state.hands + 1,
-      victories: state.victories + (winner === 'player' ? 1 : 0),
-      maxBank:   Math.max(state.maxBank, state.bank + state.bet),
-    };
-  });
+      return {
+        winner,
+        game: 'DEAL',
+        bank: calculateBank(),
+        bet: calculateBet(),
+        hands: state.hands + 1,
+        victories: state.victories + (winner === 'player' ? 1 : 0),
+        maxBank: Math.max(state.maxBank, state.bank + state.bet),
+      };
+    });
 
-  handleDraw = () => this.setState(state => ({
-    winner: 'draw',
-    game:   'DEAL',
-    hands:  state.hands + 1,
-  }));
+  handleDraw = () =>
+    this.setState((state) => ({
+      winner: 'draw',
+      game: 'DEAL',
+      hands: state.hands + 1,
+    }));
 
-  handleBet = bet => this.setState(state => ({
-    bet:  state.bet + bet,
-    bank: state.bank - bet,
-  }));
+  handleBet = (bet) =>
+    this.setState((state) => ({
+      bet: state.bet + bet,
+      bank: state.bank - bet,
+    }));
 
   handleDealCard = async (player) => {
     if (this.state.deck.length < this.state.shuffleLimit) {
@@ -218,10 +221,10 @@ export default class BlackjackPage extends PureComponent {
       });
     }
 
-    this.setState(state => ({
+    this.setState((state) => ({
       [player]: [...state[player], state.deck[0]],
-      deck:     state.deck.slice(1),
-      drawn:    [...state.drawn, ...state.deck.slice(0, 1)],
+      deck: state.deck.slice(1),
+      drawn: [...state.drawn, ...state.deck.slice(0, 1)],
     }));
   };
 
@@ -292,32 +295,33 @@ export default class BlackjackPage extends PureComponent {
     });
   };
 
-  handleModal = () => this.setState(state => ({ isModal: !state.isModal }));
+  handleModal = () => this.setState((state) => ({ isModal: !state.isModal }));
 
   getScore = (cards) => {
     const score = cards.reduce((acc, card) => {
       if (card.rank === 'A') {
         return acc + 1; // count each ace as 1 at first
       }
-      if (['K', 'Q', 'J'].some(rank => card.rank === rank)) {
+      if (['K', 'Q', 'J'].some((rank) => card.rank === rank)) {
         return acc + 10;
       }
       return acc + parseInt(card.rank, 10);
     }, 0);
 
-    if (score < 12 && cards.some(card => card.rank === 'A')) {
+    if (score < 12 && cards.some((card) => card.rank === 'A')) {
       return score + 10; // if aces and score still 11 or lower, count 1 ace as 11
     }
 
     return score;
   };
 
-  renderCurrency = amount => new Intl.NumberFormat('en-US', {
-    style:                 'currency',
-    currency:              'USD',
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-  }).format(amount);
+  renderCurrency = (amount) =>
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    }).format(amount);
 
   renderPlural = (word, count) => {
     if (count === 1) {
@@ -367,7 +371,7 @@ export default class BlackjackPage extends PureComponent {
               margin: 0 0 4rem 0;
             `}
           >
-            {this.state.player.map(card => (
+            {this.state.player.map((card) => (
               <Card key={`${card.rank}${card.suit}`} {...card} />
             ))}
             {this.state.drawn.length > 0 && (
@@ -446,11 +450,11 @@ export default class BlackjackPage extends PureComponent {
                 this.state.game !== 'DEAL' || (this.state.bank === 0 && this.state.bet === 0)
               }
               grouped
-              onClick={() => this.setState(state => ({ bet: 0, bank: state.bank + state.bet }))}
+              onClick={() => this.setState((state) => ({ bet: 0, bank: state.bank + state.bet }))}
             >
               {this.renderCurrency(0)}
             </Button>
-            {[25, 100, 1000].map(bet => (
+            {[25, 100, 1000].map((bet) => (
               <Button
                 look="secondary"
                 key={bet}
@@ -566,3 +570,5 @@ export default class BlackjackPage extends PureComponent {
     );
   }
 }
+
+BlackjackPage.propTypes = pagePropTypes;

@@ -10,7 +10,7 @@ import { keyframes } from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, Ul, Li, Form, Input } from '~components';
-import { renderBlocks, useMaze, useEventListener } from '~utils';
+import { renderBlocks, useMaze, useEventListener, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -139,7 +139,7 @@ function Maze() {
     <Section
       css={`
         display: grid;
-        grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         grid-gap: 2rem;
       `}
     >
@@ -257,3 +257,5 @@ export default function MazePage({
     </RootContainer>
   );
 }
+
+MazePage.propTypes = pagePropTypes;

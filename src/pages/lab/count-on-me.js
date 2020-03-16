@@ -7,6 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, Button } from '~components';
+import { pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -38,7 +39,7 @@ export default function CountOnMePage({
   const handleCount = (event, value) => {
     event.stopPropagation();
 
-    setCount(prevCount => prevCount + value);
+    setCount((prevCount) => prevCount + value);
 
     if ('vibrate' in navigator) {
       if (value > 0) {
@@ -66,7 +67,7 @@ export default function CountOnMePage({
           css={`
             user-select: none;
           `}
-          onClick={e => handleCount(e, 1)}
+          onClick={(e) => handleCount(e, 1)}
         >
           <H1
             css={`
@@ -76,13 +77,13 @@ export default function CountOnMePage({
           >
             {count.toLocaleString()}
           </H1>
-          <Button look="secondary" onClick={e => handleCount(e, 1)} grouped>
+          <Button look="secondary" onClick={(e) => handleCount(e, 1)} grouped>
             Add
           </Button>
-          <Button look="secondary" onClick={e => handleCount(e, -1)} grouped>
+          <Button look="secondary" onClick={(e) => handleCount(e, -1)} grouped>
             Subtract
           </Button>
-          <Button look="secondary" onClick={e => handleReset(e)} grouped>
+          <Button look="secondary" onClick={(e) => handleReset(e)} grouped>
             Reset
           </Button>
         </Section>
@@ -90,3 +91,5 @@ export default function CountOnMePage({
     </RootContainer>
   );
 }
+
+CountOnMePage.propTypes = pagePropTypes;

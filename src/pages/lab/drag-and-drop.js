@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Ul, Li } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -109,7 +109,7 @@ export default function DragAndDropPage({
             css={`
               grid-gap: 1rem;
               padding: 1rem;
-              background-color: hsla(var(--hsl-text), .1);
+              background-color: hsla(var(--hsl-text), 0.1);
               border-radius: 1rem;
             `}
           >
@@ -120,7 +120,7 @@ export default function DragAndDropPage({
                 css={`
                   background-color: var(--color-bg);
                   padding: 1rem;
-                  border-radius: .5rem;
+                  border-radius: 0.5rem;
                   cursor: pointer;
                   display: flex;
                   justify-content: space-between;
@@ -128,10 +128,10 @@ export default function DragAndDropPage({
 
                   &::after {
                     content: '☰';
-                    opacity: .25;
+                    opacity: 0.25;
                   }
                 `}
-                onDragStart={e => handleDragStart(e, i)}
+                onDragStart={(e) => handleDragStart(e, i)}
                 onDragEnter={() => handleDragEnter(i)}
                 onDragEnd={handleDragEnd}
               >
@@ -144,3 +144,5 @@ export default function DragAndDropPage({
     </RootContainer>
   );
 }
+
+DragAndDropPage.propTypes = pagePropTypes;

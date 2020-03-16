@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { func } from 'prop-types';
 
 import { Input } from '~components/primitives/Input';
 
@@ -12,12 +13,20 @@ import { Input } from '~components/primitives/Input';
 
 export default function TextAreaInput({ onChange, ...rest }) {
   const handleChange = (event) => {
-    event.target.style.height = `${event.target.scrollHeight}px`; // eslint-disable-line no-param-reassign
+    /* eslint-disable no-param-reassign */
+    event.target.style.height = 'inherit'; // resetting height helps when deleting from added lines
+    event.target.style.height = `${event.target.scrollHeight}px`; // makes sure the element grows to accommodate potential scroll
+    /* eslint-enable */
 
-    if (onChange) {
-      onChange(event);
-    }
+    onChange(event);
   };
 
   return <Input as="textarea" onChange={handleChange} {...rest} />;
 }
+
+TextAreaInput.propTypes = {
+  onChange: func,
+};
+TextAreaInput.defaultProps = {
+  onChange: () => {},
+};

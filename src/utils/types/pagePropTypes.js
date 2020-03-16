@@ -2,15 +2,21 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { shape, string } from 'prop-types';
+import { shape, arrayOf } from 'prop-types';
+
+import metaPropTypes from './metaPropTypes';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default {
-  meta: shape({
-    title:       string.isRequired,
-    description: string.isRequired,
-  }).isRequired,
+  data: shape({
+    page: shape({
+      frontmatter: shape({
+        ...metaPropTypes,
+        blocks: arrayOf(shape({})),
+      }),
+    }),
+  }),
 };

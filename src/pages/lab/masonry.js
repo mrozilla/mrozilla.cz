@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Masonry, Img } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -55,7 +55,7 @@ export default function MasonryPage({
           `}
         >
           <Masonry>
-            {Array.from({ length: 15 }, (_, i) => i).map(order => (
+            {Array.from({ length: 15 }, (_, i) => i).map((order) => (
               <Img
                 key={order}
                 ratio={Math.random() + 0.5}
@@ -69,3 +69,5 @@ export default function MasonryPage({
     </RootContainer>
   );
 }
+
+MasonryPage.propTypes = pagePropTypes;

@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, WorksContainer, SEOContainer } from '~containers';
 import { Main, Section, H2 } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -32,7 +32,7 @@ export const query = graphql`
         fields: { sourceName: { eq: "labs" } }
         frontmatter: { meta: { tags: { in: "tool" } } }
       }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___title], order: ASC }
     ) {
       nodes {
         ...LabPreviewFragment
@@ -43,7 +43,7 @@ export const query = graphql`
         fields: { sourceName: { eq: "labs" } }
         frontmatter: { meta: { tags: { in: "demo" } } }
       }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___title], order: ASC }
     ) {
       nodes {
         ...LabPreviewFragment
@@ -54,7 +54,7 @@ export const query = graphql`
         fields: { sourceName: { eq: "labs" } }
         frontmatter: { meta: { tags: { in: "product" } } }
       }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___title], order: ASC }
     ) {
       nodes {
         ...LabPreviewFragment
@@ -119,3 +119,5 @@ export default function LabPage({
     </RootContainer>
   );
 }
+
+LabPage.propTypes = pagePropTypes;

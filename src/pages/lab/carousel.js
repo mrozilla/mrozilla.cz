@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Carousel, Img, H1 } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -55,7 +55,7 @@ export default function CarouselPage({
           `}
         >
           <Carousel loop={{ interval: 5000 }}>
-            {Array.from({ length: 15 }, (_, i) => i).map(order => (
+            {Array.from({ length: 15 }, (_, i) => i).map((order) => (
               <Fragment key={order}>
                 <Img src="https://source.unsplash.com/random/400x400" alt="a random photo" />
                 <H1
@@ -75,3 +75,5 @@ export default function CarouselPage({
     </RootContainer>
   );
 }
+
+CarouselPage.propTypes = pagePropTypes;

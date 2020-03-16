@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, P, Button } from '~components';
-import { useLocale, renderBlocks } from '~utils';
+import { useLocale, renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -58,8 +58,9 @@ Calendar.Day = styled.p`
   text-align: center;
   cursor: pointer;
 
-  ${({ isCurrent }) => isCurrent
-    && css`
+  ${({ isCurrent }) =>
+    isCurrent &&
+    css`
       color: hsl(var(--hsl-bg));
       background-image: radial-gradient(
         circle closest-side,
@@ -93,21 +94,24 @@ export default function CalendarPage({
   const [locale] = useLocale();
 
   const helpers = {
-    getDaysArray: () => Array.from(
+    getDaysArray: () =>
+      Array.from(
         {
           length: new Date(selected.getFullYear(), selected.getMonth() + 1, 0).getDate(),
         },
         (_, i) => i + 1,
       ),
     getFirstDayOfMonth: () => new Date(selected.getFullYear(), selected.getMonth()).getDay(),
-    getWeekdayNames:    () => new Array(7)
+    getWeekdayNames: () =>
+      new Array(7)
         .fill()
         .map((_, i) => new Date(1970, 0, 5 + i).toLocaleString(locale, { weekday: 'short' })),
   };
 
   const handleChangeDate = ({ yearOffset = 0, monthOffset = 0, dateOffset = 0 }) => {
     setDate(
-      date => new Date(
+      (date) =>
+        new Date(
           date.getFullYear() + yearOffset,
           date.getMonth() + monthOffset,
           date.getDate() + dateOffset,
@@ -133,7 +137,7 @@ export default function CalendarPage({
 
   const renderCalendarWeekdays = () => (
     <Calendar.Weekdays>
-      {helpers.getWeekdayNames().map(weekday => (
+      {helpers.getWeekdayNames().map((weekday) => (
         <P key={weekday}>{weekday}</P>
       ))}
     </Calendar.Weekdays>
@@ -183,3 +187,5 @@ export default function CalendarPage({
     </RootContainer>
   );
 }
+
+CalendarPage.propTypes = pagePropTypes;
