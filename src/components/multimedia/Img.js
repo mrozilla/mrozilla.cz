@@ -46,6 +46,7 @@ export const StyledImg = styled.img`
     && css`
       cursor: zoom-in;
       transition: transform 250ms;
+      z-index: var(--z-index-modal);
 
       &:hover {
         transform: scale(2);

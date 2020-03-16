@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Button, Input, Form } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -103,15 +103,18 @@ const reducer = (state, { type, payload }) => {
       const opponent = utils.getOpponent(state, payload.player);
       const playerPoint = state[payload.player].points[state[payload.player].points.length - 1] + 1;
       const opponentPoint = state[opponent].points[state[opponent].points.length - 1];
-      const isNextSet = playerPoint > 10
-        && playerPoint - opponentPoint > 1
-        && utils.getSetCount(state, payload.player) < 3;
+      const isNextSet =
+        playerPoint > 10 &&
+        playerPoint - opponentPoint > 1 &&
+        utils.getSetCount(state, payload.player) < 3;
 
       return {
         [payload.player]: {
           ...state[payload.player],
           points: [
-            ...state[payload.player].points.map((point, i, arr) => (i === arr.length - 1 ? point + 1 : point)),
+            ...state[payload.player].points.map((point, i, arr) =>
+              i === arr.length - 1 ? point + 1 : point,
+            ),
             ...(isNextSet ? [0] : []),
           ],
         },
@@ -132,7 +135,9 @@ const reducer = (state, { type, payload }) => {
           ...state[payload.player],
           points: isPreviousSet
             ? state[payload.player].points.slice(0, -1)
-            : state[payload.player].points.map((point, i, arr) => (i === arr.length - 1 ? point - 1 : point)),
+            : state[payload.player].points.map((point, i, arr) =>
+                i === arr.length - 1 ? point - 1 : point,
+              ),
         },
         [opponent]: {
           ...state[opponent],
@@ -183,13 +188,13 @@ export default function ScoreboardPage({
 }) {
   const [state, dispatch] = useReducer(reducer, {
     home: {
-      name:   'MA Long',
-      team:   'CHN',
+      name: 'MA Long',
+      team: 'CHN',
       points: [0],
     },
     away: {
-      name:   'FAN Zhendong',
-      team:   'CHN',
+      name: 'FAN Zhendong',
+      team: 'CHN',
       points: [0],
     },
   });
@@ -208,7 +213,7 @@ export default function ScoreboardPage({
 
   const handleInput = (player, { name, value }) => {
     dispatch({
-      type:    'input',
+      type: 'input',
       payload: {
         player,
         name,
@@ -236,14 +241,14 @@ export default function ScoreboardPage({
             {state[player].points[state[player].points.length - 1]}
           </Scoreboard.Point>
         )}
-        {winner
-          && state[player].points.map((point, i) => (
+        {winner &&
+          state[player].points.map((point, i) => (
             <Scoreboard.Point
               css={`
-                opacity: ${state[player].points[i] > 10
-                && state[player].points[i] - state[opponent].points[i] > 1
-                ? '1'
-                : '.5'};
+                opacity: ${state[player].points[i] > 10 &&
+                state[player].points[i] - state[opponent].points[i] > 1
+                  ? '1'
+                  : '.5'};
               `}
             >
               {point}
@@ -265,7 +270,7 @@ export default function ScoreboardPage({
             / 2fr 1fr auto auto;
           grid-gap: 1rem;
         `}
-        onSubmit={event => event.preventDefault()}
+        onSubmit={(event) => event.preventDefault()}
       >
         <Input
           type="text"
@@ -299,7 +304,7 @@ export default function ScoreboardPage({
         </Button>
         <Button
           look="secondary"
-          disabled={state.home.points.every(point => point === 0)}
+          disabled={state.home.points.every((point) => point === 0)}
           css={`
             grid-area: homeDown;
           `}
@@ -339,7 +344,7 @@ export default function ScoreboardPage({
         </Button>
         <Button
           look="secondary"
-          disabled={state.away.points.every(point => point === 0)}
+          disabled={state.away.points.every((point) => point === 0)}
           css={`
             grid-area: awayDown;
           `}
@@ -393,3 +398,5 @@ export default function ScoreboardPage({
     </RootContainer>
   );
 }
+
+ScoreboardPage.propTypes = pagePropTypes;

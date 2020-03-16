@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, H2, Input, Button, Toast } from '~components';
-import { copyToClipboard, renderBlocks } from '~utils';
+import { copyToClipboard, renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -41,15 +41,15 @@ export default function PassworldPage({
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(10);
   const [chars, setChars] = useState({
-    lowerChars:   true,
-    upperChars:   true,
+    lowerChars: true,
+    upperChars: true,
     specialChars: false,
-    numbers:      false,
+    numbers: false,
   });
   const ToastRef = useRef();
 
   const handleGeneratePassword = () => {
-    if (Object.values(chars).every(charSet => !charSet)) {
+    if (Object.values(chars).every((charSet) => !charSet)) {
       return setPassword('');
     }
 
@@ -64,10 +64,10 @@ export default function PassworldPage({
       }
 
       const types = {
-        lowerChars:   'abcdefghijklmnopqrstuvwxyz',
-        upperChars:   'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        lowerChars: 'abcdefghijklmnopqrstuvwxyz',
+        upperChars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         specialChars: '@#$%-_',
-        numbers:      '0123456789',
+        numbers: '0123456789',
       };
 
       const availableTypes = Object.entries(types).reduce((acc, [key, value]) => {
@@ -86,17 +86,18 @@ export default function PassworldPage({
     );
   };
 
-  const handleChangeChars = ({ target }) => setChars(prev => ({
-    ...prev,
-    [target.value]: target.checked,
-  }));
+  const handleChangeChars = ({ target }) =>
+    setChars((prev) => ({
+      ...prev,
+      [target.value]: target.checked,
+    }));
 
   const handleCopyToClipboard = () => {
     copyToClipboard(password);
     ToastRef.current.show({
       message: `${password} was copied to the clipboard`,
-      css:     'background-color: var(--color-success);',
-      delay:   2000,
+      css: 'background-color: var(--color-success);',
+      delay: 2000,
     });
   };
 
@@ -155,23 +156,23 @@ export default function PassworldPage({
             label="Characters"
             options={[
               {
-                value:   'lowerChars',
-                label:   'Include lowercase letters',
+                value: 'lowerChars',
+                label: 'Include lowercase letters',
                 checked: chars.lowerChars,
               },
               {
-                value:   'upperChars',
-                label:   'Include uppercase letters',
+                value: 'upperChars',
+                label: 'Include uppercase letters',
                 checked: chars.upperChars,
               },
               {
-                value:   'specialChars',
-                label:   'Include special characters',
+                value: 'specialChars',
+                label: 'Include special characters',
                 checked: chars.specialChars,
               },
               {
-                value:   'numbers',
-                label:   'Include numbers',
+                value: 'numbers',
+                label: 'Include numbers',
                 checked: chars.numbers,
               },
             ]}
@@ -183,7 +184,7 @@ export default function PassworldPage({
           <Button
             look="secondary"
             onClick={handleGeneratePassword}
-            disabled={Object.values(chars).every(charSet => !charSet)}
+            disabled={Object.values(chars).every((charSet) => !charSet)}
             grouped
           >
             Generate
@@ -197,3 +198,5 @@ export default function PassworldPage({
     </RootContainer>
   );
 }
+
+PassworldPage.propTypes = pagePropTypes;

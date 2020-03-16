@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, P, Button } from '~components';
-import { renderBlocks, useEventListener, useInterval } from '~utils';
+import { renderBlocks, useEventListener, useInterval, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -58,10 +58,10 @@ function Snake() {
     setSnake((prev) => {
       const head = prev[0];
       const keys = {
-        ArrowUp:    { move: width * -1, check: head < width },
+        ArrowUp: { move: width * -1, check: head < width },
         ArrowRight: { move: 1, check: head % width === width - 1 },
-        ArrowDown:  { move: width, check: head >= board.length - width },
-        ArrowLeft:  { move: -1, check: head % width === 0 },
+        ArrowDown: { move: width, check: head >= board.length - width },
+        ArrowLeft: { move: -1, check: head % width === 0 },
       };
       const newHead = head + keys[direction].move;
 
@@ -73,7 +73,7 @@ function Snake() {
       if (newHead === food) {
         const emptyIdxs = board.reduce((acc, item, i) => (item === '.' ? [...acc, i] : acc), []);
         setFood(emptyIdxs[Math.floor(Math.random() * emptyIdxs.length)]);
-        setSpeed(prevSpeed => prevSpeed - Math.floor(snake.length / 2));
+        setSpeed((prevSpeed) => prevSpeed - Math.floor(snake.length / 2));
         return [newHead, ...prev];
       }
       return [newHead, ...prev.slice(0, -1)];
@@ -83,7 +83,7 @@ function Snake() {
   useEffect(() => {
     setBoard((prev) => {
       const newBoard = prev.map((cell, i) => {
-        if (snake.some(idx => idx === i)) return 's';
+        if (snake.some((idx) => idx === i)) return 's';
         if (i === food) return 'f';
         return '.';
       });
@@ -97,8 +97,8 @@ function Snake() {
 
   const colors = {
     '.': 'hsla(var(--hsl-text), 0.1)',
-    s:   'var(--color-primary)',
-    f:   'hsla(var(--hsl-success), 0.5)',
+    s: 'var(--color-primary)',
+    f: 'hsla(var(--hsl-success), 0.5)',
   };
 
   return (
@@ -167,3 +167,5 @@ export default function SnakePage({
     </RootContainer>
   );
 }
+
+SnakePage.propTypes = pagePropTypes;

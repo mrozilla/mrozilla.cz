@@ -7,6 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Input, H1, H2, P } from '~components';
+import { pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -35,23 +36,23 @@ export default function WritestPage({
 }) {
   const [input, setInput] = useState('');
   const [stats, setStats] = useState({
-    charCount:             0,
-    charCountWithout:      0,
-    wordsCount:            0,
-    wordsCountUnique:      0,
-    mostCommonWord:        'N/A',
-    sentencesCount:        0,
+    charCount: 0,
+    charCountWithout: 0,
+    wordsCount: 0,
+    wordsCountUnique: 0,
+    mostCommonWord: 'N/A',
+    sentencesCount: 0,
     sentencesCountAverage: 0,
-    readingTime:           0,
-    speakingTime:          0,
+    readingTime: 0,
+    speakingTime: 0,
   });
 
   const handleAnalyseText = ({ target: { value } }) => {
     const rgx = {
       punctuation: /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g, // eslint-disable-line
-      sentence:    /[^\r\n.!?]+(:?(:?\r\n|[\r\n]|[.!?])+|$)/gi,
-      newLines:    /\r?\n|\r/g,
-      spaces:      /\s/g,
+      sentence: /[^\r\n.!?]+(:?(:?\r\n|[\r\n]|[.!?])+|$)/gi,
+      newLines: /\r?\n|\r/g,
+      spaces: /\s/g,
     };
     function wordsArray(s) {
       if (s === '') return [];
@@ -69,7 +70,7 @@ export default function WritestPage({
       return s
         .replace(rgx.newLines, ' ')
         .match(rgx.sentence)
-        .map(item => item.trim());
+        .map((item) => item.trim());
     }
     function chars(s) {
       return s.replace(rgx.newLines, '').length;
@@ -79,7 +80,7 @@ export default function WritestPage({
     }
     function mostCommonWord(s) {
       return wordsArray(s).reduce((a, b, i, arr) => {
-        if (arr.filter(v => v === a).length >= arr.filter(v => v === b).length) {
+        if (arr.filter((v) => v === a).length >= arr.filter((v) => v === b).length) {
           return a;
         }
         return b;
@@ -96,15 +97,15 @@ export default function WritestPage({
 
     setInput(value);
     setStats({
-      charCount:             chars(value),
-      charCountWithout:      charsWithoutSpaces(value),
-      wordsCount:            wordsArray(value).length,
-      wordsCountUnique:      wordsSet(value).size,
-      mostCommonWord:        mostCommonWord(value),
-      sentencesCount:        sentencesArray(value).length,
+      charCount: chars(value),
+      charCountWithout: charsWithoutSpaces(value),
+      wordsCount: wordsArray(value).length,
+      wordsCountUnique: wordsSet(value).size,
+      mostCommonWord: mostCommonWord(value),
+      sentencesCount: sentencesArray(value).length,
       sentencesCountAverage: averageSentences(value),
-      readingTime:           spentTime(value, 275),
-      speakingTime:          spentTime(value, 150),
+      readingTime: spentTime(value, 275),
+      speakingTime: spentTime(value, 150),
     });
   };
 
@@ -126,12 +127,13 @@ export default function WritestPage({
             grid-area: input;
           `}
         >
-          <H1>words</H1>
+          <H1>Words</H1>
           <Input
             type="textarea"
             name="writest"
             value={input}
             placeholder="Start typing or paste text..."
+            label="Your words"
             autoFocus
             onChange={handleAnalyseText}
           />
@@ -144,7 +146,7 @@ export default function WritestPage({
             align-self: start;
           `}
         >
-          <H1>stats</H1>
+          <H1>Stats</H1>
           <H2>Characters with spaces</H2>
           <P>{stats.charCount.toLocaleString()}</P>
           <H2>Characters without spaces</H2>
@@ -168,3 +170,5 @@ export default function WritestPage({
     </RootContainer>
   );
 }
+
+WritestPage.propTypes = pagePropTypes;
