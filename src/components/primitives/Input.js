@@ -8,6 +8,8 @@ import { Label } from '~components/text/Label';
 import { Tooltip } from '~components/text/Tooltip';
 import { Error } from '~components/text/Error';
 
+import { animation } from '~utils';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
@@ -63,6 +65,19 @@ export const Input = styled.input`
 
   &:not(:placeholder-shown) {
     padding: 3rem 1rem 1rem;
+  }
+  & ~ ${Label} {
+    animation: ${animation({
+      from: {
+        opacity: '0',
+        transform: 'translateY(0.5rem)',
+      },
+      to: {
+        opacity: '1',
+        transform: 'translateY(0)',
+      },
+      properties: '250ms both',
+    })};
   }
   &:placeholder-shown ~ ${Label} {
     display: none;
