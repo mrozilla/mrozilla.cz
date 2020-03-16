@@ -42,13 +42,15 @@ export default function InputsPage({
 
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all?fields=name')
-      .then(res => res.json())
-      .then(data => setCountries(
-        data.map(country => ({
-          value: country.alpha2Code,
-          name:  country.name,
-        })),
-      ));
+      .then((res) => res.json())
+      .then((data) =>
+        setCountries(
+          data.map((country) => ({
+            value: country.alpha2Code,
+            name: country.name,
+          })),
+        ),
+      );
   }, []);
 
   const renderTextInputs = () => (
@@ -63,8 +65,7 @@ export default function InputsPage({
           'password'
           'number'
           'website'
-          'date'
-          'time';
+          'textarea';
       `}
     >
       <H1
@@ -122,10 +123,18 @@ export default function InputsPage({
         pattern="^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$"
         required
       />
+      <Input
+        name="textarea"
+        type="textarea"
+        placeholder="Textarea input"
+        label="Autogrowing textarea input"
+        maxHeight="100px"
+        required
+      />
     </Form>
   );
 
-  const renderTimeInputs = () => (
+  const renderTemporalInputs = () => (
     <Form
       css={`
         grid-area: time;
@@ -308,7 +317,7 @@ export default function InputsPage({
       >
         {renderBlocks(blocks)}
         {renderTextInputs()}
-        {renderTimeInputs()}
+        {renderTemporalInputs()}
         {renderSelects()}
         {renderCheckboxes()}
         {renderRadios()}
