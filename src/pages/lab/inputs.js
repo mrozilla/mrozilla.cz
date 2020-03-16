@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Form, H1, Input } from '~components';
-import { renderBlocks } from '~utils';
+import { pagePropTypes, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -325,3 +325,5 @@ export default function InputsPage({
     </RootContainer>
   );
 }
+
+InputsPage.propTypes = pagePropTypes;

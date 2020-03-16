@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H2, P, Button } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -40,11 +40,11 @@ export default function EmojiPage({
 }) {
   const [randomEmojis, setRandomEmojis] = useState([]);
 
-  const getRandomEmoji = () => fetch('/.netlify/functions/emoji').then(r => r.json());
+  const getRandomEmoji = () => fetch('/.netlify/functions/emoji').then((r) => r.json());
 
   const handleAddEmoji = async () => {
     const emoji = await getRandomEmoji();
-    setRandomEmojis(prev => [...prev, emoji]);
+    setRandomEmojis((prev) => [...prev, emoji]);
   };
 
   const handleClear = () => setRandomEmojis([]);
@@ -78,7 +78,7 @@ export default function EmojiPage({
               margin: 2rem 0 0 0;
             `}
           >
-            {randomEmojis.map(emoji => (
+            {randomEmojis.map((emoji) => (
               <span
                 key={emoji.description}
                 role="img"
@@ -94,3 +94,5 @@ export default function EmojiPage({
     </RootContainer>
   );
 }
+
+EmojiPage.propTypes = pagePropTypes;

@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Ul, Li } from '~components';
-import { renderBlocks, useOnScreen } from '~utils';
+import { renderBlocks, useOnScreen, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -32,15 +32,15 @@ export const query = graphql`
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Block({ item }) {
-  const [ref, isIntersecting] = useOnScreen({ threshold: .5 });
+  const [ref, isIntersecting] = useOnScreen({ threshold: 0.5 });
 
   return (
     <Li
       key={item}
       ref={ref}
       css={`
-        background-color: hsla(var(--hsl-text), .1);
-        border-radius: .5rem;
+        background-color: hsla(var(--hsl-text), 0.1);
+        border-radius: 0.5rem;
         text-align: center;
         padding: 8rem 4rem;
 
@@ -81,12 +81,13 @@ export default function ScrollAnimationsPage({
             grid-area: list;
           `}
         >
-          <Ul css={`
-            grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-            grid-gap: 2rem;
-          `}
+          <Ul
+            css={`
+              grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+              grid-gap: 2rem;
+            `}
           >
-            {Array.from({ length: 20 }, (_, i) => i).map((item, i) => (
+            {Array.from({ length: 20 }, (_, i) => i).map((item) => (
               <Block key={item} item={item} />
             ))}
           </Ul>
@@ -95,3 +96,5 @@ export default function ScrollAnimationsPage({
     </RootContainer>
   );
 }
+
+ScrollAnimationsPage.propTypes = pagePropTypes;

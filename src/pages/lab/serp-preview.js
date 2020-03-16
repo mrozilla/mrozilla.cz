@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Alert, Text } from '~components';
-import { parseLinks } from '~utils';
+import { parseLinks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -100,25 +100,25 @@ export default function SearchSnippetPage({
   },
 }) {
   const [errors, setErrors] = useState({
-    titleTooShort:       false,
-    titleTooLong:        false,
+    titleTooShort: false,
+    titleTooLong: false,
     descriptionTooShort: false,
-    descriptionTooLong:  false,
+    descriptionTooLong: false,
   });
 
   const handleTitleChange = ({ target }) => {
-    setErrors(prevErrors => ({
+    setErrors((prevErrors) => ({
       ...prevErrors,
       titleTooShort: target.textContent.length < 30,
-      titleTooLong:  target.textContent.length > 60,
+      titleTooLong: target.textContent.length > 60,
     }));
   };
 
   const handleDescriptionChange = ({ target }) => {
-    setErrors(prevErrors => ({
+    setErrors((prevErrors) => ({
       ...prevErrors.isError,
       descriptionTooShort: target.textContent.length < 70,
-      descriptionTooLong:  target.textContent.length > 160,
+      descriptionTooLong: target.textContent.length > 160,
     }));
   };
 
@@ -163,13 +163,14 @@ export default function SearchSnippetPage({
           `}
         >
           {Object.entries(errors).map(
-            ([errorType, isError]) => isError && (
-            <Alert key={errorType} type="danger">
-              {parseLinks(copy.error[errorType], { type: 'primary' })}
-            </Alert>
-            ),
+            ([errorType, isError]) =>
+              isError && (
+                <Alert key={errorType} type="danger">
+                  {parseLinks(copy.error[errorType], { type: 'primary' })}
+                </Alert>
+              ),
           )}
-          {Object.values(errors).every(isError => !isError) && (
+          {Object.values(errors).every((isError) => !isError) && (
             <Alert type="success">{copy.success}</Alert>
           )}
         </Section>
@@ -177,3 +178,5 @@ export default function SearchSnippetPage({
     </RootContainer>
   );
 }
+
+SearchSnippetPage.propTypes = pagePropTypes;

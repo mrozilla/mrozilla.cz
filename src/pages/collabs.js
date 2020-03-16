@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import { RootContainer, SEOContainer } from '~containers';
 
 import { Main, Section, H2, Ul, Li, H3, P, Link } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -58,8 +58,6 @@ export default function CollaboratorsPage({
     collaborators,
   },
 }) {
-  console.log(collaborators);
-
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
@@ -110,3 +108,5 @@ export default function CollaboratorsPage({
     </RootContainer>
   );
 }
+
+CollaboratorsPage.propTypes = pagePropTypes;

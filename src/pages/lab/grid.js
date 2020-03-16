@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Input, Img, H1, P, Ul, Li } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -34,9 +34,9 @@ export const query = graphql`
 
 const controls = [
   {
-    type:    'radio',
-    name:    'layout',
-    label:   'Current layout',
+    type: 'radio',
+    name: 'layout',
+    label: 'Current layout',
     options: [
       {
         value: 'exciting',
@@ -49,9 +49,9 @@ const controls = [
     ],
   },
   {
-    type:    'radio',
-    name:    'src',
-    label:   'Images',
+    type: 'radio',
+    name: 'src',
+    label: 'Images',
     options: [
       {
         value: 'https://source.unsplash.com/random/400x600',
@@ -78,13 +78,14 @@ export default function GridPage({
 }) {
   const [state, setState] = useState({
     layout: 'exciting',
-    src:    'https://source.unsplash.com/random/400x600',
+    src: 'https://source.unsplash.com/random/400x600',
   });
 
-  const handleInputChange = ({ target: { name, value } }) => setState(prevState => ({
-    ...prevState,
-    [name]: value,
-  }));
+  const handleInputChange = ({ target: { name, value } }) =>
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
 
   const renderControls = () => (
     <Section
@@ -99,11 +100,11 @@ export default function GridPage({
         margin: -2rem;
       `}
     >
-      {controls.map(input => (
+      {controls.map((input) => (
         <Input
           key={input.name}
           {...input}
-          options={input.options.map(option => ({
+          options={input.options.map((option) => ({
             ...option,
             checked: state[input.name] === option.value,
           }))}
@@ -128,7 +129,7 @@ export default function GridPage({
           }
         `}
       >
-        {['4rem 0 0 0', '0 8rem 0 0', '0 0 0 8rem', '6rem'].map(padding => (
+        {['4rem 0 0 0', '0 8rem 0 0', '0 0 0 8rem', '6rem'].map((padding) => (
           <Li
             key={padding}
             css={`
@@ -175,3 +176,5 @@ export default function GridPage({
     </RootContainer>
   );
 }
+
+GridPage.propTypes = pagePropTypes;

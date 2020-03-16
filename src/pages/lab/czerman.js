@@ -4,11 +4,10 @@
 
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
-import { shape } from 'prop-types';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Table, Link, Button, Modal, H2, P } from '~components';
-import { metaTypes, renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -51,9 +50,9 @@ export default function CzermanPage({
 }) {
   const { items: dictionary } = blocks[1];
   const [state, setState] = useState({
-    openTermId:    '',
-    isOpenAll:     false,
-    isModalOpen:   false,
+    openTermId: '',
+    isOpenAll: false,
+    isModalOpen: false,
     isCardFlipped: false,
   });
 
@@ -62,39 +61,40 @@ export default function CzermanPage({
   };
 
   const handleOpenAll = () => {
-    setState(prevState => ({ ...prevState, isOpenAll: !prevState.isOpenAll }));
+    setState((prevState) => ({ ...prevState, isOpenAll: !prevState.isOpenAll }));
   };
 
   const handleNextTerm = () => {
     setState((prevState) => {
       const currentIndex = dictionary.findIndex(
-        term => term.czech.grammar === prevState.openTermId,
+        (term) => term.czech.grammar === prevState.openTermId,
       );
       return {
         ...prevState,
-        isModalOpen:   true,
+        isModalOpen: true,
         isCardFlipped: false,
-        openTermId:    dictionary[(currentIndex + 1) % dictionary.length].czech.grammar,
+        openTermId: dictionary[(currentIndex + 1) % dictionary.length].czech.grammar,
       };
     });
   };
 
   const handleModal = () => {
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       isModalOpen: !prevState.isModalOpen,
     }));
   };
 
   const handleFlipCard = () => {
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       isCardFlipped: !prevState.isCardFlipped,
     }));
   };
 
   const renderModal = () => {
-    const modalTerm = dictionary.find(term => term.czech.grammar === state.openTermId) || dictionary[0];
+    const modalTerm =
+      dictionary.find((term) => term.czech.grammar === state.openTermId) || dictionary[0];
     return (
       <Modal
         innerKey={modalTerm.czech.grammar}
@@ -166,13 +166,14 @@ export default function CzermanPage({
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>
-        {dictionary.map(term => (
+        {dictionary.map((term) => (
           <Table.Tr
             key={term.czech.grammar}
             css={`
               cursor: pointer;
             `}
-            onClick={() => handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')
+            onClick={() =>
+              handleOpenTerm(state.openTermId !== term.czech.grammar ? term.czech.grammar : '')
             }
           >
             <Table.Td>{term.czech.grammar}</Table.Td>
@@ -184,7 +185,7 @@ export default function CzermanPage({
                 colSpan="2"
                 css={`
                   textalign: center;
-                  opacity: .5;
+                  opacity: 0.5;
                 `}
               >
                 Reveal
@@ -233,3 +234,5 @@ export default function CzermanPage({
     </RootContainer>
   );
 }
+
+CzermanPage.propTypes = pagePropTypes;

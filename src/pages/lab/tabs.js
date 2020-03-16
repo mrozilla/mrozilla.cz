@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Tabs, H1, P, Icon } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -31,7 +31,7 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function CarouselPage({
+export default function TabsPage({
   data: {
     page: {
       frontmatter: { meta, blocks },
@@ -57,7 +57,7 @@ export default function CarouselPage({
             content={[
               {
                 title: 'Text',
-                body:  'Just a text body',
+                body: 'Just a text body',
               },
               {
                 title: (
@@ -80,7 +80,7 @@ export default function CarouselPage({
               },
               {
                 title: 'Nested tabs',
-                body:  (
+                body: (
                   <Tabs
                     content={[
                       { title: 'Nested', body: 'Nested body' },
@@ -96,3 +96,5 @@ export default function CarouselPage({
     </RootContainer>
   );
 }
+
+TabsPage.propTypes = pagePropTypes;

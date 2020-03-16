@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Input } from '~components';
-import { renderBlocks } from '~utils';
+import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -40,80 +40,90 @@ export default function InAnyCasePage({
 }) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState({
-    'lower case':    '',
-    'UPPER CASE':    '',
-    'Title Case':    '',
+    'lower case': '',
+    'UPPER CASE': '',
+    'Title Case': '',
     'Sentence case': '',
-    'dot.case':      '',
-    'url-case':      '',
-    'path/case':     '',
-    'snake-case':    '',
-    CONSTANT_CASE:   '',
-    'Header-Case':   '',
-    PascalCase:      '',
-    camelCase:       '',
+    'dot.case': '',
+    'url-case': '',
+    'path/case': '',
+    'snake-case': '',
+    CONSTANT_CASE: '',
+    'Header-Case': '',
+    PascalCase: '',
+    camelCase: '',
   });
 
   const handleInput = ({ target: { value } }) => {
     const changeCase = {
-      toLowerCase: s => s.toLowerCase(),
-      toUpperCase: s => s.toUpperCase(),
-      toTitleCase: s => s
-        .split(' ')
-        .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
-        .join(' '),
-      toSentenceCase: s => s
-        .split('. ')
-        .map(w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
-        .join('. '),
-      toDotCase: s => s
-        .split(' ')
-        .map(w => changeCase.toLowerCase(w))
-        .join('.'),
-      toURLCase: s => s
-        .split(' ')
-        .map(w => changeCase.toLowerCase(w))
-        .join('-'),
-      toPathCase: s => s
-        .split(' ')
-        .map(w => changeCase.toLowerCase(w))
-        .join('/'),
-      toSnakeCase: s => s
-        .split(' ')
-        .map(t => changeCase.toLowerCase(t))
-        .join('_'),
-      toConstantCase: s => s
-        .split(' ')
-        .map(w => changeCase.toUpperCase(w))
-        .join('_'),
-      toHeaderCase: s => s
-        .split(' ')
-        .map(t => changeCase.toSentenceCase(t))
-        .join('-'),
-      toPascalCase: s => s
-        .split(' ')
-        .map(w => changeCase.toSentenceCase(w))
-        .join(''),
-      toCamelCase: s => changeCase
-        .toPascalCase(s)
-        .charAt(0)
-        .toLowerCase() + changeCase.toPascalCase(s).slice(1),
+      toLowerCase: (s) => s.toLowerCase(),
+      toUpperCase: (s) => s.toUpperCase(),
+      toTitleCase: (s) =>
+        s
+          .split(' ')
+          .map((w) => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
+          .join(' '),
+      toSentenceCase: (s) =>
+        s
+          .split('. ')
+          .map((w) => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase())
+          .join('. '),
+      toDotCase: (s) =>
+        s
+          .split(' ')
+          .map((w) => changeCase.toLowerCase(w))
+          .join('.'),
+      toURLCase: (s) =>
+        s
+          .split(' ')
+          .map((w) => changeCase.toLowerCase(w))
+          .join('-'),
+      toPathCase: (s) =>
+        s
+          .split(' ')
+          .map((w) => changeCase.toLowerCase(w))
+          .join('/'),
+      toSnakeCase: (s) =>
+        s
+          .split(' ')
+          .map((t) => changeCase.toLowerCase(t))
+          .join('_'),
+      toConstantCase: (s) =>
+        s
+          .split(' ')
+          .map((w) => changeCase.toUpperCase(w))
+          .join('_'),
+      toHeaderCase: (s) =>
+        s
+          .split(' ')
+          .map((t) => changeCase.toSentenceCase(t))
+          .join('-'),
+      toPascalCase: (s) =>
+        s
+          .split(' ')
+          .map((w) => changeCase.toSentenceCase(w))
+          .join(''),
+      toCamelCase: (s) =>
+        changeCase
+          .toPascalCase(s)
+          .charAt(0)
+          .toLowerCase() + changeCase.toPascalCase(s).slice(1),
     };
 
     setInput(value);
     setOutput({
-      'lower case':    changeCase.toLowerCase(value),
-      'UPPER CASE':    changeCase.toUpperCase(value),
-      'Title Case':    changeCase.toTitleCase(value),
+      'lower case': changeCase.toLowerCase(value),
+      'UPPER CASE': changeCase.toUpperCase(value),
+      'Title Case': changeCase.toTitleCase(value),
       'Sentence case': changeCase.toSentenceCase(value),
-      'dot.case':      changeCase.toDotCase(value),
-      'url-case':      changeCase.toURLCase(value),
-      'path/case':     changeCase.toPathCase(value),
-      'snake-case':    changeCase.toSnakeCase(value),
-      CONSTANT_CASE:   changeCase.toConstantCase(value),
-      'Header-Case':   changeCase.toHeaderCase(value),
-      PascalCase:      changeCase.toPascalCase(value),
-      camelCase:       changeCase.toCamelCase(value),
+      'dot.case': changeCase.toDotCase(value),
+      'url-case': changeCase.toURLCase(value),
+      'path/case': changeCase.toPathCase(value),
+      'snake-case': changeCase.toSnakeCase(value),
+      CONSTANT_CASE: changeCase.toConstantCase(value),
+      'Header-Case': changeCase.toHeaderCase(value),
+      PascalCase: changeCase.toPascalCase(value),
+      camelCase: changeCase.toCamelCase(value),
     });
   };
 
@@ -162,3 +172,5 @@ export default function InAnyCasePage({
     </RootContainer>
   );
 }
+
+InAnyCasePage.propTypes = pagePropTypes;
