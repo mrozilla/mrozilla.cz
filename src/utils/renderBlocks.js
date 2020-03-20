@@ -19,7 +19,7 @@ import { P } from '~components/text/P';
 export default function renderBlocks(blocks, components) {
   return blocks.map((block) => {
     if (block.type === 'hero') {
-      return <HeroContainer key={block.title} title={block.title} />;
+      return <HeroContainer key={block.title} title={block.title} codeLink={block.codeLink} />;
     }
 
     if (block.type === 'location') {

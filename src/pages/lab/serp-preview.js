@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Alert, Text } from '~components';
-import { parseLinks, pagePropTypes } from '~utils';
+import { renderBlocks, parseLinks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -83,6 +83,11 @@ export const query = graphql`
     page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/serp-preview/" } } }) {
       frontmatter {
         ...MetaFragment
+        blocks {
+          title
+          codeLink
+          type
+        }
       }
     }
   }
@@ -95,7 +100,7 @@ export const query = graphql`
 export default function SearchSnippetPage({
   data: {
     page: {
-      frontmatter: { meta },
+      frontmatter: { meta, blocks },
     },
   },
 }) {
@@ -127,13 +132,15 @@ export default function SearchSnippetPage({
       <SEOContainer meta={meta} />
       <Main
         css={`
-          grid-template: 'snippet .' 'errors errors' / 600px 1fr;
+          grid-template: 'hero' 'snippet' 'errors';
           grid-gap: 10vh 4rem;
         `}
       >
+        {renderBlocks(blocks)}
         <Section
           css={`
             grid-area: snippet;
+            max-width: 600px;
           `}
         >
           <GoogleTitle onInput={handleTitleChange} contentEditable>
@@ -153,8 +160,8 @@ export default function SearchSnippetPage({
             </Text>
           </GoogleRatingStars>
           <GoogleDescription onInput={handleDescriptionChange} contentEditable>
-            Click to edit the fields directly to optimise the length of your website's titles and
-            descriptions for Google search snippets visually with hints
+            Click to edit the fields directly to optimise the length of your website&apos;s titles
+            and descriptions for Google search snippets visually with hints
           </GoogleDescription>
         </Section>
         <Section

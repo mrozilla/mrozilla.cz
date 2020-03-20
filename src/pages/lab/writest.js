@@ -3,11 +3,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { useState } from 'react';
+
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, Input, H1, H2, P } from '~components';
-import { pagePropTypes } from '~utils';
+import { pagePropTypes, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -18,6 +19,11 @@ export const query = graphql`
     page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/writest/" } } }) {
       frontmatter {
         ...MetaFragment
+        blocks {
+          title
+          codeLink
+          type
+        }
       }
     }
   }
@@ -30,7 +36,7 @@ export const query = graphql`
 export default function WritestPage({
   data: {
     page: {
-      frontmatter: { meta },
+      frontmatter: { meta, blocks },
     },
   },
 }) {
@@ -114,14 +120,15 @@ export default function WritestPage({
       <SEOContainer meta={meta} />
       <Main
         css={`
-          grid-template: 'input' 'stats';
+          grid-template: 'hero' 'input' 'stats';
           grid-gap: 10vh 4rem;
 
           @media screen and (min-width: 900px) {
-            grid-template: 'input stats' / 2fr 1fr;
+            grid-template: 'hero hero' 'input stats' / 2fr 1fr;
           }
         `}
       >
+        {renderBlocks(blocks)}
         <Section
           css={`
             grid-area: input;

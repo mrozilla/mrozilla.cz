@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
 import { Main, Section, H1, Button } from '~components';
-import { pagePropTypes } from '~utils';
+import { pagePropTypes, renderBlocks } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -18,6 +18,11 @@ export const query = graphql`
     page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/count-on-me/" } } }) {
       frontmatter {
         ...MetaFragment
+        blocks {
+          title
+          codeLink
+          type
+        }
       }
     }
   }
@@ -30,7 +35,7 @@ export const query = graphql`
 export default function CountOnMePage({
   data: {
     page: {
-      frontmatter: { meta },
+      frontmatter: { meta, blocks },
     },
   },
 }) {
@@ -62,9 +67,16 @@ export default function CountOnMePage({
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
-      <Main>
+      <Main
+        css={`
+          grid-template: 'hero' 'count';
+          grid-gap: 10vh 1rem;
+        `}
+      >
+        {renderBlocks(blocks)}
         <Section
           css={`
+            grid-area: count;
             user-select: none;
           `}
           onClick={(e) => handleCount(e, 1)}

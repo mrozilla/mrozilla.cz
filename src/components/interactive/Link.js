@@ -59,7 +59,7 @@ const StyledLink = styled.a`
 
 export default function Link({ href, to, children, ...rest }) {
   const link = href || to;
-  if (['http', 'mailto:', 'tel:'].some(t => link.includes(t))) {
+  if (['http', 'mailto:', 'tel:'].some((t) => link.includes(t))) {
     return (
       <StyledLink as={OutboundLink} href={link} target="_blank" rel="noopener noreferrer" {...rest}>
         {children}
@@ -75,10 +75,10 @@ export default function Link({ href, to, children, ...rest }) {
 
 Link.propTypes = {
   children: node.isRequired,
-  href:     string,
-  to:       string,
+  href: string,
+  to: string,
 };
 Link.defaultProps = {
   href: null,
-  to:   null,
+  to: null,
 };

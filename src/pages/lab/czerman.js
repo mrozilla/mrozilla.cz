@@ -21,6 +21,7 @@ export const query = graphql`
         blocks {
           type
           title
+          codeLink
           items {
             czech {
               grammar
