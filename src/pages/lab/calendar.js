@@ -21,6 +21,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          codeLink
           type
         }
       }
@@ -168,15 +169,16 @@ export default function CalendarPage({
           grid-template: 'hero' 'calendar';
           grid-gap: 10vh 4rem;
 
-          @media screen and (min-width: 1200px) {
+          /* @media screen and (min-width: 1200px) {
             grid-template: 'hero hero' 'calendar .' / 1fr 1fr;
-          }
+          } */
         `}
       >
         {renderBlocks(blocks)}
         <Section
           css={`
             grid-area: calendar;
+            max-width: 300px;
           `}
         >
           {renderCalendarControls()}

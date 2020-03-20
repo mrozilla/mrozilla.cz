@@ -23,6 +23,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          codeLink
           type
         }
       }
@@ -167,6 +168,7 @@ function Maze() {
               css={`
                 position: relative;
                 background: ${getBackgroundColor()};
+                z-index: ${playerIdx === idx && '-1'};
 
                 &::before {
                   content: '';
