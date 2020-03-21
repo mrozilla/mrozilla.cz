@@ -57,7 +57,7 @@ export default function RootContainer({ children }) {
   `);
 
   return (
-    <MDXProvider components={{ a: props => <Link look="secondary" {...props} />, pre: Pre }}>
+    <MDXProvider components={{ a: (props) => <Link look="secondary" {...props} />, pre: Pre }}>
       <View
         css={`
           display: grid;
@@ -66,7 +66,12 @@ export default function RootContainer({ children }) {
             'header footer aside'
             / var(--width-header) var(--width-main) var(--width-aside);
           grid-gap: 10vh 10vw;
-          padding: 20vh 0;
+
+          padding: 10vh 0;
+
+          @media screen and (min-width: 600px) {
+            padding: 20vh 0;
+          }
         `}
       >
         <HeaderContainer header={header.frontmatter.links} />

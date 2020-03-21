@@ -21,9 +21,14 @@ export default function HeroContainer({ title, codeLink }) {
     >
       <H1
         css={`
-          font-size: 5rem;
-          line-height: 6rem;
-          margin: -1rem 0 0;
+          font-size: 4rem;
+          line-height: 5rem;
+
+          @media screen and (min-width: 600px) {
+            font-size: 5rem;
+            line-height: 6rem;
+            margin: -1rem 0 0;
+          }
         `}
       >
         {parseLinks(title, { type: 'primary' })}
