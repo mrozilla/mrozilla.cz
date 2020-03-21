@@ -25,7 +25,7 @@ export const Picture = styled.picture`
 `;
 
 Picture.defaultProps = {
-  as:       'picture',
+  as: 'picture',
   overflow: 'hidden',
 };
 
@@ -40,18 +40,22 @@ export const StyledImg = styled.img`
   height: 100%;
 
   object-fit: cover;
-  background-color: hsla(var(--hsl-text), .1);
+  background-color: hsla(var(--hsl-text), 0.1);
 
-  ${({ zoom }) => zoom
-    && css`
-      cursor: zoom-in;
-      transition: transform 250ms;
-      z-index: var(--z-index-modal);
+  ${({ zoom }) => {
+    if (zoom) {
+      return css`
+        cursor: zoom-in;
+        transition: transform 250ms;
+        z-index: var(--z-index-modal);
 
-      &:hover {
-        transform: scale(2);
-      }
-    `}
+        &:hover {
+          transform: scale(2);
+        }
+      `;
+    }
+    return null;
+  }}
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -83,12 +87,12 @@ export default function Img({ ratio, zoom, ...rest }) {
 
 Img.propTypes = {
   ratio: number,
-  src:   string.isRequired,
-  alt:   string.isRequired,
-  zoom:  bool,
+  src: string.isRequired,
+  alt: string.isRequired,
+  zoom: bool,
 };
 
 Img.defaultProps = {
   ratio: 1,
-  zoom:  false,
+  zoom: false,
 };

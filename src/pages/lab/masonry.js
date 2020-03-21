@@ -7,7 +7,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, Masonry, Img, Form, Input } from '~components';
+import { Main, Form, Input, Section, Masonry, Img, P } from '~components';
 import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -80,7 +80,17 @@ export default function MasonryPage({
         >
           <Masonry columns={columns}>
             {Array.from({ length: columns * 4 }, (_, i) => i).map((order) => (
-              <Img key={order} ratio={Math.random() + 0.5} src={imageSrc} alt="a random photo" />
+              <>
+                <Img key={order} ratio={Math.random() + 0.5} src={imageSrc} alt="a random photo" />
+                <P
+                  css={`
+                    font-size: 2rem;
+                    line-height: 3rem;
+                  `}
+                >
+                  Item №{order + 1}
+                </P>
+              </>
             ))}
           </Masonry>
         </Section>
