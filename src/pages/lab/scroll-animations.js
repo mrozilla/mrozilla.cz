@@ -40,15 +40,15 @@ function Block({ item }) {
       key={item}
       ref={ref}
       css={`
+        color: hsla(var(--hsl-text), 0.5);
         background-color: hsla(var(--hsl-text), 0.1);
         border-radius: 0.5rem;
         text-align: center;
         padding: 8rem 4rem;
 
         opacity: ${isIntersecting ? '1' : '0'};
-        transform: scale(${isIntersecting ? '1' : '.9'});
+        transform: scale(${isIntersecting ? '1' : '0.9'});
         transition: opacity 500ms, transform 500ms;
-        transition-delay: calc(100ms * ${item});
       `}
     >
       {item}
@@ -88,7 +88,7 @@ export default function ScrollAnimationsPage({
               grid-gap: 2rem;
             `}
           >
-            {Array.from({ length: 20 }, (_, i) => i).map((item) => (
+            {Array.from({ length: 50 }, (_, i) => i).map((item) => (
               <Block key={item} item={item} />
             ))}
           </Ul>
