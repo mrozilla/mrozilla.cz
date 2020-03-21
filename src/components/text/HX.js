@@ -11,7 +11,7 @@ import styled from 'styled-components';
 export const H1 = styled.h1`
   font-size: 3rem;
   line-height: 4rem;
-  letter-spacing: .025em;
+  letter-spacing: 0.025em;
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ export const H2 = styled.h2`
   font-weight: 300;
   line-height: 3rem;
   text-transform: uppercase;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────

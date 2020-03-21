@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { string, number, bool } from 'prop-types';
+import { string, number, func } from 'prop-types';
 
 import styled, { css } from 'styled-components';
 
@@ -19,13 +19,12 @@ export const Picture = styled.picture`
     content: '';
 
     display: block;
-
     padding-bottom: ${({ ratio }) => ratio * 100}%;
   }
 `;
 
 Picture.defaultProps = {
-  as:       'picture',
+  as: 'picture',
   overflow: 'hidden',
 };
 
@@ -40,37 +39,42 @@ export const StyledImg = styled.img`
   height: 100%;
 
   object-fit: cover;
-  background-color: hsla(var(--hsl-text), .1);
+  background-color: hsla(var(--hsl-text), 0.1);
 
-  ${({ zoom }) => zoom
-    && css`
-      cursor: zoom-in;
-      transition: transform 250ms;
-      z-index: var(--z-index-modal);
+  ${({ zoom }) => {
+    if (zoom) {
+      return css`
+        transition: transform 250ms;
 
-      &:hover {
-        transform: scale(2);
-      }
-    `}
+        &:hover {
+          transform: scale(${zoom});
+          z-index: var(--z-index-modal);
+        }
+      `;
+    }
+    return null;
+  }}
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Img({ ratio, zoom, ...rest }) {
+export default function Img({ ratio, zoom, onError, onMouseMove, ...rest }) {
   const handlers = {
-    onError: ({ target }) => {
-      // use a transparent svg as a default image
-      const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
-      target.src = placeholder; // eslint-disable-line no-param-reassign
+    onError: (event) => {
+      const { target } = event;
+      target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"; // use a transparent svg as a default image
+      onError(event);
     },
-    onMouseMove: ({ nativeEvent: e }) => {
+    onMouseMove: (event) => {
       if (zoom) {
-        const x = (e.offsetX / e.target.offsetWidth) * 100;
-        const y = (e.offsetY / e.target.offsetHeight) * 100;
-        e.target.style.transformOrigin = `${x}% ${y}%`;
+        const { offsetX, offsetY, target } = event?.nativeEvent;
+        const x = (offsetX / target.offsetWidth) * 100;
+        const y = (offsetY / target.offsetHeight) * 100;
+        target.style.transformOrigin = `${x}% ${y}%`;
       }
+      onMouseMove(event);
     },
   };
 
@@ -83,12 +87,16 @@ export default function Img({ ratio, zoom, ...rest }) {
 
 Img.propTypes = {
   ratio: number,
-  src:   string.isRequired,
-  alt:   string.isRequired,
-  zoom:  bool,
+  src: string.isRequired,
+  alt: string.isRequired,
+  zoom: number,
+  onError: func,
+  onMouseMove: func,
 };
 
 Img.defaultProps = {
   ratio: 1,
-  zoom:  false,
+  zoom: undefined,
+  onError: () => {},
+  onMouseMove: () => {},
 };

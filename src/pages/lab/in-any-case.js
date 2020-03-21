@@ -20,6 +20,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          codeLink
           type
         }
       }
@@ -133,7 +134,7 @@ export default function InAnyCasePage({
       <Main
         css={`
           grid-template: 'hero' 'input';
-          grid-gap: 5vh 4rem;
+          grid-gap: 10vh 1rem;
         `}
       >
         {renderBlocks(blocks)}
@@ -147,7 +148,7 @@ export default function InAnyCasePage({
             type="text"
             value={input}
             label="Original text"
-            placeholder="Start typing or paste text..."
+            placeholder="Start typing or paste text to be transformed below..."
             css={`
               margin: 0 0 4rem 0;
             `}
@@ -162,7 +163,7 @@ export default function InAnyCasePage({
               type="text"
               value={value}
               css={`
-                margin: 0 0 1rem 0;
+                margin: 0 0 0.25rem 0;
               `}
               readOnly
             />

@@ -21,6 +21,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          codeLink
           type
         }
       }
@@ -81,11 +82,12 @@ export default function GridPage({
     src: 'https://source.unsplash.com/random/400x600',
   });
 
-  const handleInputChange = ({ target: { name, value } }) =>
+  const handleInputChange = ({ target: { name, value } }) => {
     setState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
 
   const renderControls = () => (
     <Section
@@ -137,7 +139,7 @@ export default function GridPage({
               transition: padding 250ms;
             `}
           >
-            <Img src={state.src} alt="a random photo" zoom />
+            <Img src={state.src} alt="a random photo" zoom={1.5} />
             <H1
               as="h2"
               css={`

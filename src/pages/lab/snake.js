@@ -20,6 +20,7 @@ export const query = graphql`
         ...MetaFragment
         blocks {
           title
+          codeLink
           type
         }
       }
@@ -42,17 +43,20 @@ function Snake() {
   const [food, setFood] = useState(10);
   const [direction, setDirection] = useState('ArrowRight');
 
-  useEventListener('keydown', (event) => {
-    if (event.key.includes('Arrow') || event.key === ' ') event.preventDefault();
-    if (event.key.includes('Arrow') && isRunning) setDirection(event.key);
-  });
-
   const handleReset = () => {
     setSnake([4, 3, 2, 1, 0]);
     setDirection('ArrowRight');
     setIsRunning(true);
     setSpeed(250);
   };
+
+  useEventListener('keydown', (event) => {
+    if (event.key.includes('Arrow') || event.key === ' ') event.preventDefault();
+    if (event.key.includes('Arrow')) {
+      if (!isRunning) handleReset();
+      setDirection(event.key);
+    }
+  });
 
   const handleTick = () => {
     setSnake((prev) => {

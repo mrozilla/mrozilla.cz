@@ -2,6 +2,8 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { string, oneOf } from 'prop-types';
+
 import styled, { css } from 'styled-components';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -91,18 +93,42 @@ export const Button = styled.button`
     `;
   }};
 
-  ${({ grouped }) =>
-    grouped &&
-    css`
-      &:not(:last-of-type) {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        margin-right: 2px;
-      }
+  ${({ ellipsis }) => {
+    if (ellipsis) {
+      return css`
+        max-width: ${ellipsis};
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      `;
+    }
+    return null;
+  }}
 
-      & + & {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-    `};
+  ${({ grouped }) => {
+    if (grouped) {
+      return css`
+        &:not(:last-of-type) {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          margin-right: 2px;
+        }
+
+        & + & {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      `;
+    }
+    return null;
+  }};
 `;
+
+Button.propTypes = {
+  look: oneOf(['primary', 'secondary', 'tertiary', 'inverse']),
+  ellipsis: string,
+};
+Button.defaultProps = {
+  look: undefined,
+  ellipsis: '20ch',
+};

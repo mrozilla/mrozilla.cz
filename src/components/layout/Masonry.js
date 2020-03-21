@@ -30,7 +30,7 @@ export default function Masonry({ columns, gap, isProvideLi, children }) {
     >
       {masonry.map((column, i) => (
         <Li
-          key={i}
+          key={i} // eslint-disable-line react/no-array-index-key
           as="li"
           css={`
             display: grid;
@@ -52,14 +52,14 @@ export default function Masonry({ columns, gap, isProvideLi, children }) {
 }
 
 Masonry.propTypes = {
-  columns:     number,
-  gap:         string,
-  children:    node.isRequired,
+  columns: number,
+  gap: string,
+  children: node.isRequired,
   isProvideLi: bool,
 };
 
 Masonry.defaultProps = {
-  columns:     3,
-  gap:         '1rem',
+  columns: 3,
+  gap: '1rem',
   isProvideLi: true,
 };
