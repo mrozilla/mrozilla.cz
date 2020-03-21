@@ -35,6 +35,8 @@ export const query = graphql`
 // ─────────────────────────────────────────────────────────────────────────────
 
 const Card = styled.div`
+  --box-shadow-color: hsla(var(--hsl-text), 0.25);
+
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +47,7 @@ const Card = styled.div`
   padding: 1rem 1rem 0.5rem 1rem;
   border-radius: 0.5rem;
   margin: 0.25rem;
-  box-shadow: 0 0 0 1px hsla(var(--hsl-text), 0.25);
+  box-shadow: 0 0 0 1px var(--box-shadow-color);
 
   animation: ${animation({
     from: {
@@ -223,6 +225,7 @@ export default class BlackjackPage extends PureComponent {
       await this.handleNewDeck(); // shuffle at 75% of deck used
       this.Toast.show({
         message: 'Deck shuffled',
+        delay: 1000,
       });
     }
 
@@ -335,6 +338,23 @@ export default class BlackjackPage extends PureComponent {
     return `${word}s`;
   };
 
+  renderPlaceholderCards = () => (
+    <>
+      <Card
+        css={`
+          --box-shadow-color: hsla(var(--hsl-text), 0.2);
+        `}
+        isFaceDown
+      />
+      <Card
+        css={`
+          --box-shadow-color: hsla(var(--hsl-text), 0.2);
+        `}
+        isFaceDown
+      />
+    </>
+  );
+
   render() {
     return (
       <RootContainer>
@@ -357,6 +377,7 @@ export default class BlackjackPage extends PureComponent {
                 min-height: 7rem;
               `}
             >
+              {this.state.dealer.length === 0 && this.renderPlaceholderCards()}
               {this.state.dealer.map((card, i) => (
                 <Card
                   key={`${card.rank}${card.suit}`}
@@ -382,6 +403,7 @@ export default class BlackjackPage extends PureComponent {
                 margin: 0 0 4rem 0;
               `}
             >
+              {this.state.player.length === 0 && this.renderPlaceholderCards()}
               {this.state.player.map((card) => (
                 <Card key={`${card.rank}${card.suit}`} {...card} />
               ))}
