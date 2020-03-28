@@ -12,12 +12,17 @@ import { Input } from '~components/primitives/Input';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function TextAreaInput({ onChange, ...rest }) {
-  const handleChange = (event) => {
-    /* eslint-disable no-param-reassign */
-    event.target.style.height = 'inherit'; // resetting height helps when deleting from added lines
-    event.target.style.height = `${event.target.scrollHeight}px`; // makes sure the element grows to accommodate potential scroll
-    /* eslint-enable */
+  const autoResize = (element) => {
+    const { style } = element; // prevent no-param-reassign eslint error
+    const { borderTopWidth, borderBottomWidth } = window.getComputedStyle(element);
+    const extraHeight = parseInt(borderTopWidth, 10) + parseInt(borderBottomWidth, 10);
 
+    style.height = 'inherit'; // reset scrollHeight when deleting text
+    style.height = `${element.scrollHeight + extraHeight}px`; // resize element to accommodate potential scroll
+  };
+
+  const handleChange = (event) => {
+    autoResize(event.target);
     onChange(event);
   };
 
