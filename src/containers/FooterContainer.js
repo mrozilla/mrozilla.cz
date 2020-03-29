@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import ColourThemeContainer from './ColourThemeContainer';
@@ -12,7 +13,29 @@ import { Footer, Section, H2, Ul, Li, Link } from '~components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function FooterContainer({ footer }) {
+export default function FooterContainer() {
+  const { footer } = useStaticQuery(graphql`
+    {
+      footer: mdx(
+        fields: { sourceName: { eq: "menus" } }
+        frontmatter: { title: { eq: "Footer" } }
+      ) {
+        frontmatter {
+          links {
+            mdx
+            type
+            url
+            title
+            links {
+              text
+              url
+            }
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <Footer
       css={`
@@ -28,7 +51,7 @@ export default function FooterContainer({ footer }) {
         <H2>Colour theme</H2>
         <ColourThemeContainer />
       </Section>
-      {footer.map(item => (
+      {footer.frontmatter.links.map((item) => (
         <Section
           key={item.title}
           css={`
@@ -38,7 +61,7 @@ export default function FooterContainer({ footer }) {
           <H2>{item.title}</H2>
           {item.type === 'nested' && (
             <Ul>
-              {item.links.map(link => (
+              {item.links.map((link) => (
                 <Li key={link.url}>
                   <Link to={link.url} look="tertiary">
                     {link.text}
