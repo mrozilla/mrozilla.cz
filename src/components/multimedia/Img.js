@@ -7,13 +7,24 @@ import { string, number, func } from 'prop-types';
 
 import styled, { css } from 'styled-components';
 
+import { animation } from '~utils';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
+const spinnerAnimation = animation({
+  to: { transform: 'rotate(360deg)' },
+  properties: '1s infinite',
+});
+
 export const Picture = styled.picture`
+  --loader-hsl: var(--hsl-primary);
+
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &::before {
     content: '';
@@ -21,6 +32,27 @@ export const Picture = styled.picture`
     display: block;
     padding-bottom: ${({ ratio }) => ratio * 100}%;
   }
+
+  ${({ isLoaded }) => {
+    if (!isLoaded) {
+      return css`
+        &::after {
+          content: '';
+
+          z-index: 1;
+          width: 1em;
+          height: 1em;
+
+          border: 0.125em solid hsla(var(--loader-hsl), 0.1);
+          border-top-color: hsla(var(--loader-hsl), 1);
+          border-radius: 50%;
+
+          animation: ${spinnerAnimation};
+        }
+      `;
+    }
+    return null;
+  }}
 `;
 
 Picture.defaultProps = {
@@ -60,11 +92,18 @@ export const StyledImg = styled.img`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Img({ ratio, zoom, onError, onMouseMove, ...rest }) {
+export default function Img({ ratio, zoom, onLoad, onError, onMouseMove, ...rest }) {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
   const handlers = {
+    onLoad: (event) => {
+      setIsLoaded(true);
+      onLoad(event);
+    },
     onError: (event) => {
       const { target } = event;
       target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"; // use a transparent svg as a default image
+      setIsLoaded(true);
       onError(event);
     },
     onMouseMove: (event) => {
@@ -79,7 +118,7 @@ export default function Img({ ratio, zoom, onError, onMouseMove, ...rest }) {
   };
 
   return (
-    <Picture ratio={ratio}>
+    <Picture ratio={ratio} isLoaded={isLoaded}>
       <StyledImg {...rest} zoom={zoom} {...handlers} />
     </Picture>
   );
@@ -90,6 +129,7 @@ Img.propTypes = {
   src: string.isRequired,
   alt: string.isRequired,
   zoom: number,
+  onLoad: func,
   onError: func,
   onMouseMove: func,
 };
@@ -97,6 +137,7 @@ Img.propTypes = {
 Img.defaultProps = {
   ratio: 1,
   zoom: undefined,
+  onLoad: () => {},
   onError: () => {},
   onMouseMove: () => {},
 };
