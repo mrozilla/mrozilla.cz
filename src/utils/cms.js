@@ -2,8 +2,7 @@
 // import
 // ─────────────────────────────────────────────────────────────────────────────
 
-import CMS, { init } from 'netlify-cms-app';
-import FileSystemBackend from 'netlify-cms-backend-fs';
+import CMS from 'netlify-cms-app';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -11,7 +10,6 @@ import FileSystemBackend from 'netlify-cms-backend-fs';
 
 if (process.env.NODE_ENV === 'development') {
   window.CMS_ENV = 'development_overrides'; // use development_overrrides from config.yml
-  CMS.registerBackend('file-system', FileSystemBackend);
 }
 
-init();
+CMS.init();
