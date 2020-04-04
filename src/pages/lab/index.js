@@ -16,7 +16,7 @@ import { renderBlocks, pagePropTypes } from '~utils';
 export const query = graphql`
   {
     page: mdx(
-      fields: { sourceName: { eq: "pages" } }
+      fileAbsolutePath: { regex: "/cms/pages/" }
       frontmatter: { meta: { permalink: { eq: "/lab/" } } }
     ) {
       frontmatter {
@@ -29,7 +29,7 @@ export const query = graphql`
     }
     tools: allMdx(
       filter: {
-        fields: { sourceName: { eq: "labs" } }
+        fileAbsolutePath: { regex: "/cms/labs/" }
         frontmatter: { meta: { tags: { in: "tool" } } }
       }
       sort: { fields: [frontmatter___title], order: ASC }
@@ -40,7 +40,7 @@ export const query = graphql`
     }
     demos: allMdx(
       filter: {
-        fields: { sourceName: { eq: "labs" } }
+        fileAbsolutePath: { regex: "/cms/labs/" }
         frontmatter: { meta: { tags: { in: "demo" } } }
       }
       sort: { fields: [frontmatter___title], order: ASC }
@@ -51,7 +51,7 @@ export const query = graphql`
     }
     products: allMdx(
       filter: {
-        fields: { sourceName: { eq: "labs" } }
+        fileAbsolutePath: { regex: "/cms/labs/" }
         frontmatter: { meta: { tags: { in: "product" } } }
       }
       sort: { fields: [frontmatter___title], order: ASC }

@@ -15,7 +15,7 @@ export default function HeaderContainer() {
   const { header } = useStaticQuery(graphql`
     {
       header: mdx(
-        fields: { sourceName: { eq: "menus" } }
+        fileAbsolutePath: { regex: "/cms/menus/" }
         frontmatter: { title: { eq: "Header" } }
       ) {
         frontmatter {

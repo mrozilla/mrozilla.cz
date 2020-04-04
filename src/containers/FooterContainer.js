@@ -17,7 +17,7 @@ export default function FooterContainer() {
   const { footer } = useStaticQuery(graphql`
     {
       footer: mdx(
-        fields: { sourceName: { eq: "menus" } }
+        fileAbsolutePath: { regex: "/cms/menus/" }
         frontmatter: { title: { eq: "Footer" } }
       ) {
         frontmatter {

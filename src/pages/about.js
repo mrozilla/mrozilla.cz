@@ -16,7 +16,7 @@ import { renderBlocks, pagePropTypes } from '~utils';
 export const query = graphql`
   {
     page: mdx(
-      fields: { sourceName: { eq: "pages" } }
+      fileAbsolutePath: { regex: "/cms/pages/" }
       frontmatter: { meta: { permalink: { eq: "/about/" } } }
     ) {
       frontmatter {
