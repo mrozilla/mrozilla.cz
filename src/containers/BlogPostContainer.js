@@ -27,7 +27,10 @@ export const query = graphql`
       body
     }
     relatedArticles: allMdx(
-      filter: { fields: { sourceName: { eq: "posts" } }, frontmatter: { related: { in: [$path] } } }
+      filter: {
+        fileAbsolutePath: { regex: "/cms/posts/" }
+        frontmatter: { related: { in: [$path] } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {
@@ -45,7 +48,7 @@ export default function BlogPost({
   data: {
     article: {
       frontmatter: { title, date, meta },
-      body
+      body,
     },
     relatedArticles,
   },

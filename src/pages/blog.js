@@ -25,7 +25,7 @@ export const query = graphql`
       }
     }
     posts: allMdx(
-      filter: { fields: { sourceName: { eq: "posts" } } }
+      filter: { fileAbsolutePath: { regex: "/cms/posts/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {

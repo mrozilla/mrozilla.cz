@@ -18,13 +18,13 @@ const {
 module.exports = {
   siteMetadata: {
     siteTitle: 'mrozilla',
-    siteUrl:   NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
+    siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_PRODUCTION_URL : NETLIFY_DEPLOY_URL,
   },
   developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       proxy({
-        target:      'http://localhost:34567', // TODO: watch out for changes
+        target: 'http://localhost:34567', // TODO: watch out for changes
         pathRewrite: {
           '/.netlify/functions/': '',
         },
@@ -43,7 +43,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: { path: `${__dirname}/static/assets`, name: 'assets' },
     },
-    ...['posts', 'legal', 'menus', 'pages', 'works', 'labs', 'collaborators'].map(name => ({
+    ...['posts', 'legal', 'menus', 'pages', 'works', 'labs', 'collaborators'].map((name) => ({
       resolve: 'gatsby-source-filesystem',
       options: { name, path: `${__dirname}/src/content/cms/${name}` },
     })),
@@ -65,40 +65,40 @@ module.exports = {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: process.env.GATSBY_GA_TRACKING_ID,
-        head:       true,
-        anonymize:  true,
+        head: true,
+        anonymize: true,
         respectDNT: true,
       },
     },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name:             'mrozilla: one-man digital studio',
-        short_name:       'mrozilla',
-        start_url:        '/',
+        name: 'mrozilla: one-man digital studio',
+        short_name: 'mrozilla',
+        start_url: '/',
         background_color: '#ffffff',
-        theme_color:      '#000000',
-        display:          'minimal-ui',
-        icon:             'static/assets/favicon.png',
+        theme_color: '#000000',
+        display: 'minimal-ui',
+        icon: 'static/assets/favicon.png',
       },
     },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         resolveEnv: () => process.env.CONTEXT,
-        env:        {
+        env: {
           production: {
             policy: [{ userAgent: '*' }],
           },
           'branch-deploy': {
-            policy:  [{ userAgent: '*', disallow: ['/'] }],
+            policy: [{ userAgent: '*', disallow: ['/'] }],
             sitemap: null,
-            host:    null,
+            host: null,
           },
           'deploy-preview': {
-            policy:  [{ userAgent: '*', disallow: ['/'] }],
+            policy: [{ userAgent: '*', disallow: ['/'] }],
             sitemap: null,
-            host:    null,
+            host: null,
           },
         },
       },

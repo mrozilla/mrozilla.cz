@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import { node } from 'prop-types';
 
 import { MDXProvider } from '@mdx-js/react';
@@ -23,39 +22,6 @@ export default function RootContainer({ children }) {
   useBarrelRoll();
   useInactiveTab();
 
-  const { header, footer } = useStaticQuery(graphql`
-    {
-      header: mdx(
-        fields: { sourceName: { eq: "menus" } }
-        frontmatter: { title: { eq: "Header" } }
-      ) {
-        frontmatter {
-          links {
-            text
-            url
-          }
-        }
-      }
-      footer: mdx(
-        fields: { sourceName: { eq: "menus" } }
-        frontmatter: { title: { eq: "Footer" } }
-      ) {
-        frontmatter {
-          links {
-            mdx
-            type
-            url
-            title
-            links {
-              text
-              url
-            }
-          }
-        }
-      }
-    }
-  `);
-
   return (
     <MDXProvider components={{ a: (props) => <Link look="secondary" {...props} />, pre: Pre }}>
       <View
@@ -74,9 +40,9 @@ export default function RootContainer({ children }) {
           }
         `}
       >
-        <HeaderContainer header={header.frontmatter.links} />
+        <HeaderContainer />
         {children}
-        <FooterContainer footer={footer.frontmatter.links} />
+        <FooterContainer />
         <CookieContainer />
       </View>
     </MDXProvider>

@@ -13,7 +13,7 @@ module.exports = ({ actions: { createPage }, graphql }) => {
 
   return graphql(`
     {
-      posts: allMdx(filter: { fields: { sourceName: { eq: "posts" } } }) {
+      posts: allMdx(filter: { fileAbsolutePath: { regex: "/cms/posts/" } }) {
         edges {
           node {
             frontmatter {
@@ -24,7 +24,7 @@ module.exports = ({ actions: { createPage }, graphql }) => {
           }
         }
       }
-      legal: allMdx(filter: { fields: { sourceName: { eq: "legal" } } }) {
+      legal: allMdx(filter: { fileAbsolutePath: { regex: "/cms/legal/" } }) {
         edges {
           node {
             frontmatter {
@@ -43,14 +43,14 @@ module.exports = ({ actions: { createPage }, graphql }) => {
 
     result.data.legal.edges.forEach(({ node }) => {
       createPage({
-        path:      node.frontmatter.meta.permalink,
+        path: node.frontmatter.meta.permalink,
         component: BlogPostContainer,
       });
     });
 
     return result.data.posts.edges.forEach(({ node }) => {
       createPage({
-        path:      node.frontmatter.meta.permalink,
+        path: node.frontmatter.meta.permalink,
         component: BlogPostContainer,
       });
     });
