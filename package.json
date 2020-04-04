@@ -10,6 +10,7 @@
   "scripts": {
     "start": "gatsby develop",
     "start:cms": "npx netlify-cms-proxy-server",
+    "start:clean": "gatsby clean && gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "lint": "eslint 'src/**/*.js'",
@@ -48,12 +49,8 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.4",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.10.7",
-    "deep-map": "^2.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
