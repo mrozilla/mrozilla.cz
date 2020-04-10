@@ -14,7 +14,7 @@
 
   --hsl-text: 200, 5%, 45%;
   --color-text: hsl(var(--hsl-text));
-
+  
   --hsl-success: 100, 70%, 60%;
   --color-success: hsl(var(--hsl-success));
   --hsl-info: 211, 100%, 60%;
@@ -23,15 +23,28 @@
   --color-danger: hsl(var(--hsl-danger));
   --hsl-warning: 40, 100%, 50%;
   --color-warning: hsl(var(--hsl-warning));
-
+  
   --width-header: 0fr;
   --width-main: 1fr;
   --width-aside: 0fr;
-
+  
   --z-index-header: 1000;
   --z-index-tooltip: 1010;
   --z-index-toast: 1020;
   --z-index-modal: 1030;
+}
+
+[data-theme="dark"]:root, [data-theme="dark"] {
+  --hsl-bg: 0, 0%, 5%;
+  --color-bg: hsl(var(--hsl-bg));
+  
+  --hsl-text: 0, 0%, 60%;
+  --color-text: hsl(var(--hsl-text));
+}
+
+[data-theme="crazy"]:root, [data-theme="crazy"] {
+  --color-bg: hsl(var(--hsl-crazy-bg));
+  --color-text: hsl(var(--hsl-crazy-text));
 }
 
 @media screen and (min-width: 600px) {
