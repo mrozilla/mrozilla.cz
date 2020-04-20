@@ -26,12 +26,19 @@ export const Picture = styled.picture`
   align-items: center;
   justify-content: center;
 
-  &::before {
-    content: '';
+  ${({ ratio }) => {
+    if (ratio) {
+      return css`
+        &::before {
+          content: '';
 
-    display: block;
-    padding-bottom: ${({ ratio }) => ratio * 100}%;
-  }
+          display: block;
+          padding-bottom: ${ratio * 100}%;
+        }
+      `;
+    }
+    return null;
+  }}
 
   ${({ isLoaded }) => {
     if (!isLoaded) {
@@ -92,7 +99,16 @@ export const StyledImg = styled.img`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function Img({ ratio, zoom, onLoad, onError, onMouseMove, ...rest }) {
+export default function Img({
+  pictureProps,
+  ratio,
+  fit,
+  zoom,
+  onLoad,
+  onError,
+  onMouseMove,
+  ...rest
+}) {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   const handlers = {
@@ -118,7 +134,7 @@ export default function Img({ ratio, zoom, onLoad, onError, onMouseMove, ...rest
   };
 
   return (
-    <Picture ratio={ratio} isLoaded={isLoaded}>
+    <Picture {...pictureProps} ratio={ratio} isLoaded={isLoaded}>
       <StyledImg {...rest} zoom={zoom} {...handlers} />
     </Picture>
   );
