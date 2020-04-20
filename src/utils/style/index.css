@@ -12,8 +12,11 @@
   --hsl-inverse: 0, 100%, 100%;
   --color-inverse: hsl(var(--hsl-inverse));
 
-  --hsl-text: 200, 5%, 45%;
+  --hsl-text: 211, 5%, 45%;
   --color-text: hsl(var(--hsl-text));
+
+  --hsl-dark: 211, 0%, 1%;
+  --color-dark: hsl(var--hsl-dark);
   
   --hsl-success: 100, 70%, 60%;
   --color-success: hsl(var(--hsl-success));
@@ -86,6 +89,7 @@ input,
 select,
 pre,
 iframe,
+menu,
 hr,
 h1,
 h2,
