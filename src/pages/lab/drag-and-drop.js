@@ -58,28 +58,28 @@ export default function DragAndDropPage({
   const handleDragStart = (event, idx) => {
     const element = event.target;
 
-    window.requestAnimationFrame(() => {
-      element.style.opacity = '0';
-    });
-
     event.dataTransfer.effectAllowed = 'move'; // eslint-disable-line no-param-reassign
     event.dataTransfer.setData('text/html', element);
     draggedIdx.current = idx;
+
+    window.requestAnimationFrame(() => {
+      element.style.opacity = '0'; // needed to load full-opacit element into drag image
+    });
   };
 
   const handleDragEnter = (idx) => {
     setItems(
       items.map((item, i) => {
-        if (i === draggedIdx.current) {
-          return items[idx];
-        }
-        if (i === idx) {
-          return items[draggedIdx.current];
-        }
+        if (i === draggedIdx.current) return items[idx];
+        if (i === idx) return items[draggedIdx.current];
         return item;
       }),
     );
     draggedIdx.current = idx;
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault(); // needed to prevent animation back to original location
   };
 
   const handleDragEnd = (event) => {
@@ -134,6 +134,7 @@ export default function DragAndDropPage({
                 `}
                 onDragStart={(e) => handleDragStart(e, i)}
                 onDragEnter={() => handleDragEnter(i)}
+                onDragOver={handleDragOver}
                 onDragEnd={handleDragEnd}
               >
                 {item}
