@@ -15,7 +15,7 @@ import { Focusable } from '~components/interactive/Focusable';
 import { Icon } from '~components/multimedia/Icon';
 import Img from '~components/multimedia/Img';
 
-import { useEventListener, animation } from '~utils';
+import { useEventListener, useScrollLock, animation } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // helpers
@@ -49,6 +49,8 @@ export default function Lightbox({
 
   const closeButtonRef = React.useRef();
 
+  const { enableScrollLock, disableScrollLock } = useScrollLock();
+
   const handlePrevious = () => setCurrentIdx((prev) => (prev + images.length - 1) % images.length);
   const handleNext = () => setCurrentIdx((prev) => (prev + 1) % images.length);
 
@@ -68,7 +70,13 @@ export default function Lightbox({
   });
 
   React.useEffect(() => {
-    if (isOpen) closeButtonRef.current.focus();
+    if (isOpen) {
+      closeButtonRef.current.focus();
+      enableScrollLock();
+      return undefined;
+    }
+    disableScrollLock();
+    return undefined;
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -194,7 +202,7 @@ export default function Lightbox({
     <FocusLock>
       <Section
         css={`
-          position: absolute;
+          position: fixed;
           width: 100vw;
           height: 100vh;
           top: 0;
