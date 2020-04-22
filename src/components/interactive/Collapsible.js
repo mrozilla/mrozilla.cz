@@ -3,72 +3,48 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { graphql } from 'gatsby';
+import { node, bool } from 'prop-types';
 
-import { RootContainer, BlogPreviewsContainer, SEOContainer } from '~containers';
-import { Main, Section, H2 } from '~components';
-import { renderBlocks, pagePropTypes } from '~utils';
+import styled from 'styled-components';
+import { useEventListener } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// query
+// helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const query = graphql`
-  {
-    page: mdx(frontmatter: { meta: { permalink: { eq: "/blog/" } } }) {
-      frontmatter {
-        ...MetaFragment
-        blocks {
-          title
-          type
-        }
-      }
-    }
-    posts: allMdx(
-      filter: { fileAbsolutePath: { regex: "/cms/posts/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      nodes {
-        ...BlogPreviewFragment
-      }
-    }
-  }
+const StyledCollapsible = styled.div`
+  --max-height: auto;
+
+  overflow: hidden;
+  max-height: ${({ isCollapsed }) => (isCollapsed ? '0px' : 'var(--max-height)')};
+  transition: max-height 250ms;
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function BlogPage({
-  data: {
-    page: {
-      frontmatter: { meta, blocks },
-    },
-    posts,
-  },
-}) {
+export default function Collapsible({ isCollapsed, children, ...rest }) {
+  const ref = React.useRef();
+
+  const setMaxSizeVariable = (element) => {
+    element.style.setProperty('--max-height', `${element.scrollHeight}px`);
+  };
+
+  React.useEffect(() => setMaxSizeVariable(ref.current), [children]);
+  useEventListener('resize', () => setMaxSizeVariable(ref.current));
+
   return (
-    <RootContainer>
-      <SEOContainer meta={meta} />
-      <Main
-        css={`
-          grid-template: 'hero' 'blog';
-          grid-gap: 10vh 4rem;
-        `}
-      >
-        {renderBlocks(blocks)}
-        <Section
-          id="blog"
-          css={`
-            grid-area: blog;
-          `}
-        >
-          <H2>All blog articles</H2>
-          <BlogPreviewsContainer posts={posts} />
-        </Section>
-      </Main>
-    </RootContainer>
+    <StyledCollapsible ref={ref} isCollapsed={isCollapsed} {...rest}>
+      {children}
+    </StyledCollapsible>
   );
 }
 
-BlogPage.propTypes = pagePropTypes;
+Collapsible.propTypes = {
+  children: node.isRequired,
+  isCollapsed: bool,
+};
+Collapsible.defaultProps = {
+  isCollapsed: false,
+};

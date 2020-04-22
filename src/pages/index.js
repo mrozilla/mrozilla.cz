@@ -17,7 +17,7 @@ import { renderBlocks, pagePropTypes } from '~utils';
 export const query = graphql`
   {
     page: mdx(
-      fields: { sourceName: { eq: "pages" } }
+      fileAbsolutePath: { regex: "/cms/pages/" }
       frontmatter: { meta: { permalink: { eq: "/" } } }
     ) {
       frontmatter {
@@ -31,7 +31,7 @@ export const query = graphql`
       }
     }
     works: allMdx(
-      filter: { fields: { sourceName: { eq: "works" } } }
+      filter: { fileAbsolutePath: { regex: "/cms/works/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {
@@ -39,7 +39,7 @@ export const query = graphql`
       }
     }
     posts: allMdx(
-      filter: { fields: { sourceName: { eq: "posts" } } }
+      filter: { fileAbsolutePath: { regex: "/cms/posts/" } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 5
     ) {

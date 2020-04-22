@@ -5,8 +5,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { RootContainer, BlogPreviewsContainer, SEOContainer } from '~containers';
-import { Main, Section, H2 } from '~components';
+import { RootContainer, SEOContainer } from '~containers';
+import { Main, Button, Lightbox } from '~components';
 import { renderBlocks, pagePropTypes } from '~utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,21 +15,14 @@ import { renderBlocks, pagePropTypes } from '~utils';
 
 export const query = graphql`
   {
-    page: mdx(frontmatter: { meta: { permalink: { eq: "/blog/" } } }) {
+    page: mdx(frontmatter: { meta: { permalink: { eq: "/lab/lightbox/" } } }) {
       frontmatter {
         ...MetaFragment
         blocks {
           title
+          codeLink
           type
         }
-      }
-    }
-    posts: allMdx(
-      filter: { fileAbsolutePath: { regex: "/cms/posts/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      nodes {
-        ...BlogPreviewFragment
       }
     }
   }
@@ -39,36 +32,44 @@ export const query = graphql`
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function BlogPage({
+export default function LightboxPage({
   data: {
     page: {
       frontmatter: { meta, blocks },
     },
-    posts,
   },
 }) {
+  const [isLightbox, setIsLightbox] = React.useState(false);
+
+  const handleLightbox = () => setIsLightbox((prev) => !prev);
+
   return (
     <RootContainer>
       <SEOContainer meta={meta} />
       <Main
         css={`
-          grid-template: 'hero' 'blog';
-          grid-gap: 10vh 4rem;
+          grid-template: 'hero' 'maze';
+          grid-gap: 10vh 1rem;
         `}
       >
         {renderBlocks(blocks)}
-        <Section
-          id="blog"
-          css={`
-            grid-area: blog;
-          `}
-        >
-          <H2>All blog articles</H2>
-          <BlogPreviewsContainer posts={posts} />
-        </Section>
+        <Button look="primary" onClick={handleLightbox}>
+          Open lightbox
+        </Button>
+        <Lightbox
+          isOpen={isLightbox}
+          images={[
+            'https://images.unsplash.com/photo-1426901403100-9c1c6b77a54a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9',
+            'https://images.unsplash.com/photo-1426901013385-803d40bd5558?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9',
+            'https://images.unsplash.com/photo-1461711513774-c78b437a740b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9',
+            'https://images.unsplash.com/photo-1427847856029-612f5e500306?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9',
+            'https://images.unsplash.com/photo-1425321442387-141779fb1e57?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9',
+          ]}
+          onClose={handleLightbox}
+        />
       </Main>
     </RootContainer>
   );
 }
 
-BlogPage.propTypes = pagePropTypes;
+LightboxPage.propTypes = pagePropTypes;

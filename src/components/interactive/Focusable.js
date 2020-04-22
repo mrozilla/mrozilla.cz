@@ -8,12 +8,19 @@ import styled from 'styled-components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const Label = styled.label`
-  display: flex;
-  align-items: center;
-  color: hsla(var(--hsl-text), 0.75);
-  font-size: 1.25rem;
-  line-height: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+export const Focusable = styled.button`
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  cursor: pointer;
 `;

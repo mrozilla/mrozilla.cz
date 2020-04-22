@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React from 'react';
-import { arrayOf, shape, string } from 'prop-types';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import { Header, H1, Link, Nav } from '~components';
 
@@ -11,7 +11,23 @@ import { Header, H1, Link, Nav } from '~components';
 // component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HeaderContainer({ header }) {
+export default function HeaderContainer() {
+  const { header } = useStaticQuery(graphql`
+    {
+      header: mdx(
+        fileAbsolutePath: { regex: "/cms/menus/" }
+        frontmatter: { title: { eq: "Header" } }
+      ) {
+        frontmatter {
+          links {
+            text
+            url
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <Header>
       <H1
@@ -30,7 +46,7 @@ export default function HeaderContainer({ header }) {
       </H1>
       <Nav>
         <Nav.List>
-          {header.map(item => (
+          {header.frontmatter.links.map((item) => (
             <Nav.List.Item key={item.url}>
               <Link to={item.url} look="tertiary">
                 {item.text}
@@ -42,12 +58,3 @@ export default function HeaderContainer({ header }) {
     </Header>
   );
 }
-
-HeaderContainer.propTypes = {
-  header: arrayOf(
-    shape({
-      url:  string.isRequired,
-      text: string.isRequired,
-    }),
-  ).isRequired,
-};
