@@ -1,5 +1,6 @@
 export { Button } from './interactive/Button';
 export { Checkbox } from './interactive/Checkbox';
+export { default as Collapsible } from './interactive/Collapsible';
 export { default as Dots } from './interactive/Dots';
 export { Details, Summary } from './interactive/Details';
 export { Error } from './interactive/Error';
