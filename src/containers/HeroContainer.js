@@ -41,7 +41,7 @@ export default function HeroContainer({ title, codeLink }) {
         >
           Curious about how it&apos;s done?{' '}
           <Link to={codeLink} look="secondary">
-            Explore the code
+            Have a look at the code
           </Link>
           !
         </P>
