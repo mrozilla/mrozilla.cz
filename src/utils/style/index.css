@@ -50,6 +50,10 @@
   --color-text: hsl(var(--hsl-crazy-text));
 }
 
+[data-scroll-lock="true"] {
+  overflow: hidden;
+}
+
 @media screen and (min-width: 600px) {
   :root {
     --width-header: 0.75fr;
