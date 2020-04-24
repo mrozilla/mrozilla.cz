@@ -55,7 +55,7 @@ export default function CarouselPage({
             grid-area: carousel;
           `}
         >
-          <Carousel loop={{ interval: 5000 }}>
+          <Carousel loopInterval={5000}>
             {Array.from({ length: 15 }, (_, i) => i).map((order) => (
               <Fragment key={order}>
                 <Img src="https://source.unsplash.com/random/400x400" alt="a random photo" />
