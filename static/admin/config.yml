@@ -17,7 +17,7 @@ collections:
   - label: "Menus"
     label_singular: "Menu"
     name: menus
-    folder: src/content/cms/menus
+    folder: src/cms/menus
     create: true
     extension: mdx
     format: frontmatter
@@ -46,7 +46,7 @@ collections:
   - label: "Labs"
     label_singular: "Lab"
     name: labs
-    folder: src/content/cms/labs
+    folder: src/cms/labs
     create: true
     extension: mdx
     format: frontmatter
@@ -92,7 +92,7 @@ collections:
   - label: "Pages"
     label_singular: "Page"
     name: pages
-    folder: src/content/cms/pages
+    folder: src/cms/pages
     create: true
     extension: mdx
     format: frontmatter
@@ -173,7 +173,7 @@ collections:
   - label: "Works"
     label_singular: "Work"
     name: works
-    folder: src/content/cms/works
+    folder: src/cms/works
     extension: mdx
     format: frontmatter
     create: true
@@ -196,7 +196,7 @@ collections:
   - label: "Blog"
     label_singular: "Blog post"
     name: posts
-    folder: src/content/cms/posts
+    folder: src/cms/posts
     create: true
     extension: mdx
     format: frontmatter
@@ -222,7 +222,7 @@ collections:
 
   - label: "Legal"
     name: legal
-    folder: src/content/cms/legal
+    folder: src/cms/legal
     create: true
     extension: mdx
     format: frontmatter
@@ -242,7 +242,7 @@ collections:
   - label: "Collaborators"
     label_singular: "Collaborator"
     name: collaborators
-    folder: src/content/cms/collaborators
+    folder: src/cms/collaborators
     create: true
     extension: mdx
     format: frontmatter
