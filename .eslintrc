@@ -3,7 +3,7 @@
     "browser": true
   },
   "parser": "babel-eslint",
-  "extends": ["airbnb", "airbnb/hooks"],
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
   "plugins": ["prettier"],
   "globals": {
     "__DEV__": true
