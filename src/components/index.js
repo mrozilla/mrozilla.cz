@@ -37,7 +37,7 @@ export { Article } from './text/Article';
 export { H1, H2, H3 } from './text/HX';
 export { Label } from './text/Label';
 export { Legend } from './text/Legend';
-export { Ul, Li } from './text/List';
+export { Ul, Ol, Li } from './text/List';
 export { P } from './text/P';
 export { default as Pre } from './text/Pre';
 export { Tooltip } from './text/Tooltip';
