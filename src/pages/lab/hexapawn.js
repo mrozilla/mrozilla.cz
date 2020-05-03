@@ -59,7 +59,7 @@ function Pawn({ pawn, isSelected, onSelect, ...rest }) {
       onClick={() => onSelect(pawn.id)}
       {...rest}
     >
-      {pawn.figure}
+      {`${pawn.figure}\u{fe0e}`}
     </Button>
   );
 }
