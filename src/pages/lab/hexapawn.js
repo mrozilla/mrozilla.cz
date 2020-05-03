@@ -9,8 +9,11 @@ import PropTypes from 'prop-types';
 import sample from 'lodash/sample';
 
 import { RootContainer, SEOContainer } from '~containers';
-import { Main, Section, View, Button } from '~components';
+import { Main, Section, Aside, View, Button, H1, Ul, Ol, Li } from '~components';
 import { renderBlocks, pagePropTypes } from '~utils';
+
+// Hexapawn was first described in an article by Martin Gardner in Scientific American in 1962
+// http://cs.williams.edu/~freund/cs136-073/GardnerHexapawn.pdf
 
 // ─────────────────────────────────────────────────────────────────────────────
 // query
@@ -92,6 +95,16 @@ function Move({ move, onMove, ...rest }) {
     />
   );
 }
+Move.propTypes = {
+  move: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+  }).isRequired,
+  onMove: PropTypes.func,
+};
+Move.defaultProps = {
+  onMove: () => {},
+};
 
 const enemyDefault = [
   { id: 1, x: 1, y: 1, figure: '♟' },
@@ -208,7 +221,7 @@ const AIdefault = [
   { id: 83, board: '.e.pe....', move: [1, '23'] }, // TODO: test if 1 exists here
   { id: 84, board: '.e..ep...', move: [2, '32'] },
   { id: 85, board: '.e..ep...', move: [1, '23'] }, // TODO: test if 1 exists here
-  // 18
+  // 19
   { id: 86, board: 'e..ep....', move: [1, '22'] },
   { id: 87, board: 'e..ep....', move: [2, '13'] },
   { id: 88, board: '..e.pe...', move: [3, '22'] },
@@ -245,10 +258,7 @@ function Hexapawn() {
 
   const handleSelect = (id) => {
     setSelectedId(id);
-
-    if (id > -1) {
-      setValidMoves(getValidMoves(id));
-    }
+    if (id > -1) setValidMoves(getValidMoves(id));
   };
 
   const handleMove = (move) => {
@@ -266,17 +276,13 @@ function Hexapawn() {
   };
 
   const handleWin = () => {
-    // console.log('WIN');
     setAI((prev) => prev.filter((move) => move.id !== lastMoveId));
     setStats((prev) => ({ ...prev, victories: prev.victories + 1, lastVictory: 'Player' }));
     setTurn('end');
-    // handleReset();
   };
   const handleDefeat = () => {
-    // console.log('DEFEAT');
     setStats((prev) => ({ ...prev, defeats: prev.defeats + 1, lastVictory: 'AI' }));
     setTurn('end');
-    // handleReset();
   };
 
   const handleEnemy = () => {
@@ -291,19 +297,14 @@ function Hexapawn() {
       .join('');
 
     const moves = AI.filter(({ board }) => board === currentBoard);
-    console.log(moves);
     if (moves.length === 0) {
-      console.log('NO MOVES');
       return handleWin();
     }
-    // const {
-    //   id: moveId,
-    //   move: [id, xy],
-    // } = sample(moves);
+
     const {
       id: moveId,
       move: [id, xy],
-    } = moves[0];
+    } = sample(moves);
 
     setLastMoveId(moveId);
     setEnemy((prev) =>
@@ -332,89 +333,141 @@ function Hexapawn() {
         handleDefeat();
       }
     }
-  }, [turn]);
+  }, [turn]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Section>
-      <View
+    <Section
+      css={`
+        grid-area: hexapawn;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        grid-gap: 4rem 0;
+      `}
+    >
+      <Section>
+        <View
+          css={`
+            --grid: 10rem;
+            position: relative;
+
+            display: grid;
+            grid-template-columns: repeat(3, var(--grid));
+            grid-template-rows: repeat(3, var(--grid));
+            max-width: calc(var(--grid) * 3);
+
+            background-position: 0px 0px, calc(var(--grid) / 1) calc(var(--grid) / 1);
+            background-size: calc(var(--grid) * 2) calc(var(--grid) * 2);
+            background-image: linear-gradient(
+                45deg,
+                hsla(var(--hsl-text), 0.1) 25%,
+                transparent 25%,
+                transparent 75%,
+                hsla(var(--hsl-text), 0.1) 75%,
+                hsla(var(--hsl-text), 0.1) 100%
+              ),
+              linear-gradient(
+                45deg,
+                hsla(var(--hsl-text), 0.1) 25%,
+                transparent 25%,
+                transparent 75%,
+                hsla(var(--hsl-text), 0.1) 75%,
+                hsla(var(--hsl-text), 0.1) 100%
+              );
+          `}
+        >
+          {enemy.map((pawn) => (
+            <Pawn key={pawn.id} pawn={pawn} />
+          ))}
+          {player.map((pawn) => (
+            <Pawn
+              key={pawn.id}
+              pawn={pawn}
+              isSelected={selectedId === pawn.id}
+              onSelect={handleSelect}
+              disabled={turn === 'end'}
+            />
+          ))}
+          {validMoves.map((move) => (
+            <Move
+              key={`${move.x}${move.y}`}
+              move={move}
+              onMove={handleMove}
+              disabled={turn === 'end'}
+            />
+          ))}
+        </View>
+        {__DEV__ && <p>{__DEV__ && `${AI.length} / ${AIdefault.length}`}</p>}
+        <p>
+          {stats.victories} / {stats.victories + stats.defeats} victories
+        </p>
+        <p>Last victory: {stats.lastVictory}</p>
+        {turn === 'end' && (
+          <Button look="primary" disabled={turn !== 'end'} onClick={handleReset}>
+            Next round
+          </Button>
+        )}
+        {__DEV__ && (
+          <>
+            <Button
+              onClick={() => {
+                handleDefeat();
+                handleReset();
+              }}
+            >
+              Give up
+            </Button>
+            <Button
+              onClick={() => {
+                handleWin();
+                handleReset();
+              }}
+            >
+              Win
+            </Button>
+          </>
+        )}
+      </Section>
+      <Aside
         css={`
-          --grid: 10rem;
-          position: relative;
-
-          display: grid;
-          grid-template-columns: repeat(3, var(--grid));
-          grid-template-rows: repeat(3, var(--grid));
-          max-width: calc(var(--grid) * 3);
-
-          background-position: 0px 0px, calc(var(--grid) / 1) calc(var(--grid) / 1);
-          background-size: calc(var(--grid) * 2) calc(var(--grid) * 2);
-          background-image: linear-gradient(
-              45deg,
-              hsla(var(--hsl-text), 0.1) 25%,
-              transparent 25%,
-              transparent 75%,
-              hsla(var(--hsl-text), 0.1) 75%,
-              hsla(var(--hsl-text), 0.1) 100%
-            ),
-            linear-gradient(
-              45deg,
-              hsla(var(--hsl-text), 0.1) 25%,
-              transparent 25%,
-              transparent 75%,
-              hsla(var(--hsl-text), 0.1) 75%,
-              hsla(var(--hsl-text), 0.1) 100%
-            );
+          font-size: 1.75rem;
+          line-height: 3rem;
         `}
       >
-        {enemy.map((pawn) => (
-          <Pawn key={pawn.id} pawn={pawn} />
-        ))}
-        {player.map((pawn) => (
-          <Pawn
-            key={pawn.id}
-            pawn={pawn}
-            isSelected={selectedId === pawn.id}
-            onSelect={handleSelect}
-            disabled={turn === 'end'}
-          />
-        ))}
-        {validMoves.map((move) => (
-          <Move
-            key={`${move.x}${move.y}`}
-            move={move}
-            onMove={handleMove}
-            disabled={turn === 'end'}
-          />
-        ))}
-      </View>
-      <p>{__DEV__ && `${AI.length} / ${AIdefault.length}`}</p>
-      <p>
-        {stats.victories} / {stats.victories + stats.defeats} victories
-      </p>
-      <p>Last victory: {stats.lastVictory}</p>
-      <Button look="primary" disabled={turn !== 'end'} onClick={handleReset}>
-        Next round
-      </Button>
-      {__DEV__ && (
-        <>
-          <Button
-            onClick={() => {
-              handleDefeat();
-              handleReset();
-            }}
-          >
-            Give up
-          </Button>
-          <Button
-            onClick={() => {
-              handleWin();
-              handleReset();
-            }}
-          >
-            Win
-          </Button>
-        </>
-      )}
+        <H1>How to play</H1>
+        <Ul css="list-style: disc; padding: 0 0 2rem 1em;">
+          <Li>You play white, the AI plays black</Li>
+          <Li>White always starts</Li>
+          <Li>
+            On your turn, there are two types of valid moves:{' '}
+            <Ol css="list-style: lower-roman; padding: 0 0 0 1em;">
+              <Li>Move one of your pawns 1 square straight ahead if free</Li>
+              <Li>
+                Move one of your pawns 1 square diagonally ahead if occupied by the opponent and
+                capture the piece
+              </Li>
+            </Ol>
+          </Li>
+          <Li>
+            The game is won in one of three ways:{' '}
+            <Ol css="list-style: lower-roman; padding: 0 0 0 1em;">
+              <Li>Moving a pawn to the opposite end of the board</Li>
+              <Li>Capturing all enemy pawns</Li>
+              <Li>Achieving a position in which the enemy can&apos;t move</Li>
+            </Ol>
+          </Li>
+        </Ul>
+        <H1>About the AI</H1>
+        <Ul css="list-style: disc; padding: 0 0 0 1em;">
+          <Li>The AI makes random (valid) moves in response to yours</Li>
+          <Li>These moves feel silly and wrong in the beginning</Li>
+          <Li>
+            When making a move that leads to losing, the AI won&apos;t do it again (until you
+            refresh the browser)
+          </Li>
+          <Li>Very quickly, the AI becomes scarily good at the game</Li>
+        </Ul>
+      </Aside>
     </Section>
   );
 }
@@ -435,7 +488,7 @@ export default function HexapawnPage({
       <SEOContainer meta={meta} />
       <Main
         css={`
-          grid-template: 'hero' 'maze';
+          grid-template: 'hero' 'hexapawn';
           grid-gap: 10vh 1rem;
         `}
       >
