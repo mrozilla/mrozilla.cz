@@ -7,8 +7,8 @@ module.exports = ({ actions: { createTypes, createFieldExtension }, createConten
     name: 'mdx',
     extend: () => ({
       type: 'String',
-      resolve(source, args, context, info) {
-        const value = source[info.fieldName]; // grab field
+      resolve(parent, args, context, info) {
+        const value = parent[info.fieldName]; // grab field
         if (typeof value !== 'string') return value; // short-circuit if no value
 
         const mdxType = info.schema.getType('Mdx'); // isolate MDX
