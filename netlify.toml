@@ -2,4 +2,7 @@
   command = "yarn build"
   publish = "public/"
   functions = "lambda"
+
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
   
