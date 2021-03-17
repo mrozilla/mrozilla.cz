@@ -64,7 +64,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_ID,
+        trackingId: 'UA-77153555-1',
         head: true,
         anonymize: true,
         respectDNT: true,
@@ -109,6 +109,7 @@ module.exports = {
         displayName: NODE_ENV === 'development',
       },
     },
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
