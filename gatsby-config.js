@@ -50,6 +50,7 @@ module.exports = {
 
     'gatsby-transformer-sharp',
 
+    'gatsby-remark-relative-images', // for some reason needs to be here and not inside gatsbyRemarkPlugins below
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
