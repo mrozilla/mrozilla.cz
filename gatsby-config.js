@@ -50,6 +50,7 @@ module.exports = {
 
     'gatsby-transformer-sharp',
 
+    'gatsby-remark-relative-images', // for some reason needs to be here and not inside gatsbyRemarkPlugins below
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -64,7 +65,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_ID,
+        trackingId: 'UA-77153555-1',
         head: true,
         anonymize: true,
         respectDNT: true,
@@ -109,6 +110,7 @@ module.exports = {
         displayName: NODE_ENV === 'development',
       },
     },
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',

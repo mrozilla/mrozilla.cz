@@ -5,6 +5,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
+import { getSrc } from 'gatsby-plugin-image';
 
 import { metaPropTypes } from '~utils';
 
@@ -42,7 +43,7 @@ export default function SEOContainer({ meta: { title, description, permalink, og
         { name: 'twitter:creator', content: '@mrozilla' },
         {
           name: 'twitter:image',
-          content: `${siteUrl}${ogImage.childImageSharp.resize.src}`,
+          content: `${siteUrl}${getSrc(ogImage)}`,
         },
 
         { property: 'og:title', content: `${title}` },
@@ -50,7 +51,7 @@ export default function SEOContainer({ meta: { title, description, permalink, og
         { property: 'og:url', content: `${siteUrl}${permalink}` },
         {
           property: 'og:image',
-          content: `${siteUrl}${ogImage.childImageSharp.resize.src}`,
+          content: `${siteUrl}${getSrc(ogImage)}`,
         },
         { property: 'og:description', content: description },
         { property: 'fb:app_id', content: process.env.GATSBY_FB_APP_ID },
