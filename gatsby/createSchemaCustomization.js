@@ -18,6 +18,9 @@ module.exports = ({ actions: { createTypes, createFieldExtension }, createConten
           internal: {
             contentDigest: createContentDigest(value), // used for caching
           },
+          args,
+          context,
+          info,
         });
       },
     }),
