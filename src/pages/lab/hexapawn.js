@@ -166,8 +166,8 @@ const AIdefault = [
   { id: 39, board: '.ee.epp..', move: [1, '13'] },
   { id: 40, board: '.ee.epp..', move: [1, '23'] },
   { id: 41, board: 'ee.pe...p', move: [2, '12'] },
-  { id: 42, board: 'ee.pe...p', move: [1, '23'] },
-  { id: 43, board: 'ee.pe...p', move: [1, '33'] },
+  { id: 42, board: 'ee.pe...p', move: [3, '23'] },
+  { id: 43, board: 'ee.pe...p', move: [3, '33'] },
   // 8
   { id: 44, board: '.eeeppp..', move: [2, '32'] },
   { id: 45, board: '.eeeppp..', move: [3, '22'] },

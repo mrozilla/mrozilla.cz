@@ -83,7 +83,7 @@ export default function HomePage({
             grid-area: work;
           `}
         >
-          <H2>Latest client work</H2>
+          <H2>Latest works</H2>
           <WorksContainer works={works.nodes.map(({ frontmatter }) => ({ ...frontmatter }))} />
         </Section>
         <Section

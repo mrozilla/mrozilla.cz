@@ -58,8 +58,8 @@ const Input = forwardRef(
             {label && <Legend>{label}</Legend>}
             {options.map((radio) => (
               <Label
+                as="span"
                 key={radio.value}
-                htmlFor={radio.value}
                 css={`
                   line-height: 4rem;
                 `}
@@ -75,7 +75,9 @@ const Input = forwardRef(
                     onChange,
                   }}
                 />
-                <Text>{radio.label}</Text>
+                <Text as="label" htmlFor={radio.value}>
+                  {radio.label}
+                </Text>
               </Label>
             ))}
             {description && <Tooltip>{description}</Tooltip>}
@@ -89,8 +91,8 @@ const Input = forwardRef(
             {label && <Legend>{label}</Legend>}
             {options.map((checkbox) => (
               <Label
+                as="span"
                 key={checkbox.value}
-                htmlFor={checkbox.value}
                 css={`
                   line-height: 4rem;
                 `}
@@ -106,7 +108,9 @@ const Input = forwardRef(
                     onChange,
                   }}
                 />
-                <Text>{checkbox.label}</Text>
+                <Text as="label" htmlFor={checkbox.value}>
+                  {checkbox.label}
+                </Text>
               </Label>
             ))}
             {description && <Tooltip>{description}</Tooltip>}
