@@ -5,7 +5,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { Header, H1, Link, Nav } from '~components';
+import { Header, Link, Nav } from '~components';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // component
@@ -30,8 +30,11 @@ export default function HeaderContainer() {
 
   return (
     <Header>
-      <H1
+      <Link
+        to="/"
+        look="tertiary"
         css={`
+          display: block;
           font-size: 3rem;
           margin: 0;
 
@@ -40,10 +43,8 @@ export default function HeaderContainer() {
           }
         `}
       >
-        <Link to="/" look="tertiary">
-          Mrozilla
-        </Link>
-      </H1>
+        Mrozilla
+      </Link>
       <Nav>
         <Nav.List>
           {header.frontmatter.links.map((item) => (
