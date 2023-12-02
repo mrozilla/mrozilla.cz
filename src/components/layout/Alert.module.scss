@@ -1,0 +1,25 @@
+.alert {
+  display: inline-block;
+  line-height: 3rem;
+  padding: 1rem 2rem;
+  margin: 0 0 1rem 0;
+  box-shadow: 0 0 0 1px;
+  border-radius: 0.25rem;
+}
+
+.danger {
+  background-color: hsla(var(--hsl-danger), 0.05);
+  color: var(--color-danger);
+}
+.warning {
+  background-color: hsla(var(--hsl-warning), 0.05);
+  color: var(--color-warning);
+}
+.info {
+  background-color: hsla(var(--hsl-info), 0.05);
+  color: var(--color-info);
+}
+.success {
+  background-color: hsla(var(--hsl-success), 0.05);
+  color: var(--color-success);
+}

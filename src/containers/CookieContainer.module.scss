@@ -1,0 +1,16 @@
+.toast {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.25rem;
+  bottom: auto;
+  top: 0;
+
+  @media screen and (min-width: 300px) {
+    bottom: 0;
+    top: auto;
+  }
+}
+
+.button {
+  margin-left: 1rem;
+}

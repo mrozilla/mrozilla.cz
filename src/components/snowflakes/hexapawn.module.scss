@@ -1,0 +1,30 @@
+.board {
+  --grid: 10rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, var(--grid));
+  grid-template-rows: repeat(3, var(--grid));
+  max-width: 30rem;
+
+  background-image: repeating-conic-gradient(hsla(var(--hsl-text), 0.1) 0% 25%, transparent 0% 50%);
+  background-size: calc(2 / 3 * 100%) calc(2 / 3 * 100%);
+}
+
+.pawn {
+  position: absolute;
+  width: var(--grid);
+  height: var(--grid);
+  line-height: 2rem;
+  transition: transform 250ms;
+
+  display: grid;
+  place-items: center;
+  font-size: 8rem;
+}
+
+.move {
+  z-index: 1;
+
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px hsla(var(--hsl-primary), 0.5);
+}

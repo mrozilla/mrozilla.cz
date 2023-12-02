@@ -1,0 +1,98 @@
+.card {
+  --box-shadow-color: hsla(var(--hsl-text), 0.25);
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 4.5rem;
+
+  line-height: 1;
+  font-size: 2rem;
+  padding: 1rem 1rem 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.25rem;
+  box-shadow: 0 0 0 1px var(--box-shadow-color);
+
+  :global {
+    animation: fade-up 250ms;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &::before {
+    content: attr(data-rank);
+    white-space: pre;
+    font-weight: 700;
+  }
+
+  &::after {
+    content: attr(data-suit);
+    white-space: pre;
+    font-size: 3rem;
+  }
+
+  &[data-suit="♥"],
+  &[data-suit="♦"] {
+    color: var(--color-danger);
+  }
+  &[data-facedown="true"] {
+    &::before,
+    &::after {
+      content: " ";
+    }
+  }
+}
+
+.score {
+  --background-color: hsla(var(--hsl-text), 0.1);
+  --color: var(--color-text);
+
+  position: absolute;
+  top: 0.25rem;
+  right: calc(100% + 0.5rem);
+
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+
+  background-color: var(--background-color);
+  color: var(--color);
+
+  &[data-variant="info"] {
+    --background-color: var(--color-info);
+    --color: var(--color-bg);
+  }
+  &[data-variant="success"] {
+    --background-color: var(--color-success);
+    --color: var(--color-bg);
+  }
+  &[data-variant="danger"] {
+    --background-color: var(--color-danger);
+    --color: var(--color-bg);
+  }
+
+  // ${({ winner, player }) => {
+  //   if (winner === 'draw') {
+  //     return `
+  //       --background-color: var(--color-info);
+  //       --color: var(--color-bg);
+  //     `;
+  //   }
+  //   if (winner === player) {
+  //     return `
+  //       --background-color: var(--color-success);
+  //       --color: var(--color-bg);
+  //     `;
+  //   }
+  //   if (winner && winner !== player) {
+  //     return `
+  //       --background-color: var(--color-danger);
+  //       --color: var(--color-bg);
+  //     `;
+  //   }
+  //   return null;
+  // }}
+}

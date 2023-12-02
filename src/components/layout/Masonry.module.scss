@@ -1,0 +1,8 @@
+.container {
+  display: grid;
+}
+
+.column {
+  display: grid;
+  grid-auto-rows: max-content;
+}

@@ -1,0 +1,169 @@
+.fieldset {
+  position: relative;
+
+  & > .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  &:hover > .tooltip,
+  &:focus > .tooltip,
+  &:focus-within > .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input {
+  --shadow: inset 0 0 0 2px hsla(var(--hsl-text), 0.1);
+
+  appearance: none;
+  border: none;
+  outline: none;
+  resize: none;
+
+  display: block;
+  width: 100%;
+  background-color: hsla(var(--hsl-text), 0.05);
+  line-height: 1.5em;
+  padding: 2rem;
+  border-radius: 0.5rem;
+
+  &::placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+
+  &:not(:read-only):not(:disabled) {
+    &:hover {
+      box-shadow: var(--shadow);
+      &::placeholder {
+        opacity: 0.75;
+      }
+    }
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px var(--color-primary);
+      &::placeholder {
+        opacity: 0.75;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      & ~ .tooltip {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &:not(:placeholder-shown) {
+    padding: 3rem 1rem 1rem;
+  }
+
+  & ~ .label {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+
+    font-size: 1.25rem;
+    line-height: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    :global {
+      animation: fade-up 250ms;
+    }
+  }
+
+  &:placeholder-shown ~ .label {
+    display: none;
+  }
+
+  & ~ .icon {
+    position: absolute;
+    top: 2.5rem;
+    right: 2rem;
+    color: hsla(var(--hsl-text), 0.5);
+    pointer-events: none;
+  }
+
+  & ~ .button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    color: hsla(var(--hsl-text), 0.5);
+  }
+
+  /**
+   * errors only shown on required inputs when blurred and with value
+   * 1. show error sibling
+   * 2. hide tooltip sibling (would crash into error)
+   */
+
+  & ~ .error {
+    --color: var(--color-danger);
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  &:required:not(:focus):not(:placeholder-shown) {
+    &:invalid:not([type^="date"]):not([type="time"]):not([type="month"]) {
+      color: var(--color-danger);
+      box-shadow: inset 0 0 0 2px var(--color-danger);
+
+      & ~ .error {
+        visibility: visible; /* 1 */
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      & ~ .tooltip {
+        visibility: hidden; /* 2 */
+        opacity: 0;
+      }
+    }
+  }
+
+  /**
+   * remove autofill yellow background in webkit
+   * 1. override text colour, inherit doesn't work
+   * 2. transition very long, background-color doesn't work
+   */
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-text); /* 1 */
+    transition: background-color 50000s ease-in-out; /* 2 */
+  }
+
+  &[type^="date"],
+  &[type="time"],
+  &[type="month"] {
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      color: transparent;
+      background: transparent;
+    }
+
+    &::-webkit-datetime-edit-text {
+      opacity: 0.5;
+    }
+  }
+
+  /** remove search input additional styling in webkit */
+
+  &[type="search"] {
+    &::-webkit-calendar-picker-indicator,
+    &::-webkit-search-cancel-button {
+      display: none !important;
+    }
+  }
+}

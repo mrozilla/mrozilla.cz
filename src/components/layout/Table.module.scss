@@ -1,0 +1,41 @@
+.container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  white-space: pre;
+
+  @media screen and (min-width: 1200px) {
+    table-layout: fixed; // TODO: double-check
+  }
+}
+
+.thead {
+  --shadow: 0 2px 0 0 hsla(var(--hsl-text), 0.1);
+
+  box-shadow: var(--shadow);
+
+  & th {
+    padding: 1rem 0.5rem;
+  }
+}
+
+.tbody {
+  & tr:hover {
+    background-color: hsla(var(--hsl-text), 0.05);
+  }
+}
+
+.tr {
+  --shadow: 0 1px 0 0 hsla(var(--hsl-text), 0.1);
+
+  box-shadow: var(--shadow);
+}
+
+.td {
+  padding: var(--padding, 0.5rem);
+  opacity: var(--opacity);
+  // padding: ${({ padding = '.5rem' }) => padding};
+  // opacity: ${({ opacity }) => opacity};
+}

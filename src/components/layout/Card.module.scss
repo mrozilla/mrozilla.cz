@@ -1,0 +1,29 @@
+.card {
+  display: grid;
+
+  background-color: hsla(var(--hsl-text), 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  & > & {
+    background-color: var(--color-bg);
+  }
+
+  &.small {
+    padding: 0.5rem;
+  }
+  &.large {
+    padding: 2rem;
+  }
+
+  &[draggable] {
+    cursor: pointer;
+    grid-auto-flow: column;
+    justify-content: space-between;
+
+    &::after {
+      content: "☰";
+      opacity: 0.25;
+    }
+  }
+}

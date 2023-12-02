@@ -1,0 +1,55 @@
+.container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-modal);
+
+  display: grid;
+  grid-template-rows: 6rem calc(100vh - 6rem - 16rem) 16rem;
+  grid-template-rows: 6rem 1fr 16rem;
+  background-color: hsla(var(--hsl-bg), 0.95);
+
+  :global {
+    animation: fade-up 500ms;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 2rem;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 6rem 1fr 6rem;
+  max-height: 100%;
+
+  .previous-button {
+    left: 8px;
+  }
+
+  .next-button {
+    right: 8px;
+  }
+}
+
+.footer {
+  overflow-x: scroll;
+
+  .previews {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 14rem;
+    grid-gap: 1rem;
+    padding: 1rem;
+  }
+
+  .preview {
+    position: relative;
+    cursor: pointer;
+  }
+}

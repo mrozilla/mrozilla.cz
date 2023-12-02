@@ -1,0 +1,34 @@
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 0rem 2rem;
+
+  @media screen and (min-width: 900px) {
+    grid-template-columns: max-content minmax(max-content, 8fr) repeat(8, 1fr);
+  }
+
+  .team {
+    grid-column: 1 / -1;
+
+    @media screen and (min-width: 900px) {
+      grid-column: 1;
+    }
+  }
+
+  .name {
+    grid-column: 1 / -1;
+    font-weight: bold;
+
+    @media screen and (min-width: 900px) {
+      grid-column: 2;
+    }
+  }
+
+  .set {
+    font-weight: bold;
+  }
+
+  .point {
+    text-align: right;
+  }
+}

@@ -1,0 +1,17 @@
+.main {
+  display: grid;
+  grid-area: main;
+  grid-gap: 10vh 4rem;
+
+  :global {
+    animation: fade-up 500ms;
+  }
+}
+
+.writest {
+  // grid-template-columns: "hero" "input" "stats";
+
+  @media screen and (min-width: 900px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}

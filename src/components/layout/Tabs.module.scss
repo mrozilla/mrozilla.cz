@@ -1,0 +1,34 @@
+.tabs {
+  [role="tablist"] {
+    list-style: none;
+
+    display: flex;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    box-shadow: inset 0 -2px hsla(var(--hsl-text), 0.1);
+  }
+
+  [role="tab"] {
+    outline: none;
+
+    cursor: pointer;
+    padding: 1rem;
+
+    &:hover {
+      color: var(--color-primary);
+      box-shadow: inset 0 -2px var(--color-primary);
+    }
+
+    &:focus {
+      color: var(--color-primary);
+    }
+
+    &[aria-selected="true"] {
+      box-shadow: inset 0 -2px var(--color-primary);
+    }
+  }
+
+  [role="tabpanel"] {
+    padding: 1rem 0;
+  }
+}

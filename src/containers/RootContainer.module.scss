@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template:
+    "header main aside"
+    "header footer aside"
+    / var(--width-header) var(--width-main) var(--width-aside);
+  grid-gap: 10vh 10vw;
+  padding: 10vh 0;
+  
+  @media screen and (min-width: 600px) {
+    padding: 20vh 0;
+  }
+}

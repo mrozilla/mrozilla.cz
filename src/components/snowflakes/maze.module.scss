@@ -1,0 +1,52 @@
+.cell {
+  position: relative;
+  aspect-ratio: 1;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    margin: calc(var(--border-width) * -0.5);
+
+    border: var(--border-width) solid var(--color-primary);
+    border-top-width: var(--border-top-width);
+    border-right-width: var(--border-right-width);
+    border-bottom-width: var(--border-bottom-width);
+    border-left-width: var(--border-left-width);
+  }
+}
+
+.revealer {
+  position: absolute;
+  width: calc(100% / var(--width));
+  height: calc(100% / var(--height));
+
+  background: hsla(var(--hsl-primary), 1);
+
+  animation: revealer 1000ms alternate forwards;
+}
+
+@keyframes revealer {
+  from {
+    transform: scale(1, 1)
+      translate(calc(calc(var(--width) - 1) * 100%), calc(calc(var(--height) - 1) * 100%));
+    transform-origin: calc(var(--width) * 100%) calc(var(--height) * 100%);
+  }
+  50% {
+    transform: scale(var(--width), var(--height))
+      translate(calc(calc(var(--width) - 1) * 100%), calc(calc(var(--height) - 1) * 100%));
+    transform-origin: calc(var(--width) * 100%) calc(var(--height) * 100%);
+  }
+  50.001% {
+    transform: scale(var(--width), var(--height)) translate(0, 0);
+    transform-origin: 0 0;
+  }
+  to {
+    transform: scale(1, 1) translate(0, 0);
+    transform-origin: 0 0;
+  }
+}
