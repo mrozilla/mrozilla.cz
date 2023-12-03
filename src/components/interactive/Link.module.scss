@@ -1,0 +1,25 @@
+.link {
+  outline: none;
+
+  &[aria-current] {
+    font-weight: 700;
+  }
+}
+
+.primary {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.secondary {
+  text-decoration: underline var(--color-primary);
+  
+  &:hover, &:focus, &:active {
+    color: var(--color-primary);
+  }
+}
+.tertiary {
+  &:hover, &:focus, &:active {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+}

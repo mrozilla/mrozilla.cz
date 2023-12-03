@@ -1,0 +1,11 @@
+.list {
+  list-style: none;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0 1rem;
+
+  @media screen and (min-width: 600px) {
+    grid-auto-flow: row;
+  }
+}

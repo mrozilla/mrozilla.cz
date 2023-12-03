@@ -1,0 +1,76 @@
+.wrapper {
+  display: grid;
+  position: relative;
+}
+
+.veil {
+  --veil-right-width: 2rem;
+  --veil-left-width: 2rem;
+
+  margin-right: calc(var(--veil-right-width) * -1);
+  margin-left: calc(var(--veil-left-width) * -1);
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 1) calc(var(--veil-left-width)),
+    rgba(0, 0, 0, 1) calc(100% - (var(--veil-right-width))),
+    transparent
+  );
+}
+
+.slider {
+  --visible-items: 1;
+
+  display: grid;
+  position: relative;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--gap) * (var(--visible-items) - 1)) / var(--visible-items));
+  gap: var(--gap);
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  padding-right: calc(var(--veil-right-width));
+  padding-left: calc(var(--veil-left-width));
+  scroll-padding-left: calc(var(--veil-left-width));
+
+  cursor: ew-resize;
+
+  /**
+   * hide scroll bar
+   *
+   * 1. in Firefox
+   * 2. in Edge
+   * 3. in Chrome & Safari
+   */
+  scrollbar-width: none; /* 1 */
+  -ms-overflow-style: none; /* 2 */
+  &::-webkit-scrollbar {
+    display: none; /* 3 */
+  }
+
+  /**
+   * add spacer at the end of the slider to adjust for right veil
+   */
+  &::after {
+    content: "";
+    display: block;
+    width: calc(var(--veil-right-width) - var(--gap));
+  }
+}
+
+.button {
+  position: absolute;
+  align-self: center;
+  border-radius: 999px;
+  padding: 1rem;
+  line-height: 0;
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+.item {
+  scroll-snap-align: start;
+}

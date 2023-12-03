@@ -1,0 +1,18 @@
+.group {
+  display: flex;
+  gap: var(--gap, 1rem);
+
+  :global(button) {
+    &:first-of-type {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:last-of-type {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &:not(:last-of-type):not(:first-of-type) {
+      border-radius: 0;
+    }
+  }
+}

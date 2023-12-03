@@ -1,0 +1,16 @@
+.collapsible {
+  --max-height: auto;
+
+  overflow: hidden;
+  max-height: 0px;
+  transition: max-height 250ms;
+
+  &:global(.open) {
+    max-height: var(--max-height);
+  }
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+}

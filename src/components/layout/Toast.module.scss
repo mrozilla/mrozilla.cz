@@ -1,0 +1,18 @@
+.toast {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  padding: 1rem;
+  z-index: var(--z-index-toast);
+  visibility: hidden;
+
+  text-align: center;
+  color: var(--color-inverse);
+  background-color: var(--color-primary);
+
+  &[aria-hidden="false"] {
+    visibility: visible;
+  }
+}

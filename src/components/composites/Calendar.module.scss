@@ -1,0 +1,42 @@
+.controls {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
+  margin: 0 0 2rem 0;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0 0 2rem 0;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-primary);
+    background-image: radial-gradient(
+      circle closest-side,
+      hsla(var(--hsl-primary), 0.25) 100%,
+      transparent 100%
+    );
+  }
+
+  &[data-current] {
+    color: hsl(var(--hsl-bg));
+      background-image: radial-gradient(
+        circle closest-side,
+        var(--color-primary) 100%,
+        transparent 100%
+      );
+  }
+}

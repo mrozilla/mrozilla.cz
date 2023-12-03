@@ -1,0 +1,16 @@
+.container {
+  color: hsla(var(--hsl-text), 0.5);
+  background-color: hsla(var(--hsl-text), 0.1);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 8rem 4rem;
+
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 500ms, transform 500ms;
+
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

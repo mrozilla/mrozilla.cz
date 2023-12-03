@@ -1,0 +1,50 @@
+.title {
+  font-family: arial;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #1a0dab;
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  outline: none;
+}
+
+.website {
+  display: block;
+  font-family: arial;
+  color: #006621;
+  font-size: 14px;
+  line-height: 16px;
+  font-style: normal;
+  outline: none;
+
+  &::after {
+    content: "▾";
+    padding-left: 1rem;
+  }
+}
+
+.stars {
+  display: block;
+  font-size: 13px;
+  line-height: 1;
+  color: #e97100;
+  outline: none;
+}
+
+.rating {
+  color: #808080;
+  line-height: 18px;
+}
+
+.description {
+  display: block;
+  font-family: arial;
+  color: #545454;
+  font-size: 13px;
+  line-height: 1.4;
+  outline: none;
+}
