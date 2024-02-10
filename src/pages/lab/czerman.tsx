@@ -20,6 +20,7 @@ const dictionary = [
   { cz: "flundra", czIpa: "[flundra]", de: "der Flunder", deIpa: "[ˈflʊndɐ]" },
   { cz: "flus", czIpa: "[ˈflus]", de: "der Fluss", deIpa: "[flʊs]" },
   { cz: "fotr", czIpa: "[fɔtr̩]", de: "der Vater", deIpa: "[ˈfaːtɐ]" },
+  { cz: "fuč", czIpa: "[ˈfut͡ʃ]", de: "pfutsch", deIpa: "[fʊt͡ʃ]" },
   { cz: "fuchtle", czIpa: "[ˈfʊχtl̩ɛ]", de: "die Fuchtel", deIpa: "[ˈfʊχtl̩]" },
   { cz: "fusekle", czIpa: "[fʊsɛklɛ]", de: "der Fußsöckel", deIpa: "[ˈfuːsˌzɔkl̩]" },
   { cz: "gábl", czIpa: "[gaːbl]", de: "die Gabel", deIpa: "[gaːbl]" },
