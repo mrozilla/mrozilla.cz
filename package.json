@@ -18,30 +18,30 @@
   },
   "dependencies": {
     "@mdx-js/react": "^3.0.0",
-    "classnames": "^2.3.2",
-    "gatsby": "^5.12.9",
-    "gatsby-plugin-google-gtag": "^5.12.3",
-    "gatsby-plugin-image": "^3.12.3",
-    "gatsby-plugin-manifest": "^5.12.3",
-    "gatsby-plugin-mdx": "^5.12.3",
+    "classnames": "^2.5.1",
+    "gatsby": "^5.13.3",
+    "gatsby-plugin-google-gtag": "^5.13.1",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-manifest": "^5.13.1",
+    "gatsby-plugin-mdx": "^5.13.1",
     "gatsby-plugin-netlify": "^5.1.1",
     "gatsby-plugin-robots-txt": "^1.8.0",
-    "gatsby-plugin-sass": "^6.12.3",
-    "gatsby-plugin-sitemap": "^6.12.3",
-    "gatsby-source-filesystem": "^5.12.1",
+    "gatsby-plugin-sass": "^6.13.1",
+    "gatsby-plugin-sitemap": "^6.13.1",
+    "gatsby-source-filesystem": "^5.13.1",
     "lodash": "^4.17.21",
-    "prism-react-renderer": "^2.2.0",
+    "prism-react-renderer": "^2.3.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-focus-lock": "^2.9.6",
+    "react-focus-lock": "^2.9.8",
     "react-icons": "^4.12.0",
     "reading-time": "^1.5.0",
-    "sass": "^1.69.5"
+    "sass": "^1.70.0"
   },
   "devDependencies": {
-    "@types/node": "^20.9.1",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "typescript": "^5.2.2"
+    "@types/node": "^20.11.17",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "typescript": "^5.3.3"
   }
 }
