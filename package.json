@@ -13,7 +13,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "bump": "yarn upgrade-interactive --latest",
+    "bump": "pnpm upgrade --interactive --latest",
     "purge": "rm -rf node_modules && yarn"
   },
   "dependencies": {
@@ -31,8 +31,8 @@
     "gatsby-source-filesystem": "^5.13.1",
     "lodash": "^4.17.21",
     "prism-react-renderer": "^2.3.1",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-focus-lock": "^2.9.8",
     "react-icons": "^4.12.0",
     "reading-time": "^1.5.0",
